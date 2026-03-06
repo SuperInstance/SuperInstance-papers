@@ -1,6 +1,6 @@
 # Round 1 Research Synthesis
 
-**Status**: 4/5 Complete, 1 In Progress
+**Status**: COMPLETE (5/5)
 **Agents Launched**: 5
 **Expected Outputs**: 5 research documents
 
@@ -10,7 +10,7 @@
 
 | Agent | Topic | Output File | Status |
 |-------|-------|-------------|--------|
-| Multi-Agent Systems | MARL, swarm intelligence | `docs/research/multi-agent-systems.md` | In Progress |
+| Multi-Agent Systems | MARL, swarm intelligence | `docs/research/multi-agent-systems.md` | **COMPLETE** |
 | Embodied Cognition | Distributed memory, gut brain | `docs/research/embodied-cognition.md` | **COMPLETE** |
 | Stochastic Decisions | Plinko, temperature, bandits | `docs/research/stochastic-decisions.md` | **COMPLETE** |
 | Privacy Learning | FL attacks, differential privacy | `docs/research/privacy-attacks.md` | **COMPLETE** |
@@ -133,18 +133,50 @@ y_i = exp((log(π_i) + g_i) / τ) / Σ exp((log(π_j) + g_j) / τ)
 
 ## 5. Multi-Agent Systems Findings
 
-**Status**: In Progress
+**Status**: COMPLETE (4,375 words + executive summary)
 
-Research areas being explored:
-- QMIX, MAPPO, MADDPG algorithms
-- Swarm intelligence (Bonabeau, Dorigo, Kennedy)
-- Ant colony optimization
-- Particle swarm optimization
-- Emergence in complex systems
-- Coordination mechanisms
-- Failure modes
+**Core MARL Algorithms**:
+- **QMIX** (Rashid 2018): Value decomposition with monotonicity - enables decentralized execution
+- **MAPPO** (Yu 2021): Surprisingly effective PPO with centralized critics - simplicity wins
+- **MADDPG** (Lowe 2017): Foundational CTDE for mixed cooperative-competitive settings
+- **COMA** (Foerster 2018): Counterfactual baselines for fair credit assignment
 
-*To be completed when agent finishes*
+**Swarm Intelligence Foundations**:
+- **Ant Colony Optimization**: Pheromone trails = stigmergy (indirect communication)
+- **Particle Swarm Optimization**: Cognitive-social balance for exploration/exploitation
+- **Boids (Reynolds)**: Complex flocking from 3 simple rules (separation, alignment, cohesion)
+
+**Architecture Patterns**:
+- **CTDE**: Centralized Training with Decentralized Execution - train with global, execute with local
+- **Value Decomposition**: Factorize joint Q into individual Qs for credit assignment
+- **Hierarchical Organization**: Managers → Coordinators → Specialists
+- **Communication-Based Coordination**: Differentiable, targeted, scheduled messaging
+
+**Failure Modes & Mitigations**:
+| Failure | Mitigation |
+|---------|------------|
+| Non-stationarity | CTDE, opponent modeling, policy ensembles |
+| Credit assignment | Counterfactual baselines, value decomposition |
+| Coordination failures | Communication protocols, hierarchical organization |
+| Scalability | Locality, hierarchies, attention mechanisms |
+| Exploration | Intrinsic motivation, population diversity |
+
+**Gap Analysis - POLLN vs Current MARL**:
+| Aspect | Current MARL | POLLN Needs |
+|--------|--------------|-------------|
+| Agents | Homogeneous | Heterogeneous specialists |
+| Learning | Episodic | Continual, persistent |
+| Population | Fixed | Dynamic creation/destruction |
+| Actions | Discrete/continuous | Structured, multi-step |
+| Memory | Replay buffers | Structural plasticity |
+
+**Key Recommendations**:
+1. Three-level hierarchy: Global coordinators → Task coordinators → Specialists
+2. Modified MAPPO with heterogeneous policy architectures
+3. Stigmergic coordination via pathway strength signals
+4. Hierarchical consensus for distributed decision-making
+
+See: `docs/research/multi-agent-systems.md` (full) and `multi-agent-systems-summary.md` (executive)
 
 ---
 
@@ -238,4 +270,4 @@ Based on gaps identified, Round 2 will focus on:
 ---
 
 *Last Updated: 2026-03-06*
-*Round 1: 4/5 Complete*
+*Round 1: COMPLETE (5/5)*
