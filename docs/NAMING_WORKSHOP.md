@@ -359,7 +359,101 @@ This is the winner because:
 
 ---
 
-## Part 7: Open Questions
+## Part 7: Cultural Sensitivity and Attribution
+
+### Critical Context from Cross-Cultural Philosophy Research
+
+**Important Finding:** The metaphor shift from mycelium to pollination/bees avoids some appropriation concerns but introduces new considerations.
+
+### Metaphor Appropriation Assessment
+
+#### Bee/Pollination Metaphors
+
+| Concept | Cultural Origin | Appropriation Concern | Recommendation |
+|---------|----------------|----------------------|----------------|
+| Pollination/Pollen | Universal natural phenomenon | Low - universal concept | Safe to use |
+| Colony/Colony Mind | Entomology, distributed systems | Low - scientific term | Safe to use |
+| Hive/Hive Mind | Entomology, science fiction | Medium - negative connotations | Use "Colony Mind" instead |
+| Waggle Dance | Scientific term for bee communication | Low - scientific | Safe, but acknowledge source |
+| Cross-pollination | Agriculture, biology | Low - universal | Safe to use |
+| Nectar/Honey | Universal | Low | Safe to use |
+
+#### Concerns to Address
+
+1. **"Colony" and Colonialism**
+   - Risk: "Colony" evokes colonial history
+   - Mitigation: Use consistently with insects, not political entities
+   - Attribution: None needed - universal biological term
+
+2. **"Keeper" and Ownership**
+   - Risk: "Keeper" could imply extraction or ownership
+   - Mitigation: Emphasize caretaking, relationship, mutual benefit
+   - Alternative: Consider "Cultivator" or "Tender" if concerns arise
+
+3. **Natural Metaphors and Indigenous Knowledge**
+   - Risk: Natural metaphors could appropriate TEK (Traditional Ecological Knowledge)
+   - Mitigation: Acknowledge that indigenous peoples have understood these patterns for millennia
+   - Attribution: Include in documentation
+
+#### Required Attribution Statements
+
+Add to documentation:
+
+```markdown
+## Metaphor Attribution
+
+The POLLN project uses biological metaphors (pollination, colonies, swarms) to describe distributed artificial intelligence.
+
+We acknowledge that:
+
+1. **Indigenous knowledge systems** worldwide have understood and practiced distributed intelligence, collective cognition, and emergence for millennia. Concepts like the Haudenosaunee Great Law of Peace (consensus-based governance), Lakota Mitakuye Oyasin (all my relations), and Māori whakapapa (relational frameworks) express insights about collective intelligence that predate Western scientific discovery.
+
+2. **Biological and ecological metaphors** draw from natural patterns that traditional cultures have observed, respected, and learned from for generations. We acknowledge Traditional Ecological Knowledge (TEK) as a source of understanding about emergence, networks, and collective behavior.
+
+3. **Cross-cultural philosophy** reveals that concepts of distributed intelligence appear in Greek (Nous, Logos), Chinese (Dao, Wu Wei), Buddhist (Pratītyasamutpāda, Indra's Net), and many other traditions. POLLN stands within this global conversation, not outside it.
+
+4. **Proper attribution** is required for any specific cultural concepts we reference. See our Cross-Cultural Philosophy research for detailed attribution guidelines.
+
+For more information, see: docs/research/cross-cultural-philosophy.md
+```
+
+### Naming Decisions Reconsidered
+
+| Decision | Cultural Sensitivity Review | Status |
+|----------|----------------------------|--------|
+| Keeper → Keeper | Low risk. Emphasize caretaking, not ownership. Consider adding "relationship" to description. | Approved with clarification |
+| LOGOS → Colony Mind | **GOOD CHANGE**. "Logos" is sacred in Greek/Christian traditions. "Colony Mind" avoids appropriation. | Approved |
+| Swarm → Colony | **GOOD CHANGE**. "Swarm" can have negative connotations. "Colony" is more neutral. | Approved |
+| Hive Mind → Colony Mind | **GOOD CHANGE**. "Hive Mind" has negative sci-fi connotations (Borg, loss of self). | Approved |
+| Pollination metaphors | Universal natural phenomenon. Low appropriation risk. Acknowledge TEK in documentation. | Approved with attribution |
+
+### Documentation Requirements
+
+1. **Add Cultural Attribution section** to all major documentation
+2. **Acknowledge TEK** (Traditional Ecological Knowledge) in ecological metaphors section
+3. **Distinguish between**:
+   - Universal natural phenomena (pollination, emergence)
+   - Scientific observations (waggle dance, colony behavior)
+   - Specific cultural concepts (requiring attribution)
+
+### Red Flags to Avoid
+
+**DO NOT:**
+- Use "tribe" or "chief" for agent roles (appropriative)
+- Use "totem" or "spirit" for agent types (appropriative)
+- Use "medicine" for agent capabilities (appropriative)
+- Claim natural metaphors as original insights
+- Use indigenous concepts without FPIC
+
+**DO:**
+- Acknowledge indigenous understanding of natural patterns
+- Attribute specific cultural concepts properly
+- Distinguish between universal and culturally-specific
+- Consult indigenous liaison for any questions
+
+---
+
+## Part 8: Open Questions
 
 1. **"Pollen" vs "POLLN"**: Should we use the word "pollen" in documentation or always the acronym?
    - Recommendation: Use "pollen" when describing the substance, "POLLN" for the system

@@ -165,14 +165,34 @@ GovernanceCouncil:
 
 ### Sources Requiring Attribution
 
-| Concept | Source Tradition | Citation |
-|---------|-----------------|----------|
-| Garden/forest metaphor | Pan-indigenous | "Present in many indigenous worldviews" |
-| Mycelial network concept | TEK | "Known to Traditional Ecological Knowledge systems" |
-| Distributed consensus | Haudenosaunee | "Inspired by the Great Law of Peace" |
-| Relational ontology | Multiple | "Common to many non-Western philosophies" |
-| Cyclical time | Māori, others | "Present in Polynesian and other traditions" |
-| Collective intelligence | Yoruba, others | "Present in African philosophical traditions" |
+### Cross-Cultural Philosophy Research (2026-03-06)
+
+Detailed research has identified the following concepts requiring specific attribution and engagement:
+
+| Concept | Source Tradition | FPIC Required | Citation |
+|---------|-----------------|---------------|----------|
+| Garden/forest metaphor | Pan-indigenous | Recommended | "Present in many indigenous worldviews" |
+| Mycelial network concept | TEK | Recommended | "Known to Traditional Ecological Knowledge systems" |
+| **Great Law of Peace** | **Haudenosaunee** | **REQUIRED** | **"Consensus-based distributed governance"** |
+| **Wampum Belt Memory** | **Haudenosaunee** | **ABSOLUTE** | **"DO NOT USE without explicit partnership"** |
+| **Mitakuye Oyasin** | **Lakota** | **REQUIRED** | **"All my relations - collective consciousness"** |
+| **Hocoka (Center)** | **Lakota** | **ABSOLUTE** | **"DO NOT USE - ceremonial knowledge"** |
+| **Whakapapa** | **Māori** | **REQUIRED** | **"Relational genealogy and collective memory"** |
+| **Mauri** | **Māori** | **REQUIRED** | **"Life principle in all things"** |
+| Àse | Yoruba | Recommended | "Life force and collective power" |
+| Ori | Yoruba | Recommended | "Individual and collective consciousness" |
+| Amazonian collective vision | Amazonian | ABSOLUTE | "DO NOT USE without indigenous partnership" |
+| Distributed consensus | Haudenosaunee | See Great Law | "Inspired by the Great Law of Peace" |
+| Relational ontology | Multiple | Varies | "Common to many non-Western philosophies" |
+| Cyclical time | Māori, others | Recommended | "Present in Polynesian and other traditions" |
+| Collective intelligence | Yoruba, others | See Àse/Ori | "Present in African philosophical traditions" |
+
+**Key Finding:** Three concepts require ABSOLUTE FPIC (no use without explicit partnership):
+1. **Wampum Belts** (Haudenosaunee) - sacred cultural objects
+2. **Hocoka** (Lakota) - restricted ceremonial knowledge
+3. **Amazonian collective vision** - sacred ceremonial knowledge
+
+**See full research:** `docs/research/cross-cultural-philosophy.md`
 
 ### Attribution Format
 
