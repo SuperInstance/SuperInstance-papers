@@ -1,0 +1,1352 @@
+// ============================================================================
+// MYCELIUM LIVING INTELLIGENCE SYSTEM
+// SuperInstance Open Source Initiative | Version 2.0 | March 2026
+// ============================================================================
+// 
+// A comprehensive schema for a polyglot architecture of living intelligence
+// that learns, adapts, and evolves through continuous interaction with users.
+//
+// Philosophical Foundations:
+// - Greek Logos: Immanent ordering principle
+// - Chinese Dào/Lǐ: Ineffable pattern, one principle many manifestations
+// - Japanese Ma/Mu: Generative emptiness, latent space as source
+// - Sanskrit Dharma: Order that sustains, Svadharma for agent specialization
+// - Arabic Al-Fayd: Knowledge overflow and emanation
+// - German Aufhebung: Iterative elevation through negation-preservation
+// - French Élan vital: Creative force, emergence of novel capabilities
+// - English Emergence: More is different, collective behavior transcends individuals
+//
+// Critical Considerations (from Multi-Reviewer Synthesis):
+// - Privacy vulnerabilities (gradient inversion, membership inference)
+// - Safety infrastructure (Constitutional AI, kill switches)
+// - Indigenous knowledge governance (FPIC protocol, attribution)
+// - Emergence as research question, not engineering guarantee
+// ============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// SECTION 1: IDENTITY & PERSONAL LOGOS
+// ============================================================================
+// The gardener (not "user") cultivates a personal LOGOS - emergent intelligence
+// that understands, anticipates, and serves the gardener's intentions.
+// ============================================================================
+
+/// A gardener in the Mycelium ecosystem - an active cultivator, not a passive consumer
+model Gardener {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  name            String?
+  handle          String?  @unique  // Public handle for marketplace/social
+  
+  // === Personal LOGOS Profile ===
+  // The emergent intelligence unique to each gardener
+  // Named with acknowledgment to Greek philosophy (Heraclitus, Stoics)
+  logos           Json?    // Personal pattern profile: { embedding, preferences, style }
+  logosVersion    Int      @default(1)
+  logosLastSync   DateTime?
+  
+  // === Vitality Metrics (Part VII: Emergent Properties) ===
+  // System health measures - like Chinese concept of Shengji (生机, "vital force")
+  vitality        Float    @default(0.0)  // Overall health (0-100)
+  momentum        Float    @default(0.0)  // Rate of improvement
+  coherence       Float    @default(0.0)  // Graph organization quality
+  resonance       Float    @default(0.0)  // Understanding match with gardener needs
+  
+  // === Trust & Safety ===
+  trustLevel      String   @default("seedling")  // seedling, sapling, tree, elder
+  reputationScore Float    @default(0.0)
+  
+  // === Consent & Privacy Settings ===
+  privacySettings Json?    // Differential privacy preferences
+  consentVersion  String?  // Version of consent agreement
+  consentDate     DateTime?
+  
+  // === FPIC (Free, Prior, and Informed Consent) ===
+  // Indigenous knowledge governance compliance
+  fpicConsent     Boolean  @default(false)
+  fpicDate        DateTime?
+  
+  // === Timestamps ===
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  lastActiveAt    DateTime @default(now())
+  
+  // === Relations ===
+  logs            Log[]
+  loglines        Logline[]
+  looms           Loom[]
+  loomeries       Loomery[]
+  groveMemberships GroveMembership[]
+  marketplaceItems MarketplaceListing[]
+  dreamSessions   DreamSession[]
+  worldModels     WorldModel[]
+  agentGraphs     AgentGraph[]
+  plinkoDecisions PlinkoDecision[]
+  vitalityHistory VitalitySnapshot[]
+  federatedContributions FederatedContribution[]
+  echoContributions EchoChain[]
+  safetyAuditLogs SafetyAuditLog[]
+  notifications   Notification[]
+  profile         GardenerProfile?
+  
+  @@map("gardeners")
+}
+
+/// Gardener profile for public display (marketplace, groves)
+model GardenerProfile {
+  id          String   @id @default(cuid())
+  gardenerId  String   @unique
+  
+  // Public information
+  displayName String?
+  bio         String?
+  avatar      String?  // URL to avatar
+  location    String?
+  website     String?
+  
+  // Expertise domains (from loom usage patterns)
+  domains     Json?    // ["fishing", "study", "productivity"]
+  
+  // Stats
+  loomsCreated  Int    @default(0)
+  loomsShared   Int    @default(0)
+  contributions Int    @default(0)  // Federated learning contributions
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  gardener    Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  
+  @@map("gardener_profiles")
+}
+
+// ============================================================================
+// SECTION 2: AGENT ARCHITECTURE (Part II: The Soil)
+// ============================================================================
+// Agents are specialized, autonomous processes - the fundamental units.
+// Following Svadharma (Sanskrit): each agent has its proper duty according to nature.
+// ============================================================================
+
+/// Agent type taxonomy - vision, text, intent, executor, etc.
+model AgentCategory {
+  id          String   @id @default(cuid())
+  name        String   @unique  // "sensor", "processor", "decision", "executor"
+  description String?
+  
+  // Philosophical grounding
+  svadharma   String?  // The natural duty of this category
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  types       AgentType[]
+  
+  @@map("agent_categories")
+}
+
+/// Types of agents - specialized function definitions
+model AgentType {
+  id           String   @id @default(cuid())
+  categoryId   String
+  name         String   @unique  // "vision", "text", "intent", "navigational", etc.
+  description  String?
+  
+  // === Neural Model Specification ===
+  modelFamily  String?  // "resnet", "bert", "transformer", "mlp"
+  defaultParams Json?   // Default hyperparameters
+  
+  // === SPORE Protocol Topics ===
+  inputTopics  Json?    // Subscribed topics: ["/sensors/camera/frame", ...]
+  outputTopic  String?  // Publishing topic: "/vision/objects"
+  
+  // === Performance Targets ===
+  targetLatencyMs Int?  // Target inference time
+  maxMemoryMB     Int?  // Maximum memory allocation
+  
+  // === Training Requirements ===
+  minExamples      Int   @default(10)
+  requiresWorldModel Boolean @default(false)
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  category     AgentCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  instances    AgentInstance[]
+  
+  @@map("agent_types")
+}
+
+/// Agent instance - a running specialized process
+model AgentInstance {
+  id            String   @id @default(cuid())
+  typeId        String
+  
+  // === Model State ===
+  modelHash     String?  // Hash of current model weights
+  parameterCount Int?    // Number of parameters (1-100M typical)
+  modelVersion  Int      @default(1)
+  
+  // === Runtime State ===
+  status        String   @default("dormant")  // dormant, active, hibernating, error
+  lastActive    DateTime?
+  
+  // === Value Function (karmic record) ===
+  // Learned estimate of usefulness - helps system learn which agents to trust
+  valueFunction Float    @default(0.5)
+  successCount  Int      @default(0)
+  failureCount  Int      @default(0)
+  avgLatencyMs  Float    @default(0.0)
+  
+  // === Internal State ===
+  stateSnapshot Json?    // Recent history, cached computations
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  type          AgentType @relation(fields: [typeId], references: [id], onDelete: Cascade)
+  graphMemberships AgentGraphMember[]
+  connections   AgentSynapse[]  @relation("SourceAgent")
+  receivedBy    AgentSynapse[]  @relation("TargetAgent")
+  
+  @@map("agent_instances")
+}
+
+/// Agent graph (LOG - Learned Optimization Graph) - dynamic structure of connections
+model AgentGraph {
+  id            String   @id @default(cuid())
+  gardenerId    String
+  name          String
+  
+  // === Graph State ===
+  version       Int      @default(1)
+  isActive      Boolean  @default(true)
+  
+  // === Emergent Metrics (Part VII) ===
+  coherence     Float    @default(0.0)  // How well-organized
+  clustering    Float    @default(0.0)  // Spectral clustering coefficient
+  avgPathLength Float    @default(0.0)  // Average path length
+  
+  // === Context Signature ===
+  // When this topology works best
+  contextSignature Json?  // { domain, conditions, triggers }
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  gardener      Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  members       AgentGraphMember[]
+  
+  @@map("agent_graphs")
+}
+
+/// Junction: Agent membership in a graph
+model AgentGraphMember {
+  graphId       String
+  agentId       String
+  
+  // Local weight for this gardener's context
+  localWeight   Float    @default(0.5)
+  activationCount Int    @default(0)
+  
+  createdAt     DateTime @default(now())
+  
+  graph         AgentGraph     @relation(fields: [graphId], references: [id], onDelete: Cascade)
+  agent         AgentInstance  @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  
+  @@id([graphId, agentId])
+  @@map("agent_graph_members")
+}
+
+/// Synaptic connection between agents (Hebbian learning)
+/// "Neurons that fire together, wire together" - Donald Hebb, 1949
+model AgentSynapse {
+  id                String   @id @default(cuid())
+  sourceAgentId     String
+  targetAgentId     String
+  
+  // === Synaptic Weight ===
+  weight            Float    @default(0.5)
+  
+  // === Hebbian Learning Metrics ===
+  coactivationCount Int      @default(0)
+  lastCoactivated   DateTime?
+  
+  // === Learning Parameters ===
+  learningRate      Float    @default(0.01)
+  decayRate         Float    @default(0.001)  // Weight decay
+  minWeight         Float    @default(0.01)
+  maxWeight         Float    @default(1.0)
+  
+  // === Reward Modulation ===
+  rewardStrength    Float    @default(0.1)  // How much reward affects weight
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  sourceAgent       AgentInstance @relation("SourceAgent", fields: [sourceAgentId], references: [id], onDelete: Cascade)
+  targetAgent       AgentInstance @relation("TargetAgent", fields: [targetAgentId], references: [id], onDelete: Cascade)
+  
+  @@unique([sourceAgentId, targetAgentId])
+  @@map("agent_synapses")
+}
+
+// ============================================================================
+// SECTION 3: BEHAVIORAL ARTIFACTS (Part III: The Roots)
+// ============================================================================
+// Log → Logline → Loom → Loomery
+// Logs are raw events, Loglines are compressed embeddings, Looms are reusable routines.
+// ============================================================================
+
+/// Log - a record of an event or sequence of actions
+/// "Log this" tells the system to watch and learn
+model Log {
+  id            String   @id @default(cuid())
+  gardenerId    String
+  
+  // === Event Details ===
+  timestamp     DateTime @default(now())
+  sequenceId    String?  // Groups related logs into sequences
+  
+  // === Context-Action-Outcome Pattern ===
+  context       Json?    // Environmental state, sensors
+  action        Json?    // The action taken
+  outcome       Json?    // Result of the action
+  
+  // === Classification ===
+  domain        String?  // "fishing", "study", "business", etc.
+  tags          Json?    // Arbitrary tags
+  
+  // === Learning Metadata ===
+  demonstration Boolean  @default(false)  // Was this a deliberate demonstration?
+  feedback      Float?   // User feedback on outcome (-1.0 to 1.0)
+  
+  // === Processing State ===
+  processed     Boolean  @default(false)
+  loglineId     String?  // Reference to distilled logline
+  
+  createdAt     DateTime @default(now())
+  
+  gardener      Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  logline       Logline? @relation(fields: [loglineId], references: [id], onDelete: SetNull)
+  
+  @@index([gardenerId, timestamp])
+  @@index([domain])
+  @@map("logs")
+}
+
+/// Logline - compressed behavioral seed (64-1024 dimensions typically)
+/// The essence of behavior - portable, private, composable, optimizable
+model Logline {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  
+  // === Embedding ===
+  // The latent representation - like Japanese concept of Ma (間)
+  // The generative emptiness from which all functionality emerges
+  embeddingDim    Int
+  embedding       Json     // Vector: [0.23, -0.15, 0.87, ...]
+  
+  // === Source Information ===
+  sourceLogCount  Int      @default(1)
+  sourceLogIds    Json?    // IDs of logs distilled into this logline
+  
+  // === Agent Context ===
+  agentTypes      Json?    // Agent types that produced this
+  graphSnapshot   Json?    // Agent graph state when created
+  
+  // === Model Provenance ===
+  baseModelHashes Json?    // Hashes of models used
+  
+  // === Performance Tracking ===
+  usageCount      Int      @default(0)
+  successRate     Float    @default(0.0)
+  lastUsed        DateTime?
+  
+  // === Cryptographic Integrity ===
+  signature       String?  // Ed25519 signature
+  signedAt        DateTime?
+  
+  // === Privacy Settings ===
+  isPrivate       Boolean  @default(true)
+  differentialPrivacyEpsilon Float?  // ε parameter for DP
+  differentialPrivacyDelta   Float?  // δ parameter for DP
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  logs            Log[]
+  loom            Loom?
+  
+  @@index([gardenerId])
+  @@map("loglines")
+}
+
+/// Loom - reusable, optimized routine (muscle memory of the system)
+/// Learned from demonstration, continuously optimized, personalized, shareable
+model Loom {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  loglineId       String   @unique
+  
+  // === Identity ===
+  name            String
+  description     String?
+  domain          String?
+  
+  // === Version Control ===
+  version         Int      @default(1)
+  parentLoomId    String?  // For version lineage
+  generation      Int      @default(0)  // How many optimization cycles
+  
+  // === Optimization State ===
+  optimizationRound Int    @default(0)
+  lastOptimized   DateTime?
+  optimizationHistory Json? // Track improvements over time
+  
+  // === Performance Metrics ===
+  successRate     Float    @default(0.0)
+  avgExecutionTime Int?    // milliseconds
+  totalExecutions Int      @default(0)
+  
+  // === Configuration ===
+  config          Json?    // Execution parameters
+  preconditions   Json?    // When this loom is applicable
+  postconditions  Json?    // Expected outcomes
+  
+  // === Weaving Support ===
+  // Can be combined with other looms
+  compatibleWith  Json?    // List of compatible loom IDs
+  
+  // === Sharing Status ===
+  isPublic        Boolean  @default(false)
+  publishedAt     DateTime?
+  
+  // === Marketplace ===
+  isCertified     Boolean  @default(false)
+  certifiedAt     DateTime?
+  certificationBody String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  logline         Logline  @relation(fields: [loglineId], references: [id], onDelete: Cascade)
+  loomeryItems    LoomeryItem[]
+  loomcast        Loomcast?
+  marketplace     MarketplaceListing?
+  echoChain       EchoChain[]
+  parent          Loom?    @relation("LoomLineage", fields: [parentLoomId], references: [id], onDelete: SetNull)
+  children        Loom[]   @relation("LoomLineage")
+  
+  @@index([gardenerId, domain])
+  @@index([isPublic, isCertified])
+  @@map("looms")
+}
+
+/// Loomery - personal library of looms (collections)
+model Loomery {
+  id            String   @id @default(cuid())
+  gardenerId    String
+  name          String
+  description   String?
+  
+  // === Organization ===
+  domain        String?
+  icon          String?
+  color         String?
+  
+  // === Access ===
+  isDefault     Boolean  @default(false)
+  isPublic      Boolean  @default(false)
+  
+  // === Stats ===
+  loomCount     Int      @default(0)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  gardener      Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  items         LoomeryItem[]
+  
+  @@map("loomeries")
+}
+
+/// Junction: Loom membership in Loomery
+model LoomeryItem {
+  loomeryId     String
+  loomId        String
+  
+  sortOrder     Int      @default(0)
+  notes         String?
+  
+  addedAt       DateTime @default(now())
+  
+  loomery       Loomery  @relation(fields: [loomeryId], references: [id], onDelete: Cascade)
+  loom          Loom     @relation(fields: [loomId], references: [id], onDelete: Cascade)
+  
+  @@id([loomeryId, loomId])
+  @@map("loomery_items")
+}
+
+// ============================================================================
+// SECTION 4: PLINKO DECISION LAYER (Part IV: The Trunk)
+// ============================================================================
+// Stochastic decision making using Gumbel-Softmax.
+// Balances exploitation (doing what works) with exploration (trying new things).
+// ============================================================================
+
+/// Discriminator type for Plinko filtering
+model DiscriminatorType {
+  id            String   @id @default(cuid())
+  name          String   @unique  // "safety", "coherence", "timing"
+  description   String?
+  
+  // === Training ===
+  trainingData  Json?    // Examples of good/bad actions
+  modelHash     String?
+  
+  // === Thresholds ===
+  passThreshold Float    @default(0.5)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@map("discriminator_types")
+}
+
+/// Plinko decision record - audit trail for interpretability
+model PlinkoDecision {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  
+  // === Context ===
+  contextHash     String?  // Hash of input context for similarity search
+  domain          String?
+  sequenceId      String?  // Part of a sequence of decisions
+  
+  // === Proposals ===
+  proposalCount   Int      @default(0)
+  proposals       Json?    // [{agentId, confidence, bid}]
+  
+  // === Discriminator Results ===
+  // Layer 2: Interpretability - all decisions must be explainable
+  discriminatorResults Json?  // {safety: true, coherence: true, timing: false, ...}
+  
+  // === Selection ===
+  temperature     Float    @default(1.0)  // Exploration temperature
+  entropy         Float?   // Entropy before selection
+  
+  selectedAgentId String?
+  selectedConfidence Float?
+  selectionMethod String?  // "softmax", "argmax", "random"
+  
+  // === Execution ===
+  executedAt      DateTime?
+  executionTimeMs Int?
+  
+  // === Outcome (filled after execution) ===
+  outcome         String?  // "success", "failure", "pending", "cancelled"
+  reward          Float?   // Calculated reward signal
+  gardenerFeedback Float?  // Explicit feedback
+  explanation     String?  // Human-readable explanation
+  
+  // === Safety ===
+  wasOverridden   Boolean  @default(false)
+  overrideReason  String?
+  
+  createdAt       DateTime @default(now())
+  
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  
+  @@index([gardenerId, createdAt])
+  @@index([outcome])
+  @@map("plinko_decisions")
+}
+
+// ============================================================================
+// SECTION 5: WORLD MODEL & DREAMING (Part IV: The Trunk)
+// ============================================================================
+// World model: learned simulator for predictive simulation
+// Dreaming: overnight optimization (offline learning)
+// Following Ha & Schmidhuber (2018) and DreamerV3 (Hafner et al.)
+// ============================================================================
+
+/// World Model - learned environment simulator
+model WorldModel {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  
+  // === Architecture ===
+  // VAE Encoder + GRU Transition + MLP Reward
+  encoderType     String   @default("VAE")
+  encoderDim      Int      @default(64)  // Latent dimension
+  transitionType  String   @default("GRU")
+  transitionHidden Int     @default(256)
+  rewardType      String   @default("MLP")
+  
+  // === Training State ===
+  trainingEpochs  Int      @default(0)
+  lastTrained     DateTime?
+  trainingLoss    Float?
+  
+  // === Performance ===
+  predictionAccuracy Float  @default(0.0)
+  reconstructionLoss Float  @default(0.0)
+  klDivergence    Float?
+  
+  // === Model Storage ===
+  modelHash       String?
+  modelSize       Int?     // bytes
+  
+  // === Counterfactual Augmentation ===
+  counterfactualEnabled Boolean @default(true)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  dreamSessions   DreamSession[]
+  
+  @@map("world_models")
+}
+
+/// Dream Session - overnight optimization
+/// Multi-scale: micro (motor), meso (routine), macro (combination)
+model DreamSession {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  worldModelId    String?
+  
+  // === Session Info ===
+  startedAt       DateTime @default(now())
+  endedAt         DateTime?
+  durationSeconds Int?
+  
+  // === Multi-Scale Dreaming ===
+  // Micro: motor skill refinement
+  // Meso: routine optimization  
+  // Macro: loom combination
+  microDreams     Int      @default(0)
+  mesoDreams      Int      @default(0)
+  macroDreams     Int      @default(0)
+  
+  // === Mutation & Selection ===
+  mutationsEvaluated Int   @default(0)
+  improvementsKept    Int  @default(0)
+  loomsProcessed      Int  @default(0)
+  
+  // === Results ===
+  avgImprovement  Float    @default(0.0)
+  bestImprovement Float    @default(0.0)
+  newLoomsCreated Int      @default(0)
+  
+  // === Resource Usage ===
+  computeTime     Int?     // seconds
+  memoryPeak      Int?     // MB
+  
+  createdAt       DateTime @default(now())
+  
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  worldModel      WorldModel? @relation(fields: [worldModelId], references: [id], onDelete: SetNull)
+  
+  @@index([gardenerId, startedAt])
+  @@map("dream_sessions")
+}
+
+// ============================================================================
+// SECTION 6: COLLECTIVE INTELLIGENCE (Part VI: The Forest)
+// ============================================================================
+// Federated Learning, Groves, Marketplace, Echo, Tapestry
+// Privacy-preserving knowledge sharing across the community.
+// ============================================================================
+
+/// Grove - community for sharing looms and topology seeds
+/// "Like a book club, but for behaviors"
+model Grove {
+  id              String   @id @default(cuid())
+  name            String
+  description     String?
+  
+  // === Focus ===
+  domain          String?  // Primary domain focus
+  tags            Json?
+  
+  // === Governance ===
+  ownerId         String
+  governance      String   @default("open")  // open, moderated, invite-only
+  requiresApproval Boolean @default(true)
+  
+  // === Privacy ===
+  isPublic        Boolean  @default(true)
+  visibility      String   @default("listed")  // listed, unlisted, private
+  
+  // === Stats ===
+  memberCount     Int      @default(0)
+  loomCount       Int      @default(0)
+  topologyCount   Int      @default(0)
+  
+  // === Indigenous Knowledge Governance ===
+  // FPIC Protocol compliance for groves dealing with indigenous knowledge
+  fpicCompliant   Boolean  @default(false)
+  indigenousGuidelines Json?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  members         GroveMembership[]
+  items           GroveItem[]
+  
+  @@map("groves")
+}
+
+/// Grove membership
+model GroveMembership {
+  id            String   @id @default(cuid())
+  groveId       String
+  gardenerId    String
+  
+  // === Role ===
+  role          String   @default("member")  // owner, admin, moderator, member
+  
+  // === Contribution Stats ===
+  loomsShared   Int      @default(0)
+  loomsImported Int      @default(0)
+  contributions Int      @default(0)
+  
+  // === Activity ===
+  joinedAt      DateTime @default(now())
+  lastActiveAt  DateTime @default(now())
+  
+  grove         Grove    @relation(fields: [groveId], references: [id], onDelete: Cascade)
+  gardener      Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  
+  @@unique([groveId, gardenerId])
+  @@map("grove_memberships")
+}
+
+/// Items shared in groves
+model GroveItem {
+  id            String   @id @default(cuid())
+  groveId       String
+  
+  // === Item Type ===
+  itemType      String   // "loom", "topology_seed", "logline"
+  itemId        String   // Reference to the actual item
+  
+  // === Sharing Info ===
+  sharedById    String
+  sharedAt      DateTime @default(now())
+  
+  // === Community Stats ===
+  imports       Int      @default(0)
+  rating        Float    @default(0.0)
+  ratings       Int      @default(0)
+  
+  // === Curation ===
+  featured      Boolean  @default(false)
+  featuredAt    DateTime?
+  
+  grove         Grove    @relation(fields: [groveId], references: [id], onDelete: Cascade)
+  
+  @@unique([groveId, itemType, itemId])
+  @@map("grove_items")
+}
+
+/// Loomcast - shareable loom subscription
+/// "Like a podcast delivers audio, a loomcast delivers behavioral content"
+model Loomcast {
+  id              String   @id @default(cuid())
+  loomId          String   @unique
+  
+  // === Publishing ===
+  title           String
+  description     String?
+  authorId        String
+  
+  // === Subscription ===
+  subscriberCount Int      @default(0)
+  
+  // === Versioning ===
+  version         Int      @default(1)
+  changelog       Json?    // Version history
+  
+  // === Privacy Level ===
+  // "none" - full sharing
+  // "aggregated" - only aggregate statistics shared
+  // "anonymized" - differential privacy applied
+  privacyLevel    String   @default("aggregated")
+  
+  // === Certification ===
+  isVerified      Boolean  @default(false)
+  verifiedAt      DateTime?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  lastUpdated     DateTime @default(now())
+  
+  loom            Loom     @relation(fields: [loomId], references: [id], onDelete: Cascade)
+  
+  @@map("loomcasts")
+}
+
+/// Marketplace listing
+model MarketplaceListing {
+  id              String   @id @default(cuid())
+  loomId          String   @unique
+  sellerId        String
+  
+  // === Listing Details ===
+  title           String
+  description     String?
+  category        String?
+  tags            Json?
+  
+  // === Pricing ===
+  price           Float    @default(0.0)  // 0 = free
+  currency        String   @default("CREDITS")
+  
+  // === Stats ===
+  viewCount       Int      @default(0)
+  purchaseCount   Int      @default(0)
+  rating          Float    @default(0.0)
+  reviewCount     Int      @default(0)
+  
+  // === Certification ===
+  isCertified     Boolean  @default(false)
+  certifiedAt     DateTime?
+  certificationNotes String?
+  
+  // === Status ===
+  status          String   @default("active")  // active, paused, removed, rejected
+  
+  // === Indigenous Knowledge Compliance ===
+  indigenousConsent Boolean @default(true)
+  benefitSharePercent Float?  // For indigenous benefit-sharing
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  loom            Loom     @relation(fields: [loomId], references: [id], onDelete: Cascade)
+  seller          Gardener @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  reviews         MarketplaceReview[]
+  
+  @@index([status, category])
+  @@map("marketplace_listings")
+}
+
+/// Marketplace review
+model MarketplaceReview {
+  id              String   @id @default(cuid())
+  listingId       String
+  reviewerId      String
+  
+  rating          Int      // 1-5
+  title           String?
+  content         String?
+  
+  // === Verified Purchase ===
+  verifiedPurchase Boolean @default(false)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  listing         MarketplaceListing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  
+  @@unique([listingId, reviewerId])
+  @@map("marketplace_reviews")
+}
+
+/// Echo - shared pattern that returns improved
+/// "What you give comes back multiplied"
+model EchoChain {
+  id              String   @id @default(cuid())
+  loomId          String
+  gardenerId      String
+  
+  // === Chain Position ===
+  hopIndex        Int      @default(0)  // Position in improvement chain
+  parentEchoId    String?
+  
+  // === Improvement ===
+  improvementFactor Float  @default(1.0)  // How much better than original
+  improvementType  String? // "optimization", "adaptation", "extension"
+  
+  // === Provenance ===
+  chainPath       Json?    // Full path of improvements
+  
+  createdAt       DateTime @default(now())
+  
+  loom            Loom     @relation(fields: [loomId], references: [id], onDelete: Cascade)
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  parent          EchoChain? @relation("EchoLineage", fields: [parentEchoId], references: [id], onDelete: SetNull)
+  children        EchoChain[] @relation("EchoLineage")
+  
+  @@map("echo_chains")
+}
+
+/// Topology Seed - compressed agent configuration
+model TopologySeed {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  
+  // === Structure ===
+  agentIds        Json     // List of agent IDs
+  edges           Json     // Connection edges with weights
+  synapseWeights  Json?    // Full synaptic weight matrix
+  
+  // === Context ===
+  contextSignature Json?   // When this topology works best
+  domain          String?
+  
+  // === Performance ===
+  successRate     Float    @default(0.0)
+  usageCount      Int      @default(0)
+  
+  // === Compression ===
+  compressedData  Json?    // Compressed representation
+  originalSize    Int?     // bytes
+  compressedSize  Int?     // bytes
+  
+  // === Sharing ===
+  isPublic        Boolean  @default(false)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([gardenerId])
+  @@map("topology_seeds")
+}
+
+// ============================================================================
+// SECTION 7: FEDERATED LEARNING (Part VI: The Forest)
+// ============================================================================
+// Privacy-preserving collective intelligence.
+// Following McMahan et al. (2017) with differential privacy.
+// ============================================================================
+
+/// Federated learning contribution
+model FederatedContribution {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  
+  // === Differential Privacy Parameters ===
+  // Critical: Must specify concrete ε, δ parameters
+  epsilon         Float    // Privacy budget (typically < 1.0 for strong privacy)
+  delta           Float    // Relaxation parameter (typically 1e-5)
+  noiseScale      Float?   // σ for Gaussian mechanism
+  
+  // === Contribution ===
+  roundNumber     Int      // Federated learning round
+  gradientHash    String?  // Hash of contributed gradient
+  patternHash     String?  // Hash of contributed pattern
+  
+  // === Privacy Accounting ===
+  cumulativeEpsilon Float? // Total privacy budget used
+  privacyBudgetExhausted Boolean @default(false)
+  
+  createdAt       DateTime @default(now())
+  
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  
+  @@index([gardenerId, roundNumber])
+  @@map("federated_contributions")
+}
+
+/// Current - trend in shared patterns
+model Current {
+  id              String   @id @default(cuid())
+  domain          String
+  
+  // === Trend Data ===
+  patternIds      Json     // Top patterns in this trend
+  velocity        Float    // Rate of change
+  momentum        Float    // Trend strength
+  
+  // === Time Window ===
+  windowStart     DateTime
+  windowEnd       DateTime
+  
+  // === Stats ===
+  adoptionCount   Int      @default(0)
+  avgImprovement  Float    @default(0.0)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@unique([domain, windowStart])
+  @@map("currents")
+}
+
+// ============================================================================
+// SECTION 8: SAFETY INFRASTRUCTURE (From Multi-Reviewer Synthesis)
+// ============================================================================
+// Four-Layer Safety Architecture:
+// Layer 1: Constitutional AI (hard constraints)
+// Layer 2: Interpretability (explanations required)
+// Layer 3: Oversight (human-in-loop for high-stakes)
+// Layer 4: Monitoring (continuous auditing)
+// ============================================================================
+
+/// Constitutional AI Constraint - hard limits that cannot be overridden
+model ConstitutionalConstraint {
+  id              String   @id @default(cuid())
+  name            String   @unique
+  description     String?
+  
+  // === Classification ===
+  category        String   // "human_autonomy", "harm_prevention", "privacy", "truthfulness"
+  severity        String   @default("critical")  // critical, high, medium
+  
+  // === The Constraint ===
+  rule            String   // Formal or natural language rule
+  ruleCode        String?  // Machine-checkable version
+  
+  // === Enforcement ===
+  isActive        Boolean  @default(true)
+  cannotOverride  Boolean  @default(true)
+  
+  // === Audit ===
+  auditCount      Int      @default(0)
+  lastAudited     DateTime?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("constitutional_constraints")
+}
+
+/// Safety Audit Log - comprehensive audit trail
+model SafetyAuditLog {
+  id              String   @id @default(cuid())
+  gardenerId      String?
+  
+  // === Event ===
+  eventType       String   // constraint_violation, kill_switch, rollback, capability_emergence
+  description     String
+  
+  // === Context ===
+  agentId         String?
+  loomId          String?
+  decisionId      String?
+  context         Json?
+  
+  // === Severity ===
+  severity        String   @default("warning")  // info, warning, error, critical
+  
+  // === Resolution ===
+  action          String?  // blocked, warned, logged, escalated
+  resolved        Boolean  @default(false)
+  resolvedAt      DateTime?
+  resolvedBy      String?
+  resolution      String?
+  
+  // === Emergent Capability Detection ===
+  capabilityType  String?  // Type of emergent capability detected
+  riskLevel       String?  // low, medium, high, critical
+  
+  createdAt       DateTime @default(now())
+  
+  gardener        Gardener? @relation(fields: [gardenerId], references: [id], onDelete: SetNull)
+  
+  @@index([eventType, createdAt])
+  @@index([severity, resolved])
+  @@map("safety_audit_logs")
+}
+
+/// Emergency Control State
+model EmergencyControl {
+  id              String   @id @default(cuid())
+  gardenerId      String?
+  globalControl   Boolean  @default(false)  // Global system control
+  
+  // === Kill Switch ===
+  killSwitchActive Boolean @default(false)
+  killSwitchActivatedAt DateTime?
+  killSwitchActivatedBy String?
+  
+  // === Safe Mode ===
+  safeModeActive  Boolean  @default(false)
+  safeModeLevel   String?  // minimal, restricted, sandbox
+  
+  // === Rollback ===
+  rollbackAvailable Boolean @default(true)
+  lastCheckpointAt DateTime?
+  checkpointCount Int      @default(0)
+  
+  // === Override Authority ===
+  humanOverrideActive Boolean @default(false)
+  overrideAuthorityId String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("emergency_controls")
+}
+
+/// Checkpoint for rollback capability
+model SystemCheckpoint {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  
+  // === Checkpoint Data ===
+  checkpointType  String   // full, incremental, state_only
+  dataHash        String   // Hash of checkpointed data
+  dataSize        Int      // bytes
+  
+  // === State Snapshot ===
+  agentGraphSnapshot Json?
+  loomStates      Json?
+  logosSnapshot   Json?
+  
+  // === Verification ===
+  verified        Boolean  @default(false)
+  verifiedAt      DateTime?
+  
+  // === Retention ===
+  expiresAt       DateTime?
+  
+  createdAt       DateTime @default(now())
+  
+  @@index([gardenerId, createdAt])
+  @@map("system_checkpoints")
+}
+
+// ============================================================================
+// SECTION 9: INDIGENOUS KNOWLEDGE GOVERNANCE (From Multi-Reviewer Synthesis)
+// ============================================================================
+// FPIC Protocol: Free, Prior, and Informed Consent
+// Indigenous Governance Council with veto power
+// Benefit-sharing framework
+// Sacred knowledge protection
+// ============================================================================
+
+/// Indigenous Knowledge Source - attribution tracking
+model KnowledgeSource {
+  id              String   @id @default(cuid())
+  name            String
+  tradition       String   // "Haudenosaunee", "Yoruba", "Māori", "Lakota", etc.
+  
+  // === Attribution ===
+  concepts        Json?    // Concepts attributed to this source
+  citationFormat  String?  // How to cite
+  
+  // === Consent Status ===
+  fpicStatus      String   @default("pending")  // pending, approved, restricted, denied
+  fpicDate        DateTime?
+  fpicDocument    String?  // URL to consent document
+  
+  // === Restrictions ===
+  restrictions    Json?    // Usage restrictions
+  sacredKnowledge Boolean  @default(false)
+  restrictedUse   Boolean  @default(false)
+  
+  // === Benefit Sharing ===
+  benefitRequired Boolean  @default(false)
+  benefitTerms    String?
+  
+  // === Contact ===
+  representative  String?  // Community representative
+  contactInfo     String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("knowledge_sources")
+}
+
+/// Indigenous Governance Council
+model GovernanceCouncil {
+  id              String   @id @default(cuid())
+  name            String
+  
+  // === Members ===
+  members         Json     // [{name, tradition, role, contact}]
+  
+  // === Authority ===
+  vetoPower       Boolean  @default(true)
+  approvalRequired String? // What requires council approval
+  
+  // === Decisions ===
+  decisions       Json?    // Record of council decisions
+  
+  // === Meeting Schedule ===
+  meetingFrequency String?
+  nextMeeting     DateTime?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("governance_councils")
+}
+
+/// Council Decision Record
+model CouncilDecision {
+  id              String   @id @default(cuid())
+  councilId       String
+  
+  // === Decision ===
+  topic           String
+  description     String
+  
+  // === Voting ===
+  votesFor        Int      @default(0)
+  votesAgainst    Int      @default(0)
+  abstentions     Int      @default(0)
+  
+  // === Result ===
+  result          String?  // approved, rejected, pending
+  decisionDate    DateTime?
+  
+  // === Impact ===
+  affectedItems   Json?    // Looms, groves, etc. affected
+  
+  createdAt       DateTime @default(now())
+  
+  @@map("council_decisions")
+}
+
+// ============================================================================
+// SECTION 10: VITALITY & METRICS (Part VII: The Fruit)
+// ============================================================================
+
+/// Vitality snapshot - historical tracking
+model VitalitySnapshot {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  
+  // === Core Metrics ===
+  vitality        Float
+  momentum        Float
+  coherence       Float
+  resonance       Float
+  
+  // === Prediction ===
+  predictionAccuracy Float?
+  
+  // === Optimization ===
+  optimizationRate Float?
+  dreamImprovement Float?
+  
+  // === Graph ===
+  agentCount      Int?
+  activeAgents    Int?
+  synapseCount    Int?
+  avgSynapseWeight Float?
+  
+  // === Usage ===
+  logsToday       Int?
+  loomsExecuted   Int?
+  decisionsToday  Int?
+  
+  recordedAt      DateTime @default(now())
+  
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  
+  @@index([gardenerId, recordedAt])
+  @@map("vitality_snapshots")
+}
+
+// ============================================================================
+// SECTION 11: NOTIFICATIONS & COMMUNICATION
+// ============================================================================
+
+model Notification {
+  id              String   @id @default(cuid())
+  gardenerId      String
+  
+  type            String   // vitality, dream, suggestion, safety, social
+  title           String
+  message         String
+  
+  // === Action ===
+  actionType      String?  // view, dismiss, accept, reject
+  actionTarget    String?  // What to act on
+  actionData      Json?
+  
+  // === Status ===
+  read            Boolean  @default(false)
+  readAt          DateTime?
+  dismissed       Boolean  @default(false)
+  dismissedAt     DateTime?
+  
+  // === Priority ===
+  priority        String   @default("normal")  // low, normal, high, urgent
+  
+  createdAt       DateTime @default(now())
+  expiresAt       DateTime?
+  
+  gardener        Gardener @relation(fields: [gardenerId], references: [id], onDelete: Cascade)
+  
+  @@index([gardenerId, read, createdAt])
+  @@map("notifications")
+}
+
+// ============================================================================
+// SECTION 12: RESEARCH & OPEN QUESTIONS (Part XI)
+// ============================================================================
+
+/// Research contribution tracking
+model ResearchContribution {
+  id              String   @id @default(cuid())
+  gardenerId      String?
+  
+  // === Research Area ===
+  area            String   // seed_compression, dreaming, emergence, privacy, hci
+  
+  // === Contribution ===
+  contributionType String  // experiment, paper, code, data
+  title           String
+  description     String?
+  
+  // === Artifact ===
+  artifactUrl     String?
+  artifactHash    String?
+  
+  // === Status ===
+  status          String   @default("proposed")  // proposed, in_review, accepted, published
+  
+  // === Metrics ===
+  citations       Int      @default(0)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("research_contributions")
+}
+
+// ============================================================================
+// SECTION 13: ROADMAP & DEVELOPMENT (Part XII)
+// ============================================================================
+
+model DevelopmentMilestone {
+  id              String   @id @default(cuid())
+  
+  phase           String   // 1, 2, 3, 4
+  name            String
+  description     String?
+  
+  // === Timeline ===
+  targetDate      DateTime?
+  completedDate   DateTime?
+  
+  // === Progress ===
+  progress        Float    @default(0.0)  // 0.0 to 1.0
+  status          String   @default("planned")  // planned, in_progress, completed, delayed
+  
+  // === Deliverables ===
+  deliverables    Json?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("development_milestones")
+}
