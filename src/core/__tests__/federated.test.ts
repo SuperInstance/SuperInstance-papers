@@ -402,8 +402,8 @@ describe('FederatedLearningCoordinator', () => {
 
   describe('Gradient Aggregation', () => {
     beforeEach(async () => {
-      await coordinator.registerColony('colony-1', 'gardener-1');
-      await coordinator.registerColony('colony-2', 'gardener-2');
+      await coordinator.registerColony('colony-1', 'gardener-1', { privacyPreference: 'LOCAL' });
+      await coordinator.registerColony('colony-2', 'gardener-2', { privacyPreference: 'LOCAL' });
     });
 
     it('should aggregate using FedAvg', async () => {
@@ -492,6 +492,7 @@ describe('FederatedLearningCoordinator', () => {
     it('should use FedAvgM with momentum', async () => {
       const momentumCoordinator = new FederatedLearningCoordinator({
         aggregationMethod: 'fedavgm',
+        minColoniesForRound: 2,
       }, bes);
 
       await momentumCoordinator.registerColony('colony-1', 'gardener-1');
@@ -653,6 +654,7 @@ describe('FederatedLearningCoordinator', () => {
     it('should not add noise for LOCAL tier', async () => {
       const localCoordinator = new FederatedLearningCoordinator({
         defaultPrivacyTier: 'LOCAL',
+        minColoniesForRound: 2,
       }, bes);
 
       await localCoordinator.registerColony('colony-1', 'gardener-1');
@@ -857,6 +859,7 @@ describe('FederatedLearningCoordinator', () => {
     it('should prune old models', async () => {
       const pruneCoordinator = new FederatedLearningCoordinator({
         maxModelVersions: 3,
+        minColoniesForRound: 2,
       }, bes);
 
       await pruneCoordinator.registerColony('colony-1', 'gardener-1');

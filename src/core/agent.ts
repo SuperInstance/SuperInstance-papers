@@ -5,7 +5,7 @@
 
 import { EventEmitter } from 'events';
 import { v4 } from 'uuid';
-import type { A2APackage, AgentConfig, SubsumptionLayer, PrivacyLevel } from './types';
+import type { A2APackage, AgentConfig, SubsumptionLayer, PrivacyLevel } from './types.js';
 
 /**
  * BaseAgent - the fundamental unit of POLLN

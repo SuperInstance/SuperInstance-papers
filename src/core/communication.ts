@@ -5,7 +5,8 @@
 
 import { v4 as uuidv4 } from 'uuid';
 import { EventEmitter } from 'events';
-import type { A2APackage, PrivacyLevel, SubsumptionLayer } from './types';
+import { PrivacyLevel, SubsumptionLayer } from './types.js';
+import type { A2APackage } from './types.js';
 
 export interface A2APackageSystemConfig {
   historySize: number;
@@ -35,8 +36,8 @@ export class A2APackageSystem extends EventEmitter {
     super();
     this.config = {
       historySize: 100,
-      defaultPrivacyLevel: 'COLONY',
-      defaultLayer: 'HABITUAL',
+      defaultPrivacyLevel: PrivacyLevel.COLONY,
+      defaultLayer: SubsumptionLayer.HABITUAL,
       ...config
     };
   }

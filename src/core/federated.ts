@@ -310,7 +310,7 @@ export class FederatedLearningCoordinator extends EventEmitter {
   getFederationStatus(): {
     activeColonies: number;
     totalColonies: number;
-    currentRound?: FederatedRoundStatus;
+    currentRound: FederatedRoundStatus | null;
     currentModel?: ModelVersion;
     globalRound: number;
   } {
@@ -319,7 +319,7 @@ export class FederatedLearningCoordinator extends EventEmitter {
     return {
       activeColonies,
       totalColonies: this.colonies.size,
-      currentRound: this.currentRound || undefined,
+      currentRound: this.currentRound,
       currentModel: this.currentModel || undefined,
       globalRound: this.globalRoundCounter,
     };
@@ -686,13 +686,16 @@ export class FederatedLearningCoordinator extends EventEmitter {
   private async applyPrivacyMechanisms(update: GradientUpdate): Promise<GradientUpdate> {
     let gradients = [...update.gradients];
 
+    // LOCAL tier: no privacy mechanisms applied
+    if (update.metadata.privacyTier === 'LOCAL') {
+      return update;
+    }
+
     // 1. Gradient clipping
     gradients = this.clipGradients(gradients, update.clipNorm || this.config.defaultClipThreshold);
 
     // 2. Add noise for differential privacy
-    if (update.metadata.privacyTier !== 'LOCAL') {
-      gradients = this.addNoise(gradients, update.metadata.privacyTier);
-    }
+    gradients = this.addNoise(gradients, update.metadata.privacyTier);
 
     return {
       ...update,
@@ -816,6 +819,11 @@ export class FederatedLearningCoordinator extends EventEmitter {
    * Get model version by number
    */
   getModel(version: number): ModelVersion | undefined {
+    // Check current model first
+    if (this.currentModel && this.currentModel.version === version) {
+      return this.currentModel;
+    }
+    // Then check history
     return this.modelHistory.find(m => m.version === version);
   }
 

@@ -43,12 +43,12 @@ export class PlinkoLayer {
 
   private results: PlinkoResult[] = [];
 
-  constructor(config: PlinkoConfig) {
+  constructor(config: PlinkoConfig = {} as PlinkoConfig) {
     this.config = {
-      temperature: 1.0,
-      minTemperature: 0.1,
-      decayRate: 0.001,
-      ...config
+      ...config,
+      temperature: config.temperature ?? 1.0,
+      minTemperature: config.minTemperature ?? 0.1,
+      decayRate: config.decayRate ?? 0.001,
     };
   }
 

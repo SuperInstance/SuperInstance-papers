@@ -337,3 +337,75 @@ export interface EligibilityTrace {
   timestamp: number;
   decayRate: number;
 }
+
+// ============================================================================
+// Context Sharing Types (KVCOMM-inspired)
+// ============================================================================
+
+export enum ContextPrivacy {
+  PUBLIC = 'PUBLIC',     // Can be shared with any agent
+  COLONY = 'COLONY',     // Can be shared within colony
+  PRIVATE = 'PRIVATE',   // Cannot be shared
+}
+
+export interface ContextSegment {
+  id: string;
+  content: string;
+  tokens: number[];
+  embedding: number[];
+  hash: string;
+  length: number;
+  createdAt: number;
+  updatedAt: number;
+  sourceAgentId: string;
+  usageCount: number;
+  lastUsed: number;
+}
+
+export interface SharedContext {
+  id: string;
+  segments: ContextSegment[];
+  ownerAgentId: string;
+  consumerAgentIds: Set<string>;
+  privacyLevel: ContextPrivacy;
+  expiresAt?: number;
+  createdAt: number;
+  updatedAt: number;
+}
+
+export interface ContextReuseDecision {
+  canReuse: boolean;
+  confidence: number;
+  sourceContextId?: string;
+  requiredOffsets?: ContextOffset[];
+  reason: string;
+  estimatedSpeedup?: number;
+}
+
+export interface ContextOffset {
+  segmentId: string;
+  offset: number[];
+  confidence: number;
+}
+
+export interface ContextReusePolicy {
+  enableReuse: boolean;
+  minSimilarityThreshold: number;
+  maxPrefixChange: number;
+  allowedPrivacyLevels: ContextPrivacy[];
+  enablePlaceholderTemplating: boolean;
+  maxContextAge: number;
+}
+
+export interface ContextDiff {
+  prefixMatch: boolean;
+  similarity: number;
+  addedSegments: ContextSegment[];
+  removedSegments: ContextSegment[];
+  modifiedSegments: Array<{
+    segmentId: string;
+    oldHash: string;
+    newHash: string;
+  }>;
+  offset: ContextOffset[];
+}
