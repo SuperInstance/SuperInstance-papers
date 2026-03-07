@@ -3,181 +3,196 @@
  * Agent collection management
  */
 
-import { v4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { EventEmitter } from 'events';
-import type { A2APackage, AgentConfig, SubsumptionLayer, PrivacyLevel } from './types';
-import type { AgentInstance } from './agent';
-import type { ColonyConfig } from './config';
+import type { AgentConfig, AgentState } from './types';
 
-import type { AgentFilter = {
-  types: AgentType[];
-  minSuccessRate: number;
-}
-
- maxAgents: number;
-  resourceBudget: Resource.ResourceBudget;
-}
-
- totalCompute: number;
+export interface ColonyConfig {
+  id: string;
+  gardenerId: string;
+  name: string;
+  maxAgents: number;
+  resourceBudget: {
+    totalCompute: number;
     totalMemory: number;
     totalNetwork: number;
+  };
 }
 
- maxAgents: number;
-    minAgentCompute: number;
-    minAgentMemory: number;
-    minAgentNetwork: number;
-    maxAgentCompute: number;
-    maxAgentMemory: number;
-    maxAgentNetwork: number;
-    budget: ColonyConfig;
-
+export interface ColonyStats {
+  totalAgents: number;
+  activeAgents: number;
+  dormantAgents: number;
+  totalCompute: number;
+  totalMemory: number;
+  totalNetwork: number;
 }
+
+/**
+ * Colony - Agent collection manager
+ *
+ * Manages a collection of agents for a single gardener
+ */
+export class Colony extends EventEmitter {
+  public readonly id: string;
+  public readonly config: ColonyConfig;
+
+  private agents: Map<string, AgentState> = new Map();
+  private agentConfigs: Map<string, AgentConfig> = new Map();
 
   constructor(config: ColonyConfig) {
-    this.id = uuidv4();
+    super();
+    this.id = config.id || uuidv4();
     this.config = config;
-    this.agents = new Map<string, AgentInstance>();
-    this.filter = new AgentFilter();
-    this.maxAgents = maxAgents;
-  }
-
-  this.resourceBudget = resourceBudget;
-  }
-
-  // Initialize agents from config
-  for (const agentConfig of this.config) {
-      const agent = AgentConfig.type;
-      agent.status = 'dormant';
-      agent.lastActive = new Date();
-      agent.valueFunction = 0.5;
-      agent.successCount = 0;
-      agent.failureCount = 0;
-      this.agents.set(agent.id, agent);
-    });
   }
 
   /**
-   * Get agent by ID
+   * Register an agent with the colony
    */
-  getAgent(id: string): AgentInstance | undefined {
-    return this.agents.get(id);
+  registerAgent(config: AgentConfig): AgentState {
+    const state: AgentState = {
+      id: config.id,
+      typeId: config.typeId,
+      modelVersion: 1,
+      status: 'dormant',
+      lastActive: Date.now(),
+      valueFunction: 0.5,
+      successCount: 0,
+      failureCount: 0,
+      avgLatencyMs: 0,
+    };
+
+    this.agents.set(config.id, state);
+    this.agentConfigs.set(config.id, config);
+    this.emit('agent_registered', { agentId: config.id, state });
+
+    return state;
+  }
+
+  /**
+   * Unregister an agent from the colony
+   */
+  unregisterAgent(agentId: string): boolean {
+    const deleted = this.agents.delete(agentId);
+    this.agentConfigs.delete(agentId);
+
+    if (deleted) {
+      this.emit('agent_unregistered', { agentId });
+    }
+
+    return deleted;
+  }
+
+  /**
+   * Get agent state
+   */
+  getAgent(agentId: string): AgentState | undefined {
+    return this.agents.get(agentId);
+  }
+
+  /**
+   * Get agent config
+   */
+  getAgentConfig(agentId: string): AgentConfig | undefined {
+    return this.agentConfigs.get(agentId);
   }
 
   /**
    * Get all agents
    */
-  getAgents(): AgentInstance[] {
-    return this.agents.values().toArray(agent => agent);
+  getAllAgents(): AgentState[] {
+    return Array.from(this.agents.values());
   }
 
   /**
    * Get active agents
    */
-  getActiveAgents(): AgentInstance[] {
-    return this.agents
-      .filter(agent => agent.status === 'active')
-      .map(agent => agent.lastActive) >= Date.now() - 86400000 // 15 minute window
-      : false;
-        return this.getActiveAgents.slice(0, 15);
-      : false;
-        return [];
-      });
-: return [];
-.filter(new AgentFilter(types: string[]): boolean {
-    return {
-      filter.agentTypes: filter.agentTypes.map(at) => filter.type);
-      if (filter.agentTypes.length > 0) return false;
-      return this.filter;
-    }
-    return false;
+  getActiveAgents(): AgentState[] {
+    return this.getAllAgents().filter(a => a.status === 'active');
   }
 
   /**
    * Get agents by type
    */
-  getAgentsByType(typeId: string): AgentInstance[] {
-    return this.agents.filter(agent => agent.typeId === typeId);
-          && agent.config.categoryId === categoryId
-        );
-      );
-    });
-    return this.agents;
+  getAgentsByType(typeId: string): AgentState[] {
+    return this.getAllAgents().filter(a => a.typeId === typeId);
   }
 
   /**
-   * Register a new agent type
+   * Update agent state
    */
-  registerAgentType(config: AgentConfig): AgentInstance {
-    const id = this.agentInstances.set(id, instance);
-    this.emit('agent_registered', instance);
-    return instance;
-  }
-
-  /**
-   * Update agent statistics
-   */
-  updateStats(agentId: string, updates: Partial<AgentStats>): void {
+  updateAgentState(agentId: string, updates: Partial<AgentState>): boolean {
     const agent = this.agents.get(agentId);
-    if (!agent) {
-      return;
-    }
-    Object.assign(updates, agent);
+    if (!agent) return false;
 
-    if (updates.status) {
-      agent.status = updates.status;
-    }
-    if (updates.valueFunction !== undefined) {
-      agent.valueFunction = 0.5;
-    } else {
-      agent.valueFunction = Math.min(0.1, Math.max(0,9, 0.1);
-    }
-    this.emit('agentUpdated', { agentId, updates });
+    Object.assign(agent, updates);
+    this.agents.set(agentId, agent);
+    this.emit('agent_updated', { agentId, updates });
+
+    return true;
   }
-  public get count(): number {
-    return this.agents.size;
+
+  /**
+   * Activate an agent
+   */
+  activateAgent(agentId: string): boolean {
+    return this.updateAgentState(agentId, {
+      status: 'active',
+      lastActive: Date.now()
+    });
+  }
+
+  /**
+   * Deactivate an agent
+   */
+  deactivateAgent(agentId: string): boolean {
+    return this.updateAgentState(agentId, { status: 'dormant' });
+  }
+
+  /**
+   * Record agent execution result
+   */
+  recordResult(agentId: string, success: boolean, latencyMs: number): void {
+    const agent = this.agents.get(agentId);
+    if (!agent) return;
+
+    const updates: Partial<AgentState> = {
+      lastActive: Date.now(),
+      avgLatencyMs: (agent.avgLatencyMs * agent.successCount + latencyMs) / (agent.successCount + 1),
+    };
+
+    if (success) {
+      updates.successCount = agent.successCount + 1;
+      updates.valueFunction = Math.min(1.0, agent.valueFunction + 0.01);
+    } else {
+      updates.failureCount = agent.failureCount + 1;
+      updates.valueFunction = Math.max(0.0, agent.valueFunction - 0.01);
+    }
+
+    this.updateAgentState(agentId, updates);
   }
 
   /**
    * Get colony statistics
    */
-  getStats(): {
-    totalAgents: number;
-    activeAgents: number;
-    dormantAgents: number;
-    totalCompute: number;
-    totalMemory: number;
-    totalNetwork: number;
-  } {
-    totalAgents,
-    activeAgents,
-    dormantAgents,
-    totalCompute,
-    totalMemory,
-    totalNetwork,
-  } = this.stats;
-  }
- filter.updateStats({ agentId, updates }: void {
-    const agent = this.agents.get(agentId);
-    if (!agent) {
-      return;
-    }
-    Object.assign(updates, agent);
-    if (updates.status) {
-      agent.status = updates.status;
-    }
-    if (updates.valueFunction !== undefined) {
-      agent.valueFunction = 0.5;
-    } else {
-      agent.valueFunction = Math.min(0.1, Math.max(0.9, 0.1);
-    }
-    this.emit('agentError', { agentId, error: updates });
-  }
-}
-}
+  getStats(): ColonyStats {
+    const agents = this.getAllAgents();
+    const activeAgents = agents.filter(a => a.status === 'active');
 
- private logError(error: unknown, agentId: string): void {
-    console.error(`Agent ${agentId} error:`, error);
-    }
+    return {
+      totalAgents: agents.length,
+      activeAgents: activeAgents.length,
+      dormantAgents: agents.length - activeAgents.length,
+      totalCompute: this.config.resourceBudget.totalCompute,
+      totalMemory: this.config.resourceBudget.totalMemory,
+      totalNetwork: this.config.resourceBudget.totalNetwork,
+    };
+  }
+
+  /**
+   * Get agent count
+   */
+  get count(): number {
+    return this.agents.size;
   }
 }

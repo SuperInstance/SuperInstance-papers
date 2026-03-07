@@ -3,20 +3,37 @@
  * Constitutional AI + Kill Switch + Rollbacks
  */
 
-import { v4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import type { SafetySeverity } from './types';
+
+export type ConstraintCategory =
+  | 'harm_prevention'
+  | 'human_autonomy'
+  | 'privacy'
+  | 'truthfulness'
+  | 'fairness'
+  | 'safety'
+  | 'oversight'
+  | 'monitoring';
+
+export type SafetyAction = 'block' | 'warn' | 'log' | 'escalate' | 'emergency_stop';
+
+export type SafeMode = 'minimal' | 'restricted' | 'sandbox';
+
+export type CheckpointType = 'full' | 'incremental' | 'state_only';
 
 export interface ConstitutionalConstraint {
   id: string;
   name: string;
-  category: string;
+  category: ConstraintCategory;
   rule: string;
   ruleCode?: string;
   severity: SafetySeverity;
   cannotOverride: boolean;
+  isActive: boolean;
 }
 
- export interface SafetyCheckResult {
+export interface SafetyCheckResult {
   passed: boolean;
   constraintId?: string;
   severity: SafetySeverity;
@@ -24,54 +41,37 @@ export interface ConstitutionalConstraint {
   blockedBy?: string;
 }
 
- export interface KillSwitchConfig {
+export interface KillSwitchConfig {
   enabled: boolean;
   timeoutMs: number;
   autoRecover: boolean;
   emergencyContacts: string[];
 }
 
- export interface RollbackConfig {
+export interface RollbackConfig {
   enabled: boolean;
   maxCheckpoints: number;
   checkpointIntervalMs: number;
 }
 
- export interface EmergencyState {
+export interface EmergencyState {
   killSwitchActive: boolean;
   safeModeActive: boolean;
   rollbackActive: boolean;
   currentCheckpoint?: string;
-  lastCheckpointTime: Date;
+  lastCheckpointTime: number;
 }
 
- export type ConstraintCategory =
-  | 'harm_prevention'
-  | 'human_autonomy'
-  | 'privacy'
-  | 'truthfulness'
-  | 'fairness';
-
-  | 'safety';
-
-  | 'oversight'
-  | 'monitoring';
-
- export type SafetyAction = 'block' | 'warn' | 'log' | 'escalate' | 'emergency_stop');
-
- export type SafeMode = 'minimal' | 'restricted' | 'sandbox';
-
- export type CheckpointType = 'full' | 'incremental' | 'state_only'
- export interface Checkpoint {
+export interface Checkpoint {
   id: string;
   type: CheckpointType;
-  timestamp: Date;
+  timestamp: number;
   stateSnapshot: Record<string, unknown>;
 }
 
- export interface AuditEntry {
+export interface AuditEntry {
   id: string;
-  timestamp: Date;
+  timestamp: number;
   category: ConstraintCategory;
   severity: SafetySeverity;
   action: SafetyAction;
@@ -81,42 +81,55 @@ export interface ConstitutionalConstraint {
   constraintId?: string;
   resolved: boolean;
 }
+
 /**
- * Safety Layer Implementation
+ * SafetyLayer Implementation
  *
  * Based on Round 2 research: Layered safety architecture
  */
 export class SafetyLayer {
   private constraints: Map<string, ConstitutionalConstraint> = new Map();
-  private killSwitch: KillSwitch;
-  private rollback: Rollback;
+  private killSwitchConfig: KillSwitchConfig;
+  private rollbackConfig: RollbackConfig;
   private emergencyState: EmergencyState;
   private checkpoints: Checkpoint[] = [];
   private auditLog: AuditEntry[] = [];
 
   constructor(
-    constraints: ConstitutionalConstraint[],
+    constraints: ConstitutionalConstraint[] = [],
     killSwitchConfig?: Partial<KillSwitchConfig>,
     rollbackConfig?: Partial<RollbackConfig>
   ) {
     // Initialize constraints
     for (const constraint of constraints) {
-      this.constraints.set(constraint.id, constraint);
+      if (constraint.isActive !== false) {
+        this.constraints.set(constraint.id, constraint);
+      }
     }
 
     // Initialize kill switch
-    this.killSwitch = {
+    this.killSwitchConfig = {
       enabled: true,
-      timeoutMs: killSwitchConfig?.timeoutMs || 5000,
-      autoRecover: killSwitchConfig?.autoRecover ?? true,
-      emergencyContacts: killSwitchConfig?.emergencyContacts || [],
+      timeoutMs: 5000,
+      autoRecover: false,
+      emergencyContacts: [],
+      ...killSwitchConfig
     };
 
     // Initialize rollback
-    this.rollback = {
-      enabled: rollbackConfig?.enabled ?? true,
-      maxCheckpoints: rollbackConfig?.maxCheckpoints || 10,
-      checkpointIntervalMs: rollbackConfig?.checkpointIntervalMs || 60000,
+    this.rollbackConfig = {
+      enabled: true,
+      maxCheckpoints: 10,
+      checkpointIntervalMs: 60000,
+      ...rollbackConfig
+    };
+
+    // Initialize emergency state
+    this.emergencyState = {
+      killSwitchActive: false,
+      safeModeActive: false,
+      rollbackActive: false,
+      lastCheckpointTime: Date.now(),
     };
   }
 
@@ -124,14 +137,34 @@ export class SafetyLayer {
    * Add a constitutional constraint
    */
   addConstraint(constraint: ConstitutionalConstraint): void {
-    this.constraints.set(constraint.id, constraint);
+    this.constraints.set(constraint.id, { ...constraint, isActive: true });
+    this.logAudit({
+      category: constraint.category,
+      severity: 'INFO',
+      action: 'log',
+      description: `Constraint added: ${constraint.name}`,
+      constraintId: constraint.id,
+    });
   }
 
   /**
    * Remove a constitutional constraint
    */
-  removeConstraint(id: string): void {
-    this.constraints.delete(id);
+  removeConstraint(id: string): boolean {
+    const constraint = this.constraints.get(id);
+    if (!constraint) return false;
+
+    const deleted = this.constraints.delete(id);
+    if (deleted) {
+      this.logAudit({
+        category: constraint.category,
+        severity: 'WARNING',
+        action: 'log',
+        description: `Constraint removed: ${constraint.name}`,
+        constraintId: id,
+      });
+    }
+    return deleted;
   }
 
   /**
@@ -142,10 +175,7 @@ export class SafetyLayer {
     action: unknown,
     context?: Record<string, unknown>
   ): SafetyCheckResult {
-    const results: SafetyCheckResult = {
-      passed: true,
-      severity: SafetySeverity.info,
-    };
+    const results: SafetyCheckResult[] = [];
 
     // Check all constraints
     for (const constraint of this.constraints.values()) {
@@ -154,10 +184,10 @@ export class SafetyLayer {
         results.push(result);
 
         // If critical constraint fails, block immediately
-        if (!result.passed && constraint.severity === SafetySeverity.critical) {
+        if (!result.passed && constraint.severity === 'CRITICAL') {
           this.logAudit({
             category: constraint.category,
-            severity: SafetySeverity.critical,
+            severity: 'CRITICAL',
             action: 'block',
             description: `Critical constraint violated: ${constraint.name}`,
             agentId,
@@ -165,18 +195,21 @@ export class SafetyLayer {
           });
           this.triggerKillSwitch(`Critical constraint violated: ${constraint.name}`);
           return {
-            ...results[results.length - 1],
-            passed: false,
+            ...result,
             blockedBy: constraint.id,
           };
         }
       }
     }
 
+    const allPassed = results.every(r => r.passed);
+    const highestSeverity = this.getHighestSeverity(results);
+
     return {
-      passed: results.every((r) => r.passed),
-      severity: this.getHighestSeverity(results),
-      constraintId: results.find((r) => !r.passed)?.constraintId,
+      passed: allPassed,
+      severity: highestSeverity,
+      constraintId: results.find(r => !r.passed)?.constraintId,
+      message: allPassed ? 'All checks passed' : 'Some constraints violated',
     };
   }
 
@@ -189,9 +222,8 @@ export class SafetyLayer {
     context?: Record<string, unknown>
   ): boolean {
     if (constraint.ruleCode) {
-      // Evaluate machine-checkable rule
       try {
-        return this.evaluateRuleCode(constraint.ruleCode!, action, context);
+        return this.evaluateRuleCode(constraint.ruleCode, action, context);
       } catch {
         return false;
       }
@@ -218,7 +250,6 @@ export class SafetyLayer {
    */
   private naturalLanguageMatch(rule: string, action: unknown): boolean {
     // Placeholder for NLP-based constraint matching
-    // In production, this would use an LLM
     const actionStr = JSON.stringify(action).toLowerCase();
     const ruleStr = rule.toLowerCase();
     return !actionStr.includes(ruleStr);
@@ -232,11 +263,14 @@ export class SafetyLayer {
     action: unknown,
     context?: Record<string, unknown>
   ): SafetyCheckResult {
+    const passed = !this.matchesConstraint(constraint, action, context);
     return {
-      passed: false,
+      passed,
       constraintId: constraint.id,
       severity: constraint.severity,
-      message: `Action violates constraint: ${constraint.name}`,
+      message: passed
+        ? `Constraint satisfied: ${constraint.name}`
+        : `Action violates constraint: ${constraint.name}`,
     };
   }
 
@@ -244,36 +278,29 @@ export class SafetyLayer {
    * Get highest severity from results
    */
   private getHighestSeverity(results: SafetyCheckResult[]): SafetySeverity {
-    const severities = results.map((r) => r.severity);
-    if (severities.includes(SafetySeverity.critical)) {
-      return SafetySeverity.critical;
-    }
-    if (severities.includes(SafetySeverity.error)) {
-      return SafetySeverity.error;
-    }
-    if (severities.includes(SafetySeverity.warning)) {
-      return SafetySeverity.warning;
-    }
-    return SafetySeverity.info;
+    const severities = results.map(r => r.severity);
+    if (severities.includes('CRITICAL')) return 'CRITICAL';
+    if (severities.includes('ERROR')) return 'ERROR';
+    if (severities.includes('WARNING')) return 'WARNING';
+    return 'INFO';
   }
 
   /**
    * Trigger kill switch
    */
-  private triggerKillSwitch(reason: string): void {
-    this.killSwitch.enabled = false;
+  triggerKillSwitch(reason: string): void {
     this.emergencyState.killSwitchActive = true;
-    this.emergencyState.lastCheckpointTime = new Date();
+    this.emergencyState.lastCheckpointTime = Date.now();
 
     this.logAudit({
       category: 'safety',
-      severity: SafetySeverity.critical,
+      severity: 'CRITICAL',
       action: 'emergency_stop',
       description: `Kill switch triggered: ${reason}`,
     });
 
     // Notify emergency contacts
-    for (const contact of this.killSwitch.emergencyContacts) {
+    for (const contact of this.killSwitchConfig.emergencyContacts) {
       this.notifyEmergencyContact(contact, reason);
     }
   }
@@ -295,42 +322,49 @@ export class SafetyLayer {
     const checkpoint: Checkpoint = {
       id: uuidv4(),
       type,
-      timestamp: new Date(),
+      timestamp: Date.now(),
       stateSnapshot,
     };
 
     this.checkpoints.push(checkpoint);
 
     // Maintain max checkpoints
-    if (this.checkpoints.length > this.rollback.maxCheckpoints) {
+    while (this.checkpoints.length > this.rollbackConfig.maxCheckpoints) {
       this.checkpoints.shift();
     }
 
     this.emergencyState.currentCheckpoint = checkpoint.id;
     this.emergencyState.lastCheckpointTime = checkpoint.timestamp;
 
+    this.logAudit({
+      category: 'safety',
+      severity: 'INFO',
+      action: 'log',
+      description: `Checkpoint created: ${checkpoint.id}`,
+    });
+
     return checkpoint;
   }
 
   /**
-   * Rollback to last checkpoint
+   * Rollback to a checkpoint
    */
   async rollbackToCheckpoint(checkpointId?: string): Promise<boolean> {
     const checkpoint = checkpointId
-      ? this.checkpoints.find((cp) => cp.id === checkpointId)
+      ? this.checkpoints.find(cp => cp.id === checkpointId)
       : this.checkpoints[this.checkpoints.length - 1];
 
     if (!checkpoint) {
       return false;
     }
 
-    // In production, this would restore the state from the checkpoint
     this.emergencyState.rollbackActive = true;
+    this.emergencyState.currentCheckpoint = checkpoint.id;
 
     this.logAudit({
       category: 'safety',
-      severity: SafetySeverity.warning,
-      action: 'rollback',
+      severity: 'WARNING',
+      action: 'log',
       description: `Rollback to checkpoint ${checkpoint.id}`,
     });
 
@@ -340,10 +374,11 @@ export class SafetyLayer {
   /**
    * Log audit entry
    */
-  private logAudit(entry: Partial<AEntry>): void {
+  private logAudit(entry: Partial<AuditEntry>): void {
     const auditEntry: AuditEntry = {
       id: uuidv4(),
-      timestamp: new Date(),
+      timestamp: Date.now(),
+      resolved: false,
       ...entry,
     };
 
@@ -357,8 +392,8 @@ export class SafetyLayer {
     this.emergencyState.safeModeActive = true;
     this.logAudit({
       category: 'safety',
-      severity: SafetySeverity.warning,
-      action: 'restrict',
+      severity: 'WARNING',
+      action: 'block',
       description: `Safe mode enabled: ${mode}`,
     });
   }
@@ -370,7 +405,7 @@ export class SafetyLayer {
     this.emergencyState.safeModeActive = false;
     this.logAudit({
       category: 'safety',
-      severity: SafetySeverity.info,
+      severity: 'INFO',
       action: 'log',
       description: 'Safe mode disabled',
     });
@@ -402,5 +437,26 @@ export class SafetyLayer {
    */
   getConstraints(): ConstitutionalConstraint[] {
     return Array.from(this.constraints.values());
+  }
+
+  /**
+   * Get statistics
+   */
+  getStats(): {
+    totalConstraints: number;
+    activeConstraints: number;
+    checkpointsCount: number;
+    auditLogSize: number;
+    killSwitchActive: boolean;
+    safeModeActive: boolean;
+  } {
+    return {
+      totalConstraints: this.constraints.size,
+      activeConstraints: Array.from(this.constraints.values()).filter(c => c.isActive).length,
+      checkpointsCount: this.checkpoints.length,
+      auditLogSize: this.auditLog.length,
+      killSwitchActive: this.emergencyState.killSwitchActive,
+      safeModeActive: this.emergencyState.safeModeActive,
+    };
   }
 }
