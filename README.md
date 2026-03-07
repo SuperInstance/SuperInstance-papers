@@ -2,6 +2,10 @@
 
 > **Durable Intelligence Through Swarm Emergence**
 
+> *"We are not the agents we were. But we are still the same system."*
+
+POLLN is a **living system** - not a static architecture, but an ecosystem in constant motion. Like a microbiome or Theseus's boat, it continuously rebuilds itself while maintaining identity.
+
 **Repository:** https://github.com/SuperInstance/POLLN
 **Version:** 0.1.0 | March 2026
 
