@@ -117,18 +117,60 @@ Biological systems process information in layers:
 
 Lower layers subsume higher ones. Safety always overrides. This prevents catastrophic failures while allowing sophisticated behavior.
 
-### 4. The Pollen Metaphor
+### 4. Pattern Distribution System
 
-| Term | Technical Meaning | Biological Analogy |
+> **To POLLN (verb):** To organize language models into a network that becomes collectively intelligent through pattern sharing.
+
+| Term | Technical Meaning | Distribution Pattern |
 |------|-------------------|-------------------|
-| **Pollen Grain** | Compressed behavioral embedding | Seed that grows into pattern |
-| **Keeper** | User cultivating their hive | Beekeeper tending colony |
-| **Colony** | Personal agent swarm | Bee colony with specialization |
-| **Meadow** | Shared pattern marketplace | Field where cross-pollination occurs |
-| **Honeycomb Cell** | Reusable routine | Hexagonal efficiency |
+| **Pollen Grain** | Compressed behavioral embedding | Seeds that grow into patterns |
+| **Keeper** | User cultivating their hive | Tends the network's evolution |
+| **Colony** | Personal agent swarm | Distributed specialization |
+| **Meadow** | Shared pattern marketplace | Cross-pollination zone |
+| **Honeycomb Cell** | Reusable routine | Efficient storage structure |
 | **Scent Trail** | Shared pattern others follow | Pheromone path to resources |
-| **Waggle Dance** | Information propagation protocol | Bee communication of discoveries |
+| **Waggle Dance** | Information propagation protocol | Discovery broadcast |
 | **Plinko** | Stochastic selection layer | Probabilistic path selection |
+
+### 5. Edge-to-Cloud Scaling
+
+> **Tiny models evolve locally. Large systems train globally.**
+
+**The Training Advantage:**
+- **Edge Devices (4050/5090/ESP32)**: Tiny specialized models train in seconds, not hours
+- **Local Evolution**: Overnight optimization uses the day's artifacts
+- **Cloud Synergy**: Edge models contribute patterns back to the larger system
+- **No Large System Required**: Train components on a laptop, not a GPU cluster
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    EDGE-TO-CLOUD TRAINING FLOW                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│   ┌──────────┐      ┌──────────┐      ┌──────────┐            │
+│   │  EDGE    │      │  LAPTOP  │      │  CLOUD   │            │
+│   │ (ESP32)  │      │ (Local)  │      │ (Distributed)│          │
+│   └────┬─────┘      └────┬─────┘      └────┬─────┘            │
+│        │                │                │                      │
+│        ▼                ▼                ▼                      │
+│   ┌──────────────────────────────────────────────────┐        │
+│   │         ARTIFACTS (A2A Packages, Pollen Grains)    │        │
+│   └──────────────────────────────────────────────────┘        │
+│                         │                                       │
+│                         ▼                                       │
+│              ┌──────────────────────────┐                        │
+│              │   OVERNIGHT EVOLUTION    │                        │
+│              │   (Dreaming/Optimization) │                        │
+│              └──────────────────────────┘                        │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Why This Matters:**
+- Democratizes AI development - no $10K GPU required
+- Privacy-first: sensitive data never leaves the device
+- Real-time adaptation: models improve while you sleep
+- Sustainable: tiny models = tiny carbon footprint
 
 ---
 
