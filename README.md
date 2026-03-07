@@ -1,21 +1,65 @@
 # POLLN - Pattern-Organized Large Language Network
 
-> Durable Intelligence Through Swarm Emergence
+> **Durable Intelligence Through Swarm Emergence**
 
 **Repository:** https://github.com/SuperInstance/POLLN
 **Version:** 0.1.0 | March 2026
 
 ---
 
+## The Problem with LLMs
+
+Large Language Models have a fundamental limitation: **they're black boxes.**
+
+```
+┌─────────────────────────────────────────────┐
+│              TRADITIONAL LLM                 │
+├─────────────────────────────────────────────┤
+│  Input ──▶ [???????????????????] ──▶ Output │
+│                                              │
+│  • Can't see WHY it decided                  │
+│  • Can't fix ONE thing without retraining    │
+│  • Can't trace reasoning path                │
+│  • Can't learn continuously                  │
+│  • Memory = frozen parameters                │
+└─────────────────────────────────────────────┘
+```
+
+When an LLM makes a decision, the reasoning is hidden in billions of parameters. You can't isolate where it went wrong. You can't improve one capability without risking regression elsewhere. You can't see the intermediate steps.
+
+**POLLN solves this with granularity.**
+
+---
+
 ## What is POLLN?
 
-POLLN is a distributed intelligence system inspired by bee colonies and pollination. Instead of one giant model (LLM), we build a **Large Language Network (LLN)** - a swarm of specialized, simple agents that become collectively intelligent through emergent behavior.
+POLLN is a **Large Language Network (LLN)** - not one giant model, but a swarm of specialized, tiny agents that become collectively intelligent through emergent behavior.
 
 ### Core Insight
 
 > "Bees are not that smart individually. But as a swarm, they become durable intelligence."
 
-Individual agents are narrow and simple. No single agent is intelligent. But connected properly - through learned synaptic weights, adaptive topology, and shared patterns - the swarm produces intelligent behavior that no agent possesses alone.
+Individual POLLN agents are narrow and simple. No single agent is intelligent. But connected properly—through learned synaptic weights, adaptive topology, and shared patterns—the swarm produces intelligent behavior that no agent possesses alone.
+
+### The Traceability Advantage
+
+```
+MONOLITH (LLM):              GRANULAR (POLLN):
+┌─────────────────┐          M1 → M2 → M3 → M4 → M5
+│  BLACK BOX      │             ↓    ↓    ↓    ↓
+│  Can't see WHY  │          [a2a][a2a][a2a][a2a] ← ARTIFACTS
+│  Activations    │             ↓    ↓    ↓    ↓
+│  hidden         │          Every step TRACABLE
+└─────────────────┘          WHY can be ANALYZED
+```
+
+**A2A (Agent-to-Agent) packages are artifacts.** Every communication is:
+- Visible and inspectable
+- Stored for analysis
+- Replayable for debugging
+- The basis for effective simulation
+
+This makes POLLN simulations **far more effective** than normal models where reasoning is hidden in activations.
 
 ---
 
@@ -23,106 +67,68 @@ Individual agents are narrow and simple. No single agent is intelligent. But con
 
 ### 1. Durability Through Variant Diversity
 
-Instead of ONE perfect solution, POLLN maintains MANY variants:
+Evolution doesn't create one perfect organism—it maintains diversity. POLLN applies this principle:
 
 ```
 Variant 1: 90% accuracy  ──┐
 Variant 2: 88% accuracy  ──┤
-Variant 3: 85% accuracy  ──┼──► Stochastic Selection (temperature-based)
-Variant 4: 82% accuracy  ──┤
-Variant 5: 78% accuracy  ──┘
+Variant 3: 85% accuracy  ──┼──► Stochastic Selection (Plinko)
+Variant 4: 82% accuracy  ──┤    Different variants succeed
+Variant 5: 78% accuracy  ──┘    as environment changes
 ```
 
-When environment changes:
+When conditions shift:
 - Different variants succeed
 - Rankings update automatically
 - Worst performers gradually drop
-- System adapts WITHOUT reprogramming
+- **System adapts WITHOUT reprogramming**
 
-### 2. Granularity: Tiny Models Beat Giant Ones
+### 2. Memory as Pathway Strengths
 
-```
-MONOLITH (LLM):              GRANULAR (POLLN):
-┌─────────────────┐          ┌───┐┌───┐┌───┐┌───┐┌───┐
-│  ONE GIANT      │          │M1 ││M2 ││M3 ││M4 ││M5 │
-│  MODEL          │          └─┬─┘└─┬─┘└─┬─┘└─┬─┘└─┬─┘
-│                 │            │    │    │    │    │
-│ • Big steps     │            └────┴────┴─┬─┴────┴─┘
-│ • Can't isolate │                         │
-│ • Black box     │                    ┌────▼────┐
-└─────────────────┘                    │ PLINKO  │ ← Stochastic
-                                       └─────────┘
-```
-
-**Advantages:**
-- Each decision ISOLATED to specific model
-- Artifacts VISIBLE at each step
-- Can improve ONE model without touching others
-- Debuggable, interpretable, modular
-
-### 3. Memory as Pathway Strengths (Not Files)
-
-The body does NOT store information as files. It stores information as **probability of pathway activation**:
+The body doesn't store information as files. It stores information as **probability of pathway activation**:
 
 > "The body remembers running by BECOMING a runner."
 
 - Muscles grow in running patterns
 - Blood vessels grow to supply running
 - Neural pathways strengthen for running
-- Memory is STRUCTURAL, not REPRESENTATIONAL
+- **Memory is STRUCTURAL, not REPRESENTATIONAL**
+
+In POLLN:
+- Memory = Strength of agent-to-agent connections
+- Learning = Resource reallocation (like blood flow)
+- No central database—distributed weights ARE the memory
+
+### 3. Layered Intelligence (Subsumption Architecture)
+
+Biological systems process information in layers:
+
+```
+┌─────────────────────────────────────────────┐
+│  Layer 3: DELIBERATE    (slow, conscious)   │ ← Planning
+├─────────────────────────────────────────────┤
+│  Layer 2: HABITUAL      (medium, learned)   │ ← Routines
+├─────────────────────────────────────────────┤
+│  Layer 1: REFLEX        (fast, hardwired)   │ ← Reactions
+├─────────────────────────────────────────────┤
+│  Layer 0: SAFETY        (instant, critical) │ ← Guardrails
+└─────────────────────────────────────────────┘
+```
+
+Lower layers subsume higher ones. Safety always overrides. This prevents catastrophic failures while allowing sophisticated behavior.
 
 ### 4. The Pollen Metaphor
 
-| Term | Meaning |
-|------|---------|
-| **Pollen Grain** | Compressed behavioral seed - portable, potent pattern |
-| **Keeper** | User who cultivates their hive |
-| **Meadow** | Where patterns grow and cross-pollinate |
-| **Honeycomb Cell** | Reusable routine (hexagonal efficiency) |
-| **Scent Trail** | Shared pattern others can follow |
-| **Waggle Dance** | How information spreads between agents |
-
----
-
-## Research Progress
-
-### Round 1: Foundation Research (COMPLETE - 5/5)
-
-5 parallel research agents investigating core concepts across 12+ languages:
-
-| Agent | Topic | Status | Key Findings |
-|-------|-------|--------|--------------|
-| Multi-Agent Systems | MARL, swarm intelligence | **Complete** | QMIX, MAPPO, MADDPG, CTDE patterns |
-| Embodied Cognition | Distributed memory | **Complete** | Subsumption architecture, gut brain |
-| Stochastic Decisions | Plinko, bandits | **Complete** | Gumbel-Softmax, cosine annealing |
-| Privacy Learning | FL attacks, DP | **Complete** | ε < 1.0 required, 6 attack vectors |
-| Cross-Cultural Philosophy | Attribution | **Complete** | FPIC requirements, 15+ traditions |
-
-#### Round 1 Cross-Cutting Themes
-
-1. **Distribution is Universal** - Across biology, philosophy, computer science
-2. **Emergence Over Control** - No central controller needed in any domain
-3. **Layered Processing** - Safety > Reflex > Habit > Deliberate
-4. **Privacy Requires Defense-in-Depth** - DP + aggregation + k-anonymity
-
-#### Key Research Outputs
-
-- `docs/research/embodied-cognition.md` (1,382 lines)
-- `docs/research/stochastic-decisions.md` (50+ pages)
-- `docs/research/privacy-attacks.md` (comprehensive attack catalog)
-- `docs/research/cross-cultural-philosophy.md` (FPIC requirements matrix)
-- `docs/round1-synthesis/README.md` (synthesis and Round 2 planning)
-
-#### Completed Research
-
-**Embodied Cognition** (Complete)
-- Memory as pathway strengths (Hebbian learning)
-- Subsumption architecture: Safety > Reflex > Habit > Deliberate
-- Gut-level autonomous agents (500M neurons in enteric system)
-- Predictive processing in all agents
-- Overnight optimization (synaptic homeostasis)
-
-See: `docs/research/embodied-cognition.md`
+| Term | Technical Meaning | Biological Analogy |
+|------|-------------------|-------------------|
+| **Pollen Grain** | Compressed behavioral embedding | Seed that grows into pattern |
+| **Keeper** | User cultivating their hive | Beekeeper tending colony |
+| **Colony** | Personal agent swarm | Bee colony with specialization |
+| **Meadow** | Shared pattern marketplace | Field where cross-pollination occurs |
+| **Honeycomb Cell** | Reusable routine | Hexagonal efficiency |
+| **Scent Trail** | Shared pattern others follow | Pheromone path to resources |
+| **Waggle Dance** | Information propagation protocol | Bee communication of discoveries |
+| **Plinko** | Stochastic selection layer | Probabilistic path selection |
 
 ---
 
@@ -138,22 +144,37 @@ See: `docs/research/embodied-cognition.md`
 │  │  (User)     │     │  (Agents)   │     │  (Shared)   │   │
 │  └─────────────┘     └──────┬──────┘     └─────────────┘   │
 │                             │                               │
+│                    THREE-LAYER HIERARCHY                     │
 │         ┌───────────────────┼───────────────────┐          │
 │         │                   │                   │          │
 │         ▼                   ▼                   ▼          │
 │  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐   │
-│  │   SAFETY    │     │   REFLEX    │     │  HABITUAL   │   │
-│  │  (Layer 0)  │     │  (Layer 1)  │     │  (Layer 2)  │   │
+│  │  COORDINATOR│     │ COORDINATOR │     │ COORDINATOR │   │
+│  │  (Strategic)│     │  (Tactical) │     │ (Operational│   │
+│  └──────┬──────┘     └──────┬──────┘     └──────┬──────┘   │
+│         │                   │                   │          │
+│         ▼                   ▼                   ▼          │
+│  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐   │
+│  │ SPECIALISTS │     │ SPECIALISTS │     │ SPECIALISTS │   │
+│  │  [S1][S2]   │     │  [S3][S4]   │     │  [S5][S6]   │   │
 │  └─────────────┘     └─────────────┘     └─────────────┘   │
+│                                                             │
+│                    SUBLAYERS (Subsumption)                   │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐           │
+│  │ SAFETY  │ │ REFLEX  │ │ HABITUAL│ │DELIBERATE│           │
+│  │ (Layer0)│ │ (Layer1)│ │ (Layer2)│ │ (Layer3) │           │
+│  └─────────┘ └─────────┘ └─────────┘ └─────────┘           │
 │                                                             │
 │         ┌───────────────────────────────────────┐          │
 │         │           PLINKO LAYER                 │          │
 │         │  Stochastic selection with temperature │          │
+│         │  P(action) = exp(score/T) / Σ exp(s/T) │          │
 │         └───────────────────────────────────────┘          │
 │                                                             │
 │         ┌───────────────────────────────────────┐          │
-│         │         POLLEN GRAINS (BES)            │          │
-│         │  Compressed behavioral embeddings      │          │
+│         │     POLLEN GRAINS (BES)                │          │
+│         │  Behavioral Embedding Space            │          │
+│         │  Privacy-preserved (ε < 1.0)           │          │
 │         └───────────────────────────────────────┘          │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -161,13 +182,124 @@ See: `docs/research/embodied-cognition.md`
 
 ---
 
+## Research Progress
+
+### Round 1: Foundation Research ✅ COMPLETE (5/5)
+
+5 parallel research agents investigated core concepts across 12+ languages:
+
+| Agent | Topic | Key Findings |
+|-------|-------|--------------|
+| **Multi-Agent Systems** | MARL, swarm intelligence | QMIX, MAPPO, MADDPG, CTDE patterns, 5 failure modes |
+| **Embodied Cognition** | Distributed memory | Subsumption architecture, gut brain, Hebbian learning |
+| **Stochastic Decisions** | Plinko, bandits | Gumbel-Softmax, cosine annealing, temperature strategies |
+| **Privacy Learning** | FL attacks, DP | ε < 1.0 required, 6 attack vectors, secure aggregation |
+| **Cross-Cultural Philosophy** | Attribution | FPIC requirements, 15+ traditions, sensitivity matrix |
+
+#### Cross-Cutting Themes
+
+1. **Distribution is Universal** - Every domain (biology, philosophy, CS) confirms distributed intelligence works
+2. **Emergence Over Control** - No central controller needed; simple rules create complex behavior
+3. **Layered Processing** - All systems show hierarchical organization
+4. **Privacy Requires Defense-in-Depth** - No single solution; combine DP + aggregation + k-anonymity
+
+#### Research Outputs
+
+```
+docs/research/
+├── embodied-cognition.md      (1,382 lines)
+├── stochastic-decisions.md    (50+ pages)
+├── privacy-attacks.md         (comprehensive catalog)
+├── cross-cultural-philosophy.md (FPIC matrix)
+├── multi-agent-systems.md     (4,375 words)
+└── multi-agent-systems-summary.md (executive)
+```
+
+### Round 2-5: In Progress
+
+| Round | Focus | Status |
+|-------|-------|--------|
+| **Round 2** | Implementation Protocols | In Progress |
+| **Round 3** | Integration & Validation | Pending |
+| **Round 4** | Edge Cases & Failure Modes | Pending |
+| **Round 5** | Build Readiness Assessment | Pending |
+
+---
+
+## Technical Deep Dives
+
+### Plinko: Stochastic Selection
+
+Plinko replaces deterministic "pick best" with probabilistic selection:
+
+```python
+def plinko_select(scores, temperature):
+    """
+    Stochastic selection with temperature control.
+    Higher temperature = more exploration.
+    Lower temperature = more exploitation.
+    """
+    # Softmax with temperature
+    probs = exp(scores / temperature) / sum(exp(scores / temperature))
+
+    # Add Gumbel noise for differentiability
+    gumbel = -log(-log(uniform(0, 1, len(scores))))
+    noisy = log(probs) + gumbel
+
+    return softmax(noisy)
+```
+
+**Temperature Strategies:**
+- New colony: T=5-10 (high exploration)
+- Growing: T=1-3 (balanced)
+- Mature: T=0.1-1 (exploitation)
+
+### CTDE: Centralized Training, Decentralized Execution
+
+POLLN adopts the CTDE pattern from multi-agent RL:
+
+```
+TRAINING (Centralized):
+┌─────────────────────────────────────────┐
+│  Coordinator sees ALL specialist states  │
+│  Learns optimal coordination strategies  │
+│  Uses global critic for credit assignment│
+└─────────────────────────────────────────┘
+              ↓
+EXECUTION (Decentralized):
+┌─────────────────────────────────────────┐
+│  Each specialist acts on local info only │
+│  Coordinator provides goals, not commands│
+│  No single point of failure              │
+└─────────────────────────────────────────┘
+```
+
+### Privacy-Preserving Pollen Sharing
+
+When pollen grains are shared to the Meadow:
+
+```
+1. EMBED: Compress behavior to embedding
+2. CLIP: Bound gradient contribution
+3. NOISE: Add Gaussian noise (DP mechanism)
+4. AGGREGATE: k ≥ 10 users before release
+5. REDUCE: 1024 → 64 dimensions
+
+Result: ε < 1.0 differential privacy guarantee
+```
+
+---
+
 ## Technology Stack
 
-- **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS
-- **UI**: shadcn/ui (Radix primitives)
-- **Database**: SQLite via Prisma ORM
-- **State**: Zustand, TanStack Query
-- **Visualization**: Recharts
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| **Frontend** | Next.js 16, React 19 | User interface |
+| **Styling** | Tailwind CSS, shadcn/ui | Design system |
+| **Database** | SQLite, Prisma ORM | Persistence |
+| **State** | Zustand, TanStack Query | Client state |
+| **Visualization** | Recharts | Metrics display |
+| **Language** | TypeScript | Type safety |
 
 ---
 
@@ -175,33 +307,26 @@ See: `docs/research/embodied-cognition.md`
 
 ```
 polln/
-├── CLAUDE.md                    # Main orchestration document
+├── CLAUDE.md                    # Orchestration document
 ├── README.md                    # This file
 ├── docs/
-│   ├── ARCHITECTURE.md          # System architecture
+│   ├── ARCHITECTURE.md          # System design
 │   ├── ROADMAP.md               # Development phases
-│   ├── NAMING_WORKSHOP.md       # Metaphor transformation
-│   ├── DISTRIBUTED_MEMORY.md    # Embodied cognition model
+│   ├── NAMING_WORKSHOP.md       # Metaphor origins
+│   ├── DISTRIBUTED_MEMORY.md    # Memory model
 │   ├── research/                # Research outputs
 │   │   ├── embodied-cognition.md
-│   │   └── ...
+│   │   ├── stochastic-decisions.md
+│   │   ├── privacy-attacks.md
+│   │   ├── cross-cultural-philosophy.md
+│   │   └── multi-agent-systems.md
 │   └── round1-synthesis/        # Round 1 synthesis
-├── .agents/                     # Specialist onboarding docs
-│   ├── systems-architect.md
-│   ├── ml-engineer.md
-│   ├── safety-researcher.md
-│   ├── agent-developer.md
-│   ├── privacy-analyst.md
-│   └── round1/                  # Round 1 researcher onboards
-│       ├── multi-agent-systems-researcher.md
-│       ├── embodied-cognition-researcher.md
-│       ├── stochastic-decisions-researcher.md
-│       ├── privacy-learning-researcher.md
-│       └── cross-cultural-philosophy-researcher.md
-├── project_docs/                # Original project documents
-│   ├── prisma/schema.prisma     # Database schema (45 models)
-│   └── upload/FINAL_SYNTHESIS.md
-└── src/                         # Scaffold codebase
+├── .agents/                     # Agent onboarding docs
+│   ├── round1/                  # Round 1 researchers
+│   └── round2/                  # Round 2 researchers
+├── project_docs/                # Original documents
+│   └── prisma/schema.prisma     # Database schema (45 models)
+└── src/                         # Application code
 ```
 
 ---
@@ -209,52 +334,84 @@ polln/
 ## Getting Started
 
 ```bash
-# Clone the repository
+# Clone
 git clone https://github.com/SuperInstance/POLLN.git
 cd POLLN
 
-# Install dependencies
+# Install
 bun install
 
-# Start development server
+# Development
 bun run dev
 
-# Database operations
-bun run db:push      # Push schema to database
-bun run db:generate  # Generate Prisma client
+# Database
+bun run db:push      # Push schema
+bun run db:generate  # Generate client
 ```
 
 ---
 
 ## Roadmap
 
-### Phase 0: Prerequisites (Current)
-- [x] Naming workshop complete
-- [x] Round 1 research launched
-- [ ] Complete Round 1 synthesis
+### Phase 0: Research (Current)
+- [x] Round 1: Foundation research complete
+- [ ] Round 2-5: Implementation research
 - [ ] Safety infrastructure design
-- [ ] Governance framework
+- [ ] Governance framework (FPIC integration)
 
 ### Phase 1: Core Runtime
 - [ ] Agent runtime implementation
-- [ ] SPORE protocol
+- [ ] SPORE protocol (agent lifecycle)
 - [ ] Plinko decision layer
+- [ ] Subsumption layer enforcement
 
 ### Phase 2: Learning & Memory
-- [ ] World model training
+- [ ] Hebbian weight updates
 - [ ] Behavioral embedding space (BES)
-- [ ] Dreaming engine
+- [ ] Dreaming engine (overnight optimization)
+- [ ] World model training
 
 ### Phase 3: Social & Scale
 - [ ] Colony/Meadow features
 - [ ] Cross-keeper pollination
-- [ ] Marketplace
+- [ ] Privacy-preserving sharing
+- [ ] Marketplace mechanics
+
+---
+
+## Why POLLN Matters
+
+### For Researchers
+- **Traceable**: Every decision can be traced through A2A artifacts
+- **Debuggable**: Isolate problems to specific agents
+- **Novel**: Combines embodied cognition, MARL, and swarm intelligence
+
+### For Builders
+- **Modular**: Improve one agent without touching others
+- **Adaptive**: System evolves without reprogramming
+- **Safe**: Layered constraints prevent catastrophic failures
+
+### For Users
+- **Personal**: Each keeper cultivates their own hive
+- **Private**: Differential privacy protects behavioral patterns
+- **Durable**: Variant diversity survives changing conditions
+
+---
+
+## Origin
+
+POLLN evolved from [Mycelium](https://github.com/SuperInstance/Mycelium), transforming the fungal network metaphor into a pollination/bee colony metaphor that better captures:
+
+- **Passive networking** through normal use (bees don't try to network)
+- **Durability** across generations (colonies survive individual bees)
+- **Evolution** through reinforcement learning (successful patterns spread)
+- **Randomness** as a feature, not a bug (stochastic exploration)
 
 ---
 
 ## Contributing
 
-This project is currently in active research phase. See `docs/ROADMAP.md` for development phases and specialist assignments.
+This project is in active research phase (Rounds 2-5). See `docs/ROADMAP.md` for development phases.
 
 ---
 
@@ -264,15 +421,5 @@ This project is currently in active research phase. See `docs/ROADMAP.md` for de
 
 ---
 
-## Origin
-
-POLLN evolved from [Mycelium](https://github.com/SuperInstance/Mycelium), transforming the fungal network metaphor into a pollination/bee colony metaphor that better captures:
-- Passive networking through normal use
-- Durability across generations
-- Evolution through reinforcement learning
-- Randomness as a feature, not a bug
-
----
-
 *Last Updated: 2026-03-06*
-*Research Round: 1 COMPLETE - Ready for Round 2*
+*Research: Round 1 COMPLETE | Rounds 2-5 In Progress*
