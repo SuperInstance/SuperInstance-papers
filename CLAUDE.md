@@ -1,138 +1,198 @@
-# POLLN - Pattern-Organized Large Language Network
+# CLAUDE.md
 
-**Repo:** https://github.com/SuperInstance/polln | **v0.1.0**
-
----
-
-## The Swarm That Learns
-
-> "Bees are not that smart individually. But as a swarm, they become durable intelligence."
-
-POLLN is a distributed intelligence system where simple agents become collectively intelligent through emergent behavior.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ---
 
-## Implementation Status
+## Project Overview
 
-| Component | Status | Tests |
-|-----------|--------|-------|
-| Base Agent Runtime | COMPLETE | 18 |
-| Tile Categories (Task/Role/Core) | COMPLETE | 24 |
-| Knowledge Succession Protocol | COMPLETE | 14 |
-| META Tiles (Pluripotent Agents) | COMPLETE | 22 |
-| Value Network (TD(λ) Learning) | COMPLETE | 20 |
-| Stigmergic Coordination | COMPLETE | 12 |
-| Plinko Decision Layer | COMPLETE | 12 |
-| **Total** | | **122** |
+POLLN (Pattern-Organized Large Language Network) is a distributed intelligence system where simple, specialized agents produce intelligent behavior through emergent coordination. Like a bee colony, individual agents are narrow but the colony becomes intelligent through learned connections.
+
+**Key insight**: Intelligence isn't in any agent—it's in the web between them.
 
 ---
 
-## Core Components (`src/core/`)
+## Development Commands
 
-| File | Purpose |
-|------|---------|
-| `types.ts` | Core type definitions |
+```bash
+# Install dependencies
+npm install
+
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run integration tests only
+npm run test:integration
+
+# Build (TypeScript to dist/)
+npm run build
+
+# Build in watch mode
+npm run dev
+
+# Run a single test file
+npx jest src/core/__tests__/agents.test.ts
+```
+
+---
+
+## Architecture Overview
+
+### Core Principle: Subsumption Architecture
+
+The system uses layered processing where lower layers override higher ones:
+
+```
+SAFETY (instant, critical) ← Always wins
+  ↓
+REFLEX (fast, automatic)
+  ↓
+HABITUAL (medium, learned)
+  ↓
+DELIBERATE (slow, conscious)
+```
+
+### Agent Hierarchy
+
+```
+BaseAgent (src/core/agent.ts)
+    └── TileCategory
+        ├── TaskAgent   - Single-purpose, ephemeral
+        ├── RoleAgent   - Ongoing responsibilities
+        └── CoreAgent   - Essential, always-active
+
+MetaTile (src/core/meta.ts) - Pluripotent agents that differentiate based on signals
+```
+
+### Key Modules (`src/core/`)
+
+| Module | Purpose |
+|--------|---------|
+| `types.ts` | Core type definitions (A2APackage, SynapseConfig, etc.) |
 | `agent.ts` | BaseAgent class |
-| `agents.ts` | TaskAgent, RoleAgent, CoreAgent |
-| `protocol.ts` | SPORE protocol |
-| `decision.ts` | Plinko decision layer |
-| `learning.ts` | Hebbian learning |
+| `agents.ts` | TaskAgent, RoleAgent, CoreAgent implementations |
 | `colony.ts` | Agent colony management |
+| `decision.ts` | Plinko stochastic selection layer |
+| `learning.ts` | Hebbian learning (synaptic weight updates) |
+| `evolution.ts` | Graph evolution (pruning, grafting, clustering) |
 | `communication.ts` | A2A package system |
 | `embedding.ts` | BES embeddings (Pollen Grains) |
-| `safety.ts` | Safety layer |
+| `safety.ts` | Constitutional constraints, emergency controls |
 | `worldmodel.ts` | VAE world model for dreaming |
+| `dreaming.ts` | Dream-based policy optimization |
 | `meta.ts` | Pluripotent META tiles |
 | `valuenetwork.ts` | TD(λ) value prediction |
 | `succession.ts` | Knowledge transfer protocol |
+| `federated.ts` | Federated learning coordinator |
+| `meadow.ts` | Community/knowledge sharing system |
 
----
+### Coordination (`src/coordination/`)
 
-## Coordination Components (`src/coordination/`)
-
-| File | Purpose |
-|------|---------|
-| `stigmergy.ts` | Pheromone-based coordination |
+| Module | Purpose |
+|--------|---------|
+| `stigmergy.ts` | Pheromone-based indirect coordination |
 
 ---
 
 ## Key Concepts
 
-| Term | Meaning |
-|------|---------|
-| **Pollen Grain** | Compressed behavioral seed |
+| Term | Definition |
+|------|------------|
+| **Pollen Grain** | Compressed behavioral pattern (embedding) |
 | **Keeper** | User cultivating their hive |
-| **Meadow** | Where patterns cross-pollinate |
-| **Honeycomb Cell** | Reusable routine |
-| **Plinko** | Stochastic selection layer |
-| **A2A Package** | Agent-to-agent communication artifact |
-| **META Tile** | Pluripotent agent that can differentiate |
+| **Meadow** | Community space for pattern cross-pollination |
+| **Plinko** | Stochastic selection with temperature-controlled exploration |
+| **A2A Package** | Agent-to-agent communication artifact (fully traceable) |
+| **META Tile** | Pluripotent agent that differentiates based on signals |
 | **Value Network** | TD(λ) predictions of state values |
 | **Stigmergy** | Indirect coordination via environmental signals |
 
 ---
 
-## Key Insights
+## Critical Patterns
 
-- **Traceability**: A2A packages are artifacts - every step inspectable
-- **Memory = Structure**: Body stores pathway activation probability
-- **Durability Through Diversity**: Stochastic selection allows variants
-- **Differentiation**: META tiles become specialized based on signals
-- **Learning = Connection Adjustment**: Hebbian learning strengthens paths
+### 1. Plinko Selection (Stochastic, Not Deterministic)
+
+Never select the "best" option. Always sample probabilistically:
+
+```typescript
+// Temperature controls exploration vs exploitation
+// High temp = explore more, Low temp = exploit best
+const selected = plinkoLayer.select(proposals, temperature);
+```
+
+This enables **durability through diversity**—backup variants exist when conditions change.
+
+### 2. Memory = Structure
+
+The system doesn't store facts in a database. It stores stronger connections between agents that work well together:
+
+```typescript
+// Hebbian learning: "neurons that fire together, wire together"
+hebbianLearning.update(sourceId, targetId, reward);
+```
+
+### 3. Traceability
+
+Every A2A package has `parentIds` and `causalChainId`. Every decision is replayable.
 
 ---
 
-## Reference Documents
+## Exports Structure
+
+Main entry points in `src/core/index.ts`:
+
+- Types: `A2APackage`, `PollenGrain`, `PlinkoDecision`, `SynapseConfig`
+- Classes: `BaseAgent`, `Colony`, `PlinkoLayer`, `SafetyLayer`, `WorldModel`
+- Federated: `FederatedLearningCoordinator`
+- META: `MetaTile`, `MetaTileManager`
+- Value: `ValueNetwork`, `ValueNetworkManager`
+- Dreaming: `DreamBasedPolicyOptimizer`, `DreamManager`
+- Meadow: `Meadow`, community types
+
+---
+
+## Test Structure
+
+Tests live in `src/**/__tests__/*.test.ts`:
+
+- `types.test.ts` - Core type validation
+- `agents.test.ts` - Agent lifecycle
+- `meta.test.ts` - META tile differentiation
+- `valuenetwork.test.ts` - TD(λ) learning
+- `worldmodel.test.ts` - VAE world model
+- `dreaming.test.ts` - Policy optimization
+- `federated.test.ts` - Federated learning
+- `meadow.test.ts` - Community system
+- `integration.test.ts` - Full system tests
+
+---
+
+## Reference Documentation
 
 | Doc | Purpose |
 |-----|---------|
 | `docs/ROADMAP.md` | Phased development plan |
-| `docs/ARCHITECTURE.md` | System architecture |
+| `docs/ARCHITECTURE.md` | System architecture diagrams |
 | `docs/research/QUICK_REFERENCE.md` | Research synthesis |
 | `docs/research/pluripotent-agents-research.md` | META tile math foundations |
-| `docs/research/scouts/FINAL_INTEGRATION.md` | Complete spec |
 
 ---
 
-## Operating Principles
+## Current Development Phase
 
-1. **Parallel agents** - Spawn multiple research agents when independent
-2. **Document-driven** - Every decision documented
-3. **Test-first** - Validate each component
-4. **Commit milestones** - Don't batch commits
-5. **Compact context** - Summarize and clear often
-
----
-
-## Commands
-
-```bash
-npm install && npm test
-npm run build
-npm run test:coverage
-```
-
----
-
-## Current Phase: 2+ Enhancement
-
-**Active Work**: R&D waves exploring new components
-
-### Recent Commits
-1. `4a642bb` - Enhanced META tiles with mathematical foundations
-2. `6952aae` - Add stigmergic coordination and value networks
-3. `42ab09a` - POLLN breakthrough synthesis
-
-### Next Research Areas
-- World Model / VAE enhancement for dreaming
-- Agent Graph Evolution (pruning, grafting)
+Phase 2+ Enhancement: R&D waves exploring:
+- World Model / VAE enhancement
+- Agent Graph Evolution
 - Federated Learning patterns
 - Meadow/Community system
-- Scent Trail / Loomcast
-- Exchange/Marketplace
 
 ---
 
 *Repository: https://github.com/SuperInstance/polln*
-*Creator: Casey DiGennaro*
-*Last Updated: 2026-03-06*

@@ -10,6 +10,7 @@ export type { PlinkoConfig } from './decision.js';
 export type { PlinkoResult } from './decision.js';
 export type { AgentProposal } from './decision.js';
 export { HebbianLearning } from './learning.js';
+export { GraphEvolution } from './evolution.js';
 export { Colony } from './colony.js';
 export type { ColonyConfig } from './colony.js';
 export type { ColonyStats } from './colony.js';
@@ -26,6 +27,18 @@ export type { EmergencyState } from './safety.js';
 export { WorldModel } from './worldmodel.js';
 export type { WorldModelConfig } from './worldmodel.js';
 export type { DreamEpisode } from './worldmodel.js';
+
+// Federated Learning (Phase 3: Collective Intelligence)
+export { FederatedLearningCoordinator } from './federated.js';
+export type {
+  ColonyInfo,
+  ModelVersion,
+  GradientUpdate,
+  FederatedRoundConfig,
+  FederatedRoundStatus,
+  PrivacyAccounting,
+  FederationConfig,
+} from './federated.js';
 
 // Concrete Agents
 export { TaskAgent, RoleAgent, CoreAgent, TileCategory } from './agents.js';
@@ -68,3 +81,40 @@ export type {
   ValueNetworkConfig,
   TrainingSample,
 } from './valuenetwork.js';
+
+// Dream-Based Policy Optimization
+export {
+  DreamBasedPolicyOptimizer,
+  DreamManager,
+} from './dreaming.js';
+export type {
+  DreamingConfig,
+  PolicyParameters,
+  PolicyImprovement,
+  Experience,
+  DreamOptimizationResult,
+  ActionDistribution,
+} from './dreaming.js';
+
+// Meadow (Phase 3: Collective Intelligence)
+export { Meadow } from './meadow.js';
+export {
+  CommunityPermission,
+  CommunityVisibility,
+  FPICStatus,
+  RestrictionLevel,
+} from './meadow.js';
+export type {
+  CommunityConfig,
+  CommunityState,
+  CommunityMembership,
+  SharedPollenGrain,
+  FPICConsent,
+  BenefitSharing,
+  TKLabels,
+  DiscoveryFilters,
+  Recommendation,
+  CommunityRule,
+  ModerationAction,
+  MeadowStats,
+} from './meadow.js';

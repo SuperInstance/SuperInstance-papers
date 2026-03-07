@@ -35,9 +35,9 @@ export abstract class BaseAgent<TConfig = unknown> extends EventEmitter {
   }
 
   // Core lifecycle methods
-  abstract async initialize(): Promise<void>;
-  abstract async process<T>(input: T): Promise<A2APackage<T>>;
-  abstract async shutdown(): Promise<void>;
+  abstract initialize(): Promise<void>;
+  abstract process<T>(input: T): Promise<A2APackage<T>>;
+  abstract shutdown(): Promise<void>;
 
   // State management
   public getState<K>(key: string): K | undefined {
