@@ -86,7 +86,7 @@ export class TaskAgent extends EventEmitter {
     }
 
     // Create A2A package
-    const pkg: A2APackage = {
+    const pkg: A2APackage<{ success: boolean; output: unknown }> = {
       id: uuidv4(),
       timestamp: Date.now(),
       senderId: this.id,
@@ -99,7 +99,7 @@ export class TaskAgent extends EventEmitter {
       layer: SubsumptionLayer.HABITUAL,
     };
 
-    return Promise.resolve(pkg);
+    return Promise.resolve(pkg as A2APackage<T>);
   }
 
   /**
@@ -217,7 +217,7 @@ export class RoleAgent extends EventEmitter {
     // Update value function
     this.updateValueFunction(result.success ? 1 : 0);
 
-    const pkg: A2APackage<T> = {
+    const pkg: A2APackage<{ success: boolean; output: unknown }> = {
       id: uuidv4(),
       timestamp: Date.now(),
       senderId: this.id,
@@ -226,11 +226,11 @@ export class RoleAgent extends EventEmitter {
       payload: result,
       parentIds: [],
       causalChainId: uuidv4(),
-      privacyLevel: 'COLONY',
-      layer: 'HABITUAL',
+      privacyLevel: PrivacyLevel.COLONY,
+      layer: SubsumptionLayer.HABITUAL,
     };
 
-    return Promise.resolve(pkg);
+    return Promise.resolve(pkg as A2APackage<T>);
   }
 
   /**
@@ -443,7 +443,7 @@ export class CoreAgent extends EventEmitter {
     this.createBackup();
   }
 
-    const pkg: A2APackage<T> = {
+    const pkg: A2APackage<{ success: boolean; output: unknown }> = {
       id: uuidv4(),
       timestamp: Date.now(),
       senderId: this.id,
@@ -452,11 +452,11 @@ export class CoreAgent extends EventEmitter {
       payload: result,
       parentIds: [],
       causalChainId: uuidv4(),
-      privacyLevel: 'PRIVATE',
-      layer: 'DELIBERATE',
+      privacyLevel: PrivacyLevel.PRIVATE,
+      layer: SubsumptionLayer.DELIBERATE,
     };
 
-    return Promise.resolve(pkg);
+    return Promise.resolve(pkg as A2APackage<T>);
   }
 
   /**

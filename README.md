@@ -4,7 +4,7 @@
 
 > *"We are not the agents we were. But we are still the same system."*
 
-POLLN is a **living system** - not a static architecture, but an ecosystem in constant motion. Like a microbiome or Theseus's boat, it continuously rebuilds itself while maintaining identity.
+POLLN is a **living system** - not a static architecture, but an ecosystem in constant motion. Like a microbiome or Theseus's boat, it continuously rebuilds itself while maintaining identity. It is a dynamic digital twin of the operating system—a reflection in polished metal that can be bent and shaped to focus intent where needed.
 
 **Repository:** https://github.com/SuperInstance/POLLN
 **Version:** 0.1.0 | March 2026
@@ -130,7 +130,7 @@ Lower layers subsume higher ones. Safety always overrides. This prevents catastr
 | **Pollen Grain** | Compressed behavioral embedding | Seeds that grow into patterns |
 | **Keeper** | User cultivating their hive | Tends the network's evolution |
 | **Colony** | Personal agent swarm | Distributed specialization |
-| **Meadow** | Shared pattern marketplace | Cross-pollination zone |
+| **Meadow** | All external knowledge sources | Any novel signal that adds weights: GitHub, news, APIs, sensors, environment |
 | **Honeycomb Cell** | Reusable routine | Efficient storage structure |
 | **Scent Trail** | Shared pattern others follow | Pheromone path to resources |
 | **Waggle Dance** | Information propagation protocol | Discovery broadcast |
