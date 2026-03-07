@@ -97,6 +97,11 @@ export interface AgentState {
   failureCount: number;
   avgLatencyMs: number;
 
+  // Derived metrics
+  executionCount: number;
+  successRate: number;
+  active: boolean;
+
   // Internal state
   stateSnapshot?: Record<string, unknown>;
 }

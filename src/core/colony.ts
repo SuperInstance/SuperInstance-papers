@@ -5,7 +5,7 @@
 
 import { v4 as uuidv4 } from 'uuid';
 import { EventEmitter } from 'events';
-import type { AgentConfig, AgentState } from './types';
+import type { AgentConfig, AgentState } from './types.js';
 
 export interface ColonyConfig {
   id: string;
