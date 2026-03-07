@@ -42,3 +42,16 @@ export type {
   TransferReason,
   SuccessionEvent,
 } from './succession.js';
+
+// META Tiles (Pluripotent Agents)
+export {
+  MetaTile,
+  MetaTileManager,
+  MetaTileState,
+  DifferentiationPotential,
+} from './meta.js';
+export type {
+  MetaTileConfig,
+  DifferentiationSignal,
+  DifferentiationRecord,
+} from './meta.js';
