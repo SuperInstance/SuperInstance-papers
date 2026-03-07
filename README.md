@@ -1,4 +1,4 @@
-# POLLN - Pattern-Organized Large Language Network
+# POLLN - Pattern-Organizing Large Language Network
 
 > **Durable Intelligence Through Swarm Emergence**
 
