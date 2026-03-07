@@ -6,7 +6,7 @@ export * from './types';
 export { BaseAgent } from './agent';
 export { SPOREProtocol } from './protocol';
 export { PlinkoLayer } from './decision';
-export type { PlinkoConfig, from './decision';
+export type { PlinkoConfig } from './decision';
 export type { PlinkoResult } from './decision';
 export type { AgentProposal } from './decision';
 export { HebbianLearning } from './learning';
