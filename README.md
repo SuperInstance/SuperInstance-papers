@@ -468,4 +468,9 @@ This project is in active research phase (Rounds 2-5). See `docs/ROADMAP.md` for
 ---
 
 *Last Updated: 2026-03-06*
-*Research: Round 1 COMPLETE | Rounds 2-5 In Progress*
+*Research: Waves 1-8 COMPLETE | Phase 1 IN PROGRESS*
+
+---
+
+*Repository: https://github.com/SuperInstance/polln*
+*Creator: Casey DiGennaro*

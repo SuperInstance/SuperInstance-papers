@@ -45,3 +45,6 @@ yarn-error.log*
 # Misc
 .claude/
 *.log
+
+# Local research workspace (not part of POLLN)
+reseachlocal/

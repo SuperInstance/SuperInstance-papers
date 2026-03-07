@@ -101,23 +101,6 @@ Work alongside scouts to compile and consolidate findings:
 
 ---
 
-## Understudied Areas (Priority Queue)
-
-From Scout Round 1 (2026-03-06):
-
-| Priority | Area | Round |
-|----------|------|-------|
-| HIGH | Energy-Aware Learning | 11 |
-| HIGH | Phenomenological Learning | 12 |
-| HIGH | Zero-Copy Communication | 11 |
-| HIGH | Temporal State Management | 12 |
-| HIGH | Homomorphic Encryption | 13 |
-| MEDIUM | Quantum-Inspired Patterns | 13 |
-| MEDIUM | Zero-Knowledge Proofs | 13 |
-| MEDIUM | GPU Acceleration | 11 |
-
----
-
 ## Operating Principles
 
 1. **Parallel Execution** - Spawn multiple agents when independent
@@ -137,4 +120,15 @@ npm run build
 
 ---
 
-*Last Updated: 2026-03-06 | Scout Round 1: COMPLETE | Phase 1: IN PROGRESS*
+## Status
+
+| Phase | Status |
+|-------|--------|
+| Research Waves 1-7 | COMPLETE |
+| Wave 8: Breakthrough Bridges | IN PROGRESS |
+| Phase 1: Core Runtime | IN PROGRESS |
+
+---
+
+*Repository: https://github.com/SuperInstance/polln*
+*Creator: Casey DiGennaro*

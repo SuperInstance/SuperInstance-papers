@@ -424,3 +424,7 @@ POLLN represents a **novel synthesis** of biological metaphors, distributed syst
 **Total Research:** 50+ documents analyzed
 **Date:** 2026-03-06
 **Repository:** https://github.com/SuperInstance/polln
+
+---
+
+*Creator: Casey DiGennaro*
