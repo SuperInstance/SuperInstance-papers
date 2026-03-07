@@ -61,6 +61,9 @@ export class Colony extends EventEmitter {
       successCount: 0,
       failureCount: 0,
       avgLatencyMs: 0,
+      executionCount: 0,
+      successRate: 0,
+      active: false,
     };
 
     this.agents.set(config.id, state);

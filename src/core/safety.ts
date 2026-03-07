@@ -4,7 +4,7 @@
  */
 
 import { v4 as uuidv4 } from 'uuid';
-import type { SafetySeverity } from './types';
+import { SafetySeverity } from './types.js';
 
 export type ConstraintCategory =
   | 'harm_prevention'
@@ -140,7 +140,7 @@ export class SafetyLayer {
     this.constraints.set(constraint.id, { ...constraint, isActive: true });
     this.logAudit({
       category: constraint.category,
-      severity: 'INFO',
+      severity: SafetySeverity.INFO,
       action: 'log',
       description: `Constraint added: ${constraint.name}`,
       constraintId: constraint.id,
@@ -158,7 +158,7 @@ export class SafetyLayer {
     if (deleted) {
       this.logAudit({
         category: constraint.category,
-        severity: 'WARNING',
+        severity: SafetySeverity.WARNING,
         action: 'log',
         description: `Constraint removed: ${constraint.name}`,
         constraintId: id,
@@ -184,10 +184,10 @@ export class SafetyLayer {
         results.push(result);
 
         // If critical constraint fails, block immediately
-        if (!result.passed && constraint.severity === 'CRITICAL') {
+        if (!result.passed && constraint.severity === SafetySeverity.CRITICAL) {
           this.logAudit({
             category: constraint.category,
-            severity: 'CRITICAL',
+            severity: SafetySeverity.CRITICAL,
             action: 'block',
             description: `Critical constraint violated: ${constraint.name}`,
             agentId,
@@ -279,10 +279,10 @@ export class SafetyLayer {
    */
   private getHighestSeverity(results: SafetyCheckResult[]): SafetySeverity {
     const severities = results.map(r => r.severity);
-    if (severities.includes('CRITICAL')) return 'CRITICAL';
-    if (severities.includes('ERROR')) return 'ERROR';
-    if (severities.includes('WARNING')) return 'WARNING';
-    return 'INFO';
+    if (severities.includes(SafetySeverity.CRITICAL)) return SafetySeverity.CRITICAL;
+    if (severities.includes(SafetySeverity.ERROR)) return SafetySeverity.ERROR;
+    if (severities.includes(SafetySeverity.WARNING)) return SafetySeverity.WARNING;
+    return SafetySeverity.INFO;
   }
 
   /**
@@ -294,7 +294,7 @@ export class SafetyLayer {
 
     this.logAudit({
       category: 'safety',
-      severity: 'CRITICAL',
+      severity: SafetySeverity.CRITICAL,
       action: 'emergency_stop',
       description: `Kill switch triggered: ${reason}`,
     });
@@ -338,7 +338,7 @@ export class SafetyLayer {
 
     this.logAudit({
       category: 'safety',
-      severity: 'INFO',
+      severity: SafetySeverity.INFO,
       action: 'log',
       description: `Checkpoint created: ${checkpoint.id}`,
     });
@@ -363,7 +363,7 @@ export class SafetyLayer {
 
     this.logAudit({
       category: 'safety',
-      severity: 'WARNING',
+      severity: SafetySeverity.WARNING,
       action: 'log',
       description: `Rollback to checkpoint ${checkpoint.id}`,
     });
@@ -379,6 +379,10 @@ export class SafetyLayer {
       id: uuidv4(),
       timestamp: Date.now(),
       resolved: false,
+      category: entry.category ?? 'safety' as ConstraintCategory,
+      severity: entry.severity ?? SafetySeverity.INFO,
+      action: entry.action ?? 'log',
+      description: entry.description ?? '',
       ...entry,
     };
 
@@ -392,7 +396,7 @@ export class SafetyLayer {
     this.emergencyState.safeModeActive = true;
     this.logAudit({
       category: 'safety',
-      severity: 'WARNING',
+      severity: SafetySeverity.WARNING,
       action: 'block',
       description: `Safe mode enabled: ${mode}`,
     });
@@ -405,7 +409,7 @@ export class SafetyLayer {
     this.emergencyState.safeModeActive = false;
     this.logAudit({
       category: 'safety',
-      severity: 'INFO',
+      severity: SafetySeverity.INFO,
       action: 'log',
       description: 'Safe mode disabled',
     });

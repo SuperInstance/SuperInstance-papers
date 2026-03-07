@@ -40,13 +40,9 @@ export type {
   FederationConfig,
 } from './federated.js';
 
-// Concrete Agents
-export { TaskAgent, RoleAgent, CoreAgent, TileCategory } from './agents.js';
-
 // Knowledge Succession
 export {
   KnowledgeSuccessionManager,
-  TileLifecycleManager,
   KnowledgeStage,
 } from './succession.js';
 export type {
@@ -128,6 +124,24 @@ export type {
   SleepReport,
 } from './tiledreaming.js';
 
+// KVCOMM Anchor-Based KV-Cache Communication
+export {
+  KVAnchorPool,
+  AnchorMatcher,
+  OffsetPredictor,
+  AnchorPredictor,
+} from './kvanchor.js';
+export type {
+  KVCacheSegment,
+  KVCacheMetadata,
+  KVAnchor,
+  OffsetPrediction,
+  AnchorMatch,
+  KVAnchorPoolConfig,
+  AnchorMatcherConfig,
+  OffsetPredictorConfig,
+} from './kvanchor.js';
+
 // Tile System
 export {
   BaseTile,
@@ -145,3 +159,119 @@ export type {
   PollenGrain as TilePollenGrain,
   TileVariant,
 } from './tile.js';
+
+// Cache Utilities
+export {
+  CacheSlicer,
+  CacheConcatenator,
+  CacheReplacer,
+  CacheIndexSelector,
+  CacheSplitter,
+  cacheSlicer,
+  cacheConcatenator,
+  cacheReplacer,
+  cacheIndexSelector,
+  cacheSplitter,
+  cloneCacheData,
+  validateCache,
+  getCacheStats,
+} from "./cacheutils.js";
+export type {
+  TensorLike,
+  Cache,
+  CacheMetadata,
+  SliceSpec,
+  Span,
+  SplitResult,
+  CacheOptions,
+} from "./cacheutils.js";
+
+// Context Sharing (KVCOMM-inspired)
+export {
+  SharedContextManager,
+  ContextSegmentImpl,
+  ContextReusePolicyImpl,
+  ContextDiffTracker,
+  PlaceholderContextManager,
+} from './contextshare.js';
+export {
+  ContextPrivacy,
+} from './contextshare.js';
+export type {
+  ContextSegment,
+  SharedContext,
+  ContextReuseDecision,
+  ContextOffset,
+  ContextReusePolicy,
+  ContextDiff,
+  SharedContextManagerConfig,
+  ContextSharingStats,
+  Placeholder,
+  ContextTemplate,
+} from './contextshare.js';
+
+// KV-Tile Integration (Tile + KV Anchor Bridge)
+export {
+  TileKVCache,
+  TileAnchorBridge,
+  TileContextReuse,
+} from './kvtile.js';
+export type {
+  TileKVCacheEntry,
+  TileCacheStats,
+  TileKVCacheConfig,
+  CacheLookupResult,
+  TileReuseStats,
+  ContextDiff as TileContextDiff,
+} from './kvtile.js';
+
+// KV-Federated Integration
+export {
+  FederatedKVSync,
+  PrivacyAwareAnchors,
+  AnchorAggregation,
+} from './kvfederated.js';
+export type {
+  PrivateKVAnchor,
+  AnchorSyncPackage,
+  AggregatedAnchor,
+  AnchorPrivacyBudget,
+  FederatedKVSyncConfig,
+  PrivacyAwareAnchorConfig,
+  AnchorAggregationConfig,
+  FederatedKVStats,
+} from './kvfederated.js';
+
+// KV-Dream Integration (KV-cache + WorldModel dreaming)
+export {
+  DreamKVManager,
+  DreamAnchors,
+  ImaginationCache,
+  KVDreamIntegration,
+} from './kvdream.js';
+export type {
+  KVDreamConfig,
+  DreamKVCache,
+  DreamAnchor,
+  ImaginationCache as ImaginationCacheEntry,
+  KVDreamResult,
+  KVDreamStats,
+} from './kvdream.js';
+
+// KV-Cache Meadow Marketplace
+export {
+  AnchorMarket,
+  AnchorPollenManager,
+  CommunityAnchorPool,
+} from './kvmeadow.js';
+export type {
+  AnchorListing,
+  AnchorRequest,
+  AnchorPollen,
+  ProvenanceData,
+  ProvenanceModification,
+  AnchorVote,
+  CommunityAnchor,
+  MarketplaceStats,
+  CommunityPoolStats,
+} from './kvmeadow.js';

@@ -2,7 +2,6 @@
  * Tile Dreaming System Tests
  */
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { TileDreamer, withDreaming, TileDreamingConfig, SleepReport } from '../tiledreaming.js';
 import { BaseTile, TileCategory, TileContext, TileResult } from '../tile.js';
 import { WorldModel } from '../worldmodel.js';
@@ -92,8 +91,18 @@ class MockWorldModel {
  * Mock Value Network
  */
 class MockValueNetwork {
-  predict(state: number[]): number {
-    return state.reduce((a, b) => a + b, 0) / state.length;
+  predict(state: Map<string, unknown>): { value: number; confidence: number } {
+    const embedding = state.get('embedding') as number[] | undefined;
+    if (embedding && Array.isArray(embedding)) {
+      return {
+        value: embedding.reduce((a, b) => a + b, 0) / embedding.length,
+        confidence: 0.8,
+      };
+    }
+    return {
+      value: 0.5,
+      confidence: 0.5,
+    };
   }
 }
 
@@ -160,7 +169,7 @@ describe('TileDreamer', () => {
     });
 
     it('should emit tile_registered event', () => {
-      const handler = vi.fn();
+      const handler = jest.fn();
       dreamer.on('tile_registered', handler);
 
       dreamer.registerTile(tile);
@@ -232,8 +241,8 @@ describe('TileDreamer', () => {
     });
 
     it('should emit sleep events', async () => {
-      const startHandler = vi.fn();
-      const completeHandler = vi.fn();
+      const startHandler = jest.fn();
+      const completeHandler = jest.fn();
 
       dreamer.on('sleep_started', startHandler);
       dreamer.on('sleep_completed', completeHandler);

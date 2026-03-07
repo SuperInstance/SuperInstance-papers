@@ -41,7 +41,7 @@ export enum TileCategory {
 export class TaskAgent extends EventEmitter {
   public readonly id: string;
   public readonly category = TileCategory.EPHEMERAL;
-  protected readonly config: AgentConfig;
+  public readonly config: AgentConfig;
   protected state: Map<string, unknown> = new Map();
   protected valueFunction: number = 0.5;
   protected successCount: number = 0;
@@ -169,7 +169,7 @@ export class TaskAgent extends EventEmitter {
 export class RoleAgent extends EventEmitter {
   public readonly id: string;
   public readonly category = TileCategory.ROLE;
-  protected readonly config: AgentConfig;
+  public readonly config: AgentConfig;
   protected state: Map<string, unknown> = new Map();
   protected valueFunction: number = 0.5;
   protected successCount: number = 0;
@@ -398,7 +398,7 @@ export class RoleAgent extends EventEmitter {
 export class CoreAgent extends EventEmitter {
   public readonly id: string;
   public readonly category = TileCategory.CORE;
-  protected readonly config: AgentConfig;
+  public readonly config: AgentConfig;
   protected state: Map<string, unknown> = new Map();
   protected valueFunction: number = 0.5;
   protected successCount: number = 0;

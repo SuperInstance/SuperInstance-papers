@@ -206,8 +206,9 @@ export class TileDreamer extends EventEmitter {
     let advantage = reward;
     if (this.valueNetwork) {
       const stateVec = this.encodeState(input, context);
-      const predictedValue = this.valueNetwork.predict(stateVec);
-      tdError = reward - predictedValue;
+      const stateMap = new Map<string, unknown>([['embedding', stateVec]]);
+      const valuePred = this.valueNetwork.predict(stateMap);
+      tdError = reward - valuePred.value;
       advantage = tdError;
     }
 
@@ -665,30 +666,39 @@ export class TileDreamer extends EventEmitter {
 // TILE DREAMING INTEGRATION
 // ============================================================================
 
+// Type for the dreaming tile mixin
+type DreamingTileConstructor<T> = new (...args: any[]) => T & {
+  _dreamer: TileDreamer;
+};
+
 /**
  * Mixin to add dreaming support to tiles
+ * Uses type assertion to work around TypeScript's restrictions on
+ * private/protected members in exported anonymous classes
  */
 export function withDreaming<T extends new (...args: any[]) => BaseTile>(
   Base: T,
   dreamer: TileDreamer
-) {
-  return class DreamingTile extends Base {
-    private _dreamer: TileDreamer = dreamer;
+): DreamingTileConstructor<InstanceType<T>> {
+  const DreamingTile = class extends (Base as new (...args: any[]) => object) {
+    _dreamer: TileDreamer = dreamer;
 
     constructor(...args: any[]) {
       super(...args);
-      this._dreamer.registerTile(this as unknown as BaseTile);
+      dreamer.registerTile(this as unknown as BaseTile);
     }
 
     /**
      * Override execute to collect experiences
      */
     async execute(input: any, context: TileContext): Promise<any> {
-      const result = await super.execute(input, context);
+      // Cast to access the base implementation
+      const baseProto = Object.getPrototypeOf(Object.getPrototypeOf(this));
+      const result = await baseProto.execute.call(this, input, context);
 
       // Add experience to dreamer
-      this._dreamer.addExperience(
-        this.id,
+      dreamer.addExperience(
+        (this as any).id,
         input,
         result.output,
         context,
@@ -698,4 +708,6 @@ export function withDreaming<T extends new (...args: any[]) => BaseTile>(
       return result;
     }
   };
+
+  return DreamingTile as DreamingTileConstructor<InstanceType<T>>;
 }

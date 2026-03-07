@@ -310,10 +310,13 @@ export class DreamBasedPolicyOptimizer extends EventEmitter {
     const states: number[] = [];
     const actions: number[] = [];
     const rewards: number[] = [];
+    const values: number[] = [];
+    const uncertainties: number[] = [];
 
     let currentState = startState;
     let done = false;
     let step = 0;
+    let totalValue = 0;
 
     while (!done && step < this.config.dreamHorizon) {
       // Encode current state
@@ -341,6 +344,16 @@ export class DreamBasedPolicyOptimizer extends EventEmitter {
       states.push(...transition.nextState);
       actions.push(action);
       rewards.push(transition.reward);
+      uncertainties.push(transition.uncertainty);
+
+      // Get value estimate
+      const stateMap = new Map<string, unknown>([
+        ['embedding', latent.sample],
+        ['value', 0],
+      ]);
+      const valuePred = this.valueNetwork.predict(stateMap);
+      values.push(valuePred.value);
+      totalValue += valuePred.value;
 
       // Decode next state
       currentState = this.worldModel.decode(transition.nextState);
@@ -356,7 +369,10 @@ export class DreamBasedPolicyOptimizer extends EventEmitter {
       actions,
       states,
       rewards,
+      values,
+      uncertainties,
       totalReward,
+      totalValue,
       length: step,
     };
 
@@ -685,14 +701,14 @@ export class DreamBasedPolicyOptimizer extends EventEmitter {
 
     // Generate dream episodes
     const episodes: DreamEpisode[] = [];
-    let totalReturn = 0;
+    let totalReward = 0;
     let explorationCount = 0;
     let exploitationCount = 0;
 
     for (const exp of experiences) {
       const episode = this.generateDreamEpisode(exp.state, (state) => this.policyForward(state));
       episodes.push(episode);
-      totalReturn += episode.totalReturn;
+      totalReward += episode.totalReward;
 
       // Count exploration vs exploitation
       for (let i = 0; i < episode.actions.length; i++) {
@@ -741,14 +757,14 @@ export class DreamBasedPolicyOptimizer extends EventEmitter {
     this.emit('dream_complete', {
       episodesGenerated: episodes.length,
       improvement,
-      avgReturn: totalReturn / episodes.length,
+      avgReturn: totalReward / episodes.length,
     });
 
     return {
       episodesGenerated: episodes.length,
       policyUpdated: true,
       improvement: improvementRecord,
-      avgDreamReturn: totalReturn / episodes.length,
+      avgDreamReturn: totalReward / episodes.length,
       avgValueLoss: updateResult.valueLoss,
       avgPolicyLoss: updateResult.policyLoss,
       explorationExploited: exploitationCount,

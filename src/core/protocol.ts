@@ -32,7 +32,7 @@ export class SPOREProtocol extends EventEmitter {
    * Subscribe to a topic
    */
   subscribe(topic: string, handler: TopicHandler): string {
-    const id = uuidv4();
+    const id = v4();
     const sub: Subscription = {
       id,
       topic,
@@ -86,6 +86,6 @@ export class SPOREProtocol extends EventEmitter {
    */
   getHistory(topic: string, limit: number = 10): unknown[] {
     const history = this.messageHistory.get(topic) || [];
-    return history.slice(-limit).map(h => h.message);
+    return history.slice(-limit).map((h) => (h as { message: unknown }).message);
   }
 }
