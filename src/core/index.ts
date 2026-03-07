@@ -55,3 +55,16 @@ export type {
   DifferentiationSignal,
   DifferentiationRecord,
 } from './meta.js';
+
+// Value Network (TD(λ) Learning)
+export {
+  ValueNetwork,
+  ValueNetworkManager,
+} from './valuenetwork.js';
+export type {
+  ValuePrediction,
+  Trajectory,
+  StateAction,
+  ValueNetworkConfig,
+  TrainingSample,
+} from './valuenetwork.js';
