@@ -415,6 +415,11 @@ export class MessageHandler {
       return this.createErrorResponse(message.id, APIErrorFactory.invalidPayload({ missing: 'colonyId' }));
     }
 
+    // Guard against null/undefined context.colonies
+    if (!context?.colonies) {
+      return this.createErrorResponse(message.id, APIErrorFactory.internalError('Context colonies map is not available'));
+    }
+
     const colony = context.colonies.get(colonyId);
     if (!colony) {
       return this.createErrorResponse(message.id, APIErrorFactory.notFound('Colony'));

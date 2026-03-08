@@ -122,6 +122,8 @@ describe('CLI Integration Tests', () => {
 
     describe('list', () => {
       it('should list agents', () => {
+        // Spawn an agent first so we have something to list
+        runCLI(['agents', 'spawn', 'task']);
         const output = runCLI(['agents', 'list']);
         expect(output).toContain('Agents');
       });
@@ -196,6 +198,8 @@ describe('CLI Integration Tests', () => {
     });
 
     it('should run dream cycle', () => {
+      // Spawn an agent first so dream cycle has something to work with
+      runCLI(['agents', 'spawn', 'task']);
       const output = runCLI(['dream', '--episodes', '5']);
 
       expect(output).toContain('Dream Cycle');
@@ -203,6 +207,8 @@ describe('CLI Integration Tests', () => {
     });
 
     it('should respect episode count', () => {
+      // Spawn an agent first
+      runCLI(['agents', 'spawn', 'task']);
       const output = runCLI(['dream', '--episodes', '3', '--verbose']);
 
       expect(output).toContain('3');
@@ -212,12 +218,13 @@ describe('CLI Integration Tests', () => {
 
   describe('polln sync', () => {
     beforeEach(() => {
-      runCLI(['init', '--name', 'Sync Test Colony', '--force']);
+      // Explicitly disable federation for this test
+      runCLI(['init', '--name', 'Sync Test Colony', '--force', '--no-federation']);
     });
 
     it('should fail when federation is disabled', () => {
       const output = runCLI(['sync']);
-      expect(output).toContain('not enabled');
+      expect(output).toContain('Federation is not enabled');
     });
 
     it('should work when federation is enabled', () => {
@@ -341,7 +348,9 @@ describe('CLI Integration Tests', () => {
     it('should handle invalid commands gracefully', () => {
       const output = runCLI(['invalid-command']);
 
-      expect(output).toContain('error') || expect(output).toContain('not found');
+      // Commander.js outputs "error: unknown command" for invalid commands
+      expect(output).toContain('error');
+      expect(output).toContain('unknown');
     });
   });
 });
