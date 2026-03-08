@@ -9,6 +9,7 @@
  * - LRU Eviction: Proper least-recently-used eviction
  * - Anchor Compression: Quantization options for efficient storage
  * - Batch Matching: Support matching multiple queries at once
+ * - ANN Index: Approximate Nearest Neighbor search for 10x+ speedup
  *
  * Core Concepts:
  * - Anchors: Representative KV-cache segments stored as shared references
@@ -16,6 +17,8 @@
  * - Offset Approximation: Predict offset by weighting anchor deviations
  * - Anchor Prediction: Determine if new KV-caches should be shared
  */
+
+import { ANNIndex, ANNAlgorithm } from './ann-index.js';
 
 // ============================================================================
 // KV-Cache Types
@@ -138,6 +141,11 @@ export interface KVAnchorPoolConfig {
   // Advanced compression
   enableAdvancedCompression: boolean;
   compressionMethod: 'uniform' | 'kmeans' | 'product';
+
+  // ANN Index parameters
+  enableANN: boolean;
+  annAlgorithm: ANNAlgorithm;
+  annRebuildThreshold: number; // Rebuild ANN index after this many additions
 }
 
 /**
@@ -208,6 +216,11 @@ export class KVAnchorPool {
   private clusters: Map<string, AnchorCluster> = new Map();
   private anchorToCluster: Map<string, string> = new Map();
 
+  // ANN Index support
+  private annIndexes: Map<number, ANNIndex> = new Map(); // layerId -> ANNIndex
+  private annPendingRebuild: Set<number> = new Set();
+  private annAdditionsSinceRebuild: Map<number, number> = new Map();
+
   constructor(config?: Partial<KVAnchorPoolConfig>) {
     this.config = {
       maxAnchors: 1000,
@@ -227,6 +240,9 @@ export class KVAnchorPool {
       lruSampleSize: 100,
       enableAdvancedCompression: false,
       compressionMethod: 'uniform',
+      enableANN: true,
+      annAlgorithm: 'auto',
+      annRebuildThreshold: 100,
       ...config,
     };
   }
@@ -324,7 +340,7 @@ export class KVAnchorPool {
   }
 
   /**
-   * Find anchors by embedding similarity (cluster-aware)
+   * Find anchors by embedding similarity (cluster-aware, ANN-optimized)
    */
   findSimilarAnchors(
     queryEmbedding: number[],
@@ -333,7 +349,15 @@ export class KVAnchorPool {
   ): KVAnchor[] {
     const similarityThreshold = threshold ?? this.config.similarityThreshold;
 
-    // If clustering is enabled, first find relevant cluster
+    // Use ANN index if enabled and available
+    if (this.config.enableANN) {
+      const annResults = this.searchWithANN(queryEmbedding, layerId, similarityThreshold);
+      if (annResults.length > 0) {
+        return annResults;
+      }
+    }
+
+    // Fallback to clustering or linear search
     if (this.config.enableClustering) {
       const targetClusterId = this.findClosestCluster(queryEmbedding, layerId);
       if (targetClusterId) {
@@ -1017,7 +1041,140 @@ export class KVAnchorPool {
         }
         this.anchorToCluster.delete(anchorId);
       }
+
+      // Mark ANN index for rebuild
+      if (this.config.enableANN) {
+        this.annPendingRebuild.add(anchor.layerId);
+      }
     }
+  }
+
+  // ============================================================================
+  // ANN Index Methods
+  // ============================================================================
+
+  /**
+   * Search using ANN index
+   */
+  private searchWithANN(
+    queryEmbedding: number[],
+    layerId: number,
+    threshold: number
+  ): KVAnchor[] {
+    // Get or build ANN index for this layer
+    let annIndex: ANNIndex | undefined = this.annIndexes.get(layerId);
+
+    if (!annIndex || this.annPendingRebuild.has(layerId)) {
+      annIndex = this.buildANNIndex(layerId) ?? undefined;
+    }
+
+    if (!annIndex) {
+      return []; // No anchors in this layer
+    }
+
+    // Search for more candidates than needed ( ANN might have some false positives)
+    const k = Math.min(this.config.maxMatches * 2, 50);
+    const results = annIndex.searchWithScores(queryEmbedding, k);
+
+    // Filter by threshold and convert to KVAnchor
+    const anchors: KVAnchor[] = [];
+    for (const result of results) {
+      if (result.similarity >= threshold) {
+        const anchor = this.getAnchorByIndex(layerId, result.index);
+        if (anchor) {
+          anchors.push(anchor);
+        }
+      }
+    }
+
+    return anchors.slice(0, this.config.maxMatches);
+  }
+
+  /**
+   * Build or rebuild ANN index for a layer
+   */
+  private buildANNIndex(layerId: number): ANNIndex | null {
+    const layerAnchors = this.getAnchorsForLayer(layerId);
+
+    if (layerAnchors.length === 0) {
+      this.annIndexes.delete(layerId);
+      return null;
+    }
+
+    // Extract embeddings
+    const embeddings = layerAnchors.map(a => a.embedding);
+
+    // Create and build index
+    const annIndex = new ANNIndex({
+      algorithm: this.config.annAlgorithm,
+      dimension: this.config.embeddingDim,
+    });
+
+    annIndex.build(embeddings);
+    this.annIndexes.set(layerId, annIndex);
+    this.annPendingRebuild.delete(layerId);
+    this.annAdditionsSinceRebuild.set(layerId, 0);
+
+    return annIndex;
+  }
+
+  /**
+   * Get anchor by index within its layer
+   */
+  private getAnchorByIndex(layerId: number, index: number): KVAnchor | undefined {
+    const layerAnchors = this.getAnchorsForLayer(layerId);
+    return layerAnchors[index];
+  }
+
+  /**
+   * Rebuild all ANN indexes
+   */
+  rebuildANNIndexes(): void {
+    if (!this.config.enableANN) return;
+
+    for (const layerId of this.layerIndices.keys()) {
+      this.buildANNIndex(layerId);
+    }
+  }
+
+  /**
+   * Get ANN index statistics
+   */
+  getANNStats(): {
+    enabled: boolean;
+    indexesBuilt: number;
+    totalAnchorsIndexed: number;
+    avgBuildTimeMs: number;
+    algorithm: string;
+  } {
+    if (!this.config.enableANN) {
+      return {
+        enabled: false,
+        indexesBuilt: 0,
+        totalAnchorsIndexed: 0,
+        avgBuildTimeMs: 0,
+        algorithm: 'none',
+      };
+    }
+
+    let totalAnchors = 0;
+    let totalBuildTime = 0;
+    let indexesBuilt = 0;
+
+    for (const [layerId, index] of this.annIndexes) {
+      const stats = index.getBuildStats();
+      totalAnchors += stats.totalElements;
+      totalBuildTime += stats.buildTimeMs;
+      indexesBuilt++;
+    }
+
+    return {
+      enabled: true,
+      indexesBuilt,
+      totalAnchorsIndexed: totalAnchors,
+      avgBuildTimeMs: indexesBuilt > 0 ? totalBuildTime / indexesBuilt : 0,
+      algorithm: this.config.annAlgorithm,
+    };
   }
 }
 

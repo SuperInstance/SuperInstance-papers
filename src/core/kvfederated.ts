@@ -105,11 +105,13 @@ export interface FederatedKVSyncConfig {
   enableDifferentialPrivacy: boolean;
   noiseDistribution: 'gaussian' | 'laplacian';
 
-  // Privacy budgets per tier
+ // Privacy budgets per tier
   privacyBudgets: {
     LOCAL: { epsilon: number; delta: number };
     COLONY: { epsilon: number; delta: number };
     MEADOW: { epsilon: number; delta: number };
+    PUBLIC: { epsilon: number; delta: number };
+    RESEARCH: { epsilon: number; delta: number };
   };
 
   // Anchor sharing
@@ -137,6 +139,7 @@ export interface PrivacyAwareAnchorConfig {
   minPrivacyTier: PrivacyTier;
   preserveUtility: boolean;
   adaptiveNoise: boolean;
+  noiseDistribution?: 'gaussian' | 'laplacian';
 }
 
 /**
@@ -149,6 +152,7 @@ export interface AnchorAggregationConfig {
   aggregationStrategy: 'mean' | 'weighted-mean' | 'geometric';
   pruningThreshold: number;
   diversityPenalty: number;
+  qualityWeightExponent?: number;
 }
 
 /**
@@ -208,6 +212,7 @@ export class FederatedKVSync extends EventEmitter {
       noiseDistribution: 'gaussian',
       privacyBudgets: {
         LOCAL: { epsilon: Infinity, delta: 1.0 },
+        COLONY: { epsilon: 2.0, delta: 1e-4 },
         MEADOW: { epsilon: 1.0, delta: 1e-5 },
         RESEARCH: { epsilon: 0.5, delta: 1e-6 },
         PUBLIC: { epsilon: 0.3, delta: 1e-7 },
@@ -570,6 +575,7 @@ export class PrivacyAwareAnchors {
       minPrivacyTier: 'LOCAL',
       preserveUtility: true,
       adaptiveNoise: true,
+      noiseDistribution: 'gaussian',
       ...config,
     };
   }
@@ -583,8 +589,8 @@ export class PrivacyAwareAnchors {
     sourceColonyId: string
   ): Promise<PrivateKVAnchor> {
     let embedding = [...anchor.embedding];
-    let keys = new Float32Array(anchor.compressedKeys);
-    let values = new Float32Array(anchor.compressedValues);
+    let keys: Float32Array = new Float32Array(anchor.compressedKeys.slice().buffer as ArrayBuffer);
+    let values: Float32Array = new Float32Array(anchor.compressedValues.slice().buffer as ArrayBuffer);
 
     let dpMetadata: PrivateKVAnchor['dpMetadata'] = undefined;
 
@@ -780,6 +786,7 @@ export class AnchorAggregation {
       aggregationStrategy: 'weighted-mean',
       pruningThreshold: 0.3,
       diversityPenalty: 0.1,
+      qualityWeightExponent: 2,
       ...config,
     };
   }
@@ -877,7 +884,8 @@ export class AnchorAggregation {
     }
 
     // Calculate weights based on quality
-    const weights = anchors.map(a => Math.pow(a.qualityScore, this.config.qualityWeightExponent));
+    const exponent = this.config.qualityWeightExponent ?? 2;
+    const weights = anchors.map(a => Math.pow(a.qualityScore, exponent));
     const totalWeight = weights.reduce((sum, w) => sum + w, 0);
 
     // Weighted average embeddings
@@ -1017,7 +1025,8 @@ export class AnchorAggregation {
     }
 
     const qualityScores = qualityFiltered.map(a => a.qualityScore);
-    const weights = qualityFiltered.map(a => Math.pow(a.qualityScore, this.config.qualityWeightExponent));
+    const exponent = this.config.qualityWeightExponent ?? 2;
+    const weights = qualityFiltered.map(a => Math.pow(a.qualityScore, exponent));
 
     return {
       anchorId: `aggregated-layer${layerId}-${Date.now()}`,

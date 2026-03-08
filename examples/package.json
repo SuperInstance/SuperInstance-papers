@@ -1,0 +1,30 @@
+{
+  "name": "@polln/examples",
+  "version": "0.1.0",
+  "description": "POLLN Example Applications",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && cd basic-colony && npm install && cd ../research-assistant && npm install && cd ../code-reviewer && npm install && cd ../kv-cache-demo && npm install",
+    "basic-colony": "cd basic-colony && npm start",
+    "research-assistant": "cd research-assistant && npm start",
+    "code-reviewer": "cd code-reviewer && npm start",
+    "kv-cache-demo": "cd kv-cache-demo && npm start"
+  },
+  "keywords": [
+    "polln",
+    "examples",
+    "distributed-intelligence",
+    "agent-system"
+  ],
+  "author": "POLLN Contributors",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.6",
+    "tsx": "^4.19.2",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

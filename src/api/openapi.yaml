@@ -1,0 +1,897 @@
+openapi: 3.0.3
+info:
+  title: POLLN WebSocket API
+  description: |
+    Real-time monitoring and control API for POLLN (Pattern-Organized Large Language Network).
+
+    This WebSocket API provides real-time access to colony events, agent lifecycle management,
+    dream cycle notifications, and KV-cache statistics.
+
+    ## Authentication
+
+    When authentication is enabled, clients must include an API token in their first message.
+
+    ## Message Format
+
+    All messages follow a common format with `id`, `timestamp`, `type`, and `payload` fields.
+
+    ## Rate Limiting
+
+    Rate limits are enforced per connection with configurable requests-per-minute and burst limits.
+  version: 1.0.0
+  contact:
+    name: POLLN Project
+    url: https://github.com/SuperInstance/polln
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: ws://localhost:3000/api/ws
+    description: Local development server
+  - url: wss://api.polln.io/api/ws
+    description: Production server
+
+tags:
+  - name: Subscriptions
+    description: Real-time event subscriptions
+  - name: Commands
+    description: Agent and colony control commands
+  - name: Queries
+    description: Request current state and statistics
+  - name: Events
+    description: Server-sent event notifications
+
+# WebSocket message schemas
+components:
+  schemas:
+    # Base Message Types
+    BaseMessage:
+      type: object
+      required:
+        - id
+        - timestamp
+        - type
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+          example: "msg_1234567890_abc123"
+        timestamp:
+          type: integer
+          format: int64
+          description: Unix timestamp in milliseconds
+          example: 1699123456789
+
+    ClientMessage:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessage'
+        - type: object
+          required:
+            - payload
+          properties:
+            type:
+              type: string
+              description: Message type from client
+              enum:
+                - subscribe:colony
+                - unsubscribe:colony
+                - subscribe:agent
+                - unsubscribe:agent
+                - subscribe:dreams
+                - unsubscribe:dreams
+                - subscribe:stats
+                - unsubscribe:stats
+                - command:spawn
+                - command:despawn
+                - command:activate
+                - command:deactivate
+                - command:dream
+                - query:stats
+                - query:agents
+                - query:agent
+                - query:config
+                - ping
+            payload:
+              oneOf:
+                - $ref: '#/components/schemas/SubscribeColonyPayload'
+                - $ref: '#/components/schemas/SubscribeAgentPayload'
+                - $ref: '#/components/schemas/SubscribeDreamsPayload'
+                - $ref: '#/components/schemas/SubscribeStatsPayload'
+                - $ref: '#/components/schemas/CommandSpawnPayload'
+                - $ref: '#/components/schemas/CommandDespawnPayload'
+                - $ref: '#/components/schemas/CommandActivatePayload'
+                - $ref: '#/components/schemas/CommandDeactivatePayload'
+                - $ref: '#/components/schemas/CommandDreamPayload'
+                - $ref: '#/components/schemas/QueryStatsPayload'
+                - $ref: '#/components/schemas/QueryAgentsPayload'
+                - $ref: '#/components/schemas/QueryAgentPayload'
+                - $ref: '#/components/schemas/QueryConfigPayload'
+
+    ServerMessage:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessage'
+        - type: object
+          required:
+            - payload
+            - success
+          properties:
+            type:
+              type: string
+              description: Message type from server
+              enum:
+                - event:colony
+                - event:agent
+                - event:dream
+                - event:stats
+                - response:stats
+                - response:agents
+                - response:agent
+                - response:config
+                - response:command
+                - pong
+                - error
+            payload:
+              oneOf:
+                - $ref: '#/components/schemas/ColonyEventPayload'
+                - $ref: '#/components/schemas/AgentEventPayload'
+                - $ref: '#/components/schemas/DreamEventPayload'
+                - $ref: '#/components/schemas/StatsEventPayload'
+                - $ref: '#/components/schemas/ResponseStatsPayload'
+                - $ref: '#/components/schemas/ResponseAgentsPayload'
+                - $ref: '#/components/schemas/ResponseAgentPayload'
+                - $ref: '#/components/schemas/ResponseConfigPayload'
+                - $ref: '#/components/schemas/ResponseCommandPayload'
+                - $ref: '#/components/schemas/PongPayload'
+                - type: object
+                  nullable: true
+                  description: Null payload for error messages
+            success:
+              type: boolean
+              description: Whether the operation succeeded
+            error:
+              $ref: '#/components/schemas/APIError'
+
+    # Subscription Payloads
+    SubscribeColonyPayload:
+      type: object
+      required:
+        - colonyId
+        - events
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID to subscribe to
+          example: "colony_abc123"
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - agent_registered
+              - agent_unregistered
+              - agent_activated
+              - agent_deactivated
+              - stats_updated
+              - dream_completed
+              - error
+          description: List of event types to receive
+          example: ["agent_registered", "stats_updated"]
+
+    SubscribeAgentPayload:
+      type: object
+      required:
+        - agentId
+        - events
+      properties:
+        agentId:
+          type: string
+          description: Agent ID to subscribe to
+          example: "agent_xyz789"
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - state_updated
+              - executed
+              - succeeded
+              - failed
+              - value_changed
+              - error
+          description: List of event types to receive
+          example: ["state_updated", "succeeded"]
+
+    SubscribeDreamsPayload:
+      type: object
+      required:
+        - colonyId
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID to receive dream events for
+          example: "colony_abc123"
+
+    SubscribeStatsPayload:
+      type: object
+      required:
+        - colonyId
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID to receive stats updates for
+          example: "colony_abc123"
+
+    # Command Payloads
+    CommandSpawnPayload:
+      type: object
+      required:
+        - typeId
+      properties:
+        typeId:
+          type: string
+          description: Type of agent to spawn
+          example: "task-agent"
+        config:
+          type: object
+          description: Optional agent configuration
+          additionalProperties: true
+
+    CommandDespawnPayload:
+      type: object
+      required:
+        - agentId
+      properties:
+        agentId:
+          type: string
+          description: Agent ID to despawn
+          example: "agent_xyz789"
+
+    CommandActivatePayload:
+      type: object
+      required:
+        - agentId
+      properties:
+        agentId:
+          type: string
+          description: Agent ID to activate
+          example: "agent_xyz789"
+
+    CommandDeactivatePayload:
+      type: object
+      required:
+        - agentId
+      properties:
+        agentId:
+          type: string
+          description: Agent ID to deactivate
+          example: "agent_xyz789"
+
+    CommandDreamPayload:
+      type: object
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID to trigger dream cycle for
+          example: "colony_abc123"
+        agentId:
+          type: string
+          description: Optional specific agent ID
+          example: "agent_xyz789"
+        episodeCount:
+          type: integer
+          minimum: 1
+          description: Number of dream episodes to generate
+          example: 10
+
+    # Query Payloads
+    QueryStatsPayload:
+      type: object
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID to query
+          example: "colony_abc123"
+        includeKVCache:
+          type: boolean
+          description: Include KV-cache statistics
+          example: true
+        includeAgents:
+          type: boolean
+          description: Include agent list
+          example: false
+
+    QueryAgentsPayload:
+      type: object
+      required:
+        - colonyId
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID to query agents for
+          example: "colony_abc123"
+        filter:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [active, dormant, failed]
+              example: "active"
+            typeId:
+              type: string
+              example: "task-agent"
+            limit:
+              type: integer
+              minimum: 1
+              example: 50
+            offset:
+              type: integer
+              minimum: 0
+              example: 0
+
+    QueryAgentPayload:
+      type: object
+      required:
+        - agentId
+      properties:
+        agentId:
+          type: string
+          description: Agent ID to query
+          example: "agent_xyz789"
+        includeHistory:
+          type: boolean
+          description: Include agent execution history
+          example: false
+
+    QueryConfigPayload:
+      type: object
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID to query config for
+          example: "colony_abc123"
+
+    # Event Payloads
+    ColonyEventPayload:
+      type: object
+      required:
+        - colonyId
+        - eventType
+        - data
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID
+          example: "colony_abc123"
+        eventType:
+          type: string
+          enum:
+            - agent_registered
+            - agent_unregistered
+            - agent_activated
+            - agent_deactivated
+            - stats_updated
+            - dream_completed
+            - error
+          description: Type of colony event
+        data:
+          type: object
+          description: Event data
+
+    AgentEventPayload:
+      type: object
+      required:
+        - agentId
+        - colonyId
+        - eventType
+        - data
+      properties:
+        agentId:
+          type: string
+          description: Agent ID
+          example: "agent_xyz789"
+        colonyId:
+          type: string
+          description: Colony ID
+          example: "colony_abc123"
+        eventType:
+          type: string
+          enum:
+            - state_updated
+            - executed
+            - succeeded
+            - failed
+            - value_changed
+            - error
+          description: Type of agent event
+        data:
+          type: object
+          description: Event data
+
+    DreamEventPayload:
+      type: object
+      required:
+        - colonyId
+        - dreamId
+        - episode
+        - metrics
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID
+          example: "colony_abc123"
+        dreamId:
+          type: string
+          description: Dream episode ID
+          example: "dream_def456"
+        episode:
+          type: object
+          description: Dream episode data
+        metrics:
+          type: object
+          required:
+            - loss
+            - reconstructionError
+            - klDivergence
+          properties:
+            loss:
+              type: number
+              format: float
+              example: 0.234
+            reconstructionError:
+              type: number
+              format: float
+              example: 0.123
+            klDivergence:
+              type: number
+              format: float
+              example: 0.045
+
+    StatsEventPayload:
+      type: object
+      required:
+        - colonyId
+        - stats
+        - timestamp
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID
+          example: "colony_abc123"
+        stats:
+          $ref: '#/components/schemas/ColonyStats'
+        timestamp:
+          type: integer
+          format: int64
+          description: Unix timestamp in milliseconds
+          example: 1699123456789
+
+    # Response Payloads
+    ResponseStatsPayload:
+      type: object
+      required:
+        - colonyId
+        - stats
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID
+          example: "colony_abc123"
+        stats:
+          $ref: '#/components/schemas/ColonyStats'
+        kvCacheStats:
+          $ref: '#/components/schemas/KVCacheStats'
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentState'
+
+    ResponseAgentsPayload:
+      type: object
+      required:
+        - colonyId
+        - agents
+        - total
+        - filtered
+      properties:
+        colonyId:
+          type: string
+          description: Colony ID
+          example: "colony_abc123"
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentState'
+        total:
+          type: integer
+          description: Total number of agents
+          example: 100
+        filtered:
+          type: integer
+          description: Number of agents after filtering
+          example: 50
+
+    ResponseAgentPayload:
+      type: object
+      required:
+        - agent
+      properties:
+        agent:
+          $ref: '#/components/schemas/AgentState'
+        config:
+          type: object
+          description: Agent configuration
+          additionalProperties: true
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentHistoryEntry'
+
+    ResponseConfigPayload:
+      type: object
+      properties:
+        config:
+          type: object
+          description: Colony configuration
+          additionalProperties: true
+
+    ResponseCommandPayload:
+      type: object
+      required:
+        - command
+        - result
+      properties:
+        command:
+          type: string
+          description: Command that was executed
+          example: "spawn"
+        result:
+          type: object
+          required:
+            - success
+            - message
+          properties:
+            success:
+              type: boolean
+              description: Whether the command succeeded
+            message:
+              type: string
+              description: Human-readable result message
+            data:
+              type: object
+              description: Optional result data
+              additionalProperties: true
+
+    PongPayload:
+      type: object
+      properties:
+        originalTimestamp:
+          type: integer
+          format: int64
+          description: Original ping timestamp
+          example: 1699123456789
+
+    # Domain Objects
+    ColonyStats:
+      type: object
+      required:
+        - totalAgents
+        - activeAgents
+        - dormantAgents
+        - totalCompute
+        - totalMemory
+        - totalNetwork
+        - shannonDiversity
+      properties:
+        totalAgents:
+          type: integer
+          description: Total number of agents
+          example: 100
+        activeAgents:
+          type: integer
+          description: Number of active agents
+          example: 75
+        dormantAgents:
+          type: integer
+          description: Number of dormant agents
+          example: 25
+        totalCompute:
+          type: integer
+          description: Total compute budget
+          example: 1000
+        totalMemory:
+          type: integer
+          description: Total memory budget
+          example: 1000
+        totalNetwork:
+          type: integer
+          description: Total network budget
+          example: 1000
+        shannonDiversity:
+          type: number
+          format: float
+          description: Shannon diversity index
+          example: 2.34
+
+    AgentState:
+      type: object
+      required:
+        - id
+        - typeId
+        - status
+        - valueFunction
+        - successRate
+      properties:
+        id:
+          type: string
+          description: Agent ID
+          example: "agent_xyz789"
+        typeId:
+          type: string
+          description: Agent type ID
+          example: "task-agent"
+        status:
+          type: string
+          enum: [active, dormant, failed]
+          description: Agent status
+        valueFunction:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          description: Agent value function
+          example: 0.75
+        successRate:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          description: Agent success rate
+          example: 0.85
+        lastActive:
+          type: integer
+          format: int64
+          description: Last activity timestamp
+          example: 1699123456789
+        avgLatencyMs:
+          type: number
+          format: float
+          description: Average execution latency in milliseconds
+          example: 45.5
+
+    AgentHistoryEntry:
+      type: object
+      required:
+        - timestamp
+        - event
+        - data
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          description: Event timestamp
+          example: 1699123456789
+        event:
+          type: string
+          description: Event type
+          example: "succeeded"
+        data:
+          type: object
+          description: Event data
+
+    KVCacheStats:
+      type: object
+      properties:
+        totalSegments:
+          type: integer
+          description: Total number of cache segments
+          example: 1000
+        totalSize:
+          type: integer
+          description: Total cache size in bytes
+          example: 1048576
+        hitRate:
+          type: number
+          format: float
+          description: Cache hit rate
+          example: 0.85
+        missRate:
+          type: number
+          format: float
+          description: Cache miss rate
+          example: 0.15
+        anchors:
+          type: object
+          properties:
+            total:
+              type: integer
+              example: 500
+            active:
+              type: integer
+              example: 350
+            matched:
+              type: integer
+              example: 400
+
+    # Error Types
+    APIError:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - UNAUTHORIZED
+            - FORBIDDEN
+            - NOT_FOUND
+            - INVALID_PAYLOAD
+            - RATE_LIMITED
+            - INTERNAL_ERROR
+            - AGENT_NOT_FOUND
+            - COLONY_NOT_FOUND
+            - COMMAND_FAILED
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Agent not found"
+        details:
+          type: object
+          description: Additional error details
+          additionalProperties: true
+
+# WebSocket message examples
+paths:
+  /api/ws:
+    get:
+      tags: [WebSocket]
+      summary: WebSocket connection endpoint
+      description: |
+        Establish a WebSocket connection for real-time POLLN monitoring and control.
+
+        ## Connection Flow
+
+        1. Connect to the WebSocket endpoint
+        2. If authentication is enabled, send first message with token
+        3. Subscribe to desired events
+        4. Send commands and queries
+        5. Receive real-time event notifications
+
+        ## Example Message Flow
+
+        ```javascript
+        // Connect
+        const ws = new WebSocket('ws://localhost:3000/api/ws');
+
+        // Subscribe to colony events
+        ws.send(JSON.stringify({
+          id: 'msg_1',
+          timestamp: Date.now(),
+          type: 'subscribe:colony',
+          payload: {
+            colonyId: 'colony_abc123',
+            events: ['agent_registered', 'stats_updated']
+          }
+        }));
+
+        // Query stats
+        ws.send(JSON.stringify({
+          id: 'msg_2',
+          timestamp: Date.now(),
+          type: 'query:stats',
+          payload: { colonyId: 'colony_abc123' }
+        }));
+
+        // Receive events
+        ws.onmessage = (event) => {
+          const message = JSON.parse(event.data);
+          console.log(message.type, message.payload);
+        };
+        ```
+      operationId: connectWebSocket
+      responses:
+        '101':
+          description: WebSocket connection established
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+
+# Example messages
+x-websocket-messages:
+  # Client Examples
+  subscribeColony:
+    $ref: '#/components/schemas/ClientMessage'
+    example:
+      id: "msg_1"
+      timestamp: 1699123456789
+      type: "subscribe:colony"
+      payload:
+        colonyId: "colony_abc123"
+        events: ["agent_registered", "stats_updated"]
+
+  queryStats:
+    $ref: '#/components/schemas/ClientMessage'
+    example:
+      id: "msg_2"
+      timestamp: 1699123456790
+      type: "query:stats"
+      payload:
+        colonyId: "colony_abc123"
+        includeKVCache: true
+
+  commandActivate:
+    $ref: '#/components/schemas/ClientMessage'
+    example:
+      id: "msg_3"
+      timestamp: 1699123456791
+      type: "command:activate"
+      payload:
+        agentId: "agent_xyz789"
+
+  ping:
+    $ref: '#/components/schemas/ClientMessage'
+    example:
+      id: "msg_4"
+      timestamp: 1699123456792
+      type: "ping"
+      payload: null
+
+  # Server Examples
+  colonyEvent:
+    $ref: '#/components/schemas/ServerMessage'
+    example:
+      id: "msg_5"
+      timestamp: 1699123456793
+      type: "event:colony"
+      payload:
+        colonyId: "colony_abc123"
+        eventType: "agent_registered"
+        data:
+          agentId: "agent_xyz789"
+          typeId: "task-agent"
+      success: true
+
+  responseStats:
+    $ref: '#/components/schemas/ServerMessage'
+    example:
+      id: "msg_2"
+      timestamp: 1699123456794
+      type: "response:stats"
+      payload:
+        colonyId: "colony_abc123"
+        stats:
+          totalAgents: 100
+          activeAgents: 75
+          dormantAgents: 25
+          totalCompute: 1000
+          totalMemory: 1000
+          totalNetwork: 1000
+          shannonDiversity: 2.34
+      success: true
+
+  pong:
+    $ref: '#/components/schemas/ServerMessage'
+    example:
+      id: "msg_4"
+      timestamp: 1699123456795
+      type: "pong"
+      payload:
+        originalTimestamp: 1699123456792
+      success: true
+
+  errorResponse:
+    $ref: '#/components/schemas/ServerMessage'
+    example:
+      id: "msg_6"
+      timestamp: 1699123456796
+      type: "error"
+      payload: null
+      success: false
+      error:
+        code: "AGENT_NOT_FOUND"
+        message: "Agent not found"

@@ -275,3 +275,152 @@ export type {
   MarketplaceStats,
   CommunityPoolStats,
 } from './kvmeadow.js';
+
+// ANN Index for KV-Anchor Optimization
+export {
+  ANNIndex,
+  benchmarkANNIndex,
+  generateRandomEmbeddings,
+} from './ann-index.js';
+export type {
+  ANNAlgorithm,
+  ANNIndexConfig,
+  SearchResult,
+  BuildStats,
+  SearchStats,
+} from './ann-index.js';
+
+// LMCache Adapter (LMCache Backend Integration)
+export {
+  LMCacheAdapter,
+  KVCacheSerializer,
+  PythonBridge,
+  createLMCacheAdapter,
+} from './lmcache-adapter.js';
+export type {
+  LMCacheBackendType,
+  LMCacheAdapterConfig,
+  LMCacheLookupOptions,
+  LMCacheStoreOptions,
+  LMCacheStats,
+  SerializedLMCache,
+  SerializedTensor,
+  LMKVCache,
+  BatchResult,
+} from './lmcache-adapter.js';
+
+// Distributed Coordination (Phase 4 Sprint 2)
+export {
+  DistributedBackend,
+  MemoryBackend,
+  RedisBackend,
+  NATSBackend,
+  createBackend,
+  DiscoveryService,
+  LoadBalancer,
+  DistributedPheromones,
+  GradientTaskAllocator,
+  ColonyFederation,
+  FederationManager,
+  DistributedCoordination,
+  createDistributedCoordination,
+  DEFAULT_DISTRIBUTED_CONFIG,
+} from './distributed/index.js';
+export type {
+  DistributedConfig,
+  NodeInfo,
+  PheromoneField,
+  DistributedMessage,
+  ClusterState,
+  ClusterMetrics,
+  ColonyInfo as DistributedColonyInfo,
+  FederationState,
+  FederationMessage,
+  FederationMessageType,
+  PheromoneGradient,
+  PheromoneQuery,
+  PheromoneUpdate,
+  DiscoveryConfig,
+  DiscoveryEvent,
+  LoadBalancerConfig,
+  LoadReport,
+  MessageQueueConfig,
+  QueuedMessage,
+  DistributedCoordinationConfig,
+} from './distributed/index.js';
+
+// Guardian Angel Safety System (Phase 4 Sprint 5)
+export {
+  GuardianAngelAgent,
+  GuardianLearningSystem,
+  GuardianIntegratedSafety,
+  createGuardianSafety,
+  createGuardianAgent,
+  createGuardianContext,
+  isAllowed,
+  isModified,
+  isVetoed,
+  applyModifications,
+  DEFAULT_GUARDIAN_CONFIG,
+  GUARDIAN_SEVERITY,
+  GUARDIAN_DECISIONS,
+  BUILT_IN_CONSTRAINTS,
+  getConstraintsByCategory,
+  getConstraintsBySeverity,
+  getActiveConstraints,
+  getConstraintById,
+  CONSTRAINT_CATEGORIES,
+} from './guardian/index.js';
+export type {
+  GuardianDecision,
+  ConstraintSeverity,
+  ConstraintCategory,
+  GuardianContext,
+  ConstraintResult,
+  GuardianConstraint,
+  ConstraintStats,
+  GuardianReview,
+  GuardianFeedback,
+  GuardianStats,
+  GuardianConfig,
+  GuardianAlert,
+  ExecutionMonitor,
+  ResourceSnapshot,
+  WeightAdjustment,
+  AdaptationResult,
+  GuardianState,
+  LearningConfig,
+  LearningMetrics,
+  ConstraintLearningMetrics,
+} from './guardian/index.js';
+
+// Bytecode Bridge (Phase 4 Sprint 1)
+export {
+  BytecodeBridge,
+  StabilityAnalyzer,
+  BytecodeCompiler,
+  BytecodeExecutor,
+  createBytecodeBridge,
+} from './bytecode/index.js';
+export type {
+  // Types
+  Opcode,
+  BytecodeInstruction,
+  CompiledPathway,
+  PathwayAnalysis,
+  PathwayTrace,
+  PathwayStats,
+  CompilationConfig,
+  CompilationResult,
+  DecompilationContext,
+  ExecutionContext,
+  ExecutionResult,
+  SandboxConfig,
+  PathwayCacheEntry,
+  OptimizationPass,
+  BytecodeMetrics,
+  BytecodeTelemetry,
+  BytecodeBridgeConfig,
+  BytecodeSafetyCheck,
+  BytecodePlinkoConfig,
+} from './bytecode/index.js';

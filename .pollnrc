@@ -1,0 +1,22 @@
+{
+  "federation": {
+    "enabled": true
+  },
+  "dreaming": {
+    "enabled": true
+  },
+  "cache": {
+    "maxSize": 1000,
+    "ttl": 3600
+  },
+  "agents": {
+    "maxCount": 100,
+    "defaultType": "task"
+  },
+  "logging": {
+    "level": "info"
+  },
+  "colonyName": "Test Colony",
+  "colonyId": "colony-1772914705785-l6tajcl3r",
+  "dataDir": "C:\\Users\\casey\\polln\\.polln"
+}

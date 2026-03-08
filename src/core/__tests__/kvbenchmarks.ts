@@ -23,12 +23,12 @@ import {
   KVCacheSegment,
   AnchorMatch,
   KVAnchorPoolConfig,
-} from '../kvanchor';
+} from '../kvanchor.js';
 import {
   SharedContextManager,
   ContextSegment,
   ContextPrivacy,
-} from '../contextshare';
+} from '../contextshare.js';
 import {
   CacheSlicer,
   CacheConcatenator,
@@ -36,7 +36,7 @@ import {
   CacheIndexSelector,
   Cache,
   SliceSpec,
-} from '../cacheutils';
+} from '../cacheutils.js';
 
 // ============================================================================
 // TYPE DEFINITIONS
@@ -183,6 +183,7 @@ export interface WorkloadParams {
   prefixOverlap: number; // 0-1, fraction of shared prefix
   entropy: number; // 0-1, randomness in requests
   burstiness: number; // 0-1, temporal concentration
+  embeddingDim?: number; // Dimension of embeddings (default: 768)
 }
 
 /**
@@ -766,13 +767,14 @@ export class WorkloadGenerator {
   private static singleAgentBaseline(params: WorkloadParams): AgentRequest[] {
     const requests: AgentRequest[] = [];
     const agentId = 'agent-baseline';
+    const embeddingDim = params.embeddingDim ?? 768;
 
     for (let i = 0; i < params.numRequests; i++) {
       requests.push({
         requestId: uuidv4(),
         agentId,
         prompt: `Unique prompt ${i} with no shared context`,
-        embedding: this.generateRandomEmbedding(params.embeddingDim),
+        embedding: this.generateRandomEmbedding(embeddingDim),
         layerId: Math.floor(this.rng() * params.numAgents),
         timestamp: Date.now() + i * 10,
       });
@@ -786,16 +788,17 @@ export class WorkloadGenerator {
    */
   private static sharedPrefix(params: WorkloadParams): AgentRequest[] {
     const requests: AgentRequest[] = [];
-    const prefixEmbedding = this.generateRandomEmbedding(params.embeddingDim);
+    const embeddingDim = params.embeddingDim ?? 768;
+    const prefixEmbedding = this.generateRandomEmbedding(embeddingDim);
 
     for (let i = 0; i < params.numRequests; i++) {
       const agentId = `agent-${i % params.numAgents}`;
-      const overlapSize = Math.floor(params.embeddingDim * params.prefixOverlap);
+      const overlapSize = Math.floor(embeddingDim * params.prefixOverlap);
 
       // Create embedding with shared prefix
       const embedding = this.mixEmbeddings(
         prefixEmbedding,
-        this.generateRandomEmbedding(params.embeddingDim),
+        this.generateRandomEmbedding(embeddingDim),
         overlapSize
       );
 
@@ -818,11 +821,12 @@ export class WorkloadGenerator {
   private static pipelineCoordination(params: WorkloadParams): AgentRequest[] {
     const requests: AgentRequest[] = [];
     const pipelineStages = 3;
+    const embeddingDim = params.embeddingDim ?? 768;
 
     for (let i = 0; i < params.numRequests; i++) {
       for (let stage = 0; stage < pipelineStages; stage++) {
         const agentId = `agent-stage-${stage}`;
-        const baseEmbedding = this.generateRandomEmbedding(params.embeddingDim);
+        const baseEmbedding = this.generateRandomEmbedding(embeddingDim);
         const stageOffset = stage * 0.1;
 
         // Add stage-specific variation
@@ -848,9 +852,10 @@ export class WorkloadGenerator {
   private static consensusFormation(params: WorkloadParams): AgentRequest[] {
     const requests: AgentRequest[] = [];
     const consensusSize = 5;
+    const embeddingDim = params.embeddingDim ?? 768;
 
     for (let i = 0; i < params.numRequests; i++) {
-      const taskEmbedding = this.generateRandomEmbedding(params.embeddingDim);
+      const taskEmbedding = this.generateRandomEmbedding(embeddingDim);
 
       for (let j = 0; j < consensusSize; j++) {
         const agentId = `agent-consensus-${j}`;
@@ -880,16 +885,17 @@ export class WorkloadGenerator {
     const requests: AgentRequest[] = [];
     const numColonies = 4;
     const requestsPerColony = Math.ceil(params.numRequests / numColonies);
+    const embeddingDim = params.embeddingDim ?? 768;
 
     for (let colony = 0; colony < numColonies; colony++) {
-      const colonyEmbedding = this.generateRandomEmbedding(params.embeddingDim);
+      const colonyEmbedding = this.generateRandomEmbedding(embeddingDim);
 
       for (let i = 0; i < requestsPerColony; i++) {
         const agentId = `agent-colony-${colony}-${i % params.numAgents}`;
-        const overlapSize = Math.floor(params.embeddingDim * 0.5);
+        const overlapSize = Math.floor(embeddingDim * 0.5);
 
         // Mix colony-specific and task-specific embeddings
-        const taskEmbedding = this.generateRandomEmbedding(params.embeddingDim);
+        const taskEmbedding = this.generateRandomEmbedding(embeddingDim);
         const embedding = this.mixEmbeddings(colonyEmbedding, taskEmbedding, overlapSize);
 
         requests.push({
@@ -913,10 +919,11 @@ export class WorkloadGenerator {
     const requests: AgentRequest[] = [];
     const numStates = Math.floor(params.numRequests * 0.3); // 30% unique states
     const stateEmbeddings: number[][] = [];
+    const embeddingDim = params.embeddingDim ?? 768;
 
     // Generate state embeddings
     for (let i = 0; i < numStates; i++) {
-      stateEmbeddings.push(this.generateRandomEmbedding(params.embeddingDim));
+      stateEmbeddings.push(this.generateRandomEmbedding(embeddingDim));
     }
 
     // Repeat states with small variations
@@ -949,13 +956,14 @@ export class WorkloadGenerator {
     const requests: AgentRequest[] = [];
     const numConversations = Math.floor(params.numAgents / 2);
     const turnsPerConversation = Math.ceil(params.numRequests / numConversations);
+    const embeddingDim = params.embeddingDim ?? 768;
 
     for (let conv = 0; conv < numConversations; conv++) {
       const agentId = `agent-conversation-${conv}`;
       const contextHistory: number[][] = [];
 
       for (let turn = 0; turn < turnsPerConversation; turn++) {
-        const newEmbedding = this.generateRandomEmbedding(params.embeddingDim);
+        const newEmbedding = this.generateRandomEmbedding(embeddingDim);
         contextHistory.push(newEmbedding);
 
         // Accumulate context
@@ -1668,7 +1676,6 @@ export class KVPerformanceProfiler {
 
 export {
   KVBenchmarkFramework as BenchmarkFramework,
-  WorkloadGenerator,
   BenchmarkReporter as Reporter,
   BenchmarkRegressionTester as RegressionTester,
   KVPerformanceProfiler as PerformanceProfiler,

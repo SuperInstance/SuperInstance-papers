@@ -95,9 +95,9 @@ export interface DreamAnchor {
 }
 
 /**
- * Cached imagination trajectory
+ * Cached imagination trajectory entry
  */
-export interface ImaginationCache {
+export interface ImaginationCacheEntry {
   id: string;
   queryState: number[];
   queryLatent: number[];
@@ -684,7 +684,7 @@ export class ImaginationCache extends EventEmitter {
   private worldModel: WorldModel;
 
   // Cache storage
-  private imaginations: Map<string, ImaginationCache> = new Map();
+  private imaginations: Map<string, ImaginationCacheEntry> = new Map();
   private queryIndex: Map<string, Set<string>> = new Map(); // queryHash -> cacheIds
 
   constructor(worldModel: WorldModel, config?: Partial<KVDreamConfig>) {
@@ -721,7 +721,7 @@ export class ImaginationCache extends EventEmitter {
     const latent = this.worldModel.encode(queryState);
     const now = Date.now();
 
-    const imagination: ImaginationCache = {
+    const imagination: ImaginationCacheEntry = {
       id,
       queryState,
       queryLatent: latent.sample,
@@ -762,7 +762,7 @@ export class ImaginationCache extends EventEmitter {
   /**
    * Find cached imagination for a query
    */
-  findImagination(queryState: number[]): { imagination: ImaginationCache; similarity: number } | null {
+  findImagination(queryState: number[]): { imagination: ImaginationCacheEntry; similarity: number } | null {
     const latent = this.worldModel.encode(queryState);
     const queryHash = this.hashQuery(latent.sample);
     const cacheIds = this.queryIndex.get(queryHash);
@@ -771,7 +771,7 @@ export class ImaginationCache extends EventEmitter {
       return null;
     }
 
-    let bestMatch: ImaginationCache | null = null;
+    let bestMatch: ImaginationCacheEntry | null = null;
     let bestSimilarity = 0;
     const now = Date.now();
 
@@ -1033,14 +1033,12 @@ export class KVDreamIntegration extends EventEmitter {
     // Store KV-cache
     const mockSegments: KVCacheSegment[] = []; // Would be populated by actual KV system
     const mockMetadata: KVCacheMetadata = {
-      tokens: episode.length * 10,
-      hash: uuidv4(),
-      length: episode.length,
       createdAt: Date.now(),
-      updatedAt: Date.now(),
-      sourceAgentId: 'dream',
-      usageCount: 0,
-      lastUsed: Date.now(),
+      modelHash: 'dream-model',
+      agentId: 'dream',
+      turnNumber: 0,
+      position: 0,
+      length: episode.length * 10,
     };
     this.kvManager.storeKVCache(episode, mockSegments, mockMetadata);
 

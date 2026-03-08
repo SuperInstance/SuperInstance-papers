@@ -1,0 +1,46 @@
+{
+  "colonyId": "colony-1772914705785-l6tajcl3r",
+  "colonyName": "Test Colony",
+  "createdAt": 1772914705826,
+  "lastUpdate": 1772914772275,
+  "agents": [
+    {
+      "id": "6b4929cd-6bf1-48a5-9638-ac91f20d7b02",
+      "type": "task",
+      "category": "test-agent",
+      "createdAt": 1772914724657,
+      "lastActivity": 1772914724657,
+      "status": "active",
+      "metadata": {}
+    },
+    {
+      "id": "0675ddb1-6ec1-4485-a0cf-2fd9e15134ee",
+      "type": "role",
+      "category": "manager",
+      "createdAt": 1772914746444,
+      "lastActivity": 1772914746444,
+      "status": "active",
+      "metadata": {}
+    },
+    {
+      "id": "8863450b-97b2-4fda-ae9f-fca0e35b0384",
+      "type": "core",
+      "category": "system",
+      "createdAt": 1772914746693,
+      "lastActivity": 1772914746693,
+      "status": "active",
+      "metadata": {}
+    }
+  ],
+  "stats": {
+    "totalAgents": 3,
+    "activeAgents": 3,
+    "totalDreams": 1,
+    "totalSyncs": 0
+  },
+  "cache": {
+    "size": 400,
+    "hits": 38,
+    "misses": 12
+  }
+}

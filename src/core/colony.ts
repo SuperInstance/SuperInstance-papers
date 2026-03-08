@@ -1,6 +1,8 @@
 /**
  * POLLN Colony Implementation
  * Agent collection management
+ *
+ * Now supports distributed coordination via the distributed module
  */
 
 import { v4 as uuidv4 } from 'uuid';
@@ -17,6 +19,13 @@ export interface ColonyConfig {
     totalMemory: number;
     totalNetwork: number;
   };
+  // Distributed options
+  distributed?: boolean;
+  distributedConfig?: {
+    backend: 'memory' | 'redis' | 'nats';
+    connectionString?: string;
+    nodeId?: string;
+  };
 }
 
 export interface ColonyStats {
@@ -27,12 +36,19 @@ export interface ColonyStats {
   totalMemory: number;
   totalNetwork: number;
   shannonDiversity: number;
+  // Distributed metrics
+  clusterMetrics?: {
+    totalNodes: number;
+    activeNodes: number;
+    averageLoad: number;
+  };
 }
 
 /**
  * Colony - Agent collection manager
  *
  * Manages a collection of agents for a single gardener
+ * Can be coordinated with other colonies via distributed backend
  */
 export class Colony extends EventEmitter {
   public readonly id: string;
@@ -40,11 +56,106 @@ export class Colony extends EventEmitter {
 
   private agents: Map<string, AgentState> = new Map();
   private agentConfigs: Map<string, AgentConfig> = new Map();
+  private distributedCoordination: any = null;
 
   constructor(config: ColonyConfig) {
     super();
     this.id = config.id || uuidv4();
     this.config = config;
+
+    // Initialize distributed coordination if enabled
+    if (config.distributed) {
+      this.initializeDistributed();
+    }
+  }
+
+  /**
+   * Initialize distributed coordination
+   */
+  private async initializeDistributed(): Promise<void> {
+    try {
+      const { createDistributedCoordination } = await import('./distributed/index.js');
+
+      this.distributedCoordination = createDistributedCoordination({
+        backend: this.config.distributedConfig?.backend || 'memory',
+        connectionString: this.config.distributedConfig?.connectionString,
+        nodeId: this.config.distributedConfig?.nodeId || this.id,
+        heartbeatIntervalMs: 5000,
+        discoveryIntervalMs: 5000,
+        colonyInfo: {
+          id: this.id,
+          name: this.config.name,
+          gardenerId: this.config.gardenerId,
+          capabilities: this.getColonyCapabilities(),
+        },
+      });
+
+      await this.distributedCoordination.start();
+
+      // Set up event handlers for distributed events
+      this.setupDistributedEventHandlers();
+
+      this.emit('distributed_connected', {
+        colonyId: this.id,
+        backend: this.config.distributedConfig?.backend,
+      });
+    } catch (error) {
+      this.emit('error', {
+        message: 'Failed to initialize distributed coordination',
+        error,
+      });
+      this.distributedCoordination = null;
+    }
+  }
+
+  /**
+   * Set up event handlers for distributed coordination events
+   */
+  private setupDistributedEventHandlers(): void {
+    if (!this.distributedCoordination) return;
+
+    this.distributedCoordination.discovery.on('discovery', (event: any) => {
+      this.emit('node_discovered', event);
+    });
+
+    this.distributedCoordination.discovery.on('rebalance_needed', (metrics: any) => {
+      this.emit('rebalance_needed', metrics);
+    });
+
+    if (this.distributedCoordination.federation) {
+      this.distributedCoordination.federation.on('pattern_received', (data: any) => {
+        this.emit('pattern_received', data);
+      });
+
+      this.distributedCoordination.federation.on('migration_request', (data: any) => {
+        this.emit('migration_requested', data);
+      });
+    }
+  }
+
+  /**
+   * Get colony capabilities for distributed discovery
+   */
+  private getColonyCapabilities(): string[] {
+    const agentTypes = new Set<string>();
+    for (const config of this.agentConfigs.values()) {
+      agentTypes.add(config.typeId);
+    }
+    return Array.from(agentTypes);
+  }
+
+  /**
+   * Check if colony is distributed
+   */
+  isDistributed(): boolean {
+    return this.distributedCoordination !== null;
+  }
+
+  /**
+   * Get distributed coordination instance
+   */
+  getDistributedCoordination(): any {
+    return this.distributedCoordination;
   }
 
   /**
@@ -204,12 +315,12 @@ export class Colony extends EventEmitter {
   /**
    * Get colony statistics
    */
-  getStats(): ColonyStats {
+  async getStats(): Promise<ColonyStats> {
     const agents = this.getAllAgents();
     const activeAgents = agents.filter(a => a.status === 'active');
     const diversity = this.calculateShannonDiversity(agents);
 
-    return {
+    const stats: ColonyStats = {
       totalAgents: agents.length,
       activeAgents: activeAgents.length,
       dormantAgents: agents.length - activeAgents.length,
@@ -218,6 +329,18 @@ export class Colony extends EventEmitter {
       totalNetwork: this.config.resourceBudget.totalNetwork,
       shannonDiversity: diversity,
     };
+
+    // Add cluster metrics if distributed
+    if (this.distributedCoordination) {
+      const clusterMetrics = this.distributedCoordination.getClusterMetrics();
+      stats.clusterMetrics = {
+        totalNodes: clusterMetrics.totalNodes,
+        activeNodes: clusterMetrics.activeNodes,
+        averageLoad: clusterMetrics.averageLoad,
+      };
+    }
+
+    return stats;
   }
 
   /**

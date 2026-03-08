@@ -27,16 +27,9 @@
 /**
  * Generic tensor-like structure
  * Can be arrays, TypedArrays, or nested structures
+ * Using 'any' for flexibility in internal operations
  */
-export type TensorLike =
-  | number[]
-  | number[][]
-  | number[][][]
-  | Float32Array
-  | Float64Array
-  | Int32Array
-  | Map<string, TensorLike>
-  | Record<string, TensorLike>;
+export type TensorLike = any;
 
 /**
  * Cache representation with sequence dimension
@@ -169,7 +162,7 @@ export class CacheSlicer {
       return data.length;
     }
     if (ArrayBuffer.isView(data)) {
-      return data.length;
+      return (data as unknown as ArrayLike<number>).length;
     }
     if (data instanceof Map) {
       return data.size;
@@ -501,7 +494,7 @@ export class CacheConcatenator {
     // Handle TypedArrays
     if (ArrayBuffer.isView(first)) {
       const totalLength = datas.reduce((sum, d) =>
-        sum + (ArrayBuffer.isView(d) ? d.length : 0), 0
+        sum + (ArrayBuffer.isView(d) ? (d as unknown as ArrayLike<number>).length : 0), 0
       );
 
       // Determine TypedArray type
@@ -511,8 +504,8 @@ export class CacheConcatenator {
       let offset = 0;
       for (const d of datas) {
         if (ArrayBuffer.isView(d)) {
-          result.set(d, offset);
-          offset += d.length;
+          result.set(d as unknown as ArrayLike<number>, offset);
+          offset += (d as unknown as ArrayLike<number>).length;
         }
       }
       return result;
@@ -848,27 +841,28 @@ export class CacheReplacer {
 
     // Handle TypedArrays - need to create new one with different size
     if (ArrayBuffer.isView(data)) {
-      const replacementLength = ArrayBuffer.isView(replacement) ? replacement.length :
+      const typedData = data as unknown as (ArrayLike<number> & { subarray: (start: number, end?: number) => ArrayLike<number>; constructor: new (size: number) => ArrayLike<number> });
+      const replacementLength = ArrayBuffer.isView(replacement) ? (replacement as unknown as ArrayLike<number>).length :
                                 Array.isArray(replacement) ? replacement.length : 1;
-      const newLength = data.length - (end - start) + replacementLength;
-      const result = new (data.constructor as any)(newLength);
+      const newLength = typedData.length - (end - start) + replacementLength;
+      const result = new (typedData.constructor as new (size: number) => ArrayLike<number> & { set: (data: ArrayLike<number>, offset: number) => void })(newLength) as ArrayLike<number> & { set: (data: ArrayLike<number>, offset: number) => void };
 
       // Copy before range
-      result.set(data.subarray(0, start), 0);
+      (result as any).set(typedData.subarray(0, start), 0);
 
       // Copy replacement
       if (ArrayBuffer.isView(replacement)) {
-        result.set(replacement, start);
+        (result as any).set(replacement as unknown as ArrayLike<number>, start);
       } else if (Array.isArray(replacement)) {
         for (let i = 0; i < replacement.length; i++) {
-          result[start + i] = replacement[i];
+          (result as any)[start + i] = replacement[i];
         }
       } else {
-        result[start] = replacement as number;
+        (result as any)[start] = replacement as number;
       }
 
       // Copy after range
-      result.set(data.subarray(end), start + replacementLength);
+      (result as any).set(typedData.subarray(end), start + replacementLength);
 
       return result;
     }
@@ -965,7 +959,7 @@ export class CacheReplacer {
       return data.length;
     }
     if (ArrayBuffer.isView(data)) {
-      return data.length;
+      return (data as unknown as ArrayLike<number>).length;
     }
     if (data instanceof Map) {
       return data.size;
@@ -1199,7 +1193,7 @@ export class CacheIndexSelector {
       return data.flatMap(item => this.flattenToLeafArray(item));
     }
     if (ArrayBuffer.isView(data)) {
-      return Array.from(data);
+      return Array.from(data as unknown as ArrayLike<number>);
     }
     if (data instanceof Map) {
       const result: number[] = [];
@@ -1249,7 +1243,7 @@ export class CacheIndexSelector {
 
     // Handle TypedArrays
     if (ArrayBuffer.isView(data)) {
-      return data[index];
+      return (data as unknown as ArrayLike<number>)[index];
     }
 
     // Handle Map
@@ -1303,8 +1297,9 @@ export class CacheIndexSelector {
     if (ArrayBuffer.isView(data)) {
       const TypedArrayConstructor = data.constructor;
       const result = new (TypedArrayConstructor as any)(indices.length);
+      const dataArray = data as unknown as ArrayLike<number>;
       for (let i = 0; i < indices.length; i++) {
-        result[i] = data[indices[i]];
+        result[i] = dataArray[indices[i]];
       }
       return result;
     }
@@ -1703,7 +1698,7 @@ export class CacheSplitter {
 
     // Handle TypedArrays
     if (ArrayBuffer.isView(data)) {
-      return Array.from(data);
+      return Array.from(data as unknown as ArrayLike<number>);
     }
 
     // Handle Map

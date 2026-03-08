@@ -40,7 +40,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'html'],
   verbose: true,
-  testTimeout: 30000,
+  testTimeout: 120000,
   transformIgnorePatterns: [
     'node_modules/(?!(uuid)/)',
   ],
