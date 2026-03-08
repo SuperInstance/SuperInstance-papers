@@ -1,0 +1,172 @@
+# POLLN API Pod Disruption Budget
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: polln-api-pdb
+  labels:
+    app: polln-api
+    component: pdb
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: polln-api
+      component: api
+
+---
+# POLLN Network Policies
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: polln-api-network-policy
+  labels:
+    app: polln-api
+    component: network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: polln-api
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    ports:
+    - protocol: TCP
+      port: 3000
+  - from:
+    - podSelector:
+        matchLabels:
+          app: polln-api
+    ports:
+    - protocol: TCP
+      port: 3000
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: polln-redis
+    ports:
+    - protocol: TCP
+      port: 6379
+  - to:
+    - podSelector:
+        matchLabels:
+          app: polln-postgres
+    ports:
+    - protocol: TCP
+      port: 5432
+  - to:
+    - namespaceSelector: {}
+      podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - protocol: UDP
+      port: 53
+  - to:
+    - podSelector:
+        matchLabels:
+          app: jaeger
+    ports:
+    - protocol: TCP
+      port: 14268
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: kube-system
+    ports:
+    - protocol: TCP
+      port: 443
+
+---
+# POLLN Resource Quota
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: polln-resource-quota
+  labels:
+    app: polln-api
+    component: quota
+spec:
+  hard:
+    requests.cpu: "10"
+    requests.memory: "20Gi"
+    limits.cpu: "20"
+    limits.memory: "40Gi"
+    persistentvolumeclaims: "10"
+  scopeSelector:
+    matchNames:
+    - BestEffort
+    - NotBestEffort
+
+---
+# POLLN Limit Range
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: polln-limit-range
+  labels:
+    app: polln-api
+    component: limit-range
+spec:
+  limits:
+  - type: Container
+    max:
+      cpu: "4000m"
+      memory: "4Gi"
+    min:
+      cpu: "100m"
+      memory: "256Mi"
+    default:
+      cpu: "500m"
+      memory: "512Mi"
+    defaultRequest:
+      cpu: "250m"
+      memory: "256Mi"
+
+---
+# POLLn Priority Class
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: polln-high-priority
+value: 1000
+globalDefault: false
+description: "High priority priority class for POLLN API pods"
+
+---
+# POLLN Persistent Volume Claims
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: polln-data-pvc
+  labels:
+    app: polln-api
+    component: data
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: fast-ssd
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: polln-agents-pvc
+  labels:
+    app: polln-api
+    component: agents
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: fast-ssd

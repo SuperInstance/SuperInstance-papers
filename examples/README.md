@@ -92,6 +92,94 @@ npm start
 - Offset prediction for cache reuse
 - Performance optimization techniques
 
+### 5. Multi-Agent Workflow Orchestration
+**Location:** `examples/workflow-orchestration/`
+
+A comprehensive demonstration of complex multi-step task processing:
+- Document processing pipeline with 7 specialized stages
+- Agent hand-offs with A2A packages and traceability
+- Error recovery and retry logic with circuit breakers
+- Progress tracking and bottleneck identification
+
+**Run:**
+```bash
+cd examples/workflow-orchestration
+npm install
+npm start
+```
+
+**What you'll learn:**
+- How to orchestrate complex multi-agent workflows
+- A2A package tracing for end-to-end visibility
+- Circuit breaker patterns for resilience
+- Performance monitoring and optimization
+
+### 6. Federated Learning Colony
+**Location:** `examples/federated-colony/`
+
+A demonstration of distributed, privacy-preserving learning:
+- Multiple colonies collaborating without sharing raw data
+- Federated averaging with differential privacy
+- Meadow community integration for pattern sharing
+- Performance comparison (single vs federated)
+
+**Run:**
+```bash
+cd examples/federated-colony
+npm install
+npm start
+```
+
+**What you'll learn:**
+- How federated learning preserves data privacy
+- Gradient aggregation with noise injection
+- Cross-colony knowledge transfer via Meadow
+- Privacy budget management
+
+### 7. Guardian Angel Safety Showcase
+**Location:** `examples/safety-first/`
+
+A comprehensive demonstration of POLLN's safety system:
+- All 20+ constitutional safety constraints
+- Adaptive learning from safety violations
+- Emergency override with kill switch and rollback
+- Compliance reporting and audit trails
+
+**Run:**
+```bash
+cd examples/safety-first
+npm install
+npm start
+```
+
+**What you'll learn:**
+- How constitutional AI constraints work
+- Adaptive safety system design
+- Emergency response mechanisms
+- Regulatory compliance reporting
+
+### 8. Real-Time Streaming Agent
+**Location:** `examples/streaming-agent/`
+
+A demonstration of real-time customer support system:
+- WebSocket API integration for live communication
+- Stream processing of customer messages
+- Dynamic agent spawning based on load
+- Backpressure handling and flow control
+
+**Run:**
+```bash
+cd examples/streaming-agent
+npm install
+npm start
+```
+
+**What you'll learn:**
+- Real-time agent communication patterns
+- Dynamic scaling and load management
+- Queue management and backpressure
+- Performance metrics for streaming systems
+
 ## Common Commands
 
 ### Install Dependencies
@@ -161,10 +249,19 @@ examples/
 
 We recommend exploring examples in this order:
 
-1. **Start with Basic Colony** - Learn fundamental concepts
-2. **Try Research Assistant** - Explore META tiles and dreaming
-3. **Review Code Reviewer** - Understand value networks
-4. **Experiment with KV-Cache** - Learn optimization techniques
+**Foundational Concepts:**
+1. **Basic Colony** - Learn fundamental concepts (colony, A2A, Plinko, Hebbian)
+2. **Research Assistant** - Explore META tiles and dreaming
+3. **Code Reviewer** - Understand value networks
+
+**Advanced Features:**
+4. **KV-Cache Demo** - Learn optimization techniques
+5. **Workflow Orchestration** - Master complex multi-agent systems
+6. **Federated Colony** - Understand distributed learning
+
+**Production-Ready:**
+7. **Guardian Angel** - Implement comprehensive safety
+8. **Streaming Agent** - Build real-time systems
 
 ## Customization
 

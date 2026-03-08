@@ -1,0 +1,87 @@
+# POLLN API Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: polln-api-ingress
+  labels:
+    app: polln-api
+    component: api
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/websocket-services: "polln-api"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://polln.example.com"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "Authorization, Content-Type, X-Requested-With"
+    nginx.ingress.kubernetes.io/rate-limit: "1000"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - polln.example.com
+    - api.polln.example.com
+    secretName: polln-tls-cert
+  rules:
+  - host: polln.example.com
+    http:
+      paths:
+      - path: /api(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: polln-api
+            port:
+              number: 3000
+  - host: api.polln.example.com
+    http:
+      paths:
+      - path: /(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: polln-api
+            port:
+              number: 3000
+
+---
+# POLLN API Ingress for WebSocket
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: polln-ws-ingress
+  labels:
+    app: polln-api
+    component: websocket
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/websocket-services: "polln-api"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "86400"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "86400"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - ws.polln.example.com
+    secretName: polln-ws-tls-cert
+  rules:
+  - host: ws.polln.example.com
+    http:
+      paths:
+      - path: /api/ws
+        pathType: Prefix
+        backend:
+          service:
+            name: polln-api
+            port:
+              number: 3000

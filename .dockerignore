@@ -1,0 +1,67 @@
+# Dependencies
+node_modules
+npm-debug.log
+package-lock.json
+
+# Build outputs
+dist
+build
+*.tsbuildinfo
+
+# Test coverage
+coverage
+.nyc_output
+
+# Documentation
+docs
+*.md
+!README.md
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI/CD
+.github
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Development
+*.test.ts
+*.spec.ts
+__tests__
+__mocks__
+
+# Benchmarks
+benchmarks
+*.benchmark
+
+# Temporary files
+tmp
+temp
+*.tmp
+
+# Polln runtime
+.polln
+.agents

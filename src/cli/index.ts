@@ -14,6 +14,9 @@ import { agentsCommand } from './commands/agents.js';
 import { dreamCommand } from './commands/dream.js';
 import { syncCommand } from './commands/sync.js';
 import { cacheCommand } from './commands/cache.js';
+import { loraCommand } from './commands/lora.js';
+import { coloniesCommand } from './commands/colonies.js';
+import { scaleCommand } from './commands/scale.js';
 
 // Create main program
 const program = new Command();
@@ -52,6 +55,9 @@ program.addCommand(agentsCommand);
 program.addCommand(dreamCommand);
 program.addCommand(syncCommand);
 program.addCommand(cacheCommand);
+program.addCommand(loraCommand);
+program.addCommand(coloniesCommand);
+program.addCommand(scaleCommand);
 
 // Configuration command
 program
@@ -183,6 +189,31 @@ function showDetailedHelp(): void {
   OutputFormatter.list('polln sync - Sync with federation');
   OutputFormatter.list('polln cache stats - Show cache statistics');
   OutputFormatter.list('polln cache clear - Clear cache');
+  OutputFormatter.list('polln lora list - List available LoRA adapters');
+  OutputFormatter.list('polln lora train - Train a new LoRA adapter');
+  OutputFormatter.list('polln lora benchmark - Benchmark LoRA performance');
+  OutputFormatter.list('polln lora distill - Distill from teacher model');
+  OutputFormatter.newline();
+
+  OutputFormatter.subheader('Scaling Commands');
+  OutputFormatter.list('polln scale status - Show scaling status and metrics');
+  OutputFormatter.list('polln scale policy list - List scaling policies');
+  OutputFormatter.list('polln scale policy enable <id> - Enable a policy');
+  OutputFormatter.list('polln scale policy disable <id> - Disable a policy');
+  OutputFormatter.list('polln scale manual -t <type> -m <mag> - Manual scaling');
+  OutputFormatter.list('polln scale predict -h <min> - Predict scaling needs');
+  OutputFormatter.list('polln scale history - Show scaling history');
+  OutputFormatter.newline();
+
+  OutputFormatter.subheader('Multi-Colony Commands');
+  OutputFormatter.list('polln colonies list - List all colonies');
+  OutputFormatter.list('polln colonies create - Create a new colony');
+  OutputFormatter.list('polln colonies status - Show colony status');
+  OutputFormatter.list('polln colonies start <id> - Start a colony');
+  OutputFormatter.list('polln colonies stop <id> - Stop a colony');
+  OutputFormatter.list('polln colonies scale <id> - Scale a colony');
+  OutputFormatter.list('polln colonies migrate - Migrate agents between colonies');
+  OutputFormatter.list('polln colonies autoscale - Configure auto-scaling');
   OutputFormatter.newline();
 
   OutputFormatter.subheader('Examples');

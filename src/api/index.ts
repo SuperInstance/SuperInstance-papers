@@ -9,3 +9,7 @@ export type { POLLNServerConfig } from './server.js';
 export * from './types.js';
 export * from './middleware.js';
 export * from './handlers.js';
+
+// Client SDK
+export { POLLNClient, createPOLLNClient } from './client/index.js';
+export type { POLLNClientConfig } from './client/index.js';

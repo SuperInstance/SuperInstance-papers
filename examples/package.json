@@ -5,11 +5,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "install:all": "npm install && cd basic-colony && npm install && cd ../research-assistant && npm install && cd ../code-reviewer && npm install && cd ../kv-cache-demo && npm install",
+    "install:all": "npm install && cd basic-colony && npm install && cd ../research-assistant && npm install && cd ../code-reviewer && npm install && cd ../kv-cache-demo && npm install && cd ../workflow-orchestration && npm install && cd ../federated-colony && npm install && cd ../safety-first && npm install && cd ../streaming-agent && npm install",
     "basic-colony": "cd basic-colony && npm start",
     "research-assistant": "cd research-assistant && npm start",
     "code-reviewer": "cd code-reviewer && npm start",
-    "kv-cache-demo": "cd kv-cache-demo && npm start"
+    "kv-cache-demo": "cd kv-cache-demo && npm start",
+    "workflow-orchestration": "cd workflow-orchestration && npm start",
+    "federated-colony": "cd federated-colony && npm start",
+    "safety-first": "cd safety-first && npm start",
+    "streaming-agent": "cd streaming-agent && npm start"
   },
   "keywords": [
     "polln",

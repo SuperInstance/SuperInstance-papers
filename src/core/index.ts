@@ -40,6 +40,9 @@ export type {
   FederationConfig,
 } from './federated.js';
 
+// Advanced Federated Learning Protocols (Phase 5+)
+export * from './federation/index.js';
+
 // Knowledge Succession
 export {
   KnowledgeSuccessionManager,
@@ -424,3 +427,298 @@ export type {
   BytecodeSafetyCheck,
   BytecodePlinkoConfig,
 } from './bytecode/index.js';
+
+// Security Module (Sprint 8: Security Hardening)
+export {
+  KeyManager,
+  SignatureService,
+  EncryptionService,
+  SecurityConfigManager,
+  createSecurityManager,
+  generateSecureId,
+  hashPassword,
+  verifyPassword,
+  AuditLogger,
+  createAuditLogger,
+  createAuditEventId,
+} from './security/index.js';
+export type {
+  KeyPair,
+  Signature,
+  SignedData,
+  EncryptedData,
+  SecurityConfig,
+  AuditEvent,
+  AuditEventType,
+  AuditSeverity,
+  AuditFilter,
+  AuditStatistics,
+  AuditLoggerConfig,
+} from './security/index.js';
+
+// Hydraulic Framework (Emergent Granular Intelligence)
+export {
+  PressureSensor,
+  FlowMonitor,
+  ValveController,
+  PumpManager,
+  ReservoirManager,
+} from './hydraulic/index.js';
+export type {
+  Pressure,
+  Flow,
+  Valve,
+  Pump,
+  Reservoir,
+  StoredPattern,
+  Pipe,
+  HydraulicSystemState,
+  HydraulicMetrics,
+  HydraulicConfig,
+  HydraulicEventType,
+  HydraulicEvent,
+  PressureAnalysis,
+  FlowAnalysis,
+  SystemBalance,
+} from './hydraulic/index.js';
+
+// Emergence Detection System
+export {
+  EmergenceMetricsCalculator,
+  EmergenceDetector,
+  EmergenceAnalyzer,
+  EmergenceCatalog,
+} from './emergence/index.js';
+export type {
+  EmergentBehavior,
+  NoveltyFactors,
+  ValidationStatus,
+  TimeWindow,
+  CausalChain,
+  ComplexityMetrics,
+  NoveltyMetrics,
+  SynergyMetrics,
+  EmergenceMetrics,
+  EmergenceAnalysis,
+  EmergentPattern,
+  EmergentCluster,
+  EmergentAbility,
+  EmergenceCategory,
+  ValidationRecord,
+  EmergentExample,
+  EmergenceDetectorConfig,
+  EmergenceEventType,
+  EmergenceEvent,
+} from './emergence/index.js';
+
+// Enhanced Stigmergy System
+export {
+  EnhancedStigmergy,
+} from './stigmergy/index.js';
+export type {
+  DecayModel,
+  DecayParameters,
+  TrailVisualization,
+  InterferencePattern,
+  AdaptiveStrengthConfig,
+} from './stigmergy/index.js';
+
+// LoRA Library of Experts System
+export {
+  BaseLoRAAdapter,
+  initializeLoRAMatrices,
+  mergeLoRAsLinear,
+  mergeLoRAsSVD,
+  computeInterference,
+  optimizeWeights,
+} from './lora/lora-adapter.js';
+export {
+  LoRALibrary,
+  LoRAToolBelt,
+} from './lora/tool-belt.js';
+export {
+  ExpertRegistry,
+  createDefaultRegistry,
+} from './lora/expert-registry.js';
+export {
+  LoRAEnhancedAgent,
+  LoRAColonyAgent,
+} from './lora/lora-agent.js';
+export {
+  TrainingDataGenerator,
+  LoRATrainer,
+  LoRAPipeline,
+} from './lora/pipeline.js';
+export {
+  createCodeSpecialistLoRA,
+  getCodeSpecialistTestPrompts,
+  createDataAnalystLoRA,
+  getDataAnalystTestPrompts,
+  createWriterLoRA,
+  getWriterTestPrompts,
+  createResearcherLoRA,
+  getResearcherTestPrompts,
+  getAllExpertLoRAs,
+  getExpertLoRAByName,
+  getExpertLoRAsByCategory,
+} from './lora/experts/index.js';
+export type {
+  // LoRA Core Types
+  LoRAMatrices,
+  LoRAAdapter,
+  LoRAComposition,
+  LoRAInComposition,
+  LoRAMergeStrategy,
+  LoRANormalization,
+  // A2A Package Types
+  LoRASwapRequestPayload,
+  LoRASwapResponsePayload,
+  LoRASwapRequest,
+  LoRASwapResponse,
+  LoRADiscoveryRequestPayload,
+  LoRADiscoveryResponsePayload,
+  LoRADiscoveryRequest,
+  LoRADiscoveryResponse,
+  // Library Types
+  LoRALibraryConfig,
+  LoRAStorage,
+  // Training Types
+  LoRATrainingConfig,
+  TrainingExample,
+  LoRADistillationConfig,
+  LoRATrainingProgress,
+  LoRATrainingResult,
+  // Performance Types
+  LoRAPerformanceMetrics,
+  EmergentAbility,
+  // Memory Types
+  LoRAMemoryState,
+  LoRAMemoryConfig,
+  // Registry Types
+  ExpertRegistryEntry,
+  // Tool Belt Types
+  ToolBeltState,
+  // Base Model Types
+  BaseModelConfig,
+  BaseModel,
+  // Agent Types
+  LoRAAgentConfig,
+} from './lora/types.js';
+
+// Multi-Colony Management (Phase 6: Multi-Colony Orchestration)
+export {
+  ColonyOrchestrator,
+  ColonyScheduler,
+  ColonyLoadBalancer,
+  ResourceTracker,
+  HealthMonitor,
+} from './colony-manager/index.js';
+export type {
+  ColonyManagerConfig,
+  LoadBalancingStrategy,
+  ScalingPolicy,
+  ColonyInstance,
+  ColonyInstanceState,
+  ColonyHealth,
+  HealthIssue,
+  ColonyResources,
+  ResourceUsage,
+  ColonySpecialization,
+  ColonyMetadata,
+  OrchestrationEvent,
+  OrchestrationEventType,
+  WorkloadRequest,
+  WorkloadRequirements,
+  WorkloadConstraints,
+  ScheduleResult,
+  LoadBalancingMetrics,
+  LoadBalancingDecision,
+  ScalingEvent,
+  ScalingMetrics,
+  ScalingPolicyConfig,
+  MigrationPlan,
+  MigrationState,
+  MigrationIssue,
+  InterColonyMessage,
+  ColonyBridgeConfig,
+  RetryPolicy,
+  BroadcastConfig,
+  ColonyFilter,
+  GatewayConfig,
+  AuthConfig,
+  RateLimitConfig,
+  RoutingConfig,
+  RoutingRule,
+  ColonyRole,
+  WorkloadType,
+  RoleAssignment,
+  ColonyManagerState,
+  ManagerMetrics,
+  DashboardData,
+  DashboardSummary,
+  DashboardColony,
+  DashboardTopology,
+  TopologyNode,
+  TopologyEdge,
+  DashboardAlert,
+  DashboardTrends,
+  TrendDataPoint,
+} from './colony-manager/index.js';
+
+// Inter-Colony Communication (Phase 6: Multi-Colony Orchestration)
+export {
+  MessageType,
+  MessageFactory,
+  MessageValidator,
+  ColonyBridge,
+  MessageQueue,
+  ColonyBroadcast,
+  ColonyGateway,
+} from './inter-colony/index.js';
+export type {
+  MessageHeaders,
+  MessagePayload,
+  ProtocolMessage,
+  MessageResponse,
+  BridgeStats,
+  QueuedMessage,
+  MessageQueueConfig,
+  BroadcastResult,
+  BroadcastConfig as ColonyBroadcastConfig,
+  GatewayRequest,
+  GatewayResponse,
+  GatewayStats,
+} from './inter-colony/index.js';
+
+// Colony Lifecycle Management (Phase 6: Multi-Colony Orchestration)
+export {
+  ColonyProvisioner,
+  ColonyDecommissioner,
+  ColonyMigrator,
+  ColonyScaler,
+} from './colony-lifecycle/index.js';
+export type {
+  ProvisioningConfig,
+  ProvisioningRequest,
+  ProvisioningResult,
+  DecommissioningConfig,
+  DecommissioningPlan,
+  DecommissioningStep,
+  MigrationConfig,
+  MigrationPlan as ColonyMigrationPlan,
+  MigrationStep,
+  MigrationIssue,
+  MigrationState,
+  RollbackPlan,
+  ScalingConfig,
+  ScalingEvent,
+  ScalingTrigger,
+  ScalingConstraints,
+  ScalingPlan,
+  ScalingAction,
+  ScalingMetrics,
+  ColonyLifecycleState,
+} from './colony-lifecycle/index.js';
+
+// Monitoring System
+export * from '../monitoring/index.js';

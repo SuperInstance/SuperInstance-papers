@@ -241,3 +241,114 @@ Server (POLLNServer), Types, Middleware, Handlers
 *Repository: https://github.com/SuperInstance/polln*
 *Last Updated: 2026-03-07*
 *Test Status: 1253/1253 passing (100%)*
+
+### Emergent Granular Intelligence (NEW)
+- ✅ Hydraulic Framework - Pressure/flow modeling
+- ✅ Emergence Detection - Novel capability discovery
+- ✅ Enhanced Stigmergy - Advanced coordination
+- ✅ Web Dashboard - Real-time monitoring
+- ✅ CLI Commands - emergence:metrics, emergence:catalog, hydraulic:status, emergence:watch
+
+### Quick Start - Emergence Detection
+
+```typescript
+import { EmergenceDetector } from 'polln/core';
+
+const detector = new EmergenceDetector();
+detector.registerAgentCapabilities('agent-1', ['syntax', 'parsing']);
+
+const analysis = await detector.analyzeEmergence(causalChains);
+console.log(`Found ${analysis.behaviors.length} emergent behaviors`);
+```
+
+### CLI - Monitor Emergence
+
+```bash
+npm run emergence:metrics    # Show emergence metrics
+npm run emergence:catalog    # List emergent abilities
+npm run hydraulic:status     # Show hydraulic state
+npm run emergence:watch      # Real-time monitoring
+```
+
+### Documentation
+
+| Doc | Purpose |
+|-----|---------|
+| `docs/EMERGENT_INTELLIGENCE.md` | EGI System Guide |
+| `docs/research/EMERGENT_*.md` | Research Foundation (4 docs, ~95K words) |
+
+---
+
+## Emergent Granular Intelligence - Quick Reference
+
+The EGI system implements a hydraulic metaphor for multi-agent coordination:
+
+| Hydraulic Concept | Implementation |
+|-------------------|----------------|
+| Pressure | `PressureSensor` - Task demand tracking |
+| Flow | `FlowMonitor` - Information transfer |
+| Valves | `ValveController` - Stochastic routing |
+| Pumps | `PumpManager` - Capability amplification |
+| Reservoirs | `ReservoirManager` - Cached patterns |
+| Stigmergy | `EnhancedStigmergy` - Advanced coordination |
+
+### Emergence Detection
+
+```typescript
+// Detect emergent behaviors
+const detector = new EmergenceDetector({
+  minEmergenceScore: 0.7,
+  autoCatalog: true,
+});
+
+// Analyze causal chains
+const analysis = await detector.analyzeEmergence(chains);
+
+// Access results
+analysis.behaviors.forEach(b => {
+  console.log(`${b.name}: score=${b.emergenceScore}`);
+});
+
+// Catalog emergent abilities
+const catalog = new EmergenceCatalog();
+const ability = catalog.catalogBehavior(behavior);
+```
+
+### Hydraulic Monitoring
+
+```typescript
+// Monitor system pressure
+const pressureSensor = new PressureSensor();
+pressureSensor.registerAgent('agent-1', 0.5);
+const pressure = pressureSensor.updatePressure('agent-1', 0.3, 0.2, 0.1);
+
+// Monitor information flow
+const flowMonitor = new FlowMonitor();
+const pipe = flowMonitor.registerPipe('agent-1', 'agent-2', 0.8, 1.0);
+const flow = flowMonitor.calculateFlow(pipe.id, pressure1, pressure2);
+
+// Control routing
+const valveController = new ValveController();
+const decision = valveController.selectAgent(candidates, 1.0);
+```
+
+### Enhanced Stigmergy
+
+```typescript
+const stigmergy = new EnhancedStigmergy();
+
+// Deposit with adaptive strength
+const pheromone = stigmergy.deposit('agent-1', PheromoneType.PATHWAY, position, 1.0);
+
+// Detect with interference
+const detected = stigmergy.detect(position);
+console.log(`Interference patterns: ${detected.interference.length}`);
+
+// Visualize trails
+const trailId = stigmergy.startTrail(position);
+const visualization = stigmergy.visualizeTrail(trailId);
+```
+
+---
+
+**Last Updated**: 2026-03-07 - Added Emergent Granular Intelligence System

@@ -1,0 +1,196 @@
+# POLLN Docker Compose Configuration
+# Full stack development environment
+
+version: '3.9'
+
+services:
+  # POLLN API Server
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: polln-api
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    environment:
+      - NODE_ENV=development
+      - POLLN_API_PORT=3000
+      - POLLN_API_HOST=0.0.0.0
+      - POLLN_AUTH_ENABLED=false
+      - POLLN_RATE_LIMIT_RPM=100
+      - POLLN_LOG_LEVEL=debug
+    volumes:
+      - ./src:/app/src:ro
+      - ./dist:/app/dist
+      - ./examples:/app/examples:ro
+      - polln-data:/app/.polln
+      - polln-agents:/app/.agents
+    networks:
+      - polln-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Redis for caching and session management
+  redis:
+    image: redis:7-alpine
+    container_name: polln-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - polln-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+  # PostgreSQL for metadata storage
+  postgres:
+    image: postgres:15-alpine
+    container_name: polln-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=polln
+      - POSTGRES_USER=polln
+      - POSTGRES_PASSWORD=polln_dev_password
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - polln-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U polln -d polln"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Grafana for monitoring dashboards
+  grafana:
+    image: grafana/grafana:10.0.0
+    container_name: polln-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./docker/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    networks:
+      - polln-network
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+  # Prometheus for metrics collection
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    container_name: polln-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    networks:
+      - polln-network
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+
+  # Jaeger for distributed tracing
+  jaeger:
+    image: jaegertracing/all-in-one:1.50
+    container_name: polln-jaeger
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14268:14268"
+      - "14250:14250"
+      - "9411:9411"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - polln-network
+    restart: unless-stopped
+
+  # Example: Basic Colony Demo
+  example-basic:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: polln-example-basic
+    working_dir: /app/examples/basic-colony
+    command: node index.js
+    environment:
+      - NODE_ENV=development
+      - POLLN_API_URL=ws://api:3000/api/ws
+    volumes:
+      - ./src:/app/src:ro
+      - ./dist:/app/dist
+      - ./examples:/app/examples:ro
+    networks:
+      - polln-network
+    restart: "no"
+    depends_on:
+      - api
+
+  # Example: KV Cache Demo
+  example-kv:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: polln-example-kv
+    working_dir: /app/examples/kv-cache-demo
+    command: node index.js
+    environment:
+      - NODE_ENV=development
+      - POLLN_API_URL=ws://api:3000/api/ws
+    volumes:
+      - ./src:/app/src:ro
+      - ./dist:/app/dist
+      - ./examples:/app/examples:ro
+    networks:
+      - polln-network
+    restart: "no"
+    depends_on:
+      - api
+
+networks:
+  polln-network:
+    driver: bridge
+    name: polln-network
+
+volumes:
+  polln-data:
+    name: polln-data
+  polln-agents:
+    name: polln-agents
+  redis-data:
+    name: polln-redis-data
+  postgres-data:
+    name: polln-postgres-data
+  grafana-data:
+    name: polln-grafana-data
+  prometheus-data:
+    name: polln-prometheus-data

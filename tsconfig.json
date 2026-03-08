@@ -57,6 +57,7 @@
     "dist",
     "coverage",
     "**/*.test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "src/benchmarks"
   ]
 }

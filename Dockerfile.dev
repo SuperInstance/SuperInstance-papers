@@ -1,0 +1,37 @@
+# POLLN Development Dockerfile
+# Hot reload enabled for development
+
+FROM node:20-alpine
+WORKDIR /app
+
+# Install development dependencies
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    git \
+    bash
+
+# Install all dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Create non-root user for development
+RUN addgroup -g 1001 -S polln && \
+    adduser -S -u 1001 -G polln polln && \
+    chown -R polln:polln /app
+
+# Switch to non-root user
+USER polln
+
+# Expose ports
+# 3000: WebSocket API
+# 9229: Node.js debugging
+# 35729: LiveReload
+EXPOSE 3000 9229 35729
+
+# Default command: watch mode
+CMD ["npm", "run", "dev"]

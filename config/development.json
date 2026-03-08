@@ -1,0 +1,73 @@
+{
+  "api": {
+    "port": 3000,
+    "host": "0.0.0.0",
+    "cors": {
+      "origin": ["*"],
+      "credentials": false
+    },
+    "rateLimit": {
+      "requestsPerMinute": 100,
+      "burstLimit": 10
+    },
+    "auth": {
+      "enableAuth": false,
+      "tokenExpiresIn": 3600
+    }
+  },
+  "redis": {
+    "url": "redis://localhost:6379",
+    "password": "",
+    "maxRetriesPerRequest": 3
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "polln_dev",
+    "ssl": false,
+    "pool": {
+      "min": 1,
+      "max": 10
+    }
+  },
+  "kvCache": {
+    "enabled": true,
+    "maxSize": 100000,
+    "ttl": 1800,
+    "compression": false
+  },
+  "dreaming": {
+    "enabled": true,
+    "episodeCount": 10,
+    "interval": 7200,
+    "worldModelPath": "/tmp/polln/worldmodel"
+  },
+  "federation": {
+    "enabled": false,
+    "syncInterval": 3600,
+    "endpoints": []
+  },
+  "meadow": {
+    "enabled": false,
+    "endpoint": "http://localhost:8080"
+  },
+  "logging": {
+    "level": "debug",
+    "format": "pretty"
+  },
+  "metrics": {
+    "enabled": true,
+    "port": 9090
+  },
+  "tracing": {
+    "enabled": false,
+    "endpoint": "http://localhost:14268/api/traces",
+    "sampleRate": 1.0
+  },
+  "features": {
+    "multiColony": true,
+    "loraTraining": true,
+    "bytecodeExecution": true,
+    "graphEvolution": true
+  }
+}

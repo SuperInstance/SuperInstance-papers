@@ -1,0 +1,162 @@
+# POLLN Configuration ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: polln-config
+  labels:
+    app: polln-api
+    component: config
+data:
+  # Redis Configuration
+  redis-url: "redis://polln-redis:6379"
+  redis-host: "polln-redis"
+  redis-port: "6379"
+
+  # Database Configuration
+  db-host: "polln-postgres"
+  db-port: "5432"
+  db-name: "polln"
+
+  # API Configuration
+  api-port: "3000"
+  api-host: "0.0.0.0"
+  log-level: "info"
+  log-format: "json"
+
+  # Feature Flags
+  auth-enabled: "true"
+  rate-limit-enabled: "true"
+  rate-limit-rpm: "1000"
+  metrics-enabled: "true"
+  tracing-enabled: "true"
+
+  # KV Cache Configuration
+  kv-cache-enabled: "true"
+  kv-cache-max-size: "1000000"
+  kv-cache-ttl: "3600"
+
+  # Dreaming Configuration
+  dreaming-enabled: "true"
+  dreaming-episode-count: "100"
+  dreaming-interval: "86400"
+
+  # Federation Configuration
+  federation-enabled: "true"
+  federation-sync-interval: "3600"
+
+  # Meadow Configuration
+  meadow-enabled: "true"
+  meadow-endpoint: "https://meadow.polln.example.com"
+
+---
+# POLLN API Server ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: polln-api-config
+  labels:
+    app: polln-api
+    component: api-config
+data:
+  config.json: |
+    {
+      "api": {
+        "port": 3000,
+        "host": "0.0.0.0",
+        "cors": {
+          "origin": ["https://polln.example.com"],
+          "credentials": true
+        },
+        "rateLimit": {
+          "requestsPerMinute": 1000,
+          "burstLimit": 100
+        },
+        "auth": {
+          "enableAuth": true,
+          "tokenExpiresIn": 86400
+        }
+      },
+      "redis": {
+        "url": "redis://polln-redis:6379",
+        "maxRetriesPerRequest": 3,
+        "retryStrategy": {
+          "maxRetriesPerRequest": 3
+        }
+      },
+      "database": {
+        "host": "polln-postgres",
+        "port": 5432,
+        "database": "polln",
+        "ssl": true
+      },
+      "kvCache": {
+        "enabled": true,
+        "maxSize": 1000000,
+        "ttl": 3600,
+        "compression": true
+      },
+      "dreaming": {
+        "enabled": true,
+        "episodeCount": 100,
+        "interval": 86400,
+        "worldModelPath": "/app/.polln/worldmodel"
+      },
+      "federation": {
+        "enabled": true,
+        "syncInterval": 3600,
+        "endpoints": []
+      },
+      "meadow": {
+        "enabled": true,
+        "endpoint": "https://meadow.polln.example.com"
+      },
+      "logging": {
+        "level": "info",
+        "format": "json"
+      },
+      "metrics": {
+        "enabled": true,
+        "port": 9090
+      },
+      "tracing": {
+        "enabled": true,
+        "endpoint": "http://jaeger:14268/api/traces"
+      }
+    }
+
+---
+# Prometheus Monitoring ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: polln-prometheus-config
+  labels:
+    app: polln-api
+    component: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+
+    scrape_configs:
+    - job_name: 'polln-api'
+      kubernetes_sd_configs:
+      - role: pod
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_label_app]
+        action: keep
+        regex: polln-api
+      - source_labels: [__meta_kubernetes_pod_label_component]
+        action: keep
+        regex: api
+      - source_labels: [__meta_kubernetes_pod_name]
+        target_label: pod
+      - source_labels: [__meta_kubernetes_pod_label_node_name]
+        target_label: node
+      - source_labels: [__meta_kubernetes_namespace]
+        target_label: namespace
+      metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: '(polln_.*|node_.*|process_.*|go_.*)'
+        action: keep

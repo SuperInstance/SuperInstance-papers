@@ -1,0 +1,32 @@
+{
+  "name": "@polln/example-federated-colony",
+  "version": "0.1.0",
+  "description": "POLLN Federated Learning Colony Example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts",
+    "build": "tsc",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "polln",
+    "federated-learning",
+    "distributed-intelligence",
+    "privacy-preserving",
+    "threat-detection"
+  ],
+  "author": "POLLN Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "polln": "file:../.."
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.6",
+    "tsx": "^4.19.2",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

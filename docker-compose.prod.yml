@@ -1,0 +1,164 @@
+# POLLN Production Docker Compose Configuration
+# Optimized for production deployment
+
+version: '3.9'
+
+services:
+  # POLLN API Server (Production)
+  api:
+    image: polln:latest
+    container_name: polln-api-prod
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - POLLN_API_PORT=3000
+      - POLLN_API_HOST=0.0.0.0
+      - POLLN_AUTH_ENABLED=true
+      - POLLN_AUTH_JWT_SECRET=${POLLN_AUTH_JWT_SECRET}
+      - POLLN_RATE_LIMIT_RPM=1000
+      - POLLN_LOG_LEVEL=info
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://polln:${POSTGRES_PASSWORD}@postgres:5432/polln
+    env_file:
+      - .env.production
+    volumes:
+      - polln-data:/app/.polln
+      - polln-agents:/app/.agents
+      - ./config/production:/app/config:ro
+    networks:
+      - polln-network
+    restart: always
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 5s
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Redis (Production)
+  redis:
+    image: redis:7-alpine
+    container_name: polln-redis-prod
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./config/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    networks:
+      - polln-network
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+
+  # PostgreSQL (Production)
+  postgres:
+    image: postgres:15-alpine
+    container_name: polln-postgres-prod
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=polln
+      - POSTGRES_USER=polln
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - polln-network
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U polln -d polln"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: polln-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./docker/nginx/ssl:/etc/nginx/ssl:ro
+      - nginx-logs:/var/log/nginx
+    networks:
+      - polln-network
+    restart: always
+    depends_on:
+      - api
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+
+networks:
+  polln-network:
+    driver: bridge
+    name: polln-network-prod
+
+volumes:
+  polln-data:
+    name: polln-data-prod
+  polln-agents:
+    name: polln-agents-prod
+  redis-data:
+    name: polln-redis-data-prod
+  postgres-data:
+    name: polln-postgres-data-prod
+  nginx-logs:
+    name: polln-nginx-logs
