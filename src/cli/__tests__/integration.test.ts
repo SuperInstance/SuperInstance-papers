@@ -35,10 +35,15 @@ describe('CLI Integration Tests', () => {
     try {
       // Use the full path to the dist folder from the project root
       const distPath = path.join(originalCwd, 'dist', 'cli', 'index.js');
-      return execSync(`node "${distPath}" ${args.join(' ')}`, {
+      // Properly escape arguments with spaces
+      const escapedArgs = args.map(arg => arg.includes(' ') ? `"${arg}"` : arg).join(' ');
+      // Use shell redirection to capture both stdout and stderr
+      const result = execSync(`node "${distPath}" ${escapedArgs} 2>&1`, {
         encoding: 'utf-8',
         cwd: tempDir,
+        shell: true,
       });
+      return result;
     } catch (error: any) {
       return error.stdout || error.stderr || error.message;
     }
