@@ -4,7 +4,7 @@ DeepSeek Geometry Interface for Information Geometry
 This module provides an interface to DeepSeek API for deriving rigorous
 mathematical formulations in differential geometry and information theory.
 
-API Key: your_api_key_here
+API Key: YOUR_API_KEY
 Base URL: https://api.deepseek.com
 """
 
@@ -23,7 +23,7 @@ class DeepSeekGeometer:
     rigorous mathematical formulations for information geometry concepts.
     """
 
-    def __init__(self, api_key: str = "your_api_key_here"):
+    def __init__(self, api_key: str = "YOUR_API_KEY"):
         """
         Initialize the DeepSeek geometer.
 

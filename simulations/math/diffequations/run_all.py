@@ -311,7 +311,7 @@ def main():
 
     parser = argparse.ArgumentParser(description='Run POLLN differential equations analysis')
     parser.add_argument('--api-key', type=str,
-                       default='your_api_key_here',
+                       default='YOUR_API_KEY',
                        help='DeepSeek API key')
     parser.add_argument('--max-calls', type=int, default=1000,
                        help='Maximum API calls to make')

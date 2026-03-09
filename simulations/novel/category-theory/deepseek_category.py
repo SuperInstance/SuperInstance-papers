@@ -51,7 +51,7 @@ class DeepSeekCategoryDeriver:
     formulations for various aspects of POLLN's compositional intelligence.
     """
 
-    def __init__(self, api_key: str = "your_api_key_here"):
+    def __init__(self, api_key: str = "YOUR_API_KEY"):
         """
         Initialize DeepSeek client.
 
@@ -561,4 +561,4 @@ _deriver_cache = CategoryTheoryDerivationCache()
 
 def get_deriver(api_key: Optional[str] = None) -> DeepSeekCategoryDeriver:
     """Get cached deriver instance."""
-    return DeepSeekCategoryDeriver(api_key or "your_api_key_here")
+    return DeepSeekCategoryDeriver(api_key or "YOUR_API_KEY")

@@ -13,7 +13,7 @@ import time
 class DeepSeekStatMech:
     """Interface to DeepSeek for statistical mechanics derivations"""
 
-    def __init__(self, api_key: str = "your_api_key_here"):
+    def __init__(self, api_key: str = "YOUR_API_KEY"):
         """Initialize DeepSeek client"""
         self.client = openai.OpenAI(
             api_key=api_key,

@@ -121,7 +121,7 @@ Created a comprehensive Python-based chaos theory simulation suite in `simulatio
 - **Optimal regimes**: Maximum computational capability
 
 ### 5. DeepSeek Integration
-- **API key**: your_api_key_here
+- **API key**: YOUR_API_KEY
 - **Theoretical derivations**: Rigorous mathematics
 - **Agent-specific analysis**: POLLN applications
 - **Insight generation**: Confidence-weighted recommendations
@@ -170,7 +170,7 @@ mu, x = analyzer.bifurcation_diagram_1d(
 ```python
 from deepseek_chaos import DeepSeekChaosAnalyzer
 
-analyzer = DeepSeekChaosAnalyzer(api_key="your_api_key_here")
+analyzer = DeepSeekChaosAnalyzer(api_key="YOUR_API_KEY")
 
 theory = analyzer.analyze_lyapunov_exponents(system_definition)
 print(theory['analytical_form'])

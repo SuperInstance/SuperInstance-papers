@@ -466,7 +466,7 @@ Recent Calls:
 
 # Example usage
 if __name__ == "__main__":
-    api_key = "your_api_key_here"
+    api_key = "YOUR_API_KEY"
     math_engine = DeepSeekMath(api_key)
 
     # Test with a simple concept

@@ -273,7 +273,7 @@ The suite uses DeepSeek API to derive rigorous mathematical analysis:
 
 ```python
 analyzer = DeepSeekChaosAnalyzer(
-    api_key="your_api_key_here"
+    api_key="YOUR_API_KEY"
 )
 
 # Get theoretical analysis

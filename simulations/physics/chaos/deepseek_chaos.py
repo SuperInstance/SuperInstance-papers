@@ -35,7 +35,7 @@ class DeepSeekChaosAnalyzer:
     including Lyapunov exponents, bifurcations, and attractors.
     """
 
-    def __init__(self, api_key: str = "your_api_key_here"):
+    def __init__(self, api_key: str = "YOUR_API_KEY"):
         """Initialize DeepSeek client with chaos expertise."""
         self.client = openai.OpenAI(
             api_key=api_key,
@@ -703,7 +703,7 @@ class DeepSeekAgentChaos:
     Specialized chaos analysis for agent systems.
     """
 
-    def __init__(self, api_key: str = "your_api_key_here"):
+    def __init__(self, api_key: str = "YOUR_API_KEY"):
         self.analyzer = DeepSeekChaosAnalyzer(api_key)
 
     def analyze_agent_network_dynamics(

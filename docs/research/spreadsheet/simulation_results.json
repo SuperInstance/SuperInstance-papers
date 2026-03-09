@@ -1,0 +1,252 @@
+{
+  "timestamp": "2026-03-09T00:03:46.355619",
+  "simulations": {
+    "sequential": [
+      {
+        "n_cells": 10,
+        "total_time_ms": 10.0,
+        "algo_time_ms": 0.019550323486328125
+      },
+      {
+        "n_cells": 50,
+        "total_time_ms": 50.0,
+        "algo_time_ms": 0.02384185791015625
+      },
+      {
+        "n_cells": 100,
+        "total_time_ms": 100.0,
+        "algo_time_ms": 0.030517578125
+      },
+      {
+        "n_cells": 500,
+        "total_time_ms": 500.0,
+        "algo_time_ms": 0.133514404296875
+      },
+      {
+        "n_cells": 1000,
+        "total_time_ms": 1000.0,
+        "algo_time_ms": 0.3132820129394531
+      },
+      {
+        "n_cells": 5000,
+        "total_time_ms": 5000.0,
+        "algo_time_ms": 4.189729690551758
+      },
+      {
+        "n_cells": 10000,
+        "total_time_ms": 10000.0,
+        "algo_time_ms": 9.573936462402344
+      }
+    ],
+    "parallel": {
+      "worker_scaling": [
+        {
+          "workers": 1,
+          "time_ms": 100.0,
+          "speedup": 1.0,
+          "efficiency": 100.0
+        },
+        {
+          "workers": 2,
+          "time_ms": 52.0,
+          "speedup": 1.9230769230769231,
+          "efficiency": 96.15384615384616
+        },
+        {
+          "workers": 4,
+          "time_ms": 28.0,
+          "speedup": 3.5714285714285716,
+          "efficiency": 89.28571428571429
+        },
+        {
+          "workers": 8,
+          "time_ms": 19.0,
+          "speedup": 5.2631578947368425,
+          "efficiency": 65.78947368421053
+        },
+        {
+          "workers": 16,
+          "time_ms": 16.0,
+          "speedup": 6.25,
+          "efficiency": 39.0625
+        }
+      ],
+      "scalability": [
+        {
+          "n_cells": 10,
+          "sequential_ms": 10.0,
+          "parallel_ms": 6.0,
+          "speedup": 1.6666666666666667,
+          "efficiency": 41.66666666666667
+        },
+        {
+          "n_cells": 50,
+          "sequential_ms": 50.0,
+          "parallel_ms": 15.0,
+          "speedup": 3.3333333333333335,
+          "efficiency": 83.33333333333334
+        },
+        {
+          "n_cells": 100,
+          "sequential_ms": 100.0,
+          "parallel_ms": 28.0,
+          "speedup": 3.5714285714285716,
+          "efficiency": 89.28571428571429
+        },
+        {
+          "n_cells": 500,
+          "sequential_ms": 500.0,
+          "parallel_ms": 128.0,
+          "speedup": 3.90625,
+          "efficiency": 97.65625
+        },
+        {
+          "n_cells": 1000,
+          "sequential_ms": 1000.0,
+          "parallel_ms": 253.0,
+          "speedup": 3.952569169960474,
+          "efficiency": 98.81422924901186
+        }
+      ]
+    },
+    "failure": [
+      {
+        "failure_rate": 0.001,
+        "total_failures": 0,
+        "retries": 0,
+        "permanent_failures": 0,
+        "success_rate": 1.0
+      },
+      {
+        "failure_rate": 0.005,
+        "total_failures": 4,
+        "retries": 4,
+        "permanent_failures": 0,
+        "success_rate": 1.0
+      },
+      {
+        "failure_rate": 0.01,
+        "total_failures": 8,
+        "retries": 8,
+        "permanent_failures": 0,
+        "success_rate": 1.0
+      },
+      {
+        "failure_rate": 0.02,
+        "total_failures": 20,
+        "retries": 20,
+        "permanent_failures": 0,
+        "success_rate": 1.0
+      },
+      {
+        "failure_rate": 0.05,
+        "total_failures": 59,
+        "retries": 59,
+        "permanent_failures": 0,
+        "success_rate": 1.0
+      },
+      {
+        "failure_rate": 0.1,
+        "total_failures": 114,
+        "retries": 114,
+        "permanent_failures": 0,
+        "success_rate": 1.0
+      }
+    ],
+    "overhead": [
+      {
+        "n_cells": 10,
+        "notifications": 17,
+        "dependency_checks": 33,
+        "overhead_ms": 0.203,
+        "per_cell_us": 20.3
+      },
+      {
+        "n_cells": 50,
+        "notifications": 97,
+        "dependency_checks": 193,
+        "overhead_ms": 1.163,
+        "per_cell_us": 23.259999999999998
+      },
+      {
+        "n_cells": 100,
+        "notifications": 197,
+        "dependency_checks": 393,
+        "overhead_ms": 2.363,
+        "per_cell_us": 23.63
+      },
+      {
+        "n_cells": 500,
+        "notifications": 997,
+        "dependency_checks": 1993,
+        "overhead_ms": 11.963000000000001,
+        "per_cell_us": 23.926000000000002
+      },
+      {
+        "n_cells": 1000,
+        "notifications": 1997,
+        "dependency_checks": 3993,
+        "overhead_ms": 23.962999999999997,
+        "per_cell_us": 23.962999999999997
+      },
+      {
+        "n_cells": 5000,
+        "notifications": 9997,
+        "dependency_checks": 19993,
+        "overhead_ms": 119.963,
+        "per_cell_us": 23.9926
+      },
+      {
+        "n_cells": 10000,
+        "notifications": 19997,
+        "dependency_checks": 39993,
+        "overhead_ms": 239.963,
+        "per_cell_us": 23.996299999999998
+      }
+    ],
+    "dependency": [
+      {
+        "n_cells": 10,
+        "max_depth": 6,
+        "avg_branching": 1.7,
+        "max_parallelism": 3,
+        "critical_path_ratio": 0.6
+      },
+      {
+        "n_cells": 50,
+        "max_depth": 12,
+        "avg_branching": 1.94,
+        "max_parallelism": 7,
+        "critical_path_ratio": 0.24
+      },
+      {
+        "n_cells": 100,
+        "max_depth": 14,
+        "avg_branching": 1.97,
+        "max_parallelism": 19,
+        "critical_path_ratio": 0.14
+      },
+      {
+        "n_cells": 500,
+        "max_depth": 25,
+        "avg_branching": 1.994,
+        "max_parallelism": 47,
+        "critical_path_ratio": 0.05
+      },
+      {
+        "n_cells": 1000,
+        "max_depth": 23,
+        "avg_branching": 1.997,
+        "max_parallelism": 110,
+        "critical_path_ratio": 0.023
+      },
+      {
+        "n_cells": 5000,
+        "max_depth": 32,
+        "avg_branching": 1.9994,
+        "max_parallelism": 517,
+        "critical_path_ratio": 0.0064
+      }
+    ]
+  }
+}

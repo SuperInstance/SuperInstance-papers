@@ -155,7 +155,7 @@ Detected via Poincaré maps and Floquet multipliers.
 
 ## DeepSeek Integration
 
-**API Key:** `your_api_key_here`
+**API Key:** `YOUR_API_KEY`
 **Base URL:** `https://api.deepseek.com`
 **Model:** `deepseek-chat`
 

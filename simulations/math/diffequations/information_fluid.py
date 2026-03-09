@@ -465,5 +465,5 @@ def run_simulation(api_key: Optional[str] = None,
 
 if __name__ == "__main__":
     # Run simulation
-    api_key = "your_api_key_here"
+    api_key = "YOUR_API_KEY"
     solver = run_simulation(api_key=api_key, n_steps=200, plot_results=True)

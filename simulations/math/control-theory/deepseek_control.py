@@ -34,7 +34,7 @@ class DeepSeekControlTheorist:
     to derive rigorous control-theoretic models and stability proofs.
     """
 
-    def __init__(self, api_key: str = "your_api_key_here"):
+    def __init__(self, api_key: str = "YOUR_API_KEY"):
         """
         Initialize DeepSeek client for control theory.
 

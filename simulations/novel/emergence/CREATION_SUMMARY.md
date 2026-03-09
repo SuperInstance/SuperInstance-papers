@@ -199,7 +199,7 @@ Six levels of validation ensure scientific rigor:
 
 ## DeepSeek Integration
 
-The system uses DeepSeek API (`your_api_key_here`) for:
+The system uses DeepSeek API (`YOUR_API_KEY`) for:
 
 - Creative analysis of simulation data
 - Mechanism brainstorming

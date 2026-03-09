@@ -65,7 +65,7 @@ class AutomatedDiscoveryPipeline:
     def __init__(self,
                  simulation_fn: Callable,
                  output_dir: str = "./discovery_pipeline_results",
-                 deepseek_api_key: str = "your_api_key_here"):
+                 deepseek_api_key: str = "YOUR_API_KEY"):
         self.simulation_fn = simulation_fn
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)

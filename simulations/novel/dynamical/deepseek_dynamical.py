@@ -44,7 +44,7 @@ class DeepSeekDynamicalSystems:
     mathematical frameworks for analyzing multi-agent systems as dynamical systems.
     """
 
-    def __init__(self, api_key: str = "your_api_key_here"):
+    def __init__(self, api_key: str = "YOUR_API_KEY"):
         """
         Initialize DeepSeek client.
 

@@ -230,7 +230,7 @@ Examples:
     parser.add_argument(
         "--api-key",
         type=str,
-        default="your_api_key_here",
+        default="YOUR_API_KEY",
         help="DeepSeek API key (default: from code)"
     )
 

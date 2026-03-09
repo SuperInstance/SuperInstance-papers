@@ -254,7 +254,7 @@ my_metrics = [
 
 ## DeepSeek API Configuration
 
-The system uses DeepSeek API by default with key: `your_api_key_here`
+The system uses DeepSeek API by default with key: `YOUR_API_KEY`
 
 To use your own key:
 

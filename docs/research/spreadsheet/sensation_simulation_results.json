@@ -1,0 +1,177 @@
+{
+  "timestamp": "2026-03-09 00:27:43",
+  "simulations": {
+    "network_scaling": [
+      {
+        "n_cells": 100,
+        "total_connections": 500,
+        "avg_incoming": 5.0,
+        "max_incoming": 8,
+        "load_variance": 5.0,
+        "scaling_factor": 5.0
+      },
+      {
+        "n_cells": 500,
+        "total_connections": 2500,
+        "avg_incoming": 5.0,
+        "max_incoming": 11,
+        "load_variance": 5.0,
+        "scaling_factor": 5.0
+      },
+      {
+        "n_cells": 1000,
+        "total_connections": 5000,
+        "avg_incoming": 5.0,
+        "max_incoming": 14,
+        "load_variance": 5.0,
+        "scaling_factor": 5.0
+      },
+      {
+        "n_cells": 5000,
+        "total_connections": 25000,
+        "avg_incoming": 5.0,
+        "max_incoming": 26,
+        "load_variance": 5.0,
+        "scaling_factor": 5.0
+      },
+      {
+        "n_cells": 10000,
+        "total_connections": 50000,
+        "avg_incoming": 5.0,
+        "max_incoming": 35,
+        "load_variance": 5.0,
+        "scaling_factor": 5.0
+      },
+      {
+        "n_cells": 50000,
+        "total_connections": 250000,
+        "avg_incoming": 5.0,
+        "max_incoming": 72,
+        "load_variance": 5.0,
+        "scaling_factor": 5.0
+      },
+      {
+        "n_cells": 100000,
+        "total_connections": 500000,
+        "avg_incoming": 5.0,
+        "max_incoming": 99,
+        "load_variance": 5.0,
+        "scaling_factor": 5.0
+      }
+    ],
+    "processing_load": [
+      {
+        "n_cells": 100,
+        "iterations": 100,
+        "elapsed_time": 0.04194974899291992,
+        "total_sensations": 120000,
+        "sensations_per_second": 2860565.387894288,
+        "avg_latency_ms": 0.000349581241607666
+      },
+      {
+        "n_cells": 500,
+        "iterations": 100,
+        "elapsed_time": 0.15374374389648438,
+        "total_sensations": 600000,
+        "sensations_per_second": 3902597.8215021216,
+        "avg_latency_ms": 0.0002562395731608073
+      },
+      {
+        "n_cells": 1000,
+        "iterations": 100,
+        "elapsed_time": 0.29568982124328613,
+        "total_sensations": 1200000,
+        "sensations_per_second": 4058306.758597112,
+        "avg_latency_ms": 0.0002464081843694051
+      },
+      {
+        "n_cells": 5000,
+        "iterations": 50,
+        "elapsed_time": 0.7610273361206055,
+        "total_sensations": 3000000,
+        "sensations_per_second": 3942039.7370910845,
+        "avg_latency_ms": 0.0002536757787068685
+      },
+      {
+        "n_cells": 10000,
+        "iterations": 50,
+        "elapsed_time": 1.4707508087158203,
+        "total_sensations": 6000000,
+        "sensations_per_second": 4079549.0061561647,
+        "avg_latency_ms": 0.00024512513478597005
+      }
+    ],
+    "sensation_distribution": {
+      "type_counts": {
+        "absolute": 2083,
+        "velocity": 2091,
+        "acceleration": 2056,
+        "anomaly": 2070,
+        "pattern": 2041,
+        "presence": 1659
+      },
+      "type_percentages": {
+        "absolute": 17.358333333333334,
+        "velocity": 17.424999999999997,
+        "acceleration": 17.133333333333333,
+        "anomaly": 17.25,
+        "pattern": 17.008333333333333,
+        "presence": 13.825000000000001
+      },
+      "total_sensations": 12000
+    },
+    "memory_usage": [
+      {
+        "n_cells": 100,
+        "memory_mb": 0.15000000000000002,
+        "memory_per_cell_kb": 1.5360000000000003,
+        "total_connections": 500
+      },
+      {
+        "n_cells": 500,
+        "memory_mb": 0.75,
+        "memory_per_cell_kb": 1.536,
+        "total_connections": 2500
+      },
+      {
+        "n_cells": 1000,
+        "memory_mb": 1.5,
+        "memory_per_cell_kb": 1.536,
+        "total_connections": 5000
+      },
+      {
+        "n_cells": 5000,
+        "memory_mb": 7.5,
+        "memory_per_cell_kb": 1.536,
+        "total_connections": 25000
+      },
+      {
+        "n_cells": 10000,
+        "memory_mb": 15.0,
+        "memory_per_cell_kb": 1.536,
+        "total_connections": 50000
+      },
+      {
+        "n_cells": 50000,
+        "memory_mb": 75.0,
+        "memory_per_cell_kb": 1.536,
+        "total_connections": 250000
+      },
+      {
+        "n_cells": 100000,
+        "memory_mb": 150.0,
+        "memory_per_cell_kb": 1.536,
+        "total_connections": 500000
+      }
+    ],
+    "cascade_analysis": {
+      "n_cells": 1000,
+      "top_1pct_count": 10,
+      "cascade_affected": 125,
+      "cascade_pct": 12.5,
+      "avg_incoming": 5.0,
+      "std_incoming": 2.23606797749979,
+      "coefficient_of_variation": 0.447213595499958
+    }
+  }
+}

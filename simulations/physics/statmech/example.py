@@ -179,9 +179,9 @@ def deepseek_example():
 
     import os
 
-    api_key = os.getenv("DEEPSEEK_API_KEY", "your_api_key_here")
+    api_key = os.getenv("DEEPSEEK_API_KEY", "YOUR_API_KEY")
 
-    if api_key == "your_api_key_here":
+    if api_key == "YOUR_API_KEY":
         print("Using default test API key.")
         print("Replace with your actual key for production use.\n")
 

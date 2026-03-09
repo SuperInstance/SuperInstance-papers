@@ -31,7 +31,7 @@ class DeepSeekTopologyDeriver:
         Args:
             api_key: DeepSeek API key (defaults to environment variable)
         """
-        api_key = api_key or os.getenv("DEEPSEEK_API_KEY", "your_api_key_here")
+        api_key = api_key or os.getenv("DEEPSEEK_API_KEY", "YOUR_API_KEY")
 
         self.client = openai.OpenAI(
             api_key=api_key,

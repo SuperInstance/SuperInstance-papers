@@ -37,7 +37,7 @@ class DeepSeekDiscovery:
     """
 
     def __init__(self,
-                 api_key: str = "your_api_key_here",
+                 api_key: str = "YOUR_API_KEY",
                  base_url: str = "https://api.deepseek.com",
                  output_dir: str = "./deepseek_discovery_results"):
         self.client = openai.OpenAI(api_key=api_key, base_url=base_url)

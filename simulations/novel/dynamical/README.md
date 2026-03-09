@@ -331,7 +331,7 @@ The system uses DeepSeek API to derive rigorous mathematical theory:
 import openai
 
 client = openai.OpenAI(
-    api_key="your_api_key_here",
+    api_key="YOUR_API_KEY",
     base_url="https://api.deepseek.com"
 )
 

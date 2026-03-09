@@ -40,7 +40,7 @@ class DeepSeekGameTheorist:
     - Learning dynamics proofs
     """
 
-    def __init__(self, api_key: str = "your_api_key_here"):
+    def __init__(self, api_key: str = "YOUR_API_KEY"):
         """Initialize DeepSeek client for game theory."""
         self.client = openai.OpenAI(
             api_key=api_key,
