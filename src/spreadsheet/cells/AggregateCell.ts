@@ -321,4 +321,15 @@ export class AggregateCell extends LogCell {
   getAggregateHistory(): Array<{ input: unknown; output: unknown; timestamp: number }> {
     return [...this.aggregateHistory];
   }
+
+  /**
+   * Create the processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'aggregate',
+      aggregateType: this.aggregateType,
+      logic: this.logicLevel,
+    };
+  }
 }

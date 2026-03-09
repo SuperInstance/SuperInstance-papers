@@ -10,7 +10,7 @@ export * from './OutputCell.js';
 export { OutputCell, OutputCellConfig, OutputFormat } from './OutputCell.js';
 
 export * from './TransformCell.js';
-export { TransformCell, TransformCellConfig, TransformType, from './TransformCell.js';
+export { TransformCell, TransformCellConfig, TransformType, TransformFunction } from './TransformCell.js';
 
 export * from './FilterCell.js';
 export { FilterCell, FilterCellConfig, FilterOperator, FilterCondition, FilterLogic } from './FilterCell.js';

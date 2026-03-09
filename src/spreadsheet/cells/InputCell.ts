@@ -103,7 +103,7 @@ export class InputCell extends LogCell {
       this.state = CellState.EMITTING;
 
       const duration = Date.now() - startTime;
-      this.recordExecution(value, this.currentValue, [], 1.0, duration);
+      this.updatePerformanceMetrics(true, duration);
 
       return {
         success: true,
@@ -184,6 +184,22 @@ export class InputCell extends LogCell {
    */
   protected async processInput(input: unknown): Promise<CellOutput> {
     return this.receiveInput(input);
+  }
+
+  /**
+   * Create the processing logic for InputCell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'input',
+      validate: (value: unknown) => {
+        if (this.validation) {
+          return this.validation(value);
+        }
+        return true;
+      },
+      transform: (value: unknown) => value,
+    };
   }
 }
 

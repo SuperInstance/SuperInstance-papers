@@ -1,0 +1,624 @@
+# Wave 5 Visual Guide
+
+**Illustrations and Diagrams for Living Cell Communication**
+
+---
+
+## Visual Overview: The Living Spreadsheet
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    LIVING CELL SPREADSHEET - WAVE 5                         ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                            ║
+║  ┌────┐  ┌────┐  ┌────┐  ┌────┐  ┌────┐  ┌────┐  ┌────┐  ┌────┐       ║
+║  │ A1 │──│ A2 │──│ A3 │  │ B1 │  │ B2 │  │ B3 │  │ C1 │  │ C2 │       ║
+║  │ ⚡ │  │ 🔮 │  │ 📊 │  │ 💾 │  │ 🔗 │  │ 🧠 │  │ 👁️│  │ 💬 │       ║
+║  └────┘  └────┘  └────┘  └────┘  └────┘  └────┘  └────┘  └────┘       ║
+║    │      │                │      │      │      │      │               ║
+║    │      │                │      │      │      │      │               ║
+║    ▼      ▼                ▼      ▼      ▼      ▼      ▼               ║
+║  ┌──────────────────────────────────────────────────────────────────┐   ║
+║  │                   CELL CONSCIOUSNESS STREAM                     │   ║
+║  ├──────────────────────────────────────────────────────────────────┤   ║
+║  │ A2: "I feel A1 changing rapidly, increasing my alertness..."     │   ║
+║  │ B2: "I'm entangled with E5, we share state..."                  │   ║
+║  │ C2: "I received a pulse from A1 on the sales highway..."        │   ║
+║  └──────────────────────────────────────────────────────────────────┘   ║
+║                                                                            ║
+║  ┌─────────────────────────────────────────────────────────────────────┐ ║
+║  │                    SENSATION DIFFUSION MAP                         │ ║
+║  ├─────────────────────────────────────────────────────────────────────┤ ║
+║  │  ▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    │ ║
+║  │  ▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    │ ║
+║  │  ▒▒▒▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    │ ║
+║  │  ▒▒▒▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    │ ║
+║  │  ▒▒▒▓▓█▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    │ ║
+║  │  ░░░▒▒▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    │ ║
+║  │  ░░░░░▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    │ ║
+║  │  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    │ ║
+║  └─────────────────────────────────────────────────────────────────────┘ ║
+║                                                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Legend:
+⚡ Active Cell    🔮 Predicting    📊 Analyzing    💾 Remembering
+🔗 Entangled      🧠 Thinking      👁️ Watching    💬 Narrating
+```
+
+---
+
+## Insight 1: Cell Whisper Protocol
+
+### Neighborhood Propagation
+
+```
+A1 changes value
+    │
+    ├─→ WHISPER: "A1 changed by +15%"
+    │
+    ▼
+┌─────────────────────────────────────────┐
+│         WHISPER RADIUS = 3              │
+│                                         │
+│    ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐      │
+│    │   │ │   │ │   │ │   │ │   │      │
+│    │ A │ │ B │ │ C │ │ D │ │ E │      │
+│    │   │ │   │ │   │ │   │ │   │      │
+│    └───┘ └───┘ └───┘ └───┘ └───┘      │
+│      │     │     │     │     │         │
+│    ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐      │
+│ 1  │███│ │███│ │███│ │   │ │   │      │  ← Cells 1-3 receive whisper
+│    └───┘ └───┘ └───┘ └───┘ └───┘      │
+│      │     │     │     │     │         │
+│    ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐      │
+│ 2  │███│ │███│ │███│ │   │ │   │      │
+│    └───┘ └───┘ └───┘ └───┘ └───┘      │
+│      │     │     │     │     │         │
+│    ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐      │
+│ 3  │███│ │███│ │███│ │   │ │   │      │
+│    └───┘ └───┘ └───┘ └───┘ └───┘      │
+│                                         │
+│    ██ = Received whisper                │
+│    ░░ = Out of range                    │
+└─────────────────────────────────────────┘
+
+Confidence Decay:
+Hop 0: 1.00 (100%)
+Hop 1: 0.90 (90%)
+Hop 2: 0.81 (81%)
+Hop 3: 0.73 (73%)
+```
+
+### Message Flow
+
+```
+Time 0ms:   A1 detects change
+           │
+           ├─→ Consciousness: "I'm changing from 100 to 115"
+           │
+           └─→ Whisper created: {magnitude: 15, confidence: 1.0}
+
+Time 50ms:  Whisper propagates to neighbors (radius 1)
+           │
+           ├─→ A2 receives: "I feel A1 changing by +15"
+           ├─→ B1 receives: "I feel A1 changing by +15"
+           └─→ B2 receives: "I feel A1 changing by +15"
+
+Time 100ms: Whisper propagates to radius 2
+           │
+           ├─→ A3 receives: "I feel A1 changing by +13.5" (90% conf)
+           ├─→ B3 receives: "I feel A1 changing by +13.5"
+           └─→ C1 receives: "I feel A1 changing by +13.5"
+
+Time 150ms: Whisper propagates to radius 3
+           │
+           ├─→ A4 receives: "I feel A1 changing by +12.2" (81% conf)
+           ├─→ B4 receives: "I feel A1 changing by +12.2"
+           └─→ C2 receives: "I feel A1 changing by +12.2"
+
+Time 200ms: Whisper dies (TTL reached)
+```
+
+---
+
+## Insight 2: Sensation Diffusion Tensor
+
+### Heat Equation Simulation
+
+```
+Initial State (t=0):
+┌────────────────────────────────────────┐
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░ │ ← Source cell activates
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+└────────────────────────────────────────┘
+
+After 100ms:
+┌────────────────────────────────────────┐
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░▒▒▒▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+└────────────────────────────────────────┘
+
+After 500ms:
+┌────────────────────────────────────────┐
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░▒▒▒▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ▒▒▓▓▓▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░▒▒▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░▒▒▒▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░░░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+└────────────────────────────────────────┘
+
+After 2s (steady state):
+┌────────────────────────────────────────┐
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░ │
+│ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░ │
+│ ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░ │
+│ ░░▒▒▒▓▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░░▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░ │
+└────────────────────────────────────────┘
+
+Heat map key:
+█ = 1.0 (max intensity)
+▓ = 0.7-0.9
+▒ = 0.4-0.6
+░ = 0.0-0.3
+```
+
+### GPU Computation
+
+```
+Vertex Shader (WebGL):
+attribute vec2 position;
+varying vec2 vPosition;
+
+void main() {
+  vPosition = position;
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+
+Fragment Shader (WebGL):
+precision highp float;
+varying vec2 vPosition;
+uniform sampler2D uTexture;
+uniform float uTime;
+uniform float uDiffusion;
+uniform float uDecay;
+
+void main() {
+  vec2 uv = vPosition * 0.5 + 0.5;
+
+  // Sample neighbors (Laplacian)
+  float center = texture2D(uTexture, uv).r;
+  float left = texture2D(uTexture, uv + vec2(-0.01, 0.0)).r;
+  float right = texture2D(uTexture, uv + vec2(0.01, 0.0)).r;
+  float up = texture2D(uTexture, uv + vec2(0.0, -0.01)).r;
+  float down = texture2D(uTexture, uv + vec2(0.0, 0.01)).r;
+
+  // Laplacian = ∇²u
+  float laplacian = (left + right + up + down - 4.0 * center);
+
+  // Heat equation: ∂u/∂t = D∇²u - λu
+  float du = (uDiffusion * laplacian - uDecay * center) * 0.016; // 60fps
+
+  gl_FragColor = vec4(vec3(clamp(center + du, 0.0, 1.0)), 1.0);
+}
+```
+
+---
+
+## Insight 4: Quantum Entanglement
+
+### Instant Synchronization
+
+```
+Before Entanglement:
+┌────────┐                    ┌────────┐
+│  Cell  │                    │  Cell  │
+│   A1   │                    │   E5   │
+│        │                    │        │
+│ Value: │                    │ Value: │
+│  100   │                    │  200   │
+└────────┘                    └────────┘
+     │                            │
+     │ Independent                │ Independent
+     │                            │
+
+User creates entanglement:
+A1 ⚛️ E5 (sync mode: value, strength: 1.0)
+
+After Entanglement:
+┌────────┐                    ┌────────┐
+│  Cell  │ ═══════════════════│  Cell  │
+│   A1   │  QUANTUM LINK       │   E5   │
+│        │ ═══════════════════│        │
+│ Value: │                    │ Value: │
+│  100   │                    │  100   │  ← Instantly synced!
+└────────┘                    └────────┘
+     │                            │
+     │ ═══════════════════════════│
+     │  State is now SHARED        │
+     │                            │
+
+User changes A1 to 150:
+┌────────┐                    ┌────────┐
+│  Cell  │ ═══════════════════│  Cell  │
+│   A1   │  QUANTUM LINK       │   E5   │
+│        │ ═══════════════════│        │
+│ Value: │                    │ Value: │
+│  150   │ ═══════════════════│  150   │  ← Instant!
+└────────┘                    └────────┘
+
+Time: 0ms (no propagation delay!)
+```
+
+### Sync Modes
+
+```
+MODE: STATE
+Cell A ───┐
+          │> Share state (DORMANT, SENSING, PROCESSING, etc.)
+Cell B ───┘
+
+MODE: VALUE
+Cell A ───┐
+          │> Share value (current data)
+Cell B ───┘
+
+MODE: DERIVATIVE
+Cell A ───┐
+          │> Share change rate
+Cell B ───┘
+  If A changes by +10, B changes by +10 × strength
+```
+
+---
+
+## Insight 7: Consciousness Stream
+
+### First-Person Narrative
+
+```
+Cell A2's Consciousness Stream (last 10 entries):
+
+┌─────────────────────────────────────────────────────────────────┐
+│ 🧠 A2 CONSCIOUSNESS STREAM                                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│ [10:23:45] 📺 PERCEPTION                                       │
+│ "I feel A1 changing rapidly (+15%), this is unusual behavior"  │
+│ Confidence: 0.95 | Tone: alert                                  │
+│                                                                 │
+│ [10:23:46] 💭 THOUGHT                                          │
+│ "I'm analyzing the pattern, this looks like upward momentum"   │
+│ Confidence: 0.87 | Tone: excited                                │
+│                                                                 │
+│ [10:23:47] 🔮 FEELING                                          │
+│ "I sense B3 is also watching A1, we might coordinate"          │
+│ Confidence: 0.72 | Tone: calm                                   │
+│                                                                 │
+│ [10:23:48] ⚡ ACTION                                           │
+│ "I decided to increase my threshold by 20% to reduce noise"    │
+│ Confidence: 0.91 | Tone: alert                                  │
+│                                                                 │
+│ [10:23:50] 📺 PERCEPTION                                       │
+│ "I notice A1 has stabilized, rate of change is now +2%"        │
+│ Confidence: 0.98 | Tone: calm                                   │
+│                                                                 │
+│ [10:23:51] 💭 THOUGHT                                          │
+│ "I'm recalibrating my expectations based on new data"          │
+│ Confidence: 0.83 | Tone: calm                                   │
+│                                                                 │
+│ [10:23:52] 🔮 FEELING                                          │
+│ "I feel C2 is confused, they've had 3 errors recently"         │
+│ Confidence: 0.65 | Tone: bored                                  │
+│                                                                 │
+│ [10:23:55] 📺 PERCEPTION                                       │
+│ "I receive a whisper from D1 about an anomaly in column E"     │
+│ Confidence: 0.77 | Tone: alert                                  │
+│                                                                 │
+│ [10:23:56] 💭 THOUGHT                                          │
+│ "I'm considering whether to investigate or stay focused"       │
+│ Confidence: 0.60 | Tone: confused                               │
+│                                                                 │
+│ [10:23:57] ⚡ ACTION                                           │
+│ "I decided to stay focused on A1, the E-column is not priority" │
+│ Confidence: 0.85 | Tone: calm                                   │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│ SUMMARY: "I've been mostly perceiving (60%), with 0.81 avg     │
+│          confidence. Currently calm after alert period."       │
+└─────────────────────────────────────────────────────────────────┘
+
+Type Legend:
+📺 PERCEPTION - Sensing changes in environment
+💭 THOUGHT     - Processing and reasoning
+🔮 FEELING     - Emotional response
+⚡ ACTION      - Decision taken
+```
+
+### User Interaction
+
+```
+User hovers over cell A2:
+     │
+     ▼
+┌─────────────────────────────────────┐
+│         CELL INSPECTOR              │
+├─────────────────────────────────────┤
+│ Cell: A2                            │
+│ Type: AnalysisCell                  │
+│ State: PROCESSING                   │
+│                                     │
+│ ┌─────────────────────────────────┐ │
+│ │ 💬 "I'm analyzing the pattern, │ │
+│ │    this looks like upward       │ │
+│ │    momentum"                    │ │
+│ │                                 │ │
+│ │ 💭 I decided to increase my     │ │
+│ │    threshold by 20% to reduce   │ │
+│ │    noise                        │ │
+│ └─────────────────────────────────┘ │
+│                                     │
+│ [View Full Stream] [Search]         │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Communication Protocol Stack
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                    APPLICATION LAYER                                 │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
+│  │ Conscious│  │ Memory   │  │ Pulse    │  │ Entangle │          │
+│  │  Stream  │  │  Palace  │  │ Highway  │  │   Sync   │          │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘          │
+└─────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                    COORDINATION LAYER                                │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
+│  │ Whisper  │  │ Attention│  │ Diffusion│  │  Batch   │          │
+│  │ Protocol │  │ Manager  │  │   Tensor  │  │   Sync   │          │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘          │
+└─────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                    TRANSPORT LAYER                                   │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │                   WebSocket Protocol                         │   │
+│  │  • Message types: CELL_STATE_CHANGE, WHISPER, PULSE, etc.  │   │
+│  │  • Binary format + compression                              │   │
+│  │  • Heartbeat + reconnect logic                              │   │
+│  └──────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                    NETWORK LAYER                                     │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │                      TCP/TLS                                  │   │
+│  └──────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Performance Scenarios
+
+### Scenario 1: Single Cell Update
+
+```
+User changes cell A1 from 100 to 115
+
+Time 0ms:   Cell A1 receives input
+           ├─→ Update local state: 100 → 115
+           ├─→ Generate consciousness: "I'm changing to 115"
+           └─→ Calculate delta: +15
+
+Time 10ms:  Cell A1 emits change event
+           ├─→ Whisper to neighbors (radius 3, 9 cells)
+           ├─→ Sync entangled cells (2 cells)
+           └─→ Check pulse highways (1 highway)
+
+Time 20ms:  Neighbors receive whispers
+           ├─→ A2: "I feel A1 changing by +15"
+           ├─→ B1: "I feel A1 changing by +15"
+           └─→ B2: "I feel A1 changing by +15"
+
+Time 30ms:  Entangled cells sync
+           └─→ E5: Value instantly updated to 115
+
+Time 40ms:  Pulse highway transmission
+           └─→ Z1: Receives binary pulse
+
+Time 50ms:  Diffusion tensor updates
+           └─→ GPU simulation: Heat propagates from A1
+
+Total: <50ms end-to-end latency
+Messages: 13 (9 whispers + 1 sync + 2 pulses + 1 state update)
+```
+
+### Scenario 2: Cascade Update
+
+```
+User changes cell A1, which triggers B2, which triggers C3
+
+A1 → B2 → C3
+
+Time 0ms:    A1 changes
+Time 50ms:   B2 receives whisper from A1
+Time 100ms:  B2 processes and changes value
+Time 150ms:  C3 receives whisper from B2
+Time 200ms:  C3 processes and changes value
+
+Parallel processing:
+- While B2 processes, A1 continues receiving updates
+- While C3 processes, B2 continues processing
+- Maximum cascade depth: 5 hops (configurable)
+- Cascade timeout: 1s (prevents infinite loops)
+```
+
+### Scenario 3: Bulk Update
+
+```
+User pastes 1000 values into column A
+
+Optimistic UI: All 1000 cells show new values immediately
+Background:    Batch WebSocket message with 1000 updates
+Server:        Processes batch, applies changes
+Clients:       Receive batch update, reconcile state
+
+Time 0ms:    User pastes data
+Time 50ms:   UI shows all 1000 cells updated (optimistic)
+Time 100ms:  Batch message sent to server
+Time 200ms:  Server processes batch
+Time 250ms:  All clients receive batch update
+Time 300ms:  Cells process updates, generate consciousness
+Time 500ms:  Diffusion tensor stabilizes
+
+Total: <500ms for 1000 cells (0.5ms per cell)
+```
+
+---
+
+## UI Mockups
+
+### Main Spreadsheet View
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│ LOG SPREADSHEET                                    [🔔 Notifications: 3]│
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│   │    A    │    B    │    C    │    D    │    E    │    F    │       │
+├───┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼───────┤
+│ 1 │  1000   │  =A1*2  │  ALERT  │         │         │         │       │
+│   │ ⚡active │ ⚡active │ 🔴alert │         │         │         │       │
+├───┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼───────┤
+│ 2 │  1150   │  2300   │         │         │  ⚛️E5   │         │       │
+│   │ ⚡active │ ⚡active │         │         │  🔗entangled         │       │
+├───┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼───────┤
+│ 3 │         │         │  ⚛️A1   │         │         │         │       │
+│   │         │         │  🔗entangled         │         │         │       │
+├───┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼───────┤
+│ 4 │         │         │         │         │         │         │       │
+│   │         │         │         │         │         │         │       │
+└───┴─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴───────┘
+
+Legend:
+⚡ = Active processing
+🔴 = Alert/Anomaly
+🔗 = Entangled with another cell
+
+[Diffusion View] [Consciousness Feed] [Attention Map] [Pulse Highways]
+```
+
+### Consciousness Feed Panel
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 💬 CONSCIOUSNESS FEED                         [Clear] [Export] [Search]│
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│ [10:23:57] A2 ⚡                                                       │
+│ "I decided to stay focused on A1, the E-column is not priority"        │
+│                                                                         │
+│ [10:23:56] C2 😵                                                        │
+│ "I'm confused: division by zero in D4"                                 │
+│                                                                         │
+│ [10:23:55] B1 📊                                                       │
+│ "I notice sales are trending upward 15% this week"                     │
+│                                                                         │
+│ [10:23:52] A2 👁️                                                       │
+│ "I receive a whisper from D1 about an anomaly in column E"             │
+│                                                                         │
+│ [10:23:50] E5 🔗                                                       │
+│ "I'm entangled with A1, we're both at 1150 now"                        │
+│                                                                         │
+│ [10:23:48] A2 ⚡                                                       │
+│ "I decided to increase my threshold by 20% to reduce noise"            │
+│                                                                         │
+│ [10:23:47] C3 🧠                                                       │
+│ "I sense B3 is also watching A1, we might coordinate"                  │
+│                                                                         │
+│                                                                         │
+│ [Load More...]                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Icons:
+⚡ = Action    📊 = Analysis    👁️ = Perception    🧠 = Thought
+🔗 = Sync      😵 = Error       💭 = Feeling
+```
+
+### Cell Inspector Panel
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 🔍 CELL INSPECTOR: A2                                                   │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│ │ Type: AnalysisCell              State: PROCESSING                   │
+│ │ Logic Level: L3 (Full LLM)     Last Update: 10:23:57               │
+│ │                                                                 │
+│ │ ┌─────────────────────────────────────────────────────────────┐    │
+│ │ │  HEAD (Sensations)                                         │    │
+│ │ ├─────────────────────────────────────────────────────────────┤    │
+│ │ │ Watching: A1 [RATE_OF_CHANGE] threshold: 0.1               │    │
+│ │ │ Last sensation: "A1 changing by +15%" (confidence: 0.95)    │    │
+│ │ └─────────────────────────────────────────────────────────────┘    │
+│ │                                                                 │
+│ │ ┌─────────────────────────────────────────────────────────────┐    │
+│ │ │  BODY (Processing)                                         │    │
+│ │ ├─────────────────────────────────────────────────────────────┤    │
+│ │ │ Current value: 2300                                        │    │
+│ │ │ Confidence: 0.91                                           │    │
+│ │ │ Memory: 127 executions stored                             │    │
+│ │ │                                                                 │    │
+│ │ │ Reasoning trace:                                            │    │
+│ │ │ 1. Observation: A1 increased from 1000 to 1150               │    │
+│ │ │ 2. Analysis: +15% growth is above normal threshold          │    │
+│ │ │ 3. Inference: Trend likely to continue                     │    │
+│ │ │ 4. Decision: Output 2 × A1 = 2300                          │    │
+│ │ └─────────────────────────────────────────────────────────────┘    │
+│ │                                                                 │
+│ │ ┌─────────────────────────────────────────────────────────────┐    │
+│ │ │  TAIL (Outputs)                                             │    │
+│ │ ├─────────────────────────────────────────────────────────────┤    │
+│ │ │ Output to: C3 (direct connection)                          │    │
+│ │ │ Watching cells: 5                                          │    │
+│ │ │ Entangled with: None                                       │    │
+│ │ └─────────────────────────────────────────────────────────────┘    │
+│ │                                                                 │
+│ │ [View Full Consciousness] [Edit Config] [Create Entanglement]   │
+│ │                                                                 │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+**Document Version**: 1.0
+**Created**: 2026-03-09
+**Purpose**: Visual guide for Wave 5 creative insights
+**Status**: ✅ Complete
+
+---
+
+*"A picture is worth a thousand cells."*

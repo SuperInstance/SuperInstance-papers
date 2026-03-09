@@ -1,0 +1,146 @@
+{
+  "timestamp": "2026-03-09T09:49:43.333078",
+  "simulation_time": 118.24843120574951,
+  "websocket": [
+    {
+      "scenario": "1,000 cells",
+      "num_cells": 1000,
+      "connect_time": 0.012833118438720703,
+      "connection_rate": 77923.38275182997,
+      "propagation_time": 0.001961946487426758,
+      "message_rate": 509697.8976789403,
+      "broadcast_time": 0.0016946792602539062,
+      "broadcast_rate": 590082.1609454136,
+      "avg_latency_ms": 0.0015993118286132812,
+      "p99_latency_ms": 0.0021457672119140625
+    },
+    {
+      "scenario": "5,000 cells",
+      "num_cells": 5000,
+      "connect_time": 0.04145026206970215,
+      "connection_rate": 120626.49909407264,
+      "propagation_time": 0.0022203922271728516,
+      "message_rate": 450370.8794158703,
+      "broadcast_time": 0.009079456329345703,
+      "broadcast_rate": 550693.7660837141,
+      "avg_latency_ms": 0.0015811324119567871,
+      "p99_latency_ms": 0.0026226043701171875
+    },
+    {
+      "scenario": "10,000 cells",
+      "num_cells": 10000,
+      "connect_time": 0.1048440933227539,
+      "connection_rate": 95379.7174745536,
+      "propagation_time": 0.0023224353790283203,
+      "message_rate": 430582.48639770044,
+      "broadcast_time": 0.021083354949951172,
+      "broadcast_rate": 474307.81409024086,
+      "avg_latency_ms": 0.0016048832943564967,
+      "p99_latency_ms": 0.002384185791015625
+    },
+    {
+      "scenario": "15,000 cells (stress test)",
+      "num_cells": 15000,
+      "connect_time": 0.1410384178161621,
+      "connection_rate": 106354.00079113121,
+      "propagation_time": 0.0025932788848876953,
+      "message_rate": 385612.20924887375,
+      "broadcast_time": 0.030784130096435547,
+      "broadcast_rate": 487264.05303675705,
+      "avg_latency_ms": 0.001585517610822405,
+      "p99_latency_ms": 0.002384185791015625
+    }
+  ],
+  "database": [
+    {
+      "backend": "redis",
+      "write_rate": 6018.252032555321,
+      "read_rate": 80.43234872723883,
+      "query_rate": 124.97389861698426,
+      "avg_read_ms": 12.021199789914217,
+      "avg_write_ms": 16.437907218933105,
+      "p95_read_ms": 17.334234714508057,
+      "p95_write_ms": 18.20310354232788
+    },
+    {
+      "backend": "mongodb",
+      "write_rate": 921.7022355900136,
+      "read_rate": 98.69622883723491,
+      "query_rate": 87.41701040070312,
+      "avg_read_ms": 10.24274002421986,
+      "avg_write_ms": 108.1945538520813,
+      "p95_read_ms": 16.730928421020508,
+      "p95_write_ms": 116.79964065551758
+    },
+    {
+      "backend": "postgresql",
+      "write_rate": 197.39844413201317,
+      "read_rate": 62.903817286083886,
+      "query_rate": 75.03601700335312,
+      "avg_read_ms": 15.650701306082984,
+      "avg_write_ms": 506.30918741226196,
+      "p95_read_ms": 18.32413673400879,
+      "p95_write_ms": 515.5770063400269
+    }
+  ],
+  "synchronization": [
+    {
+      "lock_type": "optimistic",
+      "single_rate": 416266.77252878126,
+      "concurrent_rate": 188381.04648551537,
+      "batch_rate": 169050.17935593083,
+      "conflicts": 0,
+      "resolutions": 0,
+      "avg_sync_ms": 0.0019113222757975263,
+      "p95_sync_ms": 0.0021457672119140625
+    },
+    {
+      "lock_type": "pessimistic",
+      "single_rate": 81.31324280559365,
+      "concurrent_rate": 13085.935355048046,
+      "batch_rate": 52270.02978452949,
+      "conflicts": 0,
+      "resolutions": 0,
+      "avg_sync_ms": 7.401867389678955,
+      "p95_sync_ms": 16.145992279052734
+    }
+  ],
+  "sensation": [
+    {
+      "num_cells": 1000,
+      "propagation_rate": 318959.38346725947,
+      "lookup_rate": 54407.88688545855,
+      "avg_propagation_ms": 0.1325194040934245,
+      "p95_propagation_ms": 0.16400814056396484,
+      "avg_lookup_ms": 0.027148907001201924,
+      "p95_lookup_ms": 0.06747245788574219
+    },
+    {
+      "num_cells": 5000,
+      "propagation_rate": 422414.71511372266,
+      "lookup_rate": 35608.31989133203,
+      "avg_propagation_ms": 0.46352148056030273,
+      "p95_propagation_ms": 0.745391845703125,
+      "avg_lookup_ms": 0.03527901389382102,
+      "p95_lookup_ms": 0.11658668518066406
+    },
+    {
+      "num_cells": 10000,
+      "propagation_rate": 461931.7153988446,
+      "lookup_rate": 24253.9249304644,
+      "avg_propagation_ms": 0.8941435813903809,
+      "p95_propagation_ms": 1.0900259017944336,
+      "avg_lookup_ms": 0.05718187852339311,
+      "p95_lookup_ms": 0.2287745475769043
+    }
+  ],
+  "insights": [
+    "1. HYBRID DATABASE ARCHITECTURE: Use Redis for hot cell state (sub-ms), MongoDB for warm data (ms), PostgreSQL for cold storage.",
+    "2. ADAPTIVE LOCKING: Start with optimistic locking, auto-switch to pessimistic when conflict rate exceeds 5%.",
+    "3. SPATIAL INDEXING: Grid-based spatial index enables O(1) neighborhood lookups for sensation propagation.",
+    "4. BATCH PROPAGATION: Process sensations in batches of 100-1000 to amortize overhead.",
+    "5. TIERED CACHING: L1 (in-memory) -> L2 (Redis) -> L3 (MongoDB) -> L4 (PostgreSQL).",
+    "6. CASCADE CONTROL: Use TTL (3-5 hops) + damping (0.8 per hop) to prevent runaway cascades.",
+    "7. WEBSOCKET POOLING: Use connection pooling and multiplexing for 10k+ concurrent connections."
+  ]
+}

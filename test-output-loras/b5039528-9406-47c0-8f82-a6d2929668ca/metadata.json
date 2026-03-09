@@ -1,0 +1,17 @@
+{
+  "id": "b5039528-9406-47c0-8f82-a6d2929668ca",
+  "name": "Distilled test-list",
+  "description": "LoRA adapter for test-list",
+  "baseModel": "base-1b",
+  "rank": 4,
+  "alpha": 1,
+  "expertise": [
+    "test-list"
+  ],
+  "compatibleWith": [],
+  "conflictsWith": [],
+  "trainingDataSize": 2,
+  "trainingDomain": "test-list",
+  "trainingDate": 1773054210431,
+  "version": "1.0.0"
+}

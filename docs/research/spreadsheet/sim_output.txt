@@ -1,0 +1,62 @@
+================================================================================
+SENSATION SYSTEM NETWORK SCALING SIMULATIONS
+================================================================================
+
+[1/5] Running Network Scaling Simulation...
+      100 cells | Connections:     500 | Avg In:  5.00 | Max In:  11 | Scale: 5.00x
+      500 cells | Connections:   2,500 | Avg In:  5.00 | Max In:  14 | Scale: 5.00x
+    1,000 cells | Connections:   5,000 | Avg In:  5.00 | Max In:  16 | Scale: 5.00x
+    5,000 cells | Connections:  25,000 | Avg In:  5.00 | Max In:  15 | Scale: 5.00x
+   10,000 cells | Connections:  50,000 | Avg In:  5.00 | Max In:  15 | Scale: 5.00x
+   50,000 cells | Connections: 250,000 | Avg In:  5.00 | Max In:  18 | Scale: 5.00x
+  100,000 cells | Connections: 500,000 | Avg In:  5.00 | Max In:  18 | Scale: 5.00x
+
+[2/5] Running Processing Load Simulation...
+    100 cells |     56,511 sens/sec | Latency:  0.018ms
+    500 cells |     52,859 sens/sec | Latency:  0.019ms
+  1,000 cells |     52,301 sens/sec | Latency:  0.019ms
+  5,000 cells |     95,691 sens/sec | Latency:  0.010ms
+  10,000 cells |    119,389 sens/sec | Latency:  0.008ms
+
+[3/5] Running Sensation Distribution Simulation...
+  absolute    :  2,105 ( 16.7%)
+  velocity    :  2,130 ( 16.9%)
+  acceleration:  2,094 ( 16.6%)
+  anomaly     :  2,083 ( 16.5%)
+  pattern     :  2,099 ( 16.6%)
+  presence    :  2,116 ( 16.8%)
+
+[4/5] Running Memory Estimation Simulation...
+      100 cells | Memory:    0.15 MB | Per Cell:   1.54 KB
+      500 cells | Memory:    0.75 MB | Per Cell:   1.54 KB
+    1,000 cells | Memory:    1.50 MB | Per Cell:   1.54 KB
+    5,000 cells | Memory:    7.50 MB | Per Cell:   1.54 KB
+   10,000 cells | Memory:   15.00 MB | Per Cell:   1.54 KB
+   50,000 cells | Memory:   75.00 MB | Per Cell:   1.54 KB
+  100,000 cells | Memory:  150.00 MB | Per Cell:   1.54 KB
+
+[5/5] Running Cascade Analysis Simulation...
+  Top 10 Most Watched Cells:
+     1. Cell  102:  12 watchers (  1.2%)
+     2. Cell  174:  12 watchers (  1.2%)
+     3. Cell  575:  12 watchers (  1.2%)
+     4. Cell  793:  12 watchers (  1.2%)
+     5. Cell  857:  12 watchers (  1.2%)
+     6. Cell  759:  11 watchers (  1.1%)
+     7. Cell  876:  11 watchers (  1.1%)
+     8. Cell    1:  10 watchers (  1.0%)
+     9. Cell  118:  10 watchers (  1.0%)
+    10. Cell  206:  10 watchers (  1.0%)
+Traceback (most recent call last):
+  File "C:\Users\casey\polln\docs\research\spreadsheet\run_sensation_sims.py", line 316, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\casey\polln\docs\research\spreadsheet\run_sensation_sims.py", line 277, in main
+    print(f"  Cascade Risk: Top 1% ({top_1_pct} cells) \u2192 {len(affected)} cells affected "
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          f"({cascade_results['cascade_pct']:.1f}%)")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 34: character maps to <undefined>

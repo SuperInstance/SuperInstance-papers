@@ -1,0 +1,17 @@
+{
+  "id": "17b81936-d532-4c1e-ab1b-88950cbe38c8",
+  "name": "Distilled test",
+  "description": "LoRA adapter for test",
+  "baseModel": "base-1b",
+  "rank": 4,
+  "alpha": 1,
+  "expertise": [
+    "test"
+  ],
+  "compatibleWith": [],
+  "conflictsWith": [],
+  "trainingDataSize": 3,
+  "trainingDomain": "test",
+  "trainingDate": 1773036742339,
+  "version": "1.0.0"
+}
