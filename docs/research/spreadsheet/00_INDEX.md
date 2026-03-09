@@ -318,6 +318,8 @@ This directory contains comprehensive research and planning for POLLN's spreadsh
 | CONFIDENCE_SCORING_SPECS.md | ✅ Complete | 2026-03-08 |
 | CONFIDENCE_SCORING_SUMMARY.md | ✅ Complete | 2026-03-08 |
 | REASONING_EXTRACTION_SPECS.md | ✅ Complete | 2026-03-08 |
+| BREAKDOWN_R2_MODEL_CASCADE.md | ✅ Complete | 2026-03-08 |
+| BREAKDOWN_R2_TRANSFORMER_LAYERS.md | ✅ Complete | 2026-03-08 |
 | 00_INDEX.md | ✅ Complete | 2026-03-08 |
 
 ---
@@ -366,3 +368,38 @@ This directory contains comprehensive research and planning for POLLN's spreadsh
 - Visualization (Mermaid diagrams, D3.js, HTML tables, text trees)
 - Real-world examples (spreadsheet debugging, data analysis, multi-step reasoning)
 - 12-week implementation roadmap
+
+### 🔄 Model Cascade Architecture (BREAKDOWN ENGINE ROUND 2)
+
+**Implementing cost-optimized multi-level intelligence? Start here:**
+1. [BREAKDOWN_R2_MODEL_CASCADE.md](./BREAKDOWN_R2_MODEL_CASCADE.md) ⭐ Complete cascade specification
+
+**Model cascade documentation includes:**
+- 5-level hierarchy (Oracle → Expert → Specialist → Worker → Logic)
+- Distillation trigger algorithms (when to spawn smaller models)
+- Verification protocols (spot, threshold, ensemble verification)
+- Fallback mechanisms (graceful degradation with 7-level fallback chain)
+- Cost optimization strategies (intelligent routing, batching, caching)
+- Integration with logic levels (0-3 cell intelligence mapping)
+- TypeScript interfaces (complete type definitions)
+- Real-world examples (financial forecasting, code review, summarization)
+- 14-week implementation roadmap
+- 70-98% cost reduction with maintained quality
+
+### 🔬 Transformer Layer to Cell Mapping (BREAKDOWN ENGINE ROUND 2)
+
+**Reverse-engineering transformers into inspectable cells? Start here:**
+1. [BREAKDOWN_R2_TRANSFORMER_LAYERS.md](./BREAKDOWN_R2_TRANSFORMER_LAYERS.md) ⭐ Complete decomposition specification
+
+**Transformer layer documentation includes:**
+- Layer-wise decomposition algorithm (systematic breakdown)
+- Attention head to cell mapping (8 head types: positional, syntactic, semantic, coreference, QA, induction, subsequent, delimiter)
+- FFN to logic mapping (key-value memory interpretation: facts, patterns, transformations)
+- Residual stream tracking (information flow visualization)
+- Complete type system (50+ TypeScript interfaces)
+- Integration with AgentCell system (mapping transformer components)
+- Real-world architectures (GPT-3, BERT, T5, LLaMA 2 decomposition examples)
+- Implementation examples (syntax parser, knowledge retriever, residual flow tracking)
+- Expected cell counts (GPT-2: ~37K cells, GPT-3: ~4.7M cells, LLaMA 2: ~2.2M cells)
+- 8-week implementation roadmap
+- "Fracturing the 4th wall of AI" - reverse engineering black boxes into glass boxes
