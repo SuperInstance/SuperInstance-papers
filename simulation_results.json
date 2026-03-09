@@ -1,0 +1,118 @@
+{
+  "network_scaling": [
+    {
+      "n_cells": 100,
+      "total_connections": 500,
+      "total_sensation_links": 1226,
+      "avg_incoming": 5.0,
+      "max_incoming": 10,
+      "load_variance": 4.94,
+      "scaling_factor": 5.0
+    },
+    {
+      "n_cells": 500,
+      "total_connections": 2500,
+      "total_sensation_links": 6167,
+      "avg_incoming": 5.0,
+      "max_incoming": 13,
+      "load_variance": 4.968,
+      "scaling_factor": 5.0
+    },
+    {
+      "n_cells": 1000,
+      "total_connections": 5000,
+      "total_sensation_links": 12745,
+      "avg_incoming": 5.0,
+      "max_incoming": 14,
+      "load_variance": 5.246,
+      "scaling_factor": 5.0
+    },
+    {
+      "n_cells": 5000,
+      "total_connections": 25000,
+      "total_sensation_links": 62483,
+      "avg_incoming": 5.0,
+      "max_incoming": 14,
+      "load_variance": 4.9664,
+      "scaling_factor": 5.0
+    },
+    {
+      "n_cells": 10000,
+      "total_connections": 50000,
+      "total_sensation_links": 125585,
+      "avg_incoming": 5.0,
+      "max_incoming": 15,
+      "load_variance": 4.91,
+      "scaling_factor": 5.0
+    },
+    {
+      "n_cells": 50000,
+      "total_connections": 250000,
+      "total_sensation_links": 625037,
+      "avg_incoming": 5.0,
+      "max_incoming": 16,
+      "load_variance": 5.00312,
+      "scaling_factor": 5.0
+    },
+    {
+      "n_cells": 100000,
+      "total_connections": 500000,
+      "total_sensation_links": 1249402,
+      "avg_incoming": 5.0,
+      "max_incoming": 20,
+      "load_variance": 4.9964,
+      "scaling_factor": 5.0
+    }
+  ],
+  "processing_load": [
+    {
+      "elapsed_time": 3.6979031562805176,
+      "total_sensations": 125500,
+      "sensations_per_second": 33938.15216248993,
+      "avg_latency_ms": 0.029465363795063884,
+      "n_cells": 100,
+      "iterations": 100
+    },
+    {
+      "elapsed_time": 19.922593593597412,
+      "total_sensations": 627700,
+      "sensations_per_second": 31506.94195768396,
+      "avg_latency_ms": 0.03173903710944306,
+      "n_cells": 500,
+      "iterations": 100
+    },
+    {
+      "elapsed_time": 33.87283992767334,
+      "total_sensations": 1240000,
+      "sensations_per_second": 36607.50036453094,
+      "avg_latency_ms": 0.027316806393284952,
+      "n_cells": 1000,
+      "iterations": 100
+    },
+    {
+      "elapsed_time": 73.34836316108704,
+      "total_sensations": 3122750,
+      "sensations_per_second": 42574.22886372861,
+      "avg_latency_ms": 0.02348838785080043,
+      "n_cells": 5000,
+      "iterations": 50
+    },
+    {
+      "elapsed_time": 112.12353086471558,
+      "total_sensations": 6242100,
+      "sensations_per_second": 55671.63245627276,
+      "avg_latency_ms": 0.01796246949980224,
+      "n_cells": 10000,
+      "iterations": 50
+    }
+  ],
+  "sensation_distribution": {
+    "type_counts": {
+      "acceleration": 2074,
+      "pattern": 2093,
+      "anomaly": 2049,
+      "absolute": 1973,
+      "velocity": 2027,
+      "presence": 2160
+    },
+    "type_pairs": {

@@ -719,4 +719,15 @@ export class PredictionCell extends LogCell {
   getPredictionHistory(): PredictionResult[] {
     return [...this.predictionHistory];
   }
+
+  /**
+   * Create the processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'prediction',
+      predictionType: this.predictionType,
+      logic: this.logicLevel,
+    };
+  }
 }

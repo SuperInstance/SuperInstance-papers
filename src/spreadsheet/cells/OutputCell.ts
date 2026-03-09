@@ -6,7 +6,16 @@
  */
 
 import { LogCell, LogCellConfig } from '../core/LogCell.js';
-import { CellType, CellState, LogicLevel, CellOutput } from '../core/types.js';
+import {
+  CellType,
+  CellState,
+  LogicLevel,
+  CellOutput,
+  Feedback,
+  ProcessingContext,
+  ProcessingResult,
+  ReasoningStepType,
+} from '../core/types.js';
 
 /**
  * Output format options
@@ -46,6 +55,7 @@ export class OutputCell extends LogCell {
   private description?: string;
   private currentValue: unknown;
   private outputHistory: Array<{ value: unknown; formatted: unknown; timestamp: number }> = [];
+  private memoryLimit: number;
 
   constructor(config: OutputCellConfig) {
     super({
@@ -58,12 +68,20 @@ export class OutputCell extends LogCell {
     this.outputFormat = config.outputFormat || OutputFormat.RAW;
     this.label = config.label;
     this.description = config.description;
+    this.memoryLimit = config.memoryLimit || 100;
   }
 
   /**
    * Set the output value
+   * Internal method that handles the actual formatting and storage
    */
-  async setValue(value: unknown): Promise<CellOutput> {
+  private async setValueInternal(value: unknown): Promise<{
+    success: boolean;
+    value: unknown;
+    error?: string;
+    timestamp: number;
+    duration: number;
+  }> {
     const startTime = Date.now();
     this.state = CellState.PROCESSING;
 
@@ -101,6 +119,7 @@ export class OutputCell extends LogCell {
         value: null,
         error: this.lastError.message,
         timestamp: Date.now(),
+        duration: Date.now() - startTime,
       };
     }
   }
@@ -270,5 +289,134 @@ export class OutputCell extends LogCell {
     this.currentValue = undefined;
     this.outputHistory = [];
     this.state = CellState.DORMANT;
+  }
+
+  // ========================================================================
+  // Abstract Method Implementations
+  // ========================================================================
+
+  /**
+   * Activate the cell
+   */
+  async activate(): Promise<void> {
+    this.transitionTo(CellState.SENSING);
+  }
+
+  /**
+   * Process input and produce output
+   */
+  async process(input: unknown): Promise<CellOutput> {
+    const result = await this.setValueInternal(input);
+
+    return {
+      value: result.value,
+      confidence: result.success ? 1.0 : 0,
+      explanation: result.success ? 'Output formatted successfully' : result.error || 'Unknown error',
+      trace: {
+        steps: [],
+        dependencies: [],
+        confidence: result.success ? 1.0 : 0,
+        totalTime: result.duration,
+        startTime: result.timestamp,
+        endTime: result.timestamp + result.duration,
+      },
+      effects: [],
+    };
+  }
+
+  /**
+   * Learn from feedback
+   * L0 logic: No learning capability for OutputCell
+   */
+  async learn(feedback: Feedback): Promise<void> {
+    // OutputCell is L0 - no learning
+    // Just acknowledge the feedback was received
+    this.transitionTo(CellState.DORMANT);
+  }
+
+  /**
+   * Deactivate the cell
+   */
+  async deactivate(): Promise<void> {
+    this.transitionTo(CellState.DORMANT);
+  }
+
+  /**
+   * Execute processing logic
+   */
+  protected async executeProcessing(
+    input: unknown,
+    context: ProcessingContext
+  ): Promise<ProcessingResult> {
+    const result = await this.setValueInternal(input);
+
+    return {
+      value: result.value,
+      confidence: result.success ? 1.0 : 0,
+      explanation: result.success ? 'Output formatted successfully' : result.error || 'Unknown error',
+      trace: {
+        steps: [
+          {
+            id: `step-${Date.now()}`,
+            type: ReasoningStepType.VALIDATION,
+            description: `Format output as ${this.outputFormat}`,
+            input,
+            output: result.value,
+            confidence: result.success ? 1.0 : 0,
+            duration: result.duration,
+            timestamp: result.timestamp,
+            dependencies: [],
+          },
+        ],
+        dependencies: [],
+        confidence: result.success ? 1.0 : 0,
+        totalTime: result.duration,
+        startTime: result.timestamp,
+        endTime: result.timestamp + result.duration,
+      },
+    };
+  }
+
+  // ========================================================================
+  // Factory Method Implementations
+  // ========================================================================
+
+  /**
+   * Create the processing logic for OutputCell
+   *
+   * OutputCell handles output generation and formatting.
+   * It supports multiple output formats (json, csv, table, raw).
+   * It returns formatted output to downstream cells or display components,
+   * or data export.
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'output',
+      format: (value: unknown, format: string): unknown => {
+        switch (format) {
+          case 'json':
+            return JSON.stringify(value, null, 2);
+          case 'csv':
+            return this.toCSV(value);
+          case 'table':
+            return this.toTable(value);
+          case 'chart':
+            return this.toChartData(value);
+          case 'report':
+            return this.toReport(value);
+          case 'raw':
+          default:
+            return value;
+        }
+      },
+      validate: (value: unknown): boolean => {
+        // L0 logic: Basic validation for output
+        return value !== null && value !== undefined;
+      },
+      transform: (value: unknown): unknown => {
+        // L0 logic: No transformation needed for output
+        return value;
+      },
+    };
   }
 }

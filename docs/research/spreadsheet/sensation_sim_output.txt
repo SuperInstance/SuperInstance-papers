@@ -1,0 +1,36 @@
+======================================================================
+LOG CELL NETWORK SCALING SIMULATIONS
+======================================================================
+Running Simulation 1: Network Scaling...
+  100 cells: 500 connections, scaling=5.00x
+  500 cells: 2500 connections, scaling=5.00x
+  1,000 cells: 5000 connections, scaling=5.00x
+  5,000 cells: 25000 connections, scaling=5.00x
+  10,000 cells: 50000 connections, scaling=5.00x
+  50,000 cells: 250000 connections, scaling=5.00x
+  100,000 cells: 500000 connections, scaling=5.00x
+
+Running Simulation 2: Processing Load...
+  100 cells: 57,893 sensations/sec
+  500 cells: 49,513 sensations/sec
+  1,000 cells: 55,478 sensations/sec
+  5,000 cells: 61,018 sensations/sec
+  10,000 cells: 60,878 sensations/sec
+
+Running Simulation 3: Sensation Distribution...
+  Distribution: {'pattern': 2115, 'absolute': 2107, 'presence': 2027, 'velocity': 2092, 'acceleration': 2011, 'anomaly': 2063}
+
+Running Simulation 4: Memory Estimation...
+  100 cells: 0.15 MB
+  500 cells: 0.75 MB
+  1,000 cells: 1.50 MB
+  5,000 cells: 7.50 MB
+  10,000 cells: 15.00 MB
+  50,000 cells: 75.00 MB
+  100,000 cells: 150.00 MB
+
+Running Simulation 5: Cascade Analysis...
+  Top 1% failure affects 12.0% of cells
+
+Results saved to C:/Users/casey/polln/docs/research/spreadsheet/simulation_results.json
+======================================================================

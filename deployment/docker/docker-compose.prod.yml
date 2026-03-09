@@ -1,0 +1,133 @@
+# POLLN Production Docker Compose
+# Production-optimized configuration
+# For production, use Kubernetes instead
+
+version: '3.9'
+
+services:
+  # ==========================================================================
+  # POLLN API Server (Production)
+  # ==========================================================================
+  api:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile
+      target: production
+    image: polln/polln:latest
+    container_name: polln-api-prod
+    hostname: api
+    ports:
+      - "3000:3000"
+      - "9464:9464"
+    environment:
+      - NODE_ENV=production
+      - POLLN_API_PORT=3000
+      - POLLN_API_HOST=0.0.0.0
+      - POLLN_AUTH_ENABLED=true
+      - POLLN_RATE_LIMIT_RPM=100
+      - POLLN_LOG_LEVEL=info
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    volumes:
+      - polln-data:/app/.polln
+      - polln-agents:/app/.agents
+      - polln-logs:/app/logs
+    networks:
+      - polln-network
+    restart: always
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 30s
+        failure_action: rollback
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  # ==========================================================================
+  # Nginx Reverse Proxy
+  # ==========================================================================
+  nginx:
+    image: nginx:alpine
+    container_name: polln-nginx-prod
+    hostname: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx-logs:/var/log/nginx
+    networks:
+      - polln-network
+    restart: always
+    depends_on:
+      - api
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+networks:
+  polln-network:
+    driver: bridge
+    name: polln-prod-network
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+
+volumes:
+  polln-data:
+    name: polln-data-prod
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/polln/data
+  polln-agents:
+    name: polln-agents-prod
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/polln/agents
+  polln-logs:
+    name: polln-logs-prod
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/polln/logs
+  nginx-logs:
+    name: polln-nginx-logs-prod
+    driver: local

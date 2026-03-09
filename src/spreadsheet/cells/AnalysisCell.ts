@@ -890,3 +890,13 @@ export class AnalysisCell extends LogCell {
     return [...this.analysisHistory];
   }
 }
+  /**
+   * Create the processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'analysis',
+      logic: this.logicLevel,
+    };
+  }
+}

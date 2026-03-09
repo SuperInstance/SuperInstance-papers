@@ -324,4 +324,15 @@ export class FilterCell extends LogCell {
   getConditions(): FilterCondition[] {
     return [...this.conditions];
   }
-}
+
+  /**
+   * Create the processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'filter',
+      conditions: this.conditions,
+      logic: this.logicLevel,
+    };
+  }
+

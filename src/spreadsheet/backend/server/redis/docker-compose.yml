@@ -1,0 +1,193 @@
+version: '3.8'
+
+services:
+  # Primary Redis instance
+  redis-primary:
+    image: redis:7.2-alpine
+    container_name: polln-redis-primary
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis-primary.conf:/usr/local/etc/redis/redis.conf
+      - redis-primary-data:/data
+    networks:
+      - redis-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  # Redis Replicas
+  redis-replica-1:
+    image: redis:7.2-alpine
+    container_name: polln-redis-replica-1
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6380:6379"
+    volumes:
+      - ./redis-replica.conf:/usr/local/etc/redis/redis.conf
+      - redis-replica-1-data:/data
+    networks:
+      - redis-net
+    depends_on:
+      - redis-primary
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  redis-replica-2:
+    image: redis:7.2-alpine
+    container_name: polln-redis-replica-2
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6381:6379"
+    volumes:
+      - ./redis-replica.conf:/usr/local/etc/redis/redis.conf
+      - redis-replica-2-data:/data
+    networks:
+      - redis-net
+    depends_on:
+      - redis-primary
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  # Redis Sentinel
+  redis-sentinel-1:
+    image: redis:7.2-alpine
+    container_name: polln-redis-sentinel-1
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    ports:
+      - "26379:26379"
+    volumes:
+      - ./redis-sentinel.conf:/usr/local/etc/redis/sentinel.conf
+    networks:
+      - redis-net
+    depends_on:
+      - redis-primary
+    restart: unless-stopped
+
+  redis-sentinel-2:
+    image: redis:7.2-alpine
+    container_name: polln-redis-sentinel-2
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    ports:
+      - "26380:26379"
+    volumes:
+      - ./redis-sentinel.conf:/usr/local/etc/redis/sentinel.conf
+    networks:
+      - redis-net
+    depends_on:
+      - redis-primary
+    restart: unless-stopped
+
+  redis-sentinel-3:
+    image: redis:7.2-alpine
+    container_name: polln-redis-sentinel-3
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    ports:
+      - "26381:26379"
+    volumes:
+      - ./redis-sentinel.conf:/usr/local/etc/redis/sentinel.conf
+    networks:
+      - redis-net
+    depends_on:
+      - redis-primary
+    restart: unless-stopped
+
+  # Redis Cluster (optional, for horizontal scaling)
+  redis-cluster-node-1:
+    image: redis:7.2-alpine
+    container_name: polln-redis-cluster-1
+    command: redis-server /usr/local/etc/redis/redis-cluster.conf
+    ports:
+      - "7001:6379"
+      - "17001:16379"
+    volumes:
+      - ./redis-cluster.conf:/usr/local/etc/redis/redis-cluster.conf
+      - redis-cluster-1-data:/data
+    networks:
+      - redis-cluster-net
+    restart: unless-stopped
+
+  redis-cluster-node-2:
+    image: redis:7.2-alpine
+    container_name: polln-redis-cluster-2
+    command: redis-server /usr/local/etc/redis/redis-cluster.conf
+    ports:
+      - "7002:6379"
+      - "17002:16379"
+    volumes:
+      - ./redis-cluster.conf:/usr/local/etc/redis/redis-cluster.conf
+      - redis-cluster-2-data:/data
+    networks:
+      - redis-cluster-net
+    restart: unless-stopped
+
+  redis-cluster-node-3:
+    image: redis:7.2-alpine
+    container_name: polln-redis-cluster-3
+    command: redis-server /usr/local/etc/redis/redis-cluster.conf
+    ports:
+      - "7003:6379"
+      - "17003:16379"
+    volumes:
+      - ./redis-cluster.conf:/usr/local/etc/redis/redis-cluster.conf
+      - redis-cluster-3-data:/data
+    networks:
+      - redis-cluster-net
+    restart: unless-stopped
+
+  # Redis Commander (Web UI)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: polln-redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis-primary:6379,cluster:redis-cluster-node-1:7001
+    ports:
+      - "8081:8081"
+    networks:
+      - redis-net
+      - redis-cluster-net
+    depends_on:
+      - redis-primary
+      - redis-cluster-node-1
+    restart: unless-stopped
+
+  # Redis Exporter (Prometheus metrics)
+  redis-exporter:
+    image: oliver006/redis_exporter:latest
+    container_name: polln-redis-exporter
+    command:
+      - '--redis.addr=redis-primary:6379'
+      - '--redis.password='
+    ports:
+      - "9121:9121"
+    networks:
+      - redis-net
+    depends_on:
+      - redis-primary
+    restart: unless-stopped
+
+networks:
+  redis-net:
+    driver: bridge
+  redis-cluster-net:
+    driver: bridge
+
+volumes:
+  redis-primary-data:
+  redis-replica-1-data:
+  redis-replica-2-data:
+  redis-cluster-1-data:
+  redis-cluster-2-data:
+  redis-cluster-3-data:

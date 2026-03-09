@@ -764,4 +764,15 @@ export class ExplainCell extends LogCell {
   getExplanationHistory(): ExplanationResult[] {
     return [...this.explanationHistory];
   }
+
+  /**
+   * Create the processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'explain',
+      defaultType: this.defaultType,
+      logic: this.logicLevel,
+    };
+  }
 }

@@ -1,0 +1,78 @@
+# POLLN Production Kustomization
+# Production overlays for base configuration
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: polln-prod
+
+# Base configuration
+bases:
+- ../../base
+
+# Production image
+images:
+- name: polln/polln
+  newTag: "v1.0.0"
+
+# Production ConfigMap overrides
+configMapGenerator:
+- name: polln-config
+  behavior: merge
+  literals:
+  - polln-env=production
+  - polln-log-level=info
+  - polln-auth-enabled=true
+  - polln-rate-limit-rpm=100
+  - polln-telemetry-enabled=true
+  - postgres-host=polln-postgres.postgres.svc.cluster.local
+  - redis-host=polln-redis.redis.svc.cluster.local
+
+# Secret generator (use external secret management in production)
+# secretGenerator:
+# - name: polln-secrets
+#   behavior: merge
+#   literals:
+#   - postgres-password=CHANGE_ME
+#   - redis-password=CHANGE_ME
+
+# Resource patches for production
+patches:
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: polln-api
+    spec:
+      replicas: 5
+      template:
+        spec:
+          containers:
+          - name: polln-api
+            resources:
+              requests:
+                cpu: 500m
+                memory: 1Gi
+              limits:
+                cpu: 2000m
+                memory: 4Gi
+
+# HPA patches for production
+- patch: |-
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: polln-api-hpa
+    spec:
+      minReplicas: 5
+      maxReplicas: 100
+
+# Common labels
+commonLabels:
+  environment: production
+  tier: backend
+
+# Replica count
+replicas:
+- name: polln-api
+  count: 5

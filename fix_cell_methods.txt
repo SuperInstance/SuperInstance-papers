@@ -1,0 +1,58 @@
+# This script adds createProcessingLogic to all Wave 2 and Wave 3 cell files
+
+# Files to fix
+files=(
+  'InputCell.ts',
+  'OutputCell.ts',
+  'TransformCell.ts',
+  'FilterCell.ts',
+  'AggregateCell.ts',
+  'ValidateCell.ts',
+  'AnalysisCell.ts',
+  'PredictionCell.ts',
+  'DecisionCell.ts',
+  'ExplainCell.ts'
+)
+
+# Template for createProcessingLogic
+template = `
+  /**
+   * Create processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'cell_type'.toLowerCase(),
+      process: (value: unknown) => value,
+    };
+  }
+`
+
+# Read all files and add the method at the end
+for file in files; do
+  filePath = f"C:/Users/casey/polln/src/spreadsheet/cells/${file}"
+    const content = fs.readFileSync(filePath, 'utf-8')
+    const className = file.replace('.ts', '')
+    
+    # Find the last closing brace of the class
+    const lastBraceIndex = content.lastIndexOf('}')
+    
+    if (lastBraceIndex !== -1) {
+        const newContent = content.slice(0, lastBraceIndex + 1) + `
+  
+  /**
+   * Create processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: '${className.toLowerCase().replace('cell', '')}',
+      process: (value: unknown) => value,
+    };
+  }
+` + content.slice(lastBraceIndex + 1);
+      fs.writeFileSync(filePath, newContent, 'utf-8');
+    }
+  }
+  
+  console.log('Added createProcessingLogic to all cell files');
+}
+

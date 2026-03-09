@@ -277,3 +277,14 @@ export class TransformCell extends LogCell {
     const [start, end] = this.transformFn!(input) as [number, number];
     return input.slice(start, end);
   }
+
+  /**
+   * Create the processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'transform',
+      transformType: this.transformType,
+      logic: this.logicLevel,
+    };
+  }

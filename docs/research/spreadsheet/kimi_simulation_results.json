@@ -1,0 +1,251 @@
+{
+  "timestamp": "2026-03-09T08:35:48.556979",
+  "model": "moonshot-v1-128k",
+  "api_configured": true,
+  "simulations": {
+    "network_visualization": {
+      "cells": [
+        {
+          "cell_id": "A1",
+          "cell_type": "input",
+          "logic_level": 0,
+          "head_inputs": [
+            "user_data"
+          ],
+          "body_processes": [
+            "validate"
+          ],
+          "tail_outputs": [
+            "validated_data"
+          ],
+          "sensation_types": [
+            "presence"
+          ],
+          "watch_targets": [],
+          "color": "#4CAF50",
+          "shape": "circle",
+          "metadata": {
+            "memory_usage": 0,
+            "processing_time": 0,
+            "confidence": 0.0
+          }
+        },
+        {
+          "cell_id": "A2",
+          "cell_type": "transform",
+          "logic_level": 1,
+          "head_inputs": [
+            "validated_data"
+          ],
+          "body_processes": [
+            "transform"
+          ],
+          "tail_outputs": [
+            "transformed_data"
+          ],
+          "sensation_types": [
+            "absolute",
+            "velocity"
+          ],
+          "watch_targets": [
+            "A1"
+          ],
+          "color": "#FF9800",
+          "shape": "diamond",
+          "metadata": {
+            "memory_usage": 0,
+            "processing_time": 0,
+            "confidence": 0.0
+          }
+        },
+        {
+          "cell_id": "A3",
+          "cell_type": "analysis",
+          "logic_level": 2,
+          "head_inputs": [
+            "transformed_data"
+          ],
+          "body_processes": [
+            "analyze",
+            "reason"
+          ],
+          "tail_outputs": [
+            "insights"
+          ],
+          "sensation_types": [
+            "absolute",
+            "velocity",
+            "pattern"
+          ],
+          "watch_targets": [
+            "A1",
+            "A2"
+          ],
+          "color": "#9C27B0",
+          "shape": "hexagon",
+          "metadata": {
+            "memory_usage": 0,
+            "processing_time": 0,
+            "confidence": 0.0
+          }
+        },
+        {
+          "cell_id": "A4",
+          "cell_type": "prediction",
+          "logic_level": 2,
+          "head_inputs": [
+            "insights"
+          ],
+          "body_processes": [
+            "predict"
+          ],
+          "tail_outputs": [
+            "forecasts"
+          ],
+          "sensation_types": [
+            "absolute",
+            "acceleration",
+            "anomaly"
+          ],
+          "watch_targets": [
+            "A3"
+          ],
+          "color": "#F44336",
+          "shape": "hexagon",
+          "metadata": {
+            "memory_usage": 0,
+            "processing_time": 0,
+            "confidence": 0.0
+          }
+        },
+        {
+          "cell_id": "A5",
+          "cell_type": "decision",
+          "logic_level": 2,
+          "head_inputs": [
+            "insights",
+            "forecasts"
+          ],
+          "body_processes": [
+            "decide"
+          ],
+          "tail_outputs": [
+            "actions"
+          ],
+          "sensation_types": [
+            "absolute",
+            "velocity",
+            "pattern"
+          ],
+          "watch_targets": [
+            "A3",
+            "A4"
+          ],
+          "color": "#00BCD4",
+          "shape": "hexagon",
+          "metadata": {
+            "memory_usage": 0,
+            "processing_time": 0,
+            "confidence": 0.0
+          }
+        },
+        {
+          "cell_id": "A6",
+          "cell_type": "output",
+          "logic_level": 0,
+          "head_inputs": [
+            "actions"
+          ],
+          "body_processes": [
+            "format"
+          ],
+          "tail_outputs": [
+            "display"
+          ],
+          "sensation_types": [
+            "presence"
+          ],
+          "watch_targets": [
+            "A5"
+          ],
+          "color": "#2196F3",
+          "shape": "circle",
+          "metadata": {
+            "memory_usage": 0,
+            "processing_time": 0,
+            "confidence": 0.0
+          }
+        }
+      ],
+      "connections": [
+        {
+          "source": "A2",
+          "target": "A1",
+          "type": "watch"
+        },
+        {
+          "source": "A3",
+          "target": "A1",
+          "type": "watch"
+        },
+        {
+          "source": "A3",
+          "target": "A2",
+          "type": "watch"
+        },
+        {
+          "source": "A4",
+          "target": "A3",
+          "type": "watch"
+        },
+        {
+          "source": "A5",
+          "target": "A3",
+          "type": "watch"
+        },
+        {
+          "source": "A5",
+          "target": "A4",
+          "type": "watch"
+        },
+        {
+          "source": "A6",
+          "target": "A5",
+          "type": "watch"
+        }
+      ],
+      "metadata": {
+        "total_cells": 6,
+        "total_connections": 7,
+        "generated_at": "2026-03-09T08:35:48.557074"
+      }
+    },
+    "cell_ideas": {
+      "category": "cell_types",
+      "ideas": [],
+      "timestamp": "2026-03-09T08:35:48.557122",
+      "model_used": "moonshot-v1-128k",
+      "context_tokens": 116
+    },
+    "network_analysis": {
+      "network_size": 1000,
+      "analysis_timestamp": "2026-03-09T08:35:48.557149",
+      "recommendations": []
+    },
+    "sensation_patterns": {
+      "patterns_found": true,
+      "analysis": {
+        "by_type": {
+          "absolute": 40,
+          "velocity": 20,
+          "pattern": 20,
+          "anomaly": 20
+        },
+        "temporal": {},
+        "correlations": []
+      },
+      "timestamp": "2026-03-09T08:35:48.557165",
+      "method": "local"
+    }
+  }
+}

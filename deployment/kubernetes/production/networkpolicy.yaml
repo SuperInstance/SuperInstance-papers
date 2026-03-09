@@ -1,0 +1,88 @@
+# POLLN Production Network Policies
+# Restrict network traffic for security
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: polln-api-network-policy
+  labels:
+    app: polln
+    component: api
+spec:
+  podSelector:
+    matchLabels:
+      app: polln
+      component: api
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  # Allow traffic from ingress controller
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    ports:
+    - protocol: TCP
+      port: 3000
+  # Allow traffic from monitoring
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: monitoring
+    ports:
+    - protocol: TCP
+      port: 9464
+  egress:
+  # Allow DNS
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: kube-system
+    ports:
+    - protocol: UDP
+      port: 53
+  # Allow PostgreSQL access
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: postgres
+    ports:
+    - protocol: TCP
+      port: 5432
+  # Allow Redis access
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: redis
+    ports:
+    - protocol: TCP
+      port: 6379
+  # Allow external API calls (DeepSeek, OpenAI, etc.)
+  - to:
+    - namespaceSelector: {}
+    ports:
+    - protocol: TCP
+      port: 443
+  # Allow monitoring push
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: monitoring
+    ports:
+    - protocol: TCP
+      port: 4317  # OTLP gRPC
+    - protocol: TCP
+      port: 4318  # OTLP HTTP
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: polln-deny-all
+  labels:
+    app: polln
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress

@@ -559,4 +559,15 @@ export class DecisionCell extends LogCell {
   getDecisionHistory(): DecisionOutcome[] {
     return [...this.decisionHistory];
   }
+
+  /**
+   * Create the processing logic for this cell
+   */
+  protected createProcessingLogic(): any {
+    return {
+      type: 'decision',
+      decisionType: this.decisionType,
+      logic: this.logicLevel,
+    };
+  }
 }

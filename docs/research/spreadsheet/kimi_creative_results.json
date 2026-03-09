@@ -1,0 +1,573 @@
+{
+  "timestamp": "2026-03-09T08:36:02.450648",
+  "model": "moonshot-v1-128k",
+  "simulations": {
+    "3d_visualization": {
+      "cells": [
+        {
+          "cell_id": "A1",
+          "position": {
+            "x": 1.6601221643037867,
+            "y": -4.269853477647093,
+            "z": 8.88888888888889
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0
+          },
+          "scale": 0.5,
+          "color": "#00FF00",
+          "opacity": 0.8,
+          "glow_intensity": 0.3,
+          "particle_effects": [],
+          "connections_3d": []
+        },
+        {
+          "cell_id": "A2",
+          "position": {
+            "x": -8.021069407451504,
+            "y": 3.9575807712345603,
+            "z": 8.0
+          },
+          "rotation": {
+            "x": 2.9950024994048445,
+            "y": 29.850124958340775,
+            "z": 5
+          },
+          "scale": 0.6,
+          "color": "#FF8800",
+          "opacity": 0.8,
+          "glow_intensity": 0.5,
+          "particle_effects": [
+            "pulse",
+            "trail"
+          ],
+          "connections_3d": [
+            {
+              "target": "A1",
+              "start": {
+                "x": -8.021069407451504,
+                "y": 3.9575807712345603,
+                "z": 8.0
+              },
+              "end": {
+                "x": 1.6601221643037867,
+                "y": -4.269853477647093,
+                "z": 8.88888888888889
+              },
+              "color": "#FF8800",
+              "animated": true
+            }
+          ]
+        },
+        {
+          "cell_id": "A3",
+          "position": {
+            "x": 12.041451672029195,
+            "y": 3.50533767952094,
+            "z": 6.222222222222222
+          },
+          "rotation": {
+            "x": 5.960079923851836,
+            "y": 29.401997335237247,
+            "z": 10
+          },
+          "scale": 0.7,
+          "color": "#FF00FF",
+          "opacity": 0.8,
+          "glow_intensity": 0.7,
+          "particle_effects": [
+            "pulse",
+            "trail",
+            "wave"
+          ],
+          "connections_3d": [
+            {
+              "target": "A1",
+              "start": {
+                "x": 12.041451672029195,
+                "y": 3.50533767952094,
+                "z": 6.222222222222222
+              },
+              "end": {
+                "x": 1.6601221643037867,
+                "y": -4.269853477647093,
+                "z": 8.88888888888889
+              },
+              "color": "#FF00FF",
+              "animated": true
+            },
+            {
+              "target": "A2",
+              "start": {
+                "x": 12.041451672029195,
+                "y": 3.50533767952094,
+                "z": 6.222222222222222
+              },
+              "end": {
+                "x": -8.021069407451504,
+                "y": 3.9575807712345603,
+                "z": 8.0
+              },
+              "color": "#FF00FF",
+              "animated": true
+            }
+          ]
+        },
+        {
+          "cell_id": "A4",
+          "position": {
+            "x": -7.086760035196341,
+            "y": -11.666139886777673,
+            "z": 3.111111111111112
+          },
+          "rotation": {
+            "x": 8.865606199840188,
+            "y": 28.660094673768178,
+            "z": 15
+          },
+          "scale": 0.6,
+          "color": "#FF0000",
+          "opacity": 0.8,
+          "glow_intensity": 0.7,
+          "particle_effects": [
+            "pulse",
+            "spiral",
+            "spark"
+          ],
+          "connections_3d": [
+            {
+              "target": "A3",
+              "start": {
+                "x": -7.086760035196341,
+                "y": -11.666139886777673,
+                "z": 3.111111111111112
+              },
+              "end": {
+                "x": 12.041451672029195,
+                "y": 3.50533767952094,
+                "z": 6.222222222222222
+              },
+              "color": "#FF0000",
+              "animated": true
+            }
+          ]
+        },
+        {
+          "cell_id": "A5",
+          "position": {
+            "x": -2.722891018475529,
+            "y": 13.73265686243945,
+            "z": 8.572527594031472e-16
+          },
+          "rotation": {
+            "x": 11.682550269259515,
+            "y": 27.63182982008655,
+            "z": 20
+          },
+          "scale": 0.7,
+          "color": "#00FFFF",
+          "opacity": 0.8,
+          "glow_intensity": 0.7,
+          "particle_effects": [
+            "pulse",
+            "trail",
+            "wave"
+          ],
+          "connections_3d": [
+            {
+              "target": "A3",
+              "start": {
+                "x": -2.722891018475529,
+                "y": 13.73265686243945,
+                "z": 8.572527594031472e-16
+              },
+              "end": {
+                "x": 12.041451672029195,
+                "y": 3.50533767952094,
+                "z": 6.222222222222222
+              },
+              "color": "#00FFFF",
+              "animated": true
+            },
+            {
+              "target": "A4",
+              "start": {
+                "x": -2.722891018475529,
+                "y": 13.73265686243945,
+                "z": 8.572527594031472e-16
+              },
+              "end": {
+                "x": -7.086760035196341,
+                "y": -11.666139886777673,
+                "z": 3.111111111111112
+              },
+              "color": "#00FFFF",
+              "animated": true
+            }
+          ]
+        },
+        {
+          "cell_id": "A6",
+          "position": {
+            "x": 7.858503987081233,
+            "y": -5.7711041820513085,
+            "z": -2.222222222222224
+          },
+          "rotation": {
+            "x": 14.38276615812609,
+            "y": 26.327476856711183,
+            "z": 25
+          },
+          "scale": 0.6,
+          "color": "#0088FF",
+          "opacity": 0.8,
+          "glow_intensity": 0.3,
+          "particle_effects": [],
+          "connections_3d": [
+            {
+              "target": "A5",
+              "start": {
+                "x": 7.858503987081233,
+                "y": -5.7711041820513085,
+                "z": -2.222222222222224
+              },
+              "end": {
+                "x": -2.722891018475529,
+                "y": 13.73265686243945,
+                "z": 8.572527594031472e-16
+              },
+              "color": "#0088FF",
+              "animated": true
+            }
+          ]
+        },
+        {
+          "cell_id": "B1",
+          "position": {
+            "x": -8.905675998555875,
+            "y": -0.967392675697288,
+            "z": -4.444444444444444
+          },
+          "rotation": {
+            "x": 16.939274201851063,
+            "y": 24.760068447290347,
+            "z": 30
+          },
+          "scale": 0.5,
+          "color": "#00FF00",
+          "opacity": 0.8,
+          "glow_intensity": 0.3,
+          "particle_effects": [],
+          "connections_3d": []
+        },
+        {
+          "cell_id": "B2",
+          "position": {
+            "x": 5.9041995569290675,
+            "y": 6.718662634182384,
+            "z": -8.0
+          },
+          "rotation": {
+            "x": 19.326530617130732,
+            "y": 22.945265618534652,
+            "z": 35
+          },
+          "scale": 0.7,
+          "color": "#FFFFFF",
+          "opacity": 0.8,
+          "glow_intensity": 0.5,
+          "particle_effects": [
+            "pulse"
+          ],
+          "connections_3d": [
+            {
+              "target": "A1",
+              "start": {
+                "x": 5.9041995569290675,
+                "y": 6.718662634182384,
+                "z": -8.0
+              },
+              "end": {
+                "x": 1.6601221643037867,
+                "y": -4.269853477647093,
+                "z": 8.88888888888889
+              },
+              "color": "#FFFFFF",
+              "animated": true
+            },
+            {
+              "target": "B1",
+              "start": {
+                "x": 5.9041995569290675,
+                "y": 6.718662634182384,
+                "z": -8.0
+              },
+              "end": {
+                "x": -8.905675998555875,
+                "y": -0.967392675697288,
+                "z": -4.444444444444444
+              },
+              "color": "#FFFFFF",
+              "animated": true
+            }
+          ]
+        },
+        {
+          "cell_id": "B3",
+          "position": {
+            "x": 0.13252877739520386,
+            "y": -6.412350473289649,
+            "z": -12.444444444444443
+          },
+          "rotation": {
+            "x": 21.520682726985683,
+            "y": 20.901201280414963,
+            "z": 40
+          },
+          "scale": 0.7,
+          "color": "#FFFF00",
+          "opacity": 0.8,
+          "glow_intensity": 0.7,
+          "particle_effects": [
+            "wave"
+          ],
+          "connections_3d": [
+            {
+              "target": "A3",
+              "start": {
+                "x": 0.13252877739520386,
+                "y": -6.412350473289649,
+                "z": -12.444444444444443
+              },
+              "end": {
+                "x": 12.041451672029195,
+                "y": 3.50533767952094,
+                "z": 6.222222222222222
+              },
+              "color": "#FFFF00",
+              "animated": true
+            },
+            {
+              "target": "A5",
+              "start": {
+                "x": 0.13252877739520386,
+                "y": -6.412350473289649,
+                "z": -12.444444444444443
+              },
+              "end": {
+                "x": -2.722891018475529,
+                "y": 13.73265686243945,
+                "z": 8.572527594031472e-16
+              },
+              "color": "#FFFF00",
+              "animated": true
+            }
+          ]
+        }
+      ],
+      "total_connections": 11
+    },
+    "animation": {
+      "n_frames": 60,
+      "avg_active": 4.5,
+      "sample_frames": [
+        {
+          "frame": 0,
+          "active": 8,
+          "connections": 9
+        },
+        {
+          "frame": 15,
+          "active": 3,
+          "connections": 4
+        },
+        {
+          "frame": 30,
+          "active": 1,
+          "connections": 2
+        },
+        {
+          "frame": 45,
+          "active": 6,
+          "connections": 7
+        }
+      ]
+    },
+    "heatmap": {
+      "cells": {
+        "A1": {
+          "heat": 0.03333333333333333,
+          "components": {
+            "processing": 0.0,
+            "memory": 0.1,
+            "connections": 0.0
+          }
+        },
+        "A2": {
+          "heat": 0.22777777777777775,
+          "components": {
+            "processing": 0.3333333333333333,
+            "memory": 0.25,
+            "connections": 0.1
+          }
+        },
+        "A3": {
+          "heat": 0.4555555555555555,
+          "components": {
+            "processing": 0.6666666666666666,
+            "memory": 0.5,
+            "connections": 0.2
+          }
+        },
+        "A4": {
+          "heat": 0.4055555555555556,
+          "components": {
+            "processing": 0.6666666666666666,
+            "memory": 0.45,
+            "connections": 0.1
+          }
+        },
+        "A5": {
+          "heat": 0.4888888888888889,
+          "components": {
+            "processing": 0.6666666666666666,
+            "memory": 0.6,
+            "connections": 0.2
+          }
+        },
+        "A6": {
+          "heat": 0.08333333333333333,
+          "components": {
+            "processing": 0.0,
+            "memory": 0.15,
+            "connections": 0.1
+          }
+        },
+        "B1": {
+          "heat": 0.04,
+          "components": {
+            "processing": 0.0,
+            "memory": 0.12,
+            "connections": 0.0
+          }
+        },
+        "B2": {
+          "heat": 0.27777777777777773,
+          "components": {
+            "processing": 0.3333333333333333,
+            "memory": 0.3,
+            "connections": 0.2
+          }
+        },
+        "B3": {
+          "heat": 0.5555555555555556,
+          "components": {
+            "processing": 0.6666666666666666,
+            "memory": 0.8,
+            "connections": 0.2
+          }
+        }
+      },
+      "grid": [
+        [
+          {
+            "cell_id": "A1",
+            "heat": 0.03333333333333333,
+            "components": {
+              "processing": 0.0,
+              "memory": 0.1,
+              "connections": 0.0
+            }
+          },
+          {
+            "cell_id": "A2",
+            "heat": 0.22777777777777775,
+            "components": {
+              "processing": 0.3333333333333333,
+              "memory": 0.25,
+              "connections": 0.1
+            }
+          },
+          {
+            "cell_id": "A3",
+            "heat": 0.4555555555555555,
+            "components": {
+              "processing": 0.6666666666666666,
+              "memory": 0.5,
+              "connections": 0.2
+            }
+          }
+        ],
+        [
+          {
+            "cell_id": "A4",
+            "heat": 0.4055555555555556,
+            "components": {
+              "processing": 0.6666666666666666,
+              "memory": 0.45,
+              "connections": 0.1
+            }
+          },
+          {
+            "cell_id": "A5",
+            "heat": 0.4888888888888889,
+            "components": {
+              "processing": 0.6666666666666666,
+              "memory": 0.6,
+              "connections": 0.2
+            }
+          },
+          {
+            "cell_id": "A6",
+            "heat": 0.08333333333333333,
+            "components": {
+              "processing": 0.0,
+              "memory": 0.15,
+              "connections": 0.1
+            }
+          }
+        ],
+        [
+          {
+            "cell_id": "B1",
+            "heat": 0.04,
+            "components": {
+              "processing": 0.0,
+              "memory": 0.12,
+              "connections": 0.0
+            }
+          },
+          {
+            "cell_id": "B2",
+            "heat": 0.27777777777777773,
+            "components": {
+              "processing": 0.3333333333333333,
+              "memory": 0.3,
+              "connections": 0.2
+            }
+          },
+          {
+            "cell_id": "B3",
+            "heat": 0.5555555555555556,
+            "components": {
+              "processing": 0.6666666666666666,
+              "memory": 0.8,
+              "connections": 0.2
+            }
+          }
+        ]
+      ],
+      "statistics": {
+        "avg_heat": 0.28530864197530864,
+        "max_heat": 0.5555555555555556,
+        "hot_cells": 0
+      }
+    },
+    "creative_synthesis": {
+      "biology": [],
+      "physics": []
+    }
+  }
+}
