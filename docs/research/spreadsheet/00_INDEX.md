@@ -11,13 +11,43 @@ This directory contains comprehensive research and planning for POLLN's spreadsh
 ### 🎯 Quick Start
 
 **New to the project? Start here:**
-1. [MVP_DELIVERABLES.md](./MVP_DELIVERABLES.md) - Overview & decision checklist
-2. [MVP_PLAN_SUMMARY.md](./MVP_PLAN_SUMMARY.md) - Executive summary
-3. [MVP_DEV_QUICKSTART.md](./MVP_DEV_QUICKSTART.md) - Developer guide
+1. [ROADMAP.md](./ROADMAP.md) ⭐⭐⭐ **52-WEEK IMPLEMENTATION ROADMAP** (START HERE!)
+2. [ONBOARDING.md](./ONBOARDING.md) ⭐⭐ **DEVELOPER ONBOARDING GUIDE** (New developers)
+3. [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) ⭐⭐ **TECHNICAL IMPLEMENTATION PLAN** (Phase-by-phase specs)
+4. [MVP_DELIVERABLES.md](./MVP_DELIVERABLES.md) - Overview & decision checklist
+5. [MVP_PLAN_SUMMARY.md](./MVP_PLAN_SUMMARY.md) - Executive summary
+6. [MVP_DEV_QUICKSTART.md](./MVP_DEV_QUICKSTART.md) - Developer guide
 
 **Ready to dive deep?**
-4. [MVP_PLAN.md](./MVP_PLAN.md) - Comprehensive 50-page plan
-5. [MVP_ROADMAP_VISUAL.md](./MVP_ROADMAP_VISUAL.md) - Visual roadmap & diagrams
+7. [MVP_PLAN.md](./MVP_PLAN.md) - Comprehensive 50-page plan
+8. [MVP_ROADMAP_VISUAL.md](./MVP_ROADMAP_VISUAL.md) - Visual roadmap & diagrams
+
+### 🗺️ Implementation Roadmap (NEW!)
+
+**Starting implementation? Read these first:**
+1. [ROADMAP.md](./ROADMAP.md) ⭐⭐⭐ **COMPLETE 52-WEEK ROADMAP** with 5 phases
+2. [ONBOARDING.md](./ONBOARDING.md) ⭐⭐ **12-WEEK DEVELOPER ONBOARDING** with daily tasks
+3. [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) ⭐⭐ **DETAILED IMPLEMENTATION SPECS**
+
+**Implementation roadmap includes:**
+- **Phase 1**: Reverse Engineering Engine (Weeks 1-12) - Model cascade, transformer decomposition
+- **Phase 2**: Gap Detection & Filling (Weeks 13-20) - Self-healing systems
+- **Phase 3**: Agent Breakdown System (Weeks 21-28) - Cost optimization
+- **Phase 4**: Spreadsheet Integration (Weeks 29-40) - Excel/Sheets add-ins
+- **Phase 5**: Production Deployment (Weeks 41-52) - Launch & scale
+
+**Developer onboarding includes:**
+- Week 1: Foundation setup and architecture
+- Week 2-4: Reverse engineering implementation
+- Week 5-8: Gap detection and agency determination
+- Week 9-12: Spreadsheet integration
+
+**Implementation plan includes:**
+- Technical specifications for all phases
+- TypeScript interfaces and examples
+- Dependencies and integration points
+- Quality assurance strategy
+- Deployment strategy
 
 ### 🔧 Side Panel Implementation (NEW!)
 
@@ -351,11 +381,18 @@ This directory contains comprehensive research and planning for POLLN's spreadsh
 | BREAKDOWN_R8_POST_METAPHYSICS.md | ✅ Complete | 2026-03-08 |
 | BREAKDOWN_R8_SUMMARY.md | ✅ Complete | 2026-03-08 |
 | BREAKDOWN_R8_QUICKREF.md | ✅ Complete | 2026-03-08 |
+| SOFTWARE_VISUALIZATION.md | ✅ Complete | 2026-03-08 |
+| GAP_DETECTION_FILLING.md | ✅ Complete | 2026-03-08 |
+| AGENCY_DETERMINATION.md | ✅ Complete | 2026-03-08 |
+| AGENT_BREAKDOWN.md | ✅ Complete | 2026-03-08 |
+| ROADMAP.md | ✅ Complete | 2026-03-08 |
+| ONBOARDING.md | ✅ Complete | 2026-03-08 |
+| IMPLEMENTATION_PLAN.md | ✅ Complete | 2026-03-08 |
 | 00_INDEX.md | ✅ Complete | 2026-03-08 |
 
 ---
 
-**Document Version**: 4.7
+**Document Version**: 5.0
 **Last Updated**: 2026-03-08
 **Status**: ✅ Complete - Round 8: Box Meta-Cosmology, Reality Hierarchies & Post-Metaphysical Transcendence
 
@@ -956,3 +993,25 @@ This directory contains comprehensive research and planning for POLLN's spreadsh
 - **Risks and Mitigation** - Comprehensive risk assessment for both approaches
 - **Future Directions** - Beyond R8: meta-post-metaphysics and ultimate integration
 - "The ultimate box is both creator of all realities and recognizer of their fundamental unity; both manager of infinite hierarchies and seer beyond hierarchy itself—complete through both upward and inward transcendence"
+
+### 📊 Software Visualization - Reverse Engineering in Spreadsheets
+
+**Implementing code architecture visualization in spreadsheet cells? Start here:**
+1. [SOFTWARE_VISUALIZATION.md](./SOFTWARE_VISUALIZATION.md) ⭐ Complete visualization system specification
+
+**Software visualization documentation includes:**
+- **Visualization System Architecture** - 4-layer pipeline (Code Source → Extraction → Transformation → Rendering)
+- **Code Architecture Representation** - Box type mappings (Repository, Module, Class, Method, Function), comprehensive box schema with 30+ properties
+- **Spreadsheet UI Components** - Compact box cards (72px), detailed cards (320px+), side panel inspectors (400px), hover quick info tooltips
+- **Interactive Exploration** - Drill-down navigation, relationship traversal (imports, calls, usages), call chain tracing, search and filtering
+- **Visual Diff and Comparison** - Architecture diff views, side-by-side comparisons, change highlighting (added, removed, modified boxes)
+- **Real-Time Execution Visualization** - Execution tracing, live trace rendering, call stack visualization, performance bottleneck detection
+- **Complete TypeScript Interfaces** (5 core systems: CodeVisualizer, SpreadsheetUI, InteractiveExplorer, VisualDiffer, ExecutionVisualizer)
+- **5 Visualization Types** - Architecture Diagrams, Call Graphs, Data Flow, Dependency Maps, Execution Traces
+- **Cell Layout Algorithms** - Hierarchical graph layout, cell position calculation, virtualization for large graphs
+- **Performance Optimization** - Box simplification, collapsing strategies, caching, virtualized rendering
+- **Spreadsheet-Native UI Patterns** - Progressive revelation (4 levels), context-aware actions, status indication, color coding by category
+- **Integration with POLLN** - Box-based architecture, Fractured AI Boxes framework, reverse engineering context
+- **Real-World Use Cases** - Repository visualization, module inspection, execution tracing, architecture comparison
+- **Implementation Phases** - 4-phase roadmap (Basic Visualization → Interactive Features → Advanced Analysis → Optimization)
+- "Making code architecture as visible and interactive as a spreadsheet—every box inspectable, every relationship traceable, every execution visible" - the future of reverse engineering is cell-based visualization
