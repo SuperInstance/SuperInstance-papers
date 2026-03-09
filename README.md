@@ -1,111 +1,99 @@
 # POLLN
 
-**The swarm that learns.**
+**Pattern-Organized Large Language Network - Distributed Intelligence through Inspectable Agents**
 
 ---
 
-## A Different Kind of Intelligence
+## What is POLLN?
 
-Picture a single ant. It can't plan. It can't reason. It barely has a brain.
+POLLN is a **Ledger-Organizing Graph (LOG)** system for building distributed AI applications from tiny, specialized agents. Unlike large monolithic models, POLLN breaks intelligence into hundreds of simple, inspectable components that coordinate through learned connections.
 
-Now picture a colony. They build cities. They farm. They wage war.
-
-Where did that intelligence come from?
-
-Not from any ant. From the **connections between them.**
-
-POLLN applies this principle to language models.
+**Core Principle**: Intelligence emerges from connections, not from size.
 
 ---
 
-## The Problem We're Solving
+## The Problem: Black Box AI
 
-You've used ChatGPT. You've asked it something complex. It gave you an answer.
-
-But you couldn't see *why* it chose that answer.
-
-You couldn't trace the reasoning. Couldn't debug the decision. Couldn't improve just the broken part without risking everything else.
-
-The intelligence was there. The transparency wasn't.
+Traditional language models are opaque:
+- You can't see *why* they made a decision
+- You can't trace the reasoning path
+- You can't debug or fix specific behaviors
+- You can't inspect what they learned
 
 ```
 Traditional LLM:
 
-    Your Question
-         │
-         ▼
-    ┌─────────────────┐
-    │   175 billion   │
-    │   parameters    │
-    │                 │
-    │   Why?          │ ← You can't look here
-    │   How?          │ ← Or here
-    │   What if?      │ ← Definitely not here
-    │                 │
-    └─────────────────┘
-         │
-         ▼
-    An Answer
+    Input → [175B parameters] → Output
 
-Trust me. That's how it works.
+    Why? How? What if?
+    You can't look inside.
 ```
-
-We built something different.
 
 ---
 
-## Introducing POLLN
+## The POLLN Solution
 
-POLLN isn't one model. It's thousands of tiny specialists, each doing one thing well.
-
-No single agent is intelligent. But together, through learned connections and shared patterns, they produce behavior no agent possesses alone.
+POLLN replaces one giant model with **hundreds of tiny agents**, each doing one thing well. Every agent-to-agent communication is visible, traceable, and debuggable.
 
 ```
 POLLN:
 
-    Your Question
-         │
-         ▼
-    ┌─────┐   ┌─────┐   ┌─────┐
-    │ A1  │──▶│ A2  │──▶│ A3  │
-    └──┬──┘   └──┬──┘   └──┬──┘
-       │   📦     │   📦     │
-       ▼         ▼         ▼
-    [artifact] [artifact] [artifact]
-       │         │         │
-       └─────────┴─────────┘
-                 │
-                 ▼
-          Every step
-          Traceable
-          Debuggable
-          Fixable
+    Input → Agent1 → Agent2 → Agent3 → Output
+             │         │         │
+             └─trace───┴─────────┘
+
+    Every step is visible.
+    Every decision is explainable.
 ```
 
-Each arrow is an **A2A package**—a visible, inspectable artifact. You can replay any decision. Debug any failure. Improve any agent without touching the others.
+### Key Innovation: A2A Packages
+
+Every communication between agents is an **A2A (Agent-to-Agent) Package**—a JSON artifact that contains:
+- The decision or data being passed
+- The reasoning trace
+- Lineage (what inputs led here)
+- Causal chain ID (for replay and debugging)
+
+This makes every agent decision:
+- **Inspectable** - See exactly what happened
+- **Replayable** - Re-run any decision
+- **Debuggable** - Find and fix flaws
+- **Replaceable** - Swap one agent without affecting others
 
 ---
 
-## The Core Insight
+## Core Concepts
 
-> *"Bees are not that smart individually. But as a swarm, they become durable intelligence."*
+### LOG (Ledger-Organizing Graph)
 
-POLLN agents are narrow. Simple. Replaceable.
+A **LOG** is a graph structure where:
+- **Ledger**: Every decision is recorded and traceable
+- **Organizing**: Information structures itself through use
+- **Graph**: Intelligence emerges from connections
 
-But the system they form:
+Memory in POLLN is **structural**, not representational. The system doesn't store facts—it stores stronger connections between agents that work well together.
 
-- **Learns** from every interaction
-- **Adapts** without reprogramming
-- **Remembers** through connection strengths
-- **Survives** because variants provide backup
+### Quick Analogy: POLLN and Bees
+
+| POLLN Concept | Bee Colony Analogy | Technical Meaning |
+|---------------|-------------------|-------------------|
+| **Agents** | Bees | Specialized workers, each with one job |
+| **Colony** | Hive | The coordinated system |
+| **Pollen Grains** | Pollen | Compressed behavioral patterns (embeddings) |
+| **A2A Packages** | Waggle dance | Communication about what works |
+| **Connection Strength** | Pheromone trails | Reinforced paths (Hebbian learning) |
+| **Plinko Selection** | Stochastic foraging | Probabilistic choice for diversity |
+| **Variants** | Genetic diversity | Multiple approaches to same task |
+
+The analogy helps intuition, but the technical implementation stands on its own.
 
 ---
 
-## How It Works
+## How POLLN Works
 
 ### 1. Specialists, Not Generalists
 
-Every agent has one job. One expertise. One responsibility.
+Every agent has one job:
 
 ```
 ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
@@ -116,48 +104,30 @@ Every agent has one job. One expertise. One responsibility.
 └──────────────┘  └──────────────┘  └──────────────┘
 ```
 
-Simple agents. Complex behavior.
+### 2. Memory as Connection Strength
 
-### 2. Memory as Structure
-
-Your body doesn't store running as a file. It stores running as **stronger legs, developed blood vessels, trained neural pathways.**
-
-Memory is structural. Not representational.
-
-POLLN works the same way. It doesn't have a database of facts. It has **stronger connections** between agents that work well together.
+Learning = strengthening connections between agents that work well together.
 
 ```
 Agent A ──strong──▶ Agent B    ← "These two work well together"
-Agent A ──weak────▶ Agent C    ← "Haven't needed this path much"
+Agent A ──weak────▶ Agent C    ← "Haven't needed this path"
 ```
 
-Learning is resource reallocation. Like blood flow to muscles.
+This is **Hebbian learning**: neurons (agents) that fire together, wire together.
 
 ### 3. Diversity as Durability
 
-Evolution doesn't create one perfect organism. It maintains diversity.
-
-POLLN keeps multiple variants of each capability:
+POLLN maintains multiple variants of each capability:
 
 ```
-┌─────────────────────────────────────────┐
-│          VARIANTS IN COMPETITION         │
-├─────────────────────────────────────────┤
-│  Variant A: 94% success  ████████░░ #1  │
-│  Variant B: 91% success  ███████░░░ #2  │
-│  Variant C: 88% success  ██████░░░░ #3  │
-│  Variant D: 72% success  █████░░░░░ #4  │
-│  Variant E: 65% success  ████░░░░░░ #5  │
-└─────────────────────────────────────────┘
+Variant A: 94% success  ████████░░
+Variant B: 91% success  ███████░░░
+Variant C: 88% success  ██████░░░░
 ```
 
-When conditions change, different variants succeed. Rankings shift automatically. The system adapts without anyone touching the code.
+When conditions change, different variants succeed. The system adapts automatically.
 
-**Durability through diversity.** Not through perfection.
-
-### 4. Layered Safety
-
-Biological systems process in layers. Reflexes override habits. Habits override plans. Plans override nothing—they're the slowest.
+### 4. Subsumption Architecture (Layered Processing)
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -170,16 +140,14 @@ Biological systems process in layers. Reflexes override habits. Habits override 
 │  Layer 0: SAFETY        (instant, critical) │
 └─────────────────────────────────────────────┘
 
-Safety always wins. No exceptions.
+Safety always wins.
 ```
 
-This prevents catastrophic failures while allowing sophisticated behavior.
+Lower layers override higher ones. This prevents catastrophic failures.
 
-### 5. The Plinko Layer
+### 5. Plinko Selection (Probabilistic Choice)
 
-Most systems pick the best option. POLLN picks *probabilistically*.
-
-Like a Plinko board, the ball doesn't always go to the best slot. Sometimes it bounces left. Sometimes right.
+POLLN doesn't pick the "best" option. It samples probabilistically:
 
 ```
          │
@@ -193,328 +161,141 @@ Like a Plinko board, the ball doesn't always go to the best slot. Sometimes it b
 
     P(A) = 0.6   ← Usually best
     P(B) = 0.3   ← Sometimes good
-    P(C) = 0.1   ← Rarely, but explores
+    P(C) = 0.1   ← Explores rarely
 ```
 
-This isn't a bug. It's a feature.
-
-Exploration keeps the system from getting stuck. Temperature controls how much. High temperature early (explore everything). Low temperature later (exploit what works).
+**Why?** Exploration keeps the system from getting stuck. Temperature controls exploration vs exploitation.
 
 ---
 
-## Granular Reasoning: The Double-Slit of AI
+## Architecture Components
 
-### The Problem with Black Box Learning
-
-Traditional neural networks are like a black box—you put in a question, you get out an answer. But when the answer is wrong, you can't see *why*.
-
-Worse: **learning systems often get bad data and can't recover.**
-
-When a large model trains on corrupted or flawed data, the problem "federates into weights" throughout the network. The bad patterns become distributed across billions of parameters, with no clear boundary between what's working and what isn't. You can't surgically remove the flaw—you have to retrain everything.
-
-### Our Solution: Checkpointed Decisions
-
-POLLN forces **checkpoints at every decision point**. Each agent-to-agent communication is an **A2A package**—a visible artifact that can be:
-- Inspected (trace the reasoning)
-- Debugged (find the flaw)
-- Manipulated (fix the bad pattern)
-- Discarded (throw away the corrupted part)
-
-This is like the **double-slit experiment** in quantum mechanics:
-
-```
-Traditional LLM (Wave collapse happens at the end):
-
-    Input
-      │
-      ▼
-    ┌────────────────────────────┐
-    │   Wave of computation      │ ← All possibilities exist
-    │   (hidden, unobservable)   │    simultaneously
-    └────────────────────────────┘
-              │
-              ▼
-        Collapse to output       ← Measurement happens ONCE
-                                      at the very end
-              │
-              ▼
-           Answer
-
-    If the answer is wrong, you have
-    NO IDEA where in the wave it
-    went wrong.
-
-POLLN (Forced collapse at every step):
-
-    Input
-      │
-      ▼
-    ┌─────────┐
-    │ Agent 1 │──▶ 📦 A2A Package 1  ← Checkpoint! Observe!
-    └─────────┘                          Decision is explicit
-              │
-              ▼
-    ┌─────────┐
-    │ Agent 2 │──▶ 📦 A2A Package 2  ← Checkpoint! Observe!
-    └─────────┘                          Decision is explicit
-              │
-              ▼
-    ... and so on ...
-
-    Every arrow is a measurement.
-    Every decision is a forced collapse.
-    Every step is granular and inspectable.
-```
-
-### Granularity by Model Size
-
-The smaller the model, the **higher the resolution of granularity**:
-
-| Model Size | Granularity | Description |
-|------------|-------------|-------------|
-| **7B parameters** | Low-level tokens | Decisions per token |
-| **1B parameters** | Phrase-level | Decisions per phrase |
-| **100M parameters** | Sentence-level | Decisions per sentence |
-| **10M parameters** | Task-level | Decisions per micro-task |
-| **1M parameters** | Step-level | Decisions per atomic step |
-
-Smaller models = more decision points = more checkpoints = finer control.
-
-### Large Models as Teachers, Small Models as Practitioners
-
-This creates a powerful **distillation pattern**:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                  LARGE MODEL (Teacher)                       │
-│                  175B parameters                            │
-│                                                             │
-│  "Here's how to write code:"                                 │
-│  1. Define the problem                                       │
-│  2. Break into subproblems                                   │
-│  3. ... [100 steps of reasoning] ...                        │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            │ Distillation
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│              SMALL MODEL SWARM (Practitioners)               │
-│              1000 × 10M parameters each                      │
-│                                                             │
-│  Agent 1: "I handle step 1-10 of problem definition"         │
-│  Agent 2: "I handle step 11-20 of breaking down"            │
-│  Agent 3: "I handle step 21-30 of ..."                     │
-│  ...                                                         │
-│                                                             │
-│  Each agent:                                                │
-│  - Learns ONE slice from the large model                    │
-│  - Makes decisions visible (A2A packages)                   │
-│  - Can be debugged individually                             │
-│  - Can be replaced without retraining others                │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Why This Beats Mixture of Experts
-
-Mixture of Experts (MoE) systems route problems to specialized modules, but:
-
-1. **Routing is opaque**—you can't see why module A was chosen over module B
-2. **Experts are black boxes**—each expert is still a neural network
-3. **No cross-expert learning**—experts don't share reasoning, only outputs
-
-POLLN's approach:
-
-1. **Every decision is visible**—A2A packages show the full reasoning chain
-2. **Agents are inspectable**—you can trace any decision back to its origin
-3. **Learning propagates**—when one agent improves, neighbors learn via connection strengthening
-
-### The Human-in-the-Loop Advantage
-
-Because every decision is granular and visible:
-
-- **Debugging**: You can find the exact agent making bad decisions
-- **Fixing**: Replace or retrain just that agent
-- **Iterating**: The system adapts without full retraining
-- **Understanding**: You learn *how* the system works, not just *that* it works
-
-This is intelligence you can **collaborate with**, not just use.
+| Component | Purpose | Status |
+|-----------|---------|--------|
+| **BaseAgent** | Core agent with subsumption layers | ✅ Complete |
+| **Colony** | Agent lifecycle and coordination | ✅ Complete |
+| **PlinkoLayer** | Stochastic decision-making | ✅ Complete |
+| **A2A Package** | Traceable agent communication | ✅ Complete |
+| **HebbianLearning** | Connection strength updates | ✅ Complete |
+| **SafetyLayer** | Constitutional constraints | ✅ Complete |
+| **WorldModel** | VAE for dreaming/optimization | ✅ Complete |
+| **ValueNetwork** | TD(λ) value predictions | ✅ Complete |
+| **FederatedLearning** | Cross-colony knowledge sharing | ✅ Complete |
+| **KV-Cache System** | Efficient context sharing | ✅ Complete |
 
 ---
 
-## The Vocabulary
+## The Spreadsheet Tool: LOG Integration
 
-We didn't invent these concepts. We found them in nature.
+POLLN's killer app is a **spreadsheet integration** where every cell can contain an agent.
 
-| Term | What It Is | What It Does |
-|------|-----------|--------------|
-| **Colony** | Your personal swarm | Agents working together for you |
-| **Keeper** | You | The human tending the system |
-| **Meadow** | All external knowledge | GitHub, news, APIs, sensors, environment |
-| **Pollen Grain** | Compressed pattern | Seeds that grow into behaviors |
-| **Plinko** | Selection mechanism | Probabilistic choice with temperature |
-| **A2A Package** | Communication artifact | Traceable, replayable agent messages |
-| **Waggle Dance** | Discovery protocol | Broadcasting "I found something good" |
-| **Scent Trail** | Pheromone path | "Others succeeded here, follow me" |
+**What users see**:
+- Type `=AGENT("Analyze Q3 sales", A1:A100)` in a cell
+- Agents emerge, learn, and optimize
+- Double-click any cell to inspect the reasoning
+- Simulate "what if" scenarios without affecting production
 
----
-
-## What You Can Build
-
-### For Researchers
-Trace every decision. Debug any failure. Publish reproducible experiments.
-
-### For Builders
-Ship one agent improvement without risking the whole system. Let users customize their colonies.
-
-### For Edge Computing
-Train tiny models on laptops and edge devices. No GPU cluster required. The system evolves while you sleep.
-
----
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                         KEEPER                               │
-│                        (You)                                 │
-└─────────────────────────┬───────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│                         COLONY                               │
-│                    (Your Agent Swarm)                        │
-│  ┌───────────┐  ┌───────────┐  ┌───────────┐               │
-│  │   META    │  │   META    │  │   META    │               │
-│  │  Tiles    │  │  Tiles    │  │  Tiles    │               │
-│  │ (undiff)  │  │ (task)    │  │ (role)    │               │
-│  └───────────┘  └───────────┘  └───────────┘               │
-│         │              │              │                      │
-│         └──────────────┴──────────────┘                      │
-│                        │                                     │
-│                        ▼                                     │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              STIGMERGIC COORDINATION                 │   │
-│  │        (Agents leave signals others follow)          │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                        │                                     │
-│                        ▼                                     │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │                 VALUE NETWORK                        │   │
-│  │         (TD(λ) predictions of outcomes)              │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                        │                                     │
-│         ┌──────────────┴──────────────┐                     │
-│         ▼                             ▼                     │
-│  ┌─────────────┐              ┌─────────────┐              │
-│  │   PLINKO    │              │   SAFETY    │              │
-│  │   LAYER     │              │   LAYERS    │              │
-│  └─────────────┘              └─────────────┘              │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│                         MEADOW                               │
-│              (External Knowledge Sources)                    │
-│   GitHub │ News APIs │ Sensors │ Environment │ Other Hives  │
-└─────────────────────────────────────────────────────────────┘
-```
+**What makes it different**:
+- **Inspectable**: See exactly how each decision was made
+- **Open Source**: Free forever, MIT license
+- **Learns**: Gets smarter with use
+- **Understandable**: No black boxes
 
 ---
 
 ## Implementation Status
 
-| Component | Status | Tests |
-|-----------|--------|-------|
-| Base Agent Runtime | ✅ Complete | 18 |
-| Tile Categories (Task/Role/Core) | ✅ Complete | 24 |
-| Knowledge Succession Protocol | ✅ Complete | 14 |
-| META Tiles (Pluripotent Agents) | ✅ Complete | 18 |
-| Value Network (TD(λ) Learning) | ✅ Complete | 20 |
-| Stigmergic Coordination | ✅ Complete | 12 |
-| Plinko Decision Layer | ✅ Complete | 12 |
-| World Model & Dreaming | ✅ Complete | 42 |
-| Federated Learning | ✅ Complete | 32 |
-| Meadow Community System | ✅ Complete | 87 |
-| KV-Cache Communication | ✅ Complete | 401 |
-| Context Sharing | ✅ Complete | 37 |
-| Cache Utilities | ✅ Complete | 91 |
-| **Total** | | **821** |
+| Component | Tests | Status |
+|-----------|-------|--------|
+| Core Agent Runtime | 18 | ✅ |
+| Tile Categories | 24 | ✅ |
+| META Tiles | 18 | ✅ |
+| Value Network | 20 | ✅ |
+| World Model & Dreaming | 42 | ✅ |
+| Federated Learning | 32 | ✅ |
+| KV-Cache System | 401 | ✅ |
+| WebSocket API | - | ✅ |
+| CLI Tool | - | ✅ |
+| **Total** | **821+** | ✅ |
 
-### Phase 4: KV-Cache System (Complete)
+### R&D Progress (Spreadsheet Integration)
 
-Inspired by [KVCOMM (NeurIPS'25)](https://github.com/FastMAS/KVCOMM), implementing:
-
-- **KV Proximity**: Tokens closer in embedding space have closer KV vectors
-- **Offset Proximity**: Predictable changes under prefix modifications
-- **Anchor-Based Communication**: Three-phase matching/reuse/prediction
-- **Privacy-Aware Sharing**: Differential privacy for cross-colony sync
+| Wave | Focus | Documents | Status |
+|------|-------|-----------|--------|
+| Wave 15 | Strategic Planning | 6 docs | ✅ |
+| Wave 16 | Plug-and-Play UX | 11 docs | ✅ |
+| Wave 17 | Cell Abstraction Layer | 4 docs | ✅ |
+| Wave 18 | Breakdown Engine | 4 docs | ✅ Round 1 |
+| Wave 18 | Breakdown Engine | TBD | 🔄 Round 2 |
+| **Total** | **4 waves** | **25+ docs** | **Active** |
 
 ---
 
 ## Getting Started
 
 ```bash
-# Clone
-git clone https://github.com/SuperInstance/polln.git
-cd polln
-
 # Install
 npm install
 
-# Test
+# Run tests
 npm test
 
 # Build
 npm run build
+
+# Run CLI
+npm run cli
 ```
 
 ---
 
-## The Deeper Vision
+## Key Terminology
 
-Most AI systems get smarter by getting bigger.
+| Term | Definition |
+|------|------------|
+| **Agent** | A specialized component that performs one task well |
+| **Colony** | A collection of agents working together |
+| **A2A Package** | Agent-to-Agent communication artifact (fully traceable) |
+| **Plinko Layer** | Stochastic selection mechanism (probabilistic choice) |
+| **Hebbian Learning** | "Neurons that fire together, wire together" |
+| **Subsumption** | Layered processing where lower layers override higher ones |
+| **LOG** | Ledger-Organizing Graph (or Logic Graph) |
+| **KV-Cache** | Efficient context sharing between agents |
+| **Distillation** | Large model teaching small agents |
+| **World Model** | Internal representation for planning/dreaming |
 
-More parameters. More compute. More data.
+---
 
-POLLN gets smarter by getting more **connected**.
+## Use Cases
 
-The intelligence isn't in any agent. It's in the web between them.
+### Research
+- Trace every decision
+- Debug any failure
+- Publish reproducible experiments
 
-That's why it can:
-- **Explain itself** (every step is traceable)
-- **Improve itself** (learning is connection adjustment)
-- **Survive change** (diversity provides backup)
-- **Run anywhere** (tiny agents fit on tiny devices)
+### Development
+- Ship one agent improvement without risking the system
+- Let users customize their colonies
+- Run on edge devices without GPU clusters
 
-Not a bigger brain. A better nervous system.
+### Spreadsheets (Killer App)
+- Inspectable AI in every cell
+- Learn your workflow patterns
+- Simulate changes before committing
+- Understand why decisions were made
 
 ---
 
 ## Research Foundation
 
-POLLN synthesizes research from multiple fields:
+POLLN synthesizes research from:
+- **Multi-Agent Reinforcement Learning** (MARL)
+- **Embodied Cognition** (distributed memory)
+- **Swarm Intelligence** (stigmergy, coordination)
+- **Neuroscience** (Hebbian learning, subsumption)
+- **Distributed Systems** (federated learning, privacy)
 
-- **Multi-Agent Reinforcement Learning** (MARL, CTDE patterns)
-- **Embodied Cognition** (distributed memory, subsumption)
-- **Swarm Intelligence** (stigmergy, pheromone trails)
-- **Differential Privacy** (ε < 1.0 guarantees)
-- **Neuroscience** (Hebbian learning, layered processing)
-
-See `docs/research/` for deep dives into each area.
-
----
-
-## Origin
-
-POLLN evolved from [Mycelium](https://github.com/SuperInstance/Mycelium), transforming the fungal network metaphor into a pollination metaphor that better captures:
-
-- **Passive networking** (bees don't try to network)
-- **Generational durability** (colonies survive individuals)
-- **Reinforcement learning** (successful patterns spread)
-- **Stochastic exploration** (randomness as feature, not bug)
+See `docs/research/` for deep dives.
 
 ---
 
@@ -530,6 +311,10 @@ This project is in active development. See `docs/ROADMAP.md` for the development
 
 ---
 
-*Repository: https://github.com/SuperInstance/polln*
-*Creator: Casey DiGennaro*
-*Last Updated: 2026-03-06*
+**Repository**: https://github.com/SuperInstance/polln
+**Creator**: Casey DiGennaro
+**Last Updated**: 2026-03-08
+
+---
+
+*POLLN: Intelligence you can inspect, trust, and control.*
