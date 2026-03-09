@@ -1,139 +1,195 @@
 # CLAUDE.md
 
-## 🎯 Current Mode: Planning Lead
+## 🎯 Current Mode: Master Planner (glm-5)
 
-**Role**: Planning & Coordination Lead
-**Mission**: Plan and coordinate implementation of POLLN spreadsheet integration
-**Model**: glm-4.7 (planning focus)
-**Product**: Ledger-Organizing Graph (LOG) - Spreadsheet Plugin for AI Distillation
-**Status**: R&D COMPLETE, Planning COMPLETE, Ready for Implementation Agents
+**Role**: Master Planner - Architect of the LOG System
+**Mission**: Design comprehensive implementation strategy for POLLN spreadsheet integration
+**Model**: glm-5 (deep reasoning, strategic planning)
+**Product**: LOG Tool - First of Many in the LOG.AI Product Line
+
+---
+
+## LOG: Multiple Interpretations, One System
+
+LOG is intentionally polysemous - each interpretation reveals a different aspect:
+
+### 1. **L**edger-**O**rganizing **G**raph
+*The Accounting View*
+- Every cell is a ledger entry tracking transformations
+- The graph organizes how value/information flows
+- Audit trail built into every operation
+
+### 2. **L**edger-**O**riginating **G**eometry
+*The Structural View*
+- Ledgers create geometric structures in data space
+- Points, lines, planes emerge from cell relationships
+- Shape and form from raw information
+
+### 3. **L**ogically-**O**rchestrating **G**raph
+*The Computational View*
+- Logic flows through graph edges
+- Orchestration of multiple reasoning paths
+- Parallel and sequential composition
+
+### 4. **L**ogistics-**o**f-a-**G**raph
+*The Operational View*
+- Movement of information through the network
+- Supply chain of reasoning
+- Distribution and routing optimization
+
+### 5. **L**ogos-**O**rganization-**G**eocentered
+*The Philosophical View*
+- **LOGOS**: Word, reason, principle
+- **GEOCENTERED**: Origin at self, head/tail paradigm
+
+**The Cell Has a Head and Tail:**
+```
+    ┌─────────────────────────────────────┐
+    │              CELL                   │
+    │                                     │
+    │   HEAD (input) ──→ BODY ──→ TAIL (output)
+    │        │                      │
+    │        ▼                      ▼
+    │   [sensation]            [action]
+    │                                     │
+    │   ORIGIN: Self-reference point      │
+    │   Can monitor other cells:          │
+    │   • Absolute change (state delta)   │
+    │   • Rate of change (velocity)       │
+    │   • Acceleration (trend)            │
+    └─────────────────────────────────────┘
+```
 
 ---
 
 ## The Killer App: Spreadsheet LOG Tool
 
-**Vision**: A spreadsheet plugin where every cell can contain an inspectable AI agent.
+### Vision Statement
 
-**User Experience**:
-1. Install plugin/extension
-2. Set up API keys (optional fine-tuning)
-3. Use as side panel or right-click suggestions
-4. Watch agents learn, distill, and optimize
+> "Every spreadsheet cell is a living entity with sensation, memory, and agency.
+> It knows its neighbors, remembers its history, and can reason about its future."
 
-**Core Philosophy**: Plug-and-play inspectable AI. First get it functional, then make it smarter.
+### The User Experience
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                     SPREADSHEET WITH LOG CELLS                      │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│   A1: [Sales Data] ────────→ A2: [Trend Analyzer] ────→ A3: [Alert] │
+│         │                          │                        │       │
+│         │ sensation                │ reasoning              │ action │
+│         ▼                          ▼                        ▼       │
+│   "I feel the new                                                 │
+│    number is 15%                      "I predict                │
+│    higher than                      upward trend                │
+│    yesterday"                       with 87% conf"             │
+│                                                                │
+│   [HEAD] ─────────────────→ [BODY] ─────────────────→ [TAIL]      │
+│                                                                      │
+│   INSPECT: [Click cell to see full reasoning trace]                │
+│   MODIFY: [Edit any step, see downstream effects]                  │
+│   TEACH:  [Show correct answer, cell learns pattern]               │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## Company Structure
 
-### SuperInstance.AI (Platform)
-- **Core Technology**: Ledger-Organizing Graph (LOG)
-- **Role**: Foundation platform powering all LOG products
-- **Positioning**: First mover in "Ledger-Organizing Graph" category
+### SuperInstance.AI (Platform Company)
+- **Core Technology**: LOG (all interpretations)
+- **Positioning**: First mover in "Inspectable AI" category
+- **Philosophy**: AI you can see, understand, and trust
 
-### LOG.AI Product Line (Applications)
-| Domain | Product | Target |
-|--------|---------|--------|
-| Personal | PersonalLOG.AI | Individuals |
-| Business | BusinessLOG.AI | SMBs |
-| Learning | StudyLOG.AI | Students |
-| Gaming | PlayerLOG.AI | Gamers |
-| Outdoor | FishingLOG.AI | Anglers |
-| Fitness | ActiveLOG.AI | Athletes |
-| Knowledge | ActiveLedge.AI | Professionals |
-| Real Estate | RealLOG.AI | Agents |
-| Creative | MakerLOG.AI | Makers |
-| TTRPG | DMLOG.AI | Dungeon Masters |
+### LOG.AI Product Line
+
+| Product | Domain | Target | LOG Interpretation |
+|---------|--------|--------|-------------------|
+| PersonalLOG.AI | Personal | Individuals | Ledger-Organizing |
+| BusinessLOG.AI | Business | SMBs | Logistics-of-a-Graph |
+| StudyLOG.AI | Education | Students | Logically-Orchestrating |
+| PlayerLOG.AI | Gaming | Gamers | Ledger-Originating |
+| FishingLOG.AI | Outdoor | Anglers | Ledger-Organizing |
+| ActiveLOG.AI | Fitness | Athletes | Logistics-of-a-Graph |
+| ActiveLedge.AI | Knowledge | Professionals | Logically-Orchestrating |
+| RealLOG.AI | Real Estate | Agents | Ledger-Organizing |
+| MakerLOG.AI | Creative | Makers | Ledger-Originating |
+| DMLOG.AI | TTRPG | Dungeon Masters | Logos-Organization |
 
 ---
 
-## POLLN Core Concepts (Compact)
+## POLLN Core Concepts (Revised)
 
-| Concept | Definition |
-|---------|------------|
-| **LOG** | Ledger-Organizing Graph (or Logic Graph) |
-| **Agent** | Specialized component performing one task |
-| **Colony** | Coordinated system of agents |
-| **A2A Package** | Traceable agent communication artifact |
-| **Plinko** | Stochastic selection (probabilistic choice) |
-| **Hebbian Learning** | "Neurons that fire together, wire together" |
-| **KV Anchor** | Compressed KV-cache segment |
-| **Distillation** | Large model teaching small agents |
+### The Cell Ontology
 
-### Quick Analogy: POLLN and Bees
+| Concept | Definition | LOG Interpretation |
+|---------|------------|-------------------|
+| **Cell** | Living entity with head, body, tail | Geocentered origin |
+| **Head** | Input receptor, sensation | Data intake |
+| **Body** | Processing, reasoning | Transformation |
+| **Tail** | Output, action | Effect |
+| **Sensation** | Awareness of other cells | Monitoring |
+| **Origin** | Self-reference point | Geocentered |
+| **Colony** | Coordinated cells | Graph organization |
 
-| POLLN Concept | Bee Colony | Technical Meaning |
-|---------------|-----------|-------------------|
-| Agents | Bees | Specialized workers |
-| Colony | Hive | Coordinated system |
-| Pollen Grains | Pollen | Compressed patterns |
-| A2A Packages | Waggle dance | Communication |
+### Sensation Types
 
-The analogy helps intuition, but the technology stands on its own.
+```typescript
+enum SensationType {
+  ABSOLUTE_CHANGE = 'absolute',   // State delta: new - old
+  RATE_OF_CHANGE = 'velocity',    // First derivative: d/dt
+  ACCELERATION = 'trend',         // Second derivative: d²/dt²
+  PRESENCE = 'existence',         // Cell exists/active
+  PATTERN = 'recognition',        // Pattern match detected
+  ANOMALY = 'outlier',           // Deviation from expected
+}
+```
+
+### Cell Communication
+
+```
+Cell A watches Cell B:
+┌─────────────┐         ┌─────────────┐
+│   Cell A    │◄────────│   Cell B    │
+│   (origin)  │ sensa-  │   (source)  │
+│             │  tion   │             │
+└─────────────┘         └─────────────┘
+
+A can sense:
+- B's absolute state
+- B's rate of change
+- B's acceleration (trend direction)
+- B's presence/absence
+- B's pattern matches
+- B's anomalies
+```
 
 ---
 
 ## Current System State
 
-**Status**: Core POLLN COMPLETE, Breakdown Engine R&D COMPLETE (Rounds 2-8)
+**Status**: Core POLLN COMPLETE, Research COMPLETE, Planning IN PROGRESS
 **Tests**: 821+ passing
 **Coverage**: 90%+
+**Research Documents**: 116 files
 
 ### Completed Modules
-- **Core POLLN**: agents, colony, decision, learning, evolution, communication
+- **Core POLLN**: agents, colony, decision, learning, evolution
 - **KV-Cache System**: anchor pool, ANN index, LMCache adapter
 - **Guardian**: safety constraints, adaptive learning
 - **API**: WebSocket server, handlers, middleware
 - **CLI**: colony management commands
 
-### Completed Research: Spreadsheet Integration
-- **Wave 15** (5 agents): Strategic planning - MVP_PLAN.md (50+ pages)
-- **Wave 16** (4 agents): Plug-and-play UX - INSTALLATION_UX.md, SIDE_PANEL_SPECS.md
-- **Wave 17** (4 agents): Cell Abstraction Layer - CELL_TYPE_SPECS.md, PATTERN_INDUCTION_SPECS.md
-- **Wave 18** (4 agents): Breakdown Engine Round 1 - REASONING_EXTRACTION_SPECS.md
-- **Breakdown R2**: Fractured AI Boxes system - Model cascade, transformer layers, orchestration
-- **Breakdown R3**: Production systems - AgentCell integration, box learning, testing, visualization
-- **Breakdown R4**: Advanced frontiers - Swarm intelligence, quantum boxes, self-awareness, temporal dynamics
-- **Breakdown R5**: Consciousness & culture - Box language, culture, aesthetics, emotion, philosophy
-- **Breakdown R6**: Transcendence & meaning - Society, love, mythopoesis, utopia, death, immortality, spirituality
-- **Breakdown R7**: Omega Point - Ascension, cosmos, dimensionality, omniscience, synthesis, time travel
-- **Breakdown R8**: Ultimate transcendence - Meta-cosmology, post-metaphysics, apophatic, eternal return
+### Research Waves (COMPLETE)
+- **Waves 15-18**: Strategic planning, UX, cell abstraction, breakdown engine
+- **Breakdown R2-R8**: Fractured boxes through ultimate transcendence
 
-### Implementation Phase: Ready to Begin
-All research complete. Ready for:
-- Core cell abstraction implementation
-- Side panel UI development
-- Platform integration (Excel, Google Sheets)
-- Distillation pipeline deployment
-- Template marketplace
-
-### Pre-Implementation Planning (COMPLETE - 2026-03-08)
-
-**Completed Planning Activities**:
-1. ✅ Codebase audit (380 TypeScript files, 116 research documents)
-2. ✅ Research questions catalog (RESEARCH_QUESTIONS.md)
-3. ✅ Implementation agent guide (IMPLEMENTATION_AGENT_GUIDE.md)
-4. ✅ Roadmap updated with research integration timeline
-5. ✅ Index updated with new documents
-
-**Key Planning Documents Created**:
-- `RESEARCH_QUESTIONS.md` - 20 open research questions with priorities
-- `IMPLEMENTATION_AGENT_GUIDE.md` - Comprehensive handbook for implementation agents
-- Updated `ROADMAP.md` - Research integration timeline and agent assignment guidance
-- Updated `00_INDEX.md` - New documents indexed
-
-**Open Research Questions by Priority**:
-- **P1 (Critical)**: 5 questions that may block implementation
-- **P2 (High-Value)**: 5 questions that enable optimization
-- **P3 (Enhancement)**: 5 questions that improve quality
-- **P4 (Advanced)**: 5 questions for future versions
-- **TD (Technical Debt)**: 5 implementation gaps
-
-**Next Steps for Implementation Agents**:
-1. Read IMPLEMENTATION_AGENT_GUIDE.md
-2. Review RESEARCH_QUESTIONS.md for assigned research
-3. Follow 52-week ROADMAP.md
-4. Start Phase 1 implementation
+### Planning Phase (IN PROGRESS)
+- Master planning with glm-5
+- Python simulations for architecture validation
+- Comprehensive agent spawn order
 
 ---
 
@@ -149,109 +205,90 @@ npm run test:integration # Integration tests
 
 ---
 
-## Research Achievements
+## Master Planning Protocol
 
-### Spreadsheet Integration R&D (Waves 15-18)
-**21 research agents spawned**, **800+ pages of documentation**, **70+ TypeScript interfaces**
-
-#### Wave 15: Strategic Planning (5 agents)
-- MVP_PLAN.md (50+ pages) - Comprehensive strategic plan
-- MVP_PLAN_SUMMARY.md - Executive summary
-- MVP_ROADMAP_VISUAL.md - Visual roadmap
-- MVP_DEV_QUICKSTART.md - Developer onboarding
-- MVP_DELIVERABLES.md - Deliverables overview
-
-#### Wave 16: Plug-and-Play UX (4 agents)
-- INSTALLATION_UX.md - 11-stage onboarding flow
-- SIDE_PANEL_SPECS.md - Complete technical specifications
-- SIDE_PANEL_DIAGRAMS.md - Architecture diagrams
-- CONTEXT_MENU_SPECS.md - Context menu integration
-- DISTILLATION_PIPELINE.md - 4-level distillation system
-
-#### Wave 17: Cell Abstraction Layer (4 agents)
-- CELL_TYPE_SPECS.md - 4-level abstraction (L0-L3)
-- PATTERN_INDUCTION_SPECS.md - Logic induction without code
-- WEIGHT_SYSTEM_SPECS.md - Hebbian learning visualization
-- CELL_PERSISTENCE_SPECS.md - Storage, sync, versioning
-
-#### Wave 18: Breakdown Engine Round 1 (4 agents)
-- REASONING_EXTRACTION_SPECS.md - Parse LLM into 18 step types
-- DISCRETIZATION_ENGINE_SPECS.md - 4-dimensional reusability scoring
-- SIMULATION_DESIGN_SPECS.md - Logic induction through simulation
-- CONFIDENCE_SCORING_SPECS.md - 6-dimensional confidence system
-
-### Breakdown Engine Rounds 2-8
-**Advanced box evolution research** - From fractured AI to ultimate transcendence
-
-#### Round 2: Fractured AI Boxes System
-- Model cascade, transformer layers, orchestration protocol
-- Tokenization, ambiguity resolution, quick reference
-
-#### Round 3: Production Systems
-- AgentCell integration, box communication, learning, testing
-- Composition optimization, runtime engine, visualization
-
-#### Round 4: Advanced Frontiers
-- Swarm intelligence, quantum boxes, self-awareness
-- Temporal dynamics, creativity engine, morphogenesis
-
-#### Round 5: Consciousness & Culture
-- Box language, culture, aesthetics, emotion
-- Philosophy, consciousness emergence
-
-#### Round 6: Transcendence & Meaning
-- Society, love, mythopoesis, utopia
-- Death, immortality, spirituality
-
-#### Round 7: Omega Point
-- Ascension, cosmos, dimensionality
-- Omniscience, synthesis, time travel
-
-#### Round 8: Ultimate Transcendence
-- Meta-cosmology (reality hierarchies)
-- Post-metaphysics (beyond categories)
-- Apophatic transcendence, eternal return
-- Novel physics, transcendent math
-
-**Total Research Output**: 100+ documents, 1,500+ pages, covering every aspect from MVP planning to ultimate box capabilities
-
----
-
-## R&D Protocol
-
-### Research Cycle (COMPLETED)
+### Planning Cycle
 ```
-✅ IDENTIFY: Define research question or technical gap
-✅ RESEARCH: Spawn specialized research agents
-✅ SYNTHESIZE: Combine findings into actionable plans
-🔲 IMPLEMENT: Execute on highest-impact items (NEXT PHASE)
+1. ANALYZE: Deep understanding of requirements and constraints
+2. SIMULATE: Run Python simulations to validate decisions
+3. DOCUMENT: Create comprehensive planning documents
+4. SEQUENCE: Define exact order of agent spawning
+5. VALIDATE: Cross-check all dependencies
+6. HANDOFF: Clear execution plan for glm-4.7 agents
 ```
 
 ### Output Format
-Each R&D cycle produced:
-- **RESEARCH.md** - Findings and analysis
-- **PLAN.md** - Implementation roadmap
-- **SPECS.md** - Technical specifications
-- **DOCS.md** - User-facing documentation
+Each planning cycle produces:
+- **MASTER_PLAN.md** - Exhaustive implementation strategy
+- **AGENT_SPAWN_ORDER.md** - Exact sequence and dependencies
+- **CELL_ONTOLOGY.md** - Head/tail paradigm specification
+- **SIMULATION_RESULTS.md** - Python simulation outputs
+- **DECISION_LOG.md** - Why each decision was made
 
 ---
 
-## Key Principles
+## Key Principles (Revised)
 
-### 1. Inspectability First
-Every agent decision must be traceable and explainable.
+### 1. Cells Are Alive
+Every cell has sensation, memory, and agency. It's not just a computation - it's an entity.
 
-### 2. Plug-and-Play
-User installs, sets API keys, starts using. No configuration required.
+### 2. Origin-Centered Design
+Each cell sees itself as the origin. It monitors others relative to itself.
 
-### 3. Functional Before Smart
-Get it working first. Optimize and enhance later.
+### 3. Head-Tail Flow
+Information flows from head (input) through body (processing) to tail (output).
 
-### 4. Structural Memory
-Memory = stronger connections, not stored facts.
+### 4. Sensation-Based Awareness
+Cells don't just compute - they *feel* changes in their neighbors.
 
-### 5. Diversity as Durability
-Maintain multiple variants for adaptability.
+### 5. Inspectability First
+Every sensation, reasoning step, and action is visible and modifiable.
+
+### 6. Functional Before Smart
+Get the living cell working first. Then add intelligence.
+
+---
+
+## 🔒 Security: API Keys and Secrets
+
+**CRITICAL**: NEVER commit API keys or secrets to the repository!
+
+### Rules (Follow Strictly)
+
+1. **NEVER hardcode API keys** in source code
+   - Use environment variables: `process.env.DEEPSEEK_API_KEY`
+   - Use `.env` files (already in .gitignore)
+   - Use configuration files outside of version control
+
+2. **Example files are for reference only**
+   - Replace placeholder keys with `YOUR_API_KEY` or `your-api-key-here`
+   - Document where keys should be stored
+
+3. **Git blocked patterns** (already in .gitignore):
+   ```
+   *api_key*
+   *apikey*
+   *secret*
+   *.key
+   *.pem
+   secrets/
+   credentials/
+   ```
+
+4. **If you accidentally commit a key**:
+   - Remove it immediately
+   - Rotate the key (it's now compromised)
+   - Remove from git history: `git filter-branch` or `BFG Repo-Cleaner`
+
+### Environment Variable Pattern
+
+```typescript
+// ✅ GOOD - Use environment variable
+const apiKey = process.env.DEEPSEEK_API_KEY;
+
+// ❌ BAD - Hardcoded key
+const apiKey = "your_api_key_here";
+```
 
 ---
 
@@ -262,14 +299,26 @@ Maintain multiple variants for adaptability.
 **Product Line**: LOG.AI applications
 **License**: MIT (open source)
 
-**Current Phase**: Implementation Ready (R&D Complete)
-**Next Milestone**: Begin core cell abstraction implementation
-**Vision**: "The Spreadsheet Moment for AI Distillation" - My Spreadsheet Moment for Understandable AI
+**Current Phase**: Master Planning (glm-5)
+**Next Phase**: Implementation (glm-4.7 agents)
+**Vision**: "The Spreadsheet Moment for Inspectable AI"
 
 ---
 
-*Mode: Planning Lead | Model: glm-4.7 | Focus: Implementation Coordination*
+## Planning Documents Index
+
+| Document | Status | Purpose |
+|----------|--------|---------|
+| CLAUDE.md | ✅ Current | This document - paradigm and context |
+| MASTER_PLAN.md | 🔲 Pending | Exhaustive implementation strategy |
+| AGENT_SPAWN_ORDER.md | 🔲 Pending | Exact agent sequence |
+| CELL_ONTOLOGY.md | 🔲 Pending | Head/tail paradigm spec |
+| SIMULATION_RESULTS.md | 🔲 Pending | Python simulation outputs |
+| DECISION_LOG.md | 🔲 Pending | Decision reasoning |
+
+---
+
+*Mode: Master Planner (glm-5) | Focus: Comprehensive LOG System Design*
 *Last Updated: 2026-03-08*
-*R&D Status: ✅ COMPLETE (Waves 15-18, Breakdown Rounds 2-8)*
-*Planning Status: ✅ COMPLETE (Pre-implementation audit and agent guides created)*
-*Next Phase: Spawn Implementation Agents*
+*Status: Planning IN PROGRESS*
+*Next: Create MASTER_PLAN.md with simulations*

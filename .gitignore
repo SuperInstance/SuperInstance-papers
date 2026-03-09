@@ -48,3 +48,16 @@ yarn-error.log*
 
 # Local research workspace (not part of POLLN)
 reseachlocal/
+
+# API Keys and Secrets (SECURITY CRITICAL)
+.env*.key
+.env*.secret
+*api_key*
+*apikey*
+*secret*
+secrets/
+credentials/
+*.pem
+*.key
+.secrets/
+.creds/
