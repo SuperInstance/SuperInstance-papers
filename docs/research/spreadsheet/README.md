@@ -17,6 +17,8 @@
 
 ## Documents in This Directory
 
+### Core Research Documents
+
 1. **[TECHNICAL_FEASIBILITY.md](./TECHNICAL_FEASIBILITY.md)** - Comprehensive technical analysis
    - Platform matrix (Excel, Google Sheets, Airtable)
    - Constraints inventory
@@ -30,6 +32,42 @@
    - Task discovery and agent creation
    - Quality assurance and verification
    - Cost optimization strategies
+
+### New Integration Documents (2025-03-08)
+
+3. **[GOOGLE_DOCS_INTEGRATION.md](./GOOGLE_DOCS_INTEGRATION.md)** - Complete technical architecture
+   - Google Sheets API v4 analysis
+   - Integration architecture options (3 approaches)
+   - Technical constraints and solutions
+   - MVP implementation plan (10-week roadmap)
+   - Other platform analysis (Excel, Airtable, Notion)
+   - Risk assessment and mitigation strategies
+   - Complete code examples
+
+4. **[ARCHITECTURE_DIAGRAMS.md](./ARCHITECTURE_DIAGRAMS.md)** - Visual architecture diagrams
+   - System overview diagrams
+   - Data flow sequences
+   - Component architecture maps
+   - Deployment topology
+   - Network diagrams
+   - Security layers
+   - Performance breakdowns
+
+5. **[QUICK_START.md](./QUICK_START.md)** - 30-minute setup guide
+   - Step-by-step setup instructions
+   - Prerequisites and installation
+   - Google Cloud project configuration
+   - Apps Script add-on creation
+   - Testing and troubleshooting
+   - Development tips
+
+### Planning Documents
+
+6. **[MVP_PLAN.md](./MVP_PLAN.md)** - Detailed MVP implementation plan
+7. **[TECHNICAL_SPECS.md](./TECHNICAL_SPECS.md)** - Technical specifications
+8. **[ARCHITECTURE.md](./ARCHITECTURE.md)** - System architecture documentation
+9. **[BUSINESS_STRATEGY.md](./BUSINESS_STRATEGY.md)** - Business and go-to-market strategy
+10. **[UI_MOCKUPS.md](./UI_MOCKUPS.md)** - UI/UX design mockups
 
 ---
 
