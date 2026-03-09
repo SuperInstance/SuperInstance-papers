@@ -388,6 +388,8 @@ This directory contains comprehensive research and planning for POLLN's spreadsh
 | ROADMAP.md | ✅ Complete | 2026-03-08 |
 | ONBOARDING.md | ✅ Complete | 2026-03-08 |
 | IMPLEMENTATION_PLAN.md | ✅ Complete | 2026-03-08 |
+| RESEARCH_QUESTIONS.md | ✅ Complete | 2026-03-08 |
+| IMPLEMENTATION_AGENT_GUIDE.md | ✅ Complete | 2026-03-08 |
 | 00_INDEX.md | ✅ Complete | 2026-03-08 |
 
 ---

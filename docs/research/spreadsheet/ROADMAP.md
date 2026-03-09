@@ -940,7 +940,58 @@ This 52-week roadmap transforms cutting-edge research into a production-ready sp
 
 ---
 
-**Document Version**: 1.0
+## Pre-Implementation Research Requirements
+
+### Research Questions Document
+
+Before full implementation, review [RESEARCH_QUESTIONS.md](./RESEARCH_QUESTIONS.md) for:
+
+1. **Critical Research (P1)**: 5 questions that may block implementation
+2. **High-Value Research (P2)**: 5 questions that enable optimization
+3. **Enhancement Research (P3)**: 5 questions that improve quality
+4. **Advanced Research (P4)**: 5 questions for future versions
+5. **Technical Debt**: 5 implementation gaps
+
+### Research Integration Timeline
+
+| Week | Research Focus | Integration Point |
+|------|---------------|-------------------|
+| 1-4 | P1-001 to P1-003 | Phase 1 Week 5-6 |
+| 5-8 | P1-004 to P1-005 | Phase 2 Week 13-14 |
+| 9-12 | P2-001 to P2-003 | Phase 1 optimization |
+| 13-16 | P2-004 to P2-005 | Phase 4 Week 29-30 |
+
+### Research-Agent Assignment
+
+When spawning research agents:
+- **ML Engineer**: Model cascade, transformer mapping
+- **Systems Engineer**: Composition, gap detection
+- **AI Researcher**: Agency determination, ambiguity resolution
+- **QA Engineer**: Test coverage, benchmarks
+- **Security Engineer**: Security audit
+
+---
+
+## New Agent Resources
+
+### Implementation Agent Guide
+
+New implementation agents should read:
+1. [IMPLEMENTATION_AGENT_GUIDE.md](./IMPLEMENTATION_AGENT_GUIDE.md) - Complete handbook
+2. This document (ROADMAP.md) - 52-week plan
+3. [RESEARCH_QUESTIONS.md](./RESEARCH_QUESTIONS.md) - Open questions
+
+### Onboarding Flow for Implementation Agents
+
+```
+Day 1: Environment setup + Read ROADMAP.md + Read IMPLEMENTATION_AGENT_GUIDE.md
+Day 2: Read phase-specific docs + Find assigned issues
+Day 3: First code changes + Submit first PR within 48 hours
+```
+
+---
+
+**Document Version**: 1.1
 **Last Updated**: 2026-03-08
 **Status**: ✅ Complete - Ready for implementation
 **Next Review**: Week 4 (Architecture Review)
