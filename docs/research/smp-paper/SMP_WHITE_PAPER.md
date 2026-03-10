@@ -1,8 +1,14 @@
-# SMP Programming: Tile Intelligence for Spreadsheet AI
+# Seed-Model-Prompt Programming: LLMs to Swarms, SMPbots Peek on Schrödinger's Cat
 
 **A White Paper on Deconstructing LLMs into Inspectable, Trainable Spreadsheet Components**
 
 ---
+
+## Quick Summary
+
+SMP (Seed + Model + Prompt) Programming breaks giant AI models into tiny pieces that live in spreadsheet cells. Each piece is visible, improvable, and can learn on its own. It's like taking apart a Swiss watch to see exactly how each gear works—then putting it back together better than before.
+
+**The breakthrough**: You can see inside the black box.
 
 ## Executive Summary
 

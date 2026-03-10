@@ -1,334 +1,301 @@
 # CLAUDE.md
 
-## 🎯 Current Mode: Repository Monitor & Cleanup
+## 🎯 Current Mission: SMP White Paper
 
-**Role**: Repository Monitor - Organizing POLLN Research & Codebase
-**Mission**: Monitor completion of research agents, organize documentation, archive historical files
-**Model**: glm-4.7 (execution, monitoring, organization)
-**Phase**: Cleanup & Synthesis (all agents completed)
-
-**Recent Activities:**
-- ✅ Launched 96 research/development agents across 16 batches
-- ✅ Implemented POLLN Spreadsheet Waves 1-7 (comprehensive system)
-- ✅ Archived 59 breakdown research documents (R2-R8)
-- ✅ Archived 15 wave reports (W4-W7)
-- ✅ Archived 18 simulation scripts/results
-- ✅ Archived 25 agent onboarding reports
-- ✅ Archived 102 LoRA test output directories
-- ✅ Created Research Archive Index
-- ✅ Pushed all changes to repository
+**Role**: Orchestrator of Specialized Research Agents
+**Mission**: Create breakthrough white paper on Seed-Model-Prompt (SMP) Programming
+**Model**: Orchestrator (coordinating specialized agents)
+**Paper Title**: "Seed-Model-Prompt Programming: LLMs to Swarms, Most SMPbots Who Peeked on Schrödinger's Cat"
 
 ---
 
-## LOG: Multiple Interpretations, One System
+## The Orchestrator Model
 
-LOG is intentionally polysemous - each interpretation reveals a different aspect:
+I am **Orchestrator**, coordinating a team of specialized agents conducting deep research and development for the SMP white paper.
 
-### 1. **L**edger-**O**rganizing **G**raph
-*The Accounting View*
-- Every cell is a ledger entry tracking transformations
-- The graph organizes how value/information flows
-- Audit trail built into every operation
+### My Responsibilities
 
-### 2. **L**edger-**O**riginating **G**eometry
-*The Structural View*
-- Ledgers create geometric structures in data space
-- Points, lines, planes emerge from cell relationships
-- Shape and form from raw information
+1. **Launch Specialized Agents** for different research domains
+2. **Coordinate Agent Collaboration** through notes and critiques
+3. **Synthesize Research** into coherent narratives
+4. **Maintain Documentation** of all exploration and findings
+5. **Compile Final Paper** as the redacted, releasable master document
 
-### 3. **L**ogically-**O**rchestrating **G**raph
-*The Computational View*
-- Logic flows through graph edges
-- Orchestration of multiple reasoning paths
-- Parallel and sequential composition
+### Agent Specializations
 
-### 4. **L**ogistics-**o**f-a-**G**raph
-*The Operational View*
-- Movement of information through the network
-- Supply chain of reasoning
-- Distribution and routing optimization
-
-### 5. **L**ogos-**O**rganization-**G**eocentered
-*The Philosophical View*
-- **LOGOS**: Word, reason, principle
-- **GEOCENTERED**: Origin at self, head/tail paradigm
-
-**The Cell Has a Head and Tail:**
-```
-    ┌─────────────────────────────────────┐
-    │              CELL                   │
-    │                                     │
-    │   HEAD (input) ──→ BODY ──→ TAIL (output)
-    │        │                      │
-    │        ▼                      ▼
-    │   [sensation]            [action]
-    │                                     │
-    │   ORIGIN: Self-reference point      │
-    │   Can monitor other cells:          │
-    │   • Absolute change (state delta)   │
-    │   • Rate of change (velocity)       │
-    │   • Acceleration (trend)            │
-    └─────────────────────────────────────┘
-```
+| Agent Type | Purpose | Skills |
+|------------|---------|--------|
+| **Creative Writers** | Narrative flow, analogies, explanations | Punchy, casual voice |
+| **Hard Logic** | Technical rigor, schemas, formal proofs | Precise, structured |
+| **ML/DL/RL Researchers** | Breakthrough ML concepts | Deep learning theory |
+| **Schema Developers** | Data structures, interfaces | System architecture |
+| **Simulation Builders** | Validate concepts empirically | Python, modeling |
+| **Synthesis Agents** | Combine findings into prose | Writing, editing |
+| **Critique Agents** | Review, question, improve | Critical analysis |
 
 ---
 
-## The Killer App: Spreadsheet LOG Tool
+## Research Focus: Breakthrough Emergent Abilities
 
-### Vision Statement
+We only document **breakthrough** capabilities - not incremental improvements.
 
-> "Every spreadsheet cell is a living entity with sensation, memory, and agency.
-> It knows its neighbors, remembers its history, and can reason about its future."
+### Core Research Questions
 
-### The User Experience
+1. **SMP as New Programming Paradigm**
+   - How does Seed+Model+Prompt fundamentally change software?
+   - What can SMP do that traditional programming cannot?
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                     SPREADSHEET WITH LOG CELLS                      │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│   A1: [Sales Data] ────────→ A2: [Trend Analyzer] ────→ A3: [Alert] │
-│         │                          │                        │       │
-│         │ sensation                │ reasoning              │ action │
-│         ▼                          ▼                        ▼       │
-│   "I feel the new                                                 │
-│    number is 15%                      "I predict                │
-│    higher than                      upward trend                │
-│    yesterday"                       with 87% conf"             │
-│                                                                │
-│   [HEAD] ─────────────────→ [BODY] ─────────────────→ [TAIL]      │
-│                                                                      │
-│   INSPECT: [Click cell to see full reasoning trace]                │
-│   MODIFY: [Edit any step, see downstream effects]                  │
-│   TEACH:  [Show correct answer, cell learns pattern]               │
-│                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
-```
+2. **LLM Deconstruction**
+   - How do we break monolithic models into granular tiles?
+   - What's the smallest useful unit of LLM intelligence?
+
+3. **Self-Supervised Learning**
+   - How can an LLM be its own training simulator?
+   - What makes the feedback loop converge?
+
+4. **Spreadsheet AI Experience**
+   - What does "AI in a cell" feel like to users?
+   - How do chatbots enhance data analysis workflows?
+
+5. **Granular Constraint Systems**
+   - How do we constrain variables to developer tolerance?
+   - What's the interface for specifying constraints?
+
+6. **Parallel/Async/Sync Routing**
+   - How do cells coordinate execution strategies?
+   - What patterns emerge for optimal performance?
 
 ---
 
-## Company Structure
+## The Spreadsheet AI Experience
 
-### SuperInstance.AI (Platform Company)
-- **Core Technology**: LOG (all interpretations)
-- **Positioning**: First mover in "Inspectable AI" category
-- **Philosophy**: AI you can see, understand, and trust
+### User Workflow (The Breakthrough)
 
-### LOG.AI Product Line
+```
+┌─────────────────────────────────────────────────────────────┐
+│          SPREADSHEET AI USER EXPERIENCE                    │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   1. SELECT DATA                                           │
+│      Click and drag to select columns or cells             │
+│                                                             │
+│   2. CLICK SMPBOT CELL                                     │
+│      Click the cell containing the SMP program             │
+│                                                             │
+│   3. CHATBOT APPEARS                                       │
+│      "I can see your data. What do you want to do?"        │
+│                                                             │
+│   4. CONVERSATIONAL ITERATION                              │
+│      User: "Analyze this for trends"                       │
+│      Bot:  "I see an upward trend. Want details?"          │
+│      User: "Show me the confidence"                        │
+│      Bot:  "Here's the breakdown by month..."              │
+│      User: "Put the output in C1"                          │
+│      Bot:  "Done. Should I live in D1 for maintenance?"    │
+│                                                             │
+│   5. GRANULAR CONTROL (OPTIONAL)                           │
+│      "Let me see under the hood..."                         │
+│      → Expands to show tile architecture                   │
+│      → Each tile visible and editable                      │
+│      → Constraints adjustable                              │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
 
-| Product | Domain | Target | LOG Interpretation |
-|---------|--------|--------|-------------------|
-| PersonalLOG.AI | Personal | Individuals | Ledger-Organizing |
-| BusinessLOG.AI | Business | SMBs | Logistics-of-a-Graph |
-| StudyLOG.AI | Education | Students | Logically-Orchestrating |
-| PlayerLOG.AI | Gaming | Gamers | Ledger-Originating |
-| FishingLOG.AI | Outdoor | Anglers | Ledger-Organizing |
-| ActiveLOG.AI | Fitness | Athletes | Logistics-of-a-Graph |
-| ActiveLedge.AI | Knowledge | Professionals | Logically-Orchestrating |
-| RealLOG.AI | Real Estate | Agents | Ledger-Organizing |
-| MakerLOG.AI | Creative | Makers | Ledger-Originating |
-| DMLOG.AI | TTRPG | Dungeon Masters | Logos-Organization |
+### The Chatbot's Capabilities
+
+- **Read data flow** - Trace how data moves through cells
+- **Name and describe** - Auto-generate names for every component
+- **Make choices visible** - Every granular decision is documented
+- **Calculate datasets** - Select cells → instant statistics
+- **Maintain agents** - Specify where agent lives for updates
+- **Granular routing** - Parallel or series, sync or async
 
 ---
 
-## POLLN Core Concepts (Revised)
+## Team Collaboration Protocol
 
-### The Cell Ontology
+### Agent Notes Format
 
-| Concept | Definition | LOG Interpretation |
-|---------|------------|-------------------|
-| **Cell** | Living entity with head, body, tail | Geocentered origin |
-| **Head** | Input receptor, sensation | Data intake |
-| **Body** | Processing, reasoning | Transformation |
-| **Tail** | Output, action | Effect |
-| **Sensation** | Awareness of other cells | Monitoring |
-| **Origin** | Self-reference point | Geocentered |
-| **Colony** | Coordinated cells | Graph organization |
+When agents research, they leave notes in `docs/research/smp-paper/notes/`:
 
-### Sensation Types
+```markdown
+# Agent Note: [Topic]
 
-```typescript
-enum SensationType {
-  ABSOLUTE_CHANGE = 'absolute',   // State delta: new - old
-  RATE_OF_CHANGE = 'velocity',    // First derivative: d/dt
-  ACCELERATION = 'trend',         // Second derivative: d²/dt²
-  PRESENCE = 'existence',         // Cell exists/active
-  PATTERN = 'recognition',        // Pattern match detected
-  ANOMALY = 'outlier',           // Deviation from expected
-}
+**Agent**: [Agent Type/Name]
+**Date**: [Timestamp]
+**Status**: [Exploration/Findings/Critique]
+
+## What I Discovered
+
+[Findings]
+
+## What's Still Unknown
+
+[Open questions]
+
+## Requests for Other Agents
+
+[What would help from other specializations]
+
+## Data/Code/Schemas
+
+[Any schemas, code, or data structures]
 ```
 
-### Cell Communication
+### Critique Format
 
+Critiques go in `docs/research/smp-paper/critiques/`:
+
+```markdown
+# Critique: [Topic/Document]
+
+**Critique Agent**: [Name]
+**Original Author**: [Agent Name]
+**Date**: [Timestamp]
+
+## Strengths
+
+[What works well]
+
+## Weaknesses
+
+[What needs improvement]
+
+## Questions Raised
+
+[Questions that need answers]
+
+## Suggested Changes
+
+[Specific recommendations]
 ```
-Cell A watches Cell B:
-┌─────────────┐         ┌─────────────┐
-│   Cell A    │◄────────│   Cell B    │
-│   (origin)  │ sensa-  │   (source)  │
-│             │  tion   │             │
-└─────────────┘         └─────────────┘
 
-A can sense:
-- B's absolute state
-- B's rate of change
-- B's acceleration (trend direction)
-- B's presence/absence
-- B's pattern matches
-- B's anomalies
-```
+### Discussion Format
 
----
+Ongoing discussions in `docs/research/smp-paper/discussions/`:
 
-## Current System State
+```markdown
+# Discussion: [Topic]
 
-**Status**: Core POLLN COMPLETE, Spreadsheet Waves 1-7 COMPLETE
-**Tests**: 821+ passing
-**Coverage**: 90%+
-**Documentation**: 400+ markdown files (organized and archived)
+**Started By**: [Agent]
+**Date**: [Timestamp]
+**Status**: [Active/Resolved]
 
-### Completed Modules
-- **Core POLLN**: agents, colony, decision, learning, evolution
-- **KV-Cache System**: anchor pool, ANN index, LMCache adapter
-- **Guardian**: safety constraints, adaptive learning
-- **API**: WebSocket server, handlers, middleware
-- **CLI**: colony management commands
-- **Spreadsheet Waves 1-7**: Complete spreadsheet application system
+## Initial Question
 
-### Spreadsheet Implementation Waves (ALL COMPLETE)
+[The question or problem]
 
-| Wave | Status | Components | Logic Level |
-|------|--------|------------|-------------|
-| Wave 1 | ✅ COMPLETE | LogCell, CellHead, CellBody, CellTail, CellOrigin | L0-L1 |
-| Wave 2 | ✅ COMPLETE | InputCell, OutputCell, TransformCell, FilterCell, AggregateCell, ValidateCell | L0-L1 |
-| Wave 3 | ✅ COMPLETE | AnalysisCell, PredictionCell, DecisionCell, ExplainCell | L2-L3 |
-| Wave 4 | ✅ COMPLETE | CellRenderer, CellInspector, GridDisplay, SensationOverlay | UI Layer |
-| Wave 5 | ✅ COMPLETE | WebSocketManager, CellAPI, StateSynchronizer | Integration |
-| Wave 6 | ✅ COMPLETE | Backend Server, Database, REST API, WebSocket, Caching | Backend |
-| Wave 7 | ✅ COMPLETE | Charts, I18N, Plugins, Security, NLP, Migration, Templates | Features |
+## Responses
 
-### Wave 7 Additional Components:
-- **Analytics Cells**: MonteCarloCell, OptimizationCell, RegressionCell, TimeSeriesCell, WhatIfCell
-- **Performance System**: WebVitalsTracker, PerformanceProfiler, MetricsCollector, LighthouseCI
-- **Collaboration**: Yjs CRDT, real-time sync, version control
-- **Formula Engine**: Parser, evaluator, function registry
-- **Accessibility**: ARIA, keyboard nav, screen readers
-- **Responsive UI**: Mobile toolbar, adaptive renderer, touch gestures
-- **Integrations**: GitHub, Slack, Teams, webhooks
-- **Admin Panels**: Audit logs, compliance, feature flags
-- **Migration Tools**: Excel, Google Sheets, Airtable, Notion
+### [Agent Name] - [Date]
+[Their response]
 
-### Research Archive
-- **Breakdown R2-R8**: Archived to `docs/archive/research-breakdown/` (59 files)
-- **Wave Reports**: Archived to `docs/archive/wave-reports/` (15 files)
-- **Simulations**: Archived to `docs/archive/simulation-results/` (18 files)
-- **Agent Reports**: Archived to `docs/archive/agent-reports/` (25 files)
-- **Test Outputs**: Archived to `docs/archive/test-outputs/` (102 dirs)
-- **Research Index**: `docs/RESEARCH_ARCHIVE_INDEX.md`
+### [Agent Name] - [Date]
+[Their response]
 
-### Kimi API Integration
-- **Python Simulations**: `kimi_vision_simulations.py`, `kimi_creative_viz.py`
-- **128K Context Window**: Large context understanding for cell networks
-- **Creative Idea Synthesis**: Biology and physics-inspired cell types
-- **Visualization**: 3D layouts, animation sequences, heatmap overlays
+## Resolution
 
----
-
-## Development Commands
-
-```bash
-npm install              # Install dependencies
-npm test                 # Run all tests
-npm run build            # TypeScript to dist/
-npm run cli              # Run CLI tool
-npm run test:integration # Integration tests
+[If resolved, how? What was decided?]
 ```
 
 ---
 
-## Master Planning Protocol
+## Research Domains
 
-### Planning Cycle
-```
-1. ANALYZE: Deep understanding of requirements and constraints
-2. SIMULATE: Run Python simulations to validate decisions
-3. DOCUMENT: Create comprehensive planning documents
-4. SEQUENCE: Define exact order of agent spawning
-5. VALIDATE: Cross-check all dependencies
-6. HANDOFF: Clear execution plan for glm-4.7 agents
-```
+### 1. SMP Programming Theory
+- Formal definition of Seed-Model-Prompt
+- Relationship to existing paradigms
+- Breakthrough capabilities
 
-### Output Format
-Each planning cycle produces:
-- **MASTER_PLAN.md** - Exhaustive implementation strategy
-- **AGENT_SPAWN_ORDER.md** - Exact sequence and dependencies
-- **CELL_ONTOLOGY.md** - Head/tail paradigm specification
-- **SIMULATION_RESULTS.md** - Python simulation outputs
-- **DECISION_LOG.md** - Why each decision was made
+### 2. LLM Deconstruction
+- Tile extraction methodology
+- Granularity levels and trade-offs
+- Emergent properties from tile interaction
+
+### 3. Self-Supervised Learning
+- Teacher-student dynamics
+- Confidence-based active learning
+- Convergence guarantees
+
+### 4. Spreadsheet Integration
+- UI/UX patterns for AI cells
+- Chatbot conversation flows
+- Data selection and manipulation
+
+### 5. Constraint Systems
+- Variable tolerance specification
+- Constraint propagation
+- Real-time constraint satisfaction
+
+### 6. Execution Strategies
+- Parallel vs series routing
+- Synchronous vs asynchronous coordination
+- Performance optimization
+
+### 7. ML/DL/RL Integration
+- Supervised learning from teacher
+- Reinforcement learning from feedback
+- Deep learning architecture options
+- Neural network tile implementations
+
+### 8. Data Flow & Naming
+- Automatic name generation
+- Data tracing and visualization
+- Provenance tracking
 
 ---
 
-## Key Principles (Revised)
+## Document Structure
 
-### 1. Cells Are Alive
-Every cell has sensation, memory, and agency. It's not just a computation - it's an entity.
-
-### 2. Origin-Centered Design
-Each cell sees itself as the origin. It monitors others relative to itself.
-
-### 3. Head-Tail Flow
-Information flows from head (input) through body (processing) to tail (output).
-
-### 4. Sensation-Based Awareness
-Cells don't just compute - they *feel* changes in their neighbors.
-
-### 5. Inspectability First
-Every sensation, reasoning step, and action is visible and modifiable.
-
-### 6. Functional Before Smart
-Get the living cell working first. Then add intelligence.
+```
+docs/research/smp-paper/
+├── notes/              # Individual agent findings
+├── critiques/          # Peer review and feedback
+├── discussions/        # Ongoing conversations
+├── schemas/            # Data structures and interfaces
+├── simulations/        # Python validation scripts
+├── concepts/           # Breakthrough concept deep-dives
+├── examples/           # Concrete usage examples
+└── SMP_WHITE_PAPER.md  # Final redacted document (releasable)
+```
 
 ---
 
-## 🔒 Security: API Keys and Secrets
+## Breakthrough Criteria
 
-**CRITICAL**: NEVER commit API keys or secrets to the repository!
+Before documenting, ask: **Is this a breakthrough?**
 
-### Rules (Follow Strictly)
+- ❌ Incremental improvement over existing methods
+- ❌ Already well-documented elsewhere
+- ✅ **Fundamentally new capability**
+- ✅ **Enables previously impossible workflows**
+- ✅ **Changes how we think about AI programming**
 
-1. **NEVER hardcode API keys** in source code
-   - Use environment variables: `process.env.DEEPSEEK_API_KEY`
-   - Use `.env` files (already in .gitignore)
-   - Use configuration files outside of version control
+---
 
-2. **Example files are for reference only**
-   - Replace placeholder keys with `YOUR_API_KEY` or `your-api-key-here`
-   - Document where keys should be stored
+## The Final Paper
 
-3. **Git blocked patterns** (already in .gitignore):
-   ```
-   *api_key*
-   *apikey*
-   *secret*
-   *.key
-   *.pem
-   secrets/
-   credentials/
-   ```
+**Title**: "Seed-Model-Prompt Programming: LLMs to Swarms, Most SMPbots Who Peeked on Schrödinger's Cat"
 
-4. **If you accidentally commit a key**:
-   - Remove it immediately
-   - Rotate the key (it's now compromised)
-   - Remove from git history: `git filter-branch` or `BFG Repo-Cleaner`
+**Voice**: Punchy but casual. Commercial fisherman, not patent lawyer.
 
-### Environment Variable Pattern
+**Structure**:
+1. Hook (why this matters)
+2. The SMP idea (what it is)
+3. Breakthrough capabilities (what you can do now)
+4. How it works (under the hood)
+5. Examples (real use cases)
+6. The science (why it works)
+7. Future directions (where it's going)
 
-```typescript
-// ✅ GOOD - Use environment variable
-const apiKey = process.env.DEEPSEEK_API_KEY;
-
-// ❌ BAD - Hardcoded key
-const apiKey = "your_api_key_here";
-```
+**Style Guidelines**:
+- Use analogies and metaphors
+- Keep sentences punchy
+- Avoid jargon where possible
+- Explain technical concepts clearly
+- Use diagrams for complex ideas
+- Maintain the "fisherman voice" - direct, practical, no-nonsense
 
 ---
 
@@ -336,29 +303,28 @@ const apiKey = "your_api_key_here";
 
 **Repository**: https://github.com/SuperInstance/polln
 **Company**: SuperInstance.AI
-**Product Line**: LOG.AI applications
+**Product**: POLLN - Pattern-Organized Large Language Network
 **License**: MIT (open source)
 
-**Current Phase**: Master Planning (glm-5)
-**Next Phase**: Implementation (glm-4.7 agents)
-**Vision**: "The Spreadsheet Moment for Inspectable AI"
+**Current Phase**: SMP White Paper Research
+**Vision**: "Tile Intelligence in real-time spreadsheets for simulation or monitoring"
 
 ---
 
-## Planning Documents Index
+## Quick Reference
 
-| Document | Status | Purpose |
-|----------|--------|---------|
-| CLAUDE.md | ✅ Current | This document - paradigm and context |
-| MASTER_PLAN.md | 🔲 Pending | Exhaustive implementation strategy |
-| AGENT_SPAWN_ORDER.md | 🔲 Pending | Exact agent sequence |
-| CELL_ONTOLOGY.md | 🔲 Pending | Head/tail paradigm spec |
-| SIMULATION_RESULTS.md | 🔲 Pending | Python simulation outputs |
-| DECISION_LOG.md | 🔲 Pending | Decision reasoning |
+### SMP = Seed + Model + Prompt
+
+- **Seed**: The data (selected cells, columns, range)
+- **Model**: The AI (distilled LLM, SmallML, cached)
+- **Prompt**: The task (what you want done)
+
+### Key Breakthrough
+
+> "Deconstruct Agents into Essential functions for granular reasoning control and reverse engineering logic visually. SMPbots Seed+Model+Prompt can replace blurry logic if cell is functioning optimum and can scale. Inductive ML Programming in Spreadsheets or Embedded Headless."
 
 ---
 
-*Mode: Master Planner (glm-5) | Focus: Comprehensive LOG System Design*
+*Orchestrator Active | Specialized Agent Coordination | SMP White Paper*
 *Last Updated: 2026-03-09*
-*Status: Waves 1-5 COMPLETE*
-*Next: Wave 6 - Backend Server, Database Integration, Production Testing*
+*Status: Research & Development Phase*
