@@ -93,9 +93,13 @@ The analogy helps intuition, but the technical implementation stands on its own.
 
 **SMP = Seed + Model + Prompt**
 
+**GPU-Stable Programming for CUDA and Kubernetes**
+
+POLLN introduces **SMPbots**—a programming approach that's as stable as a CPU script but scales naturally on GPU hardware. Load the model once, run thousands of calculations in parallel on CUDA or Kubernetes, locally or in the cloud.
+
 **Simple Person Programming for Real-Time Simulation and Monitoring**
 
-POLLN introduces **SMPbots**—a deceptively simple approach to building intelligent spreadsheet cells that becomes profoundly powerful when you have the model in memory and thousands of parallel calculations running all day.
+At the surface level, SMP is approachable for spreadsheet users. Under the hood, it's a GPU-native programming model that scales horizontally across CUDA cores and Kubernetes clusters without code changes.
 
 ### Tile Intelligence: Deconstructing Agents into Essential Functions
 
@@ -181,9 +185,19 @@ The name is catchy because it sounds like "simple person programming"—and it *
 
 **SMPbots approach:** Run calculations in parallel with in-memory models
 - ✅ Millisecond response times (model already loaded)
-- ✅ Thousands of parallel calculations
+- ✅ Thousands of parallel calculations on CUDA cores
+- ✅ Scales horizontally on Kubernetes clusters
+- ✅ Same code runs locally or in the cloud
 - ✅ Works offline after initial load
 - ✅ Perfect for batch operations
+
+**GPU Programming, Simplified:**
+
+SMP scripts are as stable as traditional CPU code, but they execute on GPU hardware when available. The runtime handles:
+- CUDA memory management automatically
+- Kubernetes pod scheduling for distributed workloads
+- Fallback to CPU when GPU unavailable
+- No code changes needed for different deployment targets
 
 ### The "Simple Person Programming" Advantage
 
@@ -221,14 +235,16 @@ The complexity is **handled by the system**, not the user. The user gets powerfu
 │                   ▼                                       │
 │           ┌───────────────────┐                             │
 │           │   SHARED MODEL     │                             │
-│           │   (In Memory)       │                             │
+│           │   (GPU Memory)      │                             │
 │           │                     │                             │
-│           │  • Parallel exec    │                             │
+│           │  • CUDA parallel    │                             │
+│           │  • K8s distributed  │                             │
 │           │  • KV-Cache lookup │                             │
 │           │  • Fast inference  │                             │
 │           └───────────────────┘                             │
 │                                                             │
-│   RESULT: 1000+ cells calculating simultaneously               │
+│   DEPLOYMENT: Local GPU, Kubernetes Cluster, or Cloud       │
+│   SCALING: Horizontal across CUDA cores or K8s pods         │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -274,8 +290,17 @@ SMP Programming may be simple to use, but under the hood it leverages:
 - **Plinko Selection** - Probabilistic choice for diversity
 - **World Model** - Internal representation for dreaming
 - **Federated Learning** - Knowledge sharing across cells
+- **CUDA-K8s Runtime** - Automatic GPU scaling and cluster orchestration
 
 The simplicity is in the **interface**, not the **implementation**.
+
+**GPU Programming That Just Works:**
+
+SMP scripts are portable across execution environments:
+- Write once on your laptop (CPU or GPU)
+- Deploy to Kubernetes cluster (distributed GPU)
+- Scale horizontally without code changes
+- Runtime handles the complexity
 
 ### SMPbot Lifecycle
 
