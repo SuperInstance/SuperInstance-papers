@@ -1,0 +1,366 @@
+# POLLN Release Pipeline
+# Automated release on version tag
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.2.3)'
+        required: true
+        type: string
+
+env:
+  NODE_VERSION: '20'
+  REGISTRY: 'registry.npmjs.org'
+
+jobs:
+  # =============================================================================
+  # Release Validation
+  # =============================================================================
+  validate:
+    name: Validate Release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION=${{ github.event.inputs.version }}
+          else
+            VERSION=${GITHUB_REF#refs/tags/}
+          fi
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Releasing version: $VERSION"
+
+          # Validate version format
+          if ! [[ $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$ ]]; then
+            echo "❌ Invalid version format: $VERSION"
+            echo "Expected format: v1.2.3 or v1.2.3-alpha.1"
+            exit 1
+          fi
+
+  # =============================================================================
+  # Run Tests
+  # =============================================================================
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run all tests
+        run: npm run test:all
+
+      - name: Check coverage
+        run: npm run coverage:check
+
+  # =============================================================================
+  # Build Artifacts
+  # =============================================================================
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [validate, test]
+    outputs:
+      version: ${{ needs.validate.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build TypeScript
+        run: npm run build
+
+      - name: Generate API docs
+        run: npm run docs:build
+
+      - name: Create distribution archive
+        run: |
+          tar -czf polln-${{ needs.validate.outputs.version }}.tar.gz \
+            dist/ \
+            package.json \
+            package-lock.json \
+            README.md \
+            LICENSE
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: |
+            dist/
+            polln-${{ needs.validate.outputs.version }}.tar.gz
+          retention-days: 30
+
+  # =============================================================================
+  # Docker Build & Push
+  # =============================================================================
+  docker:
+    name: Docker
+    runs-on: ubuntu-latest
+    needs: [validate, test]
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: polln/polln
+          tags: |
+            type=semver,pattern={{version}},value=${{ needs.validate.outputs.version }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ needs.validate.outputs.version }}
+            type=semver,pattern={{major}},value=${{ needs.validate.outputs.version }}
+            type=raw,value=latest
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          platforms: linux/amd64,linux/arm64
+
+      - name: Scan image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'polln/polln:${{ needs.validate.outputs.version }}'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  # =============================================================================
+  # Publish to npm
+  # =============================================================================
+  npm-publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    needs: [validate, build]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: ./
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.validate.outputs.version }}
+          name: Release ${{ needs.validate.outputs.version }}
+          body: |
+            ## POLLN ${{ needs.validate.outputs.version }}
+
+            ### What's Changed
+
+            See the [CHANGELOG.md](https://github.com/SuperInstance/polln/blob/main/CHANGELOG.md) for details.
+
+            ### Installation
+
+            ```bash
+            npm install polln@${{ needs.validate.outputs.version }}
+            ```
+
+            ### Docker
+
+            ```bash
+            docker pull polln/polln:${{ needs.validate.outputs.version }}
+            ```
+
+            Full Changelog: https://github.com/SuperInstance/polln/compare/${{ needs.validate.outputs.version }}...HEAD
+          files: |
+            polln-${{ needs.validate.outputs.version }}.tar.gz
+          draft: false
+          prerelease: ${{ contains(needs.validate.outputs.version, '-') }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # =============================================================================
+  # Generate Changelog
+  # =============================================================================
+  changelog:
+    name: Update Changelog
+    runs-on: ubuntu-latest
+    needs: [validate, npm-publish]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate changelog
+        run: |
+          npm run changelog ${{ needs.validate.outputs.version }}
+
+      - name: Commit changelog
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add CHANGELOG.md
+          git commit -m "chore: update changelog for ${{ needs.validate.outputs.version }}"
+          git push
+
+  # =============================================================================
+  # Notify Release
+  # =============================================================================
+  notify:
+    name: Notify
+    runs-on: ubuntu-latest
+    needs: [validate, build, docker, npm-publish, changelog]
+    if: always()
+    steps:
+      - name: Slack notification
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "POLLN Release ${{ needs.validate.outputs.version }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*POLLN Release ${{ needs.validate.outputs.version }}*\n\n• Build: ${{ needs.build.result }}\n• Docker: ${{ needs.docker.result }}\n• npm: ${{ needs.npm-publish.result }}\n• Changelog: ${{ needs.changelog.result }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # =============================================================================
+  # Post-Release Smoke Tests
+  # =============================================================================
+  smoke-test:
+    name: Smoke Test
+    runs-on: ubuntu-latest
+    needs: [npm-publish]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install released version
+        run: |
+          npm install -g polln@${{ needs.validate.outputs.version }}
+          polln --version
+
+      - name: Run smoke tests
+        run: |
+          polln init test-colony
+          cd test-colony
+          polln start
+          # Test basic operations
+          polln status
+          polln stop
+
+  # =============================================================================
+  # Security Baseline
+  # =============================================================================
+  security-baseline:
+    name: Security Baseline
+    runs-on: ubuntu-latest
+    needs: [validate, build]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run security audit
+        run: npm audit --audit-level=moderate
+
+      - name: Generate SBOM
+        run: |
+          npm install -g @cyclonedx/cyclonedx-npm
+          cyclonedx-npm -o sbom.json
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v3
+        with:
+          name: sbom
+          path: sbom.json
+          retention-days: 90
