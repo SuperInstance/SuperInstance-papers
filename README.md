@@ -93,11 +93,11 @@ The analogy helps intuition, but the technical implementation stands on its own.
 
 **SMP = Seed + Model + Prompt**
 
-**GPU-Stable Programming for CUDA and Kubernetes**
+**Tile Intelligence in real-time spreadsheets for simulation or monitoring. Deconstruct Agents into Essential functions for granular reasoning control and reverse engineering logic visually. SMPbots Seed+Model+Prompt can replace blurry logic if cell is functioning optimum and can scale. Inductive ML Programming in Spreadsheets or Embedded Headless.**
 
 POLLN introduces **SMPbots**—a programming approach that's as stable as a CPU script but scales naturally on GPU hardware. Load the model once, run thousands of calculations in parallel on CUDA or Kubernetes, locally or in the cloud.
 
-**Simple Person Programming for Real-Time Simulation and Monitoring**
+**GPU-Stable Programming for CUDA and Kubernetes**
 
 At the surface level, SMP is approachable for spreadsheet users. Under the hood, it's a GPU-native programming model that scales horizontally across CUDA cores and Kubernetes clusters without code changes.
 
