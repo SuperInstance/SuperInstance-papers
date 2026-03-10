@@ -1,0 +1,218 @@
+# POLLN PR Labeler Configuration
+# Automatic labeling based on changed files
+
+name: "Pull Request Labeler"
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+# Label configuration
+"lang:typescript":
+  - changed-files:
+      - any-glob-to-any-file: ["src/**/*.ts", "src/**/*.tsx"]
+
+"lang:javascript":
+  - changed-files:
+      - any-glob-to-any-file: ["src/**/*.js", "src/**/*.jsx"]
+
+"lang:python":
+  - changed-files:
+      - any-glob-to-any-file: ["scripts/**/*.py", "simulations/**/*.py"]
+
+"lang:yaml":
+  - changed-files:
+      - any-glob-to-any-file: ["*.yml", "*.yaml", ".github/**/*.yml", "kubernetes/**/*.yml", "terraform/**/*.tf"]
+
+"lang:markdown":
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.md", "**/*.mdx"]
+
+"lang:shell":
+  - changed-files:
+      - any-glob-to-any-file: ["scripts/**/*.sh", "**/*.sh"]
+
+"lang:docker":
+  - changed-files:
+      - any-glob-to-any-file: ["**/Dockerfile*", "**/docker-compose*", ".dockerignore"]
+
+"lang:json":
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.json"]
+
+"area:spreadsheet":
+  - changed-files:
+      - any-glob-to-any-file: ["src/spreadsheet/**", "examples/spreadsheet/**"]
+
+"area:api":
+  - changed-files:
+      - any-glob-to-any-file: ["src/api/**", "src/server.ts"]
+
+"area:cli":
+  - changed-files:
+      - any-glob-to-any-file: ["src/cli/**"]
+
+"area:agents":
+  - changed-files:
+      - any-glob-to-any-file: ["src/agents/**", "examples/agents/**"]
+
+"area:colony":
+  - changed-files:
+      - any-glob-to-any-file: ["src/colony/**", "examples/colony/**"]
+
+"area:decision":
+  - changed-files:
+      - any-glob-to-any-file: ["src/decision/**"]
+
+"area:learning":
+  - changed-files:
+      - any-glob-to-any-file: ["src/learning/**"]
+
+"area:evolution":
+  - changed-files:
+      - any-glob-to-any-file: ["src/evolution/**"]
+
+"area:guardian":
+  - changed-files:
+      - any-glob-to-any-file: ["src/guardian/**"]
+
+"area:kv-cache":
+  - changed-files:
+      - any-glob-to-any-file: ["src/kv-cache/**", "examples/kv-cache*"]
+
+"area:websocket":
+  - changed-files:
+      - any-glob-to-any-file: ["src/websocket/**"]
+
+"area:types":
+  - changed-files:
+      - any-glob-to-any-file: ["src/types/**"]
+
+"area:utils":
+  - changed-files:
+      - any-glob-to-any-file: ["src/utils/**"]
+
+"area:tests":
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.test.ts", "**/*.spec.ts", "**/__tests__/**", "**/__mocks__/**"]
+
+"area:documentation":
+  - changed-files:
+      - any-glob-to-any-file: ["docs/**", "**/*.md", "README.md"]
+
+"area:infrastructure":
+  - changed-files:
+      - any-glob-to-any-file: [".github/**", "kubernetes/**", "terraform/**", "docker/**", "scripts/**"]
+
+"area:ci-cd":
+  - changed-files:
+      - any-glob-to-any-file: [".github/workflows/**", "scripts/build.sh", "scripts/test.sh", "scripts/deploy.sh"]
+
+"dependencies":
+  - changed-files:
+      - any-glob-to-any-file: ["package.json", "package-lock.json", "npm-shrinkwrap.json", "**/package.json"]
+
+"config":
+  - changed-files:
+      - any-glob-to-any-file: ["tsconfig.json", ".eslintrc*", ".prettierrc*", ".nvmrc", ".env*"]
+
+"git":
+  - changed-files:
+      - any-glob-to-any-file: [".gitignore", ".gitattributes", ".gitmodules"]
+
+# PR size labels
+"size:xs":
+  - changed-files:
+      - any-glob-to-any-file: ["*"]
+  - head-branch: ["^.*$"]
+  - when: "changed_files <= 5 && additions <= 20 && deletions <= 20"
+
+"size:s":
+  - changed-files:
+      - any-glob-to-any-file: ["*"]
+  - when: "changed_files <= 10 && additions <= 100 && deletions <= 100"
+
+"size:m":
+  - changed-files:
+      - any-glob-to-any-file: ["*"]
+  - when: "changed_files <= 30 && additions <= 500 && deletions <= 500"
+
+"size:l":
+  - changed-files:
+      - any-glob-to-any-file: ["*"]
+  - when: "changed_files <= 100 && additions <= 2000 && deletions <= 2000"
+
+"size:xl":
+  - changed-files:
+      - any-glob-to-any-file: ["*"]
+  - when: "changed_files > 100 || additions > 2000 || deletions > 2000"
+
+# Impact labels
+"impact:high":
+  - changed-files:
+      - any-glob-to-any-file: ["src/index.ts", "package.json", "src/core/**"]
+
+"impact:medium":
+  - changed-files:
+      - any-glob-to-any-file: ["src/**/*.ts"]
+  - when: "changed_files > 5"
+
+"impact:low":
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.md", "docs/**"]
+
+# Priority labels
+"priority:critical":
+  - changed-files:
+      - any-glob-to-any-file: ["src/security/**", "src/auth/**", "src/encryption/**"]
+
+"priority:high":
+  - changed-files:
+      - any-glob-to-any-file: ["src/api/**", "src/server.ts"]
+
+"priority:medium":
+  - changed-files:
+      - any-glob-to-any-file: ["src/**"]
+  - when: "changed_files > 10"
+
+"priority:low":
+  - changed-files:
+      - any-glob-to-any-file: ["docs/**", "**/*.md"]
+
+# Type labels
+"type:feature":
+  - head-branch: ["^feature.*", "^feat.*"]
+  - changed-files:
+      - any-glob-to-any-file: ["src/**", "examples/**"]
+
+"type:bug":
+  - head-branch: ["^bug.*", "^fix.*"]
+  - changed-files:
+      - any-glob-to-any-file: ["src/**"]
+
+"type:refactor":
+  - head-branch: ["^refactor.*"]
+  - changed-files:
+      - any-glob-to-any-file: ["src/**"]
+
+"type:docs":
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.md", "docs/**"]
+
+"type:chore":
+  - head-branch: ["^chore.*"]
+  - changed-files:
+      - any-glob-to-any-file: ["package.json", "scripts/**", ".github/**"]
+
+"type:test":
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.test.ts", "**/*.spec.ts", "**/__tests__/**"]
+
+"type:perf":
+  - head-branch: ["^perf.*", "^performance.*"]
+  - changed-files:
+      - any-glob-to-any-file: ["src/**"]
+
+"type:style":
+  - head-branch: ["^style.*"]
+  - changed-files:
+      - any-glob-to-any-file: ["src/**", "examples/**"]

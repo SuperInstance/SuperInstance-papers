@@ -201,6 +201,29 @@ This directory contains comprehensive research and planning for POLLN's spreadsh
 
 ---
 
+#### [EDGE_COMPUTING.md](./EDGE_COMPUTING.md) ⭐ NEW!
+**Edge computing opportunities and implementation strategy**
+
+- **Edge Use Cases**: Geographic latency reduction, regional data compliance, offline-first capabilities, IoT device integration
+- **Edge Platforms Comparison**: CloudFront Functions@Edge, Cloudflare Workers, Fastly Compute@Edge, Azure Edge Zones, Cloud IoT Edge
+- **Edge Architecture**: Multi-layer design (CDN → Cache → Compute → Protection → Origin)
+- **Cell Processing at Edge**: Formula validation, input sanitization, pattern matching, cache warming, prefetching
+- **Real-time Features**: WebSocket termination, presence tracking, cursor broadcasting, notification delivery, conflict detection
+- **Data Synchronization**: Edge to origin sync, conflict resolution (OT/CRDT), event streaming, cache invalidation, offline queue processing
+- **Performance Targets**: <50ms p95 edge latency, 90%+ cache hit ratio, 80%+ origin offload
+- **Implementation Phases**: 4-phase rollout over 12 months
+- **Cost Analysis**: Detailed cost projections and ROI calculation (198% ROI, 4-month payback)
+
+**Key Findings:**
+- **Performance**: 60-80% latency reduction for global users
+- **Cost**: 40-60% reduction in compute costs through origin offload
+- **Features**: Offline-first, real-time collaboration, regional compliance
+- **Recommendation**: Hybrid Cloudflare Workers + Fastly approach
+
+**Best for**: Infrastructure planning, performance optimization, cost reduction
+
+---
+
 #### [TECHNICAL_FEASIBILITY.md](./TECHNICAL_FEASIBILITY.md)
 **Comprehensive technical analysis**
 

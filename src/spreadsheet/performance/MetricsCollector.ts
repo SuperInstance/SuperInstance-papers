@@ -1,480 +1,546 @@
 /**
- * POLLN Spreadsheet - MetricsCollector
+ * POLLN Spreadsheet - Enhanced MetricsCollector
  *
- * Comprehensive performance metrics collection and analysis.
- * Tracks FPS, memory, latency, and custom metrics.
+ * Comprehensive metrics collection with tagging, filtering, and aggregation.
+ * Extends the base MetricsCollector with advanced features.
  */
 
-export interface PerformanceMetrics {
-  fps: number;
-  frameTime: number;
-  memoryUsage: MemoryUsage;
-  latency: LatencyMetrics;
-  custom: Map<string, number>;
-}
+import {
+  Metric,
+  MetricStatistics,
+  TimeRange,
+  AlertThreshold,
+  PerformanceAlert,
+} from './types';
 
-export interface MemoryUsage {
-  usedJSHeapSize: number;
-  totalJSHeapSize: number;
-  jsHeapSizeLimit: number;
-  usagePercentage: number;
-}
-
-export interface LatencyMetrics {
-  avg: number;
-  min: number;
-  max: number;
-  p50: number;
-  p95: number;
-  p99: number;
-}
-
-export interface MetricSnapshot {
-  timestamp: number;
-  fps: number;
-  frameTime: number;
-  memory: MemoryUsage;
-  operations: number;
-}
-
-export interface MetricsConfig {
-  sampleInterval: number; // ms
-  historySize: number;
-  enableMemoryTracking: boolean;
-  enableFPSTracking: boolean;
-  enableLatencyTracking: boolean;
+/**
+ * Metrics storage bucket
+ */
+interface MetricBucket {
+  name: string;
+  samples: number[];
+  tags?: Record<string, string>;
+  timestamps: number[];
 }
 
 /**
- * MetricsCollector - Performance monitoring and analysis
- *
- * Features:
- * - Real-time FPS tracking
- * - Memory usage monitoring
- * - Latency percentile calculations
- * - Custom metric registration
- * - Historical data analysis
+ * Aggregated bucket statistics
+ */
+interface BucketAggregation {
+  name: string;
+  count: number;
+  sum: number;
+  min: number;
+  max: number;
+  values: number[];
+}
+
+/**
+ * Alert cooldown tracker
+ */
+interface AlertCooldown {
+  metricName: string;
+  threshold: AlertThreshold;
+  lastAlert: number;
+}
+
+/**
+ * Enhanced MetricsCollector with tagging, filtering, and alerting
  */
 export class MetricsCollector {
-  private config: MetricsConfig;
-  private history: MetricSnapshot[] = [];
-  private frameTimestamps: number[] = [];
-  private latencySamples: number[] = [];
-  private customMetrics: Map<string, number[]> = new Map();
-  private operationCount = 0;
-
-  private intervalId: NodeJS.Timeout | null = null;
-  private rafId: number | null = null;
-  private lastFrameTime = performance.now();
-
-  // Performance observers
-  private performanceObserver: PerformanceObserver | null = null;
-
-  constructor(config: Partial<MetricsConfig> = {}) {
-    this.config = {
-      sampleInterval: 1000,
-      historySize: 60,
-      enableMemoryTracking: true,
-      enableFPSTracking: true,
-      enableLatencyTracking: true,
-      ...config,
-    };
-
-    this.setupPerformanceObserver();
-  }
+  private buckets: Map<string, MetricBucket> = new Map();
+  private alertCooldowns: Map<string, AlertCooldown> = new Map();
+  private alertCallbacks: Set<(alert: PerformanceAlert) => void> = new Set();
+  private maxSamplesPerBucket = 1000;
+  private retentionPeriod = 24 * 60 * 60 * 1000; // 24 hours
 
   /**
-   * Start collecting metrics
+   * Record a metric with optional tags
    */
-  start(): void {
-    if (this.intervalId) return;
+  recordMetric(name: string, value: number, tags?: Record<string, string>): void {
+    const bucketKey = this.getBucketKey(name, tags);
 
-    this.intervalId = setInterval(() => {
-      this.collectMetrics();
-    }, this.config.sampleInterval);
-
-    if (this.config.enableFPSTracking) {
-      this.startFPSTracking();
-    }
-  }
-
-  /**
-   * Stop collecting metrics
-   */
-  stop(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
-
-    if (this.rafId !== null) {
-      cancelAnimationFrame(this.rafId);
-      this.rafId = null;
-    }
-
-    if (this.performanceObserver) {
-      this.performanceObserver.disconnect();
-    }
-  }
-
-  /**
-   * Setup performance observer for long tasks
-   */
-  private setupPerformanceObserver(): void {
-    if (typeof PerformanceObserver === 'undefined') return;
-
-    try {
-      this.performanceObserver = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          if (entry.duration > 50) {
-            // Long task detected
-            this.recordMetric('long_task', entry.duration);
-          }
-        }
+    if (!this.buckets.has(bucketKey)) {
+      this.buckets.set(bucketKey, {
+        name,
+        samples: [],
+        tags,
+        timestamps: [],
       });
-
-      this.performanceObserver.observe({ entryTypes: ['measure', 'longtask'] });
-    } catch (e) {
-      // PerformanceObserver not supported
-    }
-  }
-
-  /**
-   * Start FPS tracking
-   */
-  private startFPSTracking(): void {
-    const trackFrame = () => {
-      const now = performance.now();
-      const delta = now - this.lastFrameTime;
-
-      this.frameTimestamps.push(now);
-
-      // Keep only last second of frames
-      const oneSecondAgo = now - 1000;
-      this.frameTimestamps = this.frameTimestamps.filter((t) => t > oneSecondAgo);
-
-      this.lastFrameTime = now;
-      this.rafId = requestAnimationFrame(trackFrame);
-    };
-
-    this.rafId = requestAnimationFrame(trackFrame);
-  }
-
-  /**
-   * Collect current metrics
-   */
-  private collectMetrics(): void {
-    const snapshot: MetricSnapshot = {
-      timestamp: Date.now(),
-      fps: this.getCurrentFPS(),
-      frameTime: this.getCurrentFrameTime(),
-      memory: this.getMemoryUsage(),
-      operations: this.operationCount,
-    };
-
-    this.history.push(snapshot);
-
-    // Limit history size
-    if (this.history.length > this.config.historySize) {
-      this.history.shift();
     }
 
-    // Reset operation count
-    this.operationCount = 0;
-  }
+    const bucket = this.buckets.get(bucketKey)!;
+    bucket.samples.push(value);
+    bucket.timestamps.push(Date.now());
 
-  /**
-   * Get current FPS
-   */
-  getCurrentFPS(): number {
-    if (this.frameTimestamps.length < 2) return 0;
-
-    const timeSpan = this.frameTimestamps[this.frameTimestamps.length - 1] - this.frameTimestamps[0];
-    if (timeSpan === 0) return 0;
-
-    return (this.frameTimestamps.length / timeSpan) * 1000;
-  }
-
-  /**
-   * Get current frame time
-   */
-  getCurrentFrameTime(): number {
-    if (this.frameTimestamps.length < 2) return 0;
-
-    let totalDelta = 0;
-    for (let i = 1; i < this.frameTimestamps.length; i++) {
-      totalDelta += this.frameTimestamps[i] - this.frameTimestamps[i - 1];
+    // Enforce max samples
+    if (bucket.samples.length > this.maxSamplesPerBucket) {
+      bucket.samples.shift();
+      bucket.timestamps.shift();
     }
 
-    return totalDelta / (this.frameTimestamps.length - 1);
+    // Check alerts
+    this.checkAlerts(name, value, tags);
   }
 
   /**
-   * Get memory usage
+   * Get all metrics, optionally filtered by time range
    */
-  getMemoryUsage(): MemoryUsage {
-    if (!this.config.enableMemoryTracking || !(performance as any).memory) {
-      return {
-        usedJSHeapSize: 0,
-        totalJSHeapSize: 0,
-        jsHeapSizeLimit: 0,
-        usagePercentage: 0,
-      };
+  getMetrics(timeRange?: TimeRange): Metric[] {
+    const metrics: Metric[] = [];
+
+    for (const bucket of this.buckets.values()) {
+      const startIndex = timeRange
+        ? bucket.timestamps.findIndex((t) => t >= timeRange.start)
+        : 0;
+      const endIndex = timeRange
+        ? bucket.timestamps.findIndex((t) => t > timeRange.end)
+        : bucket.samples.length;
+
+      const samplesToAdd = bucket.samples.slice(startIndex, endIndex);
+      const timestampsToAdd = bucket.timestamps.slice(startIndex, endIndex);
+
+      for (let i = 0; i < samplesToAdd.length; i++) {
+        metrics.push({
+          name: bucket.name,
+          value: samplesToAdd[i],
+          timestamp: timestampsToAdd[i],
+          tags: bucket.tags,
+        });
+      }
     }
 
-    const memory = (performance as any).memory;
-    const used = memory.usedJSHeapSize;
-    const total = memory.totalJSHeapSize;
-    const limit = memory.jsHeapSizeLimit;
+    return metrics.sort((a, b) => a.timestamp - b.timestamp);
+  }
 
+  /**
+   * Get a specific metric by name, optionally with tags
+   */
+  getMetric(name: string, tags?: Record<string, string>): Metric | null {
+    const bucketKey = this.getBucketKey(name, tags);
+    const bucket = this.buckets.get(bucketKey);
+
+    if (!bucket || bucket.samples.length === 0) {
+      return null;
+    }
+
+    const lastIndex = bucket.samples.length - 1;
     return {
-      usedJSHeapSize: used,
-      totalJSHeapSize: total,
-      jsHeapSizeLimit: limit,
-      usagePercentage: (used / limit) * 100,
+      name: bucket.name,
+      value: bucket.samples[lastIndex],
+      timestamp: bucket.timestamps[lastIndex],
+      tags: bucket.tags,
     };
   }
 
   /**
-   * Record latency sample
+   * Get statistics for a specific metric
    */
-  recordLatency(value: number): void {
-    if (!this.config.enableLatencyTracking) return;
+  getMetricStatistics(name: string, tags?: Record<string, string>): MetricStatistics | null {
+    const bucketKey = this.getBucketKey(name, tags);
+    const bucket = this.buckets.get(bucketKey);
 
-    this.latencySamples.push(value);
-
-    // Keep only last 1000 samples
-    if (this.latencySamples.length > 1000) {
-      this.latencySamples.shift();
+    if (!bucket || bucket.samples.length === 0) {
+      return null;
     }
+
+    return this.calculateStatistics(bucket.name, bucket.samples);
   }
 
   /**
-   * Get latency metrics
+   * Get all metric statistics
    */
-  getLatencyMetrics(): LatencyMetrics {
-    if (this.latencySamples.length === 0) {
-      return {
-        avg: 0,
-        min: 0,
-        max: 0,
-        p50: 0,
-        p95: 0,
-        p99: 0,
-      };
+  getAllStatistics(): MetricStatistics[] {
+    const stats: MetricStatistics[] = [];
+
+    for (const bucket of this.buckets.values()) {
+      if (bucket.samples.length > 0) {
+        stats.push(this.calculateStatistics(bucket.name, bucket.samples));
+      }
     }
 
-    const sorted = [...this.latencySamples].sort((a, b) => a - b);
+    return stats;
+  }
+
+  /**
+   * Calculate statistics from samples
+   */
+  private calculateStatistics(name: string, samples: number[]): MetricStatistics {
+    if (samples.length === 0) {
+      throw new Error('Cannot calculate statistics from empty samples');
+    }
+
+    const sorted = [...samples].sort((a, b) => a - b);
     const sum = sorted.reduce((a, b) => a + b, 0);
+    const avg = sum / sorted.length;
+    const variance = sorted.reduce((acc, val) => acc + Math.pow(val - avg, 2), 0) / sorted.length;
 
     return {
-      avg: sum / sorted.length,
+      name,
+      count: sorted.length,
       min: sorted[0],
       max: sorted[sorted.length - 1],
-      p50: sorted[Math.floor(sorted.length * 0.5)],
+      avg,
+      median: sorted[Math.floor(sorted.length / 2)],
+      p90: sorted[Math.floor(sorted.length * 0.9)],
       p95: sorted[Math.floor(sorted.length * 0.95)],
       p99: sorted[Math.floor(sorted.length * 0.99)],
+      stdDev: Math.sqrt(variance),
     };
   }
 
   /**
-   * Record custom metric
+   * Query metrics by tags
    */
-  recordMetric(name: string, value: number): void {
-    if (!this.customMetrics.has(name)) {
-      this.customMetrics.set(name, []);
+  queryByTags(tagFilters: Record<string, string>): Metric[] {
+    const results: Metric[] = [];
+
+    for (const bucket of this.buckets.values()) {
+      if (this.matchTags(bucket.tags, tagFilters)) {
+        for (let i = 0; i < bucket.samples.length; i++) {
+          results.push({
+            name: bucket.name,
+            value: bucket.samples[i],
+            timestamp: bucket.timestamps[i],
+            tags: bucket.tags,
+          });
+        }
+      }
     }
 
-    const samples = this.customMetrics.get(name)!;
-    samples.push(value);
+    return results;
+  }
 
-    // Keep only last 100 samples
-    if (samples.length > 100) {
-      samples.shift();
+  /**
+   * Check if tags match filters
+   */
+  private matchTags(tags?: Record<string, string>, filters?: Record<string, string>): boolean {
+    if (!filters || Object.keys(filters).length === 0) {
+      return true;
+    }
+
+    if (!tags) {
+      return false;
+    }
+
+    for (const [key, value] of Object.entries(filters)) {
+      if (tags[key] !== value) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /**
+   * Get bucket key with tags
+   */
+  private getBucketKey(name: string, tags?: Record<string, string>): string {
+    if (!tags || Object.keys(tags).length === 0) {
+      return name;
+    }
+
+    const tagString = Object.entries(tags)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([k, v]) => `${k}=${v}`)
+      .join('&');
+
+    return `${name}?${tagString}`;
+  }
+
+  /**
+   * Set up alert threshold
+   */
+  setupAlert(threshold: AlertThreshold): void {
+    const cooldownKey = `${threshold.metricName}_${threshold.operator}_${threshold.threshold}`;
+    this.alertCooldowns.set(cooldownKey, {
+      metricName: threshold.metricName,
+      threshold,
+      lastAlert: 0,
+    });
+  }
+
+  /**
+   * Check if any alerts should fire
+   */
+  private checkAlerts(name: string, value: number, tags?: Record<string, string>): void {
+    for (const [cooldownKey, cooldown] of this.alertCooldowns.entries()) {
+      if (cooldown.metricName !== name) {
+        continue;
+      }
+
+      // Check cooldown
+      if (cooldown.threshold.cooldown) {
+        const timeSinceLastAlert = Date.now() - cooldown.lastAlert;
+        if (timeSinceLastAlert < cooldown.threshold.cooldown) {
+          continue;
+        }
+      }
+
+      // Check threshold
+      let shouldAlert = false;
+      switch (cooldown.threshold.operator) {
+        case '>':
+          shouldAlert = value > cooldown.threshold.threshold;
+          break;
+        case '<':
+          shouldAlert = value < cooldown.threshold.threshold;
+          break;
+        case '>=':
+          shouldAlert = value >= cooldown.threshold.threshold;
+          break;
+        case '<=':
+          shouldAlert = value <= cooldown.threshold.threshold;
+          break;
+        case '==':
+          shouldAlert = value === cooldown.threshold.threshold;
+          break;
+      }
+
+      if (shouldAlert) {
+        this.fireAlert(cooldown.threshold, value, tags);
+        cooldown.lastAlert = Date.now();
+      }
     }
   }
 
   /**
-   * Get custom metric
+   * Fire an alert
    */
-  getMetric(name: string): number | null {
-    const samples = this.customMetrics.get(name);
-    if (!samples || samples.length === 0) return null;
+  private fireAlert(threshold: AlertThreshold, value: number, tags?: Record<string, string>): void {
+    const alert: PerformanceAlert = {
+      id: `alert_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      timestamp: Date.now(),
+      severity: threshold.severity,
+      type: 'threshold',
+      metric: threshold.metricName,
+      currentValue: value,
+      threshold: threshold.threshold,
+      message: `Metric "${threshold.metricName}" is ${threshold.operator} ${threshold.threshold} (current: ${value})`,
+      resolved: false,
+    };
 
-    // Return average
-    const sum = samples.reduce((a, b) => a + b, 0);
-    return sum / samples.length;
+    // Notify all callbacks
+    for (const callback of this.alertCallbacks) {
+      try {
+        callback(alert);
+      } catch (error) {
+        console.error('Error in alert callback:', error);
+      }
+    }
   }
 
   /**
-   * Get all metrics
+   * Subscribe to alerts
    */
-  getMetrics(): PerformanceMetrics {
-    return {
-      fps: this.getCurrentFPS(),
-      frameTime: this.getCurrentFrameTime(),
-      memoryUsage: this.getMemoryUsage(),
-      latency: this.getLatencyMetrics(),
-      custom: new Map(
-        Array.from(this.customMetrics.entries()).map(([name, samples]) => [
-          name,
-          samples.reduce((a, b) => a + b, 0) / samples.length,
-        ])
-      ),
+  onAlert(callback: (alert: PerformanceAlert) => void): () => void {
+    this.alertCallbacks.add(callback);
+    return () => {
+      this.alertCallbacks.delete(callback);
     };
   }
 
   /**
-   * Get metrics history
+   * Aggregate metrics by time interval
    */
-  getHistory(): MetricSnapshot[] {
-    return [...this.history];
+  aggregateByInterval(
+    name: string,
+    intervalMs: number,
+    tags?: Record<string, string>,
+    timeRange?: TimeRange
+  ): Metric[] {
+    const metrics = this.getMetrics(timeRange).filter(
+      (m) => m.name === name && this.matchTags(m.tags, tags)
+    );
+
+    if (metrics.length === 0) {
+      return [];
+    }
+
+    const aggregated = new Map<number, number[]>();
+
+    for (const metric of metrics) {
+      const bucketTime = Math.floor(metric.timestamp / intervalMs) * intervalMs;
+      if (!aggregated.has(bucketTime)) {
+        aggregated.set(bucketTime, []);
+      }
+      aggregated.get(bucketTime)!.push(metric.value);
+    }
+
+    const result: Metric[] = [];
+    for (const [timestamp, values] of aggregated.entries()) {
+      const avg = values.reduce((a, b) => a + b, 0) / values.length;
+      result.push({
+        name,
+        value: avg,
+        timestamp,
+        tags,
+      });
+    }
+
+    return result.sort((a, b) => a.timestamp - b.timestamp);
   }
 
   /**
-   * Get performance scorecard
+   * Get percentiles for a metric
    */
-  getScorecard(): PerformanceScorecard {
-    const current = this.getMetrics();
-    const history = this.getHistory();
+  getPercentiles(name: string, percentiles: number[], tags?: Record<string, string>): Record<number, number> {
+    const bucketKey = this.getBucketKey(name, tags);
+    const bucket = this.buckets.get(bucketKey);
 
-    // Calculate trends
-    const recentFPS = history.slice(-10).map((s) => s.fps);
-    const avgFPS = recentFPS.reduce((a, b) => a + b, 0) / recentFPS.length;
+    if (!bucket || bucket.samples.length === 0) {
+      return {};
+    }
 
-    const recentMemory = history.slice(-10).map((s) => s.memory.usagePercentage);
-    const avgMemory = recentMemory.reduce((a, b) => a + b, 0) / recentMemory.length;
+    const sorted = [...bucket.samples].sort((a, b) => a - b);
+    const result: Record<number, number> = {};
 
-    return {
-      fps: {
-        current: current.fps,
-        average: avgFPS,
-        target: 60,
-        status: current.fps >= 55 ? 'good' : current.fps >= 30 ? 'ok' : 'poor',
-      },
-      memory: {
-        current: current.memoryUsage.usagePercentage,
-        average: avgMemory,
-        target: 80,
-        status:
-          current.memoryUsage.usagePercentage < 70
-            ? 'good'
-            : current.memoryUsage.usagePercentage < 90
-            ? 'ok'
-            : 'poor',
-      },
-      latency: {
-        current: current.latency.avg,
-        p95: current.latency.p95,
-        p99: current.latency.p99,
-        target: 16,
-        status: current.latency.p95 < 16 ? 'good' : current.latency.p95 < 50 ? 'ok' : 'poor',
-      },
-      overall: this.calculateOverallScore(current),
+    for (const p of percentiles) {
+      const index = Math.floor(sorted.length * (p / 100));
+      result[p] = sorted[Math.min(index, sorted.length - 1)];
+    }
+
+    return result;
+  }
+
+  /**
+   * Get metric rate (change per time unit)
+   */
+  getRate(name: string, timeWindowMs: number, tags?: Record<string, string>): number {
+    const now = Date.now();
+    const timeRange: TimeRange = {
+      start: now - timeWindowMs,
+      end: now,
     };
-  }
 
-  /**
-   * Calculate overall performance score
-   */
-  private calculateOverallScore(metrics: PerformanceMetrics): 'good' | 'ok' | 'poor' {
-    const fpsGood = metrics.fps >= 55;
-    const memoryGood = metrics.memoryUsage.usagePercentage < 70;
-    const latencyGood = metrics.latency.p95 < 16;
+    const metrics = this.getMetrics(timeRange).filter(
+      (m) => m.name === name && this.matchTags(m.tags, tags)
+    );
 
-    const goodCount = [fpsGood, memoryGood, latencyGood].filter(Boolean).length;
+    if (metrics.length < 2) {
+      return 0;
+    }
 
-    if (goodCount === 3) return 'good';
-    if (goodCount === 2) return 'ok';
-    return 'poor';
-  }
+    const oldest = metrics[0];
+    const newest = metrics[metrics.length - 1];
+    const timeDelta = newest.timestamp - oldest.timestamp;
 
-  /**
-   * Increment operation count
-   */
-  incrementOperation(): void {
-    this.operationCount++;
+    if (timeDelta === 0) {
+      return 0;
+    }
+
+    return (newest.value - oldest.value) / (timeDelta / 1000);
   }
 
   /**
    * Reset all metrics
    */
   reset(): void {
-    this.history = [];
-    this.frameTimestamps = [];
-    this.latencySamples = [];
-    this.customMetrics.clear();
-    this.operationCount = 0;
+    this.buckets.clear();
+    this.alertCooldowns.clear();
+  }
+
+  /**
+   * Reset specific metric
+   */
+  resetMetric(name: string, tags?: Record<string, string>): void {
+    const bucketKey = this.getBucketKey(name, tags);
+    this.buckets.delete(bucketKey);
+  }
+
+  /**
+   * Get bucket count
+   */
+  getBucketCount(): number {
+    return this.buckets.size;
+  }
+
+  /**
+   * Get total sample count
+   */
+  getTotalSampleCount(): number {
+    let count = 0;
+    for (const bucket of this.buckets.values()) {
+      count += bucket.samples.length;
+    }
+    return count;
+  }
+
+  /**
+   * Clean up old samples based on retention period
+   */
+  cleanup(): void {
+    const cutoff = Date.now() - this.retentionPeriod;
+
+    for (const [key, bucket] of this.buckets.entries()) {
+      const keepFrom = bucket.timestamps.findIndex((t) => t > cutoff);
+
+      if (keepFrom === -1) {
+        // All samples are old, delete the bucket
+        this.buckets.delete(key);
+      } else if (keepFrom > 0) {
+        // Remove old samples
+        bucket.samples = bucket.samples.slice(keepFrom);
+        bucket.timestamps = bucket.timestamps.slice(keepFrom);
+      }
+    }
   }
 
   /**
    * Export metrics as JSON
    */
   export(): string {
-    return JSON.stringify(
-      {
-        history: this.history,
-        customMetrics: Array.from(this.customMetrics.entries()),
-        latencySamples: this.latencySamples,
-      },
-      null,
-      2
-    );
+    const data = {
+      buckets: Array.from(this.buckets.entries()).map(([key, bucket]) => ({
+        key,
+        name: bucket.name,
+        samples: bucket.samples,
+        tags: bucket.tags,
+        timestamps: bucket.timestamps,
+      })),
+      alertCooldowns: Array.from(this.alertCooldowns.entries()),
+    };
+
+    return JSON.stringify(data, null, 2);
   }
 
   /**
-   * Get metrics summary
+   * Import metrics from JSON
    */
-  getSummary(): string {
-    const scorecard = this.getScorecard();
-    const metrics = this.getMetrics();
+  import(json: string): void {
+    try {
+      const data = JSON.parse(json);
 
-    return `
-Performance Summary:
-==================
-FPS: ${metrics.fps.toFixed(1)} (avg: ${scorecard.fps.average.toFixed(1)})
-Frame Time: ${metrics.frameTime.toFixed(2)}ms
-Memory: ${metrics.memoryUsage.usagePercentage.toFixed(1)}%
-Latency: ${metrics.latency.avg.toFixed(2)}ms (p95: ${metrics.latency.p95.toFixed(2)}ms)
-Overall Status: ${scorecard.overall.toUpperCase()}
-    `.trim();
+      this.buckets.clear();
+      for (const bucketData of data.buckets) {
+        this.buckets.set(bucketData.key, {
+          name: bucketData.name,
+          samples: bucketData.samples,
+          tags: bucketData.tags,
+          timestamps: bucketData.timestamps,
+        });
+      }
+
+      this.alertCooldowns = new Map(data.alertCooldowns);
+    } catch (error) {
+      throw new Error(`Failed to import metrics: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   }
 }
 
-export interface PerformanceScorecard {
-  fps: {
-    current: number;
-    average: number;
-    target: number;
-    status: 'good' | 'ok' | 'poor';
-  };
-  memory: {
-    current: number;
-    average: number;
-    target: number;
-    status: 'good' | 'ok' | 'poor';
-  };
-  latency: {
-    current: number;
-    p95: number;
-    p99: number;
-    target: number;
-    status: 'good' | 'ok' | 'poor';
-  };
-  overall: 'good' | 'ok' | 'poor';
-}
-
 /**
- * Utility class for timing operations
+ * Utility class for timing operations with automatic metric recording
  */
 export class OperationTimer {
   private collector: MetricsCollector;
   private operationName: string;
   private startTime: number;
+  private tags?: Record<string, string>;
 
-  constructor(collector: MetricsCollector, operationName: string) {
+  constructor(collector: MetricsCollector, operationName: string, tags?: Record<string, string>) {
     this.collector = collector;
     this.operationName = operationName;
+    this.tags = tags;
     this.startTime = performance.now();
   }
 
@@ -483,9 +549,7 @@ export class OperationTimer {
    */
   end(): number {
     const duration = performance.now() - this.startTime;
-    this.collector.recordMetric(this.operationName, duration);
-    this.collector.recordLatency(duration);
-    this.collector.incrementOperation();
+    this.collector.recordMetric(this.operationName, duration, this.tags);
     return duration;
   }
 
@@ -493,8 +557,53 @@ export class OperationTimer {
    * End timing with custom value
    */
   endWithValue(value: number): void {
-    this.collector.recordMetric(this.operationName, value);
-    this.collector.recordLatency(value);
-    this.collector.incrementOperation();
+    this.collector.recordMetric(this.operationName, value, this.tags);
+  }
+
+  /**
+   * Get elapsed time without ending the timer
+   */
+  elapsed(): number {
+    return performance.now() - this.startTime;
+  }
+}
+
+/**
+ * Utility function to time an operation
+ */
+export function timeOperation<T>(
+  collector: MetricsCollector,
+  operationName: string,
+  operation: () => T,
+  tags?: Record<string, string>
+): T {
+  const timer = new OperationTimer(collector, operationName, tags);
+  try {
+    const result = operation();
+    timer.end();
+    return result;
+  } catch (error) {
+    timer.end();
+    throw error;
+  }
+}
+
+/**
+ * Utility function to time an async operation
+ */
+export async function timeOperationAsync<T>(
+  collector: MetricsCollector,
+  operationName: string,
+  operation: () => Promise<T>,
+  tags?: Record<string, string>
+): Promise<T> {
+  const timer = new OperationTimer(collector, operationName, tags);
+  try {
+    const result = await operation();
+    timer.end();
+    return result;
+  } catch (error) {
+    timer.end();
+    throw error;
   }
 }

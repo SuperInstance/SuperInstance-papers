@@ -1,0 +1,261 @@
+{
+  "locale": "ar",
+  "languageName": "العربية",
+  "languageNameEnglish": "Arabic",
+  "direction": "rtl",
+  "messages": {
+    "ui": {
+      "common": {
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "delete": "حذف",
+        "edit": "تعديل",
+        "create": "إنشاء",
+        "update": "تحديث",
+        "confirm": "تأكيد",
+        "close": "إغلاق",
+        "search": "بحث",
+        "filter": "تصفية",
+        "sort": "ترتيب",
+        "loading": "جاري التحميل...",
+        "error": "خطأ",
+        "success": "نجح",
+        "warning": "تحذير",
+        "info": "معلومات",
+        "yes": "نعم",
+        "no": "لا",
+        "or": "أو",
+        "and": "و",
+        "of": "من",
+        "to": "إلى",
+        "from": "من",
+        "at": "في",
+        "in": "في",
+        "on": "على",
+        "with": "مع",
+        "by": "بواسطة",
+        "for": "لـ"
+      },
+      "navigation": {
+        "home": "الرئيسية",
+        "dashboard": "لوحة التحكم",
+        "settings": "الإعدادات",
+        "profile": "الملف الشخصي",
+        "logout": "تسجيل الخروج",
+        "login": "تسجيل الدخول",
+        "register": "التسجيل",
+        "help": "مساعدة",
+        "about": "حول",
+        "contact": "اتصال"
+      },
+      "spreadsheet": {
+        "new": "جدول بيانات جديد",
+        "open": "فتح",
+        "import": "استيراد",
+        "export": "تصدير",
+        "share": "مشاركة",
+        "rename": "إعادة تسمية",
+        "duplicate": "نسخ",
+        "archive": "أرشفة",
+        "restore": "استعادة",
+        "cell": "خلية",
+        "row": "صف",
+        "column": "عمود",
+        "sheet": "ورقة",
+        "formula": "معادلة",
+        "function": "دالة",
+        "chart": "مخطط",
+        "pivotTable": "جدول محوري"
+      },
+      "menu": {
+        "file": "ملف",
+        "edit": "تحرير",
+        "view": "عرض",
+        "insert": "إدراج",
+        "format": "تنسيق",
+        "data": "بيانات",
+        "tools": "أدوات",
+        "help": "مساعدة"
+      }
+    },
+    "errors": {
+      "invalidValue": "قيمة غير صالحة",
+      "invalidFormula": "معادلة غير صالحة",
+      "circularReference": "تم اكتشاف مرجع دائري",
+      "divisionByZero": "القسمة على صفر",
+      "valueRequired": "القيمة مطلوبة",
+      "fileNotFound": "الملف غير موجود",
+      "networkError": "حدث خطأ في الشبكة",
+      "unauthorized": "وصول غير مصرح",
+      "forbidden": "الوصول ممنوع",
+      "notFound": "المورد غير موجود",
+      "serverError": "حدث خطأ في الخادم",
+      "unknownError": "حدث خطأ غير معروف"
+    },
+    "charts": {
+      "types": {
+        "bar": "مخطط شريطي",
+        "line": "مخطط خطي",
+        "pie": "مخطط دائري",
+        "scatter": "مخطط مبعثر",
+        "area": "مخطط مساحة",
+        "histogram": "مدرج تكراري"
+      },
+      "axis": {
+        "xAxis": "المحور س",
+        "yAxis": "المحور ص",
+        "title": "عنوان المحور",
+        "label": "تسمية المحور"
+      },
+      "legend": {
+        "position": "موضع المفتاح",
+        "title": "عنوان المفتاح"
+      }
+    },
+    "validation": {
+      "required": "{{field}} مطلوب",
+      "min": "{{field}} يجب أن يكون {{min}} على الأقل",
+      "max": "{{field}} يجب أن يكون {{max}} كحد أقصى",
+      "minLength": "{{field}} يجب أن يكون {{min}} أحرف على الأقل",
+      "maxLength": "{{field}} يجب أن يكون {{max}} أحرف كحد أقصى",
+      "pattern": "تنسيق {{field}} غير صالح",
+      "email": "عنوان بريد إلكتروني غير صالح",
+      "url": "رابط غير صالح",
+      "number": "يجب أن يكون رقمًا صالحًا",
+      "integer": "يجب أن يكون رقمًا صحيحًا",
+      "positive": "يجب أن يكون رقمًا موجبًا",
+      "date": "تنسيق تاريخ غير صالح",
+      "unique": "{{field}} يجب أن يكون فريدًا"
+    },
+    "plurals": {
+      "item": {
+        "zero": "٠ عنصر",
+        "one": "عنصر واحد",
+        "two": "عنصران",
+        "few": "{{count}} عناصر",
+        "many": "{{count}} عنصرًا",
+        "other": "{{count}} عنصر"
+      },
+      "row": {
+        "zero": "٠ صف",
+        "one": "صف واحد",
+        "two": "صفان",
+        "few": "{{count}} صفوف",
+        "many": "{{count}} صفًا",
+        "other": "{{count}} صف"
+      },
+      "column": {
+        "zero": "٠ عمود",
+        "one": "عمود واحد",
+        "two": "عمودان",
+        "few": "{{count}} أعمدة",
+        "many": "{{count}} عمودًا",
+        "other": "{{count}} عمود"
+      },
+      "sheet": {
+        "zero": "٠ ورقة",
+        "one": "ورقة واحدة",
+        "two": "ورقتان",
+        "few": "{{count}} أوراق",
+        "many": "{{count}} ورقةً",
+        "other": "{{count}} ورقة"
+      },
+      "cell": {
+        "zero": "٠ خلية",
+        "one": "خلية واحدة",
+        "two": "خليةان",
+        "few": "{{count}} خلايا",
+        "many": "{{count}} خليةً",
+        "other": "{{count}} خلية"
+      }
+    }
+  },
+  "formats": {
+    "decimalSeparator": "٫",
+    "thousandsSeparator": "٬",
+    "listSeparator": ",",
+    "dateOrder": "DMY",
+    "timeSeparator": ":",
+    "firstDayOfWeek": 6,
+    "weekendDays": [5, 6],
+    "calendar": "gregorian"
+  },
+  "formulas": {
+    "SUM": {
+      "name": "SUM",
+      "localName": "SUM",
+      "syntax": "SUM(number1, [number2], ...)",
+      "description": "جمع كل الأرقام في نطاق من الخلايا",
+      "parameters": {
+        "number1": "الرقم الأول أو النطاق",
+        "number2": "أرقام أو نطاقات إضافية (اختياري)"
+      },
+      "examples": [
+        "=SUM(A1:A10)",
+        "=SUM(A1, B1, C1)"
+      ]
+    },
+    "AVERAGE": {
+      "name": "AVERAGE",
+      "localName": "AVERAGE",
+      "syntax": "AVERAGE(number1, [number2], ...)",
+      "description": "إرجاع المتوسط (الحسابي) للوسائط",
+      "parameters": {
+        "number1": "الرقم الأول أو النطاق",
+        "number2": "أرقام أو نطاقات إضافية (اختياري)"
+      },
+      "examples": [
+        "=AVERAGE(A1:A10)",
+        "=AVERAGE(A1, B1, C1)"
+      ]
+    },
+    "COUNT": {
+      "name": "COUNT",
+      "localName": "COUNT",
+      "syntax": "COUNT(value1, [value2], ...)",
+      "description": "يحسب عدد الخلايا التي تحتوي على أرقام",
+      "parameters": {
+        "value1": "القيمة الأولى أو النطاق",
+        "value2": "قيم أو نطاقات إضافية (اختياري)"
+      },
+      "examples": [
+        "=COUNT(A1:A10)",
+        "=COUNT(A1, B1, C1)"
+      ]
+    },
+    "IF": {
+      "name": "IF",
+      "localName": "IF",
+      "syntax": "IF(logical_test, value_if_true, [value_if_false])",
+      "description": "يتحقق مما إذا كان الشرط مستوفىً ويرجع قيمة واحدة إذا كان صحيحًا وقيمة أخرى إذا كان خطأ",
+      "parameters": {
+        "logical_test": "الشرط للاختبار",
+        "value_if_true": "القيمة المرجعة إذا كان الشرط صحيحًا",
+        "value_if_false": "القيمة المرجعة إذا كان الشرط خطأ (اختياري)"
+      },
+      "examples": [
+        '=IF(A1>10, "مرتفع", "منخفض")',
+        '=IF(A1="", "فارغ", A1)'
+      ]
+    },
+    "VLOOKUP": {
+      "name": "VLOOKUP",
+      "localName": "VLOOKUP",
+      "syntax": "VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])",
+      "description": "يبحث عن قيمة في العمود الأيسر من جدول ويرجع قيمة في نفس الصف من عمود تحدده",
+      "parameters": {
+        "lookup_value": "القيمة للبحث عنها",
+        "table_array": "النطاق الذي يحتوي على البيانات",
+        "col_index_num": "رقم العمود لرجوع القيمة منه",
+        "range_lookup": "تطابق تام (FALSE) أو تقريبي (TRUE، اختياري)"
+      },
+      "examples": [
+        "=VLOOKUP(A1, B1:D10, 2, FALSE)",
+        '=VLOOKUP("منتج", A1:D100, 3, TRUE)'
+      ]
+    }
+  },
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-09",
+  "translators": ["POLLN Team"]
+}

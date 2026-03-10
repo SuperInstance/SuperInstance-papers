@@ -1,0 +1,68 @@
+{
+  "name": "@polln/spreadsheet-docs",
+  "version": "1.0.0",
+  "description": "Comprehensive API documentation generator for POLLN Spreadsheet API with OpenAPI 3.1 and AsyncAPI 2.0 support",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "polln-docs": "./dist/generator.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "docs:generate": "tsx src/generator.ts generate -o ../../docs/api",
+    "docs:serve": "tsx src/generator.ts serve -d ../../docs/api -p 8080",
+    "docs:validate": "tsx src/generator.ts validate -f ../../docs/api/openapi.json"
+  },
+  "keywords": [
+    "openapi",
+    "asyncapi",
+    "api",
+    "documentation",
+    "generator",
+    "swagger",
+    "websocket",
+    "typescript",
+    "polln",
+    "spreadsheet"
+  ],
+  "author": "POLLN Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SuperInstance/polln.git",
+    "directory": "src/spreadsheet/docs"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "typescript": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.6",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "tsx": "^4.7.0"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md"
+  ]
+}

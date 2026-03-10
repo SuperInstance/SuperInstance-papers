@@ -1,0 +1,321 @@
+# Prometheus Alert Rules for Spreadsheet Backend
+groups:
+  # API Performance Alerts
+  - name: api_performance
+    interval: 30s
+    rules:
+      - alert: HighErrorRate
+        expr: |
+          sum(rate(spreadsheet_http_requests_total{status_code=~"5.."}[5m]))
+          /
+          sum(rate(spreadsheet_http_requests_total[5m])) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} for the last 5 minutes"
+          runbook_url: "https://docs.example.com/runbooks/high-error-rate"
+
+      - alert: CriticalErrorRate
+        expr: |
+          sum(rate(spreadsheet_http_requests_total{status_code=~"5.."}[5m]))
+          /
+          sum(rate(spreadsheet_http_requests_total[5m])) > 0.1
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} for the last 2 minutes"
+          runbook_url: "https://docs.example.com/runbooks/critical-error-rate"
+
+      - alert: HighLatency
+        expr: |
+          histogram_quantile(0.99,
+            rate(spreadsheet_http_request_duration_seconds_bucket[5m])
+          ) > 1
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High API latency detected"
+          description: "99th percentile latency is {{ $value }}s for the last 5 minutes"
+          runbook_url: "https://docs.example.com/runbooks/high-latency"
+
+      - alert: CriticalLatency
+        expr: |
+          histogram_quantile(0.99,
+            rate(spreadsheet_http_request_duration_seconds_bucket[5m])
+          ) > 5
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical API latency detected"
+          description: "99th percentile latency is {{ $value }}s for the last 2 minutes"
+          runbook_url: "https://docs.example.com/runbooks/critical-latency"
+
+  # Cell Operations Alerts
+  - name: cell_operations
+    interval: 30s
+    rules:
+      - alert: HighCellOperationFailureRate
+        expr: |
+          sum(rate(spreadsheet_cell_operations_total{status="failure"}[5m]))
+          /
+          sum(rate(spreadsheet_cell_operations_total[5m])) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High cell operation failure rate"
+          description: "Cell operation failure rate is {{ $value | humanizePercentage }}"
+          runbook_url: "https://docs.example.com/runbooks/cell-operation-failures"
+
+      - alert: SlowCellProcessing
+        expr: |
+          histogram_quantile(0.99,
+            rate(spreadsheet_cell_processing_seconds_bucket[5m])
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Slow cell processing detected"
+          description: "99th percentile cell processing time is {{ $value }}s"
+          runbook_url: "https://docs.example.com/runbooks/slow-cell-processing"
+
+  # Cache Performance Alerts
+  - name: cache_performance
+    interval: 30s
+    rules:
+      - alert: LowCacheHitRate
+        expr: |
+          sum(rate(spreadsheet_cache_operations_total{result="hit"}[5m]))
+          /
+          sum(rate(spreadsheet_cache_operations_total[5m])) < 0.7
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Low cache hit rate"
+          description: "Cache hit rate is {{ $value | humanizePercentage }} for tier {{ $labels.tier }}"
+          runbook_url: "https://docs.example.com/runbooks/low-cache-hit-rate"
+
+      - alert: CriticalCacheHitRate
+        expr: |
+          sum(rate(spreadsheet_cache_operations_total{result="hit"}[5m]))
+          /
+          sum(rate(spreadsheet_cache_operations_total[5m])) < 0.5
+        for: 5m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical cache hit rate"
+          description: "Cache hit rate is {{ $value | humanizePercentage }} for tier {{ $labels.tier }}"
+          runbook_url: "https://docs.example.com/runbooks/critical-cache-hit-rate"
+
+      - alert: HighCacheEvictionRate
+        expr: |
+          rate(spreadsheet_cache_operations_total{operation="evict"}[5m]) > 100
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High cache eviction rate"
+          description: "Cache eviction rate is {{ $value }} ops/sec for tier {{ $labels.tier }}"
+          runbook_url: "https://docs.example.com/runbooks/high-cache-eviction"
+
+  # Queue Performance Alerts
+  - name: queue_performance
+    interval: 30s
+    rules:
+      - alert: HighQueueDepth
+        expr: |
+          spreadsheet_queue_depth > 1000
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High queue depth"
+          description: "Queue {{ $labels.queue_name }} depth is {{ $value }}"
+          runbook_url: "https://docs.example.com/runbooks/high-queue-depth"
+
+      - alert: CriticalQueueDepth
+        expr: |
+          spreadsheet_queue_depth > 5000
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical queue depth"
+          description: "Queue {{ $labels.queue_name }} depth is {{ $value }}"
+          runbook_url: "https://docs.example.com/runbooks/critical-queue-depth"
+
+      - alert: QueueProcessingBacklog
+        expr: |
+          rate(spreadsheet_queue_messages_total{operation="publish"}[5m])
+          >
+          rate(spreadsheet_queue_messages_total{operation="consume"}[5m]) * 1.1
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Queue processing backlog detected"
+          description: "Queue {{ $labels.queue_name }} is accumulating messages"
+          runbook_url: "https://docs.example.com/runbooks/queue-backlog"
+
+  # Resource Usage Alerts
+  - name: resource_usage
+    interval: 30s
+    rules:
+      - alert: HighMemoryUsage
+        expr: |
+          (spreadsheet_memory_usage_bytes{type="heap_used"}
+          /
+          spreadsheet_memory_usage_bytes{type="heap_total"}) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is {{ $value | humanizePercentage }}"
+          runbook_url: "https://docs.example.com/runbooks/high-memory-usage"
+
+      - alert: CriticalMemoryUsage
+        expr: |
+          (spreadsheet_memory_usage_bytes{type="heap_used"}
+          /
+          spreadsheet_memory_usage_bytes{type="heap_total"}) > 0.9
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical memory usage"
+          description: "Memory usage is {{ $value | humanizePercentage }}"
+          runbook_url: "https://docs.example.com/runbooks/critical-memory-usage"
+
+      - alert: HighCPUUsage
+        expr: |
+          spreadsheet_cpu_usage_percent > 80
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is {{ $value }}%"
+          runbook_url: "https://docs.example.com/runbooks/high-cpu-usage"
+
+      - alert: CriticalCPUUsage
+        expr: |
+          spreadsheet_cpu_usage_percent > 95
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical CPU usage"
+          description: "CPU usage is {{ $value }}%"
+          runbook_url: "https://docs.example.com/runbooks/critical-cpu-usage"
+
+      - alert: HighEventLoopLag
+        expr: |
+          spreadsheet_event_loop_lag_seconds > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High event loop lag"
+          description: "Event loop lag is {{ $value }}s"
+          runbook_url: "https://docs.example.com/runbooks/event-loop-lag"
+
+  # Connection Alerts
+  - name: connections
+    interval: 30s
+    rules:
+      - alert: HighConnectionCount
+        expr: |
+          spreadsheet_active_connections{connection_type="http"} > 1000
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High HTTP connection count"
+          description: "HTTP connection count is {{ $value }}"
+          runbook_url: "https://docs.example.com/runbooks/high-connections"
+
+      - alert: HighWebSocketConnectionCount
+        expr: |
+          spreadsheet_active_connections{connection_type="websocket"} > 500
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High WebSocket connection count"
+          description: "WebSocket connection count is {{ $value }}"
+          runbook_url: "https://docs.example.com/runbooks/high-websocket-connections"
+
+  # WebSocket Alerts
+  - name: websocket_performance
+    interval: 30s
+    rules:
+      - alert: HighWebSocketMessageRate
+        expr: |
+          rate(spreadsheet_websocket_messages_total[5m]) > 1000
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High WebSocket message rate"
+          description: "WebSocket message rate is {{ $value }} msg/sec"
+          runbook_url: "https://docs.example.com/runbooks/high-websocket-rate"
+
+      - alert: SlowWebSocketBroadcast
+        expr: |
+          histogram_quantile(0.99,
+            rate(spreadsheet_websocket_broadcast_seconds_bucket[5m])
+          ) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Slow WebSocket broadcast"
+          description: "99th percentile broadcast latency is {{ $value }}s"
+          runbook_url: "https://docs.example.com/runbooks/slow-websocket-broadcast"
+
+  # Availability Alerts
+  - name: availability
+    interval: 30s
+    rules:
+      - alert: ServiceDown
+        expr: |
+          up{job="spreadsheet-backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Spreadsheet backend service is down"
+          description: "Service {{ $labels.job }} on {{ $labels.instance }} is down"
+          runbook_url: "https://docs.example.com/runbooks/service-down"

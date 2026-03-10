@@ -1,0 +1,116 @@
+# Prometheus configuration for Spreadsheet Backend monitoring
+# Global configuration
+global:
+  scrape_interval: 15s # Default scrape interval
+  evaluation_interval: 15s # Default rule evaluation interval
+  external_labels:
+    cluster: 'spreadsheet-backend'
+    environment: 'production'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            # - 'alertmanager:9093'
+      # Uncomment and configure for your alertmanager setup
+
+# Rule files
+rule_files:
+  # - "alerts.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Spreadsheet Backend metrics
+  - job_name: 'spreadsheet-backend'
+    static_configs:
+      - targets:
+          - 'localhost:9090' # Default metrics endpoint
+        labels:
+          service: 'spreadsheet-backend'
+          team: 'platform'
+
+    # Scrape interval for this job
+    scrape_interval: 10s
+    scrape_timeout: 5s
+
+    # Metrics path
+    metrics_path: '/metrics'
+
+    # Honor labels when conflicts occur
+    honor_labels: true
+
+    # Honor timestamps
+    honor_timestamps: true
+
+  # Node Exporter (system metrics)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets:
+          - 'localhost:9100'
+        labels:
+          service: 'node-exporter'
+
+  # Redis Exporter (if using Redis cache)
+  - job_name: 'redis-exporter'
+    static_configs:
+      - targets:
+          - 'localhost:9121'
+        labels:
+          service: 'redis'
+
+  # PostgreSQL Exporter (if using PostgreSQL)
+  - job_name: 'postgres-exporter'
+    static_configs:
+      - targets:
+          - 'localhost:9187'
+        labels:
+          service: 'postgres'
+
+  # Process Exporter (monitor Node.js processes)
+  - job_name: 'process-exporter'
+    static_configs:
+      - targets:
+          - 'localhost:9256'
+        labels:
+          service: 'process'
+
+# Storage configuration
+storage:
+  tsdb:
+    # Data retention period
+    retention:
+      time: 15d
+      size: 10GB
+
+    # WAL configuration
+    wal:
+      truncate-frequency: 2h
+
+    # Chunk settings
+    chunk:
+      min-block-duration: 2h
+      max-block-duration: 2h
+      chunk-range-prompt-limit: 1000
+
+# Tracing configuration (optional)
+# tracing:
+#   endpoint: "localhost:4318"
+#   client_type: "grpc"
+#   headers:
+#     X-Trace-Header: "value"
+
+# Web configuration for the UI
+# web:
+#   enable_admin_api: false
+#   page_title: "Prometheus - Spreadsheet Backend"
+
+# Logging configuration
+# log:
+#   level: info
+#   format: logfmt
+
+# TLS configuration (if needed)
+# tls_config:
+#   cert_file: /path/to/cert.pem
+#   key_file: /path/to/key.pem

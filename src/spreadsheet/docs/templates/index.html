@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - API Documentation</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #f8f9fa;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px 0;
+        margin-bottom: 40px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      .version {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+      }
+
+      .docs-grid {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 20px;
+        height: fit-content;
+      }
+
+      .sidebar nav ul {
+        list-style: none;
+      }
+
+      .sidebar nav li {
+        margin-bottom: 10px;
+      }
+
+      .sidebar nav a {
+        color: #555;
+        text-decoration: none;
+        display: block;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .sidebar nav a:hover {
+        background: #e9ecef;
+        color: #667eea;
+      }
+
+      .content {
+        background: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
+
+      .content h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #667eea;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 10px;
+      }
+
+      .content h3 {
+        font-size: 1.3rem;
+        margin: 30px 0 15px;
+        color: #333;
+      }
+
+      .endpoint {
+        background: #f8f9fa;
+        border-left: 4px solid #667eea;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .method {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-right: 10px;
+      }
+
+      .method.get { background: #61affe; color: white; }
+      .method.post { background: #49cc90; color: white; }
+      .method.put { background: #fca130; color: white; }
+      .method.delete { background: #f93e3e; color: white; }
+      .method.patch { background: #50e3c2; color: white; }
+
+      .path {
+        font-family: 'Monaco', 'Menlo', monospace;
+        font-size: 0.95rem;
+        color: #333;
+      }
+
+      code {
+        background: #f4f4f4;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'Monaco', 'Menlo', monospace;
+        font-size: 0.9rem;
+      }
+
+      pre {
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 15px 0;
+      }
+
+      pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+        border-bottom: 2px solid #e9ecef;
+      }
+
+      .tab {
+        padding: 10px 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #666;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -2px;
+        transition: all 0.2s;
+      }
+
+      .tab:hover {
+        color: #667eea;
+      }
+
+      .tab.active {
+        color: #667eea;
+        border-bottom-color: #667eea;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      table th,
+      table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      table th {
+        background: #f8f9fa;
+        font-weight: 600;
+        color: #555;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 5px;
+      }
+
+      .badge.required {
+        background: #ffebee;
+        color: #c62828;
+      }
+
+      .badge.optional {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 0;
+        color: #666;
+        border-top: 1px solid #e9ecef;
+      }
+
+      @media (max-width: 768px) {
+        .docs-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: static;
+        }
+
+        header h1 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>{{title}}</h1>
+        <p>{{description}}</p>
+        <span class="version">{{version}}</span>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="docs-grid">
+        <aside class="sidebar">
+          <nav>
+            <ul>
+              <li><a href="#introduction">Introduction</a></li>
+              <li><a href="#authentication">Authentication</a></li>
+              <li><a href="#endpoints">API Endpoints</a></li>
+              <li><a href="#websocket">WebSocket Events</a></li>
+              <li><a href="#schemas">Data Models</a></li>
+              <li><a href="#examples">Code Examples</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <main class="content">
+          <section id="introduction">
+            <h2>Introduction</h2>
+            {{introduction}}
+          </section>
+
+          <section id="authentication">
+            <h2>Authentication</h2>
+            {{authentication}}
+          </section>
+
+          <section id="endpoints">
+            <h2>API Endpoints</h2>
+            {{endpoints}}
+          </section>
+
+          <section id="websocket">
+            <h2>WebSocket Events</h2>
+            {{websocket}}
+          </section>
+
+          <section id="schemas">
+            <h2>Data Models</h2>
+            {{schemas}}
+          </section>
+
+          <section id="examples">
+            <h2>Code Examples</h2>
+            {{examples}}
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>&copy; {{year}} {{company}}. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

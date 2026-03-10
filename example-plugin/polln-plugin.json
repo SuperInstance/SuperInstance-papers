@@ -1,0 +1,102 @@
+{
+  "id": "example-hello-world",
+  "name": "Hello World Example Plugin",
+  "version": "1.0.0",
+  "description": "A simple example plugin demonstrating the POLLN plugin API",
+  "author": {
+    "name": "POLLN Team",
+    "email": "team@polln.ai",
+    "url": "https://polln.ai"
+  },
+  "license": "MIT",
+  "pollnVersion": "1.0.0",
+  "minPollnVersion": "1.0.0",
+  "maxPollnVersion": "2.0.0",
+  "main": "dist/index.js",
+  "apiVersion": "1.0.0",
+  "category": "UTILITY",
+  "keywords": ["example", "hello", "demo"],
+  "homepage": "https://github.com/SuperInstance/polln",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SuperInstance/polln.git"
+  },
+  "extensions": [
+    {
+      "type": "COMMAND",
+      "id": "hello-command",
+      "name": "Hello World",
+      "description": "Displays a hello world message",
+      "priority": 100
+    },
+    {
+      "type": "TOOLBAR_BUTTON",
+      "id": "hello-toolbar",
+      "name": "Say Hello",
+      "description": "Add a button to the toolbar",
+      "priority": 100
+    },
+    {
+      "type": "MENU_ITEM",
+      "id": "hello-menu",
+      "name": "Hello World",
+      "description": "Add a menu item",
+      "priority": 100
+    },
+    {
+      "type": "CELL_TYPE",
+      "id": "hello-cell",
+      "name": "Hello Cell",
+      "description": "A custom cell type that displays greetings",
+      "priority": 50,
+      "configSchema": {
+        "type": "object",
+        "properties": {
+          "greeting": {
+            "type": "string",
+            "default": "Hello",
+            "description": "The greeting to use"
+          },
+          "target": {
+            "type": "string",
+            "default": "World",
+            "description": "Who to greet"
+          }
+        }
+      }
+    },
+    {
+      "type": "DATA_SOURCE",
+      "id": "hello-data-source",
+      "name": "Hello Data Source",
+      "description": "A data source that provides greeting messages",
+      "priority": 50,
+      "configSchema": {
+        "type": "object",
+        "properties": {
+          "greetings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": ["Hello", "Hi", "Greetings", "Salutations"]
+          }
+        }
+      }
+    }
+  ],
+  "permissions": [
+    {
+      "type": "READ_CELLS",
+      "reason": "To read cell values for greeting customization"
+    },
+    {
+      "type": "UI_CUSTOMIZATION",
+      "reason": "To add toolbar buttons and menu items"
+    },
+    {
+      "type": "NOTIFICATIONS",
+      "reason": "To display greeting notifications"
+    }
+  ]
+}

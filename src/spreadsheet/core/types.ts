@@ -69,6 +69,12 @@ export enum CellType {
   TRIGGER = 'trigger',
   SCHEDULE = 'schedule',
   COORDINATE = 'coordinate',
+  // Analytics Cells (Wave 4)
+  WHAT_IF = 'what_if',
+  OPTIMIZATION = 'optimization',
+  REGRESSION = 'regression',
+  TIME_SERIES = 'time_series',
+  MONTE_CARLO = 'monte_carlo',
 }
 
 /**

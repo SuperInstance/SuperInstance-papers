@@ -127,21 +127,22 @@ export class InputCell extends LogCell {
    * L0 logic: Pure transformation
    */
   private transformInput(value: unknown): unknown {
-    if (value === null || value === undefined) {
+    // Only transform undefined to defaultValue, keep null as null
+    if (value === undefined) {
       return this.defaultValue;
     }
 
     // Apply format-specific transformations
     switch (this.format) {
       case 'number':
-        return Number(value);
+        return value === null ? null : Number(value);
       case 'string':
-        return String(value);
+        return value === null ? null : String(value);
       case 'boolean':
-        return Boolean(value);
+        return value === null ? null : Boolean(value);
       case 'json':
         try {
-          return typeof value === 'string' ? JSON.parse(value) : value;
+          return value === null ? null : (typeof value === 'string' ? JSON.parse(value) : value);
         } catch {
           return value;
         }
@@ -154,6 +155,13 @@ export class InputCell extends LogCell {
    * Get current value
    */
   getValue(): unknown {
+    return this.currentValue;
+  }
+
+  /**
+   * Get current value (alias for compatibility)
+   */
+  getCurrentValue(): unknown {
     return this.currentValue;
   }
 

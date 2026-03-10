@@ -1,0 +1,32 @@
+{
+  "name": "@polln/example-plugin",
+  "version": "1.0.0",
+  "description": "A simple example plugin demonstrating the POLLN plugin API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "polln",
+    "plugin",
+    "example",
+    "hello-world"
+  ],
+  "author": "POLLN Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "polln": "^1.0.0"
+  },
+  "files": [
+    "dist",
+    "polln-plugin.json",
+    "README.md"
+  ]
+}

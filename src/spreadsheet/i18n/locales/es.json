@@ -1,0 +1,241 @@
+{
+  "locale": "es",
+  "languageName": "Español",
+  "languageNameEnglish": "Spanish",
+  "direction": "ltr",
+  "messages": {
+    "ui": {
+      "common": {
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "create": "Crear",
+        "update": "Actualizar",
+        "confirm": "Confirmar",
+        "close": "Cerrar",
+        "search": "Buscar",
+        "filter": "Filtrar",
+        "sort": "Ordenar",
+        "loading": "Cargando...",
+        "error": "Error",
+        "success": "Éxito",
+        "warning": "Advertencia",
+        "info": "Información",
+        "yes": "Sí",
+        "no": "No",
+        "or": "o",
+        "and": "y",
+        "of": "de",
+        "to": "a",
+        "from": "de",
+        "at": "en",
+        "in": "en",
+        "on": "en",
+        "with": "con",
+        "by": "por",
+        "for": "para"
+      },
+      "navigation": {
+        "home": "Inicio",
+        "dashboard": "Panel",
+        "settings": "Configuración",
+        "profile": "Perfil",
+        "logout": "Cerrar sesión",
+        "login": "Iniciar sesión",
+        "register": "Registrarse",
+        "help": "Ayuda",
+        "about": "Acerca de",
+        "contact": "Contacto"
+      },
+      "spreadsheet": {
+        "new": "Nueva hoja de cálculo",
+        "open": "Abrir",
+        "import": "Importar",
+        "export": "Exportar",
+        "share": "Compartir",
+        "rename": "Cambiar nombre",
+        "duplicate": "Duplicar",
+        "archive": "Archivar",
+        "restore": "Restaurar",
+        "cell": "Celda",
+        "row": "Fila",
+        "column": "Columna",
+        "sheet": "Hoja",
+        "formula": "Fórmula",
+        "function": "Función",
+        "chart": "Gráfico",
+        "pivotTable": "Tabla dinámica"
+      },
+      "menu": {
+        "file": "Archivo",
+        "edit": "Editar",
+        "view": "Ver",
+        "insert": "Insertar",
+        "format": "Formato",
+        "data": "Datos",
+        "tools": "Herramientas",
+        "help": "Ayuda"
+      }
+    },
+    "errors": {
+      "invalidValue": "Valor inválido",
+      "invalidFormula": "Fórmula inválida",
+      "circularReference": "Referencia circular detectada",
+      "divisionByZero": "División por cero",
+      "valueRequired": "Se requiere un valor",
+      "fileNotFound": "Archivo no encontrado",
+      "networkError": "Error de red",
+      "unauthorized": "Acceso no autorizado",
+      "forbidden": "Acceso prohibido",
+      "notFound": "Recurso no encontrado",
+      "serverError": "Error del servidor",
+      "unknownError": "Ocurrió un error desconocido"
+    },
+    "charts": {
+      "types": {
+        "bar": "Gráfico de barras",
+        "line": "Gráfico de líneas",
+        "pie": "Gráfico circular",
+        "scatter": "Diagrama de dispersión",
+        "area": "Gráfico de área",
+        "histogram": "Histograma"
+      },
+      "axis": {
+        "xAxis": "Eje X",
+        "yAxis": "Eje Y",
+        "title": "Título del eje",
+        "label": "Etiqueta del eje"
+      },
+      "legend": {
+        "position": "Posición de la leyenda",
+        "title": "Título de la leyenda"
+      }
+    },
+    "validation": {
+      "required": "{{field}} es requerido",
+      "min": "{{field}} debe ser al menos {{min}}",
+      "max": "{{field}} debe ser como máximo {{max}}",
+      "minLength": "{{field}} debe tener al menos {{min}} caracteres",
+      "maxLength": "{{field}} debe tener como máximo {{max}} caracteres",
+      "pattern": "El formato de {{field}} es inválido",
+      "email": "Dirección de correo inválida",
+      "url": "URL inválida",
+      "number": "Debe ser un número válido",
+      "integer": "Debe ser un número entero",
+      "positive": "Debe ser un número positivo",
+      "date": "Formato de fecha inválido",
+      "unique": "{{field}} debe ser único"
+    },
+    "plurals": {
+      "item": {
+        "one": "{{count}} elemento",
+        "other": "{{count}} elementos"
+      },
+      "row": {
+        "one": "{{count}} fila",
+        "other": "{{count}} filas"
+      },
+      "column": {
+        "one": "{{count}} columna",
+        "other": "{{count}} columnas"
+      },
+      "sheet": {
+        "one": "{{count}} hoja",
+        "other": "{{count}} hojas"
+      },
+      "cell": {
+        "one": "{{count}} celda",
+        "other": "{{count}} celdas"
+      }
+    }
+  },
+  "formats": {
+    "decimalSeparator": ",",
+    "thousandsSeparator": ".",
+    "listSeparator": ";",
+    "dateOrder": "DMY",
+    "timeSeparator": ":",
+    "firstDayOfWeek": 1,
+    "weekendDays": [0, 6],
+    "calendar": "gregorian"
+  },
+  "formulas": {
+    "SUM": {
+      "name": "SUM",
+      "localName": "SUMA",
+      "syntax": "SUMA(número1, [número2], ...)",
+      "description": "Suma todos los números en un rango de celdas",
+      "parameters": {
+        "number1": "Primer número o rango",
+        "number2": "Números o rangos adicionales (opcional)"
+      },
+      "examples": [
+        "=SUMA(A1:A10)",
+        "=SUMA(A1; B1; C1)"
+      ]
+    },
+    "AVERAGE": {
+      "name": "AVERAGE",
+      "localName": "PROMEDIO",
+      "syntax": "PROMEDIO(número1, [número2], ...)",
+      "description": "Devuelve el promedio (media aritmética) de los argumentos",
+      "parameters": {
+        "number1": "Primer número o rango",
+        "number2": "Números o rangos adicionales (opcional)"
+      },
+      "examples": [
+        "=PROMEDIO(A1:A10)",
+        "=PROMEDIO(A1; B1; C1)"
+      ]
+    },
+    "COUNT": {
+      "name": "COUNT",
+      "localName": "CONTAR",
+      "syntax": "CONTAR(valor1, [valor2], ...)",
+      "description": "Cuenta el número de celdas que contienen números",
+      "parameters": {
+        "value1": "Primer valor o rango",
+        "value2": "Valores o rangos adicionales (opcional)"
+      },
+      "examples": [
+        "=CONTAR(A1:A10)",
+        "=CONTAR(A1; B1; C1)"
+      ]
+    },
+    "IF": {
+      "name": "IF",
+      "localName": "SI",
+      "syntax": "SI(prueba_lógica, valor_si_verdadero, [valor_si_falso])",
+      "description": "Verifica si se cumple una condición y devuelve un valor si es verdadero y otro valor si es falso",
+      "parameters": {
+        "logical_test": "Condición a probar",
+        "value_if_true": "Valor a devolver si la condición es verdadera",
+        "value_if_false": "Valor a devolver si la condición es falsa (opcional)"
+      },
+      "examples": [
+        "=SI(A1>10; \"Alto\", \"Bajo\")",
+        "=SI(A1=\"\"; \"Vacío\", A1)"
+      ]
+    },
+    "VLOOKUP": {
+      "name": "VLOOKUP",
+      "localName": "BUSCARV",
+      "syntax": "BUSCARV(valor_buscado, rango, indicador_columnas, [coincidencia])",
+      "description": "Busca un valor en la primera columna de una tabla y devuelve un valor en la misma fila desde una columna especificada",
+      "parameters": {
+        "lookup_value": "Valor a buscar",
+        "table_array": "Rango que contiene los datos",
+        "col_index_num": "Número de columna desde la cual devolver el valor",
+        "range_lookup": "Coincidencia exacta (FALSO) o aproximada (VERDADERO, opcional)"
+      },
+      "examples": [
+        "=BUSCARV(A1; B1:D10; 2; FALSO)",
+        "=BUSCARV(\"Producto\"; A1:D100; 3; VERDADERO)"
+      ]
+    }
+  },
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-09",
+  "translators": ["POLLN Team"]
+}

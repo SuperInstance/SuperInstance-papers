@@ -1,0 +1,146 @@
+# POLLN Kubernetes ConfigMap
+# Environment configuration and feature flags
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: polln-config
+  namespace: polln-production
+data:
+  # Environment
+  NODE_ENV: "production"
+  LOG_LEVEL: "info"
+
+  # API Configuration
+  API_PORT: "3000"
+  API_HOST: "0.0.0.0"
+  API_TIMEOUT: "30000"
+
+  # CORS
+  CORS_ENABLED: "true"
+  CORS_ORIGIN: "https://polln.ai,https://www.polln.ai"
+  CORS_METHODS: "GET,POST,PUT,DELETE,PATCH,OPTIONS"
+  CORS_CREDENTIALS: "true"
+
+  # Rate Limiting
+  RATE_LIMIT_ENABLED: "true"
+  RATE_LIMIT_WINDOW_MS: "60000"
+  RATE_LIMIT_MAX_REQUESTS: "100"
+
+  # Cache Configuration
+  CACHE_ENABLED: "true"
+  CACHE_TTL_SECONDS: "3600"
+  CACHE_MAX_SIZE: "1000"
+
+  # WebSocket Configuration
+  WEBSOCKET_ENABLED: "true"
+  WEBSOCKET_PATH: "/ws"
+  WEBSOCKET_HEARTBEAT_INTERVAL: "30000"
+  WEBSOCKET_MAX_CONNECTIONS: "1000"
+
+  # Colony Configuration
+  COLONY_MAX_AGENTS: "100"
+  COLONY_DEFAULT_AGENT_COUNT: "10"
+  COLONY_DECISION_TIMEOUT_MS: "5000"
+  COLONY_LEARNING_ENABLED: "true"
+
+  # Spreadsheet Configuration
+  SPREADSHEET_MAX_CELLS: "10000"
+  SPREADSHEET_MAX_ROWS: "1000"
+  SPREADSHEET_MAX_COLUMNS: "100"
+  SPREADSHEET_FORMULA_DEPTH_LIMIT: "10"
+
+  # KV Cache Configuration
+  KV_CACHE_ENABLED: "true"
+  KV_CACHE_MAX_SIZE: "10000"
+  KV_CACHE_TTL_SECONDS: "7200"
+
+  # Guardian Configuration
+  GUARDIAN_ENABLED: "true"
+  GUARDIAN_STRICT_MODE: "false"
+  GUARDIAN_MAX_RETRY_ATTEMPTS: "3"
+
+  # Feature Flags
+  FEATURE_ANALYTICS: "true"
+  FEATURE_TRACING: "true"
+  FEATURE_METRICS: "true"
+  FEATURE_BETA_API: "false"
+
+  # Monitoring
+  METRICS_ENABLED: "true"
+  METRICS_PORT: "9090"
+  TRACING_ENABLED: "true"
+  TRACING_SAMPLING_RATE: "0.1"
+
+---
+# Staging ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: polln-config
+  namespace: polln-staging
+data:
+  # Environment
+  NODE_ENV: "staging"
+  LOG_LEVEL: "debug"
+
+  # API Configuration
+  API_PORT: "3000"
+  API_HOST: "0.0.0.0"
+  API_TIMEOUT: "30000"
+
+  # CORS
+  CORS_ENABLED: "true"
+  CORS_ORIGIN: "*"
+  CORS_METHODS: "GET,POST,PUT,DELETE,PATCH,OPTIONS"
+  CORS_CREDENTIALS: "true"
+
+  # Rate Limiting
+  RATE_LIMIT_ENABLED: "false"
+  RATE_LIMIT_WINDOW_MS: "60000"
+  RATE_LIMIT_MAX_REQUESTS: "1000"
+
+  # Cache Configuration
+  CACHE_ENABLED: "true"
+  CACHE_TTL_SECONDS: "1800"
+  CACHE_MAX_SIZE: "500"
+
+  # WebSocket Configuration
+  WEBSOCKET_ENABLED: "true"
+  WEBSOCKET_PATH: "/ws"
+  WEBSOCKET_HEARTBEAT_INTERVAL: "30000"
+  WEBSOCKET_MAX_CONNECTIONS: "100"
+
+  # Colony Configuration
+  COLONY_MAX_AGENTS: "50"
+  COLONY_DEFAULT_AGENT_COUNT: "5"
+  COLONY_DECISION_TIMEOUT_MS: "10000"
+  COLONY_LEARNING_ENABLED: "true"
+
+  # Spreadsheet Configuration
+  SPREADSHEET_MAX_CELLS: "5000"
+  SPREADSHEET_MAX_ROWS: "500"
+  SPREADSHEET_MAX_COLUMNS: "50"
+  SPREADSHEET_FORMULA_DEPTH_LIMIT: "10"
+
+  # KV Cache Configuration
+  KV_CACHE_ENABLED: "true"
+  KV_CACHE_MAX_SIZE: "5000"
+  KV_CACHE_TTL_SECONDS: "3600"
+
+  # Guardian Configuration
+  GUARDIAN_ENABLED: "true"
+  GUARDIAN_STRICT_MODE: "false"
+  GUARDIAN_MAX_RETRY_ATTEMPTS: "5"
+
+  # Feature Flags
+  FEATURE_ANALYTICS: "true"
+  FEATURE_TRACING: "true"
+  FEATURE_METRICS: "true"
+  FEATURE_BETA_API: "true"
+
+  # Monitoring
+  METRICS_ENABLED: "true"
+  METRICS_PORT: "9090"
+  TRACING_ENABLED: "true"
+  TRACING_SAMPLING_RATE: "1.0"

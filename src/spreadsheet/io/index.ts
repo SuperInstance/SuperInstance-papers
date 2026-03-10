@@ -52,6 +52,36 @@ export { Importer } from './Importer.js';
 export { SchemaValidator } from './SchemaValidator.js';
 export { MigrationEngine, getMigrationEngine, resetMigrationEngine } from './MigrationEngine.js';
 
+// IO Components
+export { ClipboardHandler } from './ClipboardHandler.js';
+export { AutoSave } from './AutoSave.js';
+
+// IO Types
+export type {
+  ClipboardFormat,
+  ReferenceAdjustment,
+  ClipboardResult,
+  CellRange,
+  ClipboardOperation,
+  ClipboardHistoryEntry,
+  ClipboardHandlerConfig,
+  ClipboardEventHandler,
+} from './ClipboardHandler.js';
+
+export type {
+  SaveStatus,
+  StorageLocation,
+  NetworkStatus,
+  SaveSnapshot,
+  SaveResult,
+  ConflictResolution,
+  SaveConflict,
+  AutoSaveConfig,
+  SaveEventHandler,
+  ConflictHandler,
+  AutoSaveStatistics,
+} from './AutoSave.js';
+
 // Utility functions
 export { createExportConfig, createImportConfig } from './utils/config.js';
 export { detectFormat, isCompatibleFormat } from './utils/format-detection.js';

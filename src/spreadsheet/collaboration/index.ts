@@ -3,12 +3,45 @@
  *
  * Real-time collaboration using Yjs CRDTs for spreadsheet cells.
  * Supports 100+ concurrent users with <100ms sync latency.
+ *
+ * Components:
+ * - CollaborationServer: WebSocket server for room management
+ * - CollaborationClient: WebSocket client for real-time updates
+ * - OperationTransformer: OT algorithm for conflict-free collaboration
+ * - ConflictResolver: Multiple conflict resolution strategies
+ * - PresenceManager: User presence and cursor tracking
+ * - YjsDocument: CRDT document management
+ * - CollaborationManager: High-level collaboration orchestration
  */
+
+// Types
+export * from './types';
 
 // Core CRDT implementation
 export { YjsDocument, YCell } from './YjsDocument';
 
-// Collaboration management
+// Real-time collaboration server
+export {
+  CollaborationServer,
+  CollaborationRoom,
+} from './CollaborationServer';
+
+// Real-time collaboration client
+export { CollaborationClient } from './CollaborationClient';
+
+// Operational transformation
+export { OperationTransformer } from './OperationTransformer';
+
+// Conflict resolution
+export {
+  ConflictResolver,
+  ConflictInfo,
+  ResolutionStrategy,
+  ConflictResolution,
+  MergePolicy,
+} from './ConflictResolver';
+
+// Collaboration management (Yjs-based)
 export {
   CollaborationManager,
   UserCursor,
@@ -22,14 +55,6 @@ export {
   UserInfo,
   PresenceConfig,
 } from './PresenceManager';
-
-// Conflict resolution
-export {
-  ConflictResolver,
-  ConflictInfo,
-  ResolutionStrategy,
-  ConflictResolution,
-} from './ConflictResolver';
 
 // Version control
 export {

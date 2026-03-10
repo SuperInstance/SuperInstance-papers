@@ -1,0 +1,241 @@
+{
+  "locale": "en",
+  "languageName": "English",
+  "languageNameEnglish": "English",
+  "direction": "ltr",
+  "messages": {
+    "ui": {
+      "common": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "update": "Update",
+        "confirm": "Confirm",
+        "close": "Close",
+        "search": "Search",
+        "filter": "Filter",
+        "sort": "Sort",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "warning": "Warning",
+        "info": "Information",
+        "yes": "Yes",
+        "no": "No",
+        "or": "or",
+        "and": "and",
+        "of": "of",
+        "to": "to",
+        "from": "from",
+        "at": "at",
+        "in": "in",
+        "on": "on",
+        "with": "with",
+        "by": "by",
+        "for": "for"
+      },
+      "navigation": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "settings": "Settings",
+        "profile": "Profile",
+        "logout": "Logout",
+        "login": "Login",
+        "register": "Register",
+        "help": "Help",
+        "about": "About",
+        "contact": "Contact"
+      },
+      "spreadsheet": {
+        "new": "New Spreadsheet",
+        "open": "Open",
+        "import": "Import",
+        "export": "Export",
+        "share": "Share",
+        "rename": "Rename",
+        "duplicate": "Duplicate",
+        "archive": "Archive",
+        "restore": "Restore",
+        "cell": "Cell",
+        "row": "Row",
+        "column": "Column",
+        "sheet": "Sheet",
+        "formula": "Formula",
+        "function": "Function",
+        "chart": "Chart",
+        "pivotTable": "Pivot Table"
+      },
+      "menu": {
+        "file": "File",
+        "edit": "Edit",
+        "view": "View",
+        "insert": "Insert",
+        "format": "Format",
+        "data": "Data",
+        "tools": "Tools",
+        "help": "Help"
+      }
+    },
+    "errors": {
+      "invalidValue": "Invalid value",
+      "invalidFormula": "Invalid formula",
+      "circularReference": "Circular reference detected",
+      "divisionByZero": "Division by zero",
+      "valueRequired": "Value is required",
+      "fileNotFound": "File not found",
+      "networkError": "Network error occurred",
+      "unauthorized": "Unauthorized access",
+      "forbidden": "Access forbidden",
+      "notFound": "Resource not found",
+      "serverError": "Server error occurred",
+      "unknownError": "An unknown error occurred"
+    },
+    "charts": {
+      "types": {
+        "bar": "Bar Chart",
+        "line": "Line Chart",
+        "pie": "Pie Chart",
+        "scatter": "Scatter Plot",
+        "area": "Area Chart",
+        "histogram": "Histogram"
+      },
+      "axis": {
+        "xAxis": "X Axis",
+        "yAxis": "Y Axis",
+        "title": "Axis Title",
+        "label": "Axis Label"
+      },
+      "legend": {
+        "position": "Legend Position",
+        "title": "Legend Title"
+      }
+    },
+    "validation": {
+      "required": "{{field}} is required",
+      "min": "{{field}} must be at least {{min}}",
+      "max": "{{field}} must be at most {{max}}",
+      "minLength": "{{field}} must be at least {{min}} characters",
+      "maxLength": "{{field}} must be at most {{max}} characters",
+      "pattern": "{{field}} format is invalid",
+      "email": "Invalid email address",
+      "url": "Invalid URL",
+      "number": "Must be a valid number",
+      "integer": "Must be a whole number",
+      "positive": "Must be a positive number",
+      "date": "Invalid date format",
+      "unique": "{{field}} must be unique"
+    },
+    "plurals": {
+      "item": {
+        "one": "{{count}} item",
+        "other": "{{count}} items"
+      },
+      "row": {
+        "one": "{{count}} row",
+        "other": "{{count}} rows"
+      },
+      "column": {
+        "one": "{{count}} column",
+        "other": "{{count}} columns"
+      },
+      "sheet": {
+        "one": "{{count}} sheet",
+        "other": "{{count}} sheets"
+      },
+      "cell": {
+        "one": "{{count}} cell",
+        "other": "{{count}} cells"
+      }
+    }
+  },
+  "formats": {
+    "decimalSeparator": ".",
+    "thousandsSeparator": ",",
+    "listSeparator": ",",
+    "dateOrder": "MDY",
+    "timeSeparator": ":",
+    "firstDayOfWeek": 0,
+    "weekendDays": [0, 6],
+    "calendar": "gregorian"
+  },
+  "formulas": {
+    "SUM": {
+      "name": "SUM",
+      "localName": "SUM",
+      "syntax": "SUM(number1, [number2], ...)",
+      "description": "Adds all the numbers in a range of cells",
+      "parameters": {
+        "number1": "First number or range",
+        "number2": "Additional numbers or ranges (optional)"
+      },
+      "examples": [
+        "=SUM(A1:A10)",
+        "=SUM(A1, B1, C1)"
+      ]
+    },
+    "AVERAGE": {
+      "name": "AVERAGE",
+      "localName": "AVERAGE",
+      "syntax": "AVERAGE(number1, [number2], ...)",
+      "description": "Returns the average (arithmetic mean) of the arguments",
+      "parameters": {
+        "number1": "First number or range",
+        "number2": "Additional numbers or ranges (optional)"
+      },
+      "examples": [
+        "=AVERAGE(A1:A10)",
+        "=AVERAGE(A1, B1, C1)"
+      ]
+    },
+    "COUNT": {
+      "name": "COUNT",
+      "localName": "COUNT",
+      "syntax": "COUNT(value1, [value2], ...)",
+      "description": "Counts the number of cells that contain numbers",
+      "parameters": {
+        "value1": "First value or range",
+        "value2": "Additional values or ranges (optional)"
+      },
+      "examples": [
+        "=COUNT(A1:A10)",
+        "=COUNT(A1, B1, C1)"
+      ]
+    },
+    "IF": {
+      "name": "IF",
+      "localName": "IF",
+      "syntax": "IF(logical_test, value_if_true, [value_if_false])",
+      "description": "Checks whether a condition is met and returns one value if true and another value if false",
+      "parameters": {
+        "logical_test": "Condition to test",
+        "value_if_true": "Value to return if condition is true",
+        "value_if_false": "Value to return if condition is false (optional)"
+      },
+      "examples": [
+        "=IF(A1>10, \"High\", \"Low\")",
+        "=IF(A1=\"\", \"Empty\", A1)"
+      ]
+    },
+    "VLOOKUP": {
+      "name": "VLOOKUP",
+      "localName": "VLOOKUP",
+      "syntax": "VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])",
+      "description": "Looks for a value in the leftmost column of a table and returns a value in the same row from a column you specify",
+      "parameters": {
+        "lookup_value": "Value to search for",
+        "table_array": "Range containing the data",
+        "col_index_num": "Column number to return value from",
+        "range_lookup": "Exact match (FALSE) or approximate match (TRUE, optional)"
+      },
+      "examples": [
+        "=VLOOKUP(A1, B1:D10, 2, FALSE)",
+        "=VLOOKUP(\"Product\", A1:D100, 3, TRUE)"
+      ]
+    }
+  },
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-09",
+  "translators": ["POLLN Team"]
+}

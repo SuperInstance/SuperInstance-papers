@@ -276,6 +276,26 @@ export class OutputCell extends LogCell {
   }
 
   /**
+   * Output method for test compatibility
+   * This is a simpler API that wraps the process method
+   */
+  async output(value: unknown): Promise<{
+    success: boolean;
+    value: unknown;
+    error?: string;
+    timestamp: number;
+  }> {
+    const result = await this.setValueInternal(value);
+
+    return {
+      success: result.success,
+      value: result.value,
+      error: result.error,
+      timestamp: result.timestamp,
+    };
+  }
+
+  /**
    * Get description
    */
   getDescription(): string | undefined {

@@ -102,6 +102,10 @@
     "docs:api": "npx tsx scripts/generate-api-docs.ts",
     "docs:api:serve": "npx http-server docs/api -p 8080 -o",
     "docs:api:watch": "npx nodemon --watch src/api --exec 'npm run docs:api'",
+    "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:serve": "vitepress serve docs --port 5173",
     "demo:multi-colony": "node examples/multi-colony-demo/demo.js",
     "monitor:metrics": "node dist/cli/index.js monitor metrics",
     "monitor:traces": "node dist/cli/index.js monitor traces",
@@ -185,7 +189,13 @@
     "react-dom": "^18.3.0",
     "ts-jest": "^29.2.5",
     "typescript": "^5",
-    "vitest": "^4.0.18"
+    "vitest": "^4.0.18",
+    "vitepress": "^1.0.0",
+    "markdown-it-deflist": "^3.0.0",
+    "markdown-it-abbr": "^2.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-ins": "^4.0.0",
+    "markdown-it-mark": "^4.0.0"
   },
   "optionalDependencies": {
     "xlsx": "^0.18.5",

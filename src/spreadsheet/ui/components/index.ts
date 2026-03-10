@@ -12,6 +12,21 @@ export { GridDisplay, GridDisplayWithSensations } from './GridDisplay.js';
 export { QueryBar } from './QueryBar.js';
 export { ExplanationPanel, CellExplanationCard } from './ExplanationPanel.js';
 
+// Responsive Components (Wave 4)
+export {
+  ResponsiveGrid,
+  MobileToolbar,
+  AdaptiveRenderer,
+  TouchEditor,
+  ResponsiveContainer,
+  useBreakpoint,
+  useTouchGestures,
+  useViewportSize,
+  useMediaQuery,
+  useResponsiveValue,
+  BreakpointUtils,
+} from '../responsive/index.js';
+
 // Cell Garden Visualization
 export {
   CellGarden,
@@ -39,6 +54,33 @@ export {
 export type { GridCell } from './GridDisplay.js';
 export type { QueryBarProps } from './QueryBar.js';
 export type { ExplanationPanelProps, CellExplanationCardProps } from './ExplanationPanel.js';
+
+export type {
+  ResponsiveCellData,
+  ResponsiveGridProps,
+  ResponsiveGridConfig,
+  MobileToolbarProps,
+  MobileToolbarConfig,
+  QuickAction,
+  NavItem,
+  AdaptiveRendererProps,
+  AdaptiveRendererConfig,
+  TouchEditorProps,
+  TouchEditorConfig,
+  ResponsiveContainerProps,
+  ResponsiveContainerConfig,
+  Breakpoint,
+  BreakpointConfig,
+  ViewportSize,
+  DeviceOrientation,
+  SwipeDirection,
+  TouchGestures,
+  TouchGestureConfig,
+  DisplayMode,
+  GridViewport,
+  ZoomState,
+  PanState,
+} from '../responsive/types.js';
 
 export type {
   CellData,

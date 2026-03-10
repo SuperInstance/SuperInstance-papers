@@ -33,6 +33,39 @@ export { PredictionCell, PredictionCellConfig, PredictionType, PredictionHorizon
 export * from './ExplainCell.js';
 export { ExplainCell, ExplainCellConfig, ExplanationType, ExplanationDetail, ExplanationResult } from './ExplainCell.js';
 
+// Analytics Cells (Wave 4 - Advanced Analytics)
+export * from './analytics/index.js';
+
+export {
+  WhatIfCell,
+  WhatIfCellConfig,
+  ScenarioType,
+} from './analytics/WhatIfCell.js';
+
+export {
+  OptimizationCell,
+  OptimizationCellConfig,
+  OptimizationType,
+} from './analytics/OptimizationCell.js';
+
+export {
+  RegressionCell,
+  RegressionCellConfig,
+  RegressionType,
+} from './analytics/RegressionCell.js';
+
+export {
+  TimeSeriesCell,
+  TimeSeriesCellConfig,
+  TimeSeriesModel,
+} from './analytics/TimeSeriesCell.js';
+
+export {
+  MonteCarloCell,
+  MonteCarloCellConfig,
+  DistributionType,
+} from './analytics/MonteCarloCell.js';
+
 // Re-export types
 export type {
   CellId,

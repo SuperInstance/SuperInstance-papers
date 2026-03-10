@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}} - API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui.css" />
+    <style>
+      html {
+        box-sizing: border-box;
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .topbar {
+        background-color: #{{primaryColor}};
+        padding: 15px 0;
+      }
+      .topbar-wrapper {
+        max-width: 1460px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .topbar-wrapper img {
+        height: 40px;
+      }
+      .info {
+        margin: 40px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-wrapper">
+        <a href="/">
+          <img src="{{logoUrl}}" alt="{{title}} Logo"/>
+        </a>
+      </div>
+    </div>
+    <div class="swagger-ui-container">
+      <div id="swagger-ui"></div>
+    </div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui-bundle.js" charset="UTF-8"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui-standalone-preset.js" charset="UTF-8"></script>
+    <script>
+      window.onload = function() {
+        const ui = SwaggerUIBundle({
+          url: "{{specUrl}}",
+          dom_id: '#swagger-ui',
+          deepLinking: true,
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIStandalonePreset
+          ],
+          plugins: [
+            SwaggerUIBundle.plugins.DownloadUrl
+          ],
+          layout: "StandaloneLayout",
+          defaultModelsExpandDepth: 1,
+          defaultModelExpandDepth: 1,
+          docExpansion: "list",
+          filter: true,
+          showRequestHeaders: true,
+          tryItOutEnabled: true,
+          persistAuthorization: true,
+          {{swaggerConfig}}
+        });
+
+        window.ui = ui;
+      };
+    </script>
+  </body>
+</html>
