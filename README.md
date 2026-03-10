@@ -89,6 +89,223 @@ The analogy helps intuition, but the technical implementation stands on its own.
 
 ---
 
+## SMPbots: Tile Intelligence for Spreadsheets
+
+**SMP = Seed + Model + Prompt**
+
+**Simple Person Programming for Real-Time Simulation and Monitoring**
+
+POLLN introduces **SMPbots**—a deceptively simple approach to building intelligent spreadsheet cells that becomes profoundly powerful when you have the model in memory and thousands of parallel calculations running all day.
+
+### Tile Intelligence: Deconstructing Agents into Essential Functions
+
+Traditional AI agents are monolithic black boxes. POLLN **deconstructs agents into tiles**—essential functions that provide:
+
+- **Granular reasoning control** - See each step of the logic
+- **Visual reverse engineering** - Understand how decisions emerge
+- **Composable intelligence** - Mix and match tiles like LEGO
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│           FROM MONOLITHIC TO TILE INTELLIGENCE            │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   MONOLITHIC AGENT          TILE ARCHITECTURE              │
+│                                                             │
+│   ┌─────────────────┐         ┌─────┐ ┌─────┐ ┌─────┐    │
+│   │                 │         │ Sense │ Reason│ Act │    │
+│   │  [Black Box]    │         │ Tile │  Tile │Tile │    │
+│   │                 │         └──┬──┘ └──┬──┘ └─┬──┘    │
+│   │  Input→Output   │            │     │     │     │    │
+│   └─────────────────┘            └─────┴─────┴─────┘    │
+│                                                             │
+│   ❌ Can't see inside            ✅ Each tile visible    │
+│   ❌ Can't debug parts            ✅ Can swap any tile    │
+│   ❌ All-or-nothing               ✅ Compose new agents  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Why "SMP" Sounds Simple But Isn't
+
+The name is catchy because it sounds like "simple person programming"—and it *is* simple for the user. But that simplicity doesn't mean it's not powerful. In fact, for spreadsheet applications, SMP Programming is **often better** than complex AI systems.
+
+**Inductive ML Programming in Spreadsheets:**
+- Learn patterns FROM data, not just apply rules TO data
+- Each cell induces its own logic from examples
+- Embedded headless operation—no UI needed, just calculation
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              SMP PROGRAMMING ARCHITECTURE                 │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   SEED ──►  MODEL (in memory)  ──►  PROMPT               │
+│     │           │                    │     │                  │
+│     │           │                    │     ▼                  │
+│     │           │                    │  ┌─────────┐           │
+│     │           │                    │  │SMPBOT   │           │
+│     │           │                    │  │         │           │
+│     │           │                    │  │ Cell    │           │
+│     │           │                    │  │ Agent   │           │
+│     │           │                    │  └─────────┘           │
+│     │           │                    │        │                │
+│     ▼           ▼                    ▼        ▼                │
+│  ┌─────────────────────────────────────────────────┐       │
+│  │         SPREADSHEET CELL CALCULATION          │       │
+│  │                                                 │       │
+│  │  =SMP("trend", A1:A100, "analyze upward trend") │       │
+│  │                                                 │       │
+│  │  Result: Cell learns from data, predicts,      │       │
+│  │          explains reasoning, adapts over time  │       │
+│  └─────────────────────────────────────────────────┘       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### The Three Components
+
+| Component | Description | Example |
+|-----------|-------------|---------|
+| **Seed** | The starting data or context | `A1:A100` sales data |
+| **Model** | The AI model loaded in memory | SmallML, distilled model, or cached LLM |
+| **Prompt** | The instruction or task | "Analyze the upward trend" |
+
+### Why SMPbots Are Perfect for Spreadsheets
+
+**Traditional approach:** Call an external API for each cell calculation
+- ❌ Network latency (100-500ms per call)
+- ❌ Rate limits and costs
+- ❌ No offline capability
+- ❌ Can't parallelize efficiently
+
+**SMPbots approach:** Run calculations in parallel with in-memory models
+- ✅ Millisecond response times (model already loaded)
+- ✅ Thousands of parallel calculations
+- ✅ Works offline after initial load
+- ✅ Perfect for batch operations
+
+### The "Simple Person Programming" Advantage
+
+SMP Programming democratizes AI development:
+
+```
+Traditional AI Engineer:
+  "I need to fine-tune a transformer, set up inference,
+   deploy a microservice, handle authentication..."
+
+SMP Programmer (Spreadsheet User):
+  "I just want this cell to tell me if sales are trending up."
+  =SMP("trend", A1:A100, "up or down?")
+```
+
+The complexity is **handled by the system**, not the user. The user gets powerful AI without needing to be an AI engineer.
+
+### SMPbots in the POLLN Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              SMPBOTS IN POLLN SYSTEM                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   Each spreadsheet cell can be an SMPbot:                  │
+│                                                             │
+│   ┌────────┐  ┌────────┐  ┌────────┐  ┌────────┐        │
+│   │   A1   │  │   B1   │  │   C1   │  │   D1   │        │
+│   │        │  │        │  │        │  │        │        │
+│   │ SMPbot │  │ SMPbot │  │ SMPbot │  │ SMPbot │        │
+│   │        │  │        │  │        │  │        │        │
+│   └───┬────┘  └───┬────┘  └───┬────┘  └───┬────┘        │
+│       │           │           │           │               │
+│       └───────────┼───────────┴───────────┘               │
+│                   ▼                                       │
+│           ┌───────────────────┐                             │
+│           │   SHARED MODEL     │                             │
+│           │   (In Memory)       │                             │
+│           │                     │                             │
+│           │  • Parallel exec    │                             │
+│           │  • KV-Cache lookup │                             │
+│           │  • Fast inference  │                             │
+│           └───────────────────┘                             │
+│                                                             │
+│   RESULT: 1000+ cells calculating simultaneously               │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### SMPbot Examples
+
+```excel
+// Trend analysis SMPbot
+=SMP("trend", A1:A100, "Is this trending up?")
+
+// Anomaly detection SMPbot
+=SMP("anomaly", B1:B50, "Find outliers in this data")
+
+// Prediction SMPbot
+=SMP("predict", C1:C12, "What will next month be?")
+
+// Summarization SMPbot
+=SMP("summarize", D1:D100, "Key insights from customer feedback")
+```
+
+### The Parallel Processing Advantage
+
+When you have thousands of cells running SMPbots in parallel:
+
+```
+Traditional sequential processing:
+Cell 1 → Cell 2 → Cell 3 → ... → Cell 1000
+(500ms × 1000 = 8.3 minutes)
+
+SMP parallel processing:
+All 1000 cells → simultaneously
+(500ms total, same hardware)
+```
+
+**That's 1000x faster** for spreadsheet operations.
+
+### Why "Simple" Doesn't Mean "Dumb"
+
+SMP Programming may be simple to use, but under the hood it leverages:
+
+- **KV-Cache System** - Shared context between cells
+- **Hebbian Learning** - Cells that work well together wire together
+- **Plinko Selection** - Probabilistic choice for diversity
+- **World Model** - Internal representation for dreaming
+- **Federated Learning** - Knowledge sharing across cells
+
+The simplicity is in the **interface**, not the **implementation**.
+
+### SMPbot Lifecycle
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              SMPBOT LIFECYCLE                               │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   1. SEED    User provides data (A1:A100)                   │
+│      │                                                       │
+│      ▼                                                       │
+│   2. MODEL   System loads appropriate model                   │
+│      │       (trend-analyzer, cached in memory)             │
+│      ▼                                                       │
+│   3. PROMPT  Task is configured                             │
+│      │       ("analyze upward trend")                       │
+│      ▼                                                       │
+│   4. EXECUTE Model processes seed with prompt               │
+│      │       (parallel with other cells)                    │
+│      ▼                                                       │
+│   5. LEARN  Feedback updates model (Hebbian learning)        │
+│      │                                                       │
+│      ▼                                                       │
+│   6. REMEMBER  Next time is faster (KV-Cache)               │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## How POLLN Works
 
 ### 1. Specialists, Not Generalists
