@@ -1,0 +1,17 @@
+{
+  "traditional_fl": {
+    "mean_accuracy": 0.6279999999999999,
+    "std_accuracy": 0.10604715932074749
+  },
+  "federated_tile_learning": {
+    "mean_accuracy": 0.627,
+    "std_accuracy": 0.10749883720301351,
+    "improvement": -0.0009999999999998899
+  },
+  "breakthrough_capabilities": [
+    "Tile inspectability (unlike gradients)",
+    "Validation before integration",
+    "Selective adoption of knowledge",
+    "Explainable reasoning traces"
+  ]
+}
