@@ -1,81 +1,91 @@
-# POLLN Project - Solo Execution Plan
+# POLLN Project - Solo Completion Plan
 
 **Status:** Phase 2 Infrastructure | 82 TypeScript Errors | Ready for Completion
 **Updated:** 2026-03-10
-**Mode:** SOLO COMpletions
----
-
-## Mission: Complete Project in One Go
-
-140+ research agents complete. Core tile system built. Now executing solo cleanup and completion.
+**Mode:** SOLO Completions
 
 ---
 
-## Current State Summary
+## Quick Start After Restart
 
-| Component | Status | Files | Notes |
-|-----------|--------|-------|-------|
-| Core Tiles | COMPLETE | 4 | Tile.ts, TileChain.ts, Registry.ts |
-| PoC Tiles | COMPLETE | 4 | confidence-cascade.ts, stigmergy.ts, tile-memory.ts, composition-validator.ts |
-| Research Docs | COMPLETE | 140+ | Full documentation in docs/research/smp-paper/ |
-| TypeScript | 82 ERRORS | ~30 | Down from 200+, concentrated in UI components |
-| Tests | PENDING | 5 | Integration tests ready to run |
-| Git | 8 CHANGES | - | Staged, committed |
+**Read these files in order:**
+1. `NEXT_SESSION_GUIDE.md` - Step-by-step instructions to finish
+2. `PROJECT_AUDIT.md` - Full project state and architecture
+3. `TYPESCRIPT_FIX_PLAN.md` - Detailed error fix patterns
+4. `ONBOARD_ROADMAP.md` - Project overview and roadmap
 
 ---
 
-## Immediate Action Plan (Solo)
+## Current State (82 TypeScript Errors)
 
-### Step 1: Fix TypeScript Errors (~75 min)
-Priority files by error count:
-1. FeatureFlagPanel.tsx (436) - Fix imports, types
-2. CellInspectorWithTheater.tsx (301) - React props
-3. TouchCellInspector.tsx (253) - Mobile types
-4. ExperimentReport.tsx (242) - Data types
-5. CellInspector.tsx (237) - Core UI
-6. ExportImportButtons.tsx (219) - IO types
-7. AuditLogViewer.tsx (184) - Admin UI
-8. ConflictModal.tsx (179) - Modal types
-9. backup/strategies/*.ts (~30) - Buffer types
-10. api/*.ts (~20) - Type assertions
-11. cli/commands/*.ts (~15) - CLI types
+| Component | Status | Files |
+|-----------|--------|-------|
+| Core Tiles | COMPLETE | Tile.ts, TileChain.ts, Registry.ts |
+| PoC Tiles | COMPLETE | confidence-cascade.ts, stigmergy.ts, tile-memory.ts |
+| Research | COMPLETE | 31 documents in docs/research/smp-paper/ |
+| TypeScript | 82 ERRORS | UI components (436+ errors in FeatureFlagPanel) |
 
-12. benchmarking/*.ts (~5) - Implicit any
+---
 
-### Step 2: Run Tests (~15 min)
-```bash
-npx vitest run src/spreadsheet/tiles/tests/
+## Error Concentration
+
+**Top 10 files with errors:**
+1. FeatureFlagPanel.tsx - 436
+2. CellInspectorWithTheater.tsx - 301
+3. TouchCellInspector.tsx - 253
+4. ExperimentReport.tsx - 242
+5. CellInspector.tsx - 237
+6. ExportImportButtons.tsx - 219
+7. AuditLogViewer.tsx - 184
+8. ConflictModal.tsx - 179
+9. backup/strategies/*.ts - ~30
+10. api/*.ts - ~20
+
+---
+
+## Three-Zone Model (Core Concept)
+
 ```
-### Step 3: Commit & Push (~5 min)
+┌─────────────────────────────────────────────────────────────────┐
+│  GREEN (≥0.90)     │  YELLOW (0.75-0.89)    │  RED (<0.75)       │
+│  Auto-proceed       │  Human review         │  Stop, diagnose    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Confidence Flow
+- Sequential: **MULTIPLY** (0.90 × 0.80 = 0.72 → RED)
+- Parallel: **AVERAGE** (0.90 + 0.70) / 2 = 0.80 → YELLOW)
+
+---
+
+## Next Session Commands
+
 ```bash
+# Check errors
+npx tsc --noEmit 2>&1 | grep "error TS" | wc -l
+
+# Run tests
+npm test
+
+# Commit progress
 git add -A && git commit -m "fix: All TypeScript errors resolved"
 git push origin main
 ```
 
 ---
 
-## Key Files Reference
-- **ONBOARD_ROADMAP.md** - Full project state and roadmap
-- **TYPESCRIPT_FIX_PLAN.md** - Detailed error fix patterns
-- **docs/research/smp-paper/** - 140+ research documents
+## Documentation Reference
+
+| Document | Purpose | Location |
+|----------|---------|----------|
+| NEXT_SESSION_GUIDE.md | Step-by-step completion guide | / |
+| PROJECT_AUDIT.md | Full project audit | / |
+| TYPESCRIPT_FIX_PLAN.md | Error fix patterns | / |
+| ONBOARD_ROADMAP.md | Project roadmap | / |
+| EXECUTIVE_SUMMARY.md | Research summary | docs/research/smp-paper/ |
+| FUTURE_RESEARCH_DIRECTIONS.md | Future work | docs/research/smp-paper/ |
 
 ---
 
-## Three-Zone Model (Core Concept)
-| Zone | Confidence | Action |
-|------|------------|--------|
-| GREEN | ≥0.90 | Auto-proceed |
-| YELLOW | 0.75-0.89 | Human review |
-| RED | <0.75 | Stop, diagnose |
-
----
-
-## Execution Rules
-1. Fix errors in batches by type, not by file
-2. Run `npx tsc --noEmit` after every batch
-3. Commit after each successful batch
-4. Don't add features - only fix what's broken
-
----
-
-*Ready for solo completion*
+*Ready for post-restart completion*
+*Last Updated: 2026-03-10*
