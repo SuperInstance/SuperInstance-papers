@@ -1,113 +1,142 @@
 # Core Runtime
 
-The foundational layer of POLLN - implements the agent runtime, communication, learning, KV-cache, and safety systems.
+**Status**: Foundation Layer | **Maturity**: Production-Ready | **Tests**: 821
 
-**Total Tests: 821**
+## What Is This Directory?
 
-## Components
+The `src/core/` directory contains the **foundational building blocks** of POLLN. Everything else in the project builds on these primitives. This is the "standard library" for the Pattern-Organized Large Language Network.
+
+## For Future Agents: Read This First
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                    START HERE TO UNDERSTAND CORE                     │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│   1. types.ts        ◀── ALL type definitions (READ FIRST)          │
+│   2. agent.ts        ◀── BaseAgent abstract class                   │
+│   3. agents.ts       ◀── TaskAgent, RoleAgent, CoreAgent            │
+│   4. colony.ts       ◀── Colony (agent collection manager)          │
+│                                                                      │
+│   Then explore subsystems:                                           │
+│   5. dreaming.ts     ◀── Dream-based policy optimization            │
+│   6. worldmodel.ts   ◀── Predictive world model                     │
+│   7. kvanchor.ts     ◀── KV-Cache anchor system                     │
+│   8. federated.ts    ◀── Federated learning                         │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         POLLN CORE                                   │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐             │
+│   │   Agent     │    │   Colony    │    │   World     │             │
+│   │   System    │───▶│   Manager   │◀───│   Model     │             │
+│   └─────────────┘    └─────────────┘    └─────────────┘             │
+│         │                  │                  │                      │
+│         ▼                  ▼                  ▼                      │
+│   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐             │
+│   │  KV-Cache   │    │ Distributed │    │  Guardian   │             │
+│   │   System    │    │Coordination │    │   Angel     │             │
+│   └─────────────┘    └─────────────┘    └─────────────┘             │
+│         │                  │                  │                      │
+│         └──────────────────┼──────────────────┘                      │
+│                            ▼                                         │
+│                    ┌─────────────┐                                   │
+│                    │  Bytecode   │                                   │
+│                    │   Bridge    │                                   │
+│                    └─────────────┘                                   │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+## Key Files Explained
 
 ### Agent System
-| File | Purpose |
-|------|---------|
-| `types.ts` | Core type definitions for the entire system |
-| `agent.ts` | BaseAgent abstract class |
-| `agents.ts` | Concrete agents: TaskAgent, RoleAgent, CoreAgent |
-| `colony.ts` | Colony management and agent coordination |
-| `tile.ts` | Tile categories (EPHEMERAL, ROLE, CORE) |
-| `meta.ts` | MetaTile - pluripotent agents that differentiate based on signals |
+
+| File | What It Does | Key Exports |
+|------|--------------|-------------|
+| `types.ts` | ALL type definitions for entire system | `AgentConfig`, `AgentState`, `A2APackage`, `PrivacyLevel`, `SubsumptionLayer` |
+| `agent.ts` | Abstract base class for all agents | `BaseAgent` |
+| `agents.ts` | Concrete agent implementations | `TaskAgent`, `RoleAgent`, `CoreAgent` |
+| `colony.ts` | Manages collection of agents | `Colony`, `ColonyConfig`, `ColonyStats` |
+| `tile.ts` | Tile categories | `TileCategory` enum |
+| `meta.ts` | Pluripotent tiles | `MetaTile`, `MetaTileManager` |
 
 ### Communication
-| File | Purpose |
-|------|---------|
-| `communication.ts` | A2A package system for agent-to-agent messaging |
-| `protocol.ts` | SPORE protocol for agent lifecycle |
-| `embedding.ts` | BES (Behavioral Embedding Space) with differential privacy |
+
+| File | What It Does | Key Exports |
+|------|--------------|-------------|
+| `communication.ts` | Agent-to-agent messaging | `A2APackageSystem` |
+| `protocol.ts` | SPORE protocol | Agent lifecycle protocol |
+| `embedding.ts` | Embedding utilities | `BES` (Behavioral Embedding System) |
 
 ### Decision & Learning
-| File | Purpose |
-|------|---------|
-| `decision.ts` | Plinko layer - probabilistic selection with temperature |
-| `learning.ts` | Hebbian learning with Oja's rule normalization |
-| `evolution.ts` | Graph evolution - pruning, grafting, clustering |
+
+| File | What It Does | Key Exports |
+|------|--------------|-------------|
+| `decision.ts` | Plinko logic for probabilistic selection | `PlinkoLayer` |
+| `learning.ts` | Learning utilities | Various learning helpers |
+| `valuenetwork.ts` | Value function network | `ValueNetwork`, `ValueNetworkManager` |
+| `evolution.ts` | Agent evolution over time | Evolution strategies |
 
 ### World Model & Dreaming
-| File | Purpose |
-|------|---------|
-| `worldmodel.ts` | VAE world model for state prediction |
-| `dreaming.ts` | Dream-based policy optimization |
-| `valuenetwork.ts` | TD(λ) value predictions |
 
-### Safety & Constraints
-| File | Purpose |
-|------|---------|
-| `safety.ts` | Constitutional constraints and safety layer |
+| File | What It Does | Key Exports |
+|------|--------------|-------------|
+| `worldmodel.ts` | Predictive world model | `WorldModel` |
+| `dreaming.ts` | Sleep-phase optimization | `DreamBasedPolicyOptimizer`, `DreamManager` |
+| `tiledreaming.ts` | Tile-level dreaming | Tile dream optimization |
 
-### Federated Learning
-| File | Purpose |
-|------|---------|
-| `federated.ts` | Federated learning coordinator with privacy tiers |
-| `meadow.ts` | Community system for knowledge sharing |
-| `succession.ts` | Knowledge transfer protocol |
+### Safety & Lifecycle
+
+| File | What It Does | Key Exports |
+|------|--------------|-------------|
+| `safety.ts` | Safety constraints | `SafetyLayer` |
+| `succession.ts` | Knowledge transfer | `KnowledgeSuccessionManager`, `KnowledgeStage` |
+
+### Federated & Meadow
+
+| File | What It Does | Key Exports |
+|------|--------------|-------------|
+| `federated.ts` | Federated learning coordinator | `FederatedLearningCoordinator` |
+| `meadow.ts` | Community knowledge sharing | `Meadow` |
 
 ### KV-Cache System (Phase 4)
-| File | Purpose |
-|------|---------|
-| `kvtypes.ts` | Core KV-cache type definitions |
-| `kvanchor.ts` | KVAnchorPool with clustering, LRU eviction, compression |
-| `kvfederated.ts` | Privacy-aware cross-colony KV sync |
-| `kvdream.ts` | Dream KV management for world model |
-| `kvmeadow.ts` | KV marketplace for Meadow system |
-| `kvtile.ts` | Tile-KV bridge for cache-aware execution |
-| `cacheutils.ts` | Cache manipulation utilities (slice, concat, replace) |
-| `contextshare.ts` | Cross-agent context sharing |
 
-## Key Types
-
-```typescript
-// Tile Categories (lifespans)
-enum TileCategory {
-  EPHEMERAL = 'EPHEMERAL',  // Task-bound (minutes-hours)
-  ROLE = 'ROLE',            // Performance-bound (days-weeks)
-  CORE = 'CORE',            // Long-lived (months-years)
-}
-
-// Knowledge Stages (maturity)
-enum KnowledgeStage {
-  EPHEMERAL = 'EPHEMERAL',  // < 100 executions
-  WORKING = 'WORKING',      // 100-1000 executions
-  EMBEDDED = 'EMBEDDED',    // > 1000 executions
-  FOSSIL = 'FOSSIL',        // Archived
-}
-
-// Privacy Levels
-enum PrivacyLevel {
-  PUBLIC = 'PUBLIC',
-  COLONY = 'COLONY',
-  PRIVATE = 'PRIVATE'
-}
-
-// Subsumption Layers
-enum SubsumptionLayer {
-  SAFETY = 'SAFETY',       // Layer 0: Instant override
-  REFLEX = 'REFLEX',       // Layer 1: Fast reactions
-  HABITUAL = 'HABITUAL',   // Layer 2: Learned routines
-  DELIBERATE = 'DELIBERATE' // Layer 3: Slow planning
-}
-```
+| File | What It Does | Key Exports |
+|------|--------------|-------------|
+| `kvtypes.ts` | KV-Cache type definitions | `KVAnchor`, `KVSegment`, etc. |
+| `kvanchor.ts` | Anchor-based caching | `KVAnchorPool`, `KVAnchor` |
+| `kvmeadow.ts` | Meadow cache integration | Meadow KV support |
+| `kvtile.ts` | Tile cache integration | Tile-KV composition |
+| `kvdream.ts` | Dream KV management | World model cache |
+| `kvfederated.ts` | Federated KV sync | Cross-colony cache |
+| `cacheutils.ts` | Cache utilities | `CacheSlicer`, `CacheConcatenator` |
+| `ann-index.ts` | Approximate nearest neighbor | ANN for cache lookup |
+| `lmcache-adapter.ts` | LMCache integration | External cache adapter |
 
 ## Agent Hierarchy
 
 ```
-BaseAgent (abstract)
+BaseAgent (abstract) - src/core/agent.ts
     │
     ├── TaskAgent (EPHEMERAL)
     │   └── Born → Execute → Die (no succession)
+    │   └── Use for: One-shot tasks
     │
     ├── RoleAgent (ROLE)
     │   └── Learn → Execute → Transfer → Die
+    │   └── Use for: Ongoing responsibilities
     │
     └── CoreAgent (CORE)
         └── Slow wisdom → Backup → Rarely replaced
+        └── Use for: System-critical functions
 ```
 
 ## KV-Cache Architecture
@@ -118,11 +147,11 @@ BaseAgent (abstract)
 │  ┌─────────────────────────────────────────────────────────┐│
 │  │                   KV-ANCHOR LAYER                        ││
 │  │  ┌────────────┐  ┌────────────┐  ┌────────────┐        ││
-│  │  │AnchorPool  │  │OffsetPred  │  │ContextShare│        ││
+│  │  │ AnchorPool │  │OffsetPred │  │ContextShare│        ││
 │  │  └────────────┘  └────────────┘  └────────────┘        ││
 │  └─────────────────────────────────────────────────────────┘│
-│         │                  │                  │               │
-│         ▼                  ▼                  ▼               │
+│         │                  │                  │              │
+│         ▼                  ▼                  ▼              │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
 │  │   Tiles     │    │ WorldModel  │    │ ValueNet    │     │
 │  └─────────────┘    └─────────────┘    └─────────────┘     │
@@ -130,23 +159,126 @@ BaseAgent (abstract)
 ```
 
 ### KV-Cache Patterns
-- **KV Proximity**: Similar embeddings share KV patterns
-- **Offset Proximity**: Predictable changes under prefix modifications
-- **Anchor-Based Communication**: Three-phase matching/reuse/prediction
 
-## Tests
+1. **KV Proximity**: Similar embeddings share KV patterns
+2. **Offset Proximity**: Predictable changes under prefix modifications
+3. **Anchor-Based Communication**: Three-phase matching/reuse/prediction
 
-All core components have comprehensive tests in `__tests__/`:
+## Subsystems (Subdirectories)
 
-```bash
-npm test                    # Run all 821 tests
-npm test -- --coverage      # With coverage
-npm test -- --testPathPattern=kv  # Run KV-cache tests only
+### `distributed/` - Multi-node Coordination
+
+| File | Purpose |
+|------|---------|
+| `index.ts` | Module entry point |
+| `types.ts` | Distributed types |
+| `backend.ts` | Backend abstraction (Memory, Redis, NATS) |
+| `discovery.ts` | Service discovery |
+| `federation.ts` | Federation protocol |
+| `pheromones.ts` | Stigmergic coordination |
+
+### `guardian/` - Safety System
+
+| File | Purpose |
+|------|---------|
+| `index.ts` | Module entry point |
+| `types.ts` | Guardian types |
+| `constraints.ts` | Safety constraints |
+| `learning.ts` | Guardian learning |
+| `guardian-agent.ts` | Guardian implementation |
+
+### `bytecode/` - Tile Compilation
+
+| File | Purpose |
+|------|---------|
+| `index.ts` | Module entry point |
+| `types.ts` | Bytecode types |
+| `compiler.ts` | Tile → Bytecode compiler |
+| `executor.ts` | Bytecode runner |
+| `stability-analyzer.ts` | Safety checks |
+
+### `colony-manager/` - Colony Orchestration
+
+| File | Purpose |
+|------|---------|
+| `types.ts` | Manager types |
+| `orchestrator.ts` | Colony orchestration |
+| `scheduler.ts` | Task scheduling |
+| `load-balancer.ts` | Load distribution |
+| `resource-tracker.ts` | Resource monitoring |
+
+### `federation/` - Federated Learning
+
+| File | Purpose |
+|------|---------|
+| `strategies/fed-avg.ts` | Federated averaging |
+| `strategies/fed-prox.ts` | FedProx algorithm |
+| `strategies/fed-async.ts` | Async federation |
+| `fault/` | Fault tolerance |
+| `network/` | Network layer |
+| `privacy/` | Privacy preservation |
+
+### `security/` - Security
+
+| File | Purpose |
+|------|---------|
+| `audit.ts` | Security auditing |
+| `crypto.ts` | Cryptographic utilities |
+
+### `tiles/` - Tile Subsystem
+
+| File | Purpose |
+|------|---------|
+| `index.ts` | Tile exports |
+| `transformer.ts` | Data transformation |
+| `accumulator.ts` | State accumulation |
+| `validator.ts` | Input validation |
+| `router.ts` | Message routing |
+
+### `hydraulic/` - Load Balancing
+
+| File | Purpose |
+|------|---------|
+| `types.ts` | Hydraulic types |
+| `pressure-sensor.ts` | Load detection |
+| `flow-monitor.ts` | Flow monitoring |
+
+## Data Flow
+
+```
+User Request
+     │
+     ▼
+┌─────────────┐
+│   Colony    │ ◀── Manages agents
+└─────────────┘
+     │
+     ▼
+┌─────────────┐
+│   Agent     │ ◀── Processes request
+└─────────────┘
+     │
+     ├──▶ World Model (predict outcomes)
+     ├──▶ Decision (choose action via Plinko)
+     ├──▶ Guardian (check safety constraints)
+     │
+     ▼
+┌─────────────┐
+│  KV-Cache   │ ◀── Caches context for reuse
+└─────────────┘
+     │
+     ▼
+┌─────────────┐
+│   Output    │ ──▶ Response to user
+└─────────────┘
+     │
+     ▼
+┌─────────────┐
+│  Dreaming   │ ◀── Offline policy optimization
+└─────────────┘
 ```
 
-## Exports
-
-Main exports are available via `index.ts`:
+## Main Exports
 
 ```typescript
 import {
@@ -193,5 +325,125 @@ import {
 } from './core';
 ```
 
+## Testing
+
+```bash
+# Run all 821 core tests
+npm test
+
+# With coverage
+npm test -- --coverage
+
+# Specific subsystem
+npm test -- --testPathPattern=kv  # KV-cache tests
+npm test -- --testPathPattern=agent  # Agent tests
+npm test -- --testPathPattern=dream  # Dream tests
+```
+
+## Performance Optimization
+
+Optimized variants exist for hot paths:
+
+| Original | Optimized | When To Use |
+|----------|-----------|-------------|
+| `embedding.ts` | `embedding-optimized.ts` | Production, high-volume |
+| `decision.ts` | `decision-optimized.ts` | Production, high-volume |
+| `worldmodel.ts` | `worldmodel-optimized.ts` | Production, high-volume |
+
+## Configuration Tiers
+
+Located in `config/tiers/`:
+
+| Tier | Agents | Memory | Use Case |
+|------|--------|--------|----------|
+| Tiny | 10 | 512MB | Development |
+| Small | 50 | 2GB | Testing |
+| Medium | 200 | 8GB | Production |
+| Large | 1000 | 32GB | Enterprise |
+
+## Common Patterns
+
+### Create and Use an Agent
+
+```typescript
+import { TaskAgent, Colony } from './core';
+
+// Create colony
+const colony = new Colony({
+  id: 'my-colony',
+  gardenerId: 'user-001',
+  name: 'Production',
+  maxAgents: 100
+});
+
+// Create agent
+const agent = new TaskAgent({
+  id: 'task-001',
+  typeId: 'sentiment',
+  categoryId: 'nlp',
+  modelFamily: 'smallml',
+  inputTopics: ['text'],
+  outputTopic: 'sentiment'
+});
+
+// Initialize and process
+await agent.initialize();
+const result = await agent.process(input);
+await agent.shutdown();
+```
+
+### Use KV-Cache
+
+```typescript
+import { KVAnchorPool, ANNIndex } from './core';
+
+// Create pool
+const pool = new KVAnchorPool({ maxSize: 1000 });
+
+// Create anchor
+const anchor = pool.createAnchor({
+  prefix: 'system-prompt',
+  kvCache: cachedState
+});
+
+// Lookup similar
+const index = new ANNIndex({ dimension: 768 });
+const similar = await index.query(embedding, 5);
+```
+
+### Enable Distributed Mode
+
+```typescript
+const colony = new Colony({
+  id: 'distributed-colony',
+  distributed: true,
+  distributedConfig: {
+    backend: 'redis',
+    connectionString: 'redis://localhost:6379'
+  }
+});
+```
+
+## Dependencies
+
+```
+src/core/
+    │
+    ├── External ──▶ uuid (IDs), events (EventEmitter)
+    │
+    └── Internal ──▶ All other modules depend on core
+                     src/agents/ depends on core/agent.ts
+                     src/spreadsheet/ depends on core/types.ts
+```
+
+## See Also
+
+- `src/agents/README.md` - Specialized agents
+- `src/spreadsheet/tiles/README.md` - Tile system
+- `docs/research/smp-paper/` - SMP paradigm
+- `PROJECT_AUDIT.md` - Project status
+
 ---
+
 *Part of POLLN - Pattern-Organized Large Language Network*
+*SuperInstance.AI | MIT License*
