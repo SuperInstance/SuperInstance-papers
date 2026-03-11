@@ -18,34 +18,48 @@
 | **White Paper Team** | 4 | Write and refine white paper sections, documentation, publications |
 | **Build Team** | 4 | Implementation, code, tests, integration, deployment |
 
-### Round Cycle (Continuous)
+### Continuous Agent Spawning Strategy
+
+**KEEP 12 AGENTS WORKING CONTINUALLY:** When one agent finishes, immediately spawn another to maintain constant parallel execution.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ ROUND N                                                      │
+│ CONTINUOUS AGENT POOL (12 Active Agents)                    │
 ├─────────────────────────────────────────────────────────────┤
-│ 1. Spawn 12 agents (4 R&D + 4 White Paper + 4 Build)        │
-│ 2. Agents execute tasks in parallel                          │
-│ 3. Agents create ONBOARDING documents for successors        │
-│ 4. Collect all outputs and onboarding docs                   │
-│ 5. Push to repository (EVERY ROUND)                          │
-│ 6. Orchestrator reads onboarding docs                        │
-│ 7. Refine prompts for next round                             │
-│ 8. Spawn Round N+1                                            │
+│ 1. Maintain 12 active agents at all times                    │
+│ 2. Agents work in parallel across R&D, White Paper, Build    │
+│ 3. When agent completes task:                                │
+│    a. Agent creates onboarding document                      │
+│    b. Outputs collected                                      │
+│    c. Orchestrator spawns replacement agent                  │
+│ 4. Push to repository DAILY (or after significant output)    │
+│ 5. Orchestrator monitors agent status continuously           │
+│ 6. Refine prompts based on ongoing learnings                 │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+**Round-Based Tracking (for organization):**
+- **Round N:** Group of 12 agents spawned together
+- **Round Completion:** When all 12 agents from Round N have finished
+- **Round Transition:** Seamless - new agents spawn as old ones finish
+- **Progress Tracking:** By round for organization, but execution is continuous
 
 ### Agent Onboarding Protocol
 
 **Every agent MUST create an onboarding document:**
 - Location: `agent-messages/onboarding/{team}_{role}_round{N}.md`
-- Content:
-  1. What I discovered/accomplished
-  2. Key files and code locations
-  3. Blockers encountered
-  4. Recommendations for successor
-  5. Unfinished tasks
-  6. Links to relevant research
+- **CONCISENESS CRITICAL:** DeepSeek Reasoner has 128K context window but practical limits require brevity
+- **Target:** < 2,000 tokens (~1,500 words) to ensure full processing by successor agents
+
+**Streamlined Template (5 Core Sections):**
+1. **Executive Summary** (3-5 bullet points of key accomplishments)
+2. **Essential Resources** (3-5 key file paths with brief descriptions)
+3. **Critical Blockers** (Top 2-3 blockers with impact assessment)
+4. **Successor Priority Actions** (Top 3 tasks for immediate focus)
+5. **Knowledge Transfer** (2-3 most important insights/patterns)
+
+**AVOID:** Long narratives, extensive literature reviews, philosophical digressions
+**FOCUS:** Actionable information for immediate productivity
 
 ### Current Progress
 
@@ -71,12 +85,12 @@
 5. Integrate LOG-Tensor geometric research
 6. Build production-ready implementations
 
-**⚠️ CRITICAL: PUSH TO REPO EVERY ROUND**
-- After each round completes, ALWAYS push changes to repository
-- Command: `git add . && git commit -m "docs: Round N complete - [summary]" && git push`
+**⚠️ CRITICAL: PUSH TO REPO DAILY**
+- Push changes to repository DAILY (or after significant output)
+- Command: `git add . && git commit -m "docs: Daily progress - [summary]" && git push`
 - This prevents context loss and maintains backup of agent work
 
-**Strategy:** Continuous parallel execution with knowledge transfer through onboarding documents.
+**Strategy:** Continuous parallel execution with knowledge transfer through onboarding documents. Maintain 12 active agents at all times - when one finishes, spawn another immediately.
 
 ---
 
@@ -200,26 +214,38 @@ results = search_codebase("How does confidence model work?")
 ```
 You are [Role] on the R&D Team (Round N).
 
-1. Search vector DB for your topic
-2. Read 3-5 most relevant files
-3. Document findings in agent-messages/round{N}_rd_{role}.md
+1. Search vector DB for your topic (python3 mcp_codebase_search.py search "[topic]")
+2. Read 3-5 most relevant files (prioritize by vector DB similarity score)
+3. Document findings in agent-messages/round{N}_rd_{role}.md (concise, actionable)
 4. CREATE ONBOARDING: agent-messages/onboarding/rd_{role}_round{N}.md
 
-Onboarding must include:
-- What you found
-- Key file locations
-- Blockers
-- Recommendations for successor
+Onboarding Structure (5 sections, < 2,000 tokens):
+1. Executive Summary: 3-5 bullet points of key accomplishments
+2. Essential Resources: 3-5 key file paths with brief descriptions
+3. Critical Blockers: Top 2-3 blockers with impact assessment
+4. Successor Priority Actions: Top 3 tasks for immediate focus
+5. Knowledge Transfer: 2-3 most important insights/patterns
+
+Focus on actionable information. Avoid long narratives.
 ```
 
 **White Paper Agent Template:**
 ```
 You are [Role] on the White Paper Team (Round N).
 
-1. Read research from agent-messages/
-2. Write 800-1200 word section
+1. Read research from agent-messages/ (focus on most recent)
+2. Write 800-1200 word section for white paper
 3. Save to white-papers/{topic}_section.md
 4. CREATE ONBOARDING: agent-messages/onboarding/wp_{role}_round{N}.md
+
+Onboarding Structure (5 sections, < 2,000 tokens):
+1. Executive Summary: 3-5 bullet points of key contributions
+2. Essential Resources: 3-5 source files used
+3. Critical Challenges: Top 2-3 writing/research challenges
+4. Successor Priority Actions: Top 3 sections to expand/improve
+5. Knowledge Transfer: 2-3 insights about white paper structure
+
+Focus on transferable knowledge for next writer.
 ```
 
 **Build Agent Template:**
@@ -227,9 +253,18 @@ You are [Role] on the White Paper Team (Round N).
 You are [Role] on the Build Team (Round N).
 
 1. Read specifications from white-papers/ and research
-2. Implement in src/
-3. Run tests, fix errors
+2. Implement in src/ (follow existing patterns)
+3. Run tests, fix errors (npm test)
 4. CREATE ONBOARDING: agent-messages/onboarding/build_{role}_round{N}.md
+
+Onboarding Structure (5 sections, < 2,000 tokens):
+1. Executive Summary: 3-5 bullet points of key implementations
+2. Essential Resources: 3-5 key source files changed/created
+3. Critical Issues: Top 2-3 technical challenges encountered
+4. Successor Priority Actions: Top 3 tasks for next implementer
+5. Knowledge Transfer: 2-3 technical patterns/insights
+
+Focus on code patterns and technical decisions.
 ```
 
 ---
@@ -263,24 +298,49 @@ You are [Role] on the Build Team (Round N).
 # Vector DB search
 python3 mcp_codebase_search.py search "your query"
 
-# Push to repo (EVERY ROUND)
-git add . && git commit -m "docs: Round N - summary" && git push
+# Push to repo (DAILY or after significant output)
+git add . && git commit -m "docs: Daily progress - [summary]" && git push
 
 # Run tests
 npm test
 ```
 
+### Tool & Plugin Limitations
+
+**⚠️ IMPORTANT: Not all plugins work reliably. Test before relying on them.**
+
+**Known Issues:**
+- **WebSearch:** May fail with API errors (use vector DB as primary research tool)
+- **Some Skill plugins:** May be broken or misconfigured
+- **MCP tools:** Verify connectivity before assuming functionality
+
+**Workflow Strategy:**
+1. **Primary Research:** Vector DB search (most reliable)
+2. **Code Analysis:** Grep, Glob, Read tools (always work)
+3. **Fallback:** When a tool fails, use alternative methods
+4. **Documentation:** Update this list with discovered limitations
+
+**Do NOT repeatedly attempt broken plugins.** If a plugin fails once, assume it's unavailable and work around it.
+
 ---
 
-## ORCHESTRATOR CHECKLIST (Per Round)
+## ORCHESTRATOR CHECKLIST (Continuous Monitoring)
 
-- [ ] Read onboarding docs from previous round
-- [ ] Refine agent prompts based on learnings
-- [ ] Spawn 12 agents (4 R&D + 4 White Paper + 4 Build)
-- [ ] Monitor agent progress
-- [ ] Collect outputs and onboarding docs
-- [ ] Push to repository
-- [ ] Update progress table in CLAUDE.md
+**DAILY OPERATIONS:**
+- [ ] Monitor status of all 12 active agents
+- [ ] Replace completed agents with new ones immediately
+- [ ] Read new onboarding docs as they're created
+- [ ] Refine prompts based on ongoing learnings
+- [ ] Collect outputs continuously
+- [ ] Push to repository DAILY (or after significant output)
+- [ ] Update progress tracking in CLAUDE.md
+
+**WEEKLY REVIEW:**
+- [ ] Review agent performance and output quality
+- [ ] Adjust team composition if needed
+- [ ] Ensure balanced progress across R&D, White Paper, Build
+- [ ] Verify vector DB is updated with new research
+- [ ] Archive completed rounds for reference
 
 ---
 

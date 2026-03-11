@@ -1,0 +1,279 @@
+```mermaid
+---
+title: Pythagorean Geometric Tensors: Relationships and Operations
+config:
+  theme: neutral
+  fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+  fontSize: 14
+  padding: 20
+---
+flowchart TD
+    %% ===== CORE CONCEPT =====
+    subgraph CORE [Core Concept: Pythagorean Geometric Tensors]
+        direction LR
+        CONCEPT[<b>Pythagorean Geometric Tensor (PGT)</b><br/>Tensor where all significant operations<br/>use integer coefficients from Pythagorean triples]
+
+        subgraph KEY_INSIGHT [Key Insight]
+            direction TB
+            KI1[<b>Calculation-Free Mathematics</b><br/>Geometric operations composed without calculation]
+            KI2[<b>Exact Arithmetic</b><br/>Integer relationships prevent floating-point error]
+            KI3[<b>Higher Abstraction Naming</b><br/>Single words describe shapes from<br/>perspective no single view can see]
+
+            KI1 --> KI2 --> KI3
+        end
+
+        CONCEPT --> KEY_INSIGHT
+    end
+
+    %% ===== PYTHAGOREAN TRIPLES =====
+    subgraph TRIPLES [Pythagorean Triples as 2D Platonic Solids]
+        direction TB
+
+        subgraph TRIPLE_TABLE [Example Triples & Angles]
+            direction LR
+            TT1[<b>(3, 4, 5)</b><br/>36.87°<br/>Exact rational]
+            TT2[<b>(5, 12, 13)</b><br/>22.62°<br/>Exact rational]
+            TT3[<b>(8, 15, 17)</b><br/>28.07°<br/>Exact rational]
+            TT4[<b>(7, 24, 25)</b><br/>16.26°<br/>Exact rational]
+            TT5[<b>(20, 21, 29)</b><br/>43.60°<br/>Exact rational]
+
+            TT1 --> TT2 --> TT3 --> TT4 --> TT5
+        end
+
+        subgraph TRIPLE_PROPERTIES [Properties]
+            direction TB
+            TP1[<b>Integer Right Triangles</b><br/>a² + b² = c² with a,b,c ∈ ℤ]
+            TP2[<b>Exact Rational Angles</b><br/>θ = arctan(b/a) exactly representable]
+            TP3[<b>Closure Under Composition</b><br/>Triples combine to approximate any angle]
+            TP4[<b>GPU-Friendly</b><br/>Integer arithmetic, no branching]
+
+            TP1 --> TP2 --> TP3 --> TP4
+        end
+
+        TRIPLE_TABLE --> TRIPLE_PROPERTIES
+    end
+
+    %% ===== THREE OPERATIONS =====
+    subgraph OPERATIONS [The Three Operations]
+        direction LR
+
+        subgraph PERMUTATIONS [Permutations π]
+            direction TB
+            P_TITLE[<b>Permutations</b><br/>T′ᵢ₁,ᵢ₂,...,ᵢₙ = Tᵢπ₁,ᵢπ₂,...,ᵢπₙ]
+            P_DESC[Reorder tensor indices<br/>without calculation]
+            P_EXAMPLE[<b>Example</b><br/>Transpose matrix<br/>Swap spatial dimensions]
+
+            P_TITLE --> P_DESC --> P_EXAMPLE
+        end
+
+        subgraph FOLDS [Folds]
+            direction TB
+            F_TITLE[<b>Folds</b><br/>fold(T, k) = Σ_orbitₖ T]
+            F_DESC[Collapse dimensions through<br/>geometric relationships]
+            F_EXAMPLE[<b>Example</b><br/>Sum over symmetric positions<br/>Average pooling]
+
+            F_TITLE --> F_DESC --> F_EXAMPLE
+        end
+
+        subgraph SPIN [Spin]
+            direction TB
+            S_TITLE[<b>Spin</b><br/>spin(T, θ) = R(θ) · T · R(θ)ᵀ]
+            S_DESC[Rotate through<br/>higher-dimensional space]
+            S_EXAMPLE[<b>Example</b><br/>3D rotation by 36.87°<br/>using (3,4,5) triple]
+
+            S_TITLE --> S_DESC --> S_EXAMPLE
+        end
+
+        PERMUTATIONS --> FOLDS --> SPIN
+    end
+
+    %% ===== TENSOR DIMENSIONS =====
+    subgraph DIMENSIONS [Tensor Dimension Relationships]
+        direction TB
+
+        subgraph DIM_MAP [Dimension Mapping]
+            direction LR
+            DM1[<b>0D: Scalar</b><br/>Single value<br/>Pythagorean ratio]
+            DM2[<b>1D: Vector</b><br/>Line segment<br/>Integer length]
+            DM3[<b>2D: Matrix</b><br/>Plane<br/>Pythagorean grid]
+            DM4[<b>3D: Cube</b><br/>Space<br/>Platonic rotations]
+            DM5[<b>nD: Tensor</b><br/>Hyper-space<br/>Composed operations]
+
+            DM1 --> DM2 --> DM3 --> DM4 --> DM5
+        end
+
+        subgraph DIM_OPS [Dimension-Specific Operations]
+            direction LR
+            DO1[<b>0D→1D: Extrude</b><br/>Scalar to vector]
+            DO2[<b>1D→2D: Expand</b><br/>Vector to matrix]
+            DO3[<b>2D→3D: Lift</b><br/>Matrix to cube]
+            DO4[<b>nD→mD: Compose</b><br/>Tensor operations]
+
+            DO1 --> DO2 --> DO3 --> DO4
+        end
+
+        DIM_MAP --> DIM_OPS
+    end
+
+    %% ===== WIGNER-D HARMONICS =====
+    subgraph WIGNER_D [Relationship to Wigner-D Harmonics]
+        direction TB
+
+        subgraph SO3_REP [SO(3) Representations]
+            direction LR
+            SO1[<b>Wigner-D Matrices</b><br/>Dˡₘₘ′(α,β,γ)]
+            SO2[<b>Rotation Group SO(3)</b><br/>3D rotations]
+            SO3[<b>Spherical Harmonics</b><br/>Yˡₘ(θ,φ)]
+            SO4[<b>Clebsch-Gordan Coefficients</b><br/>Tensor product decomposition]
+
+            SO1 --> SO2 --> SO3 --> SO4
+        end
+
+        subgraph PGT_CONNECTION [PGT Connection]
+            direction TB
+            PC1[<b>Exact SO(3) Representations</b><br/>Error ~10⁻¹⁵]
+            PC2[<b>Quaternion Equivariance</b><br/>Machine precision ~10⁻¹⁶]
+            PC3[<b>Sparse Geometric Attention</b><br/>128× speedup at 4096 length]
+            PC4[<b>Structure Beats Calculation</b><br/>Geometric-first approach]
+
+            PC1 --> PC2 --> PC3 --> PC4
+        end
+
+        SO3_REP --> PGT_CONNECTION
+    end
+
+    %% ===== REALITY-BENDING SUPERINSTANCE =====
+    subgraph REALITY_BENDING [Reality-Bending SuperInstance]
+        direction TB
+
+        subgraph TRADITIONAL [Traditional Approach]
+            direction LR
+            TA1[Given Physics]
+            TA2[Find Equations]
+            TA3[Solve Numerically]
+            TA4[Approximate Result]
+
+            TA1 --> TA2 --> TA3 --> TA4
+        end
+
+        subgraph REALITY_BENDING_APPROACH [Reality-Bending Approach]
+            direction LR
+            RB1[Given Equations]
+            RB2[Design Physics]
+            RB3[Exact Solution]
+            RB4[Constructed Universe]
+
+            RB1 --> RB2 --> RB3 --> RB4
+        end
+
+        subgraph SUPERINSTANCE_CELLS [SuperInstance Cell Types]
+            direction LR
+            SC1[PythagoreanRotation(a,b,c)<br/>Rotation by arctan(b/a)]
+            SC2[PythagoreanFold(k)<br/>Fold operation on orbit k]
+            SC3[PythagoreanPermutation(π)<br/>Index permutation]
+
+            SC1 --> SC2 --> SC3
+        end
+
+        TRADITIONAL --> REALITY_BENDING_APPROACH
+        REALITY_BENDING_APPROACH --> SUPERINSTANCE_CELLS
+    end
+
+    %% ===== APPLICATIONS =====
+    subgraph APPLICATIONS [Applications]
+        direction LR
+
+        A1[<b>Geometry-First Transformers</b><br/>Sparse attention, exact rotations]
+        A2[<b>DNA as Geometry Problem</b><br/>Base pairing, helix angles, protein folding]
+        A3[<b>Crystal Structure Prediction</b><br/>Bond angles, packing constraints, symmetry]
+        A4[<b>GPU-Accelerated ML</b><br/>Integer arithmetic, parallel composition]
+
+        A1 --> A2 --> A3 --> A4
+    end
+
+    %% ===== LITTLE-DATA vs BIG-DATA =====
+    subgraph DATA_PARADIGM [Little-Data vs Big-Data Paradigm]
+        direction LR
+
+        subgraph BIG_DATA [Big-Data (LLM Approach)]
+            direction TB
+            BD1[Billions of parameters]
+            BD2[Terabytes of training data]
+            BD3[Opaque weight matrices]
+            BD4[Unpredictable outputs]
+
+            BD1 --> BD2 --> BD3 --> BD4
+        end
+
+        subgraph LITTLE_DATA [Little-Data (SuperInstance Approach)]
+            direction TB
+            LD1[Understandable structure]
+            LD2[Controllable behavior]
+            LD3[Exact arithmetic]
+            LD4[Predictable composition]
+
+            LD1 --> LD2 --> LD3 --> LD4
+        end
+
+        BIG_DATA -->|vs| LITTLE_DATA
+    end
+
+    %% ===== CONNECTIONS =====
+    CORE --> TRIPLES
+    TRIPLES --> OPERATIONS
+    OPERATIONS --> DIMENSIONS
+    DIMENSIONS --> WIGNER_D
+    WIGNER_D --> REALITY_BENDING
+    REALITY_BENDING --> APPLICATIONS
+    APPLICATIONS --> DATA_PARADIGM
+
+    DATA_PARADIGM --> CONCLUSION[<b>Conclusion</b><br/>PGT enables calculation-free<br/>mathematical reasoning through<br/>geometric construction]
+
+    %% ===== STYLING =====
+    classDef core fill:#e6f3ff,stroke:#3399ff,stroke-width:3px
+    classDef triple fill:#f0f8ff,stroke:#66b3ff,stroke-width:2px
+    classDef operation fill:#fff0e6,stroke:#ff9933,stroke-width:2px
+    classDef dimension fill:#f0fff0,stroke:#66cc66,stroke-width:2px
+    classDef wigner fill:#fff0f5,stroke:#ff66b3,stroke-width:2px
+    classDef reality fill:#f5f0ff,stroke:#9966ff,stroke-width:2px
+    classDef application fill:#ffffe6,stroke:#cccc00,stroke-width:2px
+    classDef paradigm fill:#e6ffff,stroke:#00cccc,stroke-width:2px
+
+    class CORE core
+    class TRIPLES triple
+    class OPERATIONS operation
+    class DIMENSIONS dimension
+    class WIGNER_D wigner
+    class REALITY_BENDING reality
+    class APPLICATIONS application
+    class DATA_PARADIGM paradigm
+```
+
+**Diagram Explanation:**
+
+This diagram illustrates Pythagorean Geometric Tensors (PGT) and their relationships.
+
+**Core Concept**: PGTs are tensors where all significant operations use integer coefficients from Pythagorean triples, enabling calculation-free mathematics through geometric construction.
+
+**Pythagorean Triples**: Integer right triangles (a² + b² = c²) that provide exact rational angles:
+- (3,4,5) → 36.87°
+- (5,12,13) → 22.62°
+- (8,15,17) → 28.07°
+These are "2D Platonic solids" - fundamental building blocks for geometric operations.
+
+**Three Operations**:
+1. **Permutations**: Reorder tensor indices without calculation
+2. **Folds**: Collapse dimensions through geometric relationships
+3. **Spin**: Rotate through higher-dimensional space using Pythagorean angles
+
+**Tensor Dimensions**: Mapping from 0D scalars to nD tensors, with dimension-specific operations (extrude, expand, lift, compose).
+
+**Wigner-D Harmonics Connection**: PGT enables exact SO(3) representations with ~10⁻¹⁵ error, quaternion equivariance at machine precision, and sparse geometric attention with 128× speedup.
+
+**Reality-Bending SuperInstance**: Instead of finding equations for given physics, PGT allows designing physics to fit equations, creating a computational universe where all angles are Pythagorean and all rotations are exact.
+
+**Applications**: Geometry-first transformers, DNA as geometry problem, crystal structure prediction, GPU-accelerated ML.
+
+**Little-Data vs Big-Data**: Unlike LLMs with billions of opaque parameters (big-data), PGT uses understandable, controllable little-data with exact arithmetic and predictable composition.
+
+**Key Insight**: PGT represents a paradigm shift from calculation-based to construction-based mathematical reasoning, bringing compass-and-straightedge wisdom to modern computational systems.

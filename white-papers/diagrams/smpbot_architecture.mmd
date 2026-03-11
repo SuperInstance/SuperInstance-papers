@@ -1,0 +1,179 @@
+```mermaid
+---
+title: SMPbot Architecture: Seed + Model + Prompt = Stable Output
+config:
+  theme: neutral
+  fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+  fontSize: 14
+  padding: 20
+---
+flowchart TD
+    %% ===== CORE EQUATION =====
+    subgraph EQUATION [Core SMPbot Equation]
+        direction LR
+        SEED[<b>Seed</b>] --> PLUS1[+]
+        MODEL[<b>Model</b>] --> PLUS2[+]
+        PROMPT[<b>Prompt</b>] --> EQUALS[=]
+        OUTPUT[<b>Stable Output</b>]
+
+        PLUS1 --> MODEL
+        PLUS2 --> PROMPT
+        PROMPT --> EQUALS
+        EQUALS --> OUTPUT
+    end
+
+    %% ===== SEED COMPONENTS =====
+    subgraph SEED_DETAILS [Seed Components]
+        direction TB
+        S1[<b>Initial State</b><br/>Random initialization<br/>or pre-trained weights]
+        S2[<b>Entropy Level</b><br/>0.0 (deterministic) to 1.0 (random)]
+        S3[<b>Bias Configuration</b><br/>Prior knowledge<br/>Domain preferences]
+        S4[<b>Memory Template</b><br/>Recurrent connections<br/>Attention patterns]
+
+        S1 --> S2 --> S3 --> S4
+    end
+
+    %% ===== MODEL COMPONENTS =====
+    subgraph MODEL_DETAILS [Model Architecture]
+        direction TB
+        M1[<b>Transformer Layers</b><br/>Self-attention<br/>Feed-forward]
+        M2[<b>Parameter Space</b><br/>Weights & biases<br/>Gradient pathways]
+        M3[<b>Activation Functions</b><br/>ReLU, GELU, SiLU<br/>Non-linear transforms]
+        M4[<b>Normalization</b><br/>LayerNorm, BatchNorm<br/>Stability control]
+
+        M1 --> M2 --> M3 --> M4
+    end
+
+    %% ===== PROMPT COMPONENTS =====
+    subgraph PROMPT_DETAILS [Prompt Engineering]
+        direction TB
+        P1[<b>Instruction</b><br/>Task description<br/>Goal specification]
+        P2[<b>Context</b><br/>Background information<br/>Reference materials]
+        P3[<b>Examples</b><br/>Few-shot demonstrations<br/>Pattern templates]
+        P4[<b>Constraints</b><br/>Format requirements<br/>Boundary conditions]
+
+        P1 --> P2 --> P3 --> P4
+    end
+
+    %% ===== STABILITY MECHANISMS =====
+    subgraph STABILITY [Stability Mechanisms]
+        direction LR
+
+        subgraph CONVERGENCE [Convergence Control]
+            direction TB
+            C1[Temperature Scaling<br/>0.0 (greedy) to 1.0 (random)]
+            C2[Top-k/Top-p Sampling<br/>Limit output distribution]
+            C3[Repetition Penalty<br/>Avoid loops & repetition]
+            C4[Beam Search<br/>Multiple hypotheses]
+        end
+
+        subgraph REGULARIZATION [Regularization]
+            direction TB
+            R1[Dropout<br/>Prevent overfitting]
+            R2[Weight Decay<br/>Limit parameter growth]
+            R3[Gradient Clipping<br/>Prevent explosion]
+            R4[Early Stopping<br/>Optimal training point]
+        end
+
+        CONVERGENCE --> REGULARIZATION
+    end
+
+    %% ===== OUTPUT CHARACTERISTICS =====
+    subgraph OUTPUT_CHAR [Output Characteristics]
+        direction LR
+        O1[<b>Consistency</b><br/>Same input → Same output]
+        O2[<b>Predictability</b><br/>Bounded variance]
+        O3[<b>Quality</b><br/>Task completion accuracy]
+        O4[<b>Efficiency</b><br/>Resource usage]
+
+        O1 --> O2 --> O3 --> O4
+    end
+
+    %% ===== TRAINING LOOP =====
+    subgraph TRAINING [Training & Refinement Loop]
+        direction LR
+        T1[Generate Output]
+        T2[Evaluate Quality]
+        T3[Calculate Loss]
+        T4[Update Parameters]
+        T5[Adjust Seed/Model/Prompt]
+
+        T1 --> T2 --> T3 --> T4 --> T5 --> T1
+    end
+
+    %% ===== CONFIDENCE INTEGRATION =====
+    subgraph CONFIDENCE [Confidence Integration]
+        direction TB
+        CI1[Output Confidence Score<br/>0.0 to 1.0]
+        CI2[Uncertainty Estimation<br/>Variance measurement]
+        CI3[Calibration<br/>Match confidence to accuracy]
+        CI4[Fallback Mechanisms<br/>Alternative strategies]
+
+        CI1 --> CI2 --> CI3 --> CI4
+    end
+
+    %% ===== CONNECTIONS =====
+    SEED_DETAILS --> SEED
+    MODEL_DETAILS --> MODEL
+    PROMPT_DETAILS --> PROMPT
+
+    EQUATION --> STABILITY
+    STABILITY --> OUTPUT_CHAR
+    OUTPUT_CHAR --> TRAINING
+    TRAINING --> CONFIDENCE
+
+    CONFIDENCE --> FINAL_OUTPUT[Final Stable Output<br/>With Confidence Score]
+
+    %% ===== FEEDBACK LOOPS =====
+    FINAL_OUTPUT -->|User Feedback| FEEDBACK[Human Evaluation]
+    FEEDBACK -->|Improvement Signals| TRAINING
+
+    %% ===== APPLICATION CONTEXTS =====
+    subgraph APPLICATIONS [Application Contexts]
+        direction LR
+        A1[Spreadsheet Cells<br/>Formula evaluation]
+        A2[API Endpoints<br/>Web service calls]
+        A3[Batch Processing<br/>Large-scale analysis]
+        A4[Real-time Systems<br/>Low-latency responses]
+
+        A1 --> A2 --> A3 --> A4
+    end
+
+    FINAL_OUTPUT --> APPLICATIONS
+
+    %% ===== STYLING =====
+    classDef core fill:#e6f3ff,stroke:#3399ff,stroke-width:3px
+    classDef component fill:#f0f8ff,stroke:#66b3ff,stroke-width:2px
+    classDef mechanism fill:#fff0e6,stroke:#ff9933,stroke-width:2px
+    classDef output fill:#f0fff0,stroke:#66cc66,stroke-width:2px
+    classDef training fill:#fff0f5,stroke:#ff66b3,stroke-width:2px
+    classDef application fill:#f5f0ff,stroke:#9966ff,stroke-width:2px
+
+    class SEED,MODEL,PROMPT,OUTPUT core
+    class SEED_DETAILS,MODEL_DETAILS,PROMPT_DETAILS component
+    class STABILITY,CONFIDENCE mechanism
+    class OUTPUT_CHAR,FINAL_OUTPUT output
+    class TRAINING training
+    class APPLICATIONS application
+```
+
+**Diagram Explanation:**
+
+This diagram illustrates the SMPbot Architecture based on the equation: **Seed + Model + Prompt = Stable Output**.
+
+**Core Components:**
+1. **Seed**: The initial configuration including entropy level, bias settings, and memory templates
+2. **Model**: The neural architecture including transformer layers, parameters, and activation functions
+3. **Prompt**: The engineered input including instructions, context, examples, and constraints
+
+**Stability Mechanisms:**
+- **Convergence Control**: Temperature scaling, sampling methods, repetition penalties
+- **Regularization**: Dropout, weight decay, gradient clipping to prevent overfitting
+
+**Training Loop**: Continuous refinement through generation → evaluation → loss calculation → parameter updates
+
+**Confidence Integration**: Output includes confidence scores, uncertainty estimation, and calibration to ensure reliability matches confidence
+
+**Applications**: SMPbots can be deployed in spreadsheet cells, API endpoints, batch processing, and real-time systems
+
+**Key Insight**: The stability of the output emerges from the careful balance and interaction of seed, model, and prompt components, with continuous refinement through feedback loops.

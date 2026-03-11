@@ -1,0 +1,128 @@
+```mermaid
+---
+title: Confidence Cascade Architecture
+config:
+  theme: neutral
+  fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+  fontSize: 14
+  padding: 20
+---
+flowchart TD
+    %% ===== CONFIDENCE ZONES =====
+    subgraph ZONES [Confidence Zones & Thresholds]
+        direction LR
+        Z1[<b>RED ZONE</b><br/>0.00 - 0.60<br/>Stop the boat]
+        Z2[<b>YELLOW ZONE</b><br/>0.60 - 0.85<br/>Proceed with caution]
+        Z3[<b>GREEN ZONE</b><br/>0.85 - 1.00<br/>Full steam ahead]
+
+        Z1 -- "Threshold: 0.60" --> Z2
+        Z2 -- "Threshold: 0.85" --> Z3
+    end
+
+    %% ===== ESCALATION LEVELS =====
+    subgraph ESCALATION [Escalation Levels]
+        direction TB
+        E1[<b>CRITICAL</b><br/>Immediate intervention]
+        E2[<b>ALERT</b><br/>Stop and require human]
+        E3[<b>WARNING</b><br/>Flag for review]
+        E4[<b>NOTICE</b><br/>Log and continue]
+        E5[<b>NONE</b><br/>Auto-proceed]
+
+        E1 --> E2 --> E3 --> E4 --> E5
+    end
+
+    %% ===== CASCADE COMPOSITIONS =====
+    subgraph COMPOSITIONS [Cascade Composition Types]
+        direction LR
+
+        subgraph SEQ [Sequential Composition]
+            direction LR
+            S1[Step 1<br/>0.95] --> S2[Step 2<br/>0.90] --> S3[Step 3<br/>0.85] --> S4[Step 4<br/>0.80]
+            S_RESULT[Result: 0.58<br/><i>Multiplicative degradation</i>]
+            S4 --> S_RESULT
+        end
+
+        subgraph PAR [Parallel Composition]
+            direction TB
+            P1[ML Model<br/>0.95<br/>weight: 0.5]
+            P2[Rules Engine<br/>0.70<br/>weight: 0.3]
+            P3[User Reputation<br/>0.85<br/>weight: 0.2]
+            P_RESULT[Result: 0.87<br/><i>Weighted average</i>]
+
+            P1 --> P_RESULT
+            P2 --> P_RESULT
+            P3 --> P_RESULT
+        end
+
+        subgraph COND [Conditional Composition]
+            direction TB
+            C1[Path A: Small tx<br/>0.85<br/>amount < $1000]
+            C2[Path B: Medium tx<br/>0.90<br/>$1000 ≤ amount < $10000]
+            C3[Path C: Large tx<br/>0.95<br/>amount ≥ $10000]
+            C_DECISION{Transaction Amount}
+            C_RESULT[Result: Path confidence<br/><i>Based on predicate</i>]
+
+            C_DECISION -->|Small| C1
+            C_DECISION -->|Medium| C2
+            C_DECISION -->|Large| C3
+            C1 --> C_RESULT
+            C2 --> C_RESULT
+            C3 --> C_RESULT
+        end
+    end
+
+    %% ===== DATA FLOW =====
+    INPUT[Input Data<br/>ML Score, Rules, Reputation, Amount, Location] --> COMPOSITIONS
+
+    COMPOSITIONS --> CONFIDENCE_CALC[Confidence Calculation]
+
+    CONFIDENCE_CALC --> ZONE_CHECK{Check Zone}
+
+    ZONE_CHECK -->|RED| RED_HANDLING[Trigger Escalation<br/>Stop Processing]
+    ZONE_CHECK -->|YELLOW| YELLOW_HANDLING[Proceed with Caution<br/>Log Warning]
+    ZONE_CHECK -->|GREEN| GREEN_HANDLING[Full Execution<br/>Auto-proceed]
+
+    RED_HANDLING --> ESCALATION_TRIGGER[Determine Escalation Level]
+    YELLOW_HANDLING --> ESCALATION_TRIGGER
+
+    ESCALATION_TRIGGER --> ESCALATION
+
+    %% ===== STYLING =====
+    classDef redZone fill:#ffcccc,stroke:#ff6666,stroke-width:2px
+    classDef yellowZone fill:#ffffcc,stroke:#ffcc00,stroke-width:2px
+    classDef greenZone fill:#ccffcc,stroke:#66cc66,stroke-width:2px
+    classDef process fill:#e6f3ff,stroke:#3399ff,stroke-width:2px
+    classDef decision fill:#fff0e6,stroke:#ff9933,stroke-width:2px
+    classDef result fill:#f0f0f0,stroke:#999999,stroke-width:2px
+
+    class Z1 redZone
+    class Z2 yellowZone
+    class Z3 greenZone
+    class S1,S2,S3,S4,P1,P2,P3,C1,C2,C3 process
+    class C_DECISION,ZONE_CHECK decision
+    class S_RESULT,P_RESULT,C_RESULT result
+    class E1,E2,E3,E4,E5 process
+
+    %% ===== CONNECTIONS =====
+    ZONES --> CONFIDENCE_CALC
+    ESCALATION --> OUTPUT[Final Decision<br/>Approve/Reject/Review]
+
+    GREEN_HANDLING --> OUTPUT
+```
+
+**Diagram Explanation:**
+
+This diagram illustrates the Confidence Cascade Architecture with three main components:
+
+1. **Confidence Zones**: Three colored zones (RED, YELLOW, GREEN) with specific thresholds that determine how the system responds to confidence levels.
+
+2. **Escalation Levels**: Five escalation levels (CRITICAL to NONE) that determine the appropriate response when confidence falls below thresholds.
+
+3. **Cascade Compositions**: Three types of confidence composition:
+   - **Sequential**: Confidence multiplies through a chain (0.9 × 0.8 × 0.7 = 0.504)
+   - **Parallel**: Weighted average of multiple signals
+   - **Conditional**: Different confidence requirements based on conditions (e.g., transaction amount)
+
+**Flow**: Input data flows through composition logic → confidence calculation → zone check → appropriate handling → escalation determination → final decision.
+
+**Key Insight**: The system automatically adjusts its behavior based on confidence levels, providing intelligent activation without manual intervention.

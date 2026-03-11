@@ -1,0 +1,291 @@
+```mermaid
+---
+title: POLLN + LOG-Tensor System Integration Architecture
+config:
+  theme: neutral
+  fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+  fontSize: 14
+  padding: 20
+---
+flowchart TD
+    %% ===== SYSTEM OVERVIEW =====
+    subgraph OVERVIEW [System Overview: POLLN + LOG-Tensor Integration]
+        direction LR
+        POLLN[<b>POLLN System</b><br/>Spreadsheet SuperInstance<br/>Universal cell architecture]
+        PLUS[<b>+</b>]
+        LOG_TENSOR[<b>LOG-Tensor System</b><br/>Geometric tensor mathematics<br/>Pythagorean operations]
+        EQUALS[<b>=</b>]
+        INTEGRATED[<b>Integrated System</b><br/>Geometric spreadsheet<br/>with tensor intelligence]
+
+        POLLN --> PLUS
+        LOG_TENSOR --> PLUS
+        PLUS --> EQUALS
+        EQUALS --> INTEGRATED
+    end
+
+    %% ===== POLLN COMPONENTS =====
+    subgraph POLLN_COMPONENTS [POLLN System Components]
+        direction TB
+
+        subgraph SUPERINSTANCE [SuperInstance Architecture]
+            direction LR
+            SI1[<b>Universal Cell Types</b><br/>Data, Process, Agent, API, Tensor, Observer]
+            SI2[<b>Type Hierarchy</b><br/>Polymorphic dispatch<br/>Type coercion rules]
+            SI3[<b>Cell Composition</b><br/>Valid/invalid compositions<br/>Dependency management]
+            SI4[<b>Nesting & Recursion</b><br/>SuperInstance in SuperInstance<br/>Isolated contexts]
+
+            SI1 --> SI2 --> SI3 --> SI4
+        end
+
+        subgraph CONFIDENCE_SYSTEM [Confidence System]
+            direction LR
+            CS1[<b>Confidence Cascade</b><br/>Sequential, parallel, conditional]
+            CS2[<b>Zone Management</b><br/>GREEN/YELLOW/RED thresholds]
+            CS3[<b>Escalation Levels</b><br/>NONE to CRITICAL]
+            CS4[<b>Deadband Triggers</b><br/>Intelligent activation]
+
+            CS1 --> CS2 --> CS3 --> CS4
+        end
+
+        SUPERINSTANCE --> CONFIDENCE_SYSTEM
+    end
+
+    %% ===== LOG-TENSOR COMPONENTS =====
+    subgraph LOG_TENSOR_COMPONENTS [LOG-Tensor System Components]
+        direction TB
+
+        subgraph GEOMETRIC_TENSORS [Geometric Tensors]
+            direction LR
+            GT1[<b>Pythagorean Tensors</b><br/>Integer coefficient operations]
+            GT2[<b>Three Operations</b><br/>Permutations, Folds, Spin]
+            GT3[<b>Exact Arithmetic</b><br/>No floating-point error]
+            GT4[<b>Wigner-D Harmonics</b><br/>SO(3) representations]
+
+            GT1 --> GT2 --> GT3 --> GT4
+        end
+
+        subgraph GPU_ACCELERATION [GPU Acceleration]
+            direction LR
+            GA1[<b>WebGPU/WGSL</b><br/>Browser-based GPU compute]
+            GA2[<b>Tensor Operations</b><br/>Matrix multiplication, convolution]
+            GA3[<b>Parallel Composition</b><br/>Embarrassingly parallel]
+            GA4[<b>Memory Management</b><br/>Buffer allocation, batching]
+
+            GA1 --> GA2 --> GA3 --> GA4
+        end
+
+        GEOMETRIC_TENSORS --> GPU_ACCELERATION
+    end
+
+    %% ===== INTEGRATION POINTS =====
+    subgraph INTEGRATION_POINTS [Integration Points]
+        direction LR
+
+        subgraph TENSOR_CELLS [Tensor Cell Integration]
+            direction TB
+            TC1[<b>Tensor Cell Types</b><br/>PyTorchTensor, TensorFlowTensor, WGPUTensor]
+            TC2[<b>Geometric Operations</b><br/>Pythagorean rotations, folds]
+            TC3[<b>Confidence Tracking</b><br/>Tensor operation confidence]
+            TC4[<b>GPU Backend Selection</b><br/>Automatic backend choice]
+
+            TC1 --> TC2 --> TC3 --> TC4
+        end
+
+        subgraph GEOMETRIC_FORMULAS [Geometric Formula Integration]
+            direction TB
+            GF1[<b>Spreadsheet Formulas</b><br/>with geometric operations]
+            GF2[<b>Cell References</b><br/>to tensor components]
+            GF3[<b>Composition Rules</b><br/>for geometric transformations]
+            GF4[<b>Visualization</b><br/>Tensor results in cells]
+
+            GF1 --> GF2 --> GF3 --> GF4
+        end
+
+        subgraph CONFIDENCE_FLOW [Confidence Flow Integration]
+            direction TB
+            CF1[<b>Tensor Confidence</b><br/>Geometric operation accuracy]
+            CF2[<b>Cascade Integration</b><br/>Tensor ops in confidence chains]
+            CF3[<b>Zone Transitions</b><br/>Based on geometric precision]
+            CF4[<b>Escalation Triggers</b><br/>For tensor computation issues]
+
+            CF1 --> CF2 --> CF3 --> CF4
+        end
+
+        TENSOR_CELLS --> GEOMETRIC_FORMULAS --> CONFIDENCE_FLOW
+    end
+
+    %% ===== DATA FLOW ARCHITECTURE =====
+    subgraph DATA_FLOW [Data Flow Architecture]
+        direction TB
+
+        INPUT[Input Data<br/>Spreadsheet values,<br/>External APIs,<br/>User interactions]
+
+        subgraph PROCESSING_LAYER [Processing Layer]
+            direction LR
+            PL1[<b>SuperInstance Dispatch</b><br/>Polymorphic cell execution]
+            PL2[<b>Tensor Operations</b><br/>Geometric computations]
+            PL3[<b>Confidence Calculation</b><br/>Cascade through operations]
+            PL4[<b>GPU Acceleration</b><br/>Parallel tensor processing]
+
+            PL1 --> PL2 --> PL3 --> PL4
+        end
+
+        subgraph INTEGRATION_LAYER [Integration Layer]
+            direction LR
+            IL1[<b>Type Coercion</b><br/>Between POLLN and LOG-Tensor types]
+            IL2[<b>Confidence Propagation</b><br/>Across system boundaries]
+            IL3[<b>Error Handling</b><br/>Unified error management]
+            IL4[<b>Result Aggregation</b><br/>Combined outputs]
+
+            IL1 --> IL2 --> IL3 --> IL4
+        end
+
+        OUTPUT[Output Results<br/>Spreadsheet updates,<br/>Visualizations,<br/>API responses,<br/>Confidence reports]
+
+        INPUT --> PROCESSING_LAYER
+        PROCESSING_LAYER --> INTEGRATION_LAYER
+        INTEGRATION_LAYER --> OUTPUT
+    end
+
+    %% ===== SMPBOT INTEGRATION =====
+    subgraph SMPBOT_INTEGRATION [SMPbot Integration]
+        direction TB
+
+        subgraph SMPBOT_ARCH [SMPbot Architecture]
+            direction LR
+            SA1[<b>Seed + Model + Prompt</b><br/>= Stable Output]
+            SA2[<b>Confidence Integration</b><br/>Bot output confidence]
+            SA3[<b>Spreadsheet Integration</b><br/>Bots as cell types]
+            SA4[<b>Geometric Reasoning</b><br/>Tensor-based bot logic]
+
+            SA1 --> SA2 --> SA3 --> SA4
+        end
+
+        subgraph BOT_CELLS [Bot Cell Types]
+            direction LR
+            BC1[<b>LLM Cell</b><br/>Language model connection]
+            BC2[<b>Learner Cell</b><br/>Adaptive system]
+            BC3[<b>Observer Cell</b><br/>Watches other cells]
+            BC4[<b>Coordinator Cell</b><br/>Multi-bot coordination]
+
+            BC1 --> BC2 --> BC3 --> BC4
+        end
+
+        SMPBOT_ARCH --> BOT_CELLS
+    end
+
+    %% ===== DEPLOYMENT ARCHITECTURE =====
+    subgraph DEPLOYMENT [Deployment Architecture]
+        direction LR
+
+        subgraph CLIENT_SIDE [Client-Side Components]
+            direction TB
+            CL1[<b>Browser Spreadsheet</b><br/>Web-based interface]
+            CL2[<b>WebGPU Compute</b><br/>Client-side tensor ops]
+            CL3[<b>Real-time Updates</b><br/>Live cell evaluation]
+            CL4[<b>Offline Capability</b><br/>Local computation]
+
+            CL1 --> CL2 --> CL3 --> CL4
+        end
+
+        subgraph SERVER_SIDE [Server-Side Components]
+            direction TB
+            SR1[<b>API Gateway</b><br/>REST/GraphQL endpoints]
+            SR2[<b>Tensor Server</b><br/>Heavy computation]
+            SR3[<b>Model Serving</b><br/>LLM inference]
+            SR4[<b>Data Storage</b><br/>Spreadsheet persistence]
+
+            SR1 --> SR2 --> SR3 --> SR4
+        end
+
+        subgraph HYBRID [Hybrid Execution]
+            direction TB
+            HY1[<b>Dynamic Routing</b><br/>Client vs server execution]
+            HY2[<b>Load Balancing</b><br/>Based on capability]
+            HY3[<b>Fallback Mechanisms</b><br/>Graceful degradation]
+            HY4[<b>Sync & Conflict Resolution</b><br/>Multi-user editing]
+
+            HY1 --> HY2 --> HY3 --> HY4
+        end
+
+        CLIENT_SIDE --> HYBRID
+        SERVER_SIDE --> HYBRID
+    end
+
+    %% ===== SECURITY & ISOLATION =====
+    subgraph SECURITY [Security & Isolation Model]
+        direction LR
+
+        S1[<b>Capability-Based Security</b><br/>Type-specific permissions]
+        S2[<b>Sandboxed Execution</b><br/>Isolated cell contexts]
+        S3[<b>Resource Limits</b><br/>CPU/GPU/memory quotas]
+        S4[<b>Audit Trail</b><br/>Confidence history tracking]
+
+        S1 --> S2 --> S3 --> S4
+    end
+
+    %% ===== CONNECTIONS =====
+    OVERVIEW --> POLLN_COMPONENTS
+    OVERVIEW --> LOG_TENSOR_COMPONENTS
+
+    POLLN_COMPONENTS --> INTEGRATION_POINTS
+    LOG_TENSOR_COMPONENTS --> INTEGRATION_POINTS
+
+    INTEGRATION_POINTS --> DATA_FLOW
+    DATA_FLOW --> SMPBOT_INTEGRATION
+    SMPBOT_INTEGRATION --> DEPLOYMENT
+    DEPLOYMENT --> SECURITY
+
+    SECURITY --> FINAL_SYSTEM[<b>Final Integrated System</b><br/>Geometric spreadsheet with<br/>tensor intelligence,<br/>confidence tracking,<br/>and SMPbot integration]
+
+    %% ===== STYLING =====
+    classDef overview fill:#e6f3ff,stroke:#3399ff,stroke-width:3px
+    classDef polln fill:#f0f8ff,stroke:#66b3ff,stroke-width:2px
+    classDef logtensor fill:#fff0e6,stroke:#ff9933,stroke-width:2px
+    classDef integration fill:#f0fff0,stroke:#66cc66,stroke-width:2px
+    classDef dataflow fill:#fff0f5,stroke:#ff66b3,stroke-width:2px
+    classDef smpbot fill:#f5f0ff,stroke:#9966ff,stroke-width:2px
+    classDef deployment fill:#ffffe6,stroke:#cccc00,stroke-width:2px
+    classDef security fill:#e6ffff,stroke:#00cccc,stroke-width:2px
+
+    class OVERVIEW overview
+    class POLLN_COMPONENTS polln
+    class LOG_TENSOR_COMPONENTS logtensor
+    class INTEGRATION_POINTS integration
+    class DATA_FLOW dataflow
+    class SMPBOT_INTEGRATION smpbot
+    class DEPLOYMENT deployment
+    class SECURITY security
+```
+
+**Diagram Explanation:**
+
+This diagram illustrates the integration architecture between POLLN (SuperInstance spreadsheet system) and LOG-Tensor (geometric tensor mathematics).
+
+**System Overview**: POLLN's universal cell architecture combines with LOG-Tensor's geometric tensor mathematics to create an integrated geometric spreadsheet with tensor intelligence.
+
+**POLLN Components**:
+- **SuperInstance Architecture**: Universal cell types (Data, Process, Agent, API, Tensor, Observer) with polymorphic dispatch
+- **Confidence System**: Cascade compositions, zone management, escalation levels, deadband triggers
+
+**LOG-Tensor Components**:
+- **Geometric Tensors**: Pythagorean tensors with three operations (permutations, folds, spin) and exact arithmetic
+- **GPU Acceleration**: WebGPU/WGSL for browser-based tensor operations
+
+**Integration Points**:
+1. **Tensor Cell Integration**: Tensor types in spreadsheet cells with geometric operations and confidence tracking
+2. **Geometric Formula Integration**: Spreadsheet formulas with geometric operations and tensor references
+3. **Confidence Flow Integration**: Tensor operation confidence integrated into cascade system
+
+**Data Flow Architecture**:
+- Input → Processing Layer (SuperInstance dispatch, tensor ops, confidence calculation, GPU acceleration)
+- → Integration Layer (type coercion, confidence propagation, error handling, result aggregation)
+- → Output
+
+**SMPbot Integration**: SMPbots (Seed + Model + Prompt = Stable Output) integrated as cell types with confidence tracking and geometric reasoning.
+
+**Deployment Architecture**: Hybrid client-server architecture with WebGPU for client-side computation, server-side heavy processing, and dynamic routing.
+
+**Security & Isolation**: Capability-based security, sandboxed execution, resource limits, and audit trails.
+
+**Key Insight**: The integration creates a powerful computational environment where spreadsheet cells can perform geometric tensor operations with confidence tracking, GPU acceleration, and intelligent bot integration, all within a unified security model.

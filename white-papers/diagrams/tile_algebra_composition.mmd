@@ -1,0 +1,227 @@
+```mermaid
+---
+title: Tile Algebra: Composition Operations and Zone Relationships
+config:
+  theme: neutral
+  fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+  fontSize: 14
+  padding: 20
+---
+flowchart TD
+    %% ===== TILE DEFINITION =====
+    subgraph TILE_DEF [Tile Definition]
+        direction LR
+        TILE[<b>Tile T</b><br/>T = (D, C, Z, O)]
+
+        subgraph COMPONENTS [Components]
+            direction TB
+            D[<b>Data D</b><br/>Values, tensors,<br/>or references]
+            C[<b>Confidence C</b><br/>0.0 to 1.0<br/>Trust metric]
+            Z[<b>Zone Z</b><br/>GREEN/YELLOW/RED<br/>Activation state]
+            O[<b>Operations O</b><br/>Transformations,<br/>validations]
+        end
+
+        TILE --> COMPONENTS
+    end
+
+    %% ===== COMPOSITION OPERATIONS =====
+    subgraph COMPOSITION_OPS [Composition Operations]
+        direction LR
+
+        subgraph TENSOR_PRODUCT [Tensor Product ⊗]
+            direction TB
+            TP_TITLE[<b>Tensor Product: T₁ ⊗ T₂</b>]
+            TP_DESC[Combine data dimensions<br/>Confidence: C₁ × C₂]
+
+            TP_EXAMPLE[<b>Example</b><br/>T₁: User data (0.9)<br/>T₂: Transaction (0.8)<br/>Result: Combined (0.72)]
+
+            TP_TITLE --> TP_DESC --> TP_EXAMPLE
+        end
+
+        subgraph DIRECT_SUM [Direct Sum ⊕]
+            direction TB
+            DS_TITLE[<b>Direct Sum: T₁ ⊕ T₂</b>]
+            DS_DESC[Independent parallel tiles<br/>Confidence: max(C₁, C₂)]
+
+            DS_EXAMPLE[<b>Example</b><br/>T₁: ML model (0.85)<br/>T₂: Rules engine (0.90)<br/>Result: Best of both (0.90)]
+
+            DS_TITLE --> DS_DESC --> DS_EXAMPLE
+        end
+
+        subgraph FUNCTION_COMP [Function Composition ∘]
+            direction TB
+            FC_TITLE[<b>Function Composition: T₂ ∘ T₁</b>]
+            FC_DESC[Pipeline transformation<br/>Confidence: C₁ × C₂ × compatibility]
+
+            FC_EXAMPLE[<b>Example</b><br/>T₁: Normalize (0.95)<br/>T₂: Classify (0.88)<br/>Result: Pipeline (0.84)]
+
+            FC_TITLE --> FC_DESC --> FC_EXAMPLE
+        end
+    end
+
+    %% ===== ZONE RELATIONSHIPS =====
+    subgraph ZONE_REL [Zone Relationships & Transitions]
+        direction TB
+
+        subgraph ZONE_DEF [Zone Definitions]
+            direction LR
+            ZG[<b>GREEN ZONE</b><br/>0.85 - 1.00<br/>Active execution]
+            ZY[<b>YELLOW ZONE</b><br/>0.60 - 0.85<br/>Cautious execution]
+            ZR[<b>RED ZONE</b><br/>0.00 - 0.60<br/>Blocked execution]
+        end
+
+        subgraph TRANSITIONS [Zone Transitions]
+            direction LR
+            T1[Confidence ↑<br/>Improving data]
+            T2[Confidence ↓<br/>Degrading signal]
+            T3[Threshold crossing<br/>0.60 / 0.85]
+            T4[Manual override<br/>Force state change]
+
+            T1 --> T3
+            T2 --> T3
+            T4 --> T3
+        end
+
+        subgraph ACTIONS [Zone-Specific Actions]
+            direction LR
+            AG[<b>GREEN Actions</b><br/>- Auto-execute<br/>- Cache results<br/>- Propagate freely]
+            AY[<b>YELLOW Actions</b><br/>- Log warnings<br/>- Request review<br/>- Limit propagation]
+            AR[<b>RED Actions</b><br/>- Block execution<br/>- Trigger alerts<br/>- Require manual fix]
+
+            AG --> AY --> AR
+        end
+
+        ZONE_DEF --> TRANSITIONS
+        TRANSITIONS --> ACTIONS
+    end
+
+    %% ===== CONFIDENCE PROPAGATION =====
+    subgraph CONF_PROP [Confidence Propagation Rules]
+        direction TB
+
+        subgraph PROP_RULES [Propagation Rules]
+            direction LR
+            R1[<b>Sequential Chain</b><br/>C_total = Π C_i<br/>Multiplicative degradation]
+            R2[<b>Parallel Branches</b><br/>C_total = Σ (w_i × C_i)<br/>Weighted average]
+            R3[<b>Conditional Paths</b><br/>C_total = C_selected<br/>Based on predicate]
+            R4[<b>Feedback Loops</b><br/>C_adjusted = f(C, feedback)<br/>Learning from outcomes]
+
+            R1 --> R2 --> R3 --> R4
+        end
+
+        subgraph PROP_EXAMPLES [Examples]
+            direction TB
+            E1[<b>Chain of 3 at 0.9</b><br/>0.9 × 0.9 × 0.9 = 0.729<br/>(YELLOW zone)]
+            E2[<b>Weighted: 0.5@0.9 + 0.5@0.7</b><br/>0.5×0.9 + 0.5×0.7 = 0.8<br/>(YELLOW zone)]
+            E3[<b>Conditional: pick 0.85</b><br/>Selected path confidence<br/>(GREEN zone if ≥0.85)]
+
+            E1 --> E2 --> E3
+        end
+
+        PROP_RULES --> PROP_EXAMPLES
+    end
+
+    %% ===== TILE NETWORKS =====
+    subgraph TILE_NETWORKS [Tile Network Topologies]
+        direction LR
+
+        subgraph LINEAR [Linear Chain]
+            direction LR
+            L1[T₁] --> L2[T₂] --> L3[T₃] --> L4[T₄]
+            L_CAPTION[Sequential processing<br/>Confidence degrades multiplicatively]
+        end
+
+        subgraph TREE [Tree Structure]
+            direction TB
+            TR_ROOT[T₀] --> TR_L1A[T₁]
+            TR_ROOT --> TR_L1B[T₂]
+            TR_L1A --> TR_L2A[T₃]
+            TR_L1A --> TR_L2B[T₄]
+            TR_L1B --> TR_L2C[T₅]
+            TR_CAPTION[Hierarchical processing<br/>Branch confidence combines]
+        end
+
+        subgraph GRAPH [Graph Network]
+            direction TB
+            G1[T₁] --> G2[T₂]
+            G1 --> G3[T₃]
+            G2 --> G4[T₄]
+            G3 --> G4[T₄]
+            G2 --> G5[T₅]
+            G_CAPTION[Complex dependencies<br/>Confidence flows through paths]
+        end
+
+        LINEAR --> TREE --> GRAPH
+    end
+
+    %% ===== COMPOSITION PROPERTIES =====
+    subgraph PROPERTIES [Algebraic Properties]
+        direction LR
+
+        P1[<b>Associativity</b><br/>(T₁ ⊗ T₂) ⊗ T₃ = T₁ ⊗ (T₂ ⊗ T₃)]
+        P2[<b>Commutativity</b><br/>T₁ ⊕ T₂ = T₂ ⊕ T₁<br/>T₁ ⊗ T₂ ≠ T₂ ⊗ T₁]
+        P3[<b>Identity Elements</b><br/>I ⊗ T = T ⊗ I = T<br/>I ⊕ T = T ⊕ I = T]
+        P4[<b>Distributivity</b><br/>T₁ ⊗ (T₂ ⊕ T₃) = (T₁ ⊗ T₂) ⊕ (T₁ ⊗ T₃)]
+
+        P1 --> P2 --> P3 --> P4
+    end
+
+    %% ===== CONNECTIONS =====
+    TILE_DEF --> COMPOSITION_OPS
+    COMPOSITION_OPS --> ZONE_REL
+    ZONE_REL --> CONF_PROP
+    CONF_PROP --> TILE_NETWORKS
+    TILE_NETWORKS --> PROPERTIES
+
+    PROPERTIES --> APPLICATIONS[Applications:<br/>Spreadsheet formulas,<br/>Data pipelines,<br/>Validation chains]
+
+    %% ===== STYLING =====
+    classDef tileDef fill:#e6f3ff,stroke:#3399ff,stroke-width:3px
+    classDef composition fill:#f0f8ff,stroke:#66b3ff,stroke-width:2px
+    classDef zone fill:#fff0e6,stroke:#ff9933,stroke-width:2px
+    classDef confidence fill:#f0fff0,stroke:#66cc66,stroke-width:2px
+    classDef network fill:#fff0f5,stroke:#ff66b3,stroke-width:2px
+    classDef property fill:#f5f0ff,stroke:#9966ff,stroke-width:2px
+
+    class TILE_DEF tileDef
+    class COMPOSITION_OPS composition
+    class ZONE_REL zone
+    class CONF_PROP confidence
+    class TILE_NETWORKS network
+    class PROPERTIES property
+```
+
+**Diagram Explanation:**
+
+This diagram illustrates Tile Algebra composition operations and zone relationships.
+
+**Tile Definition**: A tile T = (D, C, Z, O) where:
+- **D**: Data (values, tensors, references)
+- **C**: Confidence (0.0 to 1.0 trust metric)
+- **Z**: Zone (GREEN/YELLOW/RED activation state)
+- **O**: Operations (transformations, validations)
+
+**Composition Operations**:
+1. **Tensor Product (⊗)**: Combine data dimensions with multiplicative confidence
+2. **Direct Sum (⊕)**: Independent parallel tiles taking maximum confidence
+3. **Function Composition (∘)**: Pipeline transformations with compatibility factor
+
+**Zone Relationships**:
+- **GREEN** (0.85-1.00): Auto-execute, cache results, free propagation
+- **YELLOW** (0.60-0.85): Cautious execution, log warnings, limited propagation
+- **RED** (0.00-0.60): Block execution, trigger alerts, require manual fix
+
+**Confidence Propagation Rules**:
+- Sequential chains: Multiplicative degradation (C₁ × C₂ × ...)
+- Parallel branches: Weighted average (Σ wᵢ × Cᵢ)
+- Conditional paths: Selected path confidence
+- Feedback loops: Adjust based on outcomes
+
+**Tile Network Topologies**:
+- Linear chains for sequential processing
+- Tree structures for hierarchical processing
+- Graph networks for complex dependencies
+
+**Algebraic Properties**: Associativity, commutativity (for ⊕), identity elements, distributivity
+
+**Key Insight**: Tile Algebra provides a formal mathematical framework for composing computational units with confidence tracking, enabling predictable behavior in complex systems.
