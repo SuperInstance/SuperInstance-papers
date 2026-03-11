@@ -1,0 +1,51 @@
+name = "superinstance-api"
+compatibility_date = "2026-03-11"
+compatibility_flags = ["nodejs_compat"]
+main = "src/index.ts"
+tsconfig = "tsconfig.json"
+
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+[env.staging]
+vars = { ENVIRONMENT = "staging" }
+
+# KV Namespaces for sessions and cache
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "sessions-namespace"
+preview_id = "sessions-namespace-preview"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "cache-namespace"
+preview_id = "cache-namespace-preview"
+
+# D1 Database for structured data
+[[d1_databases]]
+binding = "DB"
+database_name = "superinstance-db"
+database_id = "superinstance-db-id"
+preview_database_id = "superinstance-db-preview-id"
+
+# R2 Bucket for file storage (optional)
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "superinstance-files"
+preview_bucket_name = "superinstance-files-preview"
+
+[build]
+command = "npm run build"
+outdir = "dist"
+
+[build.upload]
+format = "service-worker"
+
+[dev]
+port = 8787
+ip = "127.0.0.1"
+
+[[rules]]
+type = "Worker"
+globs = ["**/*.ts"]
+fallthrough = true

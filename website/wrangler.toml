@@ -1,6 +1,74 @@
 # Cloudflare Pages Configuration for SuperInstance Website
-# Configuration for superinstance.ai deployment
+# Configuration for superinstance.ai deployment with security enhancements
 
 name = "superinstance-website"
 compatibility_date = "2026-03-11"
 pages_build_output_dir = "./dist"
+
+# Security Worker configuration (runs in front of Pages)
+[security_worker]
+enabled = true
+script_path = "./cloudflare-security.js"
+
+# Security headers configuration for Pages
+[security_headers]
+# Content Security Policy
+csp = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://api.superinstance.ai https://plausible.io; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; block-all-mixed-content; upgrade-insecure-requests"
+
+# Other security headers
+x_frame_options = "DENY"
+x_content_type_options = "nosniff"
+referrer_policy = "strict-origin-when-cross-origin"
+permissions_policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), fullscreen=(self), picture-in-picture=(self), interest-cohort=()"
+strict_transport_security = "max-age=31536000; includeSubDomains; preload"
+x_xss_protection = "1; mode=block"
+
+# Educational compliance settings
+[compliance]
+coppa = true  # Children's Online Privacy Protection Act
+ferpa = true  # Family Educational Rights and Privacy Act
+gdpr = true   # General Data Protection Regulation
+data_retention_days = 30
+
+# Environment variables
+[vars]
+NODE_ENV = "production"
+SITE_URL = "https://superinstance.ai"
+API_BASE_URL = "https://api.superinstance.ai"
+SECURITY_LEVEL = "high"
+
+# Build configuration
+[build]
+command = "npm run build"
+output_dir = "./dist"
+
+# Deployment targets
+[env.production]
+workers_dev = false
+route = "superinstance.ai/*"
+zone_id = "${CLOUDFLARE_ZONE_ID}"
+
+[env.staging]
+workers_dev = true
+route_patterns = ["staging.superinstance.ai/*"]
+
+# Analytics and monitoring
+[analytics]
+enabled = true
+# Cloudflare Web Analytics is automatically enabled for Pages
+
+# Logging
+[logpush]
+enabled = true
+
+# Performance optimization
+[performance]
+minify_js = true
+minify_css = true
+minify_html = true
+brotli = true
+early_hints = true
+
+# Browser compatibility
+[browser_compatibility]
+browsers = "defaults, not IE 11"

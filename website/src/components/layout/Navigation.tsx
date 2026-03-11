@@ -3,11 +3,11 @@ import { Button } from '../ui/Button';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Features', href: '/features' },
-  { name: 'Use Cases', href: '/use-cases' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Documentation', href: '/docs' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Learning Pathways', href: '/learning' },
+  { name: 'Tutorials', href: '/tutorials' },
+  { name: 'Interactive Demos', href: '/demos' },
+  { name: 'White Papers', href: '/white-papers' },
+  { name: 'Community', href: '/community' },
 ];
 
 export const Navigation: React.FC = () => {
@@ -43,10 +43,10 @@ export const Navigation: React.FC = () => {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Button variant="outline" size="sm">
-              Sign In
+              Student Login
             </Button>
             <Button variant="primary" size="sm">
-              Get Started Free
+              Start Learning
             </Button>
           </div>
 
@@ -96,10 +96,10 @@ export const Navigation: React.FC = () => {
               ))}
               <div className="pt-4 space-y-3">
                 <Button variant="outline" size="sm" className="w-full">
-                  Sign In
+                  Student Login
                 </Button>
                 <Button variant="primary" size="sm" className="w-full">
-                  Get Started Free
+                  Start Learning
                 </Button>
               </div>
             </div>

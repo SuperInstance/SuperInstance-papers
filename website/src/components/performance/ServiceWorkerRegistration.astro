@@ -1,0 +1,191 @@
+---
+// Service Worker Registration Component
+// This component registers the service worker for offline capability
+---
+
+<script>
+// Register service worker for PWA functionality
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    // Register service worker
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+
+        // Check for updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          console.log('New service worker found:', newWorker);
+
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New update available
+              showUpdateNotification();
+            }
+          });
+        });
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+
+    // Listen for controller change (page refresh after update)
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      console.log('Service Worker controller changed - page will refresh');
+      window.location.reload();
+    });
+  });
+}
+
+// Show update notification
+function showUpdateNotification() {
+  if (Notification.permission === 'granted') {
+    new Notification('SuperInstance.AI Update Available', {
+      body: 'A new version is available. Refresh to update.',
+      icon: '/favicon.ico',
+      tag: 'update-available'
+    });
+  }
+
+  // Also show in-page notification
+  const notification = document.createElement('div');
+  notification.className = 'fixed bottom-4 right-4 bg-blue-600 text-white p-4 rounded-lg shadow-lg z-50 max-w-sm';
+  notification.innerHTML = `
+    <div class="flex items-start">
+      <div class="flex-shrink-0">
+        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <div class="ml-3">
+        <p class="text-sm font-medium">Update Available</p>
+        <p class="mt-1 text-sm opacity-90">A new version of SuperInstance.AI is available.</p>
+        <div class="mt-2 flex gap-2">
+          <button onclick="window.location.reload()" class="text-sm bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-100 transition">
+            Refresh Now
+          </button>
+          <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-sm border border-white/30 px-3 py-1 rounded hover:bg-white/10 transition">
+            Later
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(notification);
+
+  // Auto-remove after 30 seconds
+  setTimeout(() => {
+    if (notification.parentNode) {
+      notification.remove();
+    }
+  }, 30000);
+}
+
+// Request notification permission
+function requestNotificationPermission() {
+  if ('Notification' in window && Notification.permission === 'default') {
+    Notification.requestPermission().then(permission => {
+      console.log('Notification permission:', permission);
+    });
+  }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  requestNotificationPermission();
+
+  // Check network status
+  window.addEventListener('online', () => {
+    console.log('Network: Online');
+    showNetworkStatus('online');
+  });
+
+  window.addEventListener('offline', () => {
+    console.log('Network: Offline');
+    showNetworkStatus('offline');
+  });
+
+  // Initial network status check
+  if (!navigator.onLine) {
+    showNetworkStatus('offline');
+  }
+});
+
+// Show network status notification
+function showNetworkStatus(status) {
+  // Remove existing notification
+  const existing = document.getElementById('network-status');
+  if (existing) existing.remove();
+
+  if (status === 'offline') {
+    const notification = document.createElement('div');
+    notification.id = 'network-status';
+    notification.className = 'fixed top-4 right-4 bg-yellow-600 text-white p-3 rounded-lg shadow-lg z-50 max-w-sm';
+    notification.innerHTML = `
+      <div class="flex items-center">
+        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.998-.833-2.732 0L4.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+        </svg>
+        <span class="text-sm font-medium">You're offline. Some features may be limited.</span>
+      </div>
+    `;
+    document.body.appendChild(notification);
+
+    // Auto-remove when back online
+    const checkOnline = setInterval(() => {
+      if (navigator.onLine) {
+        clearInterval(checkOnline);
+        notification.remove();
+      }
+    }, 5000);
+  }
+}
+
+// Performance monitoring
+if ('performance' in window) {
+  // Measure page load performance
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const perfEntries = performance.getEntriesByType('navigation');
+      if (perfEntries.length > 0) {
+        const navEntry = perfEntries[0];
+        console.log('Page Load Performance:', {
+          'DOM Content Loaded': navEntry.domContentLoadedEventEnd - navEntry.startTime,
+          'Load Complete': navEntry.loadEventEnd - navEntry.startTime,
+          'First Paint': performance.getEntriesByType('paint')[0]?.startTime || 'N/A',
+          'Time to Interactive': calculateTTI(),
+        });
+
+        // Send to analytics (if configured)
+        if (window.analytics) {
+          window.analytics.track('page_load_performance', {
+            dom_content_loaded: navEntry.domContentLoadedEventEnd - navEntry.startTime,
+            load_complete: navEntry.loadEventEnd - navEntry.startTime,
+            first_paint: performance.getEntriesByType('paint')[0]?.startTime || 0,
+            time_to_interactive: calculateTTI(),
+          });
+        }
+      }
+    }, 0);
+  });
+}
+
+// Calculate Time to Interactive (simplified)
+function calculateTTI() {
+  const perfEntries = performance.getEntriesByType('longtask');
+  let totalBlockingTime = 0;
+
+  perfEntries.forEach(entry => {
+    if (entry.duration > 50) {
+      totalBlockingTime += entry.duration - 50;
+    }
+  });
+
+  const fcp = performance.getEntriesByType('paint').find(p => p.name === 'first-contentful-paint');
+  if (fcp) {
+    return fcp.startTime + totalBlockingTime;
+  }
+
+  return 'N/A';
+}
+</script>

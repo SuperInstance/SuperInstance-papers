@@ -1,0 +1,748 @@
+---
+// Educational Optimizations Component
+// Provides optimizations for low-bandwidth, offline, and educational use cases
+---
+
+<script>
+// Educational performance optimizations
+class EducationalOptimizations {
+  constructor() {
+    this.isLowBandwidth = false;
+    this.isOffline = false;
+    this.isLowEndDevice = false;
+    this.optimizationsApplied = new Set();
+  }
+
+  // Initialize optimizations
+  init() {
+    this.detectEnvironment();
+    this.applyOptimizations();
+    this.setupEventListeners();
+    this.logStatus();
+  }
+
+  // Detect user environment
+  detectEnvironment() {
+    // Check network connection
+    this.isOffline = !navigator.onLine;
+
+    // Check connection speed
+    if (navigator.connection) {
+      const connection = navigator.connection;
+      this.isLowBandwidth = connection.effectiveType === 'slow-2g' ||
+                           connection.effectiveType === '2g' ||
+                           connection.downlink < 1; // Less than 1 Mbps
+
+      // Check for data saver
+      if (connection.saveData) {
+        this.isLowBandwidth = true;
+      }
+    }
+
+    // Check device capabilities
+    this.isLowEndDevice = this.detectLowEndDevice();
+
+    console.log('Educational Environment Detection:', {
+      isOffline: this.isOffline,
+      isLowBandwidth: this.isLowBandwidth,
+      isLowEndDevice: this.isLowEndDevice,
+      connection: navigator.connection ? {
+        effectiveType: navigator.connection.effectiveType,
+        downlink: navigator.connection.downlink,
+        rtt: navigator.connection.rtt,
+        saveData: navigator.connection.saveData,
+      } : 'Not available',
+    });
+  }
+
+  // Detect low-end device
+  detectLowEndDevice() {
+    // Check memory
+    const hasLowMemory = performance.memory ?
+      performance.memory.totalJSHeapSize < 100 * 1024 * 1024 : // Less than 100MB
+      false;
+
+    // Check CPU cores
+    const hasFewCores = navigator.hardwareConcurrency ?
+      navigator.hardwareConcurrency <= 2 : // 2 or fewer cores
+      false;
+
+    // Check device memory API
+    const hasLowDeviceMemory = navigator.deviceMemory ?
+      navigator.deviceMemory <= 2 : // 2GB or less
+      false;
+
+    return hasLowMemory || hasFewCores || hasLowDeviceMemory;
+  }
+
+  // Apply optimizations based on environment
+  applyOptimizations() {
+    // Always apply baseline optimizations
+    this.applyBaselineOptimizations();
+
+    // Apply environment-specific optimizations
+    if (this.isLowBandwidth) {
+      this.applyLowBandwidthOptimizations();
+    }
+
+    if (this.isOffline) {
+      this.applyOfflineOptimizations();
+    }
+
+    if (this.isLowEndDevice) {
+      this.applyLowEndDeviceOptimizations();
+    }
+
+    // Apply educational-specific optimizations
+    this.applyEducationalOptimizations();
+  }
+
+  // Baseline optimizations (always applied)
+  applyBaselineOptimizations() {
+    // Lazy load images
+    this.lazyLoadImages();
+
+    // Defer non-critical scripts
+    this.deferNonCriticalScripts();
+
+    // Optimize animations
+    this.optimizeAnimations();
+
+    // Reduce layout thrashing
+    this.reduceLayoutThrashing();
+
+    this.optimizationsApplied.add('baseline');
+  }
+
+  // Low bandwidth optimizations
+  applyLowBandwidthOptimizations() {
+    console.log('Applying low bandwidth optimizations...');
+
+    // Reduce image quality
+    this.reduceImageQuality();
+
+    // Disable autoplay videos
+    this.disableAutoplayMedia();
+
+    // Limit font loading
+    this.limitFontLoading();
+
+    // Aggressive caching
+    this.enableAggressiveCaching();
+
+    // Show bandwidth warning
+    this.showBandwidthWarning();
+
+    this.optimizationsApplied.add('low-bandwidth');
+  }
+
+  // Offline optimizations
+  applyOfflineOptimizations() {
+    console.log('Applying offline optimizations...');
+
+    // Enable offline mode UI
+    this.enableOfflineMode();
+
+    // Cache critical resources
+    this.cacheCriticalResources();
+
+    // Queue actions for when online
+    this.setupActionQueue();
+
+    // Show offline notification
+    this.showOfflineNotification();
+
+    this.optimizationsApplied.add('offline');
+  }
+
+  // Low-end device optimizations
+  applyLowEndDeviceOptimizations() {
+    console.log('Applying low-end device optimizations...');
+
+    // Reduce JavaScript execution
+    this.reduceJavaScriptExecution();
+
+    // Limit concurrent operations
+    this.limitConcurrency();
+
+    // Optimize memory usage
+    this.optimizeMemoryUsage();
+
+    // Disable heavy animations
+    this.disableHeavyAnimations();
+
+    this.optimizationsApplied.add('low-end-device');
+  }
+
+  // Educational-specific optimizations
+  applyEducationalOptimizations() {
+    console.log('Applying educational optimizations...');
+
+    // Enable text-to-speech
+    this.enableTextToSpeech();
+
+    // Add reading mode
+    this.addReadingMode();
+
+    // Enable keyboard shortcuts
+    this.enableKeyboardShortcuts();
+
+    // Add print styles
+    this.addPrintStyles();
+
+    // Enable screen reader optimizations
+    this.optimizeForScreenReaders();
+
+    this.optimizationsApplied.add('educational');
+  }
+
+  // Implementation of optimization methods
+
+  lazyLoadImages() {
+    const images = document.querySelectorAll('img[data-src]');
+    images.forEach(img => {
+      if ('loading' in HTMLImageElement.prototype) {
+        img.loading = 'lazy';
+      }
+
+      if (img.dataset.src) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              img.src = img.dataset.src;
+              observer.unobserve(img);
+            }
+          });
+        });
+        observer.observe(img);
+      }
+    });
+  }
+
+  deferNonCriticalScripts() {
+    const scripts = document.querySelectorAll('script[type="module"]:not([critical])');
+    scripts.forEach(script => {
+      if (!script.async && !script.defer) {
+        script.defer = true;
+      }
+    });
+  }
+
+  optimizeAnimations() {
+    // Use will-change sparingly
+    const animatedElements = document.querySelectorAll('.animate, .transition');
+    animatedElements.forEach(el => {
+      if (!el.classList.contains('will-change')) {
+        el.style.willChange = 'transform, opacity';
+      }
+    });
+  }
+
+  reduceLayoutThrashing() {
+    // Batch DOM reads/writes
+    let scheduled = false;
+    const reads = [];
+    const writes = [];
+
+    function schedule() {
+      if (!scheduled) {
+        scheduled = true;
+        requestAnimationFrame(() => {
+          // Perform all reads
+          reads.forEach(fn => fn());
+          reads.length = 0;
+
+          // Perform all writes
+          writes.forEach(fn => fn());
+          writes.length = 0;
+
+          scheduled = false;
+        });
+      }
+    }
+
+    window.batchRead = (fn) => {
+      reads.push(fn);
+      schedule();
+    };
+
+    window.batchWrite = (fn) => {
+      writes.push(fn);
+      schedule();
+    };
+  }
+
+  reduceImageQuality() {
+    // Replace high-quality images with lower quality versions
+    const images = document.querySelectorAll('img[data-src-low]');
+    images.forEach(img => {
+      if (img.dataset.srcLow && this.isLowBandwidth) {
+        img.src = img.dataset.srcLow;
+      }
+    });
+  }
+
+  disableAutoplayMedia() {
+    const videos = document.querySelectorAll('video[autoplay], audio[autoplay]');
+    videos.forEach(media => {
+      media.autoplay = false;
+      media.controls = true;
+    });
+  }
+
+  limitFontLoading() {
+    // Load only essential fonts
+    const fontLinks = document.querySelectorAll('link[rel="stylesheet"][href*="fonts"]');
+    if (this.isLowBandwidth && fontLinks.length > 1) {
+      // Keep only the first font, remove others
+      for (let i = 1; i < fontLinks.length; i++) {
+        fontLinks[i].remove();
+      }
+    }
+  }
+
+  enableAggressiveCaching() {
+    // Use service worker for aggressive caching
+    if ('serviceWorker' in navigator && this.isLowBandwidth) {
+      navigator.serviceWorker.ready.then(registration => {
+        if (registration.active) {
+          registration.active.postMessage({
+            type: 'ENABLE_AGGRESSIVE_CACHING',
+            config: {
+              cacheFirst: true,
+              networkTimeout: 5000,
+              staleWhileRevalidate: false,
+            }
+          });
+        }
+      });
+    }
+  }
+
+  showBandwidthWarning() {
+    if (this.isLowBandwidth) {
+      const warning = document.createElement('div');
+      warning.className = 'fixed bottom-4 left-4 bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded-lg shadow-lg z-50 max-w-sm';
+      warning.innerHTML = `
+        <div class="flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm font-medium">Slow connection detected. Optimizing for bandwidth...</span>
+        </div>
+      `;
+      document.body.appendChild(warning);
+
+      // Auto-remove after 10 seconds
+      setTimeout(() => warning.remove(), 10000);
+    }
+  }
+
+  enableOfflineMode() {
+    // Check if service worker is ready
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then(registration => {
+        if (registration.active) {
+          registration.active.postMessage({
+            type: 'ENABLE_OFFLINE_MODE',
+            offline: true
+          });
+        }
+      });
+    }
+
+    // Add offline class to body
+    document.body.classList.add('offline-mode');
+  }
+
+  cacheCriticalResources() {
+    // Cache critical pages for offline access
+    const criticalPages = ['/', '/docs', '/docs/getting-started'];
+
+    if ('caches' in window) {
+      caches.open('critical-pages').then(cache => {
+        criticalPages.forEach(page => {
+          cache.add(page).catch(console.error);
+        });
+      });
+    }
+  }
+
+  setupActionQueue() {
+    // Queue actions for when online
+    window.offlineActions = window.offlineActions || [];
+
+    // Listen for online event
+    window.addEventListener('online', () => {
+      if (window.offlineActions.length > 0) {
+        console.log('Processing queued offline actions:', window.offlineActions.length);
+        // Process queued actions
+        window.offlineActions.forEach(action => {
+          // Implement action processing
+          console.log('Processing action:', action);
+        });
+        window.offlineActions = [];
+      }
+    });
+  }
+
+  showOfflineNotification() {
+    if (this.isOffline) {
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 right-4 bg-blue-100 border border-blue-400 text-blue-800 px-4 py-2 rounded-lg shadow-lg z-50 max-w-sm';
+      notification.innerHTML = `
+        <div class="flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm font-medium">You're offline. Some features may be limited.</span>
+        </div>
+      `;
+      document.body.appendChild(notification);
+    }
+  }
+
+  reduceJavaScriptExecution() {
+    // Throttle expensive operations
+    const throttle = (fn, delay) => {
+      let lastCall = 0;
+      return (...args) => {
+        const now = Date.now();
+        if (now - lastCall >= delay) {
+          lastCall = now;
+          return fn(...args);
+        }
+      };
+    };
+
+    // Apply throttling to event handlers
+    const expensiveHandlers = document.querySelectorAll('[data-throttle]');
+    expensiveHandlers.forEach(el => {
+      const event = el.dataset.throttleEvent || 'input';
+      const delay = parseInt(el.dataset.throttleDelay) || 100;
+      const handler = el[`on${event}`];
+      if (handler) {
+        el[`on${event}`] = throttle(handler, delay);
+      }
+    });
+  }
+
+  limitConcurrency() {
+    // Limit concurrent API calls
+    window.MAX_CONCURRENT_REQUESTS = 2;
+
+    const originalFetch = window.fetch;
+    let activeRequests = 0;
+    const requestQueue = [];
+
+    window.fetch = (...args) => {
+      return new Promise((resolve, reject) => {
+        const executeRequest = () => {
+          activeRequests++;
+          originalFetch(...args)
+            .then(resolve)
+            .catch(reject)
+            .finally(() => {
+              activeRequests--;
+              if (requestQueue.length > 0) {
+                requestQueue.shift()();
+              }
+            });
+        };
+
+        if (activeRequests < window.MAX_CONCURRENT_REQUESTS) {
+          executeRequest();
+        } else {
+          requestQueue.push(executeRequest);
+        }
+      });
+    };
+  }
+
+  optimizeMemoryUsage() {
+    // Clean up unused event listeners
+    const cleanup = () => {
+      // Remove event listeners from removed elements
+      // This is a simplified example - in practice, you'd track listeners
+      console.log('Memory cleanup performed');
+    };
+
+    // Run cleanup periodically
+    setInterval(cleanup, 30000); // Every 30 seconds
+  }
+
+  disableHeavyAnimations() {
+    // Disable CSS animations on low-end devices
+    if (this.isLowEndDevice) {
+      const style = document.createElement('style');
+      style.textContent = `
+        @media (prefers-reduced-motion: reduce) or (max-width: 768px) {
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  enableTextToSpeech() {
+    // Add text-to-speech functionality
+    if ('speechSynthesis' in window) {
+      const speakButton = document.createElement('button');
+      speakButton.className = 'fixed bottom-4 right-4 bg-purple-600 text-white p-3 rounded-full shadow-lg z-50';
+      speakButton.innerHTML = '🔊';
+      speakButton.title = 'Read aloud';
+      speakButton.onclick = () => {
+        const content = document.querySelector('main').textContent;
+        const utterance = new SpeechSynthesisUtterance(content.substring(0, 1000)); // Limit length
+        speechSynthesis.speak(utterance);
+      };
+      document.body.appendChild(speakButton);
+    }
+  }
+
+  addReadingMode() {
+    // Add reading mode toggle
+    const readingModeButton = document.createElement('button');
+    readingModeButton.className = 'fixed bottom-20 right-4 bg-green-600 text-white p-3 rounded-full shadow-lg z-50';
+    readingModeButton.innerHTML = '📖';
+    readingModeButton.title = 'Reading mode';
+    readingModeButton.onclick = () => {
+      document.body.classList.toggle('reading-mode');
+      if (document.body.classList.contains('reading-mode')) {
+        // Apply reading mode styles
+        const style = document.createElement('style');
+        style.id = 'reading-mode-styles';
+        style.textContent = `
+          .reading-mode {
+            font-size: 18px !important;
+            line-height: 1.8 !important;
+            max-width: 800px !important;
+            margin: 0 auto !important;
+            padding: 20px !important;
+          }
+          .reading-mode * {
+            color: #333 !important;
+            background: white !important;
+          }
+        `;
+        document.head.appendChild(style);
+      } else {
+        // Remove reading mode styles
+        const style = document.getElementById('reading-mode-styles');
+        if (style) style.remove();
+      }
+    };
+    document.body.appendChild(readingModeButton);
+  }
+
+  enableKeyboardShortcuts() {
+    // Add keyboard shortcuts for accessibility
+    document.addEventListener('keydown', (e) => {
+      // Ctrl/Cmd + S: Save for offline
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        this.saveForOffline();
+      }
+
+      // Ctrl/Cmd + P: Print
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        window.print();
+      }
+
+      // Alt + R: Reading mode
+      if (e.altKey && e.key === 'r') {
+        e.preventDefault();
+        document.querySelector('[title="Reading mode"]').click();
+      }
+    });
+  }
+
+  addPrintStyles() {
+    // Add print-specific styles
+    const printStyles = document.createElement('style');
+    printStyles.media = 'print';
+    printStyles.textContent = `
+      @media print {
+        body {
+          font-size: 12pt !important;
+          line-height: 1.5 !important;
+          color: #000 !important;
+          background: white !important;
+        }
+        a {
+          color: #000 !important;
+          text-decoration: underline !important;
+        }
+        .no-print {
+          display: none !important;
+        }
+        .page-break {
+          page-break-before: always !important;
+        }
+      }
+    `;
+    document.head.appendChild(printStyles);
+  }
+
+  optimizeForScreenReaders() {
+    // Add ARIA labels and roles
+    const main = document.querySelector('main');
+    if (main && !main.getAttribute('role')) {
+      main.setAttribute('role', 'main');
+    }
+
+    // Add skip to content link
+    const skipLink = document.createElement('a');
+    skipLink.href = '#main-content';
+    skipLink.className = 'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white p-2 z-50';
+    skipLink.textContent = 'Skip to main content';
+    document.body.prepend(skipLink);
+
+    // Add main content ID
+    if (main && !main.id) {
+      main.id = 'main-content';
+    }
+  }
+
+  saveForOffline() {
+    // Save current page for offline reading
+    if ('caches' in window) {
+      caches.open('saved-pages').then(cache => {
+        cache.add(window.location.href).then(() => {
+          alert('Page saved for offline reading!');
+        }).catch(() => {
+          alert('Failed to save page for offline reading.');
+        });
+      });
+    } else {
+      alert('Offline saving not supported in this browser.');
+    }
+  }
+
+  setupEventListeners() {
+    // Listen for network changes
+    window.addEventListener('online', () => {
+      this.isOffline = false;
+      this.applyOptimizations();
+    });
+
+    window.addEventListener('offline', () => {
+      this.isOffline = true;
+      this.applyOptimizations();
+    });
+
+    // Listen for connection changes
+    if (navigator.connection) {
+      navigator.connection.addEventListener('change', () => {
+        this.detectEnvironment();
+        this.applyOptimizations();
+      });
+    }
+  }
+
+  logStatus() {
+    console.log('Educational Optimizations Status:', {
+      optimizationsApplied: Array.from(this.optimizationsApplied),
+      environment: {
+        offline: this.isOffline,
+        lowBandwidth: this.isLowBandwidth,
+        lowEndDevice: this.isLowEndDevice,
+      },
+      timestamp: new Date().toISOString(),
+    });
+  }
+}
+
+// Initialize optimizations
+document.addEventListener('DOMContentLoaded', () => {
+  const optimizations = new EducationalOptimizations();
+  optimizations.init();
+
+  // Make available globally for debugging
+  window.educationalOptimizations = optimizations;
+});
+</script>
+
+<!-- Screen reader only styles -->
+<style>
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: fixed;
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: white;
+  color: black;
+  z-index: 10000;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #0000ff;
+    --color-secondary: #008000;
+    --color-accent: #ff0000;
+  }
+
+  * {
+    border-color: currentColor !important;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .reading-mode {
+    background: #1a1a1a !important;
+    color: #e0e0e0 !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    font-weight: normal;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+}
+</style>

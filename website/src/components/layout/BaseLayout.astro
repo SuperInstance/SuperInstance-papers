@@ -4,6 +4,8 @@ import { Navigation } from '../components/layout/Navigation';
 import { Footer } from '../components/layout/Footer';
 import ServiceWorkerRegistration from '../components/performance/ServiceWorkerRegistration.astro';
 import EducationalOptimizations from '../components/performance/EducationalOptimizations.astro';
+import SkipToContent from '../components/a11y/SkipToContent.astro';
+import LiveRegion from '../components/a11y/LiveRegion.astro';
 ---
 
 <!DOCTYPE html>
@@ -63,9 +65,10 @@ import EducationalOptimizations from '../components/performance/EducationalOptim
     <meta http-equiv="Accept-CH-Lifetime" content="86400" />
   </head>
   <body class="min-h-screen flex flex-col">
+    <SkipToContent />
     <Navigation />
 
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
       <slot />
     </main>
 
@@ -77,18 +80,14 @@ import EducationalOptimizations from '../components/performance/EducationalOptim
     <!-- Educational Optimizations -->
     <EducationalOptimizations />
 
+    <!-- Accessibility Live Regions -->
+    <LiveRegion />
+
     <!-- Load non-critical scripts asynchronously -->
     <script>
       // Load non-critical scripts after page load
       window.addEventListener('load', () => {
-        // Analytics scripts (if any) would go here
         console.log('Page fully loaded - loading non-critical resources');
-
-        // Example: Lazy load a third-party script
-        // const script = document.createElement('script');
-        // script.src = 'https://example.com/analytics.js';
-        // script.async = true;
-        // document.body.appendChild(script);
       });
 
       // Optimize scrolling performance

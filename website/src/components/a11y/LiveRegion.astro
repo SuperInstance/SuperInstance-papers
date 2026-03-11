@@ -1,0 +1,63 @@
+---
+// Live Region Component for Screen Reader Announcements
+// Provides consistent announcement system
+---
+
+<div
+  id="live-region"
+  class="sr-only"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <!-- Announcements will be inserted here dynamically -->
+</div>
+
+<div
+  id="alert-region"
+  class="sr-only"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+>
+  <!-- Important announcements will be inserted here dynamically -->
+</div>
+
+<script is:inline>
+  // Global announcement functions
+  window.announceToScreenReader = (message, priority = 'polite') => {
+    const region = priority === 'assertive'
+      ? document.getElementById('alert-region')
+      : document.getElementById('live-region');
+
+    if (region) {
+      // Clear previous content
+      region.textContent = '';
+
+      // Add new message (delay to ensure screen readers pick up the change)
+      setTimeout(() => {
+        region.textContent = message;
+      }, 100);
+
+      // Clear after announcement
+      setTimeout(() => {
+        region.textContent = '';
+      }, 2000);
+    }
+  };
+
+  window.Announcements = {
+    navigationChanged: (page) => {
+      window.announceToScreenReader(`Navigated to ${page}`);
+    },
+    formValidation: (message) => {
+      window.announceToScreenReader(message, 'assertive');
+    },
+    actionCompleted: (action) => {
+      window.announceToScreenReader(`${action} completed`);
+    },
+    errorOccured: (message) => {
+      window.announceToScreenReader(`Error: ${message}`, 'assertive');
+    }
+  };
+</script>

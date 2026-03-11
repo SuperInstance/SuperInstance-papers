@@ -14,8 +14,8 @@ export const Footer: React.FC = () => {
               <span className="text-2xl font-bold">SuperInstance.AI</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
-              Building POLLN - The Spreadsheet AI That Learns. Transform repetitive spreadsheet work
-              into reusable AI automation that remembers and improves over time.
+              Educational platform for advanced AI and mathematics. Teaching geometric tensor mathematics,
+              intelligent systems, and cutting-edge research to students of all ages.
             </p>
             <div className="flex space-x-4">
               <a href="https://twitter.com/SuperInstanceAI" className="text-gray-400 hover:text-white transition-colors">
@@ -39,15 +39,15 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Product */}
+          {/* Learning */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Product</h3>
+            <h3 className="font-semibold text-lg mb-4">Learning</h3>
             <ul className="space-y-3">
-              <li><a href="/features" className="text-gray-400 hover:text-white transition-colors">Features</a></li>
-              <li><a href="/use-cases" className="text-gray-400 hover:text-white transition-colors">Use Cases</a></li>
-              <li><a href="/pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="/demos" className="text-gray-400 hover:text-white transition-colors">Demos</a></li>
-              <li><a href="/integrations" className="text-gray-400 hover:text-white transition-colors">Integrations</a></li>
+              <li><a href="/learning" className="text-gray-400 hover:text-white transition-colors">Learning Pathways</a></li>
+              <li><a href="/tutorials" className="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
+              <li><a href="/demos" className="text-gray-400 hover:text-white transition-colors">Interactive Demos</a></li>
+              <li><a href="/white-papers" className="text-gray-400 hover:text-white transition-colors">White Papers</a></li>
+              <li><a href="/exercises" className="text-gray-400 hover:text-white transition-colors">Practice Exercises</a></li>
             </ul>
           </div>
 
@@ -55,11 +55,11 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Resources</h3>
             <ul className="space-y-3">
-              <li><a href="/docs" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
-              <li><a href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="/white-papers" className="text-gray-400 hover:text-white transition-colors">White Papers</a></li>
-              <li><a href="/api-reference" className="text-gray-400 hover:text-white transition-colors">API Reference</a></li>
-              <li><a href="/community" className="text-gray-400 hover:text-white transition-colors">Community</a></li>
+              <li><a href="/research" className="text-gray-400 hover:text-white transition-colors">Research Library</a></li>
+              <li><a href="/code-examples" className="text-gray-400 hover:text-white transition-colors">Code Examples</a></li>
+              <li><a href="/glossary" className="text-gray-400 hover:text-white transition-colors">Glossary</a></li>
+              <li><a href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="/community" className="text-gray-400 hover:text-white transition-colors">Learning Community</a></li>
             </ul>
           </div>
 

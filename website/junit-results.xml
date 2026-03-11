@@ -1,0 +1,1024 @@
+<testsuites id="" name="" tests="63" failures="63" skipped="0" errors="0" time="14.961737999999999">
+<testsuite name="specs\navigation.spec.ts" timestamp="2026-03-11T19:03:40.131Z" hostname="chromium" tests="9" failures="9" skipped="0" time="0.052" errors="0">
+<testcase name="homepage loads successfully" classname="specs\navigation.spec.ts" time="0.008">
+<failure message="navigation.spec.ts:8:1 homepage loads successfully" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:8:1 › homepage loads successfully ──────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="navigation menu works correctly" classname="specs\navigation.spec.ts" time="0.009">
+<failure message="navigation.spec.ts:20:1 navigation menu works correctly" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:20:1 › navigation menu works correctly ─────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="footer contains important links" classname="specs\navigation.spec.ts" time="0.004">
+<failure message="navigation.spec.ts:42:1 footer contains important links" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:42:1 › footer contains important links ─────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="responsive design works on mobile" classname="specs\navigation.spec.ts" time="0.006">
+<failure message="navigation.spec.ts:62:1 responsive design works on mobile" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:62:1 › responsive design works on mobile ───────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="dark mode toggle works" classname="specs\navigation.spec.ts" time="0.015">
+<failure message="navigation.spec.ts:78:1 dark mode toggle works" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:78:1 › dark mode toggle works ──────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="search functionality works" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:102:1 search functionality works" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:102:1 › search functionality works ─────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="external links open in new tab" classname="specs\navigation.spec.ts" time="0.004">
+<failure message="navigation.spec.ts:117:1 external links open in new tab" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:117:1 › external links open in new tab ─────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="page has proper meta tags for SEO" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:127:1 page has proper meta tags for SEO" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:127:1 › page has proper meta tags for SEO ──────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="accessibility - keyboard navigation works" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:147:1 accessibility - keyboard navigation works" type="FAILURE">
+<![CDATA[  [chromium] › specs\navigation.spec.ts:147:1 › accessibility - keyboard navigation works ──────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="specs\navigation.spec.ts" timestamp="2026-03-11T19:03:40.131Z" hostname="firefox" tests="9" failures="9" skipped="0" time="0.028" errors="0">
+<testcase name="homepage loads successfully" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:8:1 homepage loads successfully" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:8:1 › homepage loads successfully ───────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="navigation menu works correctly" classname="specs\navigation.spec.ts" time="0.009">
+<failure message="navigation.spec.ts:20:1 navigation menu works correctly" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:20:1 › navigation menu works correctly ──────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="footer contains important links" classname="specs\navigation.spec.ts" time="0.006">
+<failure message="navigation.spec.ts:42:1 footer contains important links" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:42:1 › footer contains important links ──────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="responsive design works on mobile" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:62:1 responsive design works on mobile" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:62:1 › responsive design works on mobile ────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="dark mode toggle works" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:78:1 dark mode toggle works" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:78:1 › dark mode toggle works ───────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="search functionality works" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:102:1 search functionality works" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:102:1 › search functionality works ──────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="external links open in new tab" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:117:1 external links open in new tab" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:117:1 › external links open in new tab ──────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="page has proper meta tags for SEO" classname="specs\navigation.spec.ts" time="0.001">
+<failure message="navigation.spec.ts:127:1 page has proper meta tags for SEO" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:127:1 › page has proper meta tags for SEO ───────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="accessibility - keyboard navigation works" classname="specs\navigation.spec.ts" time="0.001">
+<failure message="navigation.spec.ts:147:1 accessibility - keyboard navigation works" type="FAILURE">
+<![CDATA[  [firefox] › specs\navigation.spec.ts:147:1 › accessibility - keyboard navigation works ───────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="specs\navigation.spec.ts" timestamp="2026-03-11T19:03:40.131Z" hostname="webkit" tests="9" failures="9" skipped="0" time="0.017" errors="0">
+<testcase name="homepage loads successfully" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:8:1 homepage loads successfully" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:8:1 › homepage loads successfully ────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="navigation menu works correctly" classname="specs\navigation.spec.ts" time="0.001">
+<failure message="navigation.spec.ts:20:1 navigation menu works correctly" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:20:1 › navigation menu works correctly ───────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="footer contains important links" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:42:1 footer contains important links" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:42:1 › footer contains important links ───────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="responsive design works on mobile" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:62:1 responsive design works on mobile" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:62:1 › responsive design works on mobile ─────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="dark mode toggle works" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:78:1 dark mode toggle works" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:78:1 › dark mode toggle works ────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="search functionality works" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:102:1 search functionality works" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:102:1 › search functionality works ───────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="external links open in new tab" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:117:1 external links open in new tab" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:117:1 › external links open in new tab ───────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="page has proper meta tags for SEO" classname="specs\navigation.spec.ts" time="0.001">
+<failure message="navigation.spec.ts:127:1 page has proper meta tags for SEO" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:127:1 › page has proper meta tags for SEO ────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="accessibility - keyboard navigation works" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:147:1 accessibility - keyboard navigation works" type="FAILURE">
+<![CDATA[  [webkit] › specs\navigation.spec.ts:147:1 › accessibility - keyboard navigation works ────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="specs\navigation.spec.ts" timestamp="2026-03-11T19:03:40.131Z" hostname="Mobile Chrome" tests="9" failures="9" skipped="0" time="0.026" errors="0">
+<testcase name="homepage loads successfully" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:8:1 homepage loads successfully" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:8:1 › homepage loads successfully ─────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="navigation menu works correctly" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:20:1 navigation menu works correctly" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:20:1 › navigation menu works correctly ────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="footer contains important links" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:42:1 footer contains important links" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:42:1 › footer contains important links ────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="responsive design works on mobile" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:62:1 responsive design works on mobile" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:62:1 › responsive design works on mobile ──────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="dark mode toggle works" classname="specs\navigation.spec.ts" time="0.001">
+<failure message="navigation.spec.ts:78:1 dark mode toggle works" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:78:1 › dark mode toggle works ─────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="search functionality works" classname="specs\navigation.spec.ts" time="0.004">
+<failure message="navigation.spec.ts:102:1 search functionality works" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:102:1 › search functionality works ────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="external links open in new tab" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:117:1 external links open in new tab" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:117:1 › external links open in new tab ────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="page has proper meta tags for SEO" classname="specs\navigation.spec.ts" time="0.004">
+<failure message="navigation.spec.ts:127:1 page has proper meta tags for SEO" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:127:1 › page has proper meta tags for SEO ─────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="accessibility - keyboard navigation works" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:147:1 accessibility - keyboard navigation works" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › specs\navigation.spec.ts:147:1 › accessibility - keyboard navigation works ─────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="specs\navigation.spec.ts" timestamp="2026-03-11T19:03:40.131Z" hostname="Mobile Safari" tests="9" failures="9" skipped="0" time="0.024" errors="0">
+<testcase name="homepage loads successfully" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:8:1 homepage loads successfully" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:8:1 › homepage loads successfully ─────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="navigation menu works correctly" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:20:1 navigation menu works correctly" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:20:1 › navigation menu works correctly ────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="footer contains important links" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:42:1 footer contains important links" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:42:1 › footer contains important links ────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="responsive design works on mobile" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:62:1 responsive design works on mobile" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:62:1 › responsive design works on mobile ──────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="dark mode toggle works" classname="specs\navigation.spec.ts" time="0.004">
+<failure message="navigation.spec.ts:78:1 dark mode toggle works" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:78:1 › dark mode toggle works ─────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="search functionality works" classname="specs\navigation.spec.ts" time="0.003">
+<failure message="navigation.spec.ts:102:1 search functionality works" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:102:1 › search functionality works ────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="external links open in new tab" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:117:1 external links open in new tab" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:117:1 › external links open in new tab ────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="page has proper meta tags for SEO" classname="specs\navigation.spec.ts" time="0.002">
+<failure message="navigation.spec.ts:127:1 page has proper meta tags for SEO" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:127:1 › page has proper meta tags for SEO ─────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="accessibility - keyboard navigation works" classname="specs\navigation.spec.ts" time="0.001">
+<failure message="navigation.spec.ts:147:1 accessibility - keyboard navigation works" type="FAILURE">
+<![CDATA[  [Mobile Safari] › specs\navigation.spec.ts:147:1 › accessibility - keyboard navigation works ─────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="specs\navigation.spec.ts" timestamp="2026-03-11T19:03:40.131Z" hostname="Microsoft Edge" tests="9" failures="9" skipped="0" time="7.356" errors="0">
+<testcase name="homepage loads successfully" classname="specs\navigation.spec.ts" time="0.702">
+<failure message="navigation.spec.ts:8:1 homepage loads successfully" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:8:1 › homepage loads successfully ────────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="navigation menu works correctly" classname="specs\navigation.spec.ts" time="0.644">
+<failure message="navigation.spec.ts:20:1 navigation menu works correctly" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:20:1 › navigation menu works correctly ───────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="footer contains important links" classname="specs\navigation.spec.ts" time="0.576">
+<failure message="navigation.spec.ts:42:1 footer contains important links" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:42:1 › footer contains important links ───────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="responsive design works on mobile" classname="specs\navigation.spec.ts" time="1.176">
+<failure message="navigation.spec.ts:62:1 responsive design works on mobile" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:62:1 › responsive design works on mobile ─────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="dark mode toggle works" classname="specs\navigation.spec.ts" time="1.032">
+<failure message="navigation.spec.ts:78:1 dark mode toggle works" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:78:1 › dark mode toggle works ────────────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="search functionality works" classname="specs\navigation.spec.ts" time="1.231">
+<failure message="navigation.spec.ts:102:1 search functionality works" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:102:1 › search functionality works ───────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="external links open in new tab" classname="specs\navigation.spec.ts" time="0.996">
+<failure message="navigation.spec.ts:117:1 external links open in new tab" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:117:1 › external links open in new tab ───────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="page has proper meta tags for SEO" classname="specs\navigation.spec.ts" time="0.518">
+<failure message="navigation.spec.ts:127:1 page has proper meta tags for SEO" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:127:1 › page has proper meta tags for SEO ────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="accessibility - keyboard navigation works" classname="specs\navigation.spec.ts" time="0.481">
+<failure message="navigation.spec.ts:147:1 accessibility - keyboard navigation works" type="FAILURE">
+<![CDATA[  [Microsoft Edge] › specs\navigation.spec.ts:147:1 › accessibility - keyboard navigation works ────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="specs\navigation.spec.ts" timestamp="2026-03-11T19:03:40.131Z" hostname="Google Chrome" tests="9" failures="9" skipped="0" time="5.095" errors="0">
+<testcase name="homepage loads successfully" classname="specs\navigation.spec.ts" time="0.686">
+<failure message="navigation.spec.ts:8:1 homepage loads successfully" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:8:1 › homepage loads successfully ─────────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="navigation menu works correctly" classname="specs\navigation.spec.ts" time="0.592">
+<failure message="navigation.spec.ts:20:1 navigation menu works correctly" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:20:1 › navigation menu works correctly ────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="footer contains important links" classname="specs\navigation.spec.ts" time="0.424">
+<failure message="navigation.spec.ts:42:1 footer contains important links" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:42:1 › footer contains important links ────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="responsive design works on mobile" classname="specs\navigation.spec.ts" time="0.587">
+<failure message="navigation.spec.ts:62:1 responsive design works on mobile" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:62:1 › responsive design works on mobile ──────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="dark mode toggle works" classname="specs\navigation.spec.ts" time="0.568">
+<failure message="navigation.spec.ts:78:1 dark mode toggle works" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:78:1 › dark mode toggle works ─────────────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="search functionality works" classname="specs\navigation.spec.ts" time="0.533">
+<failure message="navigation.spec.ts:102:1 search functionality works" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:102:1 › search functionality works ────────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="external links open in new tab" classname="specs\navigation.spec.ts" time="0.548">
+<failure message="navigation.spec.ts:117:1 external links open in new tab" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:117:1 › external links open in new tab ────────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="page has proper meta tags for SEO" classname="specs\navigation.spec.ts" time="0.577">
+<failure message="navigation.spec.ts:127:1 page has proper meta tags for SEO" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:127:1 › page has proper meta tags for SEO ─────────────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="accessibility - keyboard navigation works" classname="specs\navigation.spec.ts" time="0.58">
+<failure message="navigation.spec.ts:147:1 accessibility - keyboard navigation works" type="FAILURE">
+<![CDATA[  [Google Chrome] › specs\navigation.spec.ts:147:1 › accessibility - keyboard navigation works ─────
+
+    Error: browserContext.newPage: Executable doesn't exist at C:\Users\casey\AppData\Local\ms-playwright\ffmpeg-1011\ffmpeg-win64.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>

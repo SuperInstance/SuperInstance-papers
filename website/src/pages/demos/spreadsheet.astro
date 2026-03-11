@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SpreadsheetDemo from '../../components/demos/SpreadsheetDemo';
+import SuperInstanceTutorial from '../../components/educational/SuperInstanceTutorial';
+import { Button } from '../../components/ui/Button';
+---
+
+<BaseLayout title="SuperInstance.AI - Spreadsheet Demo">
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="text-center mb-12">
+        <h1 class="heading-1 mb-6">
+          Try the Future of
+          <span class="block text-primary-600">Spreadsheet AI</span>
+        </h1>
+        <p class="text-body max-w-2xl mx-auto mb-8">
+          Experience SuperInstance technology hands-on. Interact with AI-powered cells,
+          automatic type detection, and confidence scoring.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="primary" size="lg">
+            Get Started Free
+          </Button>
+          <Button variant="outline" size="lg">
+            Read Documentation
+          </Button>
+        </div>
+      </div>
+
+      <!-- Interactive Demo -->
+      <div class="mb-16">
+        <div class="text-center mb-8">
+          <h2 class="heading-2 mb-4">Interactive Spreadsheet Demo</h2>
+          <p class="text-body text-gray-600 max-w-xl mx-auto">
+            Click on cells to edit. Try entering different types of data to see
+type detection and confidence scoring in action.
+          </p>
+        </div>
+        <SpreadsheetDemo
+          title="Live SuperInstance Demo"
+          description="See how AI understands and augments spreadsheet data"
+        />
+      </div>
+
+      <!-- Tutorial Section -->
+      <div>
+        <div class="text-center mb-8">
+          <h2 class="heading-2 mb-4">Learn SuperInstance in 5 Minutes</h2>
+          <p class="text-body text-gray-600 max-w-xl mx-auto">
+            Our interactive tutorial walks you through the core concepts
+            and shows you how to leverage AI in your spreadsheets.
+          </p>
+        </div>
+        <SuperInstanceTutorial />
+      </div>
+
+      <!-- Features Callout -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">AI Type Detection</h3>
+          <p class="text-gray-600">SuperInstance automatically recognizes data types and applies appropriate AI models.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Confidence Scoring</h3>
+          <p class="text-gray-600">Every calculation includes a confidence score so you know when to trust the output.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Universal Cell</h3>
+          <p class="text-gray-600">Any cell can contain any type of data - from numbers to full AI models.</p>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center mt-16 bg-gray-900 text-white rounded-2xl p-12">
+        <h2 class="heading-2 mb-4">Ready to Transform Your Spreadsheets?</h2>
+        <p class="text-xl mb-8">Start using SuperInstance today and see the future of spreadsheet AI.</p>
+        <Button variant="primary" size="xl" className="px-8 py-4">
+          Try SuperInstance Free
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

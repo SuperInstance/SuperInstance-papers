@@ -2,61 +2,114 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
+import LearningPathway from '../components/educational/LearningPathway.astro';
+import TutorialCard from '../components/educational/TutorialCard.astro';
+import AgeBasedInterface from '../components/educational/AgeBasedInterface.astro';
+import SuperInstanceTutorial from '../components/educational/SuperInstanceTutorial';
 ---
 
-<BaseLayout title="SuperInstance.AI - Spreadsheet AI That Learns">
+<BaseLayout title="SuperInstance.AI - Learn Advanced AI & Mathematics">
   <!-- Hero Section -->
   <section class="section bg-gradient-to-b from-white to-gray-50">
     <div class="container-narrow text-center">
       <div class="animate-fade-in">
         <h1 class="heading-1 mb-6">
-          Spreadsheet AI
-          <span class="block text-primary-600">That Learns</span>
+          Learn SuperInstance
+          <span class="block text-primary-600">AI & Mathematics</span>
         </h1>
 
         <p class="text-body max-w-2xl mx-auto mb-10">
-          Turn spreadsheet repetition into reusable AI agents with POLLN technology.
-          Unlike one-shot AI tools, SuperInstance builds permanent automation that learns your work.
+          Master advanced AI concepts, geometric tensor mathematics, and intelligent systems.
+          Designed for students of all ages—from K-12 to university researchers.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <Button variant="primary" size="lg" className="sm:w-auto">
-            Get Started Free
+            Start Learning Free
           </Button>
           <Button variant="outline" size="lg" className="sm:w-auto">
-            Watch Demo
+            Explore Tutorials
+          </Button>
+          <Button variant="accent" size="lg" className="sm:w-auto">
+            Read White Papers
           </Button>
         </div>
       </div>
 
-      {/* Hero Visual */}
-      <div class="relative max-w-4xl mx-auto">
+      {/* Hero Visual - Age-Based Learning */}
+      <div class="relative max-w-5xl mx-auto">
         <div class="bg-gradient-to-r from-primary-500/10 to-accent-500/10 rounded-2xl p-8 border border-gray-200">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card hover padding="md">
+          <h2 class="heading-2 mb-8 text-center">Choose Your Learning Path</h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <Card hover padding="md" class="text-center cursor-pointer hover:scale-105 transition-transform">
               <CardHeader>
-                <CardTitle>Universal Cells</CardTitle>
+                <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl">👶</span>
+                </div>
+                <CardTitle class="text-lg">K-5</CardTitle>
               </CardHeader>
               <CardContent>
-                <p class="text-gray-600">Every cell can be any instance type—text, number, function, or AI agent.</p>
+                <p class="text-sm text-gray-600">Basic concepts through games</p>
               </CardContent>
             </Card>
 
-            <Card hover padding="md">
+            <Card hover padding="md" class="text-center cursor-pointer hover:scale-105 transition-transform">
               <CardHeader>
-                <CardTitle>Rate-Based Change</CardTitle>
+                <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl">🧒</span>
+                </div>
+                <CardTitle class="text-lg">6-8</CardTitle>
               </CardHeader>
               <CardContent>
-                <p class="text-gray-600">Dynamic systems with mathematical precision: x(t) = x₀ + ∫r(τ)dτ</p>
+                <p class="text-sm text-gray-600">Interactive learning</p>
               </CardContent>
             </Card>
 
-            <Card hover padding="md">
+            <Card hover padding="md" class="text-center cursor-pointer hover:scale-105 transition-transform">
               <CardHeader>
-                <CardTitle>Confidence Cascade</CardTitle>
+                <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl">👦</span>
+                </div>
+                <CardTitle class="text-lg">9-12</CardTitle>
               </CardHeader>
               <CardContent>
-                <p class="text-gray-600">Intelligent activation with deadband triggers for efficient computation.</p>
+                <p class="text-sm text-gray-600">Advanced concepts</p>
+              </CardContent>
+            </Card>
+
+            <Card hover padding="md" class="text-center cursor-pointer hover:scale-105 transition-transform">
+              <CardHeader>
+                <div class="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl">🎓</span>
+                </div>
+                <CardTitle class="text-lg">University</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-gray-600">Theoretical foundations</p>
+              </CardContent>
+            </Card>
+
+            <Card hover padding="md" class="text-center cursor-pointer hover:scale-105 transition-transform">
+              <CardHeader>
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl">💼</span>
+                </div>
+                <CardTitle class="text-lg">Professional</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-gray-600">Practical applications</p>
+              </CardContent>
+            </Card>
+
+            <Card hover padding="md" class="text-center cursor-pointer hover:scale-105 transition-transform">
+              <CardHeader>
+                <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl">🔬</span>
+                </div>
+                <CardTitle class="text-lg">Researcher</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-gray-600">Cutting-edge research</p>
               </CardContent>
             </Card>
           </div>
@@ -65,13 +118,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Learning Features Section -->
   <section class="section">
     <div class="container-wide">
       <div class="text-center mb-12">
-        <h2 class="heading-2 mb-4">Why SuperInstance?</h2>
+        <h2 class="heading-2 mb-4">Why Learn With Us?</h2>
         <p class="text-body max-w-3xl mx-auto">
-          POLLN (Pattern-Organized Large Language Network) combines spreadsheet simplicity with AI power.
+          Master cutting-edge AI and mathematics through interactive, age-appropriate learning experiences.
         </p>
       </div>
 
@@ -79,13 +132,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
         <Card hover padding="lg">
           <CardHeader>
             <div class="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center mb-4">
-              <span class="text-primary-600 font-bold">AI</span>
+              <span class="text-primary-600 font-bold">🎓</span>
             </div>
-            <CardTitle>AI-Powered Cells</CardTitle>
+            <CardTitle>Age-Appropriate Learning</CardTitle>
           </CardHeader>
           <CardContent>
             <p class="text-gray-600">
-              Transform any cell into an AI agent that learns from your patterns and automates repetitive tasks.
+              Content tailored for different age groups—from K-12 games to university-level theoretical foundations.
             </p>
           </CardContent>
         </Card>
@@ -93,13 +146,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
         <Card hover padding="lg">
           <CardHeader>
             <div class="w-12 h-12 rounded-lg bg-accent-100 flex items-center justify-center mb-4">
-              <span class="text-accent-600 font-bold">⟳</span>
+              <span class="text-accent-600 font-bold">🖱️</span>
             </div>
-            <CardTitle>Persistent Learning</CardTitle>
+            <CardTitle>Interactive Demos</CardTitle>
           </CardHeader>
           <CardContent>
             <p class="text-gray-600">
-              Unlike one-time AI tools, SuperInstance agents remember and improve over time, building institutional knowledge.
+              Hands-on learning with interactive demonstrations that let you experiment with concepts in real-time.
             </p>
           </CardContent>
         </Card>
@@ -107,13 +160,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
         <Card hover padding="lg">
           <CardHeader>
             <div class="w-12 h-12 rounded-lg bg-secondary-100 flex items-center justify-center mb-4">
-              <span class="text-secondary-600 font-bold">⚡</span>
+              <span class="text-secondary-600 font-bold">📚</span>
             </div>
-            <CardTitle>No Code Required</CardTitle>
+            <CardTitle>Three-Tier White Papers</CardTitle>
           </CardHeader>
           <CardContent>
             <p class="text-gray-600">
-              Work in familiar spreadsheet interfaces while getting AI superpowers. No programming knowledge needed.
+              Read research at your level: short summaries, full papers, or annotated versions with expert commentary.
             </p>
           </CardContent>
         </Card>
@@ -121,13 +174,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
         <Card hover padding="lg">
           <CardHeader>
             <div class="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center mb-4">
-              <span class="text-primary-600 font-bold">🔗</span>
+              <span class="text-primary-600 font-bold">🧩</span>
             </div>
-            <CardTitle>Real-Time Collaboration</CardTitle>
+            <CardTitle>Structured Learning Paths</CardTitle>
           </CardHeader>
           <CardContent>
             <p class="text-gray-600">
-              Multiple users can work together on the same spreadsheet with AI agents that learn from everyone.
+              Follow curated learning pathways that build knowledge progressively from basics to advanced topics.
             </p>
           </CardContent>
         </Card>
@@ -135,13 +188,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
         <Card hover padding="lg">
           <CardHeader>
             <div class="w-12 h-12 rounded-lg bg-accent-100 flex items-center justify-center mb-4">
-              <span class="text-accent-600 font-bold">📊</span>
+              <span class="text-accent-600 font-bold">🔬</span>
             </div>
-            <CardTitle>Advanced Analytics</CardTitle>
+            <CardTitle>Cutting-Edge Research</CardTitle>
           </CardHeader>
           <CardContent>
             <p class="text-gray-600">
-              Built-in predictive models, data visualization, and statistical analysis powered by geometric tensor mathematics.
+              Learn directly from research papers on geometric tensors, confidence cascades, and AI systems.
             </p>
           </CardContent>
         </Card>
@@ -149,13 +202,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
         <Card hover padding="lg">
           <CardHeader>
             <div class="w-12 h-12 rounded-lg bg-secondary-100 flex items-center justify-center mb-4">
-              <span class="text-secondary-600 font-bold">🛡️</span>
+              <span class="text-secondary-600 font-bold">👥</span>
             </div>
-            <CardTitle>Enterprise Security</CardTitle>
+            <CardTitle>Community Learning</CardTitle>
           </CardHeader>
           <CardContent>
             <p class="text-gray-600">
-              SOC 2 compliant, end-to-end encryption, and granular access controls for business-critical data.
+              Join a community of learners, ask questions, share insights, and collaborate on projects.
             </p>
           </CardContent>
         </Card>
@@ -163,39 +216,39 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
     </div>
   </section>
 
-  <!-- Use Cases Section -->
+  <!-- Learning Topics Section -->
   <section class="section bg-gray-50">
     <div class="container-wide">
       <div class="text-center mb-12">
-        <h2 class="heading-2 mb-4">Transform Your Workflow</h2>
+        <h2 class="heading-2 mb-4">Explore Learning Topics</h2>
         <p class="text-body max-w-3xl mx-auto">
-          SuperInstance excels in complex, repetitive tasks across industries.
+          Dive into advanced AI and mathematics concepts through structured learning materials.
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <Card hover padding="lg">
           <CardHeader>
-            <CardTitle>Financial Planning & Analysis</CardTitle>
-            <CardDescription>Automate monthly reporting, forecasting, and variance analysis</CardDescription>
+            <CardTitle>Geometric Tensor Mathematics</CardTitle>
+            <CardDescription>Master compass and straightedge construction mathematics</CardDescription>
           </CardHeader>
           <CardContent>
             <ul class="space-y-2 text-gray-600">
               <li class="flex items-center">
                 <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                Automated financial statement generation
+                Pythagorean prime number systems
               </li>
               <li class="flex items-center">
                 <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                Real-time budget vs actual tracking
+                Permutations, folds, and spin operations
               </li>
               <li class="flex items-center">
                 <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                Predictive cash flow modeling
+                Reality-bending SuperInstance concepts
               </li>
               <li class="flex items-center">
                 <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                Automated variance explanation
+                Little-data vs big-data paradigms
               </li>
             </ul>
           </CardContent>
@@ -203,30 +256,88 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
 
         <Card hover padding="lg">
           <CardHeader>
-            <CardTitle>Sales Operations</CardTitle>
-            <CardDescription>Streamline pipeline management and forecasting</CardDescription>
+            <CardTitle>AI Systems Architecture</CardTitle>
+            <CardDescription>Learn intelligent system design and implementation</CardDescription>
           </CardHeader>
           <CardContent>
             <ul class="space-y-2 text-gray-600">
               <li class="flex items-center">
                 <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
-                Automated lead scoring and prioritization
+                Confidence cascade deadband triggers
               </li>
               <li class="flex items-center">
                 <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
-                Real-time pipeline health monitoring
+                Rate-based change mechanics
               </li>
               <li class="flex items-center">
                 <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
-                Predictive revenue forecasting
+                Universal cell architecture
               </li>
               <li class="flex items-center">
                 <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
-                Automated commission calculations
+                SMPbot seed-model-prompt systems
               </li>
             </ul>
           </CardContent>
         </Card>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <Card hover padding="md">
+          <CardHeader>
+            <CardTitle>White Papers</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 mb-4">
+              Read research papers at three levels: short summaries, full papers, and annotated versions.
+            </p>
+            <Button variant="outline" className="w-full">Browse White Papers</Button>
+          </CardContent>
+        </Card>
+
+        <Card hover padding="md">
+          <CardHeader>
+            <CardTitle>Interactive Tutorials</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 mb-4">
+              Hands-on learning with code examples, exercises, and interactive demonstrations.
+            </p>
+            <Button variant="outline" className="w-full">Start Tutorials</Button>
+          </CardContent>
+        </Card>
+
+        <Card hover padding="md">
+          <CardHeader>
+            <CardTitle>Learning Pathways</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 mb-4">
+              Follow structured learning paths from beginner to advanced levels.
+            </p>
+            <Button variant="outline" className="w-full">Explore Pathways</Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section class="section bg-gray-900 text-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <h2 class="heading-2 mb-4">Try SuperInstance Now</h2>
+        <p class="text-xl opacity-90">
+          Experience AI-powered spreadsheet technology with our interactive demo
+        </p>
+      </div>
+
+      <SuperInstanceTutorial />
+
+      <div class="text-center mt-8">
+        <Button variant="secondary" href="/demos/spreadsheet" size="lg" className="bg-white text-gray-900">
+          Full Spreadsheet Demo
+        </Button>
       </div>
     </div>
   </section>
@@ -235,20 +346,23 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
   <section class="section">
     <div class="container-narrow text-center">
       <div class="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-12 text-white">
-        <h2 class="heading-2 mb-6">Ready to Transform Your Spreadsheets?</h2>
+        <h2 class="heading-2 mb-6">Ready to Start Learning?</h2>
         <p class="text-xl mb-8 opacity-90">
-          Join the future of spreadsheet automation. Start free, no credit card required.
+          Join thousands of students learning advanced AI and mathematics. Free for all learners.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="secondary" size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
-            Get Started Free
+          <Button variant="secondary" href="/demos/spreadsheet" size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
+            Try Interactive Demo
           </Button>
-          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-            Schedule a Demo
+          <Button variant="outline" href="/tutorials" size="lg" className="border-white text-white hover:bg-white/10">
+            Explore Tutorials
+          </Button>
+          <Button variant="outline" href="/white-papers" size="lg" className="border-white text-white hover:bg-white/10">
+            Read White Papers
           </Button>
         </div>
         <p class="text-sm opacity-75 mt-6">
-          Free plan includes 1000 AI cell operations per month
+          Completely free educational platform • No registration required • Open to all ages
         </p>
       </div>
     </div>
