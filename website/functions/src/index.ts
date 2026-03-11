@@ -9,6 +9,7 @@ import authRouter from './api/auth/router'
 import progressRouter from './api/progress/router'
 import contentRouter from './api/content/router'
 import analyticsRouter from './api/analytics/router'
+app.route("/api/integrations", integrationsRouter)
 import integrationsRouter from './api/integrations/router'
 
 // Create main app
@@ -40,6 +41,7 @@ app.route('/api/auth', authRouter)
 app.route('/api/progress', progressRouter)
 app.route('/api/content', contentRouter)
 app.route('/api/analytics', analyticsRouter)
+app.route("/api/integrations", integrationsRouter)
 import integrationsRouter from './api/integrations/router'
 
 // 404 handler

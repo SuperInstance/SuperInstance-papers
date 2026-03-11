@@ -1,0 +1,91 @@
+# KV namespacing configuration for SuperInstance integrations
+# Run with: npx wrangler kv:namespace create "USER_PREFERENCES"
+#           npx wrangler kv:namespace create "NEWSLETTER_CACHE" --preview
+#           npx wrangler kv:namespace create "GITHUB_CACHE"
+#           npx wrangler kv:namespace create "INTEGRATION_CACHE"
+
+[[kv_namespaces]]
+binding = "USER_PREFERENCES"
+preview_id = "user_preferences_preview"
+id = "user_preferences_production"
+
+[[kv_namespaces]]
+binding = "NEWSLETTER_CACHE"
+preview_id = "newsletter_cache_preview"
+id = "newsletter_cache_production"
+
+[[kv_namespaces]]
+binding = "GITHUB_CACHE"
+preview_id = "github_cache_preview"
+id = "github_cache_production"
+
+[[kv_namespaces]]
+binding = "INTEGRATION_CACHE"
+preview_id = "integration_cache_preview"
+id = "integration_cache_production"
+
+# D1 databases
+[[d1_databases]]
+binding = "DB"
+database_name = "superinstance-db"
+database_id = "db_id_placeholder"
+
+# KV resources
+[resource_binding.kv]
+type = "kv_namespace"
+
+[resource_binding.d1]
+type = "d1_database"
+
+# Environment-specific bindings
+[env.development]
+[[env.development.kv_namespaces]]
+binding = "USER_PREFERENCES"
+id = "user_preferences_dev"
+api_key = "dev_analytics_key"
+
+[[env.development.kv_namespaces]]
+binding = "NEWSLETTER_CACHE"
+id = "newsletter_cache_dev"
+
+[[env.development.kv_namespaces]]
+binding = "GITHUB_CACHE"
+id = "github_cache_dev"
+
+[[env.development.kv_namespaces]]
+binding = "INTEGRATION_CACHE"
+id = "integration_cache_dev"
+
+[env.staging]
+[[env.staging.kv_namespaces]]
+binding = "USER_PREFERENCES"
+id = "user_preferences_staging"
+
+[[env.staging.kv_namespaces]]
+binding = "NEWSLETTER_CACHE"
+id = "newsletter_cache_staging"
+
+[[env.staging.kv_namespaces]]
+binding = "GITHUB_CACHE"
+id = "github_cache_staging"
+
+[[env.staging.kv_namespaces]]
+binding = "INTEGRATION_CACHE"
+id = "integration_cache_staging"
+
+[env.production]
+[[env.production.kv_namespaces]]
+binding = "USER_PREFERENCES"
+id = "user_preferences_prod"
+
+[[env.production.kv_namespaces]]
+binding = "NEWSLETTER_CACHE"
+id = "newsletter_cache_prod"
+
+[[env.production.kv_namespaces]]
+binding = "GITHUB_CACHE"
+id = "github_cache_prod"
+
+[[env.production.kv_namespaces]]
+binding = "INTEGRATION_CACHE"
+id = "integration_cache_prod"
