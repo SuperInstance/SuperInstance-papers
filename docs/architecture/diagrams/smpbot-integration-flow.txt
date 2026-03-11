@@ -1,0 +1,339 @@
+SMPbot Integration Flow
+=======================
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    SMPbot + SuperInstance Integration                   │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐    │
+│  │   INPUT DATA    │     │    CONTEXT      │     │  DEPENDENCIES   │    │
+│  │                 │     │  (Type-based)   │     │  (Cell Graph)   │    │
+│  │ • User action   │     │                 │     │                 │    │
+│  │ • API call      │     │ • Cell type     │     │ • Other cells   │    │
+│  │ • Scheduled     │     │ • Current state │     │ • Their rates   │    │
+│  │   update        │     │ • Origin frame  │     │ • Confidence    │    │
+│  └────────┬────────┘     └────────┬────────┘     └────────┬────────┘    │
+│           │                        │                         │             │
+│           ▼                        ▼                         ▼             │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │                    TRIGGER EVALUATION                           │    │
+│  │                                                                   │    │
+│  │  ┌─────────────────────────────────────────────────────────────┐  │    │
+│  │  │                    DEADBAND CHECK                         │  │    │
+│  │  │                                                           │  │    │
+│  │  │  if (|change| > threshold × uncertainty) {              │  │    │
+│  │  │      if (stability > minStability) {                    │  │    │
+│  │  │          ACTIVATE SMPbot                                │  │    │
+│  │  │      }                                                    │  │    │
+│  │  │  }                                                        │  │    │
+│  │  └─────────────────────┬───────────────────────────────────┘  │    │
+│  │                        │                                       │    │
+│  └────────────────────────┼───────────────────────────────────────┘    │
+│                           │                                              │
+│                           ▼                                              │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │                    SMPbot ACTIVATION                            │    │
+│  │                                                                   │    │
+│  │  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐           │    │
+│  │  │     SEED     │ │    MODEL     │ │   PROMPT     │           │    │
+│  │  │              │ │              │ │              │           │    │
+│  │  │ • Domain     │ │ • Shared     │ │ • Dynamic    │           │    │
+│  │  │   knowledge  │ │   loading    │ │   template   │           │    │
+│  │  │ • Examples   │ │ • Cached     │ │ • Context    │           │    │
+│  │  │ • Rules      │ │   parameters │ │   variables  │           │    │
+│  │  │              │ │ • Version    │ │ • Examples   │           │    │
+│  │  │              │ │   control    │ │              │           │    │
+│  │  └──────┬───────┘ └──────┬───────┘ └──────┬───────┘           │    │
+│  │         │                │                │                    │    │
+│  │         ▼                ▼                ▼                    │    │
+│  │  ┌─────────────────────────────────────────────────────────┐  │    │
+│  │  │                  COMPOSE OPERATION                      │  │    │
+│  │  │                                                           │  │    │
+│  │  │  composed = seed + model + prompt                       │  │    │
+│  │  │  │                                                      │  │    │
+│  │  │  stability = calculateStability(seed, model, prompt)  │  │    │
+│  │  │  │                                                      │  │    │
+│  │  │  if (stability < threshold) {                         │  │    │
+│  │  │      adjustParameters()                                │  │    │
+│  │  │      retry()                                           │  │    │
+│  │  │  }                                                      │  │    │
+│  │  │                                                           │  │    │
+│  │  │  confidence = getConfidence(composed)                  │  │    │
+│  │  │                                                           │  │    │
+│  │  └──────────────────────┬──────────────────────────────┘  │    │
+│  │                          │                                 │    │
+│  └──────────────────────────┼─────────────────────────────────┘    │
+│                             │                                        │
+│                             ▼                                        │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │                    INFERENCE EXECUTION                          │    │
+│  │                                                                   │    │
+│  │  ┌─────────────────────────────────────────────────────────┐  │    │
+│  │  │                 MODEL EXECUTION                         │  │    │
+│  │  │                                                           │  │    │
+│  │  │  input = preprocess(input, seed, prompt)               │  │    │
+│  │  │  │                                                      │  │    │
+│  │  │  // Rate-based prediction                              │  │    │
+│  │  │  if (rate_of_change > threshold) {                     │  │    │
+│  │  │      prediction = predictFromRate()                    │  │    │
+│  │  │      input = merge(input, prediction)                  │  │    │
+│  │  │  }                                                      │  │    │
+│  │  │                                                           │  │    │
+│  │  │  output = model.predict(input, seed, prompt)           │  │    │
+│  │  │                                                           │  │    │
+│  │  │  output = postprocess(output, seed, prompt)             │  │    │
+│  │  │                                                           │  │    │
+│  │  │  uncertainty = estimateUncertainty(output)              │  │    │
+│  │  │                                                           │  │    │
+│  │  └──────────────────────┬────────────────────────────────┘  │    │
+│  │                          │                                 │    │
+│  │  ┌───────────────────────▼───────────────────────────────┐  │    │
+│  │  │                STABILITY VALIDATION                     │  │    │
+│  │  │                                                           │  │    │
+│  │  │  stability = calculateStabilityMetrics(output)         │  │    │
+│  │  │  │                                                      │  │    │
+│  │  │  if (stability < minStability) {                       │  │    │
+│  │  │      // Apply stability constraints                    │  │    │
+│  │  │      output = applyStabilityConstraints(output)        │  │    │
+│  │  │                                                        │  │    │
+│  │  │      // Re-validate                                    │  │    │
+│  │  │      stability = calculateStabilityMetrics(output)    │  │    │
+│  │  │  }                                                      │  │    │
+│  │  │                                                           │  │    │
+│  │  │  if (stability still < minStability) {                 │  │    │
+│  │  │      flagTransitionToHigherLevel()                     │  │    │
+│  │  │  }                                                      │  │    │
+│  │  │                                                           │  │    │
+│  │  └──────────────────────┬──────────────────────────────┘  │    │
+│  │                          │                                 │    │
+│  └──────────────────────────┼─────────────────────────────────┘    │
+│                             │                                        │
+│                             ▼                                        │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │                    OUTPUT PROCESSING                            │    │
+│  │                                                                   │    │
+│  │  ┌─────────────────────────────────────────────────────────┐  │    │
+│  │  │              RATE-BASED smoothing                        │  │    │
+│  │  │                                                           │  │    │
+│  │  │  // Integrate with cell's rate tracking                 │  │    │
+│  │  │  rate = calculateOutputRate(output)                     │  │    │
+│  │  │  │                                                      │  │    │
+│  │  │  acceleration = calculateOutputAcceleration(rate)      │  │    │
+│  │  │  │                                                      │  │    │
+│  │  │  // Update rate history                                │  │    │
+│  │  │  this.rateHistory.add({                                │  │    │
+│  │  │      timestamp: now(),                                  │  │    │
+│  │  │      rate: rate,                                        │  │    │
+│  │  │      acceleration: acceleration,                        │  │    │
+│  │  │      output: output                                     │  │    │
+│  │  │  })                                                     │  │    │
+│  │  │                                                           │  │    │
+│  │  │  // Apply rate-based smoothing if needed               │  │    │
+│  │  │  if (acceleration > threshold) {                       │  │    │
+│  │  │      output = smoothWithRate(output, rate)             │  │    │
+│  │  │  }                                                      │  │    │
+│  │  │                                                           │  │    │
+│  │  └──────────────────────┬──────────────────────────────┘  │    │
+│  │                          │                                 │    │
+│  │  ┌───────────────────────▼───────────────────────────────┐  │    │
+│  │  │            CONFIDENCE CASCADE UPDATE                   │  │    │
+│  │  │                                                           │  │    │
+│  │  │  // Update cell confidence                              │  │    │
+│  │  │  this.confidence = stability * (1 - uncertainty)       │  │    │
+│  │  │  │                                                      │  │    │
+│  │  │  // Propagate to dependents                           │  │    │
+│  │  │  this.dependents.forEach(dep => {                      │  │    │
+│  │  │      dep.receiveConfidenceUpdate({                      │  │    │
+│  │  │          source: this.id,                               │  │    │
+│  │  │          confidence: this.confidence,                   │  │    │
+│  │  │          uncertainty: uncertainty                       │  │    │
+│  │  │      })                                                 │  │    │
+│  │  │  })                                                     │  │    │
+│  │  │                                                           │  │    │
+│  │  │  // Trigger dependent cells if needed                   │  │    │
+│  │  │  if (this.confidenceChange > threshold) {               │  │    │
+│  │  │      this.notifyDependents()                            │  │    │
+│  │  │  }                                                      │  │    │
+│  │  │                                                           │  │    │
+│  │  └──────────────────────┬──────────────────────────────┘  │    │
+│  │                          │                                 │    │
+│  └──────────────────────────┼─────────────────────────────────┘    │
+│                             │                                        │
+│                             ▼                                        │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │                    FEDERATION SYNC (Optional)                   │    │
+│  │                                                                   │    │
+│  │  // If cell is part of federation                               │    │
+│  │  if (this.federationEnabled) {                                │    │
+│  │                                                                 │    │
+│  │      // Convert to relative coordinates                        │    │
+│  │      relativeOutput = this.convertToFederationFrame(output)  │    │
+│  │                                                                 │    │
+│  │      // Share with federation                                  │    │
+│  │      this.federation.share({                                  │    │
+│  │          cellId: this.id,                                      │    │
+│  │          output: relativeOutput,                               │    │
+│  │          confidence: this.confidence,                          │    │
+│  │          rate: rate,                                           │    │
+│  │          uncertainty: uncertainty                              │    │
+│  │      })                                                        │    │
+│  │  }                                                             │    │
+│  │                                                                   │    │
+│  └────┬───────────────────────────────────────────────────────────┘    │
+│       │                                                              │
+│       ▼                                                              │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │                    FINAL OUTPUT                                 │    │
+│  │                                                                   │    │
+│  │  return {                                                         │    │
+│  │      value: output,                                              │    │
+│  │      confidence: this.confidence,                                │    │
+│  │      uncertainty: uncertainty,                                   │    │
+│  │      rate: rate,                                                 │    │
+│  │      acceleration: acceleration,                                 │    │
+│  │      stability: overallStability,                                │    │
+│  │      timestamp: now()                                            │    │
+│  │  }                                                               │    │
+│  │                                                                   │    │
+│  └───────────────────────────────────────────────────────────────────┘    │
+│                                                                   │
+└───────────────────────────────────────────────────────────────────┘
+
+Cascade Levels:
+===============
+
+Level 1: Tiny Agents (Fast Response)
+--------------------------------------
+┌─────────────────────────────────────────────────────────┐
+│              TINY AGENT ACTIVATION                      │
+│                                                         │
+│  When: - Small change detected                        │
+│         - High confidence in input                    │
+│         - Previous similar patterns                    │
+│                                                         │
+│  Actions: - Local heuristics                          │
+│          - Cached responses                           │
+│          - Simple transformations                     │
+│          - Fast feedback (< 10ms)                     │
+│                                                         │
+│  Resources: - Minimal CPU                             │
+│            - No external calls                        │
+│            - Local memory only                        │
+│                                                         │
+│  Examples: - Format conversion                        │
+│          - Validation                                 │
+│          - Simple calculations                        │
+└─────────────────────────────────────────────────────────┘
+
+Level 2: Domain Specialists (Focused Intelligence)
+--------------------------------------------------
+┌─────────────────────────────────────────────────────────┐
+│           DOMAIN SPECIALIST ACTIVATION                  │
+│                                                         │
+│  When: - Medium complexity                            │
+│         - Domain-specific patterns                    │
+│         - Level 1 insufficient                        │
+│                                                         │
+│  Actions: - Domain models                             │
+│          - Pattern matching                           │
+│          - Rule-based reasoning                       │
+│          - External API calls                         │
+│                                                         │
+│  Models: - Finetuned specialized models               │
+│          - Knowledge graphs                            │
+│          - Rule engines                                │
+│                                                         │
+│  Response time: 10ms - 100ms                          │
+└─────────────────────────────────────────────────────────┘
+
+Level 3: Distilled LLM (Comprehensive Analysis)
+-----------------------------------------------
+┌─────────────────────────────────────────────────────────┐
+│            DISTILLED LLM ACTIVATION                     │
+│                                                         │
+│  When: - High complexity                               │
+│         - Novel situations                             │
+│         - Lower levels failed                          │
+│         - Critical decisions                           │
+│                                                         │
+│  Actions: - Full reasoning                             │
+│          - Creative solutions                          │
+│          - Complex analysis                            │
+│          - Multi-step planning                         │
+│                                                         │
+│  Models: - Distilled LLM (faster than full)           │
+│          - Reasoning modules                           │
+│          - Planning systems                            │
+│                                                         │
+│  Response time: 100ms - 1s                            │
+└─────────────────────────────────────────────────────────┘
+
+Stability Metrics:
+==================
+
+┌─────────────────────────────────────────────────────────┐
+│               STABILITY CALCULATION                      │
+│                                                         │
+│  σ = 1 - variance(predictions) / max_variance          │
+│                                                         │
+│  Components:                                           │
+│  • Output variance across model runs                   │
+│  • Confidence consistency                              │
+│  • Temporal stability (rate of drift)                  │
+│  • Input sensitivity                                   │
+│  • Composition penalty (when chaining)                 │
+│                                                         │
+│  Thresholds:                                           │
+│  • σ > 0.9: High stability (green)                    │
+│  • σ > 0.7: Medium stability (yellow)                 │
+│  • σ < 0.7: Low stability (red)                       │
+│                                                         │
+│  Actions based on stability:                           │
+│  • High: Proceed normally                              │
+│  • Medium: Add monitoring                             │
+│  • Low: Apply constraints or escalate                 │
+└─────────────────────────────────────────────────────────┘
+
+Error Recovery:
+===============
+
+1. Stability Failure
+   → Apply constraints
+   → Re-evaluate with adjusted parameters
+   → Escalate to human if needed
+
+2. Model Unavailable
+   → Use cached prediction
+   → Fallback to simpler model
+   → Defer execution
+
+3. Rate Limit Exceeded
+   → Queue request
+   → Reduce frequency
+   → Use batch processing
+
+4. Confidence Too Low
+   → Request more context
+   → Consult dependencies
+   → Mark as uncertain
+
+Monitoring Points:
+==================
+
+□ Pre-activation: Input validation, deadband check
+□ During execution: Stability tracking, resource usage
+□ Post-execution: Output validation, confidence update
+□ Cascade: Dependency notification, federation sync
+□ Long-term: Rate history, prediction accuracy, drift detection
+
+Performance Targets:
+====================
+
+• Deadband check: < 1ms
+• Level 1 activation: < 10ms
+• Level 2 activation: < 100ms
+• Level 3 activation: < 1s
+• Stability calculation: < 10ms
+• Confidence propagation: < 50ms
+• Federation sync: < 200ms
+• Overall P99 latency: < 2s
