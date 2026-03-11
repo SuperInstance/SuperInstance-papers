@@ -1,0 +1,66 @@
+# Cloudflare Pages Configuration for SuperInstance Website
+# Configuration for superinstance.ai deployment
+
+name = "superinstance-website"
+compatibility_date = "2026-03-11"
+main = "./dist"
+pages_build_output_dir = "./dist"
+
+# Production environment (superinstance.ai)
+[env.production]
+zone_id = "${CLOUDFLARE_ZONE_ID}"
+account_id = "${CLOUDFLARE_ACCOUNT_ID}"
+route = "superinstance.ai/*"
+custom_domain = "superinstance.ai"
+
+# Staging environment (staging.superinstance.ai)
+[env.staging]
+zone_id = "${CLOUDFLARE_ZONE_ID}"
+account_id = "${CLOUDFLARE_ACCOUNT_ID}"
+route = "staging.superinstance.ai/*"
+custom_domain = "staging.superinstance.ai"
+
+# Preview deployments (PR previews)
+[env.preview]
+zone_id = "${CLOUDFLARE_ZONE_ID}"
+account_id = "${CLOUDFLARE_ACCOUNT_ID}"
+
+# Build configuration
+[build]
+command = "npm run build"
+output_dir = "./dist"
+
+# Environment variables (set via Cloudflare dashboard or GitHub Secrets)
+[vars]
+NODE_ENV = "production"
+SITE_URL = "https://superinstance.ai"
+API_BASE_URL = "https://api.superinstance.ai"
+ANALYTICS_ID = "${ANALYTICS_ID}"
+
+# Analytics configuration
+[analytics]
+enabled = true
+
+# Cache configuration
+[cache]
+browser_ttl = 3600
+edge_ttl = 7200
+
+# Security headers
+[headers]
+"X-Frame-Options" = "DENY"
+"X-Content-Type-Options" = "nosniff"
+"Referrer-Policy" = "strict-origin-when-cross-origin"
+"Permissions-Policy" = "camera=(), microphone=(), geolocation=()"
+"Content-Security-Policy" = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://api.superinstance.ai;"
+
+# Redirects (if needed)
+[[redirects]]
+from = "https://polln.ai"
+to = "https://superinstance.ai"
+status = 301
+
+[[redirects]]
+from = "https://www.superinstance.ai"
+to = "https://superinstance.ai"
+status = 301

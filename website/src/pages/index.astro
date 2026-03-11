@@ -1,0 +1,256 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
+---
+
+<BaseLayout title="SuperInstance.AI - Spreadsheet AI That Learns">
+  <!-- Hero Section -->
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container-narrow text-center">
+      <div class="animate-fade-in">
+        <h1 class="heading-1 mb-6">
+          Spreadsheet AI
+          <span class="block text-primary-600">That Learns</span>
+        </h1>
+
+        <p class="text-body max-w-2xl mx-auto mb-10">
+          Turn spreadsheet repetition into reusable AI agents with POLLN technology.
+          Unlike one-shot AI tools, SuperInstance builds permanent automation that learns your work.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <Button variant="primary" size="lg" className="sm:w-auto">
+            Get Started Free
+          </Button>
+          <Button variant="outline" size="lg" className="sm:w-auto">
+            Watch Demo
+          </Button>
+        </div>
+      </div>
+
+      {/* Hero Visual */}
+      <div class="relative max-w-4xl mx-auto">
+        <div class="bg-gradient-to-r from-primary-500/10 to-accent-500/10 rounded-2xl p-8 border border-gray-200">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card hover padding="md">
+              <CardHeader>
+                <CardTitle>Universal Cells</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-gray-600">Every cell can be any instance type—text, number, function, or AI agent.</p>
+              </CardContent>
+            </Card>
+
+            <Card hover padding="md">
+              <CardHeader>
+                <CardTitle>Rate-Based Change</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-gray-600">Dynamic systems with mathematical precision: x(t) = x₀ + ∫r(τ)dτ</p>
+              </CardContent>
+            </Card>
+
+            <Card hover padding="md">
+              <CardHeader>
+                <CardTitle>Confidence Cascade</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-gray-600">Intelligent activation with deadband triggers for efficient computation.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Why SuperInstance?</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          POLLN (Pattern-Organized Large Language Network) combines spreadsheet simplicity with AI power.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center mb-4">
+              <span class="text-primary-600 font-bold">AI</span>
+            </div>
+            <CardTitle>AI-Powered Cells</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Transform any cell into an AI agent that learns from your patterns and automates repetitive tasks.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-accent-100 flex items-center justify-center mb-4">
+              <span class="text-accent-600 font-bold">⟳</span>
+            </div>
+            <CardTitle>Persistent Learning</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Unlike one-time AI tools, SuperInstance agents remember and improve over time, building institutional knowledge.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-secondary-100 flex items-center justify-center mb-4">
+              <span class="text-secondary-600 font-bold">⚡</span>
+            </div>
+            <CardTitle>No Code Required</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Work in familiar spreadsheet interfaces while getting AI superpowers. No programming knowledge needed.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center mb-4">
+              <span class="text-primary-600 font-bold">🔗</span>
+            </div>
+            <CardTitle>Real-Time Collaboration</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Multiple users can work together on the same spreadsheet with AI agents that learn from everyone.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-accent-100 flex items-center justify-center mb-4">
+              <span class="text-accent-600 font-bold">📊</span>
+            </div>
+            <CardTitle>Advanced Analytics</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Built-in predictive models, data visualization, and statistical analysis powered by geometric tensor mathematics.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-secondary-100 flex items-center justify-center mb-4">
+              <span class="text-secondary-600 font-bold">🛡️</span>
+            </div>
+            <CardTitle>Enterprise Security</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              SOC 2 compliant, end-to-end encryption, and granular access controls for business-critical data.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section class="section bg-gray-50">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Transform Your Workflow</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          SuperInstance excels in complex, repetitive tasks across industries.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Card hover padding="lg">
+          <CardHeader>
+            <CardTitle>Financial Planning & Analysis</CardTitle>
+            <CardDescription>Automate monthly reporting, forecasting, and variance analysis</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                Automated financial statement generation
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                Real-time budget vs actual tracking
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                Predictive cash flow modeling
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                Automated variance explanation
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <Card hover padding="lg">
+          <CardHeader>
+            <CardTitle>Sales Operations</CardTitle>
+            <CardDescription>Streamline pipeline management and forecasting</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                Automated lead scoring and prioritization
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                Real-time pipeline health monitoring
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                Predictive revenue forecasting
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                Automated commission calculations
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container-narrow text-center">
+      <div class="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-12 text-white">
+        <h2 class="heading-2 mb-6">Ready to Transform Your Spreadsheets?</h2>
+        <p class="text-xl mb-8 opacity-90">
+          Join the future of spreadsheet automation. Start free, no credit card required.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="secondary" size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
+            Get Started Free
+          </Button>
+          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+            Schedule a Demo
+          </Button>
+        </div>
+        <p class="text-sm opacity-75 mt-6">
+          Free plan includes 1000 AI cell operations per month
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
