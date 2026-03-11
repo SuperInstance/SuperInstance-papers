@@ -525,6 +525,11 @@ export abstract class BaseSuperInstance implements SuperInstance {
     enabled: true
   };
 
+  // Performance optimization: Cache for rate calculations
+  private rateCalculationCache = new Map<string, { value: any; timestamp: number; rate: number }>();
+  private lastRateUpdate: number = 0;
+  private rateUpdateDebounceThreshold: number = 100; // ms
+
   constructor(config: {
     id: string;
     type: InstanceType;
@@ -611,8 +616,36 @@ export abstract class BaseSuperInstance implements SuperInstance {
     }
   }
 
-  // Rate-based state management
+  // Rate-based state management with performance optimizations
   updateRateState(newValue: any, timestamp: number = Date.now()): void {
+    // Debounce frequent updates
+    const now = Date.now();
+    if (now - this.lastRateUpdate < this.rateUpdateDebounceThreshold) {
+      return;
+    }
+    this.lastRateUpdate = now;
+
+    // Check cache for identical values
+    const cacheKey = JSON.stringify(newValue);
+    const cached = this.rateCalculationCache.get(cacheKey);
+    if (cached && now - cached.timestamp < 1000) {
+      // Use cached rate calculation for identical values within 1 second
+      if (this.rateState) {
+        this.rateState = {
+          currentValue: newValue,
+          rateOfChange: {
+            value: cached.rate,
+            acceleration: this.rateState.rateOfChange.acceleration,
+            timestamp,
+            confidence: this.rateState.rateOfChange.confidence
+          },
+          lastUpdate: timestamp,
+          predictState: this.rateState.predictState
+        };
+      }
+      return;
+    }
+
     if (!this.rateState) {
       // Initialize rate state
       this.rateState = {
@@ -623,8 +656,32 @@ export abstract class BaseSuperInstance implements SuperInstance {
           timestamp,
           confidence: 1.0
         },
-        lastUpdate: timestamp
+        lastUpdate: timestamp,
+        predictState: (atTime: number) => {
+          if (!this.rateState) return newValue;
+          const dt = (atTime - this.rateState.lastUpdate) / 1000;
+          if (dt <= 0) return this.rateState.currentValue;
+
+          if (typeof this.rateState.currentValue === 'number') {
+            return this.rateState.currentValue + this.rateState.rateOfChange.value * dt;
+          }
+          return this.rateState.currentValue;
+        }
       };
+
+      // Cache the initial rate
+      this.rateCalculationCache.set(cacheKey, {
+        value: newValue,
+        timestamp,
+        rate: 0
+      });
+
+      // Limit cache size
+      if (this.rateCalculationCache.size > 100) {
+        const firstKey = this.rateCalculationCache.keys().next().value;
+        this.rateCalculationCache.delete(firstKey);
+      }
+
       return;
     }
 
@@ -653,8 +710,31 @@ export abstract class BaseSuperInstance implements SuperInstance {
         timestamp,
         confidence: this.calculateRateConfidence(oldValue, newValue, dt)
       },
-      lastUpdate: timestamp
+      lastUpdate: timestamp,
+      predictState: (atTime: number) => {
+        if (!this.rateState) return newValue;
+        const dt = (atTime - this.rateState.lastUpdate) / 1000;
+        if (dt <= 0) return this.rateState.currentValue;
+
+        if (typeof this.rateState.currentValue === 'number') {
+          return this.rateState.currentValue + this.rateState.rateOfChange.value * dt;
+        }
+        return this.rateState.currentValue;
+      }
     };
+
+    // Cache the calculation
+    this.rateCalculationCache.set(cacheKey, {
+      value: newValue,
+      timestamp,
+      rate: newRate
+    });
+
+    // Limit cache size
+    if (this.rateCalculationCache.size > 100) {
+      const firstKey = this.rateCalculationCache.keys().next().value;
+      this.rateCalculationCache.delete(firstKey);
+    }
 
     // Check deadband trigger
     this.checkDeadbandTrigger(oldValue, newValue);

@@ -1,0 +1,307 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Button } from '../../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/Card';
+---
+
+<BaseLayout title="Blog - SuperInstance.AI">
+  <!-- Hero Section -->
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container-narrow text-center">
+      <div class="animate-fade-in">
+        <h1 class="heading-1 mb-6">
+          SuperInstance
+          <span class="block text-primary-600">Blog</span>
+        </h1>
+
+        <p class="text-body max-w-2xl mx-auto mb-10">
+          Insights, tutorials, and news about AI-powered spreadsheet automation.
+          Learn how teams are transforming their work with POLLN technology.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <Button variant="primary" size="lg" className="sm:w-auto">
+            Subscribe to Updates
+          </Button>
+          <Button variant="outline" size="lg" className="sm:w-auto">
+            View All Categories
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Articles -->
+  <section class="section">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Featured Articles</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          Start with our most popular articles about SuperInstance technology and applications.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <!-- Featured Article 1 -->
+        <Card hover padding="lg" className="lg:col-span-2">
+          <div class="h-64 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg mb-6"></div>
+          <CardHeader>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span class="bg-primary-100 text-primary-800 px-2 py-1 rounded mr-3">Featured</span>
+              <span>March 10, 2026</span>
+              <span class="mx-2">•</span>
+              <span>10 min read</span>
+            </div>
+            <CardTitle>The Future of Spreadsheets: AI That Learns</CardTitle>
+            <CardDescription>
+              How POLLN technology is transforming spreadsheet work from repetitive tasks to intelligent automation.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 mb-4">
+              Traditional spreadsheets are static tools that require constant manual updates.
+              SuperInstance introduces persistent learning AI that remembers your work patterns
+              and creates permanent automation. Learn how this shift changes everything from
+              financial reporting to sales operations.
+            </p>
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-gray-200 mr-3"></div>
+              <div>
+                <div class="font-medium">Alex Chen</div>
+                <div class="text-sm text-gray-500">Head of Product</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Featured Article 2 -->
+        <Card hover padding="lg">
+          <div class="h-48 bg-gradient-to-r from-secondary-500 to-primary-500 rounded-lg mb-6"></div>
+          <CardHeader>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span>March 8, 2026</span>
+              <span class="mx-2">•</span>
+              <span>7 min read</span>
+            </div>
+            <CardTitle>Confidence Cascade Explained</CardTitle>
+            <CardDescription>
+              Understanding the intelligent activation system that prevents AI hallucinations.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 mb-4">
+              How SuperInstance's confidence cascade ensures AI only activates when highly certain,
+              reducing errors by 95% while learning from corrections.
+            </p>
+            <div class="flex items-center">
+              <div class="w-8 h-8 rounded-full bg-gray-200 mr-2"></div>
+              <div class="text-sm font-medium">Dr. Maria Rodriguez</div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Article Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Article 1 -->
+        <Card hover padding="lg">
+          <div class="h-40 bg-gradient-to-r from-accent-500 to-primary-500 rounded-lg mb-6"></div>
+          <CardHeader>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span>March 5, 2026</span>
+              <span class="mx-2">•</span>
+              <span>8 min read</span>
+            </div>
+            <CardTitle>Universal Cells: Any Task in Any Cell</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 text-sm mb-4">
+              Explore how SuperInstance's universal cell architecture allows any spreadsheet cell
+              to become an AI agent, formula calculator, or data analyzer.
+            </p>
+            <a href="/blog/universal-cells" class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+              Read Article →
+            </a>
+          </CardContent>
+        </Card>
+
+        <!-- Article 2 -->
+        <Card hover padding="lg">
+          <div class="h-40 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg mb-6"></div>
+          <CardHeader>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span>March 3, 2026</span>
+              <span class="mx-2">•</span>
+              <span>12 min read</span>
+            </div>
+            <CardTitle>Case Study: 80% Faster Financial Reporting</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 text-sm mb-4">
+              How a Fortune 500 company used SuperInstance to automate monthly financial reporting,
+              reducing 40-hour processes to 8 hours.
+            </p>
+            <a href="/blog/financial-reporting-case-study" class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+              Read Article →
+            </a>
+          </CardContent>
+        </Card>
+
+        <!-- Article 3 -->
+        <Card hover padding="lg">
+          <div class="h-40 bg-gradient-to-r from-secondary-500 to-accent-500 rounded-lg mb-6"></div>
+          <CardHeader>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span>February 28, 2026</span>
+              <span class="mx-2">•</span>
+              <span>6 min read</span>
+            </div>
+            <CardTitle>Getting Started with SuperInstance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 text-sm mb-4">
+              A step-by-step guide to creating your first AI-powered spreadsheet automation
+              in under 5 minutes.
+            </p>
+            <a href="/blog/getting-started-guide" class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+              Read Article →
+            </a>
+          </CardContent>
+        </Card>
+
+        <!-- Article 4 -->
+        <Card hover padding="lg">
+          <div class="h-40 bg-gradient-to-r from-accent-500 to-secondary-500 rounded-lg mb-6"></div>
+          <CardHeader>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span>February 25, 2026</span>
+              <span class="mx-2">•</span>
+              <span>15 min read</span>
+            </div>
+            <CardTitle>The Mathematics of Rate-Based Change</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 text-sm mb-4">
+              Deep dive into the mathematical foundations of SuperInstance's rate-based change
+              mechanics: x(t) = x₀ + ∫r(τ)dτ.
+            </p>
+            <a href="/blog/rate-based-change-mathematics" class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+              Read Article →
+            </a>
+          </CardContent>
+        </Card>
+
+        <!-- Article 5 -->
+        <Card hover padding="lg">
+          <div class="h-40 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg mb-6"></div>
+          <CardHeader>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span>February 22, 2026</span>
+              <span class="mx-2">•</span>
+              <span>9 min read</span>
+            </div>
+            <CardTitle>Team Collaboration with AI Agents</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 text-sm mb-4">
+              How multiple users can work together on AI-powered spreadsheets, with agents
+              that learn from everyone's patterns.
+            </p>
+            <a href="/blog/team-collaboration" class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+              Read Article →
+            </a>
+          </CardContent>
+        </Card>
+
+        <!-- Article 6 -->
+        <Card hover padding="lg">
+          <div class="h-40 bg-gradient-to-r from-secondary-500 to-primary-500 rounded-lg mb-6"></div>
+          <CardHeader>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span>February 20, 2026</span>
+              <span class="mx-2">•</span>
+              <span>11 min read</span>
+            </div>
+            <CardTitle>Comparing Spreadsheet AI Solutions</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 text-sm mb-4">
+              An objective comparison of SuperInstance vs. Microsoft Copilot, Google Sheets AI,
+              and traditional automation tools.
+            </p>
+            <a href="/blog/ai-comparison" class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+              Read Article →
+            </a>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="section bg-gray-50">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Browse by Category</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          Explore articles organized by topic and expertise level.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <a href="/blog/category/tutorials" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+          <div class="text-3xl mb-3">🎓</div>
+          <div class="font-semibold mb-1">Tutorials</div>
+          <div class="text-sm text-gray-500">Step-by-step guides</div>
+        </a>
+
+        <a href="/blog/category/case-studies" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+          <div class="text-3xl mb-3">📊</div>
+          <div class="font-semibold mb-1">Case Studies</div>
+          <div class="text-sm text-gray-500">Real-world examples</div>
+        </a>
+
+        <a href="/blog/category/technology" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+          <div class="text-3xl mb-3">⚙️</div>
+          <div class="font-semibold mb-1">Technology</div>
+          <div class="text-sm text-gray-500">Deep technical insights</div>
+        </a>
+
+        <a href="/blog/category/industry" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+          <div class="text-3xl mb-3">🏢</div>
+          <div class="font-semibold mb-1">Industry</div>
+          <div class="text-sm text-gray-500">Sector-specific applications</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="section">
+    <div class="container-narrow text-center">
+      <div class="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-12 text-white">
+        <h2 class="heading-2 mb-6">Stay Updated</h2>
+        <p class="text-xl mb-8 opacity-90">
+          Subscribe to our newsletter for the latest articles, product updates,
+          and spreadsheet automation tips.
+        </p>
+        <form class="max-w-md mx-auto">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              placeholder="Your email address"
+              class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+              required
+            />
+            <Button type="submit" variant="secondary" className="bg-white text-gray-900 hover:bg-gray-100">
+              Subscribe
+            </Button>
+          </div>
+          <p class="text-sm opacity-75 mt-4">
+            No spam, unsubscribe anytime. Read our <a href="/privacy" class="underline">Privacy Policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

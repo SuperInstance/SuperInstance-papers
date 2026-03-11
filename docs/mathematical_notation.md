@@ -251,35 +251,73 @@
 
 ## 6. Geometric Tensor Notation
 
-### 6.1 Pythagorean Geometry
+### 6.1 LOG Tensors (Ledger-Orienting-Graph)
+
+| Symbol | Meaning | Example |
+|--------|---------|---------|
+| $T = (A, G, \mathcal{M}, \nabla)$ | LOG tensor | $T$: data array $A$, graph $G$, metric $\mathcal{M}$, connection $\nabla$ |
+| $G = (V, E, w)$ | Underlying graph | $V$: vertices, $E$: edges, $w$: weights |
+| $\mathcal{M}: V \to \text{SO}(n)$ | Metric assignment | $\mathcal{M}_v$: metric at vertex $v$ |
+| $\nabla: E \to \text{GL}(n)$ | Connection assignment | $\nabla_e$: parallel transport along edge $e$ |
+| $\bullet_G$ | Geometric contraction | $T_1 \bullet_G T_2$: contraction respecting graph $G$ |
+| $\text{geom-cons}(T)$ | Geometric consistency | Measure 0-1 of Definition 1.2 satisfaction |
+
+### 6.2 Pythagorean Geometry
 
 | Symbol | Meaning | Example |
 |--------|---------|---------|
 | $(a,b,c)$ | Pythagorean triple | $3^2 + 4^2 = 5^2$ |
-| $\theta$ | Angle in right triangle | $\theta = \arcsin(a/c)$ |
-| $m, n$ | Generator parameters | $a = m^2 - n^2$, $b = 2mn$ |
-| $\mathcal{P}$ | Set of Pythagorean triples | $(3,4,5) \in \mathcal{P}$ |
+| $(a_1,\ldots,a_n,c)$ | nD Pythagorean tuple | $\sum a_i^2 = c^2$ |
+| $\theta_{a,b,c}$ | Pythagorean angle | $\theta_{3,4,5} \approx 36.87^\circ$ |
+| $\Theta_P$ | Set of Pythagorean angles | $\{\theta_{3,4,5}, \theta_{5,12,13}, \ldots\}$ |
+| $\mathcal{P}_n$ | Set of nD Pythagorean tuples | $(1,2,2,3) \in \mathcal{P}_3$ |
+| $S^{n-1} \cap \mathbb{Q}^n$ | Rational points on n-sphere | Pythagorean tuples up to scaling |
 
-### 6.2 Tensors and Transformations
+### 6.3 Tensors and Transformations
 
 | Symbol | Meaning | Example |
 |--------|---------|---------|
 | $\mathbf{T}$ | Tensor | $\mathbf{T} \in \mathbb{R}^{n_1 \times \cdots \times n_k}$ |
 | $\|\mathbf{T}\|$ | Tensor norm | Frobenius norm |
-| $R \in SO(n)$ | Rotation matrix | $R^\top R = I$ |
+| $R \in SO(n)$ | Rotation matrix | $R^\top R = I$, $\det(R) = 1$ |
 | $O(n)$ | Orthogonal group | $O(n) = \{R: R^\top R = I\}$ |
-| $SO(n)$ | Special orthogonal group | $\det(R) = 1$ |
+| $SO(n)$ | Special orthogonal group | $SO(n) = \{R \in O(n): \det(R) = 1\}$ |
+| $SE(n)$ | Special Euclidean group | $SE(n) = SO(n) \ltimes \mathbb{R}^n$ |
 | $\otimes$ | Tensor product | $\mathbf{u} \otimes \mathbf{v}$ |
 | $\odot$ | Hadamard (element-wise) product | |
+| $\oplus$ | Direct sum | $V \oplus W$ |
 
-### 6.3 Wigner-D Harmonics
+### 6.4 Wigner-D Harmonics and Representation Theory
 
 | Symbol | Meaning | Example |
 |--------|---------|---------|
-| $D^j_{mn}(R)$ | Wigner-D matrix element | $j$ = order |
-| $Y^m_l(\theta,\phi)$ | Spherical harmonic | |
-| $SO(3)$ | 3D rotation group | |
-| $\mathfrak{so}(3)$ | Lie algebra of $SO(3)$ | |
+| $D^j_{mm'}(R)$ | Wigner-D matrix element | $j \in \frac{1}{2}\mathbb{Z}_{\geq 0}$, $m,m' \in \{-j,\ldots,j\}$ |
+| $D^j_{mm'}(\alpha,\beta,\gamma)$ | Wigner-D in Euler angles | $\alpha,\beta,\gamma$: Euler angles |
+| $Y^m_l(\theta,\phi)$ | Spherical harmonic | Degree $l$, order $m$ |
+| $\rho_j: SO(3) \to \text{GL}(2j+1)$ | Spin-$j$ representation | $\rho_j(R)$ acts on rank-$2j$ symmetric traceless tensors |
+| $T^{(j)}_m$ | Spherical tensor operator | Rank $2j$, component $m$ |
+| $[j]$ | Irreducible representation | Notation for spin-$j$ irrep of $SO(3)$ |
+| $\mathfrak{so}(3)$ | Lie algebra of $SO(3)$ | Generators: $J_x, J_y, J_z$ |
+
+### 6.5 Geometric Operations and Properties
+
+| Symbol | Meaning | Example |
+|--------|---------|---------|
+| $\text{closest-pythagorean}(\theta)$ | Find closest Pythagorean angle | Returns $\theta_p \in \Theta_P$ minimizing $|\theta - \theta_p|$ |
+| $\text{pythagorean-approx}(R)$ | Pythagorean approximation of rotation | $R \approx R_p$ with Pythagorean Euler angles |
+| $\text{geometric-decompose}(T)$ | Decompose tensor into irreps | $T = \bigoplus_j T^{(j)}$ |
+| $\kappa(G)$ | Graph condition number | Measures numerical stability of graph operations |
+| $\text{reality-bending-coords}(M)$ | Find coordinates simplifying geometry | On manifold $M$, find coordinates with Pythagorean metric |
+
+### 6.6 SuperInstance Geometric Cells
+
+| Symbol | Meaning | Example |
+|--------|---------|---------|
+| $\tau_{\text{geom}}$ | Geometric tensor cell type | Cell with LOG tensor state |
+| $\mathcal{S}_{\text{geom}}$ | State space for geometric cells | $\{\text{LOG tensors with geometric consistency}\}$ |
+| $f_{\text{geom}}$ | Geometric cell transition | $f_{\text{geom}}(T, \text{op}) = \text{op} \bullet_G T$ |
+| $r_{\text{geom}}$ | Geometric cell rate | $r_{\text{geom}}(T) = (\text{curvature}, \text{symmetry}, \text{dimension})$ |
+| $c_{\text{geom}}$ | Geometric confidence | $c_{\text{geom}}(T) = \exp(-\|\text{inconsistency}(T)\|^2/2\sigma^2)$ |
 
 ---
 
@@ -445,7 +483,15 @@
 
 ## Updates
 
-This notation guide is version 1.0. Updates will be versioned and changes documented.
+This notation guide is version 1.1. Updates will be versioned and changes documented.
 
-**Version:** 1.0 (2026-03-11)
+**Version 1.1 (2026-03-11) Updates:**
+- Added comprehensive LOG tensor notation (Section 6.1)
+- Extended Pythagorean geometry to nD tuples (Section 6.2)
+- Added Wigner-D harmonics and representation theory notation (Section 6.4)
+- Added geometric operations and properties (Section 6.5)
+- Added SuperInstance geometric cells notation (Section 6.6)
+
+**Version 1.0 (2026-03-11):** Initial release
+
 **Status:** Official standard for POLLN research papers

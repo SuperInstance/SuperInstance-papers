@@ -171,6 +171,7 @@ export class ConcreteDataBlockInstance extends BaseSuperInstance implements Data
   data: any;
 
   private connections: Map<string, Connection> = new Map();
+  private connectionByTarget: Map<string, string> = new Map(); // Reverse lookup: targetId -> connectionId
   private children: SuperInstance[] = [];
   private parents: SuperInstance[] = [];
 
@@ -236,6 +237,7 @@ export class ConcreteDataBlockInstance extends BaseSuperInstance implements Data
   async terminate(): Promise<void> {
     // Clean up connections
     this.connections.clear();
+    this.connectionByTarget.clear();
     this.children = [];
     this.parents = [];
 
@@ -356,15 +358,15 @@ export class ConcreteDataBlockInstance extends BaseSuperInstance implements Data
     };
 
     this.connections.set(connection.id, connection);
+    this.connectionByTarget.set(target.id, connection.id);
     return connection;
   }
 
   async disconnectFrom(target: SuperInstance): Promise<void> {
-    for (const [id, connection] of this.connections) {
-      if (connection.target === target.id) {
-        this.connections.delete(id);
-        break;
-      }
+    const connectionId = this.connectionByTarget.get(target.id);
+    if (connectionId) {
+      this.connections.delete(connectionId);
+      this.connectionByTarget.delete(target.id);
     }
   }
 
@@ -665,6 +667,14 @@ export class ConcreteDataBlockInstance extends BaseSuperInstance implements Data
       return new TextEncoder().encode(data).length;
     }
 
+    if (typeof data === 'number') {
+      return 8; // 64-bit floating point
+    }
+
+    if (typeof data === 'boolean') {
+      return 1;
+    }
+
     if (data instanceof ArrayBuffer) {
       return data.byteLength;
     }
@@ -673,13 +683,78 @@ export class ConcreteDataBlockInstance extends BaseSuperInstance implements Data
       return data.byteLength;
     }
 
+    // Optimized size calculation without JSON.stringify
+    return this.calculateSizeOptimized(data);
+  }
+
+  private calculateSizeOptimized(data: any): number {
+    let size = 0;
+    const visited = new WeakSet();
+
+    const calculate = (obj: any): number => {
+      if (obj === null || obj === undefined) {
+        return 0;
+      }
+
+      // Prevent circular reference infinite recursion
+      if (typeof obj === 'object' && obj !== null) {
+        if (visited.has(obj)) {
+          return 0;
+        }
+        visited.add(obj);
+      }
+
+      const type = typeof obj;
+
+      switch (type) {
+        case 'string':
+          return new TextEncoder().encode(obj).length;
+        case 'number':
+          return 8;
+        case 'boolean':
+          return 1;
+        case 'object':
+          if (Array.isArray(obj)) {
+            // Array overhead + elements
+            let arraySize = 16; // Array object overhead
+            for (const item of obj) {
+              arraySize += calculate(item);
+            }
+            return arraySize;
+          } else if (obj instanceof Date) {
+            return 24; // Date object size
+          } else if (obj instanceof RegExp) {
+            return 32; // RegExp object size
+          } else {
+            // Object overhead + properties
+            let objectSize = 32; // Object overhead
+            for (const key in obj) {
+              if (obj.hasOwnProperty(key)) {
+                // Key size + value size
+                objectSize += new TextEncoder().encode(key).length;
+                objectSize += calculate(obj[key]);
+              }
+            }
+            return objectSize;
+          }
+        default:
+          return 0;
+      }
+    };
+
     try {
-      const jsonString = JSON.stringify(data);
-      return new TextEncoder().encode(jsonString).length;
+      size = calculate(data);
     } catch {
-      // Fallback for circular references or other issues
-      return 1024; // Default size
+      // Fallback for complex cases
+      try {
+        const jsonString = JSON.stringify(data);
+        size = new TextEncoder().encode(jsonString).length;
+      } catch {
+        size = 1024; // Default size
+      }
     }
+
+    return size;
   }
 
   private async initializeData(): Promise<void> {

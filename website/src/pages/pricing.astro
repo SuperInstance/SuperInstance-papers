@@ -1,0 +1,438 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '../components/ui/Card';
+---
+
+<BaseLayout title="Pricing - SuperInstance.AI">
+  <!-- Hero Section -->
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container-narrow text-center">
+      <div class="animate-fade-in">
+        <h1 class="heading-1 mb-6">
+          Simple, Transparent
+          <span class="block text-primary-600">Pricing</span>
+        </h1>
+
+        <p class="text-body max-w-2xl mx-auto mb-10">
+          Start free and scale as you grow. SuperInstance offers flexible pricing for individuals,
+          teams, and enterprises. No hidden fees, no surprises.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <Button variant="primary" size="lg" className="sm:w-auto">
+            Start Free Trial
+          </Button>
+          <Button variant="outline" size="lg" className="sm:w-auto">
+            Compare Plans
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Tiers -->
+  <section class="section">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Choose Your Plan</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          All plans include core SuperInstance features. Upgrade for advanced AI capabilities,
+          team collaboration, and enterprise-grade security.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Free Tier -->
+        <Card hover padding="lg" className="relative">
+          <div class="absolute top-0 right-0 bg-primary-100 text-primary-800 text-xs font-medium px-3 py-1 rounded-bl-lg rounded-tr-lg">
+            Most Popular
+          </div>
+          <CardHeader>
+            <CardTitle>Free</CardTitle>
+            <CardDescription>Perfect for individuals</CardDescription>
+            <div class="mt-4">
+              <div class="flex items-baseline">
+                <span class="text-4xl font-bold">$0</span>
+                <span class="text-gray-500 ml-2">/month</span>
+              </div>
+              <p class="text-gray-600 text-sm mt-2">Forever free for basic use</p>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Up to 1,000 AI cell operations/month</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Basic automation templates</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Community support</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Excel & Google Sheets integration</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Basic analytics dashboard</span>
+              </li>
+            </ul>
+          </CardContent>
+          <CardFooter>
+            <Button variant="outline" className="w-full">
+              Get Started Free
+            </Button>
+          </CardFooter>
+        </Card>
+
+        <!-- Pro Tier -->
+        <Card hover padding="lg" className="relative border-2 border-primary-500">
+          <div class="absolute top-0 right-0 bg-primary-600 text-white text-xs font-medium px-3 py-1 rounded-bl-lg rounded-tr-lg">
+            Best Value
+          </div>
+          <CardHeader>
+            <CardTitle>Pro</CardTitle>
+            <CardDescription>For growing teams</CardDescription>
+            <div class="mt-4">
+              <div class="flex items-baseline">
+                <span class="text-4xl font-bold">$29</span>
+                <span class="text-gray-500 ml-2">/user/month</span>
+              </div>
+              <p class="text-gray-600 text-sm mt-2">Billed annually ($35 month-to-month)</p>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Everything in Free, plus:</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Unlimited AI cell operations</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Advanced AI models & templates</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Team collaboration features</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Priority email support</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Custom automation workflows</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Advanced analytics & reporting</span>
+              </li>
+            </ul>
+          </CardContent>
+          <CardFooter>
+            <Button variant="primary" className="w-full">
+              Start 14-Day Free Trial
+            </Button>
+          </CardFooter>
+        </Card>
+
+        <!-- Enterprise Tier -->
+        <Card hover padding="lg" className="relative">
+          <CardHeader>
+            <CardTitle>Enterprise</CardTitle>
+            <CardDescription>For large organizations</CardDescription>
+            <div class="mt-4">
+              <div class="flex items-baseline">
+                <span class="text-4xl font-bold">Custom</span>
+              </div>
+              <p class="text-gray-600 text-sm mt-2">Tailored to your needs</p>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Everything in Pro, plus:</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4L19 7" />
+                </svg>
+                <span>Dedicated instance</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Custom integrations & APIs</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>SLA guarantees (99.9% uptime)</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>24/7 phone & chat support</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>On-premise deployment option</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Custom training & onboarding</span>
+              </li>
+            </ul>
+          </CardContent>
+          <CardFooter>
+            <Button variant="outline" className="w-full">
+              Contact Sales
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Comparison -->
+  <section class="section bg-gray-50">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Detailed Feature Comparison</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          Compare all features across our pricing tiers to find the perfect plan for your needs.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="bg-gray-50">
+                <th class="text-left p-6 font-semibold text-gray-900">Feature</th>
+                <th class="text-center p-6 font-semibold text-gray-900">Free</th>
+                <th class="text-center p-6 font-semibold text-gray-900 bg-primary-50">Pro</th>
+                <th class="text-center p-6 font-semibold text-gray-900">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="p-6 font-medium">AI Cell Operations</td>
+                <td class="text-center p-6">1,000/month</td>
+                <td class="text-center p-6 bg-primary-50">Unlimited</td>
+                <td class="text-center p-6">Unlimited</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-6 font-medium">Spreadsheet Integration</td>
+                <td class="text-center p-6">Excel & Google Sheets</td>
+                <td class="text-center p-6 bg-primary-50">Excel, Google Sheets, API</td>
+                <td class="text-center p-6">All + Custom Connectors</td>
+              </tr>
+              <tr>
+                <td class="p-6 font-medium">Automation Templates</td>
+                <td class="text-center p-6">Basic (10)</td>
+                <td class="text-center p-6 bg-primary-50">Advanced (50+)</td>
+                <td class="text-center p-6">Custom + All Advanced</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-6 font-medium">Team Collaboration</td>
+                <td class="text-center p-6">-</td>
+                <td class="text-center p-6 bg-primary-50">Up to 50 users</td>
+                <td class="text-center p-6">Unlimited users</td>
+              </tr>
+              <tr>
+                <td class="p-6 font-medium">Support</td>
+                <td class="text-center p-6">Community</td>
+                <td class="text-center p-6 bg-primary-50">Priority Email</td>
+                <td class="text-center p-6">24/7 Phone & Chat</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-6 font-medium">Security & Compliance</td>
+                <td class="text-center p-6">Basic</td>
+                <td class="text-center p-6 bg-primary-50">Standard</td>
+                <td class="text-center p-6">SOC 2, GDPR, Custom</td>
+              </tr>
+              <tr>
+                <td class="p-6 font-medium">API Access</td>
+                <td class="text-center p-6">Read-only</td>
+                <td class="text-center p-6 bg-primary-50">Full Access</td>
+                <td class="text-center p-6">Full + Custom Endpoints</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-6 font-medium">Uptime SLA</td>
+                <td class="text-center p-6">-</td>
+                <td class="text-center p-6 bg-primary-50">99.5%</td>
+                <td class="text-center p-6">99.9%</td>
+              </tr>
+              <tr>
+                <td class="p-6 font-medium">Data Retention</td>
+                <td class="text-center p-6">30 days</td>
+                <td class="text-center p-6 bg-primary-50">1 year</td>
+                <td class="text-center p-6">Unlimited</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-6 font-medium">Custom Training</td>
+                <td class="text-center p-6">-</td>
+                <td class="text-center p-6 bg-primary-50">-</td>
+                <td class="text-center p-6">Included</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section">
+    <div class="container-narrow">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Frequently Asked Questions</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          Get answers to common questions about SuperInstance pricing and plans.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Card padding="lg">
+          <CardHeader>
+            <CardTitle>What's included in the free trial?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              The 14-day free trial includes full access to all Pro features. No credit card required.
+              After 14 days, you can choose to upgrade to Pro or continue with the Free plan.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card padding="lg">
+          <CardHeader>
+            <CardTitle>Can I change plans later?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Yes, you can upgrade, downgrade, or cancel at any time. Changes take effect immediately,
+              and we prorate charges for the remainder of your billing cycle.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card padding="lg">
+          <CardHeader>
+            <CardTitle>Do you offer discounts for non-profits?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Yes, we offer special pricing for registered non-profit organizations and educational institutions.
+              Contact our sales team for more information.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card padding="lg">
+          <CardHeader>
+            <CardTitle>What payment methods do you accept?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              We accept all major credit cards (Visa, MasterCard, American Express), PayPal,
+              and wire transfers for Enterprise plans.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card padding="lg">
+          <CardHeader>
+            <CardTitle>Is there a minimum contract length?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Free and Pro plans are month-to-month with no minimum commitment. Enterprise plans
+              typically have annual contracts with volume discounts.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card padding="lg">
+          <CardHeader>
+            <CardTitle>How is billing handled for teams?</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600">
+              Team billing is per user, per month. You can add or remove users at any time.
+              We provide centralized billing and user management for team administrators.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container-narrow text-center">
+      <div class="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-12 text-white">
+        <h2 class="heading-2 mb-6">Ready to Get Started?</h2>
+        <p class="text-xl mb-8 opacity-90">
+          Join thousands of teams using SuperInstance to transform their spreadsheet work.
+          Start your free trial today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="secondary" size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
+            Start 14-Day Free Trial
+          </Button>
+          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+            Schedule a Demo
+          </Button>
+        </div>
+        <p class="text-sm opacity-75 mt-6">
+          No credit card required • Cancel anytime • All features included
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

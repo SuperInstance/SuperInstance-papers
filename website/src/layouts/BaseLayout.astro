@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { Navigation } from '../components/layout/Navigation';
+import { Footer } from '../components/layout/Footer';
 ---
 
 <!DOCTYPE html>
@@ -45,57 +46,6 @@ import { Navigation } from '../components/layout/Navigation';
       <slot />
     </main>
 
-    <footer class="bg-gray-900 text-white">
-      <div class="container-wide py-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div class="flex items-center space-x-2 mb-4">
-              <div class="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-                <span class="text-white font-bold text-sm">SI</span>
-              </div>
-              <span class="text-xl font-bold">SuperInstance.AI</span>
-            </div>
-            <p class="text-gray-400">
-              Spreadsheet AI that learns your work—no code required.
-            </p>
-          </div>
-
-          <div>
-            <h3 class="font-semibold text-lg mb-4">Product</h3>
-            <ul class="space-y-2 text-gray-400">
-              <li><a href="/features" class="hover:text-white transition-colors">Features</a></li>
-              <li><a href="/use-cases" class="hover:text-white transition-colors">Use Cases</a></li>
-              <li><a href="/pricing" class="hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="/docs" class="hover:text-white transition-colors">Documentation</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="font-semibold text-lg mb-4">Company</h3>
-            <ul class="space-y-2 text-gray-400">
-              <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
-              <li><a href="/blog" class="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="/careers" class="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="font-semibold text-lg mb-4">Legal</h3>
-            <ul class="space-y-2 text-gray-400">
-              <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="/cookies" class="hover:text-white transition-colors">Cookie Policy</a></li>
-              <li><a href="/security" class="hover:text-white transition-colors">Security</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} SuperInstance.AI. All rights reserved.</p>
-          <p class="mt-2">POLLN is a product of SuperInstance.AI</p>
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </body>
 </html>

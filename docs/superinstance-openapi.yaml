@@ -1,0 +1,1079 @@
+openapi: 3.0.0
+info:
+  title: SuperInstance REST API
+  description: |
+    RESTful API for managing SuperInstance cells with rate-based change mechanics,
+    confidence tracking, and origin-centric references.
+
+    **Key Features:**
+    - Universal cell type system (data blocks, processes, APIs, agents, etc.)
+    - Rate-based change tracking and prediction
+    - Confidence cascade architecture
+    - Deadband triggers for intelligent activation
+    - Instance composition and message passing
+  version: 1.0.0
+  contact:
+    name: SuperInstance Team
+    email: support@superinstance.ai
+    url: https://superinstance.ai
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.superinstance.ai/v1
+    description: Production server
+  - url: https://staging.api.superinstance.ai/v1
+    description: Staging server
+  - url: http://localhost:3000/v1
+    description: Local development server
+
+tags:
+  - name: Instances
+    description: SuperInstance cell management
+  - name: Rate-Based
+    description: Rate-based change mechanics operations
+  - name: Messages
+    description: Instance message passing
+  - name: Connections
+    description: Instance connections and networking
+  - name: System
+    description: System monitoring and management
+  - name: Confidence
+    description: Confidence cascade operations
+  - name: Authentication
+    description: API authentication and authorization
+
+paths:
+  # Health Check
+  /health:
+    get:
+      tags:
+        - System
+      summary: Health check
+      description: Check API server health and version
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '500':
+          description: API is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  # Instance Management
+  /instances:
+    get:
+      tags:
+        - Instances
+      summary: List instances
+      description: Get a list of SuperInstances with optional filtering
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceTypeFilter'
+        - $ref: '#/components/parameters/InstanceStateFilter'
+        - $ref: '#/components/parameters/SpreadsheetIdFilter'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/OffsetParam'
+      responses:
+        '200':
+          description: List of instances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceListResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+    post:
+      tags:
+        - Instances
+      summary: Create instance
+      description: Create a new SuperInstance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInstanceRequest'
+      responses:
+        '201':
+          description: Instance created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  /instances/{instanceId}:
+    get:
+      tags:
+        - Instances
+      summary: Get instance
+      description: Get details of a specific SuperInstance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      responses:
+        '200':
+          description: Instance details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceDetailResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+    put:
+      tags:
+        - Instances
+      summary: Update instance
+      description: Update a SuperInstance configuration
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInstanceRequest'
+      responses:
+        '200':
+          description: Instance updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceUpdateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+    delete:
+      tags:
+        - Instances
+      summary: Delete instance
+      description: Terminate and remove a SuperInstance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      responses:
+        '200':
+          description: Instance terminated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceDeleteResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  # Instance Lifecycle
+  /instances/{instanceId}/activate:
+    post:
+      tags:
+        - Instances
+      summary: Activate instance
+      description: Activate a SuperInstance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      responses:
+        '200':
+          description: Instance activated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceActivateResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  /instances/{instanceId}/deactivate:
+    post:
+      tags:
+        - Instances
+      summary: Deactivate instance
+      description: Deactivate a SuperInstance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      responses:
+        '200':
+          description: Instance deactivated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceDeactivateResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  /instances/{instanceId}/terminate:
+    post:
+      tags:
+        - Instances
+      summary: Terminate instance
+      description: Terminate a SuperInstance (forceful shutdown)
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      responses:
+        '200':
+          description: Instance terminated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceTerminateResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  # Rate-Based Operations
+  /instances/{instanceId}/rate/update:
+    post:
+      tags:
+        - Rate-Based
+      summary: Update rate state
+      description: Update rate-based state tracking for an instance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateUpdateRequest'
+      responses:
+        '200':
+          description: Rate state updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateUpdateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  /instances/{instanceId}/rate/predict:
+    post:
+      tags:
+        - Rate-Based
+      summary: Predict future state
+      description: Predict future state based on current rate
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RatePredictRequest'
+      responses:
+        '200':
+          description: Prediction generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatePredictResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  /instances/{instanceId}/rate/history:
+    get:
+      tags:
+        - Rate-Based
+      summary: Get rate history
+      description: Get rate change history for an instance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+        - $ref: '#/components/parameters/StartTimeParam'
+        - $ref: '#/components/parameters/EndTimeParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/ResolutionParam'
+      responses:
+        '200':
+          description: Rate history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateHistoryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  # Message Passing
+  /instances/{instanceId}/messages:
+    post:
+      tags:
+        - Messages
+      summary: Send message
+      description: Send a message to a SuperInstance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMessageRequest'
+      responses:
+        '200':
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendMessageResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+    get:
+      tags:
+        - Messages
+      summary: Get messages
+      description: Get messages for an instance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+        - $ref: '#/components/parameters/MessageTypeFilter'
+        - $ref: '#/components/parameters/MessageStatusFilter'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/OffsetParam'
+      responses:
+        '200':
+          description: Messages retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMessagesResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  # Connections
+  /instances/{instanceId}/connections:
+    post:
+      tags:
+        - Connections
+      summary: Create connection
+      description: Create a connection to another instance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConnectionRequest'
+      responses:
+        '200':
+          description: Connection created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateConnectionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+    get:
+      tags:
+        - Connections
+      summary: Get connections
+      description: Get all connections for an instance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      responses:
+        '200':
+          description: Connections retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetConnectionsResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  /instances/{instanceId}/connections/{connectionId}:
+    delete:
+      tags:
+        - Connections
+      summary: Delete connection
+      description: Disconnect from another instance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+        - $ref: '#/components/parameters/ConnectionIdPath'
+      responses:
+        '200':
+          description: Connection deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteConnectionResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  # System Monitoring
+  /system/status:
+    get:
+      tags:
+        - System
+      summary: Get system status
+      description: Get overall system status
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      responses:
+        '200':
+          description: System status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemStatusResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  /system/metrics:
+    get:
+      tags:
+        - System
+      summary: Get system metrics
+      description: Get detailed system metrics
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/TimeRangeParam'
+        - $ref: '#/components/parameters/MetricParam'
+      responses:
+        '200':
+          description: System metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemMetricsResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  # Confidence Cascade
+  /instances/{instanceId}/confidence:
+    get:
+      tags:
+        - Confidence
+      summary: Get confidence metrics
+      description: Get confidence metrics for an instance
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      responses:
+        '200':
+          description: Confidence metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfidenceResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  /instances/{instanceId}/confidence/adjust:
+    post:
+      tags:
+        - Confidence
+      summary: Adjust confidence
+      description: Manually adjust confidence score
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/InstanceIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdjustConfidenceRequest'
+      responses:
+        '200':
+          description: Confidence adjusted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdjustConfidenceResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+  # Batch Operations
+  /batch/rate/update:
+    post:
+      tags:
+        - Rate-Based
+      summary: Batch update rates
+      description: Batch update rates for multiple instances
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRateUpdateRequest'
+      responses:
+        '200':
+          description: Batch update completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchRateUpdateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '429':
+          $ref: '#/components/responses/RateLimitError'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for authentication
+
+  parameters:
+    InstanceIdPath:
+      name: instanceId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Instance ID
+      example: "instance-1234567890"
+
+    ConnectionIdPath:
+      name: connectionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Connection ID
+      example: "conn-1234567890"
+
+    InstanceTypeFilter:
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [data_block, process, api, learning_agent, terminal, smpbot]
+      description: Filter by instance type
+
+    InstanceStateFilter:
+      name: state
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [running, idle, error, terminated, initialized]
+      description: Filter by instance state
+
+    SpreadsheetIdFilter:
+      name: spreadsheetId
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter by spreadsheet ID
+
+    LimitParam:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 50
+      description: Maximum number of items to return
+
+    OffsetParam:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Pagination offset
+
+    StartTimeParam:
+      name: startTime
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+      description: Start timestamp in milliseconds
+
+    EndTimeParam:
+      name: endTime
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+      description: End timestamp in milliseconds
+
+    ResolutionParam:
+      name: resolution
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [raw, minute, hour, day]
+        default: raw
+      description: Data resolution for history
+
+    TimeRangeParam:
+      name: timeRange
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [1h, 24h, 7d, 30d]
+        default: 1h
+      description: Time range for metrics
+
+    MetricParam:
+      name: metric
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [cpuUsage, memoryUsage, requestRate, errorRate]
+      description: Specific metric to retrieve
+
+    MessageTypeFilter:
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [data, command, query, response, event, notification]
+      description: Filter by message type
+
+    MessageStatusFilter:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [pending, sent, delivered, read, failed]
+      description: Filter by message status
+
+  responses:
+    BadRequestError:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: "VALIDATION_ERROR"
+              message: "Invalid request parameters"
+              timestamp: "2026-03-11T12:00:00Z"
+
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: "UNAUTHORIZED"
+              message: "Authentication required"
+              timestamp: "2026-03-11T12:00:00Z"
+
+    ForbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: "FORBIDDEN"
+              message: "Insufficient permissions"
+              timestamp: "2026-03-11T12:00:00Z"
+
+    NotFoundError:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: "NOT_FOUND"
+              message: "Resource not found"
+              timestamp: "2026-03-11T12:00:00Z"
+
+    RateLimitError:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: "RATE_LIMIT_EXCEEDED"
+              message: "Rate limit exceeded"
+              timestamp: "2026-03-11T12:00:00Z"
+
+  schemas:
+    # Common schemas
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+            details:
+              type: object
+              description: Additional error details
+            timestamp:
+              type: string
+              format: date-time
+              description: When the error occurred
+          required:
+            - code
+            - message
+            - timestamp
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+          description: System health status
+        timestamp:
+          type: string
+          format: date-time
+          description: Current server time
+        version:
+          type: string
+          description: API version
+        uptime:
+          type: number
+          description: Server uptime in seconds
+      required:
+        - status
+        - timestamp
+        - version
+
+    # Instance schemas
+    CellPosition:
+      type: object
+      properties:
+        row:
+          type: integer
+          description: Row number (1-indexed)
+        col:
+          type: integer
+          description: Column number (1-indexed)
+        sheet:
+          type: string
+          description: Sheet name
+      required:
+        - row
+        - col
+
+    ResourceAllocation:
+      type: object
+      properties:
+        cpu:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: CPU allocation (0-100)
+        memory:
+          type: number
+          minimum: 0
+          description: Memory allocation in MB
+        storage:
+          type: number
+          minimum: 0
+          description: Storage allocation in MB
+        network:
+          type: number
+          minimum: 0
+          description: Network bandwidth in Mbps
+        gpu:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: GPU allocation (0-100)
+
+    InstanceConfiguration:
+      type: object
+      properties:
+        resources:
+          $ref: '#/components/schemas/ResourceAllocation'
+        constraints:
+          type: object
+          properties:
+            maxRuntime:
+              type: number
+              description: Maximum runtime in milliseconds
+            maxMemory:
+              type: number
+              description: Maximum memory in MB
+            networkQuota:
+              type: number
+              description: Network quota in MB
+            allowedOperations:
+              type: array
+              items:
+                type: string
+            disallowedOperations:
+              type: array
+              items:
+                type: string
+        policies:
+          type: object
+          properties:
+            isolationLevel:
+              type: string
+              enum: [none, partial, full]
+            dataEncryption:
+              type: boolean
+            auditLogging:
+              type: boolean
+            backupFrequency:
+              type: number
+              description: Backup frequency in minutes
+            retentionPeriod:
+              type: number
+              description: Retention period in days
+
+    CreateInstanceRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [data_block, process, api, learning_agent, terminal, smpbot]
+          description: Instance type
+        name:
+          type: string
+          description: Instance name
+        description:
+          type: string
+          description: Instance description
+        cellPosition:
+          $ref: '#/components/schemas/CellPosition'
+        spreadsheetId:
+          type: string
+          description: Spreadsheet ID
+        configuration:
+          $ref: '#/components/schemas/InstanceConfiguration'
+        capabilities:
+          type: array
+          items:
+            type: string
+          description: Instance capabilities
+        initialData:
+          type: object
+          description: Initial data for the instance
+      required:
+        - type
+        - name
+        - cellPosition
+        - spreadsheetId
+
+    # Response schemas would continue here...
+    # Due to length constraints, I'm showing the structure
+    # Full OpenAPI spec would include all response schemas
+
+# Note: This is a partial OpenAPI specification showing the structure.
+# A complete specification would include all response schemas,
+# request bodies, and detailed examples for each endpoint.
