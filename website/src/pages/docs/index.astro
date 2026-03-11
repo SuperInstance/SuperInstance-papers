@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Button } from '../../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/Card';
+---
+
+<BaseLayout title="Documentation - SuperInstance.AI">
+  <!-- Hero Section -->
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container-narrow text-center">
+      <div class="animate-fade-in">
+        <h1 class="heading-1 mb-6">
+          SuperInstance
+          <span class="block text-primary-600">Documentation</span>
+        </h1>
+
+        <p class="text-body max-w-2xl mx-auto mb-10">
+          Comprehensive guides, API references, and tutorials for POLLN technology.
+          Learn how to transform your spreadsheets with AI-powered automation.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <Button variant="primary" size="lg" className="sm:w-auto">
+            Get Started Guide
+          </Button>
+          <Button variant="outline" size="lg" className="sm:w-auto">
+            API Reference
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documentation Categories -->
+  <section class="section">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Documentation Categories</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          Explore our comprehensive documentation organized by topic and skill level.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Getting Started -->
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center mb-4">
+              <span class="text-primary-600 font-bold">🚀</span>
+            </div>
+            <CardTitle>Getting Started</CardTitle>
+            <CardDescription>Begin your SuperInstance journey</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                <a href="/docs/getting-started/quick-start" class="hover:text-primary-600">Quick Start Guide</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                <a href="/docs/getting-started/installation" class="hover:text-primary-600">Installation & Setup</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                <a href="/docs/getting-started/first-automation" class="hover:text-primary-600">Your First Automation</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                <a href="/docs/getting-started/troubleshooting" class="hover:text-primary-600">Troubleshooting</a>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <!-- Core Concepts -->
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-accent-100 flex items-center justify-center mb-4">
+              <span class="text-accent-600 font-bold">🧠</span>
+            </div>
+            <CardTitle>Core Concepts</CardTitle>
+            <CardDescription>Understand POLLN technology</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                <a href="/docs/concepts/universal-cells" class="hover:text-accent-600">Universal Cells</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                <a href="/docs/concepts/confidence-cascade" class="hover:text-accent-600">Confidence Cascade</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                <a href="/docs/concepts/rate-based-change" class="hover:text-accent-600">Rate-Based Change</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                <a href="/docs/concepts/persistent-learning" class="hover:text-accent-600">Persistent Learning</a>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <!-- API Reference -->
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-secondary-100 flex items-center justify-center mb-4">
+              <span class="text-secondary-600 font-bold">🔌</span>
+            </div>
+            <CardTitle>API Reference</CardTitle>
+            <CardDescription>Technical API documentation</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
+                <a href="/docs/api/authentication" class="hover:text-secondary-600">Authentication</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
+                <a href="/docs/api/cells" class="hover:text-secondary-600">Cells API</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
+                <a href="/docs/api/automations" class="hover:text-secondary-600">Automations API</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
+                <a href="/docs/api/webhooks" class="hover:text-secondary-600">Webhooks</a>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <!-- Use Cases -->
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center mb-4">
+              <span class="text-primary-600 font-bold">📊</span>
+            </div>
+            <CardTitle>Use Cases</CardTitle>
+            <CardDescription>Industry-specific implementations</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                <a href="/docs/use-cases/financial-reporting" class="hover:text-primary-600">Financial Reporting</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                <a href="/docs/use-cases/sales-operations" class="hover:text-primary-600">Sales Operations</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                <a href="/docs/use-cases/marketing-analytics" class="hover:text-primary-600">Marketing Analytics</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                <a href="/docs/use-cases/hr-analytics" class="hover:text-primary-600">HR Analytics</a>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <!-- Advanced Topics -->
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-accent-100 flex items-center justify-center mb-4">
+              <span class="text-accent-600 font-bold">⚡</span>
+            </div>
+            <CardTitle>Advanced Topics</CardTitle>
+            <CardDescription>Deep technical knowledge</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                <a href="/docs/advanced/geometric-tensors" class="hover:text-accent-600">Geometric Tensors</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                <a href="/docs/advanced/tile-algebra" class="hover:text-accent-600">Tile Algebra</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                <a href="/docs/advanced/smp-architecture" class="hover:text-accent-600">SMP Architecture</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                <a href="/docs/advanced/custom-integrations" class="hover:text-accent-600">Custom Integrations</a>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <!-- Community & Support -->
+        <Card hover padding="lg">
+          <CardHeader>
+            <div class="w-12 h-12 rounded-lg bg-secondary-100 flex items-center justify-center mb-4">
+              <span class="text-secondary-600 font-bold">🤝</span>
+            </div>
+            <CardTitle>Community & Support</CardTitle>
+            <CardDescription>Get help and contribute</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
+                <a href="/docs/community/forum" class="hover:text-secondary-600">Community Forum</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
+                <a href="/docs/community/contributing" class="hover:text-secondary-600">Contributing Guide</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
+                <a href="/docs/community/faq" class="hover:text-secondary-600">Frequently Asked Questions</a>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
+                <a href="/docs/community/support" class="hover:text-secondary-600">Support Channels</a>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start CTA -->
+  <section class="section bg-gray-50">
+    <div class="container-narrow text-center">
+      <div class="bg-white rounded-2xl p-12 shadow-lg">
+        <h2 class="heading-2 mb-6">Start Building in Minutes</h2>
+        <p class="text-body max-w-2xl mx-auto mb-8">
+          Follow our step-by-step guide to create your first AI-powered spreadsheet automation.
+          No prior AI experience required.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="primary" size="lg">
+            Read Quick Start Guide
+          </Button>
+          <Button variant="outline" size="lg">
+            Watch Tutorial Video
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

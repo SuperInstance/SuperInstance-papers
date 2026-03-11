@@ -6,8 +6,10 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   output: 'static',
-  adapter: cloudflare(),
-  integrations: [react(), tailwind(), sitemap()],
+  // Note: Cloudflare adapter not needed for static sites
+  // Remove adapter for static deployment or change to output: 'server'/'hybrid'
+  // adapter: cloudflare(),
+  integrations: [react(), tailwind()],
   site: 'https://superinstance.ai',
   base: '/',
 });

@@ -1,0 +1,401 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Button } from '../../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/Card';
+---
+
+<BaseLayout title="Interactive Demos - SuperInstance.AI">
+  <!-- Hero Section -->
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container-narrow text-center">
+      <div class="animate-fade-in">
+        <h1 class="heading-1 mb-6">
+          Interactive
+          <span class="block text-primary-600">Demos</span>
+        </h1>
+
+        <p class="text-body max-w-2xl mx-auto mb-10">
+          Experience POLLN technology firsthand. Try our interactive demos to see how SuperInstance
+          transforms spreadsheet work with AI-powered automation.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <Button variant="primary" size="lg" className="sm:w-auto">
+            Try All Demos
+          </Button>
+          <Button variant="outline" size="lg" className="sm:w-auto">
+            Watch Video Tour
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Grid -->
+  <section class="section">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Featured Demos</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          Explore different aspects of SuperInstance through hands-on examples.
+          No installation required—try them right in your browser.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Demo 1: Universal Cells -->
+        <Card hover padding="lg" className="h-full">
+          <CardHeader>
+            <div class="w-16 h-16 rounded-xl bg-primary-100 flex items-center justify-center mb-4">
+              <span class="text-primary-600 text-2xl">🧩</span>
+            </div>
+            <CardTitle>Universal Cells Demo</CardTitle>
+            <CardDescription>Experience AI-powered spreadsheet cells</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="mb-6">
+              <p class="text-gray-600 mb-4">
+                See how any spreadsheet cell can become an AI agent. This demo shows cells that:
+              </p>
+              <ul class="space-y-2 text-gray-600">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Learn from data patterns
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Automate repetitive tasks
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Provide AI-powered insights
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Adapt to your specific needs
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-900 rounded-lg p-4 mb-6">
+              <div class="text-white font-mono text-sm">
+                <div class="text-green-400"># Try entering sales data</div>
+                <div class="text-blue-400">1. Enter: "Q1 Sales: 150000"</div>
+                <div class="text-blue-400">2. Watch AI format and analyze</div>
+                <div class="text-blue-400">3. Try: "Q2 Sales: 185000"</div>
+                <div class="text-green-400"># See automatic growth calculation</div>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <Button variant="primary" className="flex-1">
+                Launch Demo
+              </Button>
+              <Button variant="outline" className="flex-1">
+                View Code
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Demo 2: Confidence Cascade -->
+        <Card hover padding="lg" className="h-full">
+          <CardHeader>
+            <div class="w-16 h-16 rounded-xl bg-accent-100 flex items-center justify-center mb-4">
+              <span class="text-accent-600 text-2xl">🎯</span>
+            </div>
+            <CardTitle>Confidence Cascade Demo</CardTitle>
+            <CardDescription>See intelligent activation in action</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="mb-6">
+              <p class="text-gray-600 mb-4">
+                Experience how SuperInstance only activates when highly certain. This demo shows:
+              </p>
+              <ul class="space-y-2 text-gray-600">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                  Real-time confidence scoring
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                  Deadband trigger visualization
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                  Error reduction mechanisms
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                  Learning from corrections
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-900 rounded-lg p-4 mb-6">
+              <div class="text-white font-mono text-sm">
+                <div class="text-green-400"># Watch confidence levels</div>
+                <div class="text-blue-400">1. Enter inconsistent data</div>
+                <div class="text-blue-400">2. See low confidence (yellow)</div>
+                <div class="text-blue-400">3. Enter consistent pattern</div>
+                <div class="text-green-400"># See high confidence (green) → Auto-activate</div>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <Button variant="accent" className="flex-1">
+                Launch Demo
+              </Button>
+              <Button variant="outline" className="flex-1">
+                View Code
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Demo 3: Financial Reporting -->
+        <Card hover padding="lg" className="h-full">
+          <CardHeader>
+            <div class="w-16 h-16 rounded-xl bg-primary-100 flex items-center justify-center mb-4">
+              <span class="text-primary-600 text-2xl">📊</span>
+            </div>
+            <CardTitle>Financial Reporting Demo</CardTitle>
+            <CardDescription>Automate complex financial models</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="mb-6">
+              <p class="text-gray-600 mb-4">
+                See how SuperInstance automates financial reporting tasks:
+              </p>
+              <ul class="space-y-2 text-gray-600">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Automated statement generation
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Real-time variance analysis
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Predictive cash flow modeling
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Automated compliance checks
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-900 rounded-lg p-4 mb-6">
+              <div class="text-white font-mono text-sm">
+                <div class="text-green-400"># Try financial scenarios</div>
+                <div class="text-blue-400">1. Enter revenue: 1000000</div>
+                <div class="text-blue-400">2. Enter expenses: 750000</div>
+                <div class="text-blue-400">3. Watch automated P&L creation</div>
+                <div class="text-green-400"># See predictive insights</div>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <Button variant="primary" className="flex-1">
+                Launch Demo
+              </Button>
+              <Button variant="outline" className="flex-1">
+                Case Study
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Demo 4: Sales Operations -->
+        <Card hover padding="lg" className="h-full">
+          <CardHeader>
+            <div class="w-16 h-16 rounded-xl bg-accent-100 flex items-center justify-center mb-4">
+              <span class="text-accent-600 text-2xl">📈</span>
+            </div>
+            <CardTitle>Sales Operations Demo</CardTitle>
+            <CardDescription>Streamline pipeline management</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="mb-6">
+              <p class="text-gray-600 mb-4">
+                Experience AI-powered sales automation:
+              </p>
+              <ul class="space-y-2 text-gray-600">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                  Automated lead scoring
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                  Pipeline health monitoring
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                  Revenue forecasting
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-500 rounded-full mr-3"></span>
+                  Commission calculations
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-900 rounded-lg p-4 mb-6">
+              <div class="text-white font-mono text-sm">
+                <div class="text-green-400"># Simulate sales pipeline</div>
+                <div class="text-blue-400">1. Add leads with values</div>
+                <div class="text-blue-400">2. Set probabilities</div>
+                <div class="text-blue-400">3. Watch forecast update</div>
+                <div class="text-green-400"># See AI insights on trends</div>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <Button variant="accent" className="flex-1">
+                Launch Demo
+              </Button>
+              <Button variant="outline" className="flex-1">
+                Case Study
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Demo Section -->
+  <section class="section bg-gray-50">
+    <div class="container-wide">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-4">Live Interactive Demo</h2>
+        <p class="text-body max-w-3xl mx-auto">
+          Try our most popular demo: AI-powered spreadsheet automation. No signup required.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-3">
+          <!-- Demo Controls -->
+          <div class="lg:col-span-1 bg-gray-900 text-white p-8">
+            <h3 class="text-xl font-bold mb-6">Demo Controls</h3>
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium mb-2">Select Demo Type</label>
+                <select class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white">
+                  <option>Universal Cells</option>
+                  <option>Confidence Cascade</option>
+                  <option>Financial Reporting</option>
+                  <option>Sales Operations</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Data Complexity</label>
+                <div class="flex space-x-2">
+                  <button class="flex-1 bg-gray-800 hover:bg-gray-700 rounded-lg px-4 py-2 text-sm">Simple</button>
+                  <button class="flex-1 bg-primary-600 rounded-lg px-4 py-2 text-sm">Medium</button>
+                  <button class="flex-1 bg-gray-800 hover:bg-gray-700 rounded-lg px-4 py-2 text-sm">Complex</button>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">AI Assistance Level</label>
+                <input type="range" min="0" max="100" value="75" class="w-full" />
+                <div class="flex justify-between text-xs mt-1">
+                  <span>Manual</span>
+                  <span>Balanced</span>
+                  <span>Full AI</span>
+                </div>
+              </div>
+              <Button variant="primary" className="w-full">
+                Reset Demo
+              </Button>
+            </div>
+          </div>
+
+          <!-- Demo Visualization -->
+          <div class="lg:col-span-2 p-8">
+            <div class="mb-6">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Demo Output</h3>
+                <div class="flex items-center">
+                  <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                  <span class="text-sm text-gray-600">AI Active</span>
+                </div>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                <div class="grid grid-cols-4 gap-4 mb-4">
+                  <div class="col-span-1 font-medium">Input</div>
+                  <div class="col-span-1 font-medium">AI Process</div>
+                  <div class="col-span-1 font-medium">Confidence</div>
+                  <div class="col-span-1 font-medium">Output</div>
+                </div>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-4 gap-4 items-center">
+                    <div class="bg-white border border-gray-300 rounded px-3 py-2">Sales: 150000</div>
+                    <div class="text-gray-600">Formatting as currency</div>
+                    <div>
+                      <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 95%"></div>
+                      </div>
+                      <div class="text-xs text-gray-500 mt-1">95%</div>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded px-3 py-2">$150,000.00</div>
+                  </div>
+                  <div class="grid grid-cols-4 gap-4 items-center">
+                    <div class="bg-white border border-gray-300 rounded px-3 py-2">Growth: 23.5%</div>
+                    <div class="text-gray-600">Calculating trend</div>
+                    <div>
+                      <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 78%"></div>
+                      </div>
+                      <div class="text-xs text-gray-500 mt-1">78%</div>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded px-3 py-2">Strong growth ↑</div>
+                  </div>
+                  <div class="grid grid-cols-4 gap-4 items-center">
+                    <div class="bg-white border border-gray-300 rounded px-3 py-2">Q2 Forecast</div>
+                    <div class="text-gray-600">Predictive modeling</div>
+                    <div>
+                      <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 88%"></div>
+                      </div>
+                      <div class="text-xs text-gray-500 mt-1">88%</div>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded px-3 py-2">$185,250</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <p class="text-gray-600 mb-4">
+                This demo shows real-time AI processing with confidence scoring.
+                Try changing the inputs to see how SuperInstance adapts.
+              </p>
+              <Button variant="outline">
+                Learn How It Works
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container-narrow text-center">
+      <div class="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-12 text-white">
+        <h2 class="heading-2 mb-6">Ready to Try SuperInstance?</h2>
+        <p class="text-xl mb-8 opacity-90">
+          Experience the full power of POLLN technology with a free account.
+          All demos available in the live product.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="secondary" size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
+            Start Free Trial
+          </Button>
+          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+            Contact Sales
+          </Button>
+        </div>
+        <p class="text-sm opacity-75 mt-6">
+          14-day free trial • No credit card required • Full access to all features
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
