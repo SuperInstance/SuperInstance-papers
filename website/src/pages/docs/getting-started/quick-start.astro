@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { Button } from '../../../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/Card';
+---
+
+<BaseLayout title="Quick Start Guide - SuperInstance.AI Documentation">
+  <!-- Hero Section -->
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container-narrow">
+      <div class="animate-fade-in">
+        <div class="mb-6">
+          <a href="/docs" class="text-primary-600 hover:text-primary-700 flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Documentation
+          </a>
+        </div>
+
+        <h1 class="heading-1 mb-6">
+          Quick Start Guide
+        </h1>
+
+        <p class="text-body max-w-3xl mb-10">
+          Get started with SuperInstance in 5 minutes. This guide walks you through connecting your first spreadsheet,
+          creating an automation, and seeing AI-powered results.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-16">
+          <div class="bg-primary-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-primary-700">Time: 5 minutes</span>
+          </div>
+          <div class="bg-accent-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-accent-700">Difficulty: Beginner</span>
+          </div>
+          <div class="bg-secondary-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-secondary-700">Prerequisites: None</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps Section -->
+  <section class="section">
+    <div class="container-narrow">
+      <div class="max-w-3xl mx-auto">
+        <!-- Step 1 -->
+        <div class="mb-16">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center mr-4">
+              <span class="text-primary-600 font-bold text-lg">1</span>
+            </div>
+            <h2 class="heading-2">Create Your Account</h2>
+          </div>
+
+          <Card padding="lg" className="mb-6">
+            <CardContent>
+              <p class="text-body mb-4">
+                Visit <a href="https://app.superinstance.ai/signup" class="text-primary-600 hover:text-primary-700 font-medium">app.superinstance.ai/signup</a> and create your free account.
+                No credit card required for the free tier.
+              </p>
+              <ul class="space-y-2 text-gray-600 mb-6">
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Use your work email for team features
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Verify your email address
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Complete the onboarding survey
+                </li>
+              </ul>
+              <Button variant="primary">
+                Create Free Account
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="mb-16">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 rounded-full bg-accent-100 flex items-center justify-center mr-4">
+              <span class="text-accent-600 font-bold text-lg">2</span>
+            </div>
+            <h2 class="heading-2">Connect Your Spreadsheet</h2>
+          </div>
+
+          <Card padding="lg" className="mb-6">
+            <CardContent>
+              <p class="text-body mb-4">
+                Connect SuperInstance to your preferred spreadsheet platform. We support:
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-gray-50 rounded-lg p-4 text-center">
+                  <div class="text-2xl mb-2">📊</div>
+                  <div class="font-medium">Microsoft Excel</div>
+                  <div class="text-sm text-gray-500">Desktop & Online</div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4 text-center">
+                  <div class="text-2xl mb-2">📈</div>
+                  <div class="font-medium">Google Sheets</div>
+                  <div class="text-sm text-gray-500">Full integration</div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4 text-center">
+                  <div class="text-2xl mb-2">🔗</div>
+                  <div class="font-medium">API Connection</div>
+                  <div class="text-sm text-gray-500">Custom integrations</div>
+                </div>
+              </div>
+              <p class="text-body mb-4">
+                <strong>For Google Sheets:</strong> Click "Connect Google Sheets" and authorize the connection.
+                <br>
+                <strong>For Excel:</strong> Download our Excel add-in from the Microsoft Store.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="mb-16">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center mr-4">
+              <span class="text-primary-600 font-bold text-lg">3</span>
+            </div>
+            <h2 class="heading-2">Create Your First Automation</h2>
+          </div>
+
+          <Card padding="lg" className="mb-6">
+            <CardContent>
+              <p class="text-body mb-4">
+                Let's create a simple automation: automatically formatting sales numbers.
+              </p>
+              <div class="bg-gray-900 text-gray-100 rounded-lg p-4 mb-6 font-mono text-sm overflow-x-auto">
+                <div class="text-green-400"># Example: Format sales numbers as currency</div>
+                <div class="text-blue-400">1. Select the cells with sales numbers</div>
+                <div class="text-blue-400">2. Click "Create Automation" in SuperInstance sidebar</div>
+                <div class="text-blue-400">3. Choose "Format as Currency" template</div>
+                <div class="text-blue-400">4. SuperInstance learns your formatting preference</div>
+                <div class="text-green-400"># Future: New sales numbers auto-format</div>
+              </div>
+              <p class="text-body mb-4">
+                SuperInstance will observe your pattern and create an automation rule.
+                The confidence indicator shows how certain it is about the pattern.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="mb-16">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 rounded-full bg-accent-100 flex items-center justify-center mr-4">
+              <span class="text-accent-600 font-bold text-lg">4</span>
+            </div>
+            <h2 class="heading-2">Test and Refine</h2>
+          </div>
+
+          <Card padding="lg" className="mb-6">
+            <CardContent>
+              <p class="text-body mb-4">
+                Test your automation with new data and refine as needed:
+              </p>
+              <ul class="space-y-3 text-gray-600 mb-6">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                  <span>Enter new sales data in your spreadsheet</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                  <span>Watch SuperInstance automatically format it</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                  <span>If needed, adjust the automation rules</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                  <span>Each correction makes SuperInstance smarter</span>
+                </li>
+              </ul>
+              <p class="text-body">
+                The confidence cascade ensures SuperInstance only activates when it's highly certain,
+                reducing errors while learning from your corrections.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="mb-16">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center mr-4">
+              <span class="text-primary-600 font-bold text-lg">5</span>
+            </div>
+            <h2 class="heading-2">Explore Advanced Features</h2>
+          </div>
+
+          <Card padding="lg" className="mb-6">
+            <CardContent>
+              <p class="text-body mb-6">
+                Now that you've created your first automation, explore more powerful features:
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card hover padding="md">
+                  <CardHeader>
+                    <CardTitle>AI-Powered Analysis</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 text-sm">
+                      Use AI cells for predictive analytics, sentiment analysis, and data classification.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card hover padding="md">
+                  <CardHeader>
+                    <CardTitle>Multi-Step Workflows</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 text-sm">
+                      Chain multiple automations together for complex business processes.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card hover padding="md">
+                  <CardHeader>
+                    <CardTitle>Team Collaboration</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 text-sm">
+                      Share automations with your team and learn from each other's patterns.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card hover padding="md">
+                  <CardHeader>
+                    <CardTitle>API Integration</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 text-sm">
+                      Connect SuperInstance to your existing tools and databases.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-8 text-white">
+          <h2 class="heading-2 mb-4">What's Next?</h2>
+          <p class="text-xl mb-6 opacity-90">
+            Continue your SuperInstance journey with these resources:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/docs/concepts/universal-cells" class="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors">
+              <div class="font-medium mb-2">Universal Cells Guide</div>
+              <div class="text-sm opacity-75">Learn about AI-powered cells</div>
+            </a>
+            <a href="/docs/use-cases/financial-reporting" class="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors">
+              <div class="font-medium mb-2">Use Case Examples</div>
+              <div class="text-sm opacity-75">See real-world applications</div>
+            </a>
+            <a href="/docs/api/overview" class="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors">
+              <div class="font-medium mb-2">API Documentation</div>
+              <div class="text-sm opacity-75">Build custom integrations</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
