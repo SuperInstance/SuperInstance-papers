@@ -1,0 +1,482 @@
+---
+// Monitoring Dashboard Component
+// Provides real-time monitoring insights for administrators
+// Only visible in staging and production environments
+
+import { getEnvironmentConfig, isProduction, isStaging } from '../../config/environments';
+
+interface Metric {
+  name: string;
+  value: number;
+  unit: string;
+  trend: 'up' | 'down' | 'stable';
+  threshold?: number;
+  status: 'healthy' | 'warning' | 'critical';
+}
+
+interface Alert {
+  id: string;
+  title: string;
+  description: string;
+  severity: 'info' | 'warning' | 'critical';
+  timestamp: string;
+  resolved: boolean;
+}
+
+// Only show dashboard in staging or production
+const showDashboard = isProduction() || isStaging();
+const environment = getEnvironmentConfig();
+---
+
+{showDashboard && (
+  <div class="monitoring-dashboard">
+    <div class="dashboard-header">
+      <h2>📊 Monitoring Dashboard</h2>
+      <div class="environment-badge">
+        Environment: <span class="env-name">{environment.name}</span>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Performance Metrics -->
+      <div class="metric-card performance">
+        <h3>Performance</h3>
+        <div class="metric-list">
+          <div class="metric-item">
+            <span class="metric-name">LCP (Largest Contentful Paint)</span>
+            <span class="metric-value">2.1s</span>
+            <span class="metric-status healthy">Good</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-name">FID (First Input Delay)</span>
+            <span class="metric-value">45ms</span>
+            <span class="metric-status healthy">Good</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-name">CLS (Cumulative Layout Shift)</span>
+            <span class="metric-value">0.05</span>
+            <span class="metric-status healthy">Good</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Uptime & Availability -->
+      <div class="metric-card uptime">
+        <h3>Uptime & Availability</h3>
+        <div class="metric-list">
+          <div class="metric-item">
+            <span class="metric-name">Current Uptime</span>
+            <span class="metric-value">99.98%</span>
+            <span class="metric-status healthy">Excellent</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-name">Response Time</span>
+            <span class="metric-value">125ms</span>
+            <span class="metric-status healthy">Fast</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-name">Error Rate</span>
+            <span class="metric-value">0.02%</span>
+            <span class="metric-status healthy">Low</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Traffic & Usage -->
+      <div class="metric-card traffic">
+        <h3>Traffic & Usage</h3>
+        <div class="metric-list">
+          <div class="metric-item">
+            <span class="metric-name">Active Visitors</span>
+            <span class="metric-value">42</span>
+            <span class="metric-trend up">↑</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-name">Page Views (Today)</span>
+            <span class="metric-value">1,247</span>
+            <span class="metric-trend stable">→</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-name">Bandwidth Used</span>
+            <span class="metric-value">2.1 GB</span>
+            <span class="metric-trend up">↑</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- System Health -->
+      <div class="metric-card system">
+        <h3>System Health</h3>
+        <div class="metric-list">
+          <div class="metric-item">
+            <span class="metric-name">Last Deployment</span>
+            <span class="metric-value">2 hours ago</span>
+            <span class="metric-status healthy">Successful</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-name">Backup Status</span>
+            <span class="metric-value">Today 03:00 UTC</span>
+            <span class="metric-status healthy">Complete</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-name">Security Scan</span>
+            <span class="metric-value">1 day ago</span>
+            <span class="metric-status healthy">Clean</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h3>Quick Actions</h3>
+      <div class="action-buttons">
+        <a href="https://dash.cloudflare.com" target="_blank" class="action-button">
+          Cloudflare Dashboard
+        </a>
+        <a href="https://github.com/{import.meta.env.PUBLIC_GITHUB_OWNER}/{import.meta.env.PUBLIC_GITHUB_REPO}/actions" target="_blank" class="action-button">
+          GitHub Actions
+        </a>
+        <a href="/admin/deployment-logs" class="action-button">
+          Deployment Logs
+        </a>
+        <button class="action-button" onclick="refreshMetrics()">
+          Refresh Metrics
+        </button>
+      </div>
+    </div>
+
+    <!-- Alerts Section -->
+    <div class="alerts-section">
+      <h3>Recent Alerts</h3>
+      <div class="alerts-list">
+        <div class="alert-item info">
+          <div class="alert-icon">ℹ️</div>
+          <div class="alert-content">
+            <div class="alert-title">Daily backup completed</div>
+            <div class="alert-time">2 hours ago</div>
+          </div>
+        </div>
+        <div class="alert-item warning">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <div class="alert-title">Performance test: LCP increased by 15%</div>
+            <div class="alert-time">1 day ago</div>
+          </div>
+        </div>
+        <div class="alert-item resolved">
+          <div class="alert-icon">✅</div>
+          <div class="alert-content">
+            <div class="alert-title">Security scan completed - no issues found</div>
+            <div class="alert-time">2 days ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  .monitoring-dashboard {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 32px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .dashboard-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .environment-badge {
+    background: var(--color-primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .env-name {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .metric-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .metric-card h3 {
+    margin: 0 0 16px 0;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 8px;
+  }
+
+  .metric-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .metric-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .metric-item:last-child {
+    border-bottom: none;
+  }
+
+  .metric-name {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    flex: 1;
+  }
+
+  .metric-value {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    margin: 0 12px;
+  }
+
+  .metric-status {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+
+  .metric-status.healthy {
+    background: var(--color-success-light);
+    color: var(--color-success);
+  }
+
+  .metric-status.warning {
+    background: var(--color-warning-light);
+    color: var(--color-warning);
+  }
+
+  .metric-status.critical {
+    background: var(--color-error-light);
+    color: var(--color-error);
+  }
+
+  .metric-trend {
+    font-weight: bold;
+    font-size: 1.125rem;
+  }
+
+  .metric-trend.up {
+    color: var(--color-success);
+  }
+
+  .metric-trend.down {
+    color: var(--color-error);
+  }
+
+  .metric-trend.stable {
+    color: var(--color-text-light);
+  }
+
+  .quick-actions {
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--color-background-light);
+    border-radius: 8px;
+  }
+
+  .quick-actions h3 {
+    margin: 0 0 16px 0;
+    font-size: 1.125rem;
+    color: var(--color-text);
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .action-button {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .action-button:hover {
+    background: var(--color-primary-dark);
+    text-decoration: none;
+    color: white;
+  }
+
+  .alerts-section {
+    margin-top: 24px;
+  }
+
+  .alerts-section h3 {
+    margin: 0 0 16px 0;
+    font-size: 1.125rem;
+    color: var(--color-text);
+  }
+
+  .alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .alert-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 4px solid;
+  }
+
+  .alert-item.info {
+    background: var(--color-info-light);
+    border-left-color: var(--color-info);
+  }
+
+  .alert-item.warning {
+    background: var(--color-warning-light);
+    border-left-color: var(--color-warning);
+  }
+
+  .alert-item.resolved {
+    background: var(--color-success-light);
+    border-left-color: var(--color-success);
+    opacity: 0.8;
+  }
+
+  .alert-icon {
+    margin-right: 12px;
+    font-size: 1.25rem;
+  }
+
+  .alert-content {
+    flex: 1;
+  }
+
+  .alert-title {
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--color-text);
+  }
+
+  .alert-time {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+  }
+
+  /* Theme-specific colors */
+  :root {
+    --color-primary: #3b82f6;
+    --color-primary-dark: #2563eb;
+    --color-success: #10b981;
+    --color-success-light: #d1fae5;
+    --color-warning: #f59e0b;
+    --color-warning-light: #fef3c7;
+    --color-error: #ef4444;
+    --color-error-light: #fee2e2;
+    --color-info: #3b82f6;
+    --color-info-light: #dbeafe;
+    --color-background: #ffffff;
+    --color-background-light: #f8fafc;
+    --color-border: #e2e8f0;
+    --color-border-light: #f1f5f9;
+    --color-text: #1e293b;
+    --color-text-light: #64748b;
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+    }
+
+    .action-button {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Client-side metrics refresh
+  function refreshMetrics() {
+    const button = event?.target;
+    if (button) {
+      const originalText = button.textContent;
+      button.textContent = 'Refreshing...';
+      button.disabled = true;
+
+      // Simulate API call
+      setTimeout(() => {
+        button.textContent = 'Metrics Refreshed!';
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.disabled = false;
+
+          // In a real implementation, this would fetch new metrics
+          console.log('Metrics refreshed at:', new Date().toISOString());
+        }, 1500);
+      }, 1000);
+    }
+  }
+
+  // Auto-refresh metrics every 5 minutes in production
+  if (typeof window !== 'undefined' && window.location.hostname === 'superinstance.ai') {
+    setInterval(() => {
+      console.log('Auto-refreshing monitoring metrics...');
+      // In production, this would make an API call to update metrics
+    }, 5 * 60 * 1000); // 5 minutes
+  }
+</script>

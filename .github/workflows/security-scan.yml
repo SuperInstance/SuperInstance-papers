@@ -1,0 +1,208 @@
+name: Security Scanning
+
+on:
+  schedule:
+    # Run weekly on Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'package.json'
+      - 'package-lock.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'website/**'
+  workflow_dispatch:  # Allow manual triggering
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # Security vulnerability scanning
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'website/package-lock.json'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+        continue-on-error: true  # Don't fail the workflow, just report
+
+      - name: Run Snyk security scan
+        uses: snyk/actions/node@master
+        with:
+          args: --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        continue-on-error: true
+
+      - name: Check for leaked secrets
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          config-path: .gitleaks.toml
+        continue-on-error: true
+
+      - name: Dependency review
+        uses: actions/dependency-review-action@v4
+        if: github.event_name == 'pull_request'
+
+      - name: Generate security report
+        run: |
+          echo "# Security Scan Report - $(date)" > security-report.md
+          echo "## Summary" >> security-report.md
+          echo "- Repository: ${{ github.repository }}" >> security-report.md
+          echo "- Branch: ${{ github.ref }}" >> security-report.md
+          echo "- Commit: ${{ github.sha }}" >> security-report.md
+          echo "- Scan Date: $(date)" >> security-report.md
+          echo "" >> security-report.md
+          echo "## Findings" >> security-report.md
+          echo "Security scans completed. Check logs for details." >> security-report.md
+
+          # Upload security report as artifact
+          mkdir -p reports
+          mv security-report.md reports/
+
+      - name: Upload security artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-reports
+          path: |
+            website/reports/
+          retention-days: 30
+
+      - name: Notify on critical vulnerabilities
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Critical Security Vulnerabilities Detected',
+              body: `Critical security vulnerabilities were detected in the latest security scan.
+
+**Repository:** ${context.repo.owner}/${context.repo.repo}
+**Branch:** ${context.ref}
+**Commit:** ${context.sha}
+
+Please review the security scan results and address the vulnerabilities immediately.
+
+Scan triggered by: ${context.actor}
+Timestamp: ${new Date().toISOString()}`,
+              labels: ['security', 'critical']
+            })
+
+  # Code quality and security linting
+  code-quality:
+    name: Code Quality & Security Linting
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'website/package-lock.json'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint with security rules
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Check for security anti-patterns
+        run: |
+          # Check for common security issues
+          echo "Checking for security anti-patterns..."
+
+          # Check for hardcoded secrets
+          if grep -r "password\|secret\|token\|key" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.astro" src/ | grep -v "process.env" | grep -v "//" | grep -v "test"; then
+            echo "⚠️ Warning: Potential hardcoded secrets found"
+            grep -r "password\|secret\|token\|key" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.astro" src/ | grep -v "process.env" | grep -v "//" | grep -v "test"
+          else
+            echo "✅ No hardcoded secrets found"
+          fi
+
+          # Check for eval() usage
+          if grep -r "eval(" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.astro" src/; then
+            echo "❌ Critical: eval() usage detected - this is a security risk!"
+            grep -r "eval(" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.astro" src/
+            exit 1
+          else
+            echo "✅ No eval() usage found"
+          fi
+        continue-on-error: true
+
+      - name: Generate code quality report
+        run: |
+          echo "# Code Quality Report - $(date)" > code-quality-report.md
+          echo "## Summary" >> code-quality-report.md
+          echo "- Repository: ${{ github.repository }}" >> code-quality-report.md
+          echo "- Branch: ${{ github.ref }}" >> code-quality-report.md
+          echo "- Commit: ${{ github.sha }}" >> code-quality-report.md
+          echo "- Scan Date: $(date)" >> code-quality-report.md
+          echo "" >> code-quality-report.md
+          echo "## Linting Results" >> code-quality-report.md
+          echo "ESLint checks completed. See logs for details." >> code-quality-report.md
+
+          mkdir -p reports
+          mv code-quality-report.md reports/
+
+      - name: Upload code quality artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-quality-reports
+          path: |
+            website/reports/
+          retention-days: 30
+
+  # Container security scanning (if using Docker)
+  container-scan:
+    name: Container Security Scan
+    runs-on: ubuntu-latest
+    if: false  # Disabled by default, enable if using Docker containers
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
