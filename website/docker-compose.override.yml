@@ -1,0 +1,64 @@
+# Docker Compose override for development
+# Copy this file to docker-compose.override.yml and customize
+
+version: '3.8'
+
+services:
+  website-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "${DEV_PORT:-4321}:4321"
+    environment:
+      - NODE_ENV=development
+      - VITE_DEV_MODE=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+    profiles:
+      - dev
+
+  # MailHog for email testing
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "${MAILHOG_SMTP:-1025}:1025"
+      - "${MAILHOG_UI:-8025}:8025"
+    networks:
+      - superinstance-network
+    profiles:
+      - dev
+
+  # Database for development
+  postgres-dev:
+    image: postgres:16-alpine
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    environment:
+      - POSTGRES_DB=superinstance_dev
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=development
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    networks:
+      - superinstance-network
+    profiles:
+      - dev
+
+  # Adminer for database management
+  adminer:
+    image: adminer:latest
+    ports:
+      - "${ADMINER_PORT:-8080}:8080"
+    networks:
+      - superinstance-network
+    depends_on:
+      - postgres-dev
+    profiles:
+      - dev
+
+volumes:
+  postgres_dev_data:

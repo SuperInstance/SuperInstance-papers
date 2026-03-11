@@ -1,0 +1,53 @@
+# Cloudflare Workers configuration for monitoring services
+# This complements the main wrangler.toml for the website
+
+# Uptime monitoring worker
+[[workers]]
+name = "superinstance-monitor"
+main = "monitoring/uptime-check.js"
+compatibility_date = "2026-03-11"
+
+[workers.vars]
+ENVIRONMENT = "production"
+SERVICE_NAME = "superinstance-monitor"
+
+# Scheduled triggers (cron jobs)
+[[workers.triggers]]
+crons = ["*/5 * * * *"]  # Run every 5 minutes
+
+# KV namespaces for monitoring data
+[[kv_namespaces]]
+binding = "MONITORING_KV"
+id = "monitoring-kv-namespace-id"
+preview_id = "monitoring-kv-preview-id"
+
+[[kv_namespaces]]
+binding = "SECURITY_LOGS"
+id = "security-logs-kv-namespace-id"
+preview_id = "security-logs-kv-preview-id"
+
+# D1 database for monitoring metrics
+[[d1_databases]]
+binding = "MONITORING_DB"
+database_name = "superinstance-monitoring"
+database_id = "monitoring-db-id"
+
+# Environment-specific settings
+[[env.production]]
+name = "superinstance-monitor-prod"
+[env.production.vars]
+ENVIRONMENT = "production"
+ALERT_THRESHOLD_RESPONSE_TIME = "3000"
+ALERT_THRESHOLD_UPTIME = "99.0"
+
+[[env.staging]]
+name = "superinstance-monitor-staging"
+[env.staging.vars]
+ENVIRONMENT = "staging"
+ALERT_THRESHOLD_RESPONSE_TIME = "5000"
+ALERT_THRESHOLD_UPTIME = "95.0"
+
+# Secrets (set via wrangler secret put)
+# - SLACK_WEBHOOK_URL
+# - WEBHOOK_URL
+# - EMAIL_API_KEY
