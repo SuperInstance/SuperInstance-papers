@@ -9,8 +9,9 @@ import authRouter from './api/auth/router'
 import progressRouter from './api/progress/router'
 import contentRouter from './api/content/router'
 import analyticsRouter from './api/analytics/router'
-app.route("/api/integrations", integrationsRouter)
 import integrationsRouter from './api/integrations/router'
+import cellsRouter from './api/cells/router'
+import websocketHandler from './ws/cells'
 
 // Create main app
 const app = new Hono<{ Bindings: Env }>()
@@ -41,8 +42,28 @@ app.route('/api/auth', authRouter)
 app.route('/api/progress', progressRouter)
 app.route('/api/content', contentRouter)
 app.route('/api/analytics', analyticsRouter)
-app.route("/api/integrations", integrationsRouter)
-import integrationsRouter from './api/integrations/router'
+app.route('/api/integrations', integrationsRouter)
+app.route('/api/cells', cellsRouter)
+
+// WebSocket route for real-time cell updates
+app.get('/ws/cells/:cellId', async (c) => {
+  // WebSocket upgrade handling will be done by Cloudflare
+  const cellId = c.req.param('cellId')
+  const upgradeHeader = c.req.header('Upgrade')
+
+  if (upgradeHeader?.toLowerCase() === 'websocket') {
+    // Prepare WebSocket connection
+    const headers = new Headers()
+    headers.set('X-Cell-ID', cellId)
+
+    return new Response(null, {
+      status: 101,
+      headers
+    })
+  }
+
+  return c.json({ error: 'WebSocket upgrade required' }, 426)
+})
 
 // 404 handler
 app.notFound((c) => {

@@ -27,6 +27,11 @@ export interface Env {
 
   // R2 Bucket (optional)
   FILES?: R2Bucket
+
+  // SuperInstance-specific namespaces
+  CELL_CACHE?: KVNamespace
+  ORIGIN_CACHE?: KVNamespace
+  PROPAGATION_CACHE?: KVNamespace
 }
 
 export type WorkerContext = {
