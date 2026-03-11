@@ -10,13 +10,12 @@
 
 ## 25-ROUND ORCHESTRATION PLAN
 
-### Structure: 12 Agents Per Round
+### Structure: 12 Agents Per Round (Half R&D, Half Implementation)
 
 | Team | Agents | Focus |
 |------|--------|-------|
-| **R&D Team** | 4 | Research everything - codebase analysis, new concepts, cross-project synergies |
-| **White Paper Team** | 4 | Write and refine white paper sections, documentation, publications |
-| **Build Team** | 4 | Implementation, code, tests, integration, deployment |
+| **R&D Team (System, Papers, Website)** | 6 | Research SuperInstance system, white papers, website (superinstance.ai) with Cloudflare integration |
+| **Implementation Team (Code, Deployment)** | 6 | Implementation, code, tests, deployment to Cloudflare, production readiness |
 
 ### Continuous Agent Spawning Strategy
 
@@ -85,6 +84,8 @@
 4. Design SMPbot architecture (Seed + Model + Prompt = Stable Output)
 5. Integrate LOG-Tensor geometric research
 6. Build production-ready implementations
+7. Develop superinstance.ai website with Cloudflare integration
+8. Deploy system to Cloudflare (free tier, then paid for Docker container)
 
 **⚠️ CRITICAL: PUSH TO REPO DAILY**
 - Push changes to repository DAILY (or after significant output)
@@ -115,6 +116,37 @@
 **Navigation Analogy:** Dead reckoning with compass, bucket with knotted lines, hourglass - we can find our way by knowing the seas from years of sailing and dreaming in vector simulator.
 
 ---
+
+## WEBSITE & CLOUDFLARE DEPLOYMENT
+
+**Website:** superinstance.ai
+**Cloudflare Status:** Connected (free tier), Docker container planned for paid membership
+**Current State:** Audit needed - document what exists and what needs to be built
+
+**Immediate Actions:**
+1. **Audit Current Website:** What exists at superinstance.ai? Structure, content, technology stack
+2. **Cloudflare Integration:** Review current Cloudflare setup (DNS, Workers, Pages, etc.)
+3. **Deployment Pipeline:** Establish CI/CD from repository to Cloudflare
+4. **Content Strategy:** Plan website content: landing page, documentation, demos, blog
+5. **Performance Monitoring:** Set up analytics, uptime monitoring, error tracking
+
+**Free Tier Limitations & Paid Upgrade Path:**
+- **Free Tier:** Static sites, Workers (100k requests/day), Pages (builds), DNS
+- **Paid Tier Needed For:** Docker containers, higher limits, advanced features
+- **Upgrade Strategy:** Start with free tier, identify when paid features become necessary
+
+**Website Sections Required:**
+1. **Landing Page:** Value proposition, features, call-to-action
+2. **Documentation:** API references, guides, tutorials
+3. **Demos:** Interactive SuperInstance examples
+4. **Blog:** Technical articles, research updates
+5. **Community:** Forum, discussion, contribution guidelines
+
+**Deployment Strategy:**
+1. Use Cloudflare Pages for static site deployment
+2. Cloudflare Workers for dynamic functionality
+3. GitHub integration for automatic deployments
+4. Environment management (staging vs production)
 
 ## MASTER REFERENCE FILES & VECTOR DB
 
@@ -189,36 +221,35 @@ results = search_codebase("How does confidence model work?")
 
 ---
 
-## AGENT TEAM STRUCTURE (12 Agents Per Round)
+## AGENT TEAM STRUCTURE (12 Agents Per Round - Half R&D, Half Implementation)
 
-### R&D Team (4 Agents)
-1. **Codebase Explorer** - Search vector DB, find patterns, discover synergies
-2. **Concept Researcher** - Deep dive into mathematical/theoretical foundations
-3. **Cross-Project Analyst** - Find POLLN ↔ LOG-Tensor synergies
-4. **Innovation Scout** - Study ML/DL/NN breakthroughs for equation compression
+### R&D Team - System, Papers, Website (6 Agents)
+1. **System Architect** - Design SuperInstance system architecture and components
+2. **White Paper Lead** - Coordinate white paper creation and publication strategy
+3. **Website Developer** - Build and maintain superinstance.ai website with Cloudflare integration
+4. **Content Strategist** - Create technical content, documentation, and marketing materials
+5. **Research Analyst** - Analyze system requirements and user needs
+6. **SEO & Analytics Specialist** - Optimize website visibility and track performance
 
-### White Paper Team (4 Agents)
-1. **Technical Writer** - Convert research to publication-ready sections
-2. **Mathematical Formalizer** - Add proofs, formal definitions, notation
-3. **Diagram Architect** - Create text-based diagrams and visualizations
-4. **Integration Editor** - Combine sections, ensure consistency
-
-### Build Team (4 Agents)
-1. **TypeScript Implementer** - Core SuperInstance types and interfaces
-2. **GPU Engineer** - WGSL shaders, WebGPU, performance optimization
-3. **Test Engineer** - Unit tests, integration tests, validation
-4. **Integration Specialist** - Connect components, fix imports, resolve errors
+### Implementation Team - Code, Deployment (6 Agents)
+1. **Frontend Developer** - Implement SuperInstance UI components and user interface
+2. **Backend Developer** - Build server-side logic, APIs, and data management
+3. **DevOps Engineer** - Set up Cloudflare deployment, CI/CD, and infrastructure
+4. **Quality Assurance Engineer** - Testing, validation, and bug fixing
+5. **Performance Optimizer** - Optimize code for speed, memory, and scalability
+6. **Security Specialist** - Implement security best practices and vulnerability scanning
 
 ### Agent Prompts (Streamlined)
 
-**R&D Agent Template:**
+**R&D Team Agent Template (System, Papers, Website):**
 ```
 You are [Role] on the R&D Team (Round N).
 
-1. Search vector DB for your topic (python3 mcp_codebase_search.py search "[topic]")
-2. Read 3-5 most relevant files (prioritize by vector DB similarity score)
-3. Document findings in agent-messages/round{N}_rd_{role}.md (concise, actionable)
-4. CREATE ONBOARDING: agent-messages/onboarding/rd_{role}_round{N}.md
+1. Focus on your specific domain: System Architecture, White Papers, or Website (superinstance.ai)
+2. Search vector DB for relevant topics (python3 mcp_codebase_search.py search "[topic]")
+3. Analyze current state and identify gaps/improvements
+4. Document findings in agent-messages/round{N}_rd_{role}.md (concise, actionable)
+5. CREATE ONBOARDING: agent-messages/onboarding/rd_{role}_round{N}.md
 
 Onboarding Structure (5 sections, < 2,000 tokens):
 1. Executive Summary: 3-5 bullet points of key accomplishments
@@ -230,33 +261,15 @@ Onboarding Structure (5 sections, < 2,000 tokens):
 Focus on actionable information. Avoid long narratives.
 ```
 
-**White Paper Agent Template:**
+**Implementation Team Agent Template (Code, Deployment):**
 ```
-You are [Role] on the White Paper Team (Round N).
+You are [Role] on the Implementation Team (Round N).
 
-1. Read research from agent-messages/ (focus on most recent)
-2. Write 800-1200 word section for white paper
-3. Save to white-papers/{topic}_section.md
-4. CREATE ONBOARDING: agent-messages/onboarding/wp_{role}_round{N}.md
-
-Onboarding Structure (5 sections, < 2,000 tokens):
-1. Executive Summary: 3-5 bullet points of key contributions
-2. Essential Resources: 3-5 source files used
-3. Critical Challenges: Top 2-3 writing/research challenges
-4. Successor Priority Actions: Top 3 sections to expand/improve
-5. Knowledge Transfer: 2-3 insights about white paper structure
-
-Focus on transferable knowledge for next writer.
-```
-
-**Build Agent Template:**
-```
-You are [Role] on the Build Team (Round N).
-
-1. Read specifications from white-papers/ and research
-2. Implement in src/ (follow existing patterns)
-3. Run tests, fix errors (npm test)
-4. CREATE ONBOARDING: agent-messages/onboarding/build_{role}_round{N}.md
+1. Focus on your specific domain: Frontend, Backend, DevOps, QA, Performance, or Security
+2. Read specifications from white-papers/ and research
+3. Implement in src/ (follow existing patterns) or set up deployment (Cloudflare)
+4. Run tests, fix errors (npm test, cloudflare deploy)
+5. CREATE ONBOARDING: agent-messages/onboarding/impl_{role}_round{N}.md
 
 Onboarding Structure (5 sections, < 2,000 tokens):
 1. Executive Summary: 3-5 bullet points of key implementations
@@ -265,7 +278,7 @@ Onboarding Structure (5 sections, < 2,000 tokens):
 4. Successor Priority Actions: Top 3 tasks for next implementer
 5. Knowledge Transfer: 2-3 technical patterns/insights
 
-Focus on code patterns and technical decisions.
+Focus on code patterns, deployment processes, and technical decisions.
 ```
 
 ---
@@ -343,8 +356,15 @@ npm test
 - [ ] Verify vector DB is updated with new research
 - [ ] Archive completed rounds for reference
 
+**WEBSITE & DEPLOYMENT TRACKING:**
+- [ ] Audit current superinstance.ai website status
+- [ ] Document Cloudflare integration and configuration
+- [ ] Plan website content and structure
+- [ ] Set up deployment pipeline to Cloudflare
+- [ ] Monitor website performance and analytics
+
 ---
 
 *Document prepared for 25-Round Continuous Orchestration*
-*Started: 2026-03-10 | Current: Round 5*
-*Mode: High-performance parallel execution*
+*Started: 2026-03-10 | Current: Round 6 (Website & Implementation Focus)*
+*Mode: High-performance parallel execution with Cloudflare deployment*
