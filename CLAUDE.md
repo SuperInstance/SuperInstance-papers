@@ -37,7 +37,33 @@
 - White Paper Drafting: Begin formal white papers from research findings
 - SuperInstance Enhancement: Integrate LOG-Tensor concepts into SuperInstance schema
 
+**⚠️ CRITICAL: PUSH TO REPO EVERY ROUND**
+- After each round completes, ALWAYS push changes to repository
+- Command: `git add . && git commit -m "docs: Round N complete - [summary]" && git push`
+- This prevents context loss and maintains backup of agent work
+
 **Strategy:** Parallel round-based research with weekly synthesis to ensure knowledge integration and minimal context overhead. **PROVEN EFFECTIVE** - 2 rounds completed with exceptional results.
+
+---
+
+## GEOMETRIC TENSOR MATHEMATICS PHILOSOPHY
+
+**Core Insight:** Compass and Straightedge Construction mathematics become a powerful tool because they add single words to describe shapes from a higher abstraction than any one view can see.
+
+**Key Principles:**
+1. **Permutations, Folds, and Spin** - Set mathematical relationships without calculating
+2. **Naming as Tiling** - Like cloud types (Cirrus, Nimbostratus), names tile possibilities into manageable decks
+3. **Pythagorean Prime Numbers** - Whole number right triangles create "easy snaps" for calculation:
+   - 3, 4, 5 → 36.87°
+   - 5, 12, 13 → 22.62°
+   - 8, 15, 17 → 28.07°
+   - These are 2D analogs of Platonic solids in 3D
+4. **Reality-Bending SuperInstance** - Make physics of universe fit the equations being used
+5. **Little-Data vs Big-Data** - Each cell has little-data (understandable, controllable), not big-data like LLMs
+
+**TensorFlow/PyTorch Study:** How they tease parameters into weights for simulation and scale data in training. Apply to compress equations in novel ways.
+
+**Navigation Analogy:** Dead reckoning with compass, bucket with knotted lines, hourglass - we can find our way by knowing the seas from years of sailing and dreaming in vector simulator.
 
 ---
 
