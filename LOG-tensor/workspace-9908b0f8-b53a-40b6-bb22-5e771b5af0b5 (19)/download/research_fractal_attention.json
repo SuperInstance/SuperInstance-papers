@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12025551",
+    "name": "Fractal-Based Architectures with Skip Connections and Attention Mechanism for Improved Segmentation of MS Lesions in Cervical Spinal Cord - PMC",
+    "snippet": "2025 · Cited by 3 — Fractal architectures, inspired by self-repeating hierarchical patterns, enable the extraction of multi-scale features, enhancing the ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2504-3110/8/10/552",
+    "name": "Fractal Self-Similarity in Semantic Convergence: Gradient of Embedding Similarity across Transformer Layers",
+    "snippet": "2024 · Cited by 5 — This paper presents a mathematical analysis of semantic convergence in transformer-based language models, drawing inspiration from the concept of fractal self- ...",
+    "host_name": "www.mdpi.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/pdf/9ddfc724fdadeae1fe66e69c70a4dfa0826ef60d.pdf",
+    "name": "FRACTAL-INSPIRED MESSAGE PASSING NEURAL NET",
+    "snippet": "In this section, we discuss MPNNs, their limitations, graph Transformers, augmented MPNNs and discuss fractality and self-similarity in networks. Message ...",
+    "host_name": "openreview.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1746809425008900",
+    "name": "Multimodal hierarchical transformer enriched by temporal features and the CTC loss model",
+    "snippet": "2026 · Cited by 1 — Our Multi-modal Attention Fusion Module utilizes cross attention and self attention mechanisms to fuse audio, text and video features together. Analyzing ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.aimspress.com/article/doi/10.3934/mbe.2023149?viewType=HTML",
+    "name": "Hierarchical volumetric transformer with comprehensive attention for medical image segmentation",
+    "snippet": "2 Dec 2022 — The volume transformer based on self-attention mechanism can adaptively adjust the receptive field according to the input feature. Fine ...",
+    "host_name": "www.aimspress.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.computer.org/csdl/magazine/co/2026/01/11321039/2cTQFfASKCA",
+    "name": "Beyond Attention: New Possibilities for AI Architectures",
+    "snippet": "This article surveys several of the most promising alternatives to transformers and introduces the author's Cantor, a light fractal model (LFM), as one example ...",
+    "host_name": "www.computer.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://sebastianraschka.com/blog/2023/self-attention-from-scratch.html",
+    "name": "Understanding and Coding the Self-Attention Mechanism of Large Language Models From Scratch",
+    "snippet": "9 Feb 2023 — In this article, we are going to understand how self-attention works from scratch. This means we will code it ourselves one step at a time.",
+    "host_name": "sebastianraschka.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2025/poster/116512",
+    "name": "Hierarchical Self-Attention: Generalizing Neural Attention Mechanics to Multi-Scale Problems",
+    "snippet": "3 Dec 2025 — By incorporating it within transformers, we show that the proposed hierarchical attention mechanism not only can be employed to train ...",
+    "host_name": "neurips.cc",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=X7lrOUfNKa",
+    "name": "GraphFractalNet: A Fractal-Inspired Sparse Transformer for Ultra-Scalable Graph Representation Learning",
+    "snippet": "by A Quadir — ... fractal attention mechanism to capture both global and hierarchical self-similar structures in graphs. By leveraging truncated spectral ...",
+    "host_name": "openreview.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/384315534_Fractal_Self-Similarity_in_Semantic_Convergence_Gradient_of_Embedding_Similarity_across_Transformer_Layers",
+    "name": "Fractal Self-Similarity in Semantic Convergence: Gradient of Embedding Similarity across Transformer Layers",
+    "snippet": "16 Sept 2024 — This paper presents a mathematical analysis of semantic convergence in transformer-based language models, drawing inspiration from the ...",
+    "host_name": "www.researchgate.net",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

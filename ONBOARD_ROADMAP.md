@@ -1,8 +1,9 @@
-# POLLN Project - Solo Completion Roadmap
+# POLLN Project - Team Orchestration Roadmap
 
 **Created:** 2026-03-10
 **Status:** Phase 2 Infrastructure → Phase 3 Advanced Tiles
 **Remaining TypeScript Errors:** ~82 (down from 200+)
+**Team Mode:** Orchestrator-led with 7+ specialized agents
 
 ---
 
@@ -65,7 +66,7 @@ src/cli/commands/*.ts                                          - ~15 errors
 
 ---
 
-## Solo Completion Plan
+## Team Completion Plan (Orchestrator-led)
 
 ### Phase A: Clean Up TypeScript Errors (Priority: CRITICAL)
 **Estimated Time:** 2-3 hours
@@ -194,15 +195,18 @@ git push origin main
 
 ---
 
-## Notes for Self
+## Notes for Team Coordination
 
 1. **Don't over-engineer** - Fix what's broken, don't add features
 2. **Batch similar fixes** - Fix all "implicit any" errors together
 3. **Test after each batch** - Run tsc after every 5-10 file fixes
 4. **Commit frequently** - Small commits are easier to rollback
 5. **Trust the research** - The docs/research/ folder has 140+ documents with implementation guidance
+6. **Coordinate via agent-messages** - Leave progress updates and questions in `/agent-messages/`
+7. **Share breakthroughs** - Document key insights immediately for other agents
+8. **Cross-reference understanding** - Read other agents' output files periodically
 
 ---
 
 *Last Updated: 2026-03-10*
-*Status: Ready for Solo Completion*
+*Status: Ready for Team Orchestration*

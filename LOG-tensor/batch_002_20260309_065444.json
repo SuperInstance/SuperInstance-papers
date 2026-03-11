@@ -1,0 +1,66 @@
+[
+  {
+    "query": "Apply to climate modeling, representing weather patterns as tiles.",
+    "category": "applications",
+    "temperature": 0.0,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Show that the need function N(s) = \ud835\udfd9[min_T d(T(s), s') > \u03c4] defines a VC-learnable concept class.",
+    "category": "mathematics",
+    "temperature": 0.3,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Show that natural gradient descent on tile parameters avoids catastrophic forgetting.",
+    "category": "advanced",
+    "temperature": 0.3,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Design a Riemannian optimization algorithm for tile learning that respects the manifold structure.",
+    "category": "advanced",
+    "temperature": 0.7,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Show how to implement tile embeddings as a differentiable dictionary learning problem.",
+    "category": "architecture",
+    "temperature": 1.0,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Show that the information geometry of tile space is negatively curved, enabling efficient navigation.",
+    "category": "advanced",
+    "temperature": 0.7,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Derive the Clebsch-Gordan coefficients for S_n tensor products relevant to neural network compositions.",
+    "category": "mathematics",
+    "temperature": 1.0,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Derive the Fisher information metric on the manifold of tile probability distributions.",
+    "category": "advanced",
+    "temperature": 0.3,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  }
+]

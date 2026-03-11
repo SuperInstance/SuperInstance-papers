@@ -1,0 +1,620 @@
+{
+  "CHANGE": [
+    {
+      "n": "ALT",
+      "change": "altitude",
+      "trigger": "when rate of change exceeds 100m/s",
+      "py": "if abs(diff_altitude) > 100: alert()",
+      "tier": "HOT",
+      "category": "CHANGE"
+    },
+    {
+      "n": "SPE",
+      "change": "speed",
+      "trigger": "when rate of change surpasses 0.1 Mach",
+      "py": "if abs(diff_speed) > 0.1: alert()",
+      "tier": "HOT",
+      "category": "CHANGE"
+    },
+    {
+      "n": "HEA",
+      "change": "heading",
+      "trigger": "when rate of change exceeds 30 degrees/s",
+      "py": "if abs(diff_heading) > 30: alert()",
+      "tier": "MED",
+      "category": "CHANGE"
+    },
+    {
+      "n": "GFO",
+      "change": "G-force",
+      "trigger": "when rate of change is more than 0.5G/s",
+      "py": "if abs(diff_gforce) > 0.5: alert()",
+      "tier": "HOT",
+      "category": "CHANGE"
+    },
+    {
+      "n": "VSI",
+      "change": "vertical speed",
+      "trigger": "when rate of change exceeds 5m/s^2",
+      "py": "if abs(diff_vspe) > 5: alert()",
+      "tier": "HOT",
+      "category": "CHANGE"
+    },
+    {
+      "n": "PIT",
+      "change": "pitch rate",
+      "trigger": "when rate of change is above 5 degrees/s",
+      "py": "if abs(diff_pitch) > 5: alert()",
+      "tier": "MED",
+      "category": "CHANGE"
+    },
+    {
+      "n": "ROL",
+      "change": "roll rate",
+      "trigger": "when rate of change exceeds 10 degrees/s",
+      "py": "if abs(diff_roll) > 10: alert()",
+      "tier": "MED",
+      "category": "CHANGE"
+    },
+    {
+      "n": "YAW",
+      "change": "yaw rate",
+      "trigger": "when rate of change is more than 5 degrees/s",
+      "py": "if abs(diff_yaw) > 5: alert()",
+      "tier": "MED",
+      "category": "CHANGE"
+    },
+    {
+      "n": "ENG",
+      "change": "engine thrust",
+      "trigger": "when rate of change exceeds 10%/s",
+      "py": "if abs(diff_thrust) > 0.1: alert()",
+      "tier": "HOT",
+      "category": "CHANGE"
+    },
+    {
+      "n": "FUE",
+      "change": "fuel consumption rate",
+      "trigger": "when rate of change is over 100kg/min",
+      "py": "if abs(diff_fuel) > 100: alert()",
+      "tier": "COLD",
+      "category": "CHANGE"
+    }
+  ],
+  "MEMORY": [
+    {
+      "n": "HOT1",
+      "tier": "HOT",
+      "promote": "data is accessed within the last 0.1 seconds",
+      "demote": "data has not been accessed for over 1 second",
+      "py": "# Code logic to promote/demote data into HOT tier",
+      "category": "MEMORY"
+    },
+    {
+      "n": "MED1",
+      "tier": "MED",
+      "promote": "data is accessed within the last 10 seconds but not 0.1 seconds",
+      "demote": "data has not been accessed for over 10 minutes",
+      "py": "# Code logic to promote/demote data into MED tier",
+      "category": "MEMORY"
+    },
+    {
+      "n": "COLD1",
+      "tier": "COLD",
+      "promote": "data accessed more than 10 minutes ago but less than 1 day",
+      "demote": "data has not been accessed for over 7 days",
+      "py": "# Code logic to promote/demote data into COLD tier",
+      "category": "MEMORY"
+    },
+    {
+      "n": "ARCH1",
+      "tier": "ARCHIVE",
+      "promote": "data is tagged as potentially important but not accessed for over 30 days",
+      "demote": "data is deemed obsolete or not accessed for over 1 year",
+      "py": "# Code logic to promote/demote data into ARCHIVE tier",
+      "category": "MEMORY"
+    },
+    {
+      "n": "HOT2",
+      "tier": "HOT",
+      "promote": "data is used as part of the current user session",
+      "demote": "data session ends and not accessed for over 30 seconds",
+      "py": "# Code logic to promote/demote data into HOT tier",
+      "category": "MEMORY"
+    },
+    {
+      "n": "MED2",
+      "tier": "MED",
+      "promote": "data is part of the session but not the primary focus",
+      "demote": "data has not been accessed by user for more than 30 minutes",
+      "py": "# Code logic to promote/demote data into MED tier",
+      "category": "MEMORY"
+    },
+    {
+      "n": "COLD2",
+      "tier": "COLD",
+      "promote": "data is marked as reference material but not currently needed",
+      "demote": "data is not accessed for over 24 hours",
+      "py": "# Code logic to promote/demote data into COLD tier",
+      "category": "MEMORY"
+    },
+    {
+      "n": "ARCH2",
+      "tier": "ARCHIVE",
+      "promote": "data is recognized as historical but could be useful in the future",
+      "demote": "data is not needed for over 6 months",
+      "py": "# Code logic to promote/demote data into ARCHIVE tier",
+      "category": "MEMORY"
+    }
+  ],
+  "INDUCTION": [
+    {
+      "n": "OPTM",
+      "induces_when": "optimization opportunity",
+      "distills_from": "optimization techniques",
+      "py": "optimized_parameters = find_optimal_parameters(data)",
+      "why": "To improve efficiency and performance",
+      "category": "INDUCTION"
+    }
+  ],
+  "PILOT": [
+    {
+      "n": "Air1",
+      "monitors": "airspeed",
+      "attention": "ALWAYS",
+      "py": "lambda x: x['airspeed']",
+      "scan": "continuous",
+      "category": "PILOT"
+    },
+    {
+      "n": "Alt2",
+      "monitors": "altitude",
+      "attention": "ALWAYS",
+      "py": "lambda x: x['altitude']",
+      "scan": "continuous",
+      "category": "PILOT"
+    },
+    {
+      "n": "Hdg3",
+      "monitors": "heading",
+      "attention": "ALWAYS",
+      "py": "lambda x: x['heading']",
+      "scan": "continuous",
+      "category": "PILOT"
+    },
+    {
+      "n": "Fuel4",
+      "monitors": "fuel level",
+      "attention": "CHANGE",
+      "py": "lambda x: x['fuel']",
+      "scan": "onchange",
+      "category": "PILOT"
+    },
+    {
+      "n": "Wthr5",
+      "monitors": "weather",
+      "attention": "CHANGE",
+      "py": "lambda x: x['weather']",
+      "scan": "onchange",
+      "category": "PILOT"
+    },
+    {
+      "n": "Trf6",
+      "monitors": "traffic patterns",
+      "attention": "INFERRED",
+      "py": "lambda x: x['traffic']",
+      "scan": "inferred",
+      "category": "PILOT"
+    },
+    {
+      "n": "ATC7",
+      "monitors": "ATC intent",
+      "attention": "INFERRED",
+      "py": "lambda x: x['ATC']",
+      "scan": "inferred",
+      "category": "PILOT"
+    },
+    {
+      "n": "Pth8",
+      "monitors": "path",
+      "attention": "ALWAYS",
+      "py": "lambda x: x['path']",
+      "scan": "continuous",
+      "category": "PILOT"
+    },
+    {
+      "n": "Rng9",
+      "monitors": "range",
+      "attention": "ALWAYS",
+      "py": "lambda x: x['range']",
+      "scan": "continuous",
+      "category": "PILOT"
+    },
+    {
+      "n": "Fcl10",
+      "monitors": "focal length",
+      "attention": "CHANGE",
+      "py": "lambda x: x['focal_length']",
+      "scan": "onchange",
+      "category": "PILOT"
+    },
+    {
+      "n": "Spd11",
+      "monitors": "speed",
+      "attention": "ALWAYS",
+      "py": "lambda x: x['speed']",
+      "scan": "continuous",
+      "category": "PILOT"
+    },
+    {
+      "n": "Tm12",
+      "monitors": "time",
+      "attention": "ALWAYS",
+      "py": "lambda x: x['time']",
+      "scan": "continuous",
+      "category": "PILOT"
+    }
+  ],
+  "WHY_TRACE": [
+    {
+      "n": "Add",
+      "traces": "Why is this transaction added to the ledger?",
+      "follows": "from_account",
+      "py": "lambda x: x['from_account']",
+      "induces": "T = T + A",
+      "category": "WHY_TRACE"
+    },
+    {
+      "n": "Sub",
+      "traces": "Why is this transaction subtracted from the ledger?",
+      "follows": "to_account",
+      "py": "lambda x: x['to_account']",
+      "induces": "T = T - B",
+      "category": "WHY_TRACE"
+    },
+    {
+      "n": "Bal",
+      "traces": "Why is the account balance calculated?",
+      "follows": "transaction_amount",
+      "py": "lambda x: x['amount']",
+      "induces": "B = B + x['amount']",
+      "category": "WHY_TRACE"
+    },
+    {
+      "n": "Int",
+      "traces": "Why is interest charged?",
+      "follows": "due_date",
+      "py": "lambda x: x['due_date']",
+      "induces": "I = D * x['int_rate'] * (x['due_date'] - x['transaction_date']) / 365",
+      "category": "WHY_TRACE"
+    },
+    {
+      "n": "Due",
+      "traces": "Why is the payment due?",
+      "follows": "due_notification",
+      "py": "lambda x: x['notification_date']",
+      "induces": "D = D if x['notification_date'] <= x['due_date'] else False",
+      "category": "WHY_TRACE"
+    },
+    {
+      "n": "Rec",
+      "traces": "Why is the receipt generated?",
+      "follows": "transaction_id",
+      "py": "lambda x: x['transaction_id']}",
+      "induces": "R = R + (x['amount'], x['transaction_id'])",
+      "category": "WHY_TRACE"
+    }
+  ],
+  "EXPERIENCE": [
+    {
+      "n": "LGHT",
+      "data": "ambient light intensity",
+      "experience": "sense of time of day and mood",
+      "py": "if light_intensity changes, update day_cycle and mood",
+      "imprint": "first light\u611f\u77e5 defines initial mood state",
+      "category": "EXPERIENCE"
+    },
+    {
+      "n": "SNDS",
+      "data": "sound frequency and amplitude",
+      "experience": "alertness and comfort levels",
+      "py": "if sound_change detected, adjust alertness and comfort",
+      "imprint": "first significant sound sets comfort baseline",
+      "category": "EXPERIENCE"
+    },
+    {
+      "n": "TEMP",
+      "data": "ambient temperature",
+      "experience": "feeling of warmth or chill",
+      "py": "if temp_change noted, update comfort level",
+      "imprint": "initial temperature sets comfort expectation",
+      "category": "EXPERIENCE"
+    },
+    {
+      "n": "HUMD",
+      "data": "relative humidity",
+      "experience": "sense of dryness or humidity",
+      "py": "if humidity_change detected, update comfort level",
+      "imprint": "first humidity encounter sets dryness expectation",
+      "category": "EXPERIENCE"
+    },
+    {
+      "n": "PRSH",
+      "data": "pressure changes",
+      "experience": "perception of weather conditions",
+      "py": "if pressure_change detected, predict weather change",
+      "imprint": "initial pressure sets weather expectation",
+      "category": "EXPERIENCE"
+    },
+    {
+      "n": "MOVE",
+      "data": "motion detected",
+      "experience": "awareness of presence or activity",
+      "py": "if motion detected, update activity level",
+      "imprint": "first motion sets baseline for normal activity",
+      "category": "EXPERIENCE"
+    },
+    {
+      "n": "SNTM",
+      "data": "changes in scent particles",
+      "experience": "memories of associated events and emotions",
+      "py": "if scent_change detected, recall associated memories",
+      "imprint": "first scent encounter imprints initial memory",
+      "category": "EXPERIENCE"
+    },
+    {
+      "n": "TCH ",
+      "data": "texture and pressure",
+      "experience": "feeling of softness, hardness or weight",
+      "py": "if touch_change detected, update perception of texture",
+      "imprint": "initial touch defines hardness expectation",
+      "category": "EXPERIENCE"
+    }
+  ],
+  "DISTILL": [
+    {
+      "n": "Sys1",
+      "distills": "predictive accuracy",
+      "from_agent": "neural",
+      "py": "lambda: accuracy_score(y_true, y_pred)",
+      "why": "understand model reliability",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Filt",
+      "distills": "data selection",
+      "from_agent": "filter",
+      "py": "lambda: subset(valid_data)",
+      "why": "optimize signal quality",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Feat",
+      "distills": "feature importance",
+      "from_agent": "boosting",
+      "py": "lambda: feature_importances_",
+      "why": "focus on predictive features",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Tune",
+      "distills": "parameter tuning",
+      "from_agent": "bayesopt",
+      "py": "lambda: optimized_params",
+      "why": "find optimal settings",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Err",
+      "distills": "error distribution",
+      "from_agent": "ensemble",
+      "py": "lambda: error_distribution",
+      "why": "diagnose model weaknesses",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Out",
+      "distills": "outlier detection",
+      "from_agent": "isolation",
+      "py": "lambda: outliers",
+      "why": "mitigate outlier influence",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Sca",
+      "distills": "scaling impact",
+      "from_agent": "scaling",
+      "py": "lambda: scaled_data",
+      "why": "normalize feature scales",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Imp",
+      "distills": "imputation strategy",
+      "from_agent": "knn_impute",
+      "py": "lambda: imputed_data",
+      "why": "handle missing values",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Var",
+      "distills": "variance reduction",
+      "from_agent": "dimensionality",
+      "py": "lambda: reduced_variance",
+      "why": "reduce model complexity",
+      "category": "DISTILL"
+    },
+    {
+      "n": "Syn",
+      "distills": "synthetic generation",
+      "from_agent": "synthesis",
+      "py": "lambda: synthetic_samples",
+      "why": "increase model robustness",
+      "category": "DISTILL"
+    }
+  ],
+  "INFERRED": [
+    {
+      "n": "IncT",
+      "infers": "anomalous increases in temperature",
+      "when": "temp > 100 and rate_of_change(temp) > 2",
+      "py": "lambda temp: temp > 100 and rate_of_change(temp) > 2",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "DecF",
+      "infers": "unusual drops in financial values",
+      "when": "value < 50 and rate_of_change(value) > 0.05",
+      "py": "lambda value: value < 50 and rate_of_change(value) > 0.05",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "SpdUp",
+      "infers": "sudden acceleration",
+      "when": "speed > 0 and rate_of_change(speed) > 1",
+      "py": "lambda speed: speed > 0 and rate_of_change(speed) > 1",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "VolC",
+      "infers": "unexpected increase in volume",
+      "when": "volume > 0 and rate_of_change(volume) > 0.1",
+      "py": "lambda volume: volume > 0 and rate_of_change(volume) > 0.1",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "WavS",
+      "infers": "strange wave signal patterns",
+      "when": "wave_strength > threshold and rate_of_change(wave_strength) > 0.01",
+      "py": "lambda wave_strength: wave_strength > threshold and rate_of_change(wave_strength) > 0.01",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "PwrS",
+      "infers": "sudden power surge",
+      "when": "power > 1000 and rate_of_change(power) > 10",
+      "py": "lambda power: power > 1000 and rate_of_change(power) > 10",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "PrFl",
+      "infers": "pressure fluctuations",
+      "when": "pressure > 50 and rate_of_change(pressure) > 1",
+      "py": "lambda pressure: pressure > 50 and rate_of_change(pressure) > 1",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "TmD",
+      "infers": "time delay anomalies",
+      "when": "latency > 200 and rate_of_change(latency) > 10",
+      "py": "lambda latency: latency > 200 and rate_of_change(latency) > 10",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "LgtCh",
+      "infers": "lighting change issues",
+      "when": "brightness > 100 and rate_of_change(brightness) > 5",
+      "py": "lambda brightness: brightness > 100 and rate_of_change(brightness) > 5",
+      "expected": false,
+      "category": "INFERRED"
+    },
+    {
+      "n": "CstR",
+      "infers": "cost rate changes",
+      "when": "cost > 1000 and rate_of_change(cost) > 0.1",
+      "py": "lambda cost: cost > 1000 and rate_of_change(cost) > 0.1",
+      "expected": false,
+      "category": "INFERRED"
+    }
+  ],
+  "EMERGE": [
+    {
+      "n": "REM",
+      "emerges": "when alpha waves are dominant",
+      "from": "brain waves",
+      "py": "lambda: increase_brainwave_intensity('alpha')",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "DLG",
+      "emerges": "when dream subjects acknowledge",
+      "from": "lucid dreaming",
+      "py": "lambda: trigger_awakening_sequence()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "IFS",
+      "emerges": "when test subjects show improvement",
+      "from": "research trials",
+      "py": "lambda: update_performance_stats()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "LBR",
+      "emerges": "when concepts exceed information load",
+      "from": "cognitive research",
+      "py": "lambda: expand_information_capacity()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "PSE",
+      "emerges": "when dream cohesion is achieved",
+      "from": "narrative analysis",
+      "py": "lambda: enhance_narrative_cohesion()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "STG",
+      "emerges": "when dream recall is consistent",
+      "from": "memory studies",
+      "py": "lambda: optimize_recall_methods()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "EME",
+      "emerges": "when EEG shows signs of emergence",
+      "from": "neuroscience",
+      "py": "lambda: analyze_brain_activity_patterns()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "BSD",
+      "emerges": "when baseline data confirms patterns",
+      "from": "sleep studies",
+      "py": "lambda: align_data_to_baseline()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "WKN",
+      "emerges": "when waking thoughts influence dreaming",
+      "from": "subconscious processing",
+      "py": "lambda: correlate_waking_subconscious()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    },
+    {
+      "n": "TDC",
+      "emerges": "when dream data from multiple sources correlate",
+      "from": "cross-study analysis",
+      "py": "lambda: synthesize_dream_data()",
+      "self_organizes": "true",
+      "category": "EMERGE"
+    }
+  ]
+}

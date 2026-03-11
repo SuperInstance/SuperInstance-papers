@@ -1,0 +1,590 @@
+{
+  "metadata": {
+    "simulation_type": "confidence_cascade_validation",
+    "timestamp": "2026-03-10T20:47:53.003568",
+    "sample_count": 1000,
+    "random_seed": 42,
+    "config": {
+      "random_seed": 42,
+      "use_fixed_seed": true,
+      "confidence_distribution": "bimodal",
+      "distribution_params": {
+        "low": 0.0,
+        "high": 1.0
+      },
+      "min_chain_length": 1,
+      "max_chain_length": 10,
+      "default_chain_length": 5,
+      "default_parallel_weights": true,
+      "weight_distribution": "uniform",
+      "include_metadata": true,
+      "metadata_fields": [
+        "generation_timestamp",
+        "random_seed",
+        "distribution"
+      ]
+    }
+  },
+  "results": [
+    {
+      "simulation_id": "cascade_20260310_204752_e88c19b7",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_76cf38d3",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.6394267984578837,
+            "zone": "YELLOW",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.025010755222666936,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.6394267984578837,
+          0.025010755222666936
+        ],
+        "zone_sequence": [
+          "YELLOW",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.6394267984578837,
+        0.025010755222666936
+      ],
+      "input_zones": [
+        "YELLOW",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.015992547139043713,
+      "expected_confidence": 0.015992547139043713,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956384",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_f8cb1f6b",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_b93f4e3f",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.27502931836911926,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.22321073814882275,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.27502931836911926,
+          0.22321073814882275
+        ],
+        "zone_sequence": [
+          "RED",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.27502931836911926,
+        0.22321073814882275
+      ],
+      "input_zones": [
+        "RED",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.06138949716573869,
+      "expected_confidence": 0.06138949716573869,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956442",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_8b816cc8",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_36c6e189",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.7364712141640124,
+            "zone": "YELLOW",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.6766994874229113,
+            "zone": "YELLOW",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.7364712141640124,
+          0.6766994874229113
+        ],
+        "zone_sequence": [
+          "YELLOW",
+          "YELLOW"
+        ]
+      },
+      "input_confidences": [
+        0.7364712141640124,
+        0.6766994874229113
+      ],
+      "input_zones": [
+        "YELLOW",
+        "YELLOW"
+      ],
+      "weights": null,
+      "actual_confidence": 0.4983696931265163,
+      "expected_confidence": 0.4983696931265163,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "YELLOW\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956468",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_80e312e8",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_2aad8203",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.8921795677048454,
+            "zone": "GREEN",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.08693883262941615,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.8921795677048454,
+          0.08693883262941615
+        ],
+        "zone_sequence": [
+          "GREEN",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.8921795677048454,
+        0.08693883262941615
+      ],
+      "input_zones": [
+        "GREEN",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.07756505011207641,
+      "expected_confidence": 0.07756505011207641,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956484",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_19012ce8",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_5fa6357e",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.4219218196852704,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.029797219438070344,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.4219218196852704,
+          0.029797219438070344
+        ],
+        "zone_sequence": [
+          "RED",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.4219218196852704,
+        0.029797219438070344
+      ],
+      "input_zones": [
+        "RED",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.01257209704687195,
+      "expected_confidence": 0.01257209704687195,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956499",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_bb8ae802",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_58a95e61",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.21863797480360336,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.5053552881033624,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.21863797480360336,
+          0.5053552881033624
+        ],
+        "zone_sequence": [
+          "RED",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.21863797480360336,
+        0.5053552881033624
+      ],
+      "input_zones": [
+        "RED",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.11048985674721067,
+      "expected_confidence": 0.11048985674721067,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956514",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_a835a8b1",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_082723ee",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.026535969683863625,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.1988376506866485,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.026535969683863625,
+          0.1988376506866485
+        ],
+        "zone_sequence": [
+          "RED",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.026535969683863625,
+        0.1988376506866485
+      ],
+      "input_zones": [
+        "RED",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.00527634987063157,
+      "expected_confidence": 0.00527634987063157,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956528",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_d413dd86",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_7ffbb7dc",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.6498844377795232,
+            "zone": "YELLOW",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.5449414806032167,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.6498844377795232,
+          0.5449414806032167
+        ],
+        "zone_sequence": [
+          "YELLOW",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.6498844377795232,
+        0.5449414806032167
+      ],
+      "input_zones": [
+        "YELLOW",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.35414898774456244,
+      "expected_confidence": 0.35414898774456244,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956543",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_9c552bca",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_810a34fc",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.2204406220406967,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.5892656838759087,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.2204406220406967,
+          0.5892656838759087
+        ],
+        "zone_sequence": [
+          "RED",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.2204406220406967,
+        0.5892656838759087
+      ],
+      "input_zones": [
+        "RED",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.12989809390084187,
+      "expected_confidence": 0.12989809390084187,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956557",
+      "random_seed": 42,
+      "computation_time_ms": null
+    },
+    {
+      "simulation_id": "cascade_20260310_204752_2a6cbf46",
+      "chain_config": {
+        "chain_id": "chain_sim_20260310_204752_7ad0b236",
+        "tiles": [
+          {
+            "tile_id": "tile_0",
+            "confidence": 0.8094304566778266,
+            "zone": "YELLOW",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          },
+          {
+            "tile_id": "tile_1",
+            "confidence": 0.006498759678061017,
+            "zone": "RED",
+            "source": "generated_uniform",
+            "weight": null,
+            "metadata": {}
+          }
+        ],
+        "composition_type": "sequential",
+        "description": "sequential composition with 2 tiles",
+        "metadata": {},
+        "length": 2,
+        "confidence_sequence": [
+          0.8094304566778266,
+          0.006498759678061017
+        ],
+        "zone_sequence": [
+          "YELLOW",
+          "RED"
+        ]
+      },
+      "input_confidences": [
+        0.8094304566778266,
+        0.006498759678061017
+      ],
+      "input_zones": [
+        "YELLOW",
+        "RED"
+      ],
+      "weights": null,
+      "actual_confidence": 0.005260294014052374,
+      "expected_confidence": 0.005260294014052374,
+      "absolute_error": 0.0,
+      "relative_error": 0.0,
+      "output_zone": "RED",
+      "zone_transition": "RED\u2192RED",
+      "confidence_interval_95": null,
+      "p_value": null,
+      "timestamp": "2026-03-10T20:47:52.956570",
+      "random_seed": 42,
+      "computation_time_ms": null
+    }
+  ]
+}

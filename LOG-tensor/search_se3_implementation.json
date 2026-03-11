@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/ElisR/SE3Flux",
+    "name": "Implementing SE(3)-equivariant neural networks with Flux.jl",
+    "snippet": "Implementing S E ( 3 ) - equivariant Tensor Field Networks (TFN) from scratch with Flux.jl . This repository is not affiliated with the original paper, and is ...",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/FabianFuchsML/se3-transformer-public",
+    "name": "GitHub - FabianFuchsML/se3-transformer-public: code for",
+    "snippet": "This repository is the official implementation of SE(3)-Transformers : 3D Roto-Translation Equivariant Attention Networks.",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/UMich-CURLY/SE3ET",
+    "name": "SE3ET: SE(3)-Equivariant Transformer for Low-Overlap",
+    "snippet": "We propose SE3ET , an SE(3)-equivariant registration framework that employs equivariant point convolution and equivariant transformer design.",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://catalog.ngc.nvidia.com/orgs/nvidia/teams/dle/resources/se3transformer_pyt",
+    "name": "SE(3)-Transformers for PyTorch - NGC Catalog - NVIDIA",
+    "snippet": "The SE ( 3 )- Transformer is a Graph Neural Network using a variant of self-attention for 3D points and graphs processing. This model is equivariant under ...",
+    "host_name": "catalog.ngc.nvidia.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/lucidrains/se3-transformer-pytorch/blob/main/se3_transformer_pytorch/se3_transformer_pytorch.py",
+    "name": "se3-transformer-pytorch/se3_transformer_pytorch",
+    "snippet": "Implementation of SE3-Transformers for Equivariant Self-Attention , in Pytorch. This specific repository is geared towards integration with eventual ...",
+    "host_name": "github.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/FabianFuchsML/se3-transformer-public/blob/master/equivariant_attention/modules.py",
+    "name": "se3-transformer-public/equivariant_attention/modules.py at",
+    "snippet": "\"\"\"Graph Linear SE ( 3 )- equivariant layer, equivalent to a 1x1 convolution. This is equivalent to a self-interaction layer in TensorField Networks .",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://grlplus.github.io/papers/54.pdf",
+    "name": "3D Roto-Translation Equivariant Attention Networks",
+    "snippet": "Cited by 1106 — We introduce the SE ( 3 )- Transformer , a variant of the self-attention module for 3D point clouds, which is equivariant under continuous 3D roto- translations. 8 pages",
+    "host_name": "grlplus.github.io",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvg.cit.tum.de/_media/teaching/ss2025/dl-equi-dynam/se3transformer_omar.pdf",
+    "name": "SE(3)-Transformers: 3D Roto-Translation Equivariant",
+    "snippet": "Cited by 1117 — Solved a problem with existing SE ( 3 )- equivariant networks related to limited angular filters. ○ Developed a PyTorch spherical harmonics implementation that is ... 93 pages",
+    "host_name": "cvg.cit.tum.de",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/lucidrains/se3-transformer-pytorch?search=1",
+    "name": "at main · lucidrains/se3-transformer-pytorch",
+    "snippet": "Implementation of SE3-Transformers for Equivariant Self-Attention, in Pytorch . May be needed for replicating Alphafold2 results and other drug discovery ...",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://gitlab.turingq.com/Lx/RFdiffusion/-/tree/a907d70c46a6e3285d76d5c9d8ed53ffb5d55f95/env/SE3Transformer",
+    "name": "env/SE3Transformer - RFdiffusion",
+    "snippet": "SE(3)-Transformers For PyTorch . This repository provides a script and recipe to train the SE(3)-Transformer model to achieve state-of-the-art accuracy.",
+    "host_name": "gitlab.turingq.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "verification": {
+    "first_class": {
+      "geometry_vector_length": 10,
+      "trajectory_path_length": 3,
+      "momentum_magnitude": 1.5,
+      "time_phase": 0.525,
+      "distance_total": 9.24
+    },
+    "permutation_tensor": {
+      "shape": [
+        8,
+        4,
+        4,
+        4,
+        4
+      ],
+      "total_elements": 2048,
+      "dependency_edges": 15872
+    },
+    "encodings": [
+      "geometric_shift",
+      "trajectory_extend",
+      "momentum_transfer",
+      "time_advance",
+      "distance_normalize",
+      "homing_sequence",
+      "permutation_cycle"
+    ],
+    "layer_controller": {
+      "iterations": 6,
+      "final_certainty": 0.95,
+      "final_compute_saved": 0.0,
+      "final_active_layers": 12
+    },
+    "rag": {
+      "entries": 10,
+      "mean": 0.7368603324904224,
+      "std": 0.14045396002478486,
+      "high_certainty_ratio": 0.35,
+      "low_certainty_ratio": 0.0
+    },
+    "complete_transformer": {
+      "total_iterations": 10,
+      "final_certainty": 0.9500000000000006,
+      "final_compute_saved": 0.0
+    }
+  },
+  "architecture": "Hybrid: Tensor redesign INTO, Certainty ADJACENT",
+  "timestamp": "2026-03-08T21:00:52.683821"
+}

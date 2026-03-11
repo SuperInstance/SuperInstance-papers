@@ -1,0 +1,697 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "cold_logic_schema.json",
+  "title": "Cold Logic Checking Mechanism Schema",
+  "description": "Schema for cold logic scripts that can sit idle as checking mechanisms, checking down the chain for problems and recommending adjustments to SMPbots",
+  "type": "object",
+  "required": ["id", "name", "type", "triggerConfig", "checkChain", "adjustmentConfig"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the cold logic checker"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the checker"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what this cold logic checks"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["performance", "correctness", "resource", "compliance", "security", "quality", "drift", "anomaly", "custom"],
+      "description": "Type of checking performed"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 5,
+      "description": "Priority of this checker (1=lowest, 10=highest)"
+    },
+    "state": {
+      "$ref": "#/definitions/ColdLogicState"
+    },
+    "triggerConfig": {
+      "$ref": "#/definitions/TriggerConfig"
+    },
+    "checkChain": {
+      "$ref": "#/definitions/CheckChain"
+    },
+    "adjustmentConfig": {
+      "$ref": "#/definitions/AdjustmentConfig"
+    },
+    "script": {
+      "$ref": "#/definitions/CheckerScript"
+    },
+    "metrics": {
+      "$ref": "#/definitions/CheckerMetrics"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CheckResult"
+      },
+      "description": "History of check results"
+    },
+    "metadata": {
+      "$ref": "#/definitions/ColdLogicMetadata"
+    }
+  },
+  "definitions": {
+    "ColdLogicState": {
+      "type": "object",
+      "description": "State management for cold logic (can sit idle)",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["idle", "checking", "reporting", "error", "disabled"],
+          "description": "Current status of the cold logic checker"
+        },
+        "idleTime": {
+          "type": "integer",
+          "description": "Time spent idle in seconds"
+        },
+        "lastCheckTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastCheckDuration": {
+          "type": "integer",
+          "description": "Duration of last check in milliseconds"
+        },
+        "totalChecks": {
+          "type": "integer",
+          "description": "Total number of checks performed"
+        },
+        "errorCount": {
+          "type": "integer",
+          "description": "Number of errors encountered"
+        }
+      }
+    },
+    "TriggerConfig": {
+      "type": "object",
+      "description": "Configuration for when cold logic triggers",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["continuous", "periodic", "event_driven", "on_demand", "chain_triggered"],
+          "default": "periodic",
+          "description": "Trigger mode for the checker"
+        },
+        "interval": {
+          "type": "integer",
+          "description": "Interval between checks in seconds (for periodic mode)"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["state_change", "error", "threshold_breach", "chain_complete", "adjustment_applied"]
+          },
+          "description": "Events that trigger this checker (for event_driven mode)"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TriggerCondition"
+          },
+          "description": "Conditions that must be met for triggering"
+        },
+        "backoff": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "initialDelay": { "type": "integer", "default": 1000 },
+            "maxDelay": { "type": "integer", "default": 60000 },
+            "multiplier": { "type": "number", "default": 2 }
+          }
+        }
+      }
+    },
+    "TriggerCondition": {
+      "type": "object",
+      "properties": {
+        "metric": { "type": "string" },
+        "operator": { "type": "string", "enum": [">", "<", ">=", "<=", "==", "!=", "contains", "matches"] },
+        "value": { "description": "Value to compare against" },
+        "logicalOperator": { "type": "string", "enum": ["and", "or", "not"] }
+      }
+    },
+    "CheckChain": {
+      "type": "object",
+      "description": "Chain of checks to perform - cold logic checks down the chain",
+      "required": ["links"],
+      "properties": {
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChainLink"
+          },
+          "description": "Ordered list of checks in the chain"
+        },
+        "executionMode": {
+          "type": "string",
+          "enum": ["sequential", "parallel", "conditional"],
+          "default": "sequential",
+          "description": "How to execute the chain links"
+        },
+        "stopOnFailure": {
+          "type": "boolean",
+          "default": true,
+          "description": "Stop chain execution on first failure"
+        },
+        "rollbackOnFailure": {
+          "type": "boolean",
+          "default": false,
+          "description": "Rollback changes if chain fails"
+        }
+      }
+    },
+    "ChainLink": {
+      "type": "object",
+      "description": "Individual link in the check chain",
+      "required": ["id", "name", "check"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "order": { "type": "integer" },
+        "check": {
+          "$ref": "#/definitions/CheckDefinition"
+        },
+        "onSuccess": {
+          "type": "string",
+          "description": "Action to take on success"
+        },
+        "onFailure": {
+          "type": "string",
+          "description": "Action to take on failure"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs of links that must complete first"
+        },
+        "timeout": {
+          "type": "integer",
+          "description": "Timeout for this link in milliseconds"
+        },
+        "retryCount": {
+          "type": "integer",
+          "default": 0
+        }
+      }
+    },
+    "CheckDefinition": {
+      "type": "object",
+      "description": "Definition of what to check",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["metric", "state", "output", "resource", "custom"],
+          "description": "Type of check"
+        },
+        "target": {
+          "type": "string",
+          "description": "Target to check (metric name, state field, etc.)"
+        },
+        "operator": {
+          "type": "string",
+          "enum": [">", "<", ">=", "<=", "==", "!=", "contains", "matches", "between", "outside"]
+        },
+        "expectedValue": {
+          "description": "Expected value or range"
+        },
+        "tolerance": {
+          "type": "number",
+          "description": "Tolerance for comparison"
+        },
+        "script": {
+          "type": "string",
+          "description": "Custom check script (for custom type)"
+        },
+        "dataPath": {
+          "type": "string",
+          "description": "JSONPath to extract data"
+        },
+        "aggregation": {
+          "type": "string",
+          "enum": ["avg", "sum", "min", "max", "count", "none"],
+          "default": "none"
+        },
+        "windowSize": {
+          "type": "integer",
+          "description": "Time window for aggregation in seconds"
+        }
+      }
+    },
+    "AdjustmentConfig": {
+      "type": "object",
+      "description": "Configuration for adjustment recommendations",
+      "properties": {
+        "autoApply": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically apply adjustments"
+        },
+        "requireApproval": {
+          "type": "boolean",
+          "default": true,
+          "description": "Require human approval for adjustments"
+        },
+        "approvalChannel": {
+          "type": "string",
+          "description": "Channel for approval requests"
+        },
+        "adjustmentTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["parameter_tune", "resource_scale", "state_change", "model_switch", "prompt_update", "restart", "migration"]
+          },
+          "description": "Types of adjustments this checker can recommend"
+        },
+        "maxAdjustments": {
+          "type": "integer",
+          "default": 5,
+          "description": "Maximum adjustments per check cycle"
+        },
+        "cooldownPeriod": {
+          "type": "integer",
+          "default": 300,
+          "description": "Minimum time between adjustments in seconds"
+        },
+        "rollbackConfig": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "maxSnapshots": { "type": "integer", "default": 5 },
+            "autoRollback": { "type": "boolean", "default": false },
+            "rollbackThreshold": { "type": "number" }
+          }
+        }
+      }
+    },
+    "CheckerScript": {
+      "type": "object",
+      "description": "Script definition for the cold logic checker",
+      "properties": {
+        "language": {
+          "type": "string",
+          "enum": ["python", "javascript", "typescript", "bash", "wasm"],
+          "default": "python"
+        },
+        "source": {
+          "type": "string",
+          "enum": ["inline", "file", "url", "module"],
+          "description": "Source of the script"
+        },
+        "code": {
+          "type": "string",
+          "description": "Inline script code"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path to script file"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to fetch script from"
+        },
+        "entrypoint": {
+          "type": "string",
+          "default": "check",
+          "description": "Entry point function name"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Required dependencies"
+        },
+        "timeout": {
+          "type": "integer",
+          "default": 30000,
+          "description": "Script execution timeout in milliseconds"
+        },
+        "sandboxConfig": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "networkAccess": { "type": "boolean", "default": false },
+            "fileSystemAccess": { "type": "boolean", "default": false },
+            "maxMemory": { "type": "integer", "default": 256 }
+          }
+        }
+      }
+    },
+    "CheckerMetrics": {
+      "type": "object",
+      "description": "Metrics collected by the checker",
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetricDefinition"
+          }
+        },
+        "collectionInterval": {
+          "type": "integer",
+          "default": 60
+        },
+        "retentionPeriod": {
+          "type": "integer",
+          "default": 86400
+        }
+      }
+    },
+    "MetricDefinition": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["gauge", "counter", "histogram", "summary"] },
+        "unit": { "type": "string" },
+        "description": { "type": "string" },
+        "labels": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "CheckResult": {
+      "type": "object",
+      "description": "Result of a check execution",
+      "required": ["timestamp", "status"],
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "warning", "error", "skipped"]
+        },
+        "checkId": { "type": "string" },
+        "linkId": { "type": "string" },
+        "message": { "type": "string" },
+        "details": { "type": "object" },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdjustmentRecommendation"
+          }
+        },
+        "executionTime": { "type": "integer" },
+        "chainResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChainLinkResult"
+          }
+        }
+      }
+    },
+    "ChainLinkResult": {
+      "type": "object",
+      "properties": {
+        "linkId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pass", "fail", "warning", "error", "skipped"] },
+        "message": { "type": "string" },
+        "actualValue": { "description": "Actual value found" },
+        "expectedValue": { "description": "Expected value" },
+        "executionTime": { "type": "integer" }
+      }
+    },
+    "AdjustmentRecommendation": {
+      "type": "object",
+      "description": "Recommendation for adjustment to help SMPbot fully embody function",
+      "required": ["type", "description", "priority"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["parameter_tune", "resource_scale", "state_change", "model_switch", "prompt_update", "restart", "migration", "config_update"]
+        },
+        "description": { "type": "string" },
+        "priority": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"]
+        },
+        "impact": {
+          "type": "string",
+          "enum": ["minor", "moderate", "major", "breaking"]
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "current": { "description": "Current value" },
+              "proposed": { "description": "Proposed value" },
+              "reason": { "type": "string" }
+            }
+          }
+        },
+        "automated": {
+          "type": "boolean",
+          "default": false
+        },
+        "approvalRequired": {
+          "type": "boolean",
+          "default": true
+        },
+        "rollbackPlan": {
+          "type": "string"
+        },
+        "estimatedDowntime": {
+          "type": "integer",
+          "description": "Estimated downtime in seconds"
+        },
+        "riskLevel": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "ColdLogicMetadata": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "author": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "documentation": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false,
+
+  "typescriptInterfaces": "// ==================== TypeScript Interfaces for Cold Logic ====================\n\n/**\n * Cold Logic Checker - Scripts that can sit idle as checking mechanism\n * Checks down the chain for problems and recommends adjustments\n */\nexport interface ColdLogicChecker {\n  id: string;\n  name: string;\n  description?: string;\n  type: ColdLogicType;\n  priority?: number;\n  state?: ColdLogicState;\n  triggerConfig: TriggerConfig;\n  checkChain: CheckChain;\n  adjustmentConfig: AdjustmentConfig;\n  script?: CheckerScript;\n  metrics?: CheckerMetrics;\n  history?: CheckResult[];\n  metadata?: ColdLogicMetadata;\n}\n\nexport type ColdLogicType = \n  | 'performance' \n  | 'correctness' \n  | 'resource' \n  | 'compliance' \n  | 'security' \n  | 'quality' \n  | 'drift' \n  | 'anomaly' \n  | 'custom';\n\n/**\n * Cold Logic State - can sit idle\n */\nexport interface ColdLogicState {\n  status: 'idle' | 'checking' | 'reporting' | 'error' | 'disabled';\n  idleTime?: number;\n  lastCheckTime?: string;\n  lastCheckDuration?: number;\n  totalChecks?: number;\n  errorCount?: number;\n}\n\n/**\n * Trigger Configuration\n */\nexport interface TriggerConfig {\n  mode: 'continuous' | 'periodic' | 'event_driven' | 'on_demand' | 'chain_triggered';\n  interval?: number;\n  events?: TriggerEvent[];\n  conditions?: TriggerCondition[];\n  backoff?: BackoffConfig;\n}\n\nexport type TriggerEvent = \n  | 'state_change' \n  | 'error' \n  | 'threshold_breach' \n  | 'chain_complete' \n  | 'adjustment_applied';\n\nexport interface TriggerCondition {\n  metric: string;\n  operator: '>' | '<' | '>=' | '<=' | '==' | '!=' | 'contains' | 'matches';\n  value: unknown;\n  logicalOperator?: 'and' | 'or' | 'not';\n}\n\nexport interface BackoffConfig {\n  enabled: boolean;\n  initialDelay: number;\n  maxDelay: number;\n  multiplier: number;\n}\n\n/**\n * Check Chain - checks down the chain for problems\n */\nexport interface CheckChain {\n  links: ChainLink[];\n  executionMode: 'sequential' | 'parallel' | 'conditional';\n  stopOnFailure?: boolean;\n  rollbackOnFailure?: boolean;\n}\n\nexport interface ChainLink {\n  id: string;\n  name: string;\n  description?: string;\n  order?: number;\n  check: CheckDefinition;\n  onSuccess?: string;\n  onFailure?: string;\n  dependencies?: string[];\n  timeout?: number;\n  retryCount?: number;\n}\n\nexport interface CheckDefinition {\n  type: 'metric' | 'state' | 'output' | 'resource' | 'custom';\n  target?: string;\n  operator?: CheckOperator;\n  expectedValue?: unknown;\n  tolerance?: number;\n  script?: string;\n  dataPath?: string;\n  aggregation?: 'avg' | 'sum' | 'min' | 'max' | 'count' | 'none';\n  windowSize?: number;\n}\n\nexport type CheckOperator = \n  | '>' \n  | '<' \n  | '>=' \n  | '<=' \n  | '==' \n  | '!=' \n  | 'contains' \n  | 'matches' \n  | 'between' \n  | 'outside';\n\n/**\n * Adjustment Configuration\n */\nexport interface AdjustmentConfig {\n  autoApply?: boolean;\n  requireApproval?: boolean;\n  approvalChannel?: string;\n  adjustmentTypes?: AdjustmentType[];\n  maxAdjustments?: number;\n  cooldownPeriod?: number;\n  rollbackConfig?: RollbackConfig;\n}\n\nexport type AdjustmentType = \n  | 'parameter_tune' \n  | 'resource_scale' \n  | 'state_change' \n  | 'model_switch' \n  | 'prompt_update' \n  | 'restart' \n  | 'migration'\n  | 'config_update';\n\nexport interface RollbackConfig {\n  enabled: boolean;\n  maxSnapshots: number;\n  autoRollback: boolean;\n  rollbackThreshold?: number;\n}\n\n/**\n * Checker Script\n */\nexport interface CheckerScript {\n  language: 'python' | 'javascript' | 'typescript' | 'bash' | 'wasm';\n  source: 'inline' | 'file' | 'url' | 'module';\n  code?: string;\n  path?: string;\n  url?: string;\n  entrypoint?: string;\n  dependencies?: string[];\n  timeout?: number;\n  sandboxConfig?: SandboxConfig;\n}\n\nexport interface SandboxConfig {\n  enabled: boolean;\n  networkAccess: boolean;\n  fileSystemAccess: boolean;\n  maxMemory: number;\n}\n\n/**\n * Metrics Configuration\n */\nexport interface CheckerMetrics {\n  metrics: MetricDefinition[];\n  collectionInterval?: number;\n  retentionPeriod?: number;\n}\n\nexport interface MetricDefinition {\n  name: string;\n  type: 'gauge' | 'counter' | 'histogram' | 'summary';\n  unit?: string;\n  description?: string;\n  labels?: string[];\n}\n\n/**\n * Check Result\n */\nexport interface CheckResult {\n  timestamp: string;\n  status: 'pass' | 'fail' | 'warning' | 'error' | 'skipped';\n  checkId?: string;\n  linkId?: string;\n  message?: string;\n  details?: Record<string, unknown>;\n  recommendations?: AdjustmentRecommendation[];\n  executionTime?: number;\n  chainResults?: ChainLinkResult[];\n}\n\nexport interface ChainLinkResult {\n  linkId: string;\n  status: 'pass' | 'fail' | 'warning' | 'error' | 'skipped';\n  message?: string;\n  actualValue?: unknown;\n  expectedValue?: unknown;\n  executionTime?: number;\n}\n\n/**\n * Adjustment Recommendation\n */\nexport interface AdjustmentRecommendation {\n  id?: string;\n  type: AdjustmentType;\n  description: string;\n  priority: 'low' | 'medium' | 'high' | 'critical';\n  impact?: 'minor' | 'moderate' | 'major' | 'breaking';\n  changes?: ChangeDefinition[];\n  automated?: boolean;\n  approvalRequired?: boolean;\n  rollbackPlan?: string;\n  estimatedDowntime?: number;\n  riskLevel?: number;\n}\n\nexport interface ChangeDefinition {\n  path: string;\n  current?: unknown;\n  proposed: unknown;\n  reason?: string;\n}\n\n/**\n * Metadata\n */\nexport interface ColdLogicMetadata {\n  version?: string;\n  author?: string;\n  createdAt?: string;\n  updatedAt?: string;\n  tags?: string[];\n  documentation?: string;\n}\n\n// ==================== Executor Interface ====================\n\n/**\n * Cold Logic Executor - executes checks and manages state\n */\nexport interface ColdLogicExecutor {\n  check(checker: ColdLogicChecker): Promise<CheckResult>;\n  applyAdjustment(checker: ColdLogicChecker, recommendation: AdjustmentRecommendation): Promise<boolean>;\n  rollback(checker: ColdLogicChecker, snapshotId: string): Promise<boolean>;\n  getState(checker: ColdLogicChecker): ColdLogicState;\n  setIdle(checker: ColdLogicChecker): void;\n  wakeUp(checker: ColdLogicChecker): void;\n}\n\n/**\n * Factory for creating cold logic checkers\n */\nexport interface ColdLogicFactory {\n  create(config: Partial<ColdLogicChecker>): ColdLogicChecker;\n  fromTemplate(templateId: string, overrides?: Partial<ColdLogicChecker>): ColdLogicChecker;\n  clone(sourceId: string, modifications?: Partial<ColdLogicChecker>): ColdLogicChecker;\n}\n\n// ==================== Built-in Checker Templates ====================\n\nexport const BUILTIN_CHECKER_TEMPLATES = {\n  performance_monitor: {\n    name: 'Performance Monitor',\n    type: 'performance' as ColdLogicType,\n    triggerConfig: { mode: 'periodic' as const, interval: 60 },\n    checkChain: {\n      links: [\n        { id: 'latency_check', name: 'Latency Check', check: { type: 'metric' as const, target: 'latency_p99', operator: '<' as const, expectedValue: 1000 } },\n        { id: 'throughput_check', name: 'Throughput Check', check: { type: 'metric' as const, target: 'requests_per_second', operator: '>' as const, expectedValue: 100 } }\n      ],\n      executionMode: 'parallel' as const\n    },\n    adjustmentConfig: { adjustmentTypes: ['parameter_tune', 'resource_scale'] as AdjustmentType[] }\n  },\n  \n  drift_detector: {\n    name: 'Model Drift Detector',\n    type: 'drift' as ColdLogicType,\n    triggerConfig: { mode: 'periodic' as const, interval: 3600 },\n    checkChain: {\n      links: [\n        { id: 'output_dist', name: 'Output Distribution Check', check: { type: 'custom' as const, script: 'check_distribution_shift' } },\n        { id: 'accuracy_check', name: 'Accuracy Check', check: { type: 'metric' as const, target: 'accuracy', operator: '>' as const, expectedValue: 0.95 } }\n      ],\n      executionMode: 'sequential' as const\n    },\n    adjustmentConfig: { adjustmentTypes: ['model_switch', 'prompt_update'] as AdjustmentType[] }\n  },\n\n  resource_monitor: {\n    name: 'Resource Monitor',\n    type: 'resource' as ColdLogicType,\n    triggerConfig: { mode: 'continuous' as const },\n    checkChain: {\n      links: [\n        { id: 'gpu_mem', name: 'GPU Memory', check: { type: 'resource' as const, target: 'gpu_memory_usage', operator: '<' as const, expectedValue: 0.9 } },\n        { id: 'cpu_util', name: 'CPU Utilization', check: { type: 'resource' as const, target: 'cpu_utilization', operator: '<' as const, expectedValue: 0.8 } }\n      ],\n      executionMode: 'parallel' as const\n    },\n    adjustmentConfig: { autoApply: true, adjustmentTypes: ['resource_scale'] as AdjustmentType[] }\n  }\n};",
+
+  "examples": [
+    {
+      "id": "770e8400-e29b-41d4-a716-446655440001",
+      "name": "Performance Drift Checker",
+      "description": "Monitors SMPbot performance and detects drift patterns",
+      "type": "performance",
+      "priority": 8,
+      "state": {
+        "status": "idle",
+        "idleTime": 3600,
+        "lastCheckTime": "2025-01-15T11:00:00Z",
+        "totalChecks": 1440,
+        "errorCount": 2
+      },
+      "triggerConfig": {
+        "mode": "periodic",
+        "interval": 60,
+        "backoff": {
+          "enabled": true,
+          "initialDelay": 1000,
+          "maxDelay": 60000,
+          "multiplier": 2
+        }
+      },
+      "checkChain": {
+        "links": [
+          {
+            "id": "latency-p99",
+            "name": "P99 Latency Check",
+            "order": 1,
+            "check": {
+              "type": "metric",
+              "target": "latency_p99",
+              "operator": "<",
+              "expectedValue": 500,
+              "tolerance": 50,
+              "aggregation": "avg",
+              "windowSize": 300
+            },
+            "onSuccess": "continue",
+            "onFailure": "recommend_scaling"
+          },
+          {
+            "id": "error-rate",
+            "name": "Error Rate Check",
+            "order": 2,
+            "check": {
+              "type": "metric",
+              "target": "error_rate",
+              "operator": "<",
+              "expectedValue": 0.01,
+              "aggregation": "avg",
+              "windowSize": 300
+            },
+            "dependencies": ["latency-p99"]
+          },
+          {
+            "id": "throughput",
+            "name": "Throughput Check",
+            "order": 3,
+            "check": {
+              "type": "metric",
+              "target": "requests_per_second",
+              "operator": ">=",
+              "expectedValue": 100,
+              "aggregation": "avg",
+              "windowSize": 300
+            },
+            "dependencies": ["latency-p99"]
+          }
+        ],
+        "executionMode": "sequential",
+        "stopOnFailure": false
+      },
+      "adjustmentConfig": {
+        "autoApply": false,
+        "requireApproval": true,
+        "approvalChannel": "slack://ops-channel",
+        "adjustmentTypes": ["parameter_tune", "resource_scale"],
+        "maxAdjustments": 3,
+        "cooldownPeriod": 300,
+        "rollbackConfig": {
+          "enabled": true,
+          "maxSnapshots": 5,
+          "autoRollback": false
+        }
+      },
+      "script": {
+        "language": "python",
+        "source": "file",
+        "path": "/checkers/performance_drift.py",
+        "entrypoint": "check",
+        "dependencies": ["numpy", "scipy"],
+        "timeout": 30000,
+        "sandboxConfig": {
+          "enabled": true,
+          "networkAccess": false,
+          "fileSystemAccess": true,
+          "maxMemory": 256
+        }
+      },
+      "metrics": {
+        "metrics": [
+          { "name": "check_duration", "type": "histogram", "unit": "ms" },
+          { "name": "recommendations_generated", "type": "counter" },
+          { "name": "checks_passed", "type": "counter" },
+          { "name": "checks_failed", "type": "counter" }
+        ],
+        "collectionInterval": 60,
+        "retentionPeriod": 86400
+      },
+      "history": [
+        {
+          "timestamp": "2025-01-15T11:00:00Z",
+          "status": "pass",
+          "checkId": "check-001",
+          "message": "All checks passed",
+          "executionTime": 125,
+          "chainResults": [
+            { "linkId": "latency-p99", "status": "pass", "actualValue": 350, "expectedValue": 500 },
+            { "linkId": "error-rate", "status": "pass", "actualValue": 0.005, "expectedValue": 0.01 },
+            { "linkId": "throughput", "status": "pass", "actualValue": 150, "expectedValue": 100 }
+          ]
+        }
+      ],
+      "metadata": {
+        "version": "2.0.0",
+        "author": "SMP Architecture Team",
+        "createdAt": "2025-01-01T00:00:00Z",
+        "tags": ["performance", "monitoring", "production"],
+        "documentation": "https://docs.smp.io/checkers/performance-drift"
+      }
+    },
+    {
+      "id": "770e8400-e29b-41d4-a716-446655440002",
+      "name": "Model Quality Gate",
+      "description": "Checks model output quality and recommends adjustments to fully embody function",
+      "type": "quality",
+      "priority": 9,
+      "state": {
+        "status": "checking",
+        "lastCheckTime": "2025-01-15T12:00:00Z",
+        "totalChecks": 500
+      },
+      "triggerConfig": {
+        "mode": "event_driven",
+        "events": ["state_change", "threshold_breach"],
+        "conditions": [
+          { "metric": "output_confidence", "operator": "<", "value": 0.8 }
+        ]
+      },
+      "checkChain": {
+        "links": [
+          {
+            "id": "quality-score",
+            "name": "Quality Score Check",
+            "check": {
+              "type": "output",
+              "target": "quality_score",
+              "operator": ">=",
+              "expectedValue": 0.9
+            }
+          },
+          {
+            "id": "hallucination",
+            "name": "Hallucination Detection",
+            "check": {
+              "type": "custom",
+              "script": "detect_hallucinations",
+              "tolerance": 0.05
+            }
+          },
+          {
+            "id": "consistency",
+            "name": "Output Consistency",
+            "check": {
+              "type": "output",
+              "target": "consistency_score",
+              "operator": ">=",
+              "expectedValue": 0.85
+            }
+          }
+        ],
+        "executionMode": "parallel",
+        "stopOnFailure": true
+      },
+      "adjustmentConfig": {
+        "autoApply": false,
+        "requireApproval": true,
+        "adjustmentTypes": ["parameter_tune", "prompt_update", "model_switch"],
+        "maxAdjustments": 1,
+        "cooldownPeriod": 600
+      },
+      "metadata": {
+        "version": "1.5.0",
+        "tags": ["quality", "gate", "critical"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/1911.09040",
+    "name": "[1911.09040] 3D-Rotation-Equivariant Quaternion Neural Networks - arXiv.org",
+    "snippet": "This paper proposes a set of rules to revise various neural networks for 3D point cloud processing to rotation-equivariant quaternion neural networks (REQNNs). Missing: 2024 2025",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/377238868_Rotation-Equivariant_Quaternion_Neural_Networks_for_3D_Point_Cloud_Processing",
+    "name": "Rotation-Equivariant Quaternion Neural Networks for 3D Point Cloud Processing | Request PDF - ResearchGate",
+    "snippet": "This study proposes a set of generic rules to revise existing neural networks for 3D point cloud processing to rotation-equivariant quaternion neural ...",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/abs/10.1109/TPAMI.2023.3346383",
+    "name": "Interpretable Rotation-Equivariant Quaternion Neural Networks for 3D Point Cloud Processing | IEEE Transactions on Pattern Analysis and Machine Intelligence - ACM",
+    "snippet": "This study proposes a set of generic rules to revise existing neural networks for 3D point cloud processing to rotation-equivariant ...",
+    "host_name": "dl.acm.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/revisions?id=6RHrf2xWNQ",
+    "name": "Revisions | OpenReview",
+    "snippet": "Abstract: This study proposes a set of generic rules to revise existing neural networks for 3D point cloud processing to rotation-equivariant quaternion neural ...",
+    "host_name": "openreview.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.computer.org/csdl/journal/tp/2024/05/10384563/1TxRiR4AkG4",
+    "name": "Interpretable Rotation-Equivariant Quaternion Neural Networks for 3D Point Cloud Processing - IEEE Computer Society",
+    "snippet": "This study proposes a set of generic rules to revise existing neural networks for 3D point cloud processing to rotation-equivariant quaternion neural networks ...",
+    "host_name": "www.computer.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123650528.pdf",
+    "name": "[PDF] 3D-Rotation-Equivariant Quaternion Neural Networks - European Computer Vision Association",
+    "snippet": "This paper proposes a set of rules to revise various neural networks for 3D point cloud processing to rotation-equivariant quater- nion neural networks (REQNNs) ... Missing: 2024 | Show results with: 2024",
+    "host_name": "www.ecva.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/347516041_3D-Rotation-Equivariant_Quaternion_Neural_Networks",
+    "name": "3D-Rotation-Equivariant Quaternion Neural Networks | Request PDF",
+    "snippet": "This paper proposes a set of rules to revise various neural networks for 3D point cloud processing to rotation-equivariant quaternion neural networks ...",
+    "host_name": "www.researchgate.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S095219762301713X",
+    "name": "Self-supervised rotation-equivariant spherical vector network for learning canonical 3D point cloud orientation - ScienceDirect",
+    "snippet": "Our method learns rotational representations from 3D point clouds through a self-supervised training process.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38190688",
+    "name": "Interpretable Rotation-Equivariant Quaternion Neural Networks for 3D Point Cloud Processing - PubMed",
+    "snippet": "This study proposes a set of generic rules to revise existing neural networks for 3D point cloud processing to rotation-equivariant quaternion neural ... Missing: 2025 | Show results with: 2025",
+    "host_name": "pubmed.ncbi.nlm.nih.gov",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/ada-shen/REQNN",
+    "name": "ada-shen/REQNN: 3D-Rotation-Equivariant Quaternion Neural Networks - GitHub",
+    "snippet": "This repository is an official implementation of 3D-Rotation-Equivariant Quaternion Neural Networks (arXiv,SpringerLink) which has been published at ECCV 2020. Missing: 2024 2025",
+    "host_name": "github.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2310.11366",
+    "name": "[2310.11366] Lie Group Decompositions for Equivariant Neural Networks",
+    "snippet": "2023 · Cited by 15 — Under this framework, we show how convolution kernels can be parametrized to build models equivariant with respect to affine transformations.\nRecent work has explored enlarging the class of transformations used to the case of Lie groups, principally through the use of their Lie algebra, as well as the group exponential and logarithm maps.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=p34fRKp8qA",
+    "name": "Lie Group Decompositions for Equivariant Neural Networks",
+    "snippet": "Cited by 15 — Under this framework, we show how convolution kernels can be parametrized to build models equivariant with respect to affine transformations.",
+    "host_name": "openreview.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2072-4292/15/15/3758",
+    "name": "Lie Group Equivariant Convolutional Neural Network Based on Laplace Distribution",
+    "snippet": "2023 · Cited by 10 — We introduce a Lie group equivariant convolutional neural network predicated on the Laplace distribution.\nThe Lie group equivariant convolutional neural network, based on the Laplace distribution, offers excellent interpretability from a Lie group theory perspective, and significantly enhances data efficiency in terms of generalized symmetry.",
+    "host_name": "www.mdpi.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v139/hutchinson21a.html",
+    "name": "LieTransformer: Equivariant Self-Attention for Lie Groups",
+    "snippet": "2021 · Cited by 87 — We propose the LieTransformer, an architecture composed of LieSelfAttention layers that are equivariant to arbitrary Lie groups and their discrete subgroups.",
+    "host_name": "proceedings.mlr.press",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://iclr.cc/virtual/2025/poster/30825",
+    "name": "Lie Algebra Canonicalization: Equivariant Neural Operators under arbitrary Lie Groups",
+    "snippet": "LieLAC utilizes standard Lie group descent schemes, achieving equivariance in pre-trained models. Finally, we showcase LieLAC's efficacy on tasks of invariant ...",
+    "host_name": "iclr.cc",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608024009092",
+    "name": "Lie group convolution neural networks with scale-rotation equivariance",
+    "snippet": "2025 · Cited by 5 — This study proposes a SIM(2) Lie group-CNN, which can simultaneously keep scale, rotation, and translation equivariance for image classification tasks.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/ad1f2197941348b1c4373fd6c19ee0b4-Paper-Conference.pdf",
+    "name": "A General Framework for Equivariant Neural Networks on Reductive Lie Groups",
+    "snippet": "2023 · Cited by 17 — Reductive Lie Groups, such as the orthogonal groups, the Lorentz group, or the unitary groups, play essential roles across scientific fields as diverse as ...\nIn this paper, we present a general Equivariant Neural Network architecture capable of respecting the symmetries of the finite-dimensional representations of any reductive Lie Group G.",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2410.02698v1",
+    "name": "Lie Algebra Canonicalization: Equivariant Neural Operators under arbitrary Lie Groups",
+    "snippet": "Oct 3, 2024 — Incorporating group symmetries inside neural networks, in the form of equivariance, is one of the fundamental tasks in geometric deep learning ( ...",
+    "host_name": "arxiv.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://liner.com/review/lietransformer-equivariant-selfattention-for-lie-groups",
+    "name": "[Quick Review] LieTransformer: Equivariant self-attention for Lie Groups",
+    "snippet": "Dec 20, 2020 — Motivation & Objective. Group equivariant neural networks mostly focus on convolutional layers, which are linear maps with shared weights.",
+    "host_name": "liner.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/61202bb341e7e0a6026ea134a5057abf-Abstract-Conference.html",
+    "name": "Lie Group Decompositions for Equivariant Neural Networks",
+    "snippet": "Invariance and equivariance to geometrical transformations have proven to be very useful inductive biases when training (convolutional) neural network models, especially in the low-data regime.Much work has focused on the case where the symmetry group employed is compact or abelian, or both.Recent work has explored enlarging the class of ...",
+    "host_name": "proceedings.iclr.cc",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

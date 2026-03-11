@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/shricodev/google-sheet-super-agent",
+    "name": "shricodev/google-sheet-super-agent",
+    "snippet": "This project is a Next.js application that leverages the Vercel AI SDK to create a chat interface for interacting with Google Sheets .",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/abyshergill/spreadsheet_agent",
+    "name": "SmartSheet Agents - Excel/CSV AI Assistant Code",
+    "snippet": "Dynamic Model Selection. Automatically detects all your installed Ollama models Dropdown selection for easy model switching Connection status monitoring.",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/strands-agents/tools",
+    "name": "strands-agents/tools: A set of tools that",
+    "snippet": "Jan 1, 2024 — Strands Agents Tools is a community-driven project that provides a powerful set of tools for your agents to use. It bridges the gap between ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/superagent-ai/superagent",
+    "name": "Superagent protects your AI applications against prompt",
+    "snippet": "Superagent protects your AI applications against prompt injections, data leaks, and harmful outputs. Embed safety directly into your app and prove ...",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://downloads.mysql.com/docs/mysql-monitor-8.0-en.pdf",
+    "name": "MySQL Enterprise Monitor 8.0.40 Manual",
+    "snippet": "Aug 15, 2013 — Enterprise Monitor User Interface, or by using the agent connection tool ( agent .sh) from the command line. • Using incorrect credentials for ... 372 pages",
+    "host_name": "downloads.mysql.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/superlinear-space/super-report",
+    "name": "superlinear-space/super-report",
+    "snippet": "An agentic application for analyzing dmesg and opensm logs in AI data centers, generating comprehensive human-readable reports using pydantic-ai.",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://theses.hal.science/tel-02979523/file/93993_ROMERO_2020_archivage.pdf",
+    "name": "Harvesting commonsense and hidden knowledge from",
+    "snippet": "2020 — biverseNLU (https:// github .com/ambiverse-nlu/ambiverse-nlu) implements a tool for natural language understanding. In particular, it can link ... 184 pages",
+    "host_name": "theses.hal.science",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/pulse/build-tools-prompts-extend-github-copilot-agents-aymen-furter-yo2ie",
+    "name": "Extend GitHub Copilot with Task-Specific Agents",
+    "snippet": "GitHub .com recently announced the public preview of its Copilot coding agent , which can take ownership of entire issues, plan the steps, ...",
+    "host_name": "www.linkedin.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/SuperInstance/Spreader-tool",
+    "name": "GitHub - SuperInstance/Spreader-tool",
+    "snippet": "Contribute to SuperInstance/Spreader-tool development by creating an account on GitHub.",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/2403.03636",
+    "name": "SheetAgent: Towards A Generalist Agent for Spreadsheet",
+    "snippet": "SheetAgent consists of three collaborative modules: Planner, Informer, and Retriever, achieving both advanced reasoning and accurate manipulation over spreadsheets without human interaction through iterative task reasoning and reflection.",
+    "host_name": "arxiv.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

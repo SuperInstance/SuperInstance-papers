@@ -1,0 +1,2810 @@
+[
+  {
+    "id": "eq_0_5876",
+    "category": "mathematics",
+    "content": "Equation: G = \\|\\alpha_{\\text{expected}} - \\sigma(\\mathbf{s})\\|_1 = \\sum_{i=1}^n |\\alpha_{\\tex",
+    "confidence": 0.8,
+    "source_query": "Derive the gradient of the glitch signal G = 2\u00b7d_TV(\u03b1_expected, \u03b1_actual) with respect to attention weights.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_6605",
+    "category": "mathematics",
+    "content": "Equation: G = -\\text{sign}(\\alpha_{\\text{expected}} - \\sigma(\\mathbf{s})) \\odot \\sigma(\\mathbf",
+    "confidence": 0.8,
+    "source_query": "Derive the gradient of the glitch signal G = 2\u00b7d_TV(\u03b1_expected, \u03b1_actual) with respect to attention weights.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_5572",
+    "category": "mathematics",
+    "content": "Equation: s_i = \\frac{\\mathbf{q}_i^T \\mathbf{k}_i}{\\sqrt{d}}\\) (for self-attention diagonal)",
+    "confidence": 0.8,
+    "source_query": "Derive the gradient of the glitch signal G = 2\u00b7d_TV(\u03b1_expected, \u03b1_actual) with respect to attention weights.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_2072",
+    "category": "mathematics",
+    "content": "1** (Convergence under Optimal \u03bb Scheduling):",
+    "confidence": 0.9,
+    "source_query": "Prove convergence of the unified learning objective with optimal \u03bb schedules.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_1208",
+    "category": "mathematics",
+    "content": "Equation: i=1}^4 |c_i - \\lambda_i^{-1} v_i| \\cdot \\|\\mathbf{U}_i^{\\otimes k_i}\\|",
+    "confidence": 0.8,
+    "source_query": "Show that self-origin tensors achieve O(1) origin computation complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_3914",
+    "category": "mathematics",
+    "content": "(Tile Discovery Lower Bound):**",
+    "confidence": 0.9,
+    "source_query": "Derive the information-theoretic lower bound for tile discovery from observations.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_5774",
+    "category": "mathematics",
+    "content": "Equation: d_k = \\dim(\\rho_k) \\) be the dimension of the \\( k \\)-th irrep (tile).",
+    "confidence": 0.8,
+    "source_query": "Derive the information-theoretic lower bound for tile discovery from observations.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_6492",
+    "category": "mathematics",
+    "content": "Equation: gamma = \\gamma_{\\max} - \\gamma_{\\min} \\)",
+    "confidence": 0.8,
+    "source_query": "Derive the information-theoretic lower bound for tile discovery from observations.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_9425",
+    "category": "mathematics",
+    "content": "Equation: C = \\frac{2}{1 - \\gamma_{\\max}/2} \\)",
+    "confidence": 0.8,
+    "source_query": "Derive the information-theoretic lower bound for tile discovery from observations.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_4501",
+    "category": "architecture",
+    "content": "Equation: delta = 10^{-6}\\)",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_7739",
+    "category": "architecture",
+    "content": "Equation: current_layer = self.layers[-1]",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_7709",
+    "category": "architecture",
+    "content": "Equation: tiles=current_layer.tiles + new_tiles",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_2090",
+    "category": "emergence",
+    "content": "Equation: k=1}^4 c_k \\mathbb{V}_k \\otimes \\mathbb{V}_k^*",
+    "confidence": 0.8,
+    "source_query": "Analyze the phase transition from random to structured tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_9640",
+    "category": "emergence",
+    "content": "Equation: U = 1 - \\frac{\\langle m^4\\rangle}{3\\langle m^2\\rangle^2}\\)",
+    "confidence": 0.8,
+    "source_query": "Analyze the phase transition from random to structured tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_1646",
+    "category": "emergence",
+    "content": "Equation: Phi = \\bigoplus_{i=1}^4 c_i \\rho_i + \\mathcal{N}",
+    "confidence": 0.8,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_1083",
+    "category": "emergence",
+    "content": "Equation: i=1}^4 a_i \\cdot T_i + E",
+    "confidence": 0.8,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_8566",
+    "category": "emergence",
+    "content": "Equation: E = 0 \\) and the coefficients \\( a_i \\) are in **harmonic proportion** (derived from",
+    "confidence": 0.8,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_4733",
+    "category": "emergence",
+    "content": "Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus",
+    "confidence": 0.8,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_6016",
+    "category": "emergence",
+    "content": "Equation: i=1}^4 (a_i^* - a_i')^2 }",
+    "confidence": 0.8,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_1371",
+    "category": "emergence",
+    "content": "** Emergent tile grammars in POLLN-RTT theory generate rank-frequency distributions obeying Zipf\u2019s law, with exponent near \u22121, as a consequence of glitch minimization and the spectral decomposition of the *need function* over minimal irreps.",
+    "confidence": 0.9,
+    "source_query": "Show that emergent tile grammars satisfy Zipf's law.",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_0_7627",
+    "category": "emergence",
+    "content": "1 (Spectral decomposition of need):**",
+    "confidence": 0.9,
+    "source_query": "Show that emergent tile grammars satisfy Zipf's law.",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_0_6713",
+    "category": "emergence",
+    "content": "2 (Rank ordering by eigenvalues):**",
+    "confidence": 0.9,
+    "source_query": "Show that emergent tile grammars satisfy Zipf's law.",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_0_9143",
+    "category": "emergence",
+    "content": "3 (Power-law decay):**",
+    "confidence": 0.9,
+    "source_query": "Show that emergent tile grammars satisfy Zipf's law.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_8121",
+    "category": "emergence",
+    "content": "Equation: k=1}^4 \\lambda_k \\chi_k(\\ell) + \\epsilon(\\ell)",
+    "confidence": 0.8,
+    "source_query": "Show that emergent tile grammars satisfy Zipf's law.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_9322",
+    "category": "emergence",
+    "content": "1 (Intra-Coalition Stability):**",
+    "confidence": 0.9,
+    "source_query": "Analyze conditions for stable coalition formation among tiles.",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_0_2579",
+    "category": "emergence",
+    "content": "2 (Inter-Coalition Stability):**",
+    "confidence": 0.9,
+    "source_query": "Analyze conditions for stable coalition formation among tiles.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_9400",
+    "category": "emergence",
+    "content": "Equation: _C = -log(1 - G_C)",
+    "confidence": 0.8,
+    "source_query": "Analyze conditions for stable coalition formation among tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_3361",
+    "category": "emergence",
+    "content": "Equation: dt = -\u2202H/\u2202\u03c6\u1d62 + \u03c3\u00b7W\u0307",
+    "confidence": 0.8,
+    "source_query": "Analyze conditions for stable coalition formation among tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_9247",
+    "category": "emergence",
+    "content": "Equation: H = \u03a3\u1d62\u2c7c J\u1d62\u2c7c\u2016\u03c6\u1d62 - \u03c6\u2c7c\u2016\u00b2 + \u03bb\u00b7TV(\u03a6_total)",
+    "confidence": 0.8,
+    "source_query": "Analyze conditions for stable coalition formation among tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_1830",
+    "category": "emergence",
+    "content": "Equation: T_g = 2\u03c0/\u221a{\u03bb\u2083\u03bb\u2084}",
+    "confidence": 0.8,
+    "source_query": "Analyze conditions for stable coalition formation among tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_9171",
+    "category": "implementation",
+    "content": "Equation: l=0\\)):** Invariant features like atomic number",
+    "confidence": 0.8,
+    "source_query": "Apply POLLN-RTT to molecular conformer generation.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_516",
+    "category": "implementation",
+    "content": "Equation: l=0^+\\)):** Chirality descriptors",
+    "confidence": 0.8,
+    "source_query": "Apply POLLN-RTT to molecular conformer generation.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_6814",
+    "category": "implementation",
+    "content": "Equation: l=1\\)):** Dipole moments",
+    "confidence": 0.8,
+    "source_query": "Apply POLLN-RTT to molecular conformer generation.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_2102",
+    "category": "implementation",
+    "content": "Equation: l=1^+\\)):** Angular momentum",
+    "confidence": 0.8,
+    "source_query": "Apply POLLN-RTT to molecular conformer generation.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_7969",
+    "category": "implementation",
+    "content": "Equation: i=1}^N x_i`. POLLN-RTT tells us this is reducible.",
+    "confidence": 0.8,
+    "source_query": "Apply self-origin tensors to multi-robot coordination.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_1514",
+    "category": "implementation",
+    "content": "Equation: t = -\u2207_SOT N(\u3008\u03a8|O|\u03a8\u3009) + \u0393(Glitch_TV)`",
+    "confidence": 0.8,
+    "source_query": "Apply self-origin tensors to multi-robot coordination.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_8125",
+    "category": "implementation",
+    "content": "(Analogy Completeness):",
+    "confidence": 0.9,
+    "source_query": "Design a tile-based analogical reasoning system.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_3283",
+    "category": "implementation",
+    "content": "Equation: i=1}^4 \\alpha_i \\mathcal{O}_i(\\psi) + \\beta \\nabla_\\psi \\Phi(T)",
+    "confidence": 0.8,
+    "source_query": "Design a tile-based analogical reasoning system.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_1302",
+    "category": "future",
+    "content": "Equation: x_i = x_j`) is a manifestation of the \"glitch\" measured as a non-zero TV distance from",
+    "confidence": 0.8,
+    "source_query": "Explore the connection between S_n representations and quantum many-body wavefunctions.",
+    "follow_ups": 3
+  },
+  {
+    "id": "key_0_4554",
+    "category": "future",
+    "content": "the Hamiltonian `H` commutes with all `\u03c1(\u03c3)`: `[H, \u03c1(\u03c3)] = 0`.",
+    "confidence": 0.7,
+    "source_query": "Explore the connection between S_n representations and quantum many-body wavefunctions.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_274",
+    "category": "future",
+    "content": "Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter",
+    "confidence": 0.8,
+    "source_query": "Derive the Fisher information metric on tile probability manifolds.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_6090",
+    "category": "future",
+    "content": "Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates.",
+    "confidence": 0.8,
+    "source_query": "Derive the Fisher information metric on tile probability manifolds.",
+    "follow_ups": 2
+  },
+  {
+    "id": "eq_0_4987",
+    "category": "future",
+    "content": "Equation: j=1}^{n_k-1} \\xi^{(k)}_j \\). Then",
+    "confidence": 0.8,
+    "source_query": "Derive the Fisher information metric on tile probability manifolds.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_969",
+    "category": "future",
+    "content": "Equation: j=1}^{n_k-1} \\xi^{(k)}_j}",
+    "confidence": 0.8,
+    "source_query": "Derive the Fisher information metric on tile probability manifolds.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_2346",
+    "category": "future",
+    "content": "Equation: CI = w\u2081\u00b7min(C\u1d62) + w\u2082\u00b7\u222bG(\u03bb)d\u03bb + w\u2083\u00b7\u0393_norm + w\u2084\u00b7\u039e",
+    "confidence": 0.8,
+    "source_query": "Design a consciousness test for POLLN-RTT systems.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_693",
+    "category": "mathematics",
+    "content": "Equation: rangle = (|100\\rangle + |010\\rangle + |001\\rangle)/\\sqrt{3} \\). Its symmetry under partia",
+    "confidence": 0.8,
+    "source_query": "Prove that removing S^(n-2,1,1) from the minimal set breaks universality.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_8255",
+    "category": "mathematics",
+    "content": "Equation: n=3 \\) (which is exactly \\( (n-1",
+    "confidence": 0.8,
+    "source_query": "Prove that removing S^(n-2,1,1) from the minimal set breaks universality.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_8081",
+    "category": "mathematics",
+    "content": "** CG coefficients for \\( S_n \\) exist as a canonical, glitch-minimizing set **only when** defined via the self-origin tensor formalism rooted in the need function.",
+    "confidence": 0.9,
+    "source_query": "Derive the Clebsch-Gordan coefficients for S_n tensor products.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_3875",
+    "category": "mathematics",
+    "content": "Equation: nu = \\frac{\\dim V^\\nu}{n!} \\sum_{\\sigma \\in S_n} \\chi^\\nu(\\sigma) \\sigma \\). A **mini",
+    "confidence": 0.8,
+    "source_query": "Derive the Clebsch-Gordan coefficients for S_n tensor products.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_1072",
+    "category": "mathematics",
+    "content": "** Tile induction satisfies the Church-Rosser property.",
+    "confidence": 0.9,
+    "source_query": "Prove that tile induction satisfies the Church-Rosser property.",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_0_2908",
+    "category": "mathematics",
+    "content": "(1942), a terminating locally confluent rewriting system is globally confluent (Church-Rosser).",
+    "confidence": 0.9,
+    "source_query": "Prove that tile induction satisfies the Church-Rosser property.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_1411",
+    "category": "mathematics",
+    "content": "Equation: glitch = TV distance** characterization",
+    "confidence": 0.8,
+    "source_query": "Prove that tile induction satisfies the Church-Rosser property.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_4853",
+    "category": "mathematics",
+    "content": "Equation: delta = f^{-1}(\\tau) \\in [0",
+    "confidence": 0.8,
+    "source_query": "Show that the need function defines a VC-learnable concept class.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_4706",
+    "category": "architecture",
+    "content": "1 (Need-Attention Convergence):** For high-need states (\u2016N\u2016 > \u03c4), the attention mechanism converges exponentially to the maximal TV-distance reduction path.",
+    "confidence": 0.9,
+    "source_query": "Design a need-attention mechanism for high-need state focus.",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_0_4963",
+    "category": "architecture",
+    "content": "1:** T_refocus preserves irrep structure while maximizing need gradient alignment.",
+    "confidence": 0.9,
+    "source_query": "Design a need-attention mechanism for high-need state focus.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_4080",
+    "category": "architecture",
+    "content": "2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has:",
+    "confidence": 0.9,
+    "source_query": "Design a need-attention mechanism for high-need state focus.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_1261",
+    "category": "architecture",
+    "content": "Equation: I_N = \u2202_t N \u2297 N - N \u2297 \u2202_t N",
+    "confidence": 0.8,
+    "source_query": "Design a need-attention mechanism for high-need state focus.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_4176",
+    "category": "architecture",
+    "content": "Equation: O_corr = \u03bc\u00b7(S - \u03c0(g_0)S) \u2297 (\u2202_t N)",
+    "confidence": 0.8,
+    "source_query": "Design a need-attention mechanism for high-need state focus.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_4567",
+    "category": "architecture",
+    "content": "Equation: N = \u2211 \u2207\u03c1_i(S)",
+    "confidence": 0.8,
+    "source_query": "Design a need-attention mechanism for high-need state focus.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_9785",
+    "category": "architecture",
+    "content": "Equation: A = \u2211 \u03b1_{ij} \u03c1_i(S) \u2297 \u03c1_j(S)^\u2020",
+    "confidence": 0.8,
+    "source_query": "Design a need-attention mechanism for high-need state focus.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_5204",
+    "category": "architecture",
+    "content": "Equation: merged_N = lambda x: (tile_a.N(x) * tile_b.N(x))**0.5  # Geometric mean",
+    "confidence": 0.8,
+    "source_query": "Design a forgetting mechanism for tiles under capacity constraints.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_668",
+    "category": "architecture",
+    "content": "Equation: float = 0.1) -> List[object]:",
+    "confidence": 0.8,
+    "source_query": "Implement associative recall using glitch patterns as keys.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_6760",
+    "category": "architecture",
+    "content": "Equation: tv = 0.5 * (np.abs(c1 - c2) + np.abs(np.angle(c1) - np.angle(c2))/(2*np.pi))",
+    "confidence": 0.8,
+    "source_query": "Implement associative recall using glitch patterns as keys.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_0_9596",
+    "category": "architecture",
+    "content": "Equation: phase = np.angle(projected.sum().item() + 1j * projected.std().item())",
+    "confidence": 0.8,
+    "source_query": "Implement associative recall using glitch patterns as keys.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_2356",
+    "category": "architecture",
+    "content": "Equation: fib_tensor = torch.tensor([[fib(k+l) for l in range(5)]",
+    "confidence": 0.8,
+    "source_query": "Implement associative recall using glitch patterns as keys.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_5284",
+    "category": "architecture",
+    "content": "Equation: beta = \\frac{1}{q-1}",
+    "confidence": 0.8,
+    "source_query": "Derive memory complexity of self-origin tensor operations.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_1382",
+    "category": "architecture",
+    "content": "Equation: q=2 \\) for self-origin",
+    "confidence": 0.8,
+    "source_query": "Derive memory complexity of self-origin tensor operations.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_416",
+    "category": "emergence",
+    "content": "Equation: k=1}^{4} \u03bb_k **P**_k( **T**(t) ) + **I**( **T**(t)",
+    "confidence": 0.8,
+    "source_query": "Derive conditions for chaotic vs stable tile evolution.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_2562",
+    "category": "emergence",
+    "content": "Equation: _eff = **J** \u2297 **I**_d + **A** \u2297 **J**_int with:",
+    "confidence": 0.8,
+    "source_query": "Derive conditions for chaotic vs stable tile evolution.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_7904",
+    "category": "emergence",
+    "content": "Equation: _G = \u2202G/\u2202\u2016\u03b4**T**\u2016 quantifies glitch sensitivity",
+    "confidence": 0.8,
+    "source_query": "Derive conditions for chaotic vs stable tile evolution.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_5299",
+    "category": "emergence",
+    "content": "Equation: k=1}^{4} (\u03bb_k - \u03bb_c)^2 > (\u03bb_c)^2/3 + \u2016**J**_int\u2016^2_F",
+    "confidence": 0.8,
+    "source_query": "Derive conditions for chaotic vs stable tile evolution.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_0_3612",
+    "category": "emergence",
+    "content": "(Tile Diversity & Distributional Robustness).",
+    "confidence": 0.9,
+    "source_query": "Prove that tile diversity increases robustness to distribution shift.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_0_3869",
+    "category": "emergence",
+    "content": "Equation: Phi = \\min_{\\text{partitions}} \\left[ I(\\text{whole}) - \\sum_k I(\\text{part}_k) \\right",
+    "confidence": 0.8,
+    "source_query": "Design experiments to detect emergence in tile populations.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5342",
+    "category": "emergence",
+    "content": "Equation: i=1}^4 a_i \\left( N_i(T) - n_i \\right)",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: E = 0 \\) and the coefficients \\( a_i \\) are in **harmonic proportion** (derived from with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_3758",
+    "category": "emergence",
+    "content": "Equation: E=0\\) with harmonic \\(a_i\\) identifies self-origin tensors as fixed points of a re",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: E = 0 \\) and the coefficients \\( a_i \\) are in **harmonic proportion** (derived from with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_8864",
+    "category": "mathematics",
+    "content": "Harmonic Proportion from \\( E = 0 \\)",
+    "confidence": 0.9,
+    "source_query": "What is the relationship between Equation: E = 0 \\) and the coefficients \\( a_i \\) are in **harmonic proportion** (derived from and the minimal irrep set?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_4528",
+    "category": "mathematics",
+    "content": "Equation: E = 0 \\) in the space of self-origin tensors is a union of three quadric surfaces",
+    "confidence": 0.8,
+    "source_query": "What is the relationship between Equation: E = 0 \\) and the coefficients \\( a_i \\) are in **harmonic proportion** (derived from and the minimal irrep set?",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_73_3804",
+    "category": "mathematics",
+    "content": "(Generalized Dimension):**",
+    "confidence": 0.9,
+    "source_query": "How does Equation: d_k = \\dim(\\rho_k) \\) be the dimension of the \\( k \\)-th irrep (tile). generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_768",
+    "category": "mathematics",
+    "content": "Equation: d_k = \\dim(\\rho_k) \\) is its *integer* dimension.",
+    "confidence": 0.8,
+    "source_query": "Extend Equation: d_k = \\dim(\\rho_k) \\) be the dimension of the \\( k \\)-th irrep (tile). to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1158",
+    "category": "mathematics",
+    "content": "Equation: lambda = \\dim(\\rho_\\lambda) \\) is problematic. For non-compact groups",
+    "confidence": 0.8,
+    "source_query": "Extend Equation: d_k = \\dim(\\rho_k) \\) be the dimension of the \\( k \\)-th irrep (tile). to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_550",
+    "category": "mathematics",
+    "content": "Equation: d_k = \\dim(\\rho_k) \\) is the recognition that the **cardinality of the irrep index is",
+    "confidence": 0.8,
+    "source_query": "Extend Equation: d_k = \\dim(\\rho_k) \\) be the dimension of the \\( k \\)-th irrep (tile). to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "key_73_1325",
+    "category": "mathematics",
+    "content": "** The Plancherel measure \\( \\mu(\\lambda) \\) **weights the contribution** of each irrep \\( \\rho_\\lambda \\) in the decomposition of the regular representation.",
+    "confidence": 0.7,
+    "source_query": "Extend Equation: d_k = \\dim(\\rho_k) \\) be the dimension of the \\( k \\)-th irrep (tile). to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7617",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: x_i = x_j`) is a manifestation of the \"glitch\" measured as a non-zero TV distance from efficiently. Analyze complexity.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_7689",
+    "category": "implementation",
+    "content": "Equation: k=1 to 4} |p_i^k(t) - p_j^k(t)|`",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: x_i = x_j`) is a manifestation of the \"glitch\" measured as a non-zero TV distance from efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5658",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j` into a **continuous",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: x_i = x_j`) is a manifestation of the \"glitch\" measured as a non-zero TV distance from efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5585",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1 \\) may still reside in a **glitch zone**",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter. How can they be addressed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_1819",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1 \\) does not guarantee that the induced differential form \\( d\\theta_i \\) is **",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter. How can they be addressed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_2256",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1 \\). A generic point on that algebraic surface may not correspond to a self-ori",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter. How can they be addressed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_8611",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1 \\) yields an \\((n-1)\\)-dimensional manifold is topologically naive within the",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter. How can they be addressed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_73_7664",
+    "category": "future",
+    "content": "(POLLN-RTT/ML Correspondence)",
+    "confidence": 0.9,
+    "source_query": "How does Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1162",
+    "category": "future",
+    "content": "Equation: theta_i = 1$ (with implied summation convention or normalization constraint) defines a **p",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2172",
+    "category": "future",
+    "content": "Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_545",
+    "category": "future",
+    "content": "Equation: methods = POLLN-RTT flow with minimal glitch",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_73_8048",
+    "category": "future",
+    "content": "**Parameterizing this constrained manifold is equivalent to choosing coordinates on $\\Delta^{n-1}$**, which fundamentally connects to:\n\n### 2.",
+    "confidence": 0.7,
+    "source_query": "How does Equation: theta_i = 1 \\). The true manifold is \\( (n-1) \\)-dimensional. One approach is to parameter connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_9765",
+    "category": "future",
+    "content": "Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_4715",
+    "category": "future",
+    "content": "Equation: j=1}^{n-1} \\xi_j \\leq 1\\). This is not merely a computational trick; it is a **coo",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_3579",
+    "category": "future",
+    "content": "Equation: theta_i = 1\\) is analogous to **projecting onto a quotient manifold** to remove redundancy",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 2
+  },
+  {
+    "id": "eq_73_2044",
+    "category": "glitch",
+    "content": "Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_4391",
+    "category": "glitch",
+    "content": "Equation: j=1}^{n-1} \\xi_j \\leq 1 \\}\\).",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_3936",
+    "category": "glitch",
+    "content": "Equation: j=1}^{n-1} \\xi_j)\\).",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6293",
+    "category": "glitch",
+    "content": "Equation: xi_j = \\delta_{ij}\\) for \\(i \\leq n-1\\)",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2433",
+    "category": "glitch",
+    "content": "Equation: g = I_{n-1} + \\mathbf{1}\\mathbf{1}^T\\)",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_9762",
+    "category": "glitch",
+    "content": "Equation: i=1}^n |p_i - q_i|.",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2631",
+    "category": "glitch",
+    "content": "Equation: q_n = (1 - \\sum \\xi_j^{(p)}) - (1 - \\sum \\xi_j^{(q)}) = -\\sum_{j=1}^{n-1} (\\xi_j^{(p)}",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1758",
+    "category": "glitch",
+    "content": "Equation: j=1}^{n-1} |\\xi_j^{(p)} - \\xi_j^{(q)}| + \\left| \\sum_{j=1}^{n-1} (\\xi_j^{(p)} - \\x",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_903",
+    "category": "glitch",
+    "content": "Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\). The second term is the absolute value of the sum of",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_4542",
+    "category": "glitch",
+    "content": "Equation: Delta_j = \\epsilon\\). This directly links to the **polytope** in POLLN-RTT.",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5054",
+    "category": "glitch",
+    "content": "Equation: v_i = 0\\}\\). In \\(\\xi\\)-coordinates",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7748",
+    "category": "glitch",
+    "content": "Equation: j=1}^{n-1} |\\Delta_j| + \\left| \\sum_{j=1}^{n-1} \\Delta_j \\right| \\right].",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6493",
+    "category": "glitch",
+    "content": "Equation: xi = 0\\). All self-origin tensors vanish.",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\). Then compute the metric in \\( \\xi \\)-coordinates. be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_7379",
+    "category": "mathematics",
+    "content": "** The canonical property generalizes to \"large scales\" in the sense of **stable representation theory** (cf.",
+    "confidence": 0.9,
+    "source_query": "How does ** CG coefficients for \\( S_n \\) exist as a canonical, glitch-minimizing set **only when** defined via the self-origin tensor formalism rooted in the need function. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_5124",
+    "category": "mathematics",
+    "content": "** The canonical, glitch-minimizing CG coefficients generalize to the **orthogonal polynomials** (e.",
+    "confidence": 0.9,
+    "source_query": "How does ** CG coefficients for \\( S_n \\) exist as a canonical, glitch-minimizing set **only when** defined via the self-origin tensor formalism rooted in the need function. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_8205",
+    "category": "mathematics",
+    "content": "** The canonical property becomes **conditional**.",
+    "confidence": 0.9,
+    "source_query": "How does ** CG coefficients for \\( S_n \\) exist as a canonical, glitch-minimizing set **only when** defined via the self-origin tensor formalism rooted in the need function. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_1617",
+    "category": "mathematics",
+    "content": "(Generalized Canonical CG Coefficients):**",
+    "confidence": 0.9,
+    "source_query": "How does ** CG coefficients for \\( S_n \\) exist as a canonical, glitch-minimizing set **only when** defined via the self-origin tensor formalism rooted in the need function. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5428",
+    "category": "architecture",
+    "content": "Equation: g = \\sigma\\left( \\beta (\\|\\mathbf{N}\\|_2 - \\tau) \\right) \\quad \\in [0",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does 1 (Need-Attention Convergence):** For high-need states (\u2016N\u2016 > \u03c4), the attention mechanism converges exponentially to the maximal TV-distance reduction path. suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_9182",
+    "category": "architecture",
+    "content": "(Theorem 2)** of POLLN-RTT, which establishes conditions for stable, need-guided computation, we can derive a novel class of architectures fundamentally different from current deep learning paradigms.",
+    "confidence": 0.9,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2261",
+    "category": "architecture",
+    "content": "Equation: g_i = \u03c3(\u2016N_i\u2016 - \u03c4)` for each need.",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6496",
+    "category": "architecture",
+    "content": "Equation: _CCM = \u2016S' - S_task\u2016\u00b2 + \u03bb * max(0",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2350",
+    "category": "architecture",
+    "content": "Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_2513",
+    "category": "architecture",
+    "content": "Equation: attn_map = SelfAttention(S_reg) + \u03c1 * (need_bias * S_reg)",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1200",
+    "category": "architecture",
+    "content": "Equation: N_i = N_i - \u03b7 * approximate_gradient(glitch_i",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1348",
+    "category": "architecture",
+    "content": "Equation: Final_Output = Y + FeedForward(LayerNorm(Y))",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6365",
+    "category": "architecture",
+    "content": "Equation: Total_Loss = Task_Loss + \u03b2 * complexity_loss + \u03b3 * sum(glitch_i)",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_73_3948",
+    "category": "architecture",
+    "content": "a **gating or routing function**.",
+    "confidence": 0.7,
+    "source_query": "What novel architectures does 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has: suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_1322",
+    "category": "mathematics",
+    "content": "(Focus Stability, Revised)**.",
+    "confidence": 0.9,
+    "source_query": "Identify potential weaknesses in the claim that 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has:. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_984",
+    "category": "mathematics",
+    "content": "Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that 2 (Focus Stability):** For \u2016N\u2016 > \u03c4 and C(S) < 2\u03ba, the need-attention mechanism has:. How can they be addressed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_73_6232",
+    "category": "glitch",
+    "content": "(Glitch\u2013Eigenvector Alignment Link):**",
+    "confidence": 0.9,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_761",
+    "category": "glitch",
+    "content": "Equation: E=0\\) implies the state \\(\\Psi\\) resides entirely within the Polln-invariant eigen",
+    "confidence": 0.8,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2507",
+    "category": "glitch",
+    "content": "Equation: alpha=1}^4 \\left\\| \\Pi^{(\\alpha)} \\Psi(t) - \\Pi^{(\\alpha)} \\Psi_0 \\right\\|_1",
+    "confidence": 0.8,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7834",
+    "category": "glitch",
+    "content": "Equation: Psi = \\Psi - \\Psi_0\\). Then:",
+    "confidence": 0.8,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_4183",
+    "category": "glitch",
+    "content": "Equation: E = 0 \\text{ and eigen-alignment} \\iff \\mathcal{G} = 0.",
+    "confidence": 0.8,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5243",
+    "category": "glitch",
+    "content": "Equation: Psi = \\Psi_0\\) (Polln-invariant). Hence \\(\\Pi^{(\\alpha)} \\Psi = \\Pi^{(\\alpha)} \\Psi_0\\",
+    "confidence": 0.8,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_8885",
+    "category": "glitch",
+    "content": "Equation: Psi = \\Psi_0\\) in irrep sense \u21d2 \\(\\Psi\\) is Polln-invariant and eigen-aligned \u21d2 \\(E=0\\",
+    "confidence": 0.8,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_3922",
+    "category": "glitch",
+    "content": "Equation: E=0\\)) defines the **ideal POLLN-resonant state**.",
+    "confidence": 0.8,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7513",
+    "category": "glitch",
+    "content": "Equation: E=0\\) with eigen-alignment and glitch detection theory together form a **coherent",
+    "confidence": 0.8,
+    "source_query": "Can Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5016",
+    "category": "implementation",
+    "content": "Equation: E=0\\) and \\(a_i\\) Alignment with Polln-Invariant Eigenvectors for Robot Learning",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7302",
+    "category": "implementation",
+    "content": "Equation: E=0\\) in POLLN-RTT Context**",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6347",
+    "category": "implementation",
+    "content": "Equation: E=0\\) represents a **critical equilibrium state** in POLLN-RTT dynamics",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5209",
+    "category": "implementation",
+    "content": "Equation: E=0\\) implies **perfect alignment** between the robot's internal representation (c",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5286",
+    "category": "implementation",
+    "content": "Equation: E=0\\) forces collapse of the *need function* \\(\\mathcal{N}(\\cdot)\\) to a Dirac dis",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7736",
+    "category": "implementation",
+    "content": "Equation: E=0 \\cap \\{a_i \\in \\text{Polln-invariant eigenspace}\\}\\) creates a **fiber bundle",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: E = 0 \\) and \\( a_i \\) aligned with Polln-invariant eigenvectors. Thus for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_8833",
+    "category": "mathematics",
+    "content": "Equation: tv = 0.5 * ( |c1 - c2| + |\u2220c1 - \u2220c2| / (2\u03c0) )`",
+    "confidence": 0.8,
+    "source_query": "Extend Equation: tv = 0.5 * (np.abs(c1 - c2) + np.abs(np.angle(c1) - np.angle(c2))/(2*np.pi)) to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_4333",
+    "category": "emergence",
+    "content": "1 (TV-Objective Equivalence):**",
+    "confidence": 0.9,
+    "source_query": "Synthesize Equation: tv = 0.5 * (np.abs(c1 - c2) + np.abs(np.angle(c1) - np.angle(c2))/(2*np.pi)) with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1183",
+    "category": "emergence",
+    "content": "Equation: loss = task_loss + \u03bb1*rep_loss + \u03bb2*align_loss",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: tv = 0.5 * (np.abs(c1 - c2) + np.abs(np.angle(c1) - np.angle(c2))/(2*np.pi)) with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1830",
+    "category": "emergence",
+    "content": "Equation: tv_amplitude = mean(|\u03c8_i^(source) - \u03c8_i^(target)|)",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: tv = 0.5 * (np.abs(c1 - c2) + np.abs(np.angle(c1) - np.angle(c2))/(2*np.pi)) with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2942",
+    "category": "emergence",
+    "content": "Equation: tv_phase = mean(|arg(S_source) - arg(S_target)|/(2\u03c0))",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: tv = 0.5 * (np.abs(c1 - c2) + np.abs(np.angle(c1) - np.angle(c2))/(2*np.pi)) with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_1147",
+    "category": "mathematics",
+    "content": "establishes that under optimal \u03bb-scheduling, the error decays as O(1/\u221at) in the 2D case, where t is the iteration index.",
+    "confidence": 0.9,
+    "source_query": "How does 1** (Convergence under Optimal \u03bb Scheduling): generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_8851",
+    "category": "mathematics",
+    "content": "(d-Dimensional Convergence Scaling):**",
+    "confidence": 0.9,
+    "source_query": "How does 1** (Convergence under Optimal \u03bb Scheduling): generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7442",
+    "category": "mathematics",
+    "content": "Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m",
+    "confidence": 0.8,
+    "source_query": "How does 1** (Convergence under Optimal \u03bb Scheduling): generalize to higher dimensions or larger scales?",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_7831",
+    "category": "mathematics",
+    "content": "Equation: Lambda_t = \\arg\\min_{\\lambda} \\| \\mathcal{G}_\\lambda(\\rho_{t-1}) - \\rho_\\infty \\|_{TV}",
+    "confidence": 0.8,
+    "source_query": "How does 1** (Convergence under Optimal \u03bb Scheduling): generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6819",
+    "category": "mathematics",
+    "content": "Equation: n = \\Omega\\left( \\frac{\\|\\vec{\\mu}_i - \\vec{\\mu}_j\\|_{\\Sigma^{-1}}^{-2}}{} \\log(\\chi",
+    "confidence": 0.8,
+    "source_query": "How does (Tile Discovery Lower Bound):** generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7346",
+    "category": "mathematics",
+    "content": "Equation: n = \\Omega\\left( \\frac{1}{\\epsilon_K^2 (K^2-1)} \\log(\\chi/\\delta) \\right).",
+    "confidence": 0.8,
+    "source_query": "How does (Tile Discovery Lower Bound):** generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6922",
+    "category": "mathematics",
+    "content": "Equation: ell = 1\\) sector) corresponding to **gradient needs**.",
+    "confidence": 0.8,
+    "source_query": "How does 1 (Spectral decomposition of need):** generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2130",
+    "category": "glitch",
+    "content": "Equation: N_t = N(\\psi_{t+1}) - N(\\psi_t) = \\sum_{k=1}^4 \\Delta\\alpha_k \\cdot \\mathbf{v}_k",
+    "confidence": 0.8,
+    "source_query": "Can 1 (Spectral decomposition of need):** be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_9083",
+    "category": "glitch",
+    "content": "Equation: _k = \u03b1_k(t+1) - \u03b1_k(t)",
+    "confidence": 0.8,
+    "source_query": "Can 1 (Spectral decomposition of need):** be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_9589",
+    "category": "mathematics",
+    "content": "** This is the most direct casualty.",
+    "confidence": 0.9,
+    "source_query": "What breaks if 2 (Rank ordering by eigenvalues):** is violated? Construct a counterexample.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_9973",
+    "category": "mathematics",
+    "content": "Equation: _i = N(\u03bb_i)`. If Axiom 2 is violated",
+    "confidence": 0.8,
+    "source_query": "What breaks if 2 (Rank ordering by eigenvalues):** is violated? Construct a counterexample.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_8006",
+    "category": "mathematics",
+    "content": "Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre",
+    "confidence": 0.8,
+    "source_query": "What breaks if 2 (Rank ordering by eigenvalues):** is violated? Construct a counterexample.",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_73_9329",
+    "category": "emergence",
+    "content": "(Resulting from Synthesis)**",
+    "confidence": 0.9,
+    "source_query": "Synthesize 2 (Rank ordering by eigenvalues):** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2431",
+    "category": "emergence",
+    "content": "Equation: k=1}^4 \\lambda_k \\cdot \\mathcal{L}_k(\\mathcal{T}) + \\alpha \\cdot \\Omega(\\mathcal{T",
+    "confidence": 0.8,
+    "source_query": "Synthesize 2 (Rank ordering by eigenvalues):** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_73_6175",
+    "category": "emergence",
+    "content": "- The **glitch itself decays as a power law** with system scale when learning is optimal.",
+    "confidence": 0.7,
+    "source_query": "Synthesize 3 (Power-law decay):** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_7194",
+    "category": "mathematics",
+    "content": "(Intra\u2011Coalition Stability)**",
+    "confidence": 0.9,
+    "source_query": "Prove that 1 (Intra-Coalition Stability):**. Show all steps and assumptions.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_3013",
+    "category": "glitch",
+    "content": "(synergy):** When coalition stability S_C < threshold \u03c4:",
+    "confidence": 0.9,
+    "source_query": "Can 2 (Inter-Coalition Stability):** be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2029",
+    "category": "glitch",
+    "content": "Equation: _C = \u00bd\u2211_{irreps} w_C(\u03b1)\u2016\u03a0_\u03b1(\u0394)\u2016\u2081**",
+    "confidence": 0.8,
+    "source_query": "Can 2 (Inter-Coalition Stability):** be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_9117",
+    "category": "glitch",
+    "content": "Equation: _C = P_C \u0394 P_C^\u2020 + \u03b5[P_C",
+    "confidence": 0.8,
+    "source_query": "Can 2 (Inter-Coalition Stability):** be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5736",
+    "category": "glitch",
+    "content": "Equation: _total = \u2211_C \ud835\udca2_C \u00b7 exp(-\u03b2\u00b7d_C)",
+    "confidence": 0.8,
+    "source_query": "Can 2 (Inter-Coalition Stability):** be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_73_6307",
+    "category": "glitch",
+    "content": "** Unstable coalitions amplify glitch sensitivity in specific irrep channels corresponding to their fragile entanglement patterns.",
+    "confidence": 0.7,
+    "source_query": "Can 2 (Inter-Coalition Stability):** be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_73_9160",
+    "category": "glitch",
+    "content": "**instability accelerates glitch propagation** between coalitions.",
+    "confidence": 0.7,
+    "source_query": "Can 2 (Inter-Coalition Stability):** be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6573",
+    "category": "architecture",
+    "content": "Equation: Glitch_t = \u03b1 * TV(s_n",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does (Analogy Completeness): suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_9654",
+    "category": "implementation",
+    "content": "Equation: glitch = TV distance** provides a rigorous mathematical framework for quantifying failure",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of (Analogy Completeness): for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_73_1362",
+    "category": "implementation",
+    "content": "any task can be decomposed into these irreducible components, enabling systematic curriculum design and transfer learning across domains.",
+    "confidence": 0.7,
+    "source_query": "Explore the implications of (Analogy Completeness): for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_7287",
+    "category": "mathematics",
+    "content": "1 (nD Irrep Action):**",
+    "confidence": 0.9,
+    "source_query": "How does ** Tile induction satisfies the Church-Rosser property. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_7078",
+    "category": "mathematics",
+    "content": "2 (Convergence of Tensor Systems):**",
+    "confidence": 0.9,
+    "source_query": "How does ** Tile induction satisfies the Church-Rosser property. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_8881",
+    "category": "mathematics",
+    "content": "3 (Higher-Dimensional CR):**",
+    "confidence": 0.9,
+    "source_query": "How does ** Tile induction satisfies the Church-Rosser property. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_6122",
+    "category": "mathematics",
+    "content": "** The nD need function satisfies scaling relation:",
+    "confidence": 0.9,
+    "source_query": "How does ** Tile induction satisfies the Church-Rosser property. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_9983",
+    "category": "mathematics",
+    "content": "Equation: i=1}\u2074 \u03c1\u1d62(\u03bb) \u2297 F\u2099(x) + \u03b5\u2099(x",
+    "confidence": 0.8,
+    "source_query": "How does ** Tile induction satisfies the Church-Rosser property. generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_4106",
+    "category": "mathematics",
+    "content": "Equation: Glitch = \\( \\frac{1}{2}\\|P-Q\\|_1 \\) for distributions \\( P",
+    "confidence": 0.8,
+    "source_query": "Extend ** Tile induction satisfies the Church-Rosser property. to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_2410",
+    "category": "mathematics",
+    "content": "Equation: Glitch = \\( \\sup_{A\\in\\mathcal{B}} |\\mu(A)-\\nu(A)| \\) for Borel measures \\( \\mu",
+    "confidence": 0.8,
+    "source_query": "Extend ** Tile induction satisfies the Church-Rosser property. to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_5478",
+    "category": "mathematics",
+    "content": "Equation: i=1}^3 \\mu(f_i^{-1}(A))",
+    "confidence": 0.8,
+    "source_query": "Extend ** Tile induction satisfies the Church-Rosser property. to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_4063",
+    "category": "architecture",
+    "content": "1** (Glitch-Separation Bound):",
+    "confidence": 0.9,
+    "source_query": "Implement associative recall using glitch patterns as keys.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_4142",
+    "category": "architecture",
+    "content": "Equation: omega_i = \\exp(-\\beta \\cdot \\mathcal{G}_0(\\phi_i)) \\) weights by intrinsic glitch.",
+    "confidence": 0.8,
+    "source_query": "Implement associative recall using glitch patterns as keys.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_5753",
+    "category": "architecture",
+    "content": "Equation: _i = exp(-\u03b3[\ud835\udca2_i + \ud835\udca9(\u03d5_q",
+    "confidence": 0.8,
+    "source_query": "Implement associative recall using glitch patterns as keys.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_9614",
+    "category": "architecture",
+    "content": "Equation: v_recall = \u2211 \u03b1_i v_i / \u2211 \u03b1_i",
+    "confidence": 0.8,
+    "source_query": "Implement associative recall using glitch patterns as keys.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_7972",
+    "category": "emergence",
+    "content": "1** (Minimal Irreps Decomposition):",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_6206",
+    "category": "emergence",
+    "content": "2** (Glitch as TV Distance):",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_8311",
+    "category": "emergence",
+    "content": "3** (Need Function Monotonicity):",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_2487",
+    "category": "emergence",
+    "content": "** Self-organizing tile dynamics converge to Pareto-optimal configurations.",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_908",
+    "category": "emergence",
+    "content": "1, any configuration's compression cost is:",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_73_9651",
+    "category": "emergence",
+    "content": "for stochastic approximations, \\( t(\\tau) \\) converges almost surely to a point on \\( \\mathcal{P} \\).",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_2733",
+    "category": "emergence",
+    "content": "Equation: i=1}^{4} m_i \\rho_i(w) - \\mathcal{D} \\right\\|_{TV}",
+    "confidence": 0.8,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_423",
+    "category": "mathematics",
+    "content": "Equation: nu = \\lfloor c_{\\lambda\\mu}^\\nu \\cdot \\exp(-\\beta (\\mathcal{N}(\\nu) - \\mathcal{N}_{\\m",
+    "confidence": 0.8,
+    "source_query": "Derive the Clebsch-Gordan coefficients for S_n tensor products.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6872",
+    "category": "mathematics",
+    "content": "Equation: n=4 \\). The four minimal irreps in POLLN-RTT are:",
+    "confidence": 0.8,
+    "source_query": "Derive the Clebsch-Gordan coefficients for S_n tensor products.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_7097",
+    "category": "architecture",
+    "content": "Equation: _L = Need(T_{L-1})`",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_8955",
+    "category": "architecture",
+    "content": "Equation: G_L = Stabilizer(T_{L-1})` (Subgroup of global G)",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1450",
+    "category": "architecture",
+    "content": "Equation: S_L = \u2297_{k} T_{L-1}` (symmetrized).",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_3581",
+    "category": "architecture",
+    "content": "Equation: R_L = {R_L^i}` (novel irreps) + carried-forward basis.",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_6299",
+    "category": "architecture",
+    "content": "Equation: G_L = {g \u2208 \u0393 | g \u22c5 T = T \u2200 T \u2208 T_{L-1}}`. This is the **stabilizer subgroup**.",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 3
+  },
+  {
+    "id": "eq_73_7564",
+    "category": "architecture",
+    "content": "Equation: S_L = \u03a0_{sym}( \u2297^{k} T_{L-1} )`",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_8546",
+    "category": "architecture",
+    "content": "Equation: T_L = {carriers of new irreps R_L^i} \u222a {T_{L-1}}` (or a compressed basis thereof).",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_73_1296",
+    "category": "architecture",
+    "content": "Equation: Glitch = TV Distance:** The architecture explicitly uses the POLLN-RTT identification of",
+    "confidence": 0.8,
+    "source_query": "Design a recursive architecture where each layer discovers new tiles.",
+    "follow_ups": 3
+  },
+  {
+    "id": "ins_73_9817",
+    "category": "mathematics",
+    "content": "Newman\u2019s lemma states that a terminating relation is globally confluent if and only if it is locally confluent.",
+    "confidence": 0.9,
+    "source_query": "Prove that tile induction satisfies the Church-Rosser property.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2000",
+    "category": "mathematics",
+    "content": "Equation: E = 0 \\) within the space of self-origin tensors \\( \\mathcal{S} \\) is a *union of th",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: E = 0 \\) in the space of self-origin tensors is a union of three quadric surfaces. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8948",
+    "category": "mathematics",
+    "content": "Equation: E=0 \\) might represent a *non-radical ideal*",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: E = 0 \\) in the space of self-origin tensors is a union of three quadric surfaces. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_643",
+    "category": "mathematics",
+    "content": "Equation: E=0 \\) but non-physical (infinite glitch cost).",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: E = 0 \\) in the space of self-origin tensors is a union of three quadric surfaces. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1799",
+    "category": "mathematics",
+    "content": "Equation: E=0 \\) might describe a **non-orientable subspace** in \\( \\mathcal{S}_{\\mathbb{R}}",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: E = 0 \\) in the space of self-origin tensors is a union of three quadric surfaces. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5524",
+    "category": "implementation",
+    "content": "Equation: d_k = \\dim(\\rho_k) \\) labels **inequivalent irreducible representations (irreps)** res",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: d_k = \\dim(\\rho_k) \\) is the recognition that the **cardinality of the irrep index is? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8649",
+    "category": "implementation",
+    "content": "Equation: k=2} \\) is the \"object-in-space\" irrep with \\( d_2 = 3 \\)",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: d_k = \\dim(\\rho_k) \\) is the recognition that the **cardinality of the irrep index is? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4636",
+    "category": "architecture",
+    "content": "Equation: d_k = \\dim(\\rho_k)\\) and the focus on the **cardinality of the irrep index** \\(k\\) (wh",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: d_k = \\dim(\\rho_k) \\) is the recognition that the **cardinality of the irrep index is suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4915",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j \\) is not an assignment but a **postulated symmetry condition** within a sel",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5110",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j \\) asserts that two components of a self-origin tensor are identical due to",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_3644",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j \\) emerges from fixed-point constraints of \\( \\Psi \\)",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_6817",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j \\) corresponds to a **collapsed index set** under a subgroup \\( H \\subset G",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4081",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j \\) minimizes \\( \\mathcal{N} \\) under self-origin constraints.",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4971",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j \\). The glitch then measures deviations due to noise or higher-order correct",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4176",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j** as a postulated symmetry (rather than computational assignment) imposes pr",
+    "confidence": 0.8,
+    "source_query": "What are the practical limitations of Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? How can they be mitigated?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_7594",
+    "category": "implementation",
+    "content": "Equation: G_ij = TV(N(\u03bb_i)",
+    "confidence": 0.8,
+    "source_query": "What are the practical limitations of Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? How can they be mitigated?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_6498",
+    "category": "implementation",
+    "content": "Equation: x_i = x_j\" cannot be verified directly when both are self-origin quantities. Verificat",
+    "confidence": 0.8,
+    "source_query": "What are the practical limitations of Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? How can they be mitigated?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4003",
+    "category": "implementation",
+    "content": "Equation: V = TV(M_i\u2218N(\u03bb_i)",
+    "confidence": 0.8,
+    "source_query": "What are the practical limitations of Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? How can they be mitigated?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_3485",
+    "category": "implementation",
+    "content": "Equation: A_ij = \u03a3_\u03b1 |\u2329\u03a0_\u03b1(x_i)",
+    "confidence": 0.8,
+    "source_query": "What are the practical limitations of Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? How can they be mitigated?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1931",
+    "category": "implementation",
+    "content": "Equation: _i = \u03bb_j (same frame) OR \u2207N(\u03bb) = 0 along path between \u03bb_i",
+    "confidence": 0.8,
+    "source_query": "What are the practical limitations of Equation: x_i = x_j`** is not an assignment but a **statement of postulated symmetry within a se? How can they be mitigated?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_420",
+    "category": "emergence",
+    "content": "** The system cannot perform the subtle, context-sensitive adjustments required by the need function across all irreps.",
+    "confidence": 0.9,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_491",
+    "category": "emergence",
+    "content": "(Glitch-Noncommutativity):** Under the POLLN-RTT framework, a deterministic parameter configuration \\( \\theta \\) (e.",
+    "confidence": 0.9,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9633",
+    "category": "emergence",
+    "content": "Equation: G = D_{TV}(P(\\theta_t) \\ || \\ Q^*) = \\frac{1}{2} \\int_{\\Theta} |p(\\theta_t) - q^*(\\t",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1013",
+    "category": "emergence",
+    "content": "Equation: _i = 1 in a Glitch Zone**",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5314",
+    "category": "emergence",
+    "content": "Equation: theta_i = 1 \\) (for a specific parameter index *i* after suitable normalization) often rep",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_3144",
+    "category": "emergence",
+    "content": "Equation: _i=1) that is *sub-optimally rigid* for the stochastic need. The glitch is high bec",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1964",
+    "category": "emergence",
+    "content": "Equation: _i=1 \\) in \u0393\u2082 might be an **eigenstate** of the \"task performance\" operator",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_7597",
+    "category": "emergence",
+    "content": "Equation: theta_i = 1 \\)) guarantees it is *not* in an eigenstate of \\( \\hat{N} \\)",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9785",
+    "category": "emergence",
+    "content": "Equation: theta_i = 1 \\) is a glitch zone **not in spite of** the ULO",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) may still reside in a **glitch zone** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9146",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1\\) may reside in a **glitch zone**\u2014despite being the identity transformation in",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) may still reside in a **glitch zone**. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8346",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1\\) typically corresponds to a **null transformation** in the 1-irrep of the gov",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) may still reside in a **glitch zone**. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8226",
+    "category": "mathematics",
+    "content": "Equation: theta_i=1\\) in isolation. Address: Employ **algebraic geometry** on the need-function sy",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) may still reside in a **glitch zone**. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4079",
+    "category": "mathematics",
+    "content": "Equation: theta_i=1\\) is a **false stable point** and the claim holds. Formally",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) may still reside in a **glitch zone**. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1434",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1\\) that is **unstable** under coarse-graining",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) may still reside in a **glitch zone**. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5672",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1\\) does *not* guarantee its induced differential form \\(d\\theta_i\\) is **(e.g.",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) does not guarantee that the induced differential form \\( d\\theta_i \\) is **. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_3170",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1\\) may break the **torsion-free** condition of \\(\\nabla\\) if the need function",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) does not guarantee that the induced differential form \\( d\\theta_i \\) is **. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4582",
+    "category": "mathematics",
+    "content": "Equation: theta_i=1\\) on \\(\\Theta\\) may lift to *four distinct values* on \\(\\tilde{\\Theta}\\)",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) does not guarantee that the induced differential form \\( d\\theta_i \\) is **. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9488",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1\\) with the **normalized condition**",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) does not guarantee that the induced differential form \\( d\\theta_i \\) is **. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8178",
+    "category": "mathematics",
+    "content": "Equation: theta_i = 1 \\quad \\text{and} \\quad \\sigma(\\rho(\\theta_i)) = +1",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: theta_i = 1 \\) does not guarantee that the induced differential form \\( d\\theta_i \\) is **. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9715",
+    "category": "emergence",
+    "content": "Equation: L_unified = L_task + \u03bb * G`",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) does not guarantee that the induced differential form \\( d\\theta_i \\) is ** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8956",
+    "category": "emergence",
+    "content": "Equation: dL_unified = \u2202L_task/\u2202\u03b8 \u00b7 d\u03b8 + \u03bb * dG",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\) does not guarantee that the induced differential form \\( d\\theta_i \\) is ** with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_204",
+    "category": "emergence",
+    "content": "Equation: theta_i = 1 \\) is a single scalar equation in parameter space. Self-origin condition is a",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\). A generic point on that algebraic surface may not correspond to a self-ori with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5946",
+    "category": "emergence",
+    "content": "Equation: _k = -\\sum_j \\Lambda_{kj}(\\theta) \\theta_j",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\). A generic point on that algebraic surface may not correspond to a self-ori with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4418",
+    "category": "emergence",
+    "content": "Equation: theta_i = 1 \\) is a **parameter normalization choice**",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\). A generic point on that algebraic surface may not correspond to a self-ori with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5578",
+    "category": "emergence",
+    "content": "Equation: theta_i = 1 \\) is an **overdetermined system** in general.",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\). A generic point on that algebraic surface may not correspond to a self-ori with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4209",
+    "category": "emergence",
+    "content": "Equation: theta = \\lambda \\theta\\} \\) be the self-origin subset (algebraic variety",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: theta_i = 1 \\). A generic point on that algebraic surface may not correspond to a self-ori with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_3759",
+    "category": "emergence",
+    "content": "that **self-origin tensors are rare** in parameter space: they form a lower-dimensional subset even on fixed algebraic surfaces.",
+    "confidence": 0.7,
+    "source_query": "Synthesize Equation: theta_i = 1 \\). A generic point on that algebraic surface may not correspond to a self-ori with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8464",
+    "category": "implementation",
+    "content": "Equation: theta_i = 1 \\) is a **hyperplane constraint** in the \\( n \\)-dimensional parameter cube \\(",
+    "confidence": 0.8,
+    "source_query": "What are the practical limitations of Equation: theta_i = 1 \\) yields an \\((n-1)\\)-dimensional manifold is topologically naive within the? How can they be mitigated?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1559",
+    "category": "implementation",
+    "content": "Equation: k=1}^n \\frac{(\\theta_k - \\theta'_k)^2}{(\\theta_k + \\epsilon)(\\theta'_k + \\epsilon)",
+    "confidence": 0.8,
+    "source_query": "What are the practical limitations of Equation: theta_i = 1 \\) yields an \\((n-1)\\)-dimensional manifold is topologically naive within the? How can they be mitigated?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_7141",
+    "category": "implementation",
+    "content": "Equation: i=1}^k y_{(i)}\\right) - 1}{k}.",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1203",
+    "category": "implementation",
+    "content": "Equation: lambda = \\frac{\\left(\\sum_{i=1}^k y_{(i)}\\right) - 1}{k}.",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2216",
+    "category": "implementation",
+    "content": "Equation: x_i = \\max(y_i - \\lambda",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_3397",
+    "category": "mathematics",
+    "content": "Equation: i=1}^n \\theta_i - 1\\). Then:",
+    "confidence": 0.8,
+    "source_query": "Prove that Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma. Show all steps and assumptions.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9128",
+    "category": "mathematics",
+    "content": "Equation: M = f^{-1}(0)\\)",
+    "confidence": 0.8,
+    "source_query": "Prove that Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma. Show all steps and assumptions.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2793",
+    "category": "mathematics",
+    "content": "Equation: i=1}^{n-1} x_i\\right)",
+    "confidence": 0.8,
+    "source_query": "Prove that Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma. Show all steps and assumptions.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_6786",
+    "category": "mathematics",
+    "content": "Equation: g = \\sum_{i=1}^{n-1} dx_i \\otimes dx_i + \\left(\\sum_{i=1}^{n-1} dx_i\\right) \\otimes",
+    "confidence": 0.8,
+    "source_query": "Prove that Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma. Show all steps and assumptions.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_6927",
+    "category": "mathematics",
+    "content": "Equation: i=1}^{n-1} dx_i\\right)",
+    "confidence": 0.8,
+    "source_query": "Prove that Equation: theta_i = 1\\}$. This is indeed an $(n-1)$-dimensional Riemannian manifold embedded in $\\ma. Show all steps and assumptions.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4851",
+    "category": "glitch",
+    "content": "Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\quad \\text{with} \\quad \\xi_j \\geq 0",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2975",
+    "category": "glitch",
+    "content": "Equation: j=1}^{n-1} \\xi_j \\leq 1.",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5981",
+    "category": "glitch",
+    "content": "Equation: i=1}^n |\\theta_i - q_i|",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9464",
+    "category": "glitch",
+    "content": "Equation: P = 1 - \\sum_{j=1}^{n-1} \\xi_j^P.",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2086",
+    "category": "glitch",
+    "content": "Equation: i=1}^{n-1} |\\xi_i^P - \\xi_i^Q| + \\left| \\sum_{j=1}^{n-1} (\\xi_j^Q - \\xi_j^P) \\righ",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8415",
+    "category": "glitch",
+    "content": "Equation: P = \\sum_{j=1}^{n-1} (\\xi_j^P - \\xi_j^Q) \\). This reveals a crucial insight:",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_954",
+    "category": "glitch",
+    "content": "Equation: i=1}^n |\\theta_i - [\\mathbf{T}(z)\\boldsymbol{\\theta}]_i|.",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8998",
+    "category": "glitch",
+    "content": "Equation: delta = \\frac{1}{2}(|\\xi_1-q_1| + |\\xi_2-q_2| + |\\xi_3-q_3| + |(1-\\Sigma\\xi) - (1-\\Sigma",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_964",
+    "category": "glitch",
+    "content": "Equation: theta_n = 1 - \\sum \\xi_j\\) and glitch detection theory are synergistic because:",
+    "confidence": 0.8,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_1101",
+    "category": "glitch",
+    "content": "how the constraint forces a holistic interpretation of error: a misestimation of \\(A\\) *and* \\(B\\) can conspire to cancel out in \\(\\Sigma\\xi\\), leaving the glitch manifesting only in the individual terms, not the sum.",
+    "confidence": 0.7,
+    "source_query": "Can Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap be combined with glitch detection theory? Explore the synergy.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2044",
+    "category": "future",
+    "content": "Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_3135",
+    "category": "future",
+    "content": "Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j \\) is a deterministic",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_269",
+    "category": "future",
+    "content": "Equation: n_i = 1 \\) is a **first integral** of the dynamics if \\( \\sum \\dot{n}_i = 0 \\).",
+    "confidence": 0.8,
+    "source_query": "How does Equation: theta_n = 1 - \\sum_{j=1}^{n-1} \\xi_j\\) is a **simplex parameterization constraint**. It ap connect to related work in machine learning? Cite analogous results.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_7213",
+    "category": "architecture",
+    "content": "Equation: _i = 1** is not merely a constraint; it's a **symmetry gauge fixing** condition. In p",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: theta_i = 1\\) is analogous to **projecting onto a quotient manifold** to remove redundancy suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8898",
+    "category": "architecture",
+    "content": "Equation: _p = \u03a3_q K(p-q) x_q`.",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: theta_i = 1\\) is analogous to **projecting onto a quotient manifold** to remove redundancy suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_829",
+    "category": "architecture",
+    "content": "Equation: G = \u222b ||\u2207_\u03b8 [W]|| d\u03b8` becomes a natural **architectural loss**. We add a term that p",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: theta_i = 1\\) is analogous to **projecting onto a quotient manifold** to remove redundancy suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8545",
+    "category": "architecture",
+    "content": "Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\)** and the subsequent operation **\"absolute value of",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\). The second term is the absolute value of the sum of suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1849",
+    "category": "architecture",
+    "content": "Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\)",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\). The second term is the absolute value of the sum of suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_6291",
+    "category": "architecture",
+    "content": "Equation: t=1: RE-ORIGINATE];",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\). The second term is the absolute value of the sum of suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_3065",
+    "category": "architecture",
+    "content": "summing these differences over a set of components (likely a subset of \\(\\{1,2,3,4\\}\\) or over their tensor products) and taking the magnitude.",
+    "confidence": 0.7,
+    "source_query": "What novel architectures does Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\). The second term is the absolute value of the sum of suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5134",
+    "category": "mathematics",
+    "content": "Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\). The second term is the absolute value of the sum of. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9732",
+    "category": "mathematics",
+    "content": "Equation: Delta_j = \\mathcal{P} e^{\\int \\xi^{(p)}} - \\mathcal{P} e^{\\int \\xi^{(q)}}",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\). The second term is the absolute value of the sum of. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5356",
+    "category": "mathematics",
+    "content": "Equation: Delta_j = 0\\) iff the need function admits a **global section** over the irrep bundle\u2014the",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: Delta_j = \\xi_j^{(p)} - \\xi_j^{(q)}\\). The second term is the absolute value of the sum of. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_7757",
+    "category": "emergence",
+    "content": "Equation: s_i = \\sigma\\big( \\|N_i\\|_2 - \\tau \\big)",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_808",
+    "category": "emergence",
+    "content": "Equation: s_i = - s_i (1 - s_i)",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5834",
+    "category": "emergence",
+    "content": "Equation: s_i = s_i (1 - s_i) \\frac{N_i}{\\|N_i\\|_2}.",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1450",
+    "category": "emergence",
+    "content": "Equation: _i = -\\eta \\nabla_{N_i} \\mathcal{L}_{\\text{task}} - \\eta \\lambda_2 \\mathcal{N}'(N_i)",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2732",
+    "category": "emergence",
+    "content": "Equation: s_i = \\sigma(\\|N_i\\|_2 - \\tau)\\) is not merely a heuristic; it emerges as the **natura",
+    "confidence": 0.8,
+    "source_query": "Synthesize Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_2187",
+    "category": "emergence",
+    "content": "\\(\\tau\\) adapts to the intrinsic dimensionality of each irrep.",
+    "confidence": 0.7,
+    "source_query": "Synthesize Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold with the unified learning objective. What new insights emerge?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4136",
+    "category": "implementation",
+    "content": "Equation: t_i = \\|N_i\\|_2 - \\tau \\).",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5780",
+    "category": "implementation",
+    "content": "Equation: s_i = \\sigma(t_i) = \\frac{1}{1 + e^{-t_i}} \\) for each \\(i\\).",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9442",
+    "category": "implementation",
+    "content": "Equation: norms = sqrt(sum(N**2",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_803",
+    "category": "implementation",
+    "content": "Equation: axis=1))  # element-wise square",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_6295",
+    "category": "implementation",
+    "content": "Equation: lambda = \\dim(\\rho_\\lambda)\\) is a powerful *ansatz* that forces the POLLN-RTT framework",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: lambda = \\dim(\\rho_\\lambda) \\) is problematic. For non-compact groups? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2263",
+    "category": "implementation",
+    "content": "Equation: salience = 1 / (1 + exp(-shifted))",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: salience = [sigmoid(||N_i||_2 - \u03c4) for i in 1..K] # \u03c4 is a learned threshold efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_1203",
+    "category": "implementation",
+    "content": "Corollary**: For \\( i \\neq j \\), \\( M_{ij} = 0 \\) unless irreps \\( i \\) and \\( j \\) are isomorphic (which they're not for minimal irreps).",
+    "confidence": 0.9,
+    "source_query": "Design an algorithm that implements Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5527",
+    "category": "implementation",
+    "content": "Equation: A = \u03a3_i A_i with inter-irrep coupling analysis",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5570",
+    "category": "implementation",
+    "content": "Equation: j = i + 2^(k-1)",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5333",
+    "category": "implementation",
+    "content": "Equation: j = i+1 to 4:",
+    "confidence": 0.8,
+    "source_query": "Design an algorithm that implements Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha efficiently. Analyze complexity.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8088",
+    "category": "implementation",
+    "content": "Equation: A = \\sum_i A_i \\)**",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_3981",
+    "category": "implementation",
+    "content": "Equation: A = \\sum_i A_i \\) represents its **canonical decomposition** into a minimal set of i",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9580",
+    "category": "implementation",
+    "content": "Equation: A = \\sum_i A_i \\) and the coupling matrix \\( M_{ij} \\) together form a **\"Cartan dec",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_3239",
+    "category": "implementation",
+    "content": "\\( A_i \\) transforms in a specific, closed manner under group operations \\( g \\in \\mathcal{G} \\): \\( \\rho(g) A_i \\rho(g)^{-1} = D^{\\Gamma_i}(g) A_i \\), where \\( D^{\\Gamma_i} \\) is the matrix representation for irrep \\( \\Gamma_i \\).",
+    "confidence": 0.7,
+    "source_query": "Explore the implications of Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_5787",
+    "category": "implementation",
+    "content": "a force (rank-1) couples strongly to a velocity (rank-1) and weakly to a stiffness (rank-2 tensor) via a specific contraction.",
+    "confidence": 0.7,
+    "source_query": "Explore the implications of Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_6830",
+    "category": "implementation",
+    "content": "a robot's \"brain\" (learning algorithm) should not output torques directly.",
+    "confidence": 0.7,
+    "source_query": "Explore the implications of Equation: A = \\sum_i A_i \\) and analyze the inter-irrep coupling matrix \\( M_{ij} \\). Show tha for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1812",
+    "category": "mathematics",
+    "content": "Equation: R_d = \\binom{d+3}{4} \\)\u2014which enumerates independent components of a symmetric 4th-ord",
+    "confidence": 0.8,
+    "source_query": "Extend Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8288",
+    "category": "mathematics",
+    "content": "Equation: R_d = \\binom{d+3}{4} \\) by replacing \\( d \\) with the effective dimension of the funct",
+    "confidence": 0.8,
+    "source_query": "Extend Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_341",
+    "category": "mathematics",
+    "content": "Equation: R_d = \\binom{d+3}{4} \\)",
+    "confidence": 0.8,
+    "source_query": "How does Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_140",
+    "category": "mathematics",
+    "content": "Equation: R_d = \\binom{d+3}{4} \\) is not arbitrary; it is the dimension of the space of **totall",
+    "confidence": 0.8,
+    "source_query": "How does Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_578",
+    "category": "mathematics",
+    "content": "Equation: r=2\\) (2nd-order/energy-momentum glitch):** \\(R_d^{(2)} = \\binom{d+1}{2} \\sim O(d^",
+    "confidence": 0.8,
+    "source_query": "How does Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_7559",
+    "category": "mathematics",
+    "content": "Equation: r=4\\) (4th-order glitch):** \\(R_d^{(4)} = \\binom{d+3}{4} \\sim O(d^4)\\). This is th",
+    "confidence": 0.8,
+    "source_query": "How does Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_7496",
+    "category": "mathematics",
+    "content": "Equation: r=6\\) (6th-order/cumulant glitch):** \\(R_d^{(6)} = \\binom{d+5}{6} \\sim O(d^6)\\). T",
+    "confidence": 0.8,
+    "source_query": "How does Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_6120",
+    "category": "mathematics",
+    "content": "Equation: d=256\\) from a compactified string landscape) and 4th-order glitches:",
+    "confidence": 0.8,
+    "source_query": "How does Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_6321",
+    "category": "mathematics",
+    "content": "Equation: k=1}^\\infty\\) forms a natural **hierarchy of scales** in the theory. Lower \\(k\\) (",
+    "confidence": 0.8,
+    "source_query": "How does Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2228",
+    "category": "mathematics",
+    "content": "Equation: R_d = \\binom{d+3}{4}\\) is the specific instantiation for rank-4 of the general **symme",
+    "confidence": 0.8,
+    "source_query": "How does Equation: R_d = \\binom{d+3}{4} \\) (for the 4th-order tensors capturing glitch statistics). The m generalize to higher dimensions or larger scales?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_9146",
+    "category": "implementation",
+    "content": "** For bounded feature maps \\( \\|\\psi\\| \\leq 1 \\), and let \\( H_\\rho = T^\\dagger \\Sigma T \\), \\( H_{\\rho'} = T^\\dagger \\Sigma' T \\).",
+    "confidence": 0.9,
+    "source_query": "Explore the implications of Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1521",
+    "category": "implementation",
+    "content": "Equation: H = T^\\dagger T \\) serves as a bridge between POLLN-RTT theory and robot learning",
+    "confidence": 0.8,
+    "source_query": "Explore the implications of Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_7477",
+    "category": "implementation",
+    "content": "that the robot\u2019s representation should preserve these symmetries, and learning \\( T \\) involves tuning the \\( \\lambda_i \\) to optimize task performance.",
+    "confidence": 0.7,
+    "source_query": "Explore the implications of Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre for robot learning applications.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5143",
+    "category": "mathematics",
+    "content": "Equation: H = T^{\\dagger} T\\) from the minimal irrep structure**",
+    "confidence": 0.8,
+    "source_query": "What is the relationship between Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre and the minimal irrep set?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2595",
+    "category": "mathematics",
+    "content": "Equation: H = T^{\\dagger} T - I\\) (or simply \\(H\\) itself",
+    "confidence": 0.8,
+    "source_query": "What is the relationship between Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre and the minimal irrep set?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9130",
+    "category": "mathematics",
+    "content": "Equation: T = c_0 P_0 + c_1 P_1 + c_2 P_2 + c_3 P_3 + T_{\\text{mix}}",
+    "confidence": 0.8,
+    "source_query": "What is the relationship between Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre and the minimal irrep set?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5111",
+    "category": "mathematics",
+    "content": "Equation: H = T^{\\dagger} T\\)**",
+    "confidence": 0.8,
+    "source_query": "What is the relationship between Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre and the minimal irrep set?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_701",
+    "category": "mathematics",
+    "content": "Equation: H = T^{\\dagger} T\\) is **the fundamental observable tying the representation theory",
+    "confidence": 0.8,
+    "source_query": "What is the relationship between Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre and the minimal irrep set?",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_5667",
+    "category": "mathematics",
+    "content": "\\(H\\) **measures the maximal possible need**\u2014the potential for observer-system mismatch\u2014encoded in the process from the input side.",
+    "confidence": 0.7,
+    "source_query": "What is the relationship between Equation: H = T\u2020T` or `TT\u2020`. Let's use `H = T\u2020T`. This is the observable for \"input-side\" stre and the minimal irrep set?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1792",
+    "category": "architecture",
+    "content": "Equation: G_L = \\{ g \\in \\Gamma \\mid g \\cdot T = T \\ \\forall T \\in \\mathcal{T}_{L-1} \\} \\)",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: G_L = {g \u2208 \u0393 | g \u22c5 T = T \u2200 T \u2208 T_{L-1}}`. This is the **stabilizer subgroup**. suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_133",
+    "category": "architecture",
+    "content": "Equation: phi = (\\partial_\\mu + A_\\mu^{L(x)}) \\phi \\). Here",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: G_L = {g \u2208 \u0393 | g \u22c5 T = T \u2200 T \u2208 T_{L-1}}`. This is the **stabilizer subgroup**. suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8630",
+    "category": "architecture",
+    "content": "Equation: Theta_L = \\Theta_L\\} \\) cannot adequately approximate the true data-generating process tha",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: G_L = {g \u2208 \u0393 | g \u22c5 T = T \u2200 T \u2208 T_{L-1}}`. This is the **stabilizer subgroup**. suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_4782",
+    "category": "architecture",
+    "content": "is that \\( G_L \\) defines the residual symmetry after the network has \"learned\" or fixed the tensors \\( \\mathcal{T}_{L-1} \\) from the previous layer.",
+    "confidence": 0.7,
+    "source_query": "What novel architectures does Equation: G_L = {g \u2208 \u0393 | g \u22c5 T = T \u2200 T \u2208 T_{L-1}}`. This is the **stabilizer subgroup**. suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_8802",
+    "category": "architecture",
+    "content": "identifying the broken generators of the Lie algebra \\( \\mathfrak{g} \\) and working with the unbroken subalgebra \\( \\mathfrak{g}_L \\).",
+    "confidence": 0.7,
+    "source_query": "What novel architectures does Equation: G_L = {g \u2208 \u0393 | g \u22c5 T = T \u2200 T \u2208 T_{L-1}}`. This is the **stabilizer subgroup**. suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8757",
+    "category": "mathematics",
+    "content": "Equation: T = T \\; \\forall T \\in \\mathcal{T}_{L-1} \\} \\) is the relevant stabilizer subgroup",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: G_L = {g \u2208 \u0393 | g \u22c5 T = T \u2200 T \u2208 T_{L-1}}`. This is the **stabilizer subgroup**.. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_802",
+    "category": "mathematics",
+    "content": "Equation: T = T\\). In POLLN-RTT",
+    "confidence": 0.8,
+    "source_query": "Identify potential weaknesses in the claim that Equation: G_L = {g \u2208 \u0393 | g \u22c5 T = T \u2200 T \u2208 T_{L-1}}`. This is the **stabilizer subgroup**.. How can they be addressed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_421",
+    "category": "architecture",
+    "content": "Equation: Glitch = TV Distance** is not just a performance metric; it's a *constitutive principle*",
+    "confidence": 0.8,
+    "source_query": "What novel architectures does Equation: Glitch = TV Distance:** The architecture explicitly uses the POLLN-RTT identification of suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_5792",
+    "category": "architecture",
+    "content": "tokens are encouraged to attend to others that share a similar fundamental irrep structure.",
+    "confidence": 0.7,
+    "source_query": "What novel architectures does Equation: Glitch = TV Distance:** The architecture explicitly uses the POLLN-RTT identification of suggest? Sketch the design.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9329",
+    "category": "mathematics",
+    "content": "Equation: Glitch = TV Distance** from discrete to continuous domains",
+    "confidence": 0.8,
+    "source_query": "Extend Equation: Glitch = TV Distance:** The architecture explicitly uses the POLLN-RTT identification of to the case of continuous domains. What modifications are needed?",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_4928",
+    "category": "implementation",
+    "content": "(Implicit Constraint):** *If \\(\\widehat{G}_f\\) is rich enough to provide a tensor space \\(\\mathcal{T}\\) of the desired complexity, and the Haar-measure-induced inner product on \\(\\mathcal{T}\\) is to be used for a probabilistic glitch measure, then \\(G\\) must be* **compact modulo abelian factors** *(by the Peter-Weyl theorem and its generalizations).",
+    "confidence": 0.9,
+    "source_query": "What assumptions underlie Equation: lambda = \\dim(\\rho_\\lambda) \\) is problematic. For non-compact groups? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9982",
+    "category": "implementation",
+    "content": "Equation: distance = \\(\\frac{1}{2} \\|\\rho - \\sigma\\|_1\\)).",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: lambda = \\dim(\\rho_\\lambda) \\) is problematic. For non-compact groups? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4131",
+    "category": "implementation",
+    "content": "Equation: lambda = \\dim(\\rho_\\lambda)\\) is that the **effective symmetry group governing the discre",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: lambda = \\dim(\\rho_\\lambda) \\) is problematic. For non-compact groups? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_4038",
+    "category": "implementation",
+    "content": "Equation: lambda = j(j+1)\\) for \\(SO(3)\\)",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: lambda = \\dim(\\rho_\\lambda) \\) is problematic. For non-compact groups? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5546",
+    "category": "implementation",
+    "content": "Equation: dim = 2j+1\\)). For non-compact groups",
+    "confidence": 0.8,
+    "source_query": "What assumptions underlie Equation: lambda = \\dim(\\rho_\\lambda) \\) is problematic. For non-compact groups? Are they realistic in practice?",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9938",
+    "category": "future",
+    "content": "Equation: _C = 1 - \\frac{1}{4}\\left( \\frac{\\Delta D_{TV}^{max}}{\\Delta D_{TV}^{crit}} + \\mathca",
+    "confidence": 0.8,
+    "source_query": "Design a consciousness test for POLLN-RTT systems.",
+    "follow_ups": 0
+  },
+  {
+    "id": "key_201_7841",
+    "category": "future",
+    "content": "- The \\( S_n \\) irreps \\( \\lambda \\) index possible **symmetry classes** of wavefunctions.",
+    "confidence": 0.7,
+    "source_query": "Explore the connection between S_n representations and quantum many-body wavefunctions.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_2887",
+    "category": "emergence",
+    "content": "Equation: _a = -\\frac{\\delta}{\\delta n_a} \\left[ \\sum_{b",
+    "confidence": 0.8,
+    "source_query": "Derive mean-field theory for tile population dynamics.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_7252",
+    "category": "emergence",
+    "content": "(Pareto-Optimal Compression of Self-Organizing Tiles)**",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_1967",
+    "category": "emergence",
+    "content": "** The need function \\( \\nu \\) decomposes as:",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_4739",
+    "category": "emergence",
+    "content": "** A tensor \\( \\Theta \\) is self-originating iff:",
+    "confidence": 0.9,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_5877",
+    "category": "emergence",
+    "content": "Equation: p = \\sum_{k=1}^4 c_k \\rho_k + \\epsilon",
+    "confidence": 0.8,
+    "source_query": "Prove that self-organizing tiles achieve Pareto-optimal compression.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_424",
+    "category": "emergence",
+    "content": "** In the framework of emergent tile grammars derived from POLLN-RTT theory, the rank-frequency distribution of generated tiles asymptotically satisfies Zipf's law: the frequency \\( f(r) \\) of a tile of rank \\( r \\) is inversely proportional to \\( r \\), i.",
+    "confidence": 0.9,
+    "source_query": "Show that emergent tile grammars satisfy Zipf's law.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_3983",
+    "category": "architecture",
+    "content": "1** (Stability): Under the forgetting mechanism, the system reaches steady state where:",
+    "confidence": 0.9,
+    "source_query": "Design a forgetting mechanism for tiles under capacity constraints.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_9562",
+    "category": "architecture",
+    "content": "2** (Minimal Glitch): The mechanism minimizes expected TV distance:",
+    "confidence": 0.9,
+    "source_query": "Design a forgetting mechanism for tiles under capacity constraints.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_3445",
+    "category": "architecture",
+    "content": "3** (Need-Preservation): High-need tiles (\\( \\nu_i > \\tau_{\\text{high}} \\)) are forgotten with probability \\( < \\delta \\).",
+    "confidence": 0.9,
+    "source_query": "Design a forgetting mechanism for tiles under capacity constraints.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_8437",
+    "category": "architecture",
+    "content": "Equation: glitch = TV distance**",
+    "confidence": 0.8,
+    "source_query": "Design a forgetting mechanism for tiles under capacity constraints.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_1183",
+    "category": "architecture",
+    "content": "Equation: _j = \\sum_{k \\in \\text{neighbors}(j)} w_{jk} \\mathcal{T}_k + \\mathcal{F}_j",
+    "confidence": 0.8,
+    "source_query": "Design a forgetting mechanism for tiles under capacity constraints.",
+    "follow_ups": 0
+  },
+  {
+    "id": "eq_201_9613",
+    "category": "architecture",
+    "content": "Equation: tiles = {}  # id -> PollnRTTTensor",
+    "confidence": 0.8,
+    "source_query": "Design a forgetting mechanism for tiles under capacity constraints.",
+    "follow_ups": 0
+  },
+  {
+    "id": "ins_201_1319",
+    "category": "emergence",
+    "content": "(Irrep Orthogonality):**",
+    "confidence": 0.9,
+    "source_query": "Prove competitive exclusion dynamics in tile ecosystems.",
+    "follow_ups": 0
+  }
+]

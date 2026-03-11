@@ -1,0 +1,406 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://polln-rtt.org/schemas/folding_group_schema.json",
+  "title": "Folding Group Schema",
+  "description": "Schema for the Folding Group G_F ≅ (Z₂)^(n-1) ⋊ S_n. This represents the symmetry group of folding operations combining binary flip choices with permutations.",
+  "type": "object",
+  "definitions": {
+    "Z2Element": {
+      "type": "object",
+      "description": "Element of Z₂ (binary group: {0, 1} with addition mod 2)",
+      "properties": {
+        "id": { "type": "string" },
+        "value": { "type": "integer", "enum": [0, 1] },
+        "position": { "type": "integer", "minimum": 0, "description": "Position in the tuple (Z₂)^(n-1)" },
+        "interpretation": {
+          "type": "string",
+          "enum": ["no-fold", "fold", "flip", "no-flip"],
+          "description": "Semantic interpretation of the binary choice"
+        }
+      },
+      "required": ["id", "value"]
+    },
+    "Z2Tuple": {
+      "type": "object",
+      "description": "Tuple in (Z₂)^(n-1) representing fold choices",
+      "properties": {
+        "id": { "type": "string" },
+        "n": { "type": "integer", "minimum": 2, "description": "Parameter n determining group size" },
+        "elements": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Z2Element" },
+          "minItems": 1,
+          "description": "The (n-1) binary choices"
+        },
+        "asBinary": {
+          "type": "string",
+          "pattern": "^[01]+$",
+          "description": "Binary string representation"
+        },
+        "asInteger": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Integer representation of the binary tuple"
+        }
+      },
+      "required": ["id", "n", "elements"]
+    },
+    "Permutation": {
+      "type": "object",
+      "description": "Element of S_n (symmetric group)",
+      "properties": {
+        "id": { "type": "string" },
+        "degree": { "type": "integer", "minimum": 1, "description": "n in S_n" },
+        "mapping": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "description": "Permutation as image of [0,1,...,n-1] or [1,2,...,n]"
+        },
+        "cycleNotation": {
+          "type": "string",
+          "description": "Cycle notation, e.g., (1 3 2)(4 5)"
+        },
+        "cycleType": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "description": "Partition of n giving cycle lengths"
+        },
+        "sign": {
+          "type": "integer",
+          "enum": [1, -1],
+          "description": "Sign of permutation (even/odd)"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Smallest k such that σ^k = identity"
+        },
+        "inversionCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of inversions"
+        }
+      },
+      "required": ["id", "degree", "mapping"]
+    },
+    "SymmetricGroup": {
+      "type": "object",
+      "description": "The symmetric group S_n",
+      "properties": {
+        "id": { "type": "string" },
+        "degree": { "type": "integer", "minimum": 1, "description": "n" },
+        "order": { "type": "integer", "description": "n! - order of the group" },
+        "generators": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Permutation" },
+          "description": "Generating set (typically adjacent transpositions)"
+        },
+        "conjugacyClasses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "cycleType": { "type": "array", "items": { "type": "integer" } },
+              "size": { "type": "integer" },
+              "representative": { "$ref": "#/definitions/Permutation" }
+            }
+          }
+        },
+        "youngDiagrams": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "partition": { "type": "array", "items": { "type": "integer" } },
+              "diagram": { "type": "string", "description": "ASCII or representation" }
+            }
+          }
+        }
+      },
+      "required": ["id", "degree", "order"]
+    },
+    "SemidirectProduct": {
+      "type": "object",
+      "description": "Semidirect product structure (Z₂)^(n-1) ⋊ S_n",
+      "properties": {
+        "id": { "type": "string" },
+        "n": { "type": "integer", "minimum": 2 },
+        "normalSubgroup": {
+          "type": "object",
+          "description": "N = (Z₂)^(n-1) (normal subgroup)",
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "type": "string", "const": "Z2_power" },
+            "rank": { "type": "integer", "description": "n-1" },
+            "order": { "type": "integer", "description": "2^(n-1)" }
+          }
+        },
+        "quotientGroup": {
+          "type": "object",
+          "description": "Q = S_n (acting on N)",
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "type": "string", "const": "symmetric" },
+            "degree": { "type": "integer" },
+            "order": { "type": "integer", "description": "n!" }
+          }
+        },
+        "action": {
+          "type": "object",
+          "description": "Action of S_n on (Z₂)^(n-1)",
+          "properties": {
+            "type": { "type": "string", "enum": ["permutation", "conjugation", "custom"] },
+            "description": { "type": "string" },
+            "formula": {
+              "type": "string",
+              "description": "Mathematical formula for the action, e.g., σ·(ε₁,...,εₙ₋₁) = (ε_σ⁻¹(1),...,ε_σ⁻¹(n-1))"
+            }
+          }
+        },
+        "totalOrder": {
+          "type": "integer",
+          "description": "Total order = 2^(n-1) × n!"
+        }
+      },
+      "required": ["id", "n", "normalSubgroup", "quotientGroup", "action"]
+    },
+    "FoldingGroupElement": {
+      "type": "object",
+      "description": "An element of G_F = (Z₂)^(n-1) ⋊ S_n",
+      "properties": {
+        "id": { "type": "string" },
+        "z2Tuple": { "$ref": "#/definitions/Z2Tuple" },
+        "permutation": { "$ref": "#/definitions/Permutation" },
+        "asPair": {
+          "type": "object",
+          "properties": {
+            "notation": { "type": "string", "description": "e.g., ((1,0,1), σ)" }
+          }
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "order": { "type": "integer", "description": "Order of this element" },
+            "isIdentity": { "type": "boolean" },
+            "inverse": { "type": "string", "description": "ID of inverse element" }
+          }
+        }
+      },
+      "required": ["id", "z2Tuple", "permutation"]
+    },
+    "FoldingGroup": {
+      "type": "object",
+      "description": "Complete Folding Group G_F ≅ (Z₂)^(n-1) ⋊ S_n",
+      "properties": {
+        "id": { "type": "string" },
+        "n": { "type": "integer", "minimum": 2 },
+        "name": { "type": "string", "description": "Name/description of the group" },
+        "structure": { "$ref": "#/definitions/SemidirectProduct" },
+        "order": { "type": "integer", "description": "Total order = 2^(n-1) × n!" },
+        "elements": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FoldingGroupElement" },
+          "description": "All elements of the group"
+        },
+        "generators": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FoldingGroupElement" },
+          "description": "Generating set for the group"
+        },
+        "multiplicationTable": {
+          "type": "object",
+          "description": "Group multiplication table",
+          "properties": {
+            "type": { "type": "string", "enum": ["full", "sparse", "generators"] },
+            "table": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "description": "2D array of element IDs"
+            }
+          }
+        },
+        "subgroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "order": { "type": "integer" },
+              "type": {
+                "type": "string",
+                "enum": ["normal", "cyclic", "dihedral", "symmetric", "custom"]
+              },
+              "generatorIds": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "center": {
+          "type": "object",
+          "properties": {
+            "order": { "type": "integer" },
+            "elementIds": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "representations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["permutation", "matrix", "irreducible"] },
+              "dimension": { "type": "integer" },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": ["id", "n", "structure", "order"]
+    },
+    "FoldOperation": {
+      "type": "object",
+      "description": "A fold operation in the group",
+      "properties": {
+        "id": { "type": "string" },
+        "groupElement": { "$ref": "#/definitions/FoldingGroupElement" },
+        "inputState": {
+          "type": "object",
+          "description": "State before folding",
+          "properties": {
+            "configuration": { "type": "string" },
+            "orientation": { "type": "string" }
+          }
+        },
+        "outputState": {
+          "type": "object",
+          "description": "State after folding",
+          "properties": {
+            "configuration": { "type": "string" },
+            "orientation": { "type": "string" }
+          }
+        },
+        "foldSequence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "foldIndex": { "type": "integer" },
+              "foldType": { "type": "string", "enum": ["mountain", "valley"] }
+            }
+          }
+        }
+      },
+      "required": ["id", "groupElement"]
+    }
+  },
+  "properties": {
+    "schemaVersion": { "type": "string", "default": "1.0.0" },
+    "id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "foldingGroup": { "$ref": "#/definitions/FoldingGroup" },
+    "operations": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/FoldOperation" }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "required": ["schemaVersion", "id", "foldingGroup"],
+  "additionalProperties": false,
+  "typescriptInterfaces": {
+    "description": "TypeScript interfaces for the Folding Group schema",
+    "code": "// TypeScript Interfaces for Folding Group G_F ≅ (Z₂)^(n-1) ⋊ S_n\n\nexport interface Z2Element {\n  id: string;\n  value: 0 | 1;\n  position?: number;\n  interpretation?: 'no-fold' | 'fold' | 'flip' | 'no-flip';\n}\n\nexport interface Z2Tuple {\n  id: string;\n  n: number;\n  elements: Z2Element[];\n  asBinary?: string;\n  asInteger?: number;\n}\n\nexport interface Permutation {\n  id: string;\n  degree: number;\n  mapping: number[];\n  cycleNotation?: string;\n  cycleType?: number[];\n  sign?: 1 | -1;\n  order?: number;\n  inversionCount?: number;\n}\n\nexport interface SymmetricGroup {\n  id: string;\n  degree: number;\n  order: number;\n  generators?: Permutation[];\n  conjugacyClasses?: Array<{\n    id: string;\n    cycleType: number[];\n    size: number;\n    representative: Permutation;\n  }>;\n  youngDiagrams?: Array<{\n    partition: number[];\n    diagram: string;\n  }>;\n}\n\nexport interface SemidirectProduct {\n  id: string;\n  n: number;\n  normalSubgroup: {\n    id: string;\n    type: 'Z2_power';\n    rank: number;\n    order: number;\n  };\n  quotientGroup: {\n    id: string;\n    type: 'symmetric';\n    degree: number;\n    order: number;\n  };\n  action: {\n    type: 'permutation' | 'conjugation' | 'custom';\n    description?: string;\n    formula?: string;\n  };\n  totalOrder: number;\n}\n\nexport interface FoldingGroupElement {\n  id: string;\n  z2Tuple: Z2Tuple;\n  permutation: Permutation;\n  asPair?: {\n    notation: string;\n  };\n  properties?: {\n    order: number;\n    isIdentity: boolean;\n    inverse: string;\n  };\n}\n\nexport interface FoldingGroup {\n  id: string;\n  n: number;\n  name?: string;\n  structure: SemidirectProduct;\n  order: number;\n  elements?: FoldingGroupElement[];\n  generators?: FoldingGroupElement[];\n  multiplicationTable?: {\n    type: 'full' | 'sparse' | 'generators';\n    table: string[][];\n  };\n  subgroups?: Array<{\n    id: string;\n    order: number;\n    type: 'normal' | 'cyclic' | 'dihedral' | 'symmetric' | 'custom';\n    generatorIds: string[];\n  }>;\n  center?: {\n    order: number;\n    elementIds: string[];\n  };\n  representations?: Array<{\n    type: 'permutation' | 'matrix' | 'irreducible';\n    dimension: number;\n    description?: string;\n  }>;\n}\n\nexport interface FoldOperation {\n  id: string;\n  groupElement: FoldingGroupElement;\n  inputState?: {\n    configuration?: string;\n    orientation?: string;\n  };\n  outputState?: {\n    configuration?: string;\n    orientation?: string;\n  };\n  foldSequence?: Array<{\n    foldIndex: number;\n    foldType: 'mountain' | 'valley';\n  }>;\n}\n\nexport interface FoldingGroupSchema {\n  schemaVersion: string;\n  id: string;\n  timestamp?: string;\n  foldingGroup: FoldingGroup;\n  operations?: FoldOperation[];\n  metadata?: {\n    author?: string;\n    description?: string;\n    tags?: string[];\n  };\n}\n"
+  },
+  "examples": [
+    {
+      "description": "Folding Group for n=3",
+      "instance": {
+        "schemaVersion": "1.0.0",
+        "id": "folding-group-n3-001",
+        "timestamp": "2025-01-15T10:30:00Z",
+        "foldingGroup": {
+          "id": "G_F_n3",
+          "n": 3,
+          "name": "Folding Group for 3-fold system",
+          "structure": {
+            "id": "semidirect-001",
+            "n": 3,
+            "normalSubgroup": { "id": "N", "type": "Z2_power", "rank": 2, "order": 4 },
+            "quotientGroup": { "id": "Q", "type": "symmetric", "degree": 3, "order": 6 },
+            "action": {
+              "type": "permutation",
+              "description": "S_3 acts by permuting the positions in (Z_2)^2",
+              "formula": "σ·(ε₁,ε₂) = (ε_σ⁻¹(1), ε_σ⁻¹(2))"
+            },
+            "totalOrder": 24
+          },
+          "order": 24,
+          "generators": [
+            {
+              "id": "gen-1",
+              "z2Tuple": { "id": "z-1", "n": 3, "elements": [{ "id": "e1", "value": 1, "position": 0 }], "asBinary": "10" },
+              "permutation": { "id": "p-1", "degree": 3, "mapping": [0, 1, 2], "cycleNotation": "()", "sign": 1 }
+            },
+            {
+              "id": "gen-2",
+              "z2Tuple": { "id": "z-2", "n": 3, "elements": [], "asBinary": "00" },
+              "permutation": { "id": "p-2", "degree": 3, "mapping": [1, 0, 2], "cycleNotation": "(1 2)", "sign": -1 }
+            }
+          ],
+          "center": { "order": 1, "elementIds": ["identity"] }
+        }
+      }
+    }
+  ],
+  "validationRules": [
+    {
+      "rule": "z2-tuple-length",
+      "description": "Z₂ tuple must have n-1 elements",
+      "expression": "len(z2Tuple.elements) == n - 1"
+    },
+    {
+      "rule": "permutation-degree",
+      "description": "Permutation degree must equal n",
+      "expression": "permutation.degree == n"
+    },
+    {
+      "rule": "order-consistency",
+      "description": "Total order must equal 2^(n-1) × n!",
+      "expression": "order == pow(2, n-1) * factorial(n)"
+    },
+    {
+      "rule": "semidirect-structure",
+      "description": "Normal subgroup order must equal 2^(n-1)",
+      "expression": "structure.normalSubgroup.order == pow(2, n-1)"
+    }
+  ],
+  "groupTheory": {
+    "description": "Mathematical properties of the Folding Group",
+    "properties": [
+      {
+        "name": "Non-Abelian (for n ≥ 3)",
+        "description": "The group is non-abelian when n ≥ 3 due to the non-trivial action of S_n"
+      },
+      {
+        "name": "Order Formula",
+        "formula": "|G_F| = 2^(n-1) × n!"
+      },
+      {
+        "name": "Extension Type",
+        "description": "G_F is a split extension (semidirect product) of (Z₂)^(n-1) by S_n"
+      },
+      {
+        "name": "Presentation",
+        "formula": "G_F = ⟨τ₁, ..., τₙ₋₁, σ₁, ..., σₙ₋₁ | τᵢ² = e, σⱼ² = e, ...⟩"
+      }
+    ]
+  }
+}

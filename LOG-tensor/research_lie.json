@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2503.09829v1",
+    "name": "𝑆⁢𝐸⁢(3)-Equivariant Robot Learning and Control",
+    "snippet": "Mar 12, 2025 — This tutorial survey reviews a wide range of equivariant deep learning and control methods for robotics, from classic to state-of-the-art.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/61202bb341e7e0a6026ea134a5057abf-Paper-Conference.pdf",
+    "name": "LIE GROUP DECOMPOSITIONS FOR EQUIVARIANT",
+    "snippet": "Cited by 15 — Invariance and equivariance to geometrical transformations have proven to be very useful inductive biases when training (convolutional) neural network ...",
+    "host_name": "proceedings.iclr.cc",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://par.nsf.gov/servlets/purl/10536287",
+    "name": "an Equivariant Neural Network?",
+    "snippet": "2023 · Cited by 27 — We explain equivariant neural networks , a notion under- lying breakthroughs in machine learning from deep con- volutional neural networks for computer ...",
+    "host_name": "par.nsf.gov",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v202/passaro23a/passaro23a.pdf",
+    "name": "Reducing SO(3) Convolutions to SO(2) for Efficient",
+    "snippet": "2023 · Cited by 189 — The hope is that equivariance will provide a robust prior that can increase data efficiency, improve generalization and eliminate the need for data augmentation ... 19 pages",
+    "host_name": "proceedings.mlr.press",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://liner.com/review/lietransformer-equivariant-selfattention-for-lie-groups",
+    "name": "LieTransformer: Equivariant self-attention for Lie Groups",
+    "snippet": "Dec 20, 2020 — ... ICML 2020 paper, this review summarizes LieTransformer, a group equivariant neural network extending self- attention to arbitrary Lie groups .",
+    "host_name": "liner.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/388852317_LieCConv_An_Image_Classification_Algorithm_Based_on_Lie_Group_Convolutional_Neural_Network",
+    "name": "(PDF) LieCConv: An Image Classification Algorithm Based",
+    "snippet": "Feb 10, 2025 — In order to improve the memory utilization efficiency of LG-CNNs, a novel Lie group convolutional neural network called LieCConv is proposed.",
+    "host_name": "www.researchgate.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://icml.cc/virtual/2025/poster/45802",
+    "name": "GLGENN: A Novel Parameter-Light Equivariant Neural",
+    "snippet": "We propose, implement, and compare with competitors a new architecture of equivariant neural networks based on geometric (Clifford) algebras: Generalized ...",
+    "host_name": "icml.cc",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1369717/full",
+    "name": "SE(3) group convolutional neural networks and a study on",
+    "snippet": "2025 · Cited by 2 — We present an SE(3) Group Convolutional Neural Network along with a series of networks with different group actions for segmentation of Diffusion Weighted ...",
+    "host_name": "www.frontiersin.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2072-4292/15/15/3758",
+    "name": "Lie Group Equivariant Convolutional Neural Network",
+    "snippet": "2023 · Cited by 10 — We introduce a Lie group equivariant convolutional neural network predicated on the Laplace distribution.",
+    "host_name": "www.mdpi.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://research.chalmers.se/publication/535580/file/535580_Fulltext.pdf",
+    "name": "Mathematical Foundations of Equivariant Neural Networks",
+    "snippet": "2023 · Cited by 1 — This thesis centers around a mathematical framework for equivariant neural networks that uses principal bundles and associated vector bundles. Not only does ... 66 pages",
+    "host_name": "research.chalmers.se",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2402.11014v2",
+    "name": "Neural-network quantum states for many-body physics - arXiv",
+    "snippet": "Researchers have shown that trial states inspired by deep learning problems can accurately model many-body correlated phenomena in spin, fermionic and qubit ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41524-025-01535-3",
+    "name": "Efficient equivariant model for machine learning interatomic",
+    "snippet": "We develop an accurate and efficient equivariant graph neural network for predicting interatomic potentials and forces. The efficient nature of ...",
+    "host_name": "www.nature.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://iopscience.iop.org/article/10.1088/2632-2153/ad4a04",
+    "name": "Unifying O(3) equivariant neural networks design with tensor",
+    "snippet": "In this paper, we propose using fusion diagrams, a technique widely employed in simulating SU(2)-symmetric quantum many-body problems, to design new spatial ...",
+    "host_name": "iopscience.iop.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PRXQuantum.5.020328",
+    "name": "Theory for Equivariant Quantum Neural Networks - APS Journals",
+    "snippet": "A comprehensive theoretical framework to design equivariant quantum neural networks (EQNNs) for essentially any relevant symmetry group. THEORY OF EQUIVARIANT... · METHODS FOR...",
+    "host_name": "link.aps.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/394064334_Solving_Quantum_Many-Body_Problems_Using_Artificial_Neural_Networks",
+    "name": "(PDF) Solving Quantum Many-Body Problems Using Artificial Neural",
+    "snippet": "I explored how neural-network quantum states can efficiently represent ground states of spin models like the Ising and Heisenberg chains, and ...",
+    "host_name": "www.researchgate.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.pnas.org/doi/10.1073/pnas.2415656122",
+    "name": "The principles behind equivariant neural networks for physics  - PNAS",
+    "snippet": "Similarly to how symmetries are reflected in quantum mechanics, the theory of equivariant neural networks is based on group representation ...",
+    "host_name": "www.pnas.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.phys.tsinghua.edu.cn/phyen/info/1056/1985.htm",
+    "name": "Machine Learning meets Quantum Many-body Physics",
+    "snippet": "Title: Machine Learning meets Quantum Many-body Physics. Speaker: Luo Di，MIT & Harvard University. Time: 9:00 am, Feb.18th，2024.",
+    "host_name": "www.phys.tsinghua.edu.cn",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s42484-024-00215-7",
+    "name": "The role of data embedding in equivariant quantum convolutional",
+    "snippet": "In this work, we investigate the role of classical-to-quantum embedding on the performance of equivariant quantum convolutional neural networks (EQCNNs) for ...",
+    "host_name": "link.springer.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0021999122008282",
+    "name": "Explicitly antisymmetrized neural network layers for variational Monte",
+    "snippet": "This work attempts to address this problem by introducing explicitly antisymmetrized universal neural network layers.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12621251",
+    "name": "Mini Review: Synergizing Driven Quantum Dynamics, AI, and  - PMC",
+    "snippet": "Moreover, ML models known as convolutional neural networks (CNNs) can be trained on quantum many-body simulation data to predict magnetic phase ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

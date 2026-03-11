@@ -1,0 +1,81 @@
+{
+  "timestamp": "2026-03-08 07:52:20",
+  "benchmark_results": {
+    "Equivariance": {
+      "mean_error": 1.7286104264578913e-16,
+      "max_error": 4.1499267519981174e-16,
+      "std_error": 1.1324239932242252e-16,
+      "machine_epsilon": 2.220446049250313e-16,
+      "at_machine_precision": "True"
+    },
+    "Scalability": {
+      "n_atoms": [
+        10,
+        20,
+        50,
+        100
+      ],
+      "times": [
+        0.0018464724222819011,
+        0.007684628168741862,
+        0.05151017506917318,
+        0.20949951807657877
+      ],
+      "empirical_complexity": "O(n^2.06)",
+      "theoretical": "O(n^2)"
+    },
+    "Legendre Accuracy": {
+      "mean_error": 2.711468159016841,
+      "max_error": 8.042642272172953,
+      "accurate": "False"
+    }
+  },
+  "discovery_results": {
+    "Multi-scale": {
+      "octahedral_size": 21,
+      "tetrahedral_size": 9,
+      "dihedral_size": 13,
+      "discoveries": [
+        "DISCOVERY: Found 9-element tetrahedral subgroup for coarse attention",
+        "DISCOVERY: Found 13-element dihedral subgroup for medium attention"
+      ]
+    },
+    "Symmetry": {
+      "mean_symmetry_score": 0.9767060437878795,
+      "symmetry_scores": [
+        0.9761980023223712,
+        0.9814933104900848,
+        0.9709062145250503,
+        0.9753493088678861,
+        0.9795833827340052
+      ],
+      "discoveries": [
+        "DISCOVERY: Attention patterns preserve discrete symmetry (score: 0.977)"
+      ]
+    },
+    "Optimal Heads": {
+      "performance_by_heads": {
+        "4": {
+          "mean_error": 2.6424480279677727e-16,
+          "max_error": 9.59388818388973e-16
+        },
+        "8": {
+          "mean_error": 1.357185305979336e-16,
+          "max_error": 2.842073364844877e-16
+        },
+        "12": {
+          "mean_error": 1.7981343952873373e-16,
+          "max_error": 4.182851981449076e-16
+        },
+        "24": {
+          "mean_error": 2.0407883282586026e-16,
+          "max_error": 4.838577455368309e-16
+        }
+      },
+      "optimal_heads": 8,
+      "discoveries": [
+        "DISCOVERY: Optimal attention heads = 8 (error: 1.36e-16)"
+      ]
+    }
+  }
+}

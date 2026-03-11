@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://natanaso.github.io/ece276a2020/ref/ECE276A_12_SO3_SE3.pdf",
+    "name": "ECE276A: Sensing & Estimation in Robotics Lecture 12",
+    "snippet": "▷ SO(3) and SE(3) are matrix Lie groups. ▷ A group is a set of ... ▷ Rodrigues Formula : a closed-from expression for the exponential map from ... Read more 39 pages",
+    "host_name": "natanaso.github.io",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula",
+    "name": "Rodrigues' rotation formula",
+    "snippet": "In terms of Lie theory, the Rodrigues' formula provides an algorithm to compute the exponential map from the Lie algebra so(3) to its Lie group SO(3). This ... Read more",
+    "host_name": "en.wikipedia.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.stackexchange.com/questions/812563/jacobian-of-exponential-mapping-in-so3-se3",
+    "name": "Jacobian of exponential mapping in SO3/SE3",
+    "snippet": "May 28, 2014 — It uses a variation of Lucas-Kanade to calculate the pose between two cameras. There is also the formula for the Jacobian of the exponential map ... Read more",
+    "host_name": "math.stackexchange.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cis.upenn.edu/~cis6100/geombchap14.pdf",
+    "name": "The Exponential Map, Lie Groups, and Lie Algebras",
+    "snippet": "by H Poincaré — ψ(u)(v) = u × v. The exponential map exp: so(3 ) → SO(3 ) is given by Rodrigues's formula . (see Lemma 14.2.3): e. A. = cos θ I3 + sin θ θ. A +. (1 − cos θ) θ2. B ... Read more 48 pages",
+    "host_name": "www.cis.upenn.edu",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2103.15980",
+    "name": "A tutorial on SE(3) transformation parameterizations and",
+    "snippet": "2021 · Cited by 292 — It turns out that SE (3) is also a Lie group , and a manifold with structure SO(3 ) × R3 (see §8.1.6). Chapters 7-10 will explain what all this ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0094114X15000415",
+    "name": "Euler–Rodrigues formula variations, quaternion",
+    "snippet": "2015 · Cited by 490 — In modern mathematics, Euler–Rodrigues formula is used as an exponential map [25] that converts Lie algebra so(3) into Lie group SO(3), providing an algorithm ... Read more",
+    "host_name": "www.sciencedirect.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvg.cit.tum.de/_media/teaching/ss2023/mvg2023/material/chapter02_motion_and_scene_representation_part2.pdf",
+    "name": "Multiple View Geometry (IN2228)",
+    "snippet": "Apr 27, 2023 — Its relationship to SO(3 ) is given by the exponential map : Through it, we map any vector in so(3 ) to a rotation matrix in SO(3 ). Lie Group and ... Read more 21 pages",
+    "host_name": "cvg.cit.tum.de",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://royalsocietypublishing.org/rspa/article/477/2253/20210303/82391/Review-of-the-exponential-and-Cayley-map-on-SE-3",
+    "name": "Review of the exponential and Cayley map on SE(3) as",
+    "snippet": "Sep 1, 2021 — The exponential and Cayley maps on SE (3) are the prevailing coordinate maps used in Lie group integration schemes for rigid body and ... Read more",
+    "host_name": "royalsocietypublishing.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nurlanov.me/static/uploads/nurlanov2021so3log.pdf",
+    "name": "Exploring SO(3) logarithmic map: degeneracies and derivatives",
+    "snippet": "Cited by 3 — Then from Rodrigues ' formula (eq. 3) and Taylor approximation it follows that logarithmic map can be implemented as follows: ω = [log(R)]. ∨. = θ. 2 sinθ. [. R ... Read more",
+    "host_name": "nurlanov.me",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ethaneade.com/lie.pdf",
+    "name": "Lie Groups for 2D and 3D Transformations",
+    "snippet": "Cited by 101 — The exponential map yields a rotation by θ radians around the axis given by ω. Practical implementation of the Rodrigues formula should use the Taylor. Read more 25 pages",
+    "host_name": "www.ethaneade.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

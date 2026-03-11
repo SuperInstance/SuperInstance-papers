@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/Wigner_D-matrix",
+    "name": "Wigner D-matrix",
+    "snippet": "The Wigner D-matrix is a unitary matrix in an irreducible representation of the groups SU(2) and SO(3 ). It was introduced in 1927 by Eugene Wigner.",
+    "host_name": "en.wikipedia.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/0003491666900406",
+    "name": "Irreducible representations of the rotation group in terms",
+    "snippet": "1966 · Cited by 32 — We thus give explicitly the representations of the rotation group in terms of the axis and angle of rotation which are the direction and magnitude of u̧ ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cis.upenn.edu/~cis5150/cis700-24sl5.pdf",
+    "name": "Chapter 5 Matrix Representations of SL(2,C), SU(2) and",
+    "snippet": "(ψ). Of course the Wigner D - matrix D. (l) defines an irreducible representation D. (l). : SO(3) ! U(P. C l. ) equivalent to the irreducible representation Wl : ... 116 pages",
+    "host_name": "www.cis.upenn.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/256946637_An_alternative_to_Wigner_d-matrices_for_rotating_real_spherical_harmonics",
+    "name": "(PDF) An alternative to Wigner d-matrices for rotating real",
+    "snippet": "This work presents novel explicit formulas and recurrence relations for building RSH rotation matrices with lesser complexity and better computational ...",
+    "host_name": "www.researchgate.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.pascal-man.com/pdf/Wigner%20rotation%20matrix.pdf",
+    "name": "Wigner active and passive rotation matrices applied to",
+    "snippet": "Cited by 18 — The article presents redundant mathematical demonstrations between active and passive rotations , but they clarify the meanings of some important expressions not ... 64 pages",
+    "host_name": "www.pascal-man.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.stackexchange.com/questions/2514719/representations-of-the-generalized-quaternions",
+    "name": "Representations of the generalized quaternions",
+    "snippet": "Nov 11, 2017 — Given the generalized quaternion group Q2t=⟨a,b:a2t−1=e,b2=a2t−2,b−1ab=a−1⟩, I have been asked to find it's (linear complex) representations ...",
+    "host_name": "math.stackexchange.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.damtp.cam.ac.uk/user/ho/GNotes.pdf",
+    "name": "Group Theory Lecture Notes",
+    "snippet": "Cited by 7 — This focuses on matrix groups . More accessible than most. W. Fulton and J. Harris, Representation Theory, Springer (1991). Historically the ... 251 pages",
+    "host_name": "www.damtp.cam.ac.uk",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2073-8994/17/8/1187",
+    "name": "The Matrix Quaternion Group of Rotational Symmetries in",
+    "snippet": "2025 — Herein, a matrix representation of the Hamilton quaternion group by 4 × 4 square matrices with entries equal to −1, 0, or 1 is defined.",
+    "host_name": "www.mdpi.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ccam.math.purdue.edu/docs/final_2016_2.pdf",
+    "name": "Approximations on SO(3) by Wigner D-matrix and applications",
+    "snippet": "Cited by 7 — Because Wigner D-matrix is an irreducible representation of SO(3 ), it is naturally used to expand functions in SO(3), similar to Fourier expansion for periodic ... 21 pages",
+    "host_name": "ccam.math.purdue.edu",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mathoverflow.net/questions/393664/formula-involving-wigners-3j-symbols-and-integration-over-irreducible-represent",
+    "name": "Formula involving Wigner's 3j symbols and integration over",
+    "snippet": "May 25, 2021 — The formula you are looking for is equation (404), written in terms of the Wigner (small)- d matrix . The relationship to the (large)- D matrix goes via the Euler ...",
+    "host_name": "mathoverflow.net",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

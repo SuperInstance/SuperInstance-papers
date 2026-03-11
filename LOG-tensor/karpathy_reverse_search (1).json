@@ -1,0 +1,92 @@
+[
+  {
+    "url": "http://karpathy.github.io/2019/04/25/recipe",
+    "name": "A Recipe for Training Neural Networks",
+    "snippet": "25 Apr 2019 — Monitor metrics other than loss that are human interpretable and checkable (e.g. accuracy). Whenever possible evaluate your own (human) accuracy ... Read more",
+    "host_name": "karpathy.github.io",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9105427",
+    "name": "On Interpretability of Artificial Neural Networks: A Survey - PMC",
+    "snippet": "2021 · Cited by 665 — In this paper, we propose a simple but comprehensive taxonomy for interpretability , systematically review recent studies in improving interpretability of ... Read more",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/aiguys/claude-3-extracting-interpretable-features-6a89da46c111",
+    "name": "Claude 3: Extracting Interpretable Features | AIGuys",
+    "snippet": "“Mechanistic Interpretability ” seeks to reverse engineer neural networks , similar to how one might reverse engineer a compiled binary computer ... Read more",
+    "host_name": "medium.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2207.13243",
+    "name": "Toward Transparent AI: A Survey on Interpreting the Inner",
+    "snippet": "2022 · Cited by 320 — Inner interpretability methods for neural representations can focus on (1) training self-explaining AI systems that explain their decisions, (2) adversarial. Read more",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://news.ycombinator.com/item?id=45619329",
+    "name": "Andrej Karpathy – It will take a decade to work through",
+    "snippet": "An instance of an LLM is like a copy of DNA trained on a play of many generations of experience. So it seems there are at least four things not yet worked out ... Read more",
+    "host_name": "news.ycombinator.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s12559-023-10179-8",
+    "name": "Interpreting Black-Box Models: A Review on Explainable",
+    "snippet": "2024 · Cited by 2055 — Aiming to collate the current state-of-the-art in interpreting the black-box models, this study provides a comprehensive analysis of the explainable AI (XAI) ... Read more",
+    "host_name": "link.springer.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/posts/vikas-gundagadagi-503a99179_if-you-ever-wondered-about-what-goes-on-behind-activity-7383052979358277632-yBy0",
+    "name": "Learn AI from Andrej Karpathy's YouTube videos",
+    "snippet": "If you ever wondered about what goes on behind the scenes of these powerful tools, the best place to learn is from Andrej Karpathy's YouTube videos.",
+    "host_name": "www.linkedin.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.alignmentforum.org/posts/qrn2dRSwNratuM3tq/reverse-engineering-using-interpretability",
+    "name": "Reverse-engineering using interpretability",
+    "snippet": "29 Dec 2021 — Building a model for which you're confident your interpretability is correct, by reverse - engineering each part of the model to work how your ...",
+    "host_name": "www.alignmentforum.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/392163958_From_Networks_to_Circuits_A_Structured_Approach_to_AI_Interpretability",
+    "name": "From Networks to Circuits: A Structured Approach to AI",
+    "snippet": "28 May 2025 — The field seeks to uncover the computations of neu-ral networks and find meaningful algorithms in the complex systems of neurons and weights. Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/karpathy/nn-zero-to-hero",
+    "name": "karpathy/nn-zero-to-hero: Neural Networks",
+    "snippet": "A course on neural networks that starts all the way at the basics. The course is a series of YouTube videos where we code and train neural networks together. Read more",
+    "host_name": "github.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

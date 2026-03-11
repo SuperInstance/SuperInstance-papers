@@ -1,6 +1,7 @@
 # Next Session Quick-Start Guide
 
 **Purpose:** Resume work immediately after machine restart
+**Mode:** Team orchestration with specialized agents (coordinate via `/agent-messages/`)
 **Estimated Time:** 90 minutes to completion
 
 ---

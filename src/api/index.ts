@@ -6,12 +6,34 @@
 export { POLLNServer, createPOLLNServer } from './server.js';
 export type { POLLNServerConfig } from './server.js';
 
+// Export types
 export * from './types.js';
-export * from './middleware.js';
+
+// Export middleware (RateLimitMiddleware comes from here, RateLimitConfig is from ./types.js)
+export {
+  AuthenticationMiddleware,
+  ColonyAwareRateLimitMiddleware,
+  RateLimitMiddleware,
+  ValidationMiddleware,
+  APIErrorFactory
+} from './middleware.js';
+
+// Export other modules
 export * from './handlers.js';
 export * from './revocation.js';
 export * from './key-rotation.js';
-export * from './rate-limit.js';
+
+// Export rate-limit module (excluding RateLimitMiddleware and RateLimitConfig which are already exported from middleware)
+export {
+  TokenBucketRateLimiter,
+  SlidingWindowRateLimiter,
+  MemoryRateLimitStorage,
+  type RateLimitAlgorithm,
+  type RateLimitResult,
+  type RateLimitStats,
+  type RateLimitState,
+  type RateLimitStorage
+} from './rate-limit.js';
 export * from './memory-protection.js';
 
 // Client SDK

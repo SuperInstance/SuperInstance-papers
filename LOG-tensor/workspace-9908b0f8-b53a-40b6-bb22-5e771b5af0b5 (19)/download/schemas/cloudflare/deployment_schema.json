@@ -1,0 +1,592 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://superinstance.ai/schemas/cloudflare/deployment_schema.json",
+  "title": "SuperInstance.AI Complete Deployment Schema",
+  "description": "Master schema for complete SuperInstance.AI deployment with BYOC architecture",
+  "type": "object",
+  "required": ["meta", "infrastructure", "services", "api", "frontend", "security", "monitoring"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "meta": {
+      "type": "object",
+      "required": ["name", "version", "deploymentId"],
+      "properties": {
+        "name": { "type": "string", "const": "SuperInstance.AI" },
+        "version": { "type": "string" },
+        "deploymentId": { "type": "string", "format": "uuid" },
+        "deployedAt": { "type": "string", "format": "date-time" },
+        "deployedBy": { "type": "string", "format": "uuid" },
+        "environment": {
+          "type": "string",
+          "enum": ["development", "staging", "production"],
+          "default": "production"
+        }
+      }
+    },
+    "infrastructure": {
+      "type": "object",
+      "required": ["cloudflare"],
+      "properties": {
+        "cloudflare": {
+          "type": "object",
+          "required": ["mode"],
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": ["portal", "user_cloudflare", "local"],
+              "description": "portal=our CF account (free tier), user_cloudflare=BYOC, local=self-hosted"
+            },
+            "accountId": { "type": "string" },
+            "zoneId": { "type": "string" },
+            "region": {
+              "type": "string",
+              "enum": ["auto", "wnam", "enam", "weur", "eeur", "apac", "oc"],
+              "default": "auto"
+            }
+          }
+        },
+        "cdn": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "cacheRules": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": { "type": "string" },
+                  "ttl": { "type": "integer" },
+                  "cacheKey": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "services": {
+      "type": "object",
+      "required": ["workers", "storage"],
+      "properties": {
+        "workers": {
+          "type": "object",
+          "properties": {
+            "apiGateway": {
+              "$ref": "#/definitions/WorkerService"
+            },
+            "smpOrchestrator": {
+              "$ref": "#/definitions/WorkerService"
+            },
+            "conditionalGeometry": {
+              "$ref": "#/definitions/WorkerService"
+            },
+            "foldableTensor": {
+              "$ref": "#/definitions/WorkerService"
+            },
+            "channelDepth": {
+              "$ref": "#/definitions/WorkerService"
+            },
+            "coldLogicChecker": {
+              "$ref": "#/definitions/WorkerService"
+            },
+            "vectorRag": {
+              "$ref": "#/definitions/WorkerService"
+            }
+          }
+        },
+        "storage": {
+          "$ref": "#/definitions/StorageService"
+        },
+        "durableObjects": {
+          "type": "object",
+          "properties": {
+            "smpCell": {
+              "type": "object",
+              "properties": {
+                "className": { "type": "string", "default": "SMPCellDO" },
+                "scriptName": { "type": "string" },
+                "maxInstances": { "type": "integer", "default": 100 }
+              }
+            },
+            "sessionManager": {
+              "type": "object",
+              "properties": {
+                "className": { "type": "string", "default": "SessionManagerDO" },
+                "scriptName": { "type": "string" }
+              }
+            }
+          }
+        },
+        "queues": {
+          "type": "object",
+          "properties": {
+            "coldLogicQueue": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "default": "cold-logic-queue" },
+                "consumers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "scriptName": { "type": "string" },
+                      "maxBatchSize": { "type": "integer", "default": 10 },
+                      "maxWaitMs": { "type": "integer", "default": 5000 }
+                    }
+                  }
+                }
+              }
+            },
+            "botExecutionQueue": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "default": "bot-execution-queue" }
+              }
+            }
+          }
+        },
+        "cron": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "schedule": { "type": "string" },
+              "script": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          },
+          "default": [
+            { "schedule": "*/5 * * * *", "script": "coldLogicChecker", "description": "Check all active bots" },
+            { "schedule": "0 0 * * *", "script": "usageAggregator", "description": "Aggregate daily usage stats" },
+            { "schedule": "0 0 * * 0", "script": "vectorIndexCleanup", "description": "Clean up orphaned vectors" }
+          ]
+        }
+      }
+    },
+    "api": {
+      "type": "object",
+      "required": ["routes", "rateLimits"],
+      "properties": {
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "methods", "handler"],
+            "properties": {
+              "path": { "type": "string" },
+              "methods": {
+                "type": "array",
+                "items": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"] }
+              },
+              "handler": { "type": "string" },
+              "auth": { "type": "boolean", "default": true },
+              "rateLimit": { "type": "string" },
+              "cors": {
+                "type": "object",
+                "properties": {
+                  "origins": { "type": "array", "items": { "type": "string" } },
+                  "methods": { "type": "array", "items": { "type": "string" } },
+                  "credentials": { "type": "boolean", "default": true }
+                }
+              }
+            }
+          }
+        },
+        "rateLimits": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "requestsPerMinute": { "type": "integer" },
+              "requestsPerHour": { "type": "integer" },
+              "burstSize": { "type": "integer" }
+            }
+          },
+          "default": {
+            "default": { "requestsPerMinute": 60, "burstSize": 10 },
+            "api": { "requestsPerMinute": 100, "burstSize": 20 },
+            "botExecution": { "requestsPerMinute": 30, "burstSize": 5 }
+          }
+        },
+        "openApi": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "path": { "type": "string", "default": "/api/docs" }
+          }
+        }
+      }
+    },
+    "frontend": {
+      "type": "object",
+      "required": ["type", "routes"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["pages", "worker", "static"],
+          "default": "pages"
+        },
+        "buildCommand": { "type": "string", "default": "npm run build" },
+        "outputDirectory": { "type": "string", "default": ".next" },
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "page": { "type": "string" }
+            }
+          }
+        },
+        "ssr": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "edgeFunctions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": { "type": "string" },
+                  "function": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "required": ["authentication", "authorization"],
+      "properties": {
+        "authentication": {
+          "type": "object",
+          "required": ["providers"],
+          "properties": {
+            "providers": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["cloudflare_oauth", "github", "google", "email", "api_key"]
+              }
+            },
+            "session": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "enum": ["jwt", "durable_object", "kv"], "default": "jwt" },
+                "ttlSeconds": { "type": "integer", "default": 604800 },
+                "refreshEnabled": { "type": "boolean", "default": true }
+              }
+            },
+            "mfa": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": false },
+                "required": { "type": "boolean", "default": false },
+                "methods": {
+                  "type": "array",
+                  "items": { "type": "string", "enum": ["totp", "email", "sms"] }
+                }
+              }
+            }
+          }
+        },
+        "authorization": {
+          "type": "object",
+          "properties": {
+            "model": { "type": "string", "enum": ["rbac", "abac", "rebac"], "default": "rbac" },
+            "roles": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "permissions": { "type": "array", "items": { "type": "string" } }
+                }
+              },
+              "default": [
+                { "name": "admin", "permissions": ["*"] },
+                { "name": "user", "permissions": ["read", "write", "execute", "bots:create", "bots:execute"] },
+                { "name": "guest", "permissions": ["read"] }
+              ]
+            }
+          }
+        },
+        "encryption": {
+          "type": "object",
+          "properties": {
+            "algorithm": { "type": "string", "default": "AES-256-GCM" },
+            "keySource": { "type": "string", "enum": ["env", "secrets_manager", "kms"] },
+            "atRest": { "type": "boolean", "default": true },
+            "inTransit": { "type": "boolean", "default": true }
+          }
+        },
+        "waf": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "mode": { "type": "string", "enum": ["block", "challenge", "log"], "default": "challenge" },
+            "rules": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "action": { "type": "string" },
+                  "expression": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "properties": {
+        "logging": {
+          "type": "object",
+          "properties": {
+            "level": { "type": "string", "enum": ["debug", "info", "warn", "error"], "default": "info" },
+            "format": { "type": "string", "enum": ["json", "text"], "default": "json" },
+            "destinations": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["cloudflare", "external"] }
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "exportInterval": { "type": "integer", "default": 60000 },
+            "customMetrics": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "type": { "type": "string", "enum": ["counter", "gauge", "histogram"] },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "condition": { "type": "string" },
+              "threshold": { "type": "number" },
+              "actions": {
+                "type": "array",
+                "items": { "type": "string", "enum": ["email", "webhook", "slack"] }
+              }
+            }
+          }
+        },
+        "tracing": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "sampleRate": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.1 },
+            "exporter": { "type": "string" }
+          }
+        }
+      }
+    },
+    "billing": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "enum": ["free", "freemium", "subscription", "usage_based"],
+          "default": "freemium"
+        },
+        "plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "price": { "type": "number" },
+              "limits": {
+                "type": "object",
+                "properties": {
+                  "bots": { "type": "integer" },
+                  "executions": { "type": "integer" },
+                  "storage": { "type": "string" },
+                  "vectors": { "type": "integer" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "WorkerService": {
+      "type": "object",
+      "required": ["name", "script"],
+      "properties": {
+        "name": { "type": "string" },
+        "script": { "type": "string" },
+        "enabled": { "type": "boolean", "default": true },
+        "compatibilityDate": { "type": "string", "format": "date" },
+        "compatibilityFlags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["nodejs_compat"]
+        },
+        "bindings": {
+          "type": "object",
+          "properties": {
+            "kv": { "type": "array", "items": { "type": "string" } },
+            "r2": { "type": "array", "items": { "type": "string" } },
+            "d1": { "type": "array", "items": { "type": "string" } },
+            "vectorize": { "type": "array", "items": { "type": "string" } },
+            "queues": { "type": "array", "items": { "type": "string" } },
+            "services": { "type": "array", "items": { "type": "string" } },
+            "secrets": { "type": "array", "items": { "type": "string" } },
+            "vars": { "type": "object", "additionalProperties": { "type": "string" } }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "cpuMs": { "type": "integer", "default": 50 },
+            "memoryMb": { "type": "integer", "default": 128 }
+          }
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern": { "type": "string" },
+              "methods": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "StorageService": {
+      "type": "object",
+      "properties": {
+        "kv": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "binding": { "type": "string" },
+              "id": { "type": "string" },
+              "title": { "type": "string" }
+            }
+          }
+        },
+        "r2": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "binding": { "type": "string" },
+              "name": { "type": "string" },
+              "jurisdiction": { "type": "string" }
+            }
+          }
+        },
+        "d1": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "binding": { "type": "string" },
+              "name": { "type": "string" },
+              "id": { "type": "string" },
+              "migrationsDir": { "type": "string" }
+            }
+          }
+        },
+        "vectorize": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "binding": { "type": "string" },
+              "name": { "type": "string" },
+              "dimensions": { "type": "integer" },
+              "metric": { "type": "string", "enum": ["cosine", "euclidean", "dot-product"] }
+            }
+          }
+        },
+        "hyperdrive": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "binding": { "type": "string" },
+              "name": { "type": "string" },
+              "connectionString": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "meta": {
+        "name": "SuperInstance.AI",
+        "version": "1.0.0",
+        "deploymentId": "550e8400-e29b-41d4-a716-446655440000",
+        "deployedAt": "2025-01-15T10:00:00Z",
+        "environment": "production"
+      },
+      "infrastructure": {
+        "cloudflare": {
+          "mode": "portal",
+          "accountId": "abc123"
+        }
+      },
+      "services": {
+        "workers": {
+          "apiGateway": {
+            "name": "superinstance-api",
+            "script": "dist/api.js",
+            "bindings": {
+              "kv": ["sessions", "cache", "configs"],
+              "d1": ["main"],
+              "vectorize": ["embeddings"]
+            }
+          }
+        },
+        "storage": {
+          "kv": [
+            { "binding": "sessions", "id": "kv-sessions" },
+            { "binding": "cache", "id": "kv-cache" }
+          ],
+          "d1": [
+            { "binding": "db", "name": "superinstance-db", "id": "d1-main" }
+          ],
+          "vectorize": [
+            { "binding": "vectors", "name": "si-embeddings", "dimensions": 1536 }
+          ]
+        }
+      },
+      "security": {
+        "authentication": {
+          "providers": ["cloudflare_oauth", "github"],
+          "session": {
+            "type": "jwt",
+            "ttlSeconds": 604800
+          }
+        }
+      }
+    }
+  ]
+}

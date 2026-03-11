@@ -1,0 +1,41 @@
+{
+  "los": {
+    "los_magnitude": 111.80339887498948,
+    "los_rate": 0.0,
+    "closing_velocity": -11.180339887498949
+  },
+  "pn": {
+    "command_acceleration": -0.0
+  },
+  "kalman": {
+    "initial_error": 9.173891073791227,
+    "final_error": 3.305348292810474,
+    "improvement_percent": 63.97005080806461
+  },
+  "homing": {
+    "total_iterations": 20,
+    "final_certainty": 0.2501528620732623,
+    "final_distance": 1.1008731199657213,
+    "intercepted": "False"
+  },
+  "adaptive_depth": {
+    "certainties": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "depths": [
+      8,
+      4,
+      2,
+      1,
+      1,
+      1,
+      1
+    ]
+  }
+}

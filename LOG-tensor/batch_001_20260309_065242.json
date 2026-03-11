@@ -1,0 +1,66 @@
+[
+  {
+    "query": "Show how to infer intervention effects from tile pattern changes.",
+    "category": "advanced",
+    "temperature": 1.0,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Derive the mean-field theory for tile population dynamics under need-based selection.",
+    "category": "emergence",
+    "temperature": 0.3,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Derive the sample complexity bound for learning permutation-equivariant functions with the minimal irrep set.",
+    "category": "mathematics",
+    "temperature": 0.0,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Prove that under the unified learning objective, tiles spontaneously organize into hierarchical structures.",
+    "category": "emergence",
+    "temperature": 0.3,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Prove that the glitch detection formula G = 2\u00b7d_TV(\u03b1_expected, \u03b1_actual) has O(1) computational complexity in the tile embedding space.",
+    "category": "mathematics",
+    "temperature": 0.7,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Prove that causal tiles enable out-of-distribution generalization.",
+    "category": "advanced",
+    "temperature": 0.0,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Derive the optimal memory capacity for a tile library as a function of task complexity.",
+    "category": "architecture",
+    "temperature": 0.7,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  },
+  {
+    "query": "Derive the gradient flow through glitch-aware attention and show it avoids vanishing gradients.",
+    "category": "architecture",
+    "temperature": 0.0,
+    "response": "Exception: ",
+    "tokens": 0,
+    "success": false
+  }
+]

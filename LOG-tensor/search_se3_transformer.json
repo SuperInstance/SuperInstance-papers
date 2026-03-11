@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://chemrxiv.org/doi/full/10.26434/chemrxiv-2024-5q7ts",
+    "name": "SE(3) Equivariant Topologies for Structure-based Drug",
+    "snippet": "2024 · Cited by 1 — We introduce Protein-Ligand Equivariant Transformer (ProLET), a generalizable model built upon chemically inspired SE ( 3 ) equivariant geometric ...",
+    "host_name": "chemrxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2504.04654",
+    "name": "EquiCPI: SE(3)-Equivariant Geometric Deep Learning for",
+    "snippet": "7 Apr 2025 — To bridge this gap, we present EquiCPI , an end-to-end geometric deep learning framework that synergizes first-principles structural modeling ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2024/100106",
+    "name": "SE(3) Equivariant Topologies for Structure-based Drug",
+    "snippet": "We introduce Protein-Ligand Equivariant Transformer (ProLET), a model based on SE ( 3 ) equivariant geometric deep learning , which outperforms existing methods in ...",
+    "host_name": "neurips.cc",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197625028817",
+    "name": "Three-dimensional geometric deep learning for reaction",
+    "snippet": "2026 · Cited by 1 — To this end, we propose an Equivariant Graph Transformer (termed EGT) that predicts organic reactions by learning the three-dimensional (3D) geometric ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2024/poster/96020",
+    "name": "SE(3)-bi-equivariant Transformers for Point Cloud Assembly",
+    "snippet": "9 Dec 2024 — Given a pair of point clouds, the goal of assembly is to recover a rigid transformation that aligns one point cloud to the other.",
+    "host_name": "neurips.cc",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cambridge.org/engage/chemrxiv/article-details/6710f9d1cec5d6c14269f5f8",
+    "name": "SE(3) Equivariant Topologies for Structure-based Drug",
+    "snippet": "18 Oct 2024 — We introduce Protein-Ligand Equivariant Transformer (ProLET), a generalizable model built upon chemically inspired SE ( 3 ) equivariant geometric ...",
+    "host_name": "www.cambridge.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/se-3-transformer",
+    "name": "SE(3)-Transformer Overview",
+    "snippet": "26 Oct 2025 — SE(3)-Transformer is a neural network that maintains precise equivariance to 3D rotations and translations through structured self-attention ...",
+    "host_name": "www.emergentmind.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://towardsdatascience.com/graph-geometric-ml-in-2024-where-we-are-and-whats-next-part-ii-applications-1ed786f7bf63",
+    "name": "Graph & Geometric ML in 2024: Where We Are and What's",
+    "snippet": "16 Jan 2024 — Alternatively, rotational symmetry could be incorporated using the recently proposed SE ( 3 ) Equivariant Augmented Coupling Flows. Similarly ...",
+    "host_name": "towardsdatascience.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ijcai.org/proceedings/2024/0661.pdf",
+    "name": "Towards Geometric Normalization Techniques in SE(3)",
+    "snippet": "Cited by 7 — In this work, we investigate geometric normalization tech- niques for deep SE(3) equivariant graph neural networks on larger particle system simulation tasks.",
+    "host_name": "www.ijcai.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cl.cam.ac.uk/teaching/2425/L65",
+    "name": "Course pages 2024–25: Geometric Deep Learning",
+    "snippet": "Combining spatial symmetries with GNNs: E(n)- equivariant GNNs, TFNs, SE ( 3 )- Transformer . A deep dive into AlphaFold 2. Worked examples: Circulant matrices on ...",
+    "host_name": "www.cl.cam.ac.uk",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

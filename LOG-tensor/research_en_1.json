@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://neurips.cc/virtual/2024/poster/96020",
+    "name": "SE(3)-bi-equivariant Transformers for Point Cloud Assembly - NeurIPS",
+    "snippet": "Abstract. Given a pair of point clouds, the goal of assembly is to recover a rigid transformation that aligns one point cloud to the other.",
+    "host_name": "neurips.cc",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/2407.09167",
+    "name": "SE(3)-bi-equivariant Transformers for Point Cloud Assembly - arXiv.org",
+    "snippet": "Abstract:Given a pair of point clouds, the goal of assembly is to recover a rigid transformation that aligns one point cloud to the other. Missing: breakthrough 2025",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.proceedings.com/079017-3692.html",
+    "name": "SE(3)-bi-equivariant Transformers for Point Cloud Assembly",
+    "snippet": "Advances in Neural Information Processing Systems 37; Date/Location: Held 10-15 December 2024, Vancouver, Canada. Series: Advances in Neural Information ...",
+    "host_name": "www.proceedings.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41467-026-69185-7",
+    "name": "An equivariant pretrained transformer for unified 3D molecular  - Nature",
+    "snippet": "Pretraining on a large number of unlabeled 3D molecules has showcased superiority in various scientific applications.",
+    "host_name": "www.nature.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/397199516_SE3-bi-equivariant_Transformers_for_Point_Cloud_Assembly",
+    "name": "SE(3)-bi-equivariant Transformers for Point Cloud Assembly",
+    "snippet": "Equivariant Flow Matching for Point Cloud Assembly. Preprint. Full-text available. May 2025 ; Two by Two: Learning Multi-Task Pairwise Objects ...",
+    "host_name": "www.researchgate.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/pdf/7d1ac63392c225113c314e6263f1d18dfbff895e.pdf",
+    "name": "[PDF] EQUACT: AN SE(3)-EQUIVARIANT MULTI-TASK TRANSFORMER FOR",
+    "snippet": "EquAct makes two key contributions: (1) an efficient SE(3)-equivariant point cloud-based U-net with spherical Fourier features for policy reasoning, and. (2) SE ...",
+    "host_name": "openreview.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ijcai.org/proceedings/2025/0194.pdf",
+    "name": "[PDF] SE(3)-Equivariant Diffusion Models for 3D Object Analysis - IJCAI",
+    "snippet": "SE(3)-equivariance is a critical property for cap- turing pose information in 3D vision tasks, en- abling models to handle transformations such as.",
+    "host_name": "www.ijcai.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/d2d3ca53fd8fbd564bb948f8c09c0d85-Paper-Conference.pdf",
+    "name": "[PDF] SE(3)-bi-equivariant Transformers for Point Cloud Assembly - NIPS",
+    "snippet": "Given a pair of point clouds, the goal of assembly is to recover a rigid transformation that aligns one point cloud to the other. This task is challenging ... Missing: 2025 | Show results with: 2025",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/10.24963/ijcai.2025/194",
+    "name": "SE(3)-equivariant diffusion models for 3D object analysis",
+    "snippet": "This paper proposes a set of rules to revise various neural networks for 3D point cloud processing to rotation-equivariant quaternion neural ...",
+    "host_name": "dl.acm.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://icml.cc/virtual/2024/38925",
+    "name": "SE(3)-Equivariant Transformer for Low-Overlap Point Cloud Registration",
+    "snippet": "This work proposes exploiting equivariant learning from 3D point clouds to improve registration robustness. We propose SE3ET, an SE(3)-equivariant registration ... Missing: breakthrough | Show results with: breakthrough",
+    "host_name": "icml.cc",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

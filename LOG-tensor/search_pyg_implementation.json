@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://pytorch-geometric.readthedocs.io/en/2.6.1/get_started/introduction.html",
+    "name": "Introduction by Example — pytorch_geometric documentation",
+    "snippet": "We show a simple example of an unweighted and undirected graph with three nodes and four edges. Each node contains exactly one feature.",
+    "host_name": "pytorch-geometric.readthedocs.io",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/pyg-team/pytorch_geometric",
+    "name": "pyg-team/pytorch_geometric: Graph Neural Network",
+    "snippet": "PyTorch Geometric is a library built upon PyTorch to easily write and train Graph Neural Networks (GNNs) for a wide range of applications related to structured ...\n•Library Highlights",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://antoniolonga.github.io/Pytorch_geometric_tutorials",
+    "name": "Pytorch Geometric Tutorial",
+    "snippet": "Tutorial 1: What is Geometric Deep Learning?\nTutorial 1: What is Geometric Deep Learning? Introduction to GDL concepts. Getting started with PyTorch. Understanding GAT architecture. Spectral graph convolutions explained. How aggregation works in GNNs. GAE and VGAE architectures. ARGA and ARVGA models. Generating graphs with deep learning. RGNNs explained.",
+    "host_name": "antoniolonga.github.io",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/we-talk-data/pytorch-geometric-tutorial-94af3ae2b8cb",
+    "name": "PyTorch Geometric Tutorial",
+    "snippet": "A library designed specifically for graph-based deep learning. PyG isn't just another library . It's modular, lightning-fast, and integrates seamlessly with ...\nTraditional deep learning struggles to capture these intricate relationships. This is where PyTorch Geometric (PyG) comes into play — a library designed specifically for graph-based...",
+    "host_name": "medium.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pytorch-geometric.readthedocs.io",
+    "name": "PyTorch Geometric - Read the Docs",
+    "snippet": "PyTorch Geometric is a library built upon PyTorch to easily write and train Graph Neural Networks (GNNs) for a wide range of applications related to structured ...",
+    "host_name": "pytorch-geometric.readthedocs.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://indico.cern.ch/event/1025220/contributions/4304559/attachments/2220154/3759466/PYG.pdf",
+    "name": "Pytorch Geometric TUTORIAL",
+    "snippet": "Pytorch Geometric (PyG). PyG is a geometric deep learning extension library for PyTorch . ○ Various methods for deep learning on graphs and other irregular. 11 pages",
+    "host_name": "indico.cern.ch",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://apxml.com/courses/introduction-to-graph-neural-networks/chapter-5-gnn-implementation-pytorch-geometric/introduction-pytorch-geometric",
+    "name": "Introduction to PyTorch Geometric (PyG)",
+    "snippet": "An overview of PyTorch Geometric (PyG), a library built upon PyTorch to easily write and train GNNs for a wide range of applications.",
+    "host_name": "apxml.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wandb.ai/wandb/point-cloud-segmentation/reports/Getting-Started-with-PyTorch-Geometric--VmlldzozNDczMzMw",
+    "name": "Getting Started with PyTorch Geometric | point-cloud-",
+    "snippet": "2 Feb 2023 — A quick list of reports, docs, videos, and tutorials to get you up and running. Made by Justin Tenuto using Weights & Biases.",
+    "host_name": "wandb.ai",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.exxactcorp.com/blog/Deep-Learning/pytorch-geometric-vs-deep-graph-library",
+    "name": "PyTorch Geometric vs Deep Graph Library",
+    "snippet": "6 Jul 2023 — In this article we compare graph neural networks Deep Graph Library and PyTorch Geometric to decide which GNN Library is best for you and ...",
+    "host_name": "www.exxactcorp.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pytorch-geometric.readthedocs.io/en/latest",
+    "name": "PyG Documentation — pytorch_geometric documentation",
+    "snippet": "It consists of various methods for deep learning on graphs and other irregular structures, also known as geometric deep learning, from a variety of published papers.",
+    "host_name": "pytorch-geometric.readthedocs.io",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

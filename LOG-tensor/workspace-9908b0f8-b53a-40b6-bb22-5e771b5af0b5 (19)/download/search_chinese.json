@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://blog.csdn.net/gitblog_00635/article/details/149241641",
+    "name": "【限时免费】 tensorfieldnetworks：3D点云旋转平移等变神经网络原创 - CSDN博客",
+    "snippet": "在传统的3D数据处理方法中，神经网络往往难以保持对几何变换的一致性，这意味着相同的物体经过旋转或平移后，网络可能会产生不同的输出结果。",
+    "host_name": "blog.csdn.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hub.baai.ac.cn/view/36909",
+    "name": "几何图神经网络（Geometric Graph Neural Network） - 智源社区",
+    "snippet": "1. 几何图神经网络分类 ; Wigner-D 矩阵，将3D 旋转转换为不同阶数的群表示； ; 球谐函数是单位球面S 2 上的一组傅里叶基，将3D向量转换为不同类型的可操纵特征 ...",
+    "host_name": "hub.baai.ac.cn",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ebiotrade.com/newsf/2025-10/20251022083356172.htm",
+    "name": "基于等变图变换器的三维几何深度学习在反应预测中的应用 - 生物通",
+    "snippet": "为了解决这一问题，我们提出了一种称为等变图变换器（Equivariant Graph Transformer，简称EGT）的新模型，该模型通过学习分子的三维几何特征来预测有机反应。",
+    "host_name": "www.ebiotrade.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.themoonlight.io/zh/review/on-representation-of-3d-rotation-in-the-context-of-deep-learning",
+    "name": "[论文评述] On Representation of 3D Rotation in the Context of Deep Learning - Moonlight",
+    "snippet": "这篇论文的研究方向是3D旋转的表示方式，以及这些表示方式对深度学习神经网络学习过程的影响。研究者们评估了不同旋转表示和损失函数在ResNet18网络上进行3D旋转估计的 ...",
+    "host_name": "www.themoonlight.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zhuanlan.zhihu.com/p/388541562",
+    "name": "面向三维点云旋转等变性的四元数神经网络",
+    "snippet": "本研究提出了一套通用的规则，可将任意面向三维点云处理的神经网络，改造为“相同结构的具有点云旋转等变性的四元数神经网络”，将三维点云的形状信息和朝向信息自动解构出来。 Missing: 几何 | Show results with: 几何",
+    "host_name": "zhuanlan.zhihu.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://swarma.org/?p=43750",
+    "name": "几何深度学习：让物理世界拥有AI | 黄文炳分享整理 - 集智俱乐部",
+    "snippet": "自然地，该生成模型应该具有旋转等变性：旋转抗原抗体结合部，生成的CDR 是经过同样旋转的CDR。多通道等变注意力网络（Multichannel Equivariant Attentive ...\n在集智俱乐部「图神经网络与组合优化」读书会中，中国人民大学高瓴人工智能学院助理教授黄文炳介绍了几何图神经网络，及其在微观分子空间和宏观具身空间的广泛应用场景。 今天的文章是此次读书会的文字整理稿。 欢迎扫码观看读书会视频回放：",
+    "host_name": "swarma.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/deeplearning/comments/1amsc49/is_geometric_deep_learning_for_real_or_is_it_a/?tl=zh-hans",
+    "name": "几何深度学习是真的吗？还是只是一小撮人为了骗取资金而大肆承诺？ : r/deeplearning",
+    "snippet": "所以，图像中旋转操作不变意味着你可以使用某种卷积，它适用于任何旋转角度的物体。这就是它的卖点。传统的CNN 在物体旋转时不起作用，但在几何深度学习中 ...",
+    "host_name": "www.reddit.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patents.google.com/patent/CN116959590A/zh",
+    "name": "CN116959590A - 基于等变图神经网络的3d分子动力学预测方法及",
+    "snippet": "本发明公开了一种基于等变图神经网络的3D分子动力学预测方法及系统，该方法包括以下步骤：获取目标3D分子的数据集，以模拟3D分子在空间中的排布与运动状态；对模拟得到 ...",
+    "host_name": "patents.google.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.csdn.net/weixin_43135178/article/details/136032051",
+    "name": "Equivariant GNN Networks（等变图神经网络） 原创 - CSDN博客",
+    "snippet": "等变神经网络通常采用基于GNN 的架构来实现3D 对象的全局旋转等变。然而，它们要求每层的输入和隐藏特征是等变的，这不适合每个氨基酸的侧链角度等向量特征 ...",
+    "host_name": "blog.csdn.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zhuanlan.zhihu.com/p/487889177",
+    "name": "腾讯AI Lab、清华共同发布《几何等变图神经网络》综述论文, 全面阐述G",
+    "snippet": "在物理领域的研究中，非常多的物理问题都会涉及建模物体的的一些几何特征，例如空间位置，速度，加速度等。 这种特征往往可以使用 几何图 这一形式来表示。 不同于一般的图数据，几何图一个非常重要的特征是额外包含旋转，平移，翻转对称性。",
+    "host_name": "zhuanlan.zhihu.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

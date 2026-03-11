@@ -1,0 +1,701 @@
+{
+  "metadata": {
+    "title": "Music Theory Mathematics for Tensor Computation Reduction",
+    "version": "1.0",
+    "purpose": "Research harmonic principles and their applications to tensor operations"
+  },
+  "harmonic_mathematics": {
+    "unison": {
+      "name": "Unison",
+      "ratio": "1:1",
+      "cents": 0.0,
+      "consonance_score": 0.8148974294721927,
+      "gcd": 1,
+      "lcm": 1
+    },
+    "octave": {
+      "name": "Octave",
+      "ratio": "2:1",
+      "cents": 1200.0,
+      "consonance_score": 0.7097732770738193,
+      "gcd": 1,
+      "lcm": 2
+    },
+    "perfect_fifth": {
+      "name": "Perfect Fifth",
+      "ratio": "3:2",
+      "cents": 702.0,
+      "consonance_score": 0.5855484334357541,
+      "gcd": 1,
+      "lcm": 6
+    },
+    "perfect_fourth": {
+      "name": "Perfect Fourth",
+      "ratio": "4:3",
+      "cents": 498.0,
+      "consonance_score": 0.5198610145786748,
+      "gcd": 1,
+      "lcm": 12
+    },
+    "major_third": {
+      "name": "Major Third",
+      "ratio": "5:4",
+      "cents": 386.0,
+      "consonance_score": 0.478246102939107,
+      "gcd": 1,
+      "lcm": 20
+    },
+    "minor_third": {
+      "name": "Minor Third",
+      "ratio": "6:5",
+      "cents": 316.0,
+      "consonance_score": 0.4488981578465816,
+      "gcd": 1,
+      "lcm": 30
+    },
+    "major_sixth": {
+      "name": "Major Sixth",
+      "ratio": "5:3",
+      "cents": 884.0,
+      "consonance_score": 0.49670470868014155,
+      "gcd": 1,
+      "lcm": 15
+    },
+    "minor_sixth": {
+      "name": "Minor Sixth",
+      "ratio": "8:5",
+      "cents": 814.0,
+      "consonance_score": 0.4251075389879365,
+      "gcd": 1,
+      "lcm": 40
+    },
+    "tritone": {
+      "name": "Tritone",
+      "ratio": "45:32",
+      "cents": 590.0,
+      "consonance_score": 0.26958895241038466,
+      "gcd": 1,
+      "lcm": 1440
+    }
+  },
+  "waveform_analysis": {
+    "a4_harmonic_series": {
+      "fundamental": 440.0,
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "frequency": 440.0,
+          "amplitude": 1.0,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 2,
+          "frequency": 880.0,
+          "amplitude": 0.5,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 3,
+          "frequency": 1320.0,
+          "amplitude": 0.3333333333333333,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 4,
+          "frequency": 1760.0,
+          "amplitude": 0.25,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 5,
+          "frequency": 2200.0,
+          "amplitude": 0.2,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 6,
+          "frequency": 2640.0,
+          "amplitude": 0.16666666666666666,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 7,
+          "frequency": 3080.0,
+          "amplitude": 0.14285714285714285,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 8,
+          "frequency": 3520.0,
+          "amplitude": 0.125,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 9,
+          "frequency": 3960.0,
+          "amplitude": 0.1111111111111111,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 10,
+          "frequency": 4400.0,
+          "amplitude": 0.1,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 11,
+          "frequency": 4840.0,
+          "amplitude": 0.09090909090909091,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 12,
+          "frequency": 5280.0,
+          "amplitude": 0.08333333333333333,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 13,
+          "frequency": 5720.0,
+          "amplitude": 0.07692307692307693,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 14,
+          "frequency": 6160.0,
+          "amplitude": 0.07142857142857142,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 15,
+          "frequency": 6600.0,
+          "amplitude": 0.06666666666666667,
+          "phase_radians": 0
+        },
+        {
+          "harmonic": 16,
+          "frequency": 7040.0,
+          "amplitude": 0.0625,
+          "phase_radians": 0
+        }
+      ],
+      "fourier_peaks": [
+        {
+          "frequency": 440.0,
+          "magnitude": 22046.82349730741,
+          "phase": -1.5394516381876089,
+          "normalized_amp": 1.0
+        },
+        {
+          "frequency": 441.0,
+          "magnitude": 221.74924738880614,
+          "phase": 1.6022122533308343,
+          "normalized_amp": 0.010058104171600434
+        },
+        {
+          "frequency": 880.0,
+          "magnitude": 11017.89765114826,
+          "phase": -1.5081069495803205,
+          "normalized_amp": 0.4997498915203762
+        },
+        {
+          "frequency": 881.0,
+          "magnitude": 224.2164297954645,
+          "phase": 1.6335569419382963,
+          "normalized_amp": 0.010170010651323452
+        },
+        {
+          "frequency": 1320.0,
+          "magnitude": 7339.139803186706,
+          "phase": -1.4767622609737159,
+          "normalized_amp": 0.33288876304938164
+        },
+        {
+          "frequency": 1321.0,
+          "magnitude": 226.48851366654657,
+          "phase": 1.6649016305448252,
+          "normalized_amp": 0.010273067850078617
+        },
+        {
+          "frequency": 1760.0,
+          "magnitude": 5497.925563943223,
+          "phase": -1.4454175723657459,
+          "normalized_amp": 0.2493749525692301
+        },
+        {
+          "frequency": 1761.0,
+          "magnitude": 228.6895389089481,
+          "phase": 1.696246319152796,
+          "normalized_amp": 0.010372901970974551
+        },
+        {
+          "frequency": 2200.0,
+          "magnitude": 4391.7304789430345,
+          "phase": -1.4140728837586831,
+          "normalized_amp": 0.19920014688190335
+        },
+        {
+          "frequency": 2201.0,
+          "magnitude": 230.84413623692888,
+          "phase": 1.7275910077599639,
+          "normalized_amp": 0.010470630214149535
+        }
+      ]
+    }
+  },
+  "interference_patterns": {
+    "perfect_fifth": {
+      "beat_frequency": 220.0,
+      "interference_period": 0.004545454545454545,
+      "constructive_points_per_second": 1987.0,
+      "destructive_points_per_second": 1987.0,
+      "max_amplitude": 1.9059611179595004,
+      "min_amplitude": -1.9059611179591225,
+      "rms_amplitude": 0.999994331049691,
+      "phase_coherence": 1.1337868480750638e-05,
+      "consonance_measure": {
+        "envelope_variance": 0.35219936532667434,
+        "zcr_variance": 96.0,
+        "periodic_autocorrelation": 0.9991864427104138,
+        "stability_score": 0.7389342639345367
+      }
+    },
+    "perfect_fourth": {
+      "beat_frequency": 146.66666666666663,
+      "interference_period": 0.00681818181818182,
+      "constructive_points_per_second": 1988.0,
+      "destructive_points_per_second": 1985.5,
+      "max_amplitude": 1.9508706560226452,
+      "min_amplitude": -1.9508706330307923,
+      "rms_amplitude": 1.0002125110696125,
+      "phase_coherence": 0.0004726946223381525,
+      "consonance_measure": {
+        "envelope_variance": 0.3479259653674408,
+        "zcr_variance": 93.5969387755102,
+        "periodic_autocorrelation": 1.0,
+        "stability_score": 0.7418805080495671
+      }
+    },
+    "major_third": {
+      "beat_frequency": 110.0,
+      "interference_period": 0.00909090909090909,
+      "constructive_points_per_second": 1987.0,
+      "destructive_points_per_second": 1987.0,
+      "max_amplitude": 1.969988762762412,
+      "min_amplitude": -1.969988762762343,
+      "rms_amplitude": 0.999994331049691,
+      "phase_coherence": 1.133786848070927e-05,
+      "consonance_measure": {
+        "envelope_variance": 0.3460017911373303,
+        "zcr_variance": 82.80555555555556,
+        "periodic_autocorrelation": 0.9999999999999999,
+        "stability_score": 0.742941061880037
+      }
+    },
+    "minor_third": {
+      "beat_frequency": 88.0,
+      "interference_period": 0.011363636363636364,
+      "constructive_points_per_second": 1987.0,
+      "destructive_points_per_second": 1987.0,
+      "max_amplitude": 1.9798105773276768,
+      "min_amplitude": -1.9798105773276533,
+      "rms_amplitude": 0.999994331049691,
+      "phase_coherence": 1.1337868480601642e-05,
+      "consonance_measure": {
+        "envelope_variance": 0.3451515011109572,
+        "zcr_variance": 74.4234404536862,
+        "periodic_autocorrelation": 0.99939683914032,
+        "stability_score": 0.742962289611929
+      }
+    },
+    "major_sixth": {
+      "beat_frequency": 293.33333333333337,
+      "interference_period": 0.0034090909090909085,
+      "constructive_points_per_second": 1987.0,
+      "destructive_points_per_second": 1987.0,
+      "max_amplitude": 1.8570039906298217,
+      "min_amplitude": -1.8570039816116473,
+      "rms_amplitude": 0.9998965941037694,
+      "phase_coherence": -0.00023206996178103858,
+      "consonance_measure": {
+        "envelope_variance": 0.3287524353548853,
+        "zcr_variance": 391.39285714285717,
+        "periodic_autocorrelation": 0.9999999999999998,
+        "stability_score": 0.7525856385225878
+      }
+    },
+    "minor_sixth": {
+      "beat_frequency": 264.0,
+      "interference_period": 0.003787878787878788,
+      "constructive_points_per_second": 1987.0,
+      "destructive_points_per_second": 1987.0,
+      "max_amplitude": 1.9861572829963656,
+      "min_amplitude": -1.9861572829965177,
+      "rms_amplitude": 0.9999943310496902,
+      "phase_coherence": 1.133786848074528e-05,
+      "consonance_measure": {
+        "envelope_variance": 0.34357587904865866,
+        "zcr_variance": 134.22666666666666,
+        "periodic_autocorrelation": 0.9991201883413785,
+        "stability_score": 0.7436276610211418
+      }
+    },
+    "tritone": {
+      "beat_frequency": 178.75,
+      "interference_period": 0.005594405594405594,
+      "constructive_points_per_second": 1987.0,
+      "destructive_points_per_second": 1987.0,
+      "max_amplitude": 1.999595307488931,
+      "min_amplitude": -1.9995941748106028,
+      "rms_amplitude": 0.9999943310496912,
+      "phase_coherence": -9.44167898311607e-17,
+      "consonance_measure": {
+        "envelope_variance": 0.3430293547361973,
+        "zcr_variance": 131.7742709253882,
+        "periodic_autocorrelation": 0.9992679523049554,
+        "stability_score": 0.7440402912870323
+      }
+    }
+  },
+  "universal_encoding": {
+    "principles": {
+      "low_frequency_dominance": {
+        "description": "Lower frequencies carry more perceptual weight",
+        "biological_basis": "Cochlear mechanics favor bass frequencies",
+        "frequency_range_hz": [
+          20,
+          500
+        ],
+        "information_density": "high",
+        "examples": [
+          "Fundamental pitch perception",
+          "Rhythm detection",
+          "Voice fundamental"
+        ]
+      },
+      "temporal_patterns": {
+        "description": "Time-based patterns are universally recognized",
+        "biological_basis": "Neural timing mechanisms in auditory cortex",
+        "pattern_types": [
+          "Onset detection",
+          "Rhythm",
+          "Duration",
+          "Gap detection"
+        ],
+        "cross_cultural_validity": "universal",
+        "examples": [
+          "Footstep patterns",
+          "Heartbeat",
+          "Speech rhythm"
+        ]
+      },
+      "pitch_contour": {
+        "description": "Relative pitch changes convey meaning",
+        "biological_basis": "Pitch change detection neurons",
+        "information_content": "High (prosody, emotion)",
+        "cross_cultural_validity": "universal",
+        "examples": [
+          "Question intonation",
+          "Emotional expression",
+          "Tone languages"
+        ]
+      },
+      "harmonic_structure": {
+        "description": "Harmonic relationships are innate",
+        "biological_basis": "Harmonic template formation in auditory cortex",
+        "information_content": "Timbre, instrument recognition",
+        "cross_cultural_validity": "universal",
+        "examples": [
+          "Vowel recognition",
+          "Instrument identification",
+          "Voice quality"
+        ]
+      },
+      "formant_patterns": {
+        "description": "Spectral peaks encode vocal tract information",
+        "biological_basis": "Vowel recognition circuits",
+        "frequency_range_hz": [
+          200,
+          4000
+        ],
+        "cross_cultural_validity": "universal for speech",
+        "examples": [
+          "Vowel discrimination",
+          "Speaker identification"
+        ]
+      }
+    },
+    "octave_equivalence": {
+      "mathematical_basis": {
+        "frequency_ratio": 2.0,
+        "harmonic_overlap": "All even harmonics of lower note are harmonics of upper note",
+        "period_ratio": "Period divides exactly by 2",
+        "waveform_similarity": "Waveforms align at 2:1 ratio with zero phase shift"
+      },
+      "perceptual_basis": {
+        "pitch_similarity": "Notes sound \"the same\" but higher/lower",
+        "cultural_universality": "Found in virtually all musical cultures",
+        "neural_correlates": "Harmonic templates fire for octave-related frequencies"
+      },
+      "tensor_analogy": {
+        "description": "Octave equivalence as dimension reduction",
+        "operation": "Modulo operation on log-frequency space",
+        "simplification": "Infinite frequency space \u2192 12-element pitch class space",
+        "computation_reduction": "log\u2082(f) mod 12 \u2192 reduces continuous to discrete"
+      }
+    }
+  },
+  "rhythm_analysis": {
+    "2_against_3": {
+      "ratio": "2:3",
+      "period_1_beats": 0.5,
+      "period_2_beats": 0.3333333333333333,
+      "combined_period": 1.0,
+      "beats_until_realign": 2,
+      "coincidence_rate_per_minute": 60.0,
+      "pattern_complexity": 6.0,
+      "groove_stability": 0.3581970477838151
+    },
+    "3_against_4": {
+      "ratio": "3:4",
+      "period_1_beats": 0.5,
+      "period_2_beats": 0.375,
+      "combined_period": 1.5,
+      "beats_until_realign": 3,
+      "coincidence_rate_per_minute": 40.0,
+      "pattern_complexity": 12.0,
+      "groove_stability": 0.28695173228265203
+    },
+    "4_against_5": {
+      "ratio": "4:5",
+      "period_1_beats": 0.5,
+      "period_2_beats": 0.4,
+      "combined_period": 2.0,
+      "beats_until_realign": 4,
+      "coincidence_rate_per_minute": 30.0,
+      "pattern_complexity": 20.0,
+      "groove_stability": 0.25026701779259936
+    },
+    "5_against_6": {
+      "ratio": "5:6",
+      "period_1_beats": 0.5,
+      "period_2_beats": 0.4166666666666667,
+      "combined_period": 2.5,
+      "beats_until_realign": 5,
+      "coincidence_rate_per_minute": 24.0,
+      "pattern_complexity": 30.0,
+      "groove_stability": 0.22721089587269092
+    },
+    "3_against_5": {
+      "ratio": "3:5",
+      "period_1_beats": 0.5,
+      "period_2_beats": 0.3,
+      "combined_period": 1.5,
+      "beats_until_realign": 3,
+      "coincidence_rate_per_minute": 40.0,
+      "pattern_complexity": 15.0,
+      "groove_stability": 0.26968351175578803
+    },
+    "4_against_7": {
+      "ratio": "4:7",
+      "period_1_beats": 0.5,
+      "period_2_beats": 0.2857142857142857,
+      "combined_period": 2.0,
+      "beats_until_realign": 4,
+      "coincidence_rate_per_minute": 30.0,
+      "pattern_complexity": 28.0,
+      "groove_stability": 0.23082936127582715
+    },
+    "syncopation_examples": {
+      "on_beat": {
+        "syncopated_beats": 0,
+        "missed_downbeats": 0,
+        "information_bits": 0,
+        "surprise_index": 0.0,
+        "groove_disruption": 0.0
+      },
+      "simple_syncopation": {
+        "syncopated_beats": 4,
+        "missed_downbeats": 4,
+        "information_bits": 0,
+        "surprise_index": 1.0,
+        "groove_disruption": 2.0
+      },
+      "strong_syncopation": {
+        "syncopated_beats": 2,
+        "missed_downbeats": 2,
+        "information_bits": 0,
+        "surprise_index": 0.5,
+        "groove_disruption": 1.0
+      },
+      "complex_pattern": {
+        "syncopated_beats": 5,
+        "missed_downbeats": 4,
+        "information_bits": 0,
+        "surprise_index": 1.25,
+        "groove_disruption": 2.25
+      }
+    }
+  },
+  "tensor_applications": {
+    "harmonic_simplification": {
+      "consonant_operations": {
+        "octave_2_1": {
+          "tensor_analogy": "Dimension doubling/halving",
+          "simplification": "Reshape without interpolation",
+          "computation_saving": "50% reduction in indexing",
+          "example": "tensor.reshape(-1, 2*d) or tensor.reshape(-1, d//2)"
+        },
+        "perfect_fifth_3_2": {
+          "tensor_analogy": "Stride-based downsampling",
+          "simplification": "Skip every 3rd element, take 2",
+          "computation_saving": "33% of original computation",
+          "example": "tensor[::3][:2] per block"
+        },
+        "perfect_fourth_4_3": {
+          "tensor_analogy": "Periodic thinning",
+          "simplification": "Keep 3 of every 4 elements",
+          "computation_saving": "75% of original",
+          "example": "Remove every 4th element"
+        }
+      },
+      "dissonant_operations": {
+        "tritone_45_32": {
+          "tensor_analogy": "Non-periodic sampling",
+          "complication": "High LCM = long cycle = no simplification",
+          "computation_cost": "Full computation required",
+          "insight": "High LCM ratios require full tensor ops"
+        }
+      },
+      "resonance_operations": {
+        "description": "Operations where waves align constructively",
+        "condition": "When tensor dimensions share common factors",
+        "simplification": "Factor out common dimensions",
+        "example": "For (6, 4) tensor: factor as 2*(3, 2) \u2192 operate on smaller tensor"
+      }
+    },
+    "shape_resonance_examples": [
+      {
+        "size_1": 96,
+        "size_2": 96,
+        "gcd": 96,
+        "lcm": 96,
+        "resonance_score": 1.0,
+        "common_factors": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          12,
+          16,
+          24,
+          32,
+          48,
+          96
+        ],
+        "largest_common_factor": 96,
+        "simplification_potential": 1.0
+      },
+      {
+        "size_1": 6,
+        "size_2": 24,
+        "gcd": 6,
+        "lcm": 24,
+        "resonance_score": 0.5,
+        "common_factors": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "largest_common_factor": 6,
+        "simplification_potential": 0.25
+      },
+      {
+        "size_1": 1440,
+        "size_2": 2880,
+        "gcd": 1440,
+        "lcm": 2880,
+        "resonance_score": 0.7071067811865475,
+        "common_factors": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          12,
+          15,
+          16,
+          18,
+          20,
+          24,
+          30,
+          32,
+          36,
+          40,
+          45,
+          48,
+          60,
+          72,
+          80,
+          90,
+          96,
+          120,
+          144,
+          160,
+          180,
+          240,
+          288,
+          360,
+          480,
+          720,
+          1440
+        ],
+        "largest_common_factor": 1440,
+        "simplification_potential": 0.5
+      },
+      {
+        "size_1": 10000,
+        "size_2": 10000,
+        "gcd": 10000,
+        "lcm": 10000,
+        "resonance_score": 1.0,
+        "common_factors": [
+          1,
+          2,
+          4,
+          5,
+          8,
+          10,
+          16,
+          20,
+          25,
+          40,
+          50,
+          80,
+          100,
+          125,
+          200,
+          250,
+          400,
+          500,
+          625,
+          1000,
+          1250,
+          2000,
+          2500,
+          5000,
+          10000
+        ],
+        "largest_common_factor": 10000,
+        "simplification_potential": 1.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+# Requirements for SMP Validation Simulation Framework
+
+# Core dependencies
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Statistical analysis
+statsmodels>=0.14.0
+scikit-learn>=1.2.0
+
+# Data serialization
+pyyaml>=6.0
+ujson>=5.4.0  # Faster JSON parsing
+
+# Progress tracking
+tqdm>=4.65.0
+rich>=13.0.0  # Beautiful terminal output
+
+# Testing and validation
+pytest>=7.0.0
+pytest-benchmark>=4.0.0
+hypothesis>=6.0.0  # Property-based testing
+
+# Parallel processing
+joblib>=1.2.0
+multiprocess>=0.70.0
+
+# Memory management
+psutil>=5.9.0
+memory-profiler>=0.60.0
+
+# Configuration management
+pydantic>=2.0.0
+dataclasses-json>=0.5.0
+
+# Documentation
+jupyter>=1.0.0
+notebook>=6.5.0
+
+# Development tools
+black>=23.0.0
+isort>=5.12.0
+flake8>=6.0.0
+mypy>=1.0.0
+
+# Optional: GPU acceleration
+# cupy-cuda11x>=12.0.0  # For NVIDIA GPU acceleration
+# torch>=2.0.0  # For neural network validation
+
+# Optional: Advanced visualization
+# plotly>=5.13.0
+# bokeh>=3.0.0
+# holoviews>=1.15.0

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://blog.csdn.net/gitblog_00760/article/details/155289362",
+    "name": "PoseCNN终极指南：基于深度学习的6D物体姿态实时检测框架",
+    "snippet": "Nov 27, 2025 — PoseCNN是一个革命性的卷积 神经网络 框架，专门用于在复杂场景中进行6D物体 姿态估计 ... 四元数 旋转估计：使用 四元数 表示法准确估计物体的3D旋转. 网络架构图 ...",
+    "host_name": "blog.csdn.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.themoonlight.io/zh/review/te-pinn-quaternion-based-orientation-estimation-using-transformer-enhanced-physics-informed-neural-networks",
+    "name": "[论文评述] TE-PINN: Quaternion-Based Orientation",
+    "snippet": "在输出阶段，变压器编码器的最终隐藏状态将经过线性变换，得到 四元数 的 估计 值。接着，该 估计 值将被转化为欧拉角，并通过 姿态 校正层调整，确保偏航角为零。",
+    "host_name": "www.themoonlight.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciengine.com/parse/pdf/1673-9418/DF4A85D7BCCF432984A43B94803432B5.pdf",
+    "name": "多特征像素级融合的遮挡物体6DoF姿态估计研究*",
+    "snippet": "方法利用分段 网络 的方法来预测6D 姿态 。Kehl 等. 人[8]通过预先 估计 物体的2D位置和 四元数 quaternion. 来计算物体可能的6D 姿势池，再通过优化每个池中. 的 估计 选择最佳的 ...",
+    "host_name": "www.sciengine.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patents.google.com/patent/CN113192141A/zh",
+    "name": "CN113192141A - 一种6d姿态估计方法",
+    "snippet": "本发明公开了一种6D 姿态估计 方法，属于 姿态估计 领域，S1：通过图像分割获得目标在图像上的掩膜；S2：根据掩膜范围提取目标图像块与XYZ map，并将目标图像块与XYZ map ...",
+    "host_name": "patents.google.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://journal.bit.edu.cn/zr/cn/article/pdf/preview/10.15918/j.tbit1001-0645.2022.185.pdf",
+    "name": "基于卷积神经网络的非合作目标两阶段位姿估计方法",
+    "snippet": "Apr 1, 2022 — 摘要：针对空间非合作目标在轨服务中的位姿 估计 问题，提出了一种基于卷积 神经网络 的两阶段相对位姿视. 觉 估计 算法. 该算法在阶段1 中结合位置回归和检测 ...",
+    "host_name": "journal.bit.edu.cn",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://jnuaa.nuaa.edu.cn/njhkht/article/html/202201003",
+    "name": "面向飞行机械臂的实时目标检测与定位算法",
+    "snippet": "Feb 22, 2023 — 相机自身的 姿态 一般由机载惯导系统给出，在实验时也可由MOCAP系统给出。可将得到的相机 姿态四元数 数据设为 q = w + x i + y j + z k ，其对应的旋转 ...",
+    "host_name": "jnuaa.nuaa.edu.cn",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zhuanlan.zhihu.com/p/133722264",
+    "name": "PoseNet 实时六自由度相机重定位：CVPR2015论文阅读",
+    "snippet": "Apr 22, 2020 — 方法：从单RGB图像端到端训练 神经网络 回归出6自由度相机 姿态 （无工程或图优化）; 性能：室内、室外、实时、5ms每帧计算，室外2m 3°精度、室内0.5m 5°精度; 网络 ...",
+    "host_name": "zhuanlan.zhihu.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://202.114.89.108/openfile?dbid=72&objid=53_54_49_55_49_50&flag=free",
+    "name": "基于3D 人体姿态估计的虚拟角色实时驱动研究",
+    "snippet": "4.2 基于旋转 四元数 优化的虚拟角色驱动方法. ... 使用图 神经网络 来进行三维人体 姿态估计 。Zhao[24]等人提出了语义图卷积网络. （GCN），通过逐通道学习骨架图中每条边 ...",
+    "host_name": "202.114.89.108",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.aas.net.cn/cn/article/doi/10.16383/j.aas.c220694?viewType=HTML",
+    "name": "一种基于自监督学习的矢量球面卷积网络",
+    "snippet": "2023 · Cited by 1 — 在6D 姿态估计 任务中, 三维目标的局部参考系(Local reference frame, LRF)大部分是通过手动标注的方式获取[6-7]. 如果能够自动地获取目标的局部参考系, 也就是规范方向, 就 ...",
+    "host_name": "www.aas.net.cn",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cjig.cn/rc-pub/front/front-article/download/55701653/lowqualitypdf/%E5%8D%95%E5%B9%85%E5%9B%BE%E5%83%8F%E5%88%9A%E4%BD%93%E7%9B%AE%E6%A0%87%E5%A7%BF%E6%80%81%E4%BC%B0%E8%AE%A1%E6%96%B9%E6%B3%95%E7%BB%BC%E8%BF%B0.pdf",
+    "name": "单幅图像刚体目标姿态估计方法综述.",
+    "snippet": "Feb 16, 2021 — 当 姿态估计 进入深度学习阶段,卷积 神经网络 (con- volutional neural ... 更新目标姿态→以 四元数 的形式表. 示其旋转姿态. Linemod. 最佳正确率83. 0 ...",
+    "host_name": "www.cjig.cn",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

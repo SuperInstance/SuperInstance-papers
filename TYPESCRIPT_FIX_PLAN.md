@@ -3,6 +3,7 @@
 **Generated:** 2026-03-10
 **Total Errors:** 82 (down from 200+)
 **Strategy:** Fix by error type, not by file
+**Team Coordination:** TypeScript Fixer agent - coordinate via `/agent-messages/`
 
 ---
 

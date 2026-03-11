@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://jananithinks.medium.com/attention-mechanisms-explained-the-mathematical-foundation-of-how-nns-learn-to-focus-3e7e847be2d7",
+    "name": "The Mathematical Foundation of how NNs learn to focus | by Janani",
+    "snippet": "Attention Mechanisms Explained: The Mathematical Foundation of how NNs learn to focus ... Forms the foundation of Transformer architectures.",
+    "host_name": "jananithinks.medium.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2408.09523v2",
+    "name": "Understanding Transformer Architecture through Continuous",
+    "snippet": "This section establishes a rigorous mathematical foundation for the Transformer architecture. We begin by formalizing the continuum ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://app.readytensor.ai/publications/implementation-of-attention-is-all-you-need-transformer-6mclmxKKgpQ0",
+    "name": "Implementation of Attention is all you need: Transformer - Ready Tensor",
+    "snippet": "This document provides a comprehensive guide to understanding and implementing the Transformer architecture from the seminal paper ...",
+    "host_name": "app.readytensor.ai",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2405844024151201",
+    "name": "Deep transformer-based architecture for the recognition of mathematical",
+    "snippet": "This pre-trained language model is transformer-based, using a self-attention mechanism to perform classification and prediction tasks. BERT has ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5211988",
+    "name": "Transformer: A Survey and Application - SSRN",
+    "snippet": "This work presents a comprehensive survey of the Transformer architecture and its wide-ranging applications.",
+    "host_name": "papers.ssrn.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.techrxiv.org/users/795624/articles/1114192/master/file/data/math/math.pdf",
+    "name": "[PDF] Mathematical Foundations of Hallucination in Transformer-Based",
+    "snippet": "The mathematical underpinnings of improvisation involved leveraging the transformer architecture's self-attention mecha- nisms to dynamically weigh input ...",
+    "host_name": "www.techrxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/394999202_Attention_Mechanisms_in_Deep_Learning_A_Comprehensive_Survey_from_Foundations_to_Modern_Applications",
+    "name": "(PDF) Attention Mechanisms in Deep Learning: A Comprehensive Survey",
+    "snippet": "We present FIT: a transformer-based architecture with efficient self-attention and adaptive computation. Unlike original transformers, which ...",
+    "host_name": "www.researchgate.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ibm.com/think/topics/attention-mechanism",
+    "name": "What is an attention mechanism? | IBM",
+    "snippet": "An attention mechanism is a machine learning technique that directs deep learning models to prioritize (or attend to) the most relevant parts of input data.",
+    "host_name": "www.ibm.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://towardsdatascience.com/the-math-behind-multi-head-attention-in-transformers-c26cba15f625",
+    "name": "The Math Behind Multi-Head Attention in Transformers",
+    "snippet": "Multi-head attention enables the model to focus on different parts of the input sequence at the same time, capturing various aspects of the data.",
+    "host_name": "towardsdatascience.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ajayvishy.com/posts/understanding-transformer-architecture-a-deep-dive-into-attention-mechanisms",
+    "name": "Understanding Transformer Architecture: A Deep Dive into",
+    "snippet": "A comprehensive analysis of the Transformer architecture, exploring self-attention mechanisms, positional encoding, and their impact on modern NLP.",
+    "host_name": "www.ajayvishy.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

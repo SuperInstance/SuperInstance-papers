@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0893608026000870",
+    "name": "Rotation equivariant quantum graph neural networks with",
+    "snippet": "2026 — Most of these models only use a single entanglement strategy for the superposition of multiple entanglement layers. This limits the ability of ...\nTo address these challenges, a novel Rotationally Equivariant Quantum Graph Neural Network (REQGNN) with trainable compression encoder and entanglement-enhanced aggregation mechanism is proposed.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PRXQuantum.5.020328",
+    "name": "Theory for Equivariant Quantum Neural Networks",
+    "snippet": "2024 · Cited by 178 — A comprehensive theoretical framework to design equivariant quantum neural networks (EQNNs) for essentially any relevant symmetry group.\nIn this work, we import these ideas to the quantum realm by presenting a general theoretical framework to understand, classify, design, and implement equivariant quantum neural networks.",
+    "host_name": "link.aps.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.pnas.org/doi/10.1073/pnas.2415656122",
+    "name": "The principles behind equivariant neural networks for",
+    "snippet": "6 Oct 2025 — Equivariant neural nets leverage ideas from group representation theory and express all variables in the generalized Fourier space corresponding ...",
+    "host_name": "www.pnas.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2311.05873v3",
+    "name": "Provably Trainable Rotationally Equivariant Quantum",
+    "snippet": "In this work, we introduce a family of rotationally equivariant QML models built upon the quantum Fourier transform, and leverage recent insights from the Lie- ...",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41534-024-00804-1",
+    "name": "Theoretical guarantees for permutation-equivariant",
+    "snippet": "2024 · Cited by 122 — Here, we focus on problems with permutation symmetry (i.e., symmetry group Sn), and show how to build Sn- equivariant QNNs We provide an ...",
+    "host_name": "www.nature.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@lazaror/equivariant-quantum-neural-networks-for-high-energy-physics-analysis-at-the-lhc-59b55ed3d43e",
+    "name": "Equivariant Quantum Neural Networks for High Energy",
+    "snippet": "We propose an Equivariant Quantum Neural Network (EQNN) model that leverages symmetries commonly present in image data, specifically roto-reflection symmetries.",
+    "host_name": "medium.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/399946284_Rotation_equivariant_quantum_graph_neural_networks_with_trainable_compression_encoder_and_entanglement-enhanced_aggregation",
+    "name": "Rotation equivariant quantum graph neural networks with",
+    "snippet": "Rotation equivariant quantum graph neural networks with trainable compression encoder and entanglement-enhanced aggregation ... Speeding Up Learning Quantum ...",
+    "host_name": "www.researchgate.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ieeexplore.ieee.org/iel8/34/4359286/11098662.pdf",
+    "name": "and Permutation-equivariant Quantum Graph Neural",
+    "snippet": "2025 · Cited by 7 — In this work, we derive constraints for rotation and per- mutation equivariance, and then propose an quantum graph neural network that is equivariant with ... 15 pages",
+    "host_name": "ieeexplore.ieee.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://inis.iaea.org/records/kdpk2-qav98/files/10.1103_PRXQuantum.5.020328.pdf",
+    "name": "Theory for Equivariant Quantum Neural Networks",
+    "snippet": "2024 · Cited by 175 — We say that a QML problem has symmetry with respect to a group G if the labels are unchanged under the action of a representation of G on the input states .",
+    "host_name": "inis.iaea.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2210.08566v1.pdf",
+    "name": "Theory for Equivariant Quantum Neural Networks",
+    "snippet": "In this work, we import these ideas to the quantum realm by presenting a general theoretical framework to understand, classify, design and implement equiv-ariant quantum neural networks.",
+    "host_name": "arxiv.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

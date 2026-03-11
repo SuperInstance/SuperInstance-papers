@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2411.00543v2",
+    "name": "3D Equivariant Pose Regression via Direct Wigner-D Harmonics Prediction",
+    "snippet": "SO(3)-equivariant networks enable the structured capture of pose patterns with data-efficient learning, but the parametrizations in spatial ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://uvagedl.github.io/lectures_pdf/Lecture_3_4_GroupTheorySO3IrrepsClebschGordan.pdf",
+    "name": "[PDF] SO(3) irreps (Wigner-D matrices), Clebsch-Gordan TP",
+    "snippet": "Group Equivariant Deep Learning. Lecture 3 - Equivariant graph neural networks. Lecture 3.4 - Group Theory | SO(3) irreps (Wigner-D matrices), Clebsch-Gordan TP.",
+    "host_name": "uvagedl.github.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://alchemybio.substack.com/p/spherical-equivariant-graph-transformer",
+    "name": "A Complete Guide to Spherical Equivariant Graph Transformers",
+    "snippet": "They are functions that project 3-dimensional vectors into spherical tensors that transform equivariantly and directly under Wigner-D matrices, ...",
+    "host_name": "alchemybio.substack.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.pnas.org/doi/10.1073/pnas.2415656122",
+    "name": "The principles behind equivariant neural networks for physics  - PNAS",
+    "snippet": "... spherical harmonics and Wigner D-matrices separately in each case. Formally, a (finite dimensional) representation of a group G is any system of ...",
+    "host_name": "www.pnas.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/data-science/efficient-generalized-spherical-cnns-1493426362ca",
+    "name": "Efficient Generalized Spherical CNNs | by Jason McEwen - Medium",
+    "snippet": "Notions of convolution on both the sphere and rotation group may be used to construct learnable, linear and rotationally equivariant ...",
+    "host_name": "medium.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/spherical-equivariant-graph-transformers",
+    "name": "Spherical Equivariant Graph Transformers - Emergent Mind",
+    "snippet": "The central innovation is the fusion of group-theoretic function spaces—built from spherical harmonics, Wigner-D matrices, and Clebsch–Gordan ...",
+    "host_name": "www.emergentmind.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11661850",
+    "name": "equivariant (variational) autoencoder in Fourier space - PMC - NIH",
+    "snippet": "The linear operator that describes how spherical harmonics transform under rotations are called the Wigner D-matrices. Notably, Wigner D-matrices are the ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/pdf?id=IlYoGAEz8Y",
+    "name": "[PDF] EQUIVARIANT SPHERICAL TRANSFORMER FOR EFFI",
+    "snippet": "Furthermore, a vector that transforms according to an l-degree. Wigner-D matrix is termed an l-degree steerable vector or a type-l vector, residing in the ...",
+    "host_name": "openreview.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvlab.postech.ac.kr/project/3D_EquiPose",
+    "name": "3D Equivariant Pose Regression via Direct Wigner-D Harmonics Prediction",
+    "snippet": "Our network for SO(3)-equivariant pose estimation consists of four parts: feature extraction, spherical mapper, Fourier transformer, and SO(3)-equivariant ...",
+    "host_name": "cvlab.postech.ac.kr",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0021999124003589",
+    "name": "Differentiable and accelerated spherical harmonic and Wigner",
+    "snippet": "3 we present a recursive algorithm suitable for the parallel calculation of the Wigner d-functions. Algorithms to compute the spherical harmonic ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

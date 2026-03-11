@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/Spherical_harmonics",
+    "name": "Spherical harmonics",
+    "snippet": "In mathematics and physical science, spherical harmonics are special functions defined on the surface of a sphere. They are often employed in solving ...",
+    "host_name": "en.wikipedia.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scipp.ucsc.edu/~haber/ph116C/SphericalHarmonics_12.pdf",
+    "name": "[PDF] The Spherical Harmonics",
+    "snippet": "ℓ (θ, φ) = ℓ(ℓ + 1)Y m ℓ (θ, φ) . That is, the spherical harmonics are eigenfunctions of the differential operator L2, with corresponding eigenvalues ℓ(ℓ + 1), ...",
+    "host_name": "scipp.ucsc.edu",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://williamsgj.people.charleston.edu/Legendre%20Function.pdf",
+    "name": "[PDF] Legendre Polynomials and Spherical Harmonics",
+    "snippet": "The raising and lowering opera- tors L± are generators of the rotation group along with Lz, whose eigenvalue is m. Page 10. 11.1 Introduction. 561. EXERCISES.",
+    "host_name": "williamsgj.people.charleston.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mathworld.wolfram.com/SphericalHarmonic.html",
+    "name": "Spherical Harmonic -- from Wolfram MathWorld",
+    "snippet": "The spherical harmonics Y_l^m(theta,phi) are the angular portion of the solution to Laplace's equation in spherical coordinates where azimuthal symmetry is ...",
+    "host_name": "mathworld.wolfram.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/0010465573900659",
+    "name": "Associated legendre polynomials, ordinary and modified spherical harmonics",
+    "snippet": "Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables, U.S. Government Printing Office, Washington, D.C (1964). Cited by (0).",
+    "host_name": "www.sciencedirect.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://simonrs.com/eulercircle/irpw2023/vedant-sphharm-paper.pdf",
+    "name": "[PDF] decomposing the definition of spherical harmonics - Simon Rubinstein-Salzedo",
+    "snippet": "Spherical harmonics are composed from normalization factors and associated Legendre polynomials. Similar to how periodic functions define the edges of a circle ...",
+    "host_name": "simonrs.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reed.edu/physics/faculty/wheeler/documents/Miscellaneous%20Math/Spherical%20Harmonics.pdf",
+    "name": "[PDF] ALGEBRAIC THEORY OF SPHERICAL HARMONICS ‡",
+    "snippet": "Analytic theory of hyperspherical harmonics. 21 and reduce to the Legendre polynomials at k = 0. What I call the “associated. Gegenbauer functions” are defined.",
+    "host_name": "www.reed.edu",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.scribd.com/document/448637791/ElectricityMagnetismAppendixE-pdf",
+    "name": "Legendre Polynomials and Spherical Harmonics | PDF - Scribd",
+    "snippet": "The document discusses vector spherical harmonics and spherical harmonics. It defines Legendre polynomials which are solutions to Legendre's differential ...",
+    "host_name": "www.scribd.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/profile/Philip-Coppens/publication/264261411_Rotation_of_real_spherical_harmonics/links/56ddde4008ae46f1e99f8e5c/Rotation-of-real-spherical-harmonics.pdf",
+    "name": "[PDF] Rotation-of-real-spherical-harmonics.pdf",
+    "snippet": "The real spherical harmonic functions are extensively used for the description of atomic orbitals and as density basis functions in the analysis of experimen-.",
+    "host_name": "www.researchgate.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=K9UTQT48Vcg",
+    "name": "Lec 26 Spherical harmonics, Legendre polynomials and their orthogonality relations contd.",
+    "snippet": "Spherical Bessel functions, Spherical Hankel functions, recurrence relations ... Why Math Points to God | Professor John Lennox. Socrates ... Missing: rotation | Show results with: rotation",
+    "host_name": "www.youtube.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

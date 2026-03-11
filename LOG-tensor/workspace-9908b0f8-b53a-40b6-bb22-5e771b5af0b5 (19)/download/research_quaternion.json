@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2409.16214v1",
+    "name": "TE-PINN: Quaternion-Based Orientation Estimation using Transformer-Enhanced Physics-Informed Neural Networks - arXiv",
+    "snippet": "This paper introduces a Transformer-Enhanced Physics-Informed Neural Network (TE-PINN) designed for accurate quaternion-based orientation estimation in high- ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/Armanasq/End-to-End-Deep-Learning-Framework-for-Real-Time-Inertial-Attitude-Estimation-using-6DoF-IMU",
+    "name": "Code repo of paper End-to-End Deep Learning Framework for Real-Time Inertial Attitude Estimation using 6DoF IMU - GitHub",
+    "snippet": "This repository contains code for training and evaluating a deep learning model for predicting quaternion orientations using inertial measurement unit (IMU) ...",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openaccess.thecvf.com/content/ICCV2021W/DSC/papers/Majcher_Deep_Quaternion_Pose_Proposals_for_6D_Object_Pose_Tracking_ICCVW_2021_paper.pdf",
+    "name": "[PDF] Deep Quaternion Pose Proposals for 6D Object Pose Tracking - CVF Open Access",
+    "snippet": "In this work we study quaternion pose distributions for tracking in RGB image sequences the 6D pose of an object selected from a set of objects, ...",
+    "host_name": "openaccess.thecvf.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0263224123006693",
+    "name": "Generalizable end-to-end deep learning frameworks for real-time attitude estimation using 6DoF inertial measurement units - ScienceDirect",
+    "snippet": "This paper presents a novel end-to-end deep learning framework for real-time inertial attitude estimation using 6DoF IMU measurements.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/384295949_TE-PINN_Quaternion-Based_Orientation_Estimation_using_Transformer-Enhanced_Physics-Informed_Neural_Networks",
+    "name": "TE-PINN: Quaternion-Based Orientation Estimation using Transformer-Enhanced Physics-Informed Neural Networks - ResearchGate",
+    "snippet": "This paper presents a novel end-to-end deep learning framework for real-time inertial attitude estimation using 6DoF IMU measurements. Inertial ...",
+    "host_name": "www.researchgate.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.zhengyiluo.com/assets/pdf/Rotation_DL.pdf",
+    "name": "[PDF] 16720 Project Report: Rotation Representations in Deep Learning - Zhengyi Luo",
+    "snippet": "Some popular works in 6dof pose estimation usually use a convolutional neural network to process the visual data and directly regress pose information [7] ...",
+    "host_name": "www.zhengyiluo.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvg.cit.tum.de/_media/spezial/bib/della-libera-et-al-2019.pdf",
+    "name": "[PDF] Deep Learning for 2D and 3D Rotatable Data: An Overview of Methods",
+    "snippet": "Here we provide an overview of ex- isting methods, both for 2D and 3D rotations (and translations), and identify commonalities and links between ...",
+    "host_name": "cvg.cit.tum.de",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123650528.pdf",
+    "name": "[PDF] 3D-Rotation-Equivariant Quaternion Neural Networks - European Computer Vision Association",
+    "snippet": "This paper proposes a set of rules to revise various neural networks for 3D point cloud processing to rotation-equivariant quater- nion neural networks (REQNNs) ...",
+    "host_name": "www.ecva.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dspace.mit.edu/bitstream/handle/1721.1/119699/1078151125-MIT.pdf?sequence=1&isAllowed=y",
+    "name": "[PDF] Robotic Object Pose Estimation with Deep Neural Networks Jimmy Wu - DSpace@MIT",
+    "snippet": "In this work, we introduce pose interpreter networks for 6-DoF object pose estima- tion. In contrast to other CNN-based approaches to pose ...",
+    "host_name": "dspace.mit.edu",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.connectedpapers.com/main/3c843f7817e3fd08a0a7489539429809d4575cbd/TE%20PINN%3A-Quaternion%20Based-Orientation-Estimation-using-Transformer%20Enhanced-Physics%20Informed-Neural-Networks/graph",
+    "name": "TE-PINN: Quaternion-Based Orientation Estimation using Transformer-Enhanced Physics-Informed Neural Networks | Connected Papers",
+    "snippet": "Generalizable End-to-End Deep Learning Frameworks for Real-Time Attitude Estimation Using 6dof Inertial Measurement Units}. Arman Asgharpoor Golroudbari, M ...",
+    "host_name": "www.connectedpapers.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

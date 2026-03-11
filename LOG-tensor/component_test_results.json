@@ -1,0 +1,413 @@
+{
+  "metadata": {
+    "timestamp": "2026-03-09T23:40:27.320285",
+    "config": {
+      "base": 12,
+      "ifa_dimensions": 256,
+      "benchmark_iterations": 10000,
+      "validation_samples": 1000
+    }
+  },
+  "components": {
+    "base12_sector": {
+      "component_name": "Base-12 Sector Operations",
+      "performance": {
+        "operation": "sector_op",
+        "iterations": 10000,
+        "total_time_ms": 9.034776,
+        "avg_time_us": 0.9034776,
+        "min_time_us": 0.778,
+        "max_time_us": 21.673,
+        "ops_per_second": 1106834.303362917,
+        "memory_bytes": 365216,
+        "memory_peak_bytes": 365260
+      },
+      "baseline_comparison": {
+        "speedup": 2.315409258624674,
+        "baseline_time_us": 2.0919204,
+        "log_time_us": 0.9034776
+      },
+      "validations": [
+        {
+          "test_name": "sector_assignment_(1,0)",
+          "passed": true,
+          "expected": 0,
+          "actual": 0,
+          "message": "Sector for (1, 0) should be 0"
+        },
+        {
+          "test_name": "sector_assignment_(0,1)",
+          "passed": true,
+          "expected": 3,
+          "actual": 3,
+          "message": "Sector for (0, 1) should be 3"
+        },
+        {
+          "test_name": "sector_assignment_(-1,0)",
+          "passed": true,
+          "expected": 6,
+          "actual": 6,
+          "message": "Sector for (-1, 0) should be 6"
+        },
+        {
+          "test_name": "sector_assignment_(0,-1)",
+          "passed": true,
+          "expected": 9,
+          "actual": 9,
+          "message": "Sector for (0, -1) should be 9"
+        },
+        {
+          "test_name": "sector_angle_0",
+          "passed": true,
+          "expected": 0.0,
+          "actual": 0.0,
+          "message": "Sector 0 angle should be 0.0"
+        },
+        {
+          "test_name": "sector_angle_1",
+          "passed": true,
+          "expected": 0.5235987755982988,
+          "actual": 0.5235987755982988,
+          "message": "Sector 1 angle should be 0.5235987755982988"
+        },
+        {
+          "test_name": "sector_angle_2",
+          "passed": true,
+          "expected": 1.0471975511965976,
+          "actual": 1.0471975511965976,
+          "message": "Sector 2 angle should be 1.0471975511965976"
+        },
+        {
+          "test_name": "sector_angle_3",
+          "passed": true,
+          "expected": 1.5707963267948966,
+          "actual": 1.5707963267948966,
+          "message": "Sector 3 angle should be 1.5707963267948966"
+        },
+        {
+          "test_name": "sector_angle_4",
+          "passed": true,
+          "expected": 2.0943951023931953,
+          "actual": 2.0943951023931953,
+          "message": "Sector 4 angle should be 2.0943951023931953"
+        },
+        {
+          "test_name": "sector_angle_5",
+          "passed": true,
+          "expected": 2.617993877991494,
+          "actual": 2.617993877991494,
+          "message": "Sector 5 angle should be 2.617993877991494"
+        },
+        {
+          "test_name": "sector_angle_6",
+          "passed": true,
+          "expected": 3.141592653589793,
+          "actual": 3.141592653589793,
+          "message": "Sector 6 angle should be 3.141592653589793"
+        },
+        {
+          "test_name": "sector_angle_7",
+          "passed": true,
+          "expected": 3.665191429188092,
+          "actual": 3.665191429188092,
+          "message": "Sector 7 angle should be 3.665191429188092"
+        },
+        {
+          "test_name": "sector_angle_8",
+          "passed": true,
+          "expected": 4.1887902047863905,
+          "actual": 4.1887902047863905,
+          "message": "Sector 8 angle should be 4.1887902047863905"
+        },
+        {
+          "test_name": "sector_angle_9",
+          "passed": true,
+          "expected": 4.71238898038469,
+          "actual": 4.71238898038469,
+          "message": "Sector 9 angle should be 4.71238898038469"
+        },
+        {
+          "test_name": "sector_angle_10",
+          "passed": true,
+          "expected": 5.235987755982988,
+          "actual": 5.235987755982988,
+          "message": "Sector 10 angle should be 5.235987755982988"
+        },
+        {
+          "test_name": "sector_angle_11",
+          "passed": true,
+          "expected": 5.759586531581287,
+          "actual": 5.759586531581287,
+          "message": "Sector 11 angle should be 5.759586531581287"
+        },
+        {
+          "test_name": "sector_centroid_0",
+          "passed": true,
+          "expected": [
+            0.9659258262890683,
+            0.25881904510252074
+          ],
+          "actual": [
+            0.9659258262890683,
+            0.25881904510252074
+          ],
+          "message": "Sector 0 centroid should be at angle π/12"
+        },
+        {
+          "test_name": "circular_topology",
+          "passed": true,
+          "expected": [
+            10,
+            0
+          ],
+          "actual": [
+            10,
+            0
+          ],
+          "message": "Sector 11 neighbors should be [10, 0] (circular)"
+        }
+      ],
+      "correctness_score": 1.0,
+      "efficiency_score": 2.315409258624674
+    },
+    "origin_relative": {
+      "component_name": "Origin-Relative Encoding",
+      "performance": {
+        "operation": "origin_relative_op",
+        "iterations": 10000,
+        "total_time_ms": 20.206043,
+        "avg_time_us": 2.0206043,
+        "min_time_us": 1.703,
+        "max_time_us": 40.142,
+        "ops_per_second": 494901.4510164113,
+        "memory_bytes": 365216,
+        "memory_peak_bytes": 365260
+      },
+      "baseline_comparison": {
+        "baseline_time_us": 1.1274786,
+        "log_time_us": 2.0206043,
+        "memory_efficiency": 1.0
+      },
+      "validations": [
+        {
+          "test_name": "origin_relative_roundtrip",
+          "passed": true,
+          "expected": [
+            5.5,
+            -3.2
+          ],
+          "actual": [
+            5.5,
+            -3.2
+          ],
+          "message": "Encode/decode should preserve coordinates"
+        },
+        {
+          "test_name": "polar_radius",
+          "passed": true,
+          "expected": 5.0,
+          "actual": 5.0,
+          "message": "Polar radius for (3,4) should be 5"
+        },
+        {
+          "test_name": "rotation_90deg",
+          "passed": true,
+          "expected": [
+            0.0,
+            1.0
+          ],
+          "actual": [
+            6.123233995736766e-17,
+            1.0
+          ],
+          "message": "90° rotation of (1,0) should give (0,1)"
+        },
+        {
+          "test_name": "complete_encoding_sector",
+          "passed": true,
+          "expected": 1,
+          "actual": 1,
+          "message": "Complete encoding sector should match direct calculation"
+        }
+      ],
+      "correctness_score": 1.0,
+      "efficiency_score": 0.4949014510164113
+    },
+    "ghost_tile": {
+      "component_name": "Ghost Tile Execution",
+      "performance": {
+        "operation": "ghost_tile_op",
+        "iterations": 10000,
+        "total_time_ms": 191.773014,
+        "avg_time_us": 19.1773014,
+        "min_time_us": 17.688,
+        "max_time_us": 109.534,
+        "ops_per_second": 52144.98010653366,
+        "memory_bytes": 365216,
+        "memory_peak_bytes": 368493
+      },
+      "baseline_comparison": {
+        "baseline_time_us": 2.5861747,
+        "log_time_us": 19.1773014,
+        "memory_overhead": 368493,
+        "baseline_memory": 365476,
+        "memory_efficiency": 0.9918125988824754
+      },
+      "validations": [
+        {
+          "test_name": "ghost_tile_determinism",
+          "passed": true,
+          "expected": "0x60522ba2042a5f",
+          "actual": "0x60522ba2042a5f",
+          "message": "Same seed should produce identical tiles"
+        },
+        {
+          "test_name": "ghost_tile_uniqueness",
+          "passed": true,
+          "expected": "different hash",
+          "actual": "0x60522ba2042a5f != 0x1876e8de70cb33",
+          "message": "Different seeds should produce different tiles"
+        },
+        {
+          "test_name": "ghost_gradient_range",
+          "passed": true,
+          "expected": "[-1, 1]",
+          "actual": 0.16227969787136654,
+          "message": "Ghost gradient should be in [-1, 1]"
+        },
+        {
+          "test_name": "ghost_program_execution",
+          "passed": true,
+          "expected": 5,
+          "actual": 5,
+          "message": "Program should execute all 5 steps"
+        }
+      ],
+      "correctness_score": 1.0,
+      "efficiency_score": 0.9918125988824754
+    },
+    "muyu_cycle": {
+      "component_name": "Muyu Cycle Encoding",
+      "performance": {
+        "operation": "muyu_cycle_op",
+        "iterations": 10000,
+        "total_time_ms": 1485.294712,
+        "avg_time_us": 148.5294712,
+        "min_time_us": 137.838,
+        "max_time_us": 350.847,
+        "ops_per_second": 6732.670573191942,
+        "memory_bytes": 367620,
+        "memory_peak_bytes": 372200
+      },
+      "baseline_comparison": {
+        "baseline_time_us": 38.3673481,
+        "log_time_us": 148.5294712,
+        "compression_ratio": 10.0
+      },
+      "validations": [
+        {
+          "test_name": "muyu_phase_encoding",
+          "passed": true,
+          "expected": 2.617993877991494,
+          "actual": 2.617993877991494,
+          "message": "Phase for position 5 should be 5 * 2π/12"
+        },
+        {
+          "test_name": "muyu_position_roundtrip",
+          "passed": true,
+          "expected": 7,
+          "actual": 7,
+          "message": "Position should decode correctly"
+        },
+        {
+          "test_name": "muyu_cycle_similarity",
+          "passed": true,
+          "expected": 1.0,
+          "actual": 1.0,
+          "message": "Identical cycles should have similarity 1.0"
+        },
+        {
+          "test_name": "muyu_compression_ratio",
+          "passed": true,
+          "expected": 3.0,
+          "actual": 3.0,
+          "message": "36 elements with cycle_length=12 should compress 3x"
+        }
+      ],
+      "correctness_score": 1.0,
+      "efficiency_score": 10.0
+    },
+    "ifa_hdc": {
+      "component_name": "Ifá HDC",
+      "performance": {
+        "operation": "ifa_hdc_op",
+        "iterations": 10000,
+        "total_time_ms": 13769.562255,
+        "avg_time_us": 1376.9562255,
+        "min_time_us": 1072.107,
+        "max_time_us": 3586.911,
+        "ops_per_second": 726.2394994705661,
+        "memory_bytes": 367720,
+        "memory_peak_bytes": 381949
+      },
+      "baseline_comparison": {
+        "baseline_time_us": 25.6967052,
+        "log_time_us": 1376.9562255,
+        "avg_orthogonality": 0.05769805743114951,
+        "speedup": 0.018661962322490695
+      },
+      "validations": [
+        {
+          "test_name": "ifa_odu_count",
+          "passed": true,
+          "expected": 256,
+          "actual": 256,
+          "message": "Should have exactly 256 Odu embeddings"
+        },
+        {
+          "test_name": "ifa_dimensionality",
+          "passed": true,
+          "expected": 256,
+          "actual": 256,
+          "message": "All embeddings should be 256-dimensional"
+        },
+        {
+          "test_name": "ifa_normalization",
+          "passed": true,
+          "expected": "unit vectors",
+          "actual": "all unit vectors",
+          "message": "All Odu embeddings should be normalized"
+        },
+        {
+          "test_name": "ifa_orthogonality",
+          "passed": true,
+          "expected": "~0",
+          "actual": 0.010735926630507918,
+          "message": "Random Odu pairs should have near-zero similarity"
+        },
+        {
+          "test_name": "ifa_self_similarity",
+          "passed": true,
+          "expected": 1.0,
+          "actual": 1.0000000000000002,
+          "message": "Odu should have self-similarity 1.0"
+        },
+        {
+          "test_name": "ifa_encoding_retrieval",
+          "passed": true,
+          "expected": "256D vector with positive similarity",
+          "actual": "256D vector with sim=0.8042",
+          "message": "Encoded sequence should be 256D and match some Odu"
+        }
+      ],
+      "correctness_score": 1.0,
+      "efficiency_score": 0.9423019425688505
+    }
+  },
+  "summary": {
+    "total_validations": 36,
+    "passed_validations": 36,
+    "overall_correctness": 1.0,
+    "components_tested": 5
+  }
+}

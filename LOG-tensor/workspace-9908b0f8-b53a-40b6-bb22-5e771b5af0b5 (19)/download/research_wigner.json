@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2411.00543",
+    "name": "[2411.00543] 3D Equivariant Pose Regression via Direct Wigner-D Harmonics Prediction",
+    "snippet": "2024 · Cited by 3 — We propose a frequency-domain approach that directly predicts Wigner-D coefficients for 3D rotation regression, aligning with the operations of spherical CNNs.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/e6c65eb9b56719c1aa45ff73874de317-Paper-Conference.pdf",
+    "name": "3D Equivariant Pose Regression via Direct Wigner-D Harmonics Prediction - NIPS",
+    "snippet": "2024 · Cited by 3 — We utilize spherical convolutions to obtain the final. Wigner-D harmonics coefficients Ψ which represent SO(3) rotations of spherical harmonics, where. M ...",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openaccess.thecvf.com/content_ECCV_2018/papers/Carlos_Esteves_Learning_SO3_Equivariant_ECCV_2018_paper.pdf",
+    "name": "Learning SO(3) Equivariant Representations with Spherical CNNs",
+    "snippet": "2018 · Cited by 693 — To compute the convolution of a signal f with a filter h, we first expand f and h into their spherical harmonic basis (8), second compute the pointwise product.",
+    "host_name": "openaccess.thecvf.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v202/passaro23a/passaro23a.pdf",
+    "name": "Reducing SO(3) Convolutions to SO(2) for Efficient Equivariant GNNs - Proceedings of Machine Learning Research",
+    "snippet": "2023 · Cited by 189 — Here we propose an alternative explanation of the same operation as a reduction from SO(3)-equivariance to. SO(2)-equivariance. Previously, we simplified the ...",
+    "host_name": "proceedings.mlr.press",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2510.16897",
+    "name": "SE(3)-Equivariant Support in an Open-Source Molecular Machine Learning Library",
+    "snippet": "2025 — Our framework efficiently computes equivariant features using spherical harmonics ... to get SO(3) generators used to compute Wigner-D matrices. A ...",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/323355887_Tensor_Field_Networks_Rotation-_and_Translation-Equivariant_Neural_Networks_for_3D_Point_Clouds",
+    "name": "Tensor Field Networks: Rotation- and Translation-Equivariant Neural Networks for 3D Point Clouds | Request PDF",
+    "snippet": "For 3D problems, spherical harmonics can be used to define rotationally equivariant filters [45] , which shows their application to shape classification ...",
+    "host_name": "www.researchgate.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://home.ttic.edu/~shubhendu/Papers/FFSS2CNN_RK_ZL_ST_2018.pdf",
+    "name": "Clebsch–Gordan Nets: a Fully Fourier Space Spherical Convolutional Neural Network",
+    "snippet": "Cited by 380 — The key idea in Spherical. CNNs is to generalize convolutions using the machinery of noncommutative harmonic analysis: employing a type of generalized SO(3) ...",
+    "host_name": "home.ttic.edu",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/pdf/7d1ac63392c225113c314e6263f1d18dfbff895e.pdf",
+    "name": "EQUACT: AN SE(3)-EQUIVARIANT MULTI-TASK TRANSFORMER FOR 3D ROBOTIC MANIPULATION",
+    "snippet": "To address this issue, we propose EquAct, which is theoretically guaranteed to generalize to novel 3D scene transformations by leveraging SE(3) equivariance ...",
+    "host_name": "openreview.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://uvagedl.github.io/lectures_pdf/Lecture_3_4_GroupTheorySO3IrrepsClebschGordan.pdf",
+    "name": "Lecture 3.4 - Group Theory | SO(3) irreps (Wigner-D matrices), Clebsch-Gordan TP",
+    "snippet": "The dimensional vector space on which acts will be called a steerable vector space of type and denoted with . A vector will be called a type- vector. (2l + 1).",
+    "host_name": "uvagedl.github.io",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ui.adsabs.harvard.edu/abs/2017arXiv171106721E/abstract",
+    "name": "Learning SO(3) Equivariant Representations with Spherical CNNs",
+    "snippet": "2017 · Cited by 687 — We model 3D data with multi-valued spherical functions and we propose a novel spherical convolutional network that implements exact convolutions on the sphere.",
+    "host_name": "ui.adsabs.harvard.edu",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "http://karpathy.github.io/2026/02/12/microgpt",
+    "name": "microgpt",
+    "snippet": "Feb 12, 2026 — This is a brief guide to my new art project microgpt, a single file of 200 lines of pure Python with no dependencies that trains and inferences ...",
+    "host_name": "karpathy.github.io",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/karpathy/llm.c",
+    "name": "karpathy/llm.c: LLM training in simple, raw C/CUDA",
+    "snippet": "LLMs in simple, pure C/CUDA with no need for 245MB of PyTorch or 107MB of cPython. Current focus is on pretraining, in particular reproducing the GPT-2 and ...",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/posts/taboriskiy_a-whole-gpt-in-200-lines-of-code-new-learning-activity-7429419308822343680-Xncu",
+    "name": "Andrej Karpathy's MicroGPT: A Simple LLM in 200 Lines",
+    "snippet": "This script is the culmination of multiple projects ( micrograd , makemore, nanogpt , etc.) and a decade-long obsession to simplify LLMs to ...",
+    "host_name": "www.linkedin.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.towardsdeeplearning.com/andrej-karpathy-just-built-an-entire-gpt-in-243-lines-of-python-7d66cfdfa301",
+    "name": "Andrej Karpathy Just Built an Entire GPT in 243 Lines of",
+    "snippet": "Feb 15, 2026 — 2020: micrograd (autograd engine); 2020: minGPT (PyTorch GPT); 2023: nanoGPT (production-grade training); 2024: llm . c (raw C/CUDA, no frameworks) ...",
+    "host_name": "www.towardsdeeplearning.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.klover.ai/andrej-karpathy-vibe-coding",
+    "name": "Andrej Karpathy Vibe Coding",
+    "snippet": "Jun 12, 2025 — Projects like llm . c and llama2.c, which provide LLM training and inference capabilities in pure C, further exemplify his commitment to ...",
+    "host_name": "www.klover.ai",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scouts.yutori.com/e3ce9045-3dd1-402d-a8f0-0261cd38fede",
+    "name": "Andrej Karpathy AI course updates",
+    "snippet": "I'm tracking Andrej Karpathy's AI /deep learning courses and adjacent releases that could signal new cohorts, curricula, or structured programs. Neural Networks: ...",
+    "host_name": "scouts.yutori.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://x.com/himanshustwts/status/2030492517343588361",
+    "name": "autoresearch + nanochat + nanoGPT + micrograd",
+    "snippet": "In the image, every dot is a complete LLM training run that lasts exactly 5 minutes. The agent works in an autonomous loop on a git feature ...",
+    "host_name": "x.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/intuitive-deep-learning/training-your-own-llm-using-nanogpt-37d50149fe38",
+    "name": "Training your own LLM using nanoGPT",
+    "snippet": "For this tutorial, we will use Andrej Karpathy's nanoGPT , but breaking it down step-by-step so that beginners can set up and easily replicate it ...",
+    "host_name": "medium.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://open.substack.com/pub/rsrini7/p/microgpt-technical-deep-dive",
+    "name": "microGPT — Technical Deep Dive - Srini",
+    "snippet": "It builds directly on Karpathy's lineage of educational projects : MicroGrad (scalar autograd, ~150 lines), makemore (character LMs), minGPT and nanoGPT (PyTorch ...",
+    "host_name": "open.substack.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://simonwillison.net/tags/andrej-karpathy",
+    "name": "Simon Willison on andrej-karpathy",
+    "snippet": "Andrej Karpathy's llm . c is an evolving 4,000 line C/CUDA implementation which can now train a GPT-2 model from scratch in 90 minutes against a 8X A100 80GB GPU ...",
+    "host_name": "simonwillison.net",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

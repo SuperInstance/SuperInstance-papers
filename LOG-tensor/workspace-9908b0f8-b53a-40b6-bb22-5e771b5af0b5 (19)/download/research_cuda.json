@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://cs231n.stanford.edu/2025/papers/text_file_840591734-final_report.pdf",
+    "name": "[PDF] Dynamic Sparse Voxel Attention for Efficient Transformers",
+    "snippet": "The general approach is to prune the token sequence by first selecting token pairs that are most likely to matter, then only compute attention on those. One ...",
+    "host_name": "cs231n.stanford.edu",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2505.17412v1",
+    "name": "Gigascale 3D Generation Made Easy with Spatial Sparse Attention",
+    "snippet": "Our key innovation is the Spatial Sparse Attention (SSA) mechanism, which greatly enhances the efficiency of Diffusion Transformer (DiT) ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2590198225002507",
+    "name": "MST: A Modified Sparse Transformer with depth-aware attention for multi",
+    "snippet": "In the context of autonomous driving, sparse transformers enable effective fusion of high-resolution camera imagery with sparse 3D LiDAR data by strategically ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/swiftvggt",
+    "name": "SwiftVGGT: Efficient Dense 3D Reconstruction - Emergent Mind",
+    "snippet": "SwiftVGGT is a scalable, training-free VGGT variant that reconstructs dense 3D scenes using one-shot alignment and block-sparse attention ...",
+    "host_name": "www.emergentmind.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/JIA-Lab-research/SparseTransformer",
+    "name": "SpTr: PyTorch Spatially Sparse Transformer Library - GitHub",
+    "snippet": "SpTr can be easily used in most current transformer-based 3D point cloud networks, with only several minor modifications. First, define the attention module ... Missing: geometric | Show results with: geometric",
+    "host_name": "github.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciopen.com/article/10.26599/CVM.2025.9450383",
+    "name": "Swin3D: A pretrained transformer backbone for 3D indoor scene",
+    "snippet": "We designed a 3D Swin Transformer as our backbone network, which enables efficient self-attention on sparse voxels with linear memory complexity.",
+    "host_name": "www.sciopen.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ieeexplore.ieee.org/document/10203294",
+    "name": "DSVT: Dynamic Sparse Voxel Transformer with Rotated Sets",
+    "snippet": "In this paper, we present Dynamic Sparse Voxel Transformer (DSVT), a single-stride window-based voxel Transformer backbone for outdoor 3D perception. In order ...",
+    "host_name": "ieeexplore.ieee.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://research.nvidia.com/publication/2023-07_efficient-transformer-inference-statically-structured-sparse-attention",
+    "name": "Efficient Transformer Inference with Statically Structured Sparse Attention",
+    "snippet": "We propose static, structured, sparse attention masks that split attention matrices into dense regions, skipping computations outside these regions. Missing: geometric CUDA",
+    "host_name": "research.nvidia.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvpr.thecvf.com/virtual/2023/poster/22844",
+    "name": "CVPR Poster DSVT: Dynamic Sparse Voxel Transformer With Rotated Sets",
+    "snippet": "To support effective downsampling and better encode geometric information, we also propose an attention-style 3D pooling module on sparse points, which is ...",
+    "host_name": "cvpr.thecvf.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://learnopencv.com/vggt-visual-geometry-grounded-transformer-3d-reconstruction",
+    "name": "VGGT for Dense 3D Reconstruction - Meta - LearnOpenCV",
+    "snippet": "VGGT (Visual Geometry Grounded Transformer) outperforms DUSt3R and MASt3R in multiple benchmarks achieving SOTA results. 3D Computer Vision, 3D ...",
+    "host_name": "learnopencv.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

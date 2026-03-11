@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/ACEsuit/mace",
+    "name": "MACE: Fast and accurate machine learning interatomic potentials",
+    "snippet": "MACE provides fast and accurate machine learning interatomic potentials with higher order equivariant message passing.",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2206.07697",
+    "name": "[PDF] MACE: Higher Order Equivariant Message Passing Neural Networks",
+    "snippet": "We show that MACE does not only outperform previous approaches in terms of accuracy but also does so while being significantly faster to train ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=YPpSngE-ZU",
+    "name": "MACE: Higher Order Equivariant Message Passing Neural Networks",
+    "snippet": "This work introduces MACE, a new equivariant MPNN model that uses higher order messages, and demonstrates that this leads to an improved learning law.",
+    "host_name": "openreview.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://iopscience.iop.org/article/10.1088/2632-2153/ad4a04",
+    "name": "Unifying O(3) equivariant neural networks design with tensor",
+    "snippet": "We incorporate a fusion block into pre-existing equivariant architectures (Cormorant and MACE), leading to improved performance with fewer ...",
+    "host_name": "iopscience.iop.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.metatensor.org/metatrain/latest/architectures/generated/mace.html",
+    "name": "MACE (Experimental) - Metatrain - Metatensor",
+    "snippet": "The architecture is a very thin wrapper around the official MACE implementation, which is hosted here. Arbitrary heads are added on top of MACE to predict an ...",
+    "host_name": "docs.metatensor.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s42256-024-00956-x",
+    "name": "The design space of E(3)-equivariant atom-centred interatomic potentials",
+    "snippet": "This rapid progress in machine learning interatomic potentials has produced a number of new architectures in just the past few years.",
+    "host_name": "www.nature.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/10.5555/3600270.3601100",
+    "name": "MACE: higher order equivariant message passing neural networks",
+    "snippet": "We introduce MACE, a new equivariant MPNN model that uses higher body order messages. In particular, we show that using four-body messages reduces the required ...",
+    "host_name": "dl.acm.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/401451683_MACE_Higher_Order_Equivariant_Message_Passing_Neural_Networks_for_Fast_and_Accurate_Force_Fields",
+    "name": "MACE: Higher Order Equivariant Message Passing Neural Networks",
+    "snippet": "Unlike prior methods that are tightly integrated with specific architectures, LES is implemented as a standalone library that can be combined ...",
+    "host_name": "www.researchgate.net",
+    "rank": 7,
+    "date": "Mar 5, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubs.aip.org/aip/jcp/article/159/4/044118/2904837/Evaluation-of-the-MACE-force-field-architecture",
+    "name": "Evaluation of the MACE force field architecture",
+    "snippet": "We show that MACE generally outperforms alternatives for a wide range of systems, from amorphous carbon, universal materials modeling, and general small ... INTRODUCTION · Many-body equivariant...",
+    "host_name": "pubs.aip.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/mace-neural-network-potential",
+    "name": "MACE Neural Network Potential - Emergent Mind",
+    "snippet": "MACE Neural Network Potentials are rotation-equivariant, message-passing force fields that embed atomic cluster expansion into a deep neural ...",
+    "host_name": "www.emergentmind.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://developer.nvidia.com/blog/whats-new-and-important-in-cuda-toolkit-13-0",
+    "name": "What's New and Important in CUDA Toolkit 13.0 | NVIDIA Technical Blog",
+    "snippet": "Crucially, the tile model maps naturally onto Tensor Cores. The compiler handles tile memory management and operation mapping, enabling ... Missing: 2024 | Show results with: 2024\nAug 6, 2025 — Crucially, the tile model maps naturally onto Tensor Cores. The compiler handles tile memory management and operation mapping, enabling ...",
+    "host_name": "developer.nvidia.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://developer.nvidia.com/blog/nvidia-cuda-13-1-powers-next-gen-gpu-programming-with-nvidia-cuda-tile-and-performance-gains",
+    "name": "NVIDIA CUDA 13.1 Powers Next-Gen GPU Programming with NVIDIA",
+    "snippet": "CUDA 13.1 introduces CUDA Tile, providing a tile-based programming model and Virtual ISA (CUDA Tile IR), along with cuTile Python DSL, ...\nDec 4, 2025 — The launch of NVIDIA CUDA Tile, our tile-based programming model for abstracting away specialized hardware, including tensor cores. Runtime API ...",
+    "host_name": "developer.nvidia.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://developer.nvidia.com/cuda",
+    "name": "CUDA Platform for Accelerated Computing | NVIDIA Developer",
+    "snippet": "NVIDIA CUDA Tile is the GPU programming model that simplifies the creation of optimized, tile-based kernels and targets portability for special purpose hardware ... Missing: 12.9 | Show results with: 12.9",
+    "host_name": "developer.nvidia.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/groups/comfyui/posts/816085581164144",
+    "name": "Cuda 13.0 upgrade issues with nunchaku - Facebook",
+    "snippet": "New features and enhancements include: Building foundations for tile-based programming Unified Arm support 🛠️ Updates for the latest ...",
+    "host_name": "www.facebook.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/intel/sycl-tla/blob/main/CHANGELOG.md",
+    "name": "CHANGELOG.md - intel/sycl-tla - GitHub",
+    "snippet": "Leverage all the new features such as CLC based tile scheduling, preferred cluster, and TMEM based double buffering of accumulators. Support stream-K load ...",
+    "host_name": "github.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://open.substack.com/pub/aidisruption/p/nvidia-cuda-receives-its-biggest?utm_campaign=post-expanded-share&utm_medium=web",
+    "name": "NVIDIA CUDA Receives Its Biggest Update Ever! - by Meng Li - Substack",
+    "snippet": "CUDA Tile is the core update of NVIDIA CUDA Toolkit 13.1. It is a tile-based programming model that enables writing algorithms at a higher level ...\nDec 7, 2025 — This Tile model shields the low-level details of calling specialized hardware like Tensor Cores, and Tile code will be compatible with future ...",
+    "host_name": "open.substack.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://developer.nvidia.com/blog/unlocking-tensor-core-performance-with-floating-point-emulation-in-cublas",
+    "name": "Unlocking Tensor Core Performance with Floating Point Emulation in",
+    "snippet": "This post explains cuBLAS capabilities in CUDA Toolkit 13.0 Update 2, including: Seamless access to Tensor Core performance through familiar and ... Missing: 2024 | Show results with: 2024\nOct 24, 2025 — The latest cuBLAS update in NVIDIA CUDA Toolkit 13.0 Update 2 introduces new APIs and implementations that significantly boost the performance ...",
+    "host_name": "developer.nvidia.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.techpowerup.com/news-tags/Tensor%20Cores",
+    "name": "News Posts matching 'Tensor Cores' | TechPowerUp",
+    "snippet": "CUDA Tile abstracts away tensor cores and their programming models so that code using CUDA Tile is compatible with current and future tensor ...",
+    "host_name": "www.techpowerup.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.nvidia.com/cutlass/4.2.1/CHANGELOG.html",
+    "name": "Changelog — NVIDIA CUTLASS Documentation",
+    "snippet": "x Ampere kernels to enable serial and parallel split-k for sparse tensor cores and new tiny tile sizes to better support LLM inferrence:.",
+    "host_name": "docs.nvidia.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=_vL8uz7kf0M",
+    "name": "CUDA 13.0—New Features and Beyond | NVIDIA GTC D.C. - YouTube",
+    "snippet": "The NVIDIA CUDA platform is the foundation of the GPU computing ecosystem. Every application and framework that uses the GPU does so through ... Missing: 12.9 tiling tensor cores 2024",
+    "host_name": "www.youtube.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

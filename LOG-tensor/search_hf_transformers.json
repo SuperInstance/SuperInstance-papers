@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://huggingface.co/learn/llm-course/en/chapter1/6",
+    "name": "Transformer Architectures - Hugging Face LLM Course",
+    "snippet": "Transformer Architectures. In the previous sections, we introduced the general Transformer architecture and explored how these models can solve various ...\nIn this section, we’re going to dive deeper into the three main architectural variants of Transformer models and understand when to use each one. Remember that most Transformer models use one of three architectures: encoder-only, decoder-only, or encoder-decoder (sequence-to-sequence).",
+    "host_name": "huggingface.co",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/huggingface/transformers",
+    "name": "Transformers: the model-definition framework for state-of-",
+    "snippet": "There are over 1M+ Transformers model checkpoints on the Hugging Face Hub you can use. Explore the Hub today to find a model and use Transformers to help you ...\nTransformers is more than a toolkit to use pretrained models, it's a community of projects built around it and the Hugging Face Hub. We want Transformers to enable developers, researchers, students, professors, engineers, and anyone else to build their dream projects.",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://huggingface.co/docs/transformers/en/index",
+    "name": "Transformers",
+    "snippet": "This comprehensive course covers everything from the fundamentals of how transformer models work to practical applications across various tasks. You'll learn ...",
+    "host_name": "huggingface.co",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://huggingface.co/learn/llm-course/chapter1/4",
+    "name": "How do Transformers work? - Hugging Face LLM Course",
+    "snippet": "In this section, we will take a look at the architecture of Transformer models and dive deeper into the concepts of attention, encoder-decoder architecture, and ...",
+    "host_name": "huggingface.co",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://towardsdatascience.com/beyond-classification-with-transformers-and-hugging-face-d38c75f574fb",
+    "name": "Beyond Classification With Transformers and Hugging Face",
+    "snippet": "Aug 10, 2020 — Go hands-on with Exploratory Model Analysis (EMA) on Transformers architectures , zooming into attentions, embeddings, and semi-supervised learning.",
+    "host_name": "towardsdatascience.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/data-science/cracking-open-the-hugging-face-transformers-library-350aa0ef0161",
+    "name": "Cracking Open the Hugging Face Transformers Library",
+    "snippet": "Here I will give a beginner-friendly guide to the Hugging Face Transformers library , which provides an easy and cost-free way to work with a wide variety of ...",
+    "host_name": "medium.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://discuss.huggingface.co/t/tutorial-implementing-transformer-from-scratch-a-step-by-step-guide/132158",
+    "name": "Tutorial: Implementing Transformer from Scratch - A Step-",
+    "snippet": "Dec 19, 2024 — This tutorial dives into key components like the encoder-decoder stack, attention mechanisms, and even the challenges of testing.",
+    "host_name": "discuss.huggingface.co",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0952197625030180",
+    "name": "A transformer-based approach for source code classification",
+    "snippet": "2026 — The model utilizes a custom byte-level BPE tokenizer, trained specifically on the CodeSearchNet corpus using Hugging Face's tokenizers library.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://deepwiki.com/huggingface/transformers/2-core-architecture",
+    "name": "Core Architecture | huggingface/transformers | DeepWiki",
+    "snippet": "The Core Architecture encompasses the foundational components that enable model loading, preprocessing, and inference across all 200+ model architectures in the Transformers library.",
+    "host_name": "deepwiki.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://bnxt.ai/blog/how-hugging-face-transformers-work-a-complete-technical-guide",
+    "name": "How Hugging Face Transformers Work: A Complete Technical Guide",
+    "snippet": "This technical guide provides an overview of how Hugging Face Transformers function, their architecture and ecosystem, and their use for AI application development services.",
+    "host_name": "bnxt.ai",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

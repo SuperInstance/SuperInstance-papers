@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://developer.nvidia.cn/blog/accelerating-se3-transformers-training-using-an-nvidia-open-source-model-implementation",
+    "name": "使用NVIDIA 开源模型实现加速SE(3)-Transformers 的培训",
+    "snippet": "24 Aug 2021 — 该实现对SE(3)-Transformers 的核心组件，即张量场网络（ TFN ）以及图形中的自我 注意机制 进行了优化。 考虑到 注意力 层超参数的某些条件得到满足 ...",
+    "host_name": "developer.nvidia.cn",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.csdn.net/qq_49786473/article/details/147042099",
+    "name": "SE (3) -Transformers：三维旋转- 平移等变注意力网络",
+    "snippet": "表明SE (3) 变换器 解决了当前SE (3) 等变 神经网络中滤波器受角度约束的问题。",
+    "host_name": "blog.csdn.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/deeplearning/comments/w157qj/question_regarding_se3_transformers/?tl=zh-hans",
+    "name": "关于SE3 变换器的问题: r/deeplearning",
+    "snippet": "我个人的看法是，每当 变换 （比如旋转、平移等等）包含信息时，对相应群（比如SO(3)）具有等变性的层是最佳选择，因为它们保留了这种 变换 信息。群不变层会丢弃这些 ...",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.csdn.net/CV_Autobot/article/details/132913919",
+    "name": "一文全览| 3年来Transformer是怎么在小目标领域大杀四方的？",
+    "snippet": "15 Sept 2023 — 动态编码器可以看作是完全自注意力的顺序分解近似，根据尺度、空间重要性和表示动态调整 注意力机制 。 Deformable DETR和Dynamic DETR都使用Deformable ...",
+    "host_name": "blog.csdn.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patents.google.com/patent/CN114667437A/zh",
+    "name": "CN114667437A - 用于自主驾驶应用的地图创建和定位",
+    "snippet": "例如，数据转换器206可以将一个或更多个输出204转换为以车辆1500原点作为原点的3D坐标系。 在框B310处，方法300包括将传感器数据的至少第二子集转换为3D坐标系以生成转换的 ...",
+    "host_name": "patents.google.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.zhihu.com/question/507251261",
+    "name": "有哪些GPS和Lidar SLAM融合的建图算法？",
+    "snippet": "19 Dec 2021 — 目前大部分Lidar SLAM算法都是融合了IMU，很少有融合GPS的，有哪些相关的资料和论文可以参考？",
+    "host_name": "www.zhihu.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/xiaoyuexing/StarrySky",
+    "name": "精选了千余项目，包括机器学习、深度学习、NLP、GNN",
+    "snippet": "lucidrains/x-transformers 一个简单但完整的全 注意力 转换器，具有来自各种论文的一组有希望的实验特征Full encoder / decoder 、Decoder-only (GPT-like) 、 ...",
+    "host_name": "github.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.scribd.com/document/889891454/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A01-3-3",
+    "name": "深度学习1 3 3 | PDF",
+    "snippet": "... 注意力 系数α 可以在像素级别动态滤除背景噪声、突出目标纹理。 接着为了在通道维度上对齐 注意力 系数α 与编码器第3 层输出特征，采用三线性插值将α 上采样至尺寸HE3×WE3× SE3 ...",
+    "host_name": "www.scribd.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.shenlanxueyuan.com/interview/detail/10246?categoryId=0",
+    "name": "面试题库-详情- 深蓝学院- 专注人工智能与机器人的学习平台",
+    "snippet": "自动驾驶 仿真中的真实性是怎样保证的？ 在视觉-惯性导航定位技术VINS中，怎样处理惯性测量单元IMU和图像之间的时间延迟？ 请对空间 注意力机制 进行举例说明。 请问如何 ...",
+    "host_name": "www.shenlanxueyuan.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.csdn.net/gitblog_00690/article/details/156182865",
+    "name": "3步搞定RFdiffusion中SE3Transformer导入错误的终极方案",
+    "snippet": "23 Dec 2025 — 该项目深入探讨了Transformer模型在处理中文数据上的挑战，并提出了相应的解决方案。Transformer-XL架构是该模型的重要组成部分，它通过循环 机制 解决了原版 ...",
+    "host_name": "blog.csdn.net",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

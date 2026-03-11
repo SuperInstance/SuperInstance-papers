@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2503.16996v2",
+    "name": "An Energy-Adaptive Elastic Equivariant Transformer Framework for Protein Structure Representation",
+    "snippet": "Mar 24, 2025 — Empirical results demonstrate that our model outperforms existing methods in structure-intensive tasks, such as inverse folding and binding site ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41467-025-61272-5",
+    "name": "SE(3)-equivariant ternary complex prediction towards target protein degradation",
+    "snippet": "2025 · Cited by 18 — Here we introduce DeepTernary, a novel end-to-end deep learning approach using an SE(3)-equivariant encoder and a query-based decoder to accurately and rapidly ...",
+    "host_name": "www.nature.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://edwag.github.io/se3iterative",
+    "name": "AlphaFold 2 and Iterative SE(3)-Transformers",
+    "snippet": "In the SE(3)-Transformer, everything transforms in an equivariant way, including all the features of the graph. This has some implications for how we define ...",
+    "host_name": "edwag.github.io",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/alphafold-series",
+    "name": "AlphaFold Series: Advances in Protein Structure Prediction",
+    "snippet": "Jan 23, 2026 — AlphaFold Series is a collection of deep-learning models that predict biomolecular structures using evolutionary, geometric, and physical ...",
+    "host_name": "www.emergentmind.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0006349525006101",
+    "name": "Predicting side chain conformations in folded proteins by AlphaFold: Perspective and challenges",
+    "snippet": "2025 — AlphaFold has revolutionized protein structure prediction by accurately creating 3D structures from just the amino acid sequence.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.blopig.com/blog/2025/09/is-attention-is-all-you-need-for-protein-folding",
+    "name": "Is attention all you need for protein folding?",
+    "snippet": "Sep 25, 2025 — SimpleFold is the latest in a series of models which use standard Transformers for structural protein tasks. Other models include AlphaFold3 ...",
+    "host_name": "www.blopig.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10089647",
+    "name": "3D-equivariant graph neural networks for protein model quality assessment - PMC - NIH",
+    "snippet": "2023 · Cited by 45 — We develop EnQA, a novel graph-based 3D-equivariant neural network method that is equivariant to rotation and translation of 3D objects to estimate the accuracy ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.science.org/doi/10.1126/science.abj8754",
+    "name": "Accurate prediction of protein structures and interactions using a three-track neural network",
+    "snippet": "2021 · Cited by 6092 — The three-track network produces structure predictions with accuracies approaching those of DeepMind in CASP14, enables the rapid solution of challenging x-ray ...",
+    "host_name": "www.science.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cap.csail.mit.edu/sites/default/files/research-pdfs/independent_se_3_equivariant_m.pdf",
+    "name": "INDEPENDENT SE(3)-EQUIVARIANT MODELS FOR END-TO-END RIGID PROTEIN DOCKING",
+    "snippet": "The recent Euclidean neural networks address this problem, being designed from geometric first-principles. They make use of. SE(3)- equivariant and invariant ...",
+    "host_name": "cap.csail.mit.edu",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/AlphaFold",
+    "name": "AlphaFold",
+    "snippet": "AlphaFold 3 was announced on 8 May 2024. It can predict the structure of complexes created by proteins with DNA, RNA, various ligands, and ions. ... The new ...",
+    "host_name": "en.wikipedia.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.cjig.cn/rc-pub/front/front-article/download/82452649/lowqualitypdf/%E9%9D%A2%E5%90%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91%E8%A1%A5%E5%85%A8%E7%AE%97%E6%B3%95%E7%BB%BC%E8%BF%B0.pdf",
+    "name": "面向深度学习的三维点云补全算法综述",
+    "snippet": "点云 （point cloud）作为目前 三维 数据最常用的表征. 方式，其结构清晰且读写方便，能精确表示物体形. 态，便捷物体的测量和分析，但难以准确描述物体的. 内部结构和纹理信息。 随 ... 25 pages",
+    "host_name": "www.cjig.cn",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researching.cn/ArticlePdf/m00002/2025/62/10/1000003.pdf",
+    "name": "基于深度学习的三维重建方法综述",
+    "snippet": "Cited by 2 — 点云 是 三维 视觉中常见的 三维几何 表示，它将物. 体的表面表示成一些无序的 三维 点 ... 成 点云 的 深度神经网络 （PointNet），该网络为对象分. 类、部件分割以及场景语义 ... 17 pages",
+    "host_name": "www.researching.cn",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://swarma.org/?p=50964",
+    "name": "几何深度学习读书会启动：破解自然法则，启发科学智能",
+    "snippet": "Jun 17, 2567 BE — 按照数据结构的不同， 几何深度学习 涵盖了集合学习、图学习、拓扑深度学习、群 等变神经网络 等内容。 ... 这是最早将具有对称性的图神经网络引入到 三维 物理系统 ...",
+    "host_name": "swarma.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zhuanlan.zhihu.com/p/1989453108783363368",
+    "name": "三维重建与定位：从几何优化到AI驱动的演进之路",
+    "snippet": "Dec 31, 2568 BE — 摘要： 三维 重建与视觉定位，作为计算机视觉的基石，其发展历程深刻反映了从依赖先验规则的“ 几何 艺术”到数据驱动的“ 深度 感知”，再到追求数学纯粹性与通用性 ...",
+    "host_name": "zhuanlan.zhihu.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.csdn.net/qq_45752541/article/details/157700464",
+    "name": "【前沿】2025年度三维视觉前沿趋势与十大进展（Mini3DV） 原创",
+    "snippet": "Feb 4, 2569 BE — 截至 2025 年， 三维 视觉方法已 深度 拥抱Transformer架构，初步确立了前馈式重建与生成的主流技术范式。这一范式实现了对互联网海量视频数据的端到端时空 三维 ...",
+    "host_name": "blog.csdn.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciengine.com/parse/pdf/1004-4213/55F5588453394F4E955403B7A91B488C.pdf",
+    "name": "基于邻域几何质心的深度学习点云配准（特邀）",
+    "snippet": "摘要： 三维点云 配准是实现多视角三维重建与复杂场景空间理解的关键技术，然而在重叠区域有限、. 局部遮挡显著及点云质量受扰等非理想条件下，现有方法仍面临配准精度与 ...",
+    "host_name": "www.sciengine.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.kaggle.com/code/duirixuanyan/2025-06-29-0228-qiu-2024-a-comprehensive",
+    "name": "2025.06.29 论文0228_Qiu - 2024 - A comprehensive",
+    "snippet": "Jun 29, 2568 BE — 本研究通过结合 点云 分割、配准、补全和表面重建中的各种算法，为低成本快速获取植物叶片表型信息提供了完整的解决方案。它可以从3D重建的 点云 中有效获取 ...",
+    "host_name": "www.kaggle.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patents.google.com/patent/CN117392424A/zh",
+    "name": "基于多几何双边缘注意力网络的三维点云分类方法",
+    "snippet": "本发明提供一种基于多 几何 双边缘注意力 网络 的 三维点云 分类方法，基于注意力机制构建多 几何 双边缘注意力 网络 。该 网络 具有多 几何 增强模块、双边缘注意力模块和通道注意力 ...",
+    "host_name": "patents.google.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.jcad.cn/cn/article/pdf/preview/10.3724/SP.J.1089.2024-00699.pdf",
+    "name": "动态点云压缩技术的研究发展与综述",
+    "snippet": "by 杨柏林 — 深度学习 通过 神经网络 将 点云 数据编码为隐含表. 示, 捕捉其高阶特性, 为压缩提供丰富的信息. 这. 些隐含表示经过量化后送入熵编码器进行无损压. 缩, 熵 ...",
+    "host_name": "www.jcad.cn",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciopen.com/local/article_pdf/10.13700/j.bh.1001-5965.2023.0686.pdf",
+    "name": "基于可学习图卷积的道路场景三维激光点云语义分割方法",
+    "snippet": "2025 — 摘要：针对现有自动驾驶系统中 三维 激光 点云 语义分割普遍存在的局部特征提取能力不. 足和难以捕捉全局上下文信息等问题，提出一种基于可 学习 图卷积的道路场景 三维 激光 点云 ... 11 pages",
+    "host_name": "www.sciopen.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2512.02020v1",
+    "name": "EfficientFlow: Efficient Equivariant Flow Policy Learning for Embodied AI",
+    "snippet": "The work Flow Policy (Zhang et al., 2025) introduced conditional Consistent Flow Matching (Yang et al., 2024b) to robotic manipulation.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://repository.library.northeastern.edu/files/neu:ms397f450/fulltext.pdf",
+    "name": "[PDF] Equivariant policy learning for robotic manipulation",
+    "snippet": "ABSTRACT. Recent advancements in machine learning for robotics have led to notable improvements, achieving tremendous progress in learning robotic ...",
+    "host_name": "repository.library.northeastern.edu",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://rai-inst.com/resources/papers/equivariant-diffusion-policy",
+    "name": "Equivariant Diffusion Policy - RAI Institute",
+    "snippet": "A novel diffusion policy learning method that leverages domain symmetries to obtain better sample efficiency and generalization in the denoising function. Missing: breakthrough | Show results with: breakthrough",
+    "host_name": "rai-inst.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/397780111_EqBot_Enhance_Robotic_Manipulation_Learning_via_Group_Equivariant_Canonicalization",
+    "name": "(PDF) Eq.Bot: Enhance Robotic Manipulation Learning via Group",
+    "snippet": "Our framework transforms observations into a canonical space, applies an existing policy, and maps the resulting actions back to the original ...\nGroup equivariant convolutional neural networks have been designed for a variety of geometric transformations from 2D and 3D rotation groups ...",
+    "host_name": "www.researchgate.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.science/hal-05220821/document",
+    "name": "[PDF] Robotic Manipulation via Imitation Learning: Taxonomy, Evolution",
+    "snippet": "Diffusion Policy [48] uses conditional diffusion models to generate continuous actions or trajectories, excelling at modeling multi-modal target ...\nThis survey focuses on the role of imitation learning within RMPs, providing a comprehensive analysis of key methodologies, benchmarks, and ...",
+    "host_name": "hal.science",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2025/poster/117411",
+    "name": "Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising",
+    "snippet": "Diffusion models, such as diffusion policy, have achieved state-of-the-art results in robotic manipulation by imitating expert demonstrations. Missing: breakthrough equivariant",
+    "host_name": "neurips.cc",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/pdf/07cb7556fc7417f5d10fbfe2071b1e05490d1336.pdf",
+    "name": "[PDF] EQUACT: AN SE(3)-EQUIVARIANT MULTI-TASK  - OpenReview",
+    "snippet": "Multi-task manipulation policy often builds on transformer's ability to jointly process language instructions and 3D observations in a shared embedding ...",
+    "host_name": "openreview.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2511.15194v1",
+    "name": "Eq.Bot: Enhance Robotic Manipulation Learning via Group",
+    "snippet": "ET-seed [tie2024seed] adopts a trajectory-level equivariant diffusion policy, modeling actions directly on the transformation manifold.\nAn innovative breakthrough occurred with Group Equivariant Convolutional Neural Networks ... equivariant diffusion policy, modeling actions ...",
+    "host_name": "arxiv.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/EmbodiedMind/VLA-Diffusion-Policy-Robotics",
+    "name": "A Survey on Diffusion Policy for Robotic Manipulation - GitHub",
+    "snippet": "Since 2022, research on diffusion policies for robotic manipulation has demonstrated consistently superior performance compared to traditional methodologies ... Missing: breakthrough | Show results with: breakthrough",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full",
+    "name": "Diffusion models for robotic manipulation: a survey",
+    "snippet": "This survey provides a comprehensive review of state-of-the-art diffusion models in robotic manipulation, including grasp learning, trajectory planning, and ... Missing: breakthrough | Show results with: breakthrough\nDiffusion generative models have demonstrated remarkable success in visual domains such as image and video generation. They have also recently emerged as a ... Missing: breakthrough | Show results with: breakthrough",
+    "host_name": "www.frontiersin.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

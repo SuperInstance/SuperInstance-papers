@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.mathematik.uni-muenchen.de/~lundholm/clifford.pdf",
+    "name": "[PDF] Clifford algebra, geometric algebra, and applications",
+    "snippet": "These are lecture notes for a course on the theory of Clifford algebras, with special emphasis on their wide range of applications in mathematics and physics.",
+    "host_name": "www.mathematik.uni-muenchen.de",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/math/0605280",
+    "name": "[PDF] Geometric (Clifford) algebra and its applications - arXiv",
+    "snippet": "i.e. any rotor can be written as (minus) the exponential of a bivector. The minus sign is only required in the cases (0, 0), (1, 0), (0, 1), (1, 1), (1, 2) ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://books.google.co.id/books?id=z8_TBwAAQBAJ",
+    "name": "Applications of Geometric Algebra in Computer Science and Engineering",
+    "snippet": "Geometric algebra has established itself as a powerful and valuable mathematical tool for solving problems in computer science, engineering, physics, ...",
+    "host_name": "books.google.co.id",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.jstage.jst.go.jp/article/sicejl/51/4/51_338/_pdf",
+    "name": "Introduction to Clifford's Geometric Algebra - J-Stage",
+    "snippet": "Geometric algebra was initiated by W.K. Clifford over. 130 years ago. It unifies all branches of physics, and has found rich applications in robotics, ...",
+    "host_name": "www.jstage.jst.go.jp",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Geometric_algebra",
+    "name": "Geometric algebra - Wikipedia",
+    "snippet": "In mathematics, a geometric algebra (also known as a Clifford algebra) is an algebra that can represent and manipulate geometrical objects such as vectors.",
+    "host_name": "en.wikipedia.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://drscotthawley.github.io/blog/posts/2021-10-15-geometric-algebra.html",
+    "name": "Learning Some Geometric/Clifford Algebra – Scott H. Hawley",
+    "snippet": "It's not yet clear to me how bivectors are to be represented in (computational) linear algebra: square, antisymmetric matrices, perhaps? The ...",
+    "host_name": "drscotthawley.github.io",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.sorbonne-universite.fr/hal-00920544v2/document",
+    "name": "[PDF] Geometric algebra for vector fields analysis and visualization",
+    "snippet": "Basically, Clif- ford algebra for Rn is the minimal enlargement of Rn to an associative algebra with unit capturing the metric, geometric and ...",
+    "host_name": "hal.sorbonne-universite.fr",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/228955605_A_brief_introduction_to_Clifford_algebra",
+    "name": "(PDF) A brief introduction to Clifford algebra - ResearchGate",
+    "snippet": "Clifford algebra is a powerful mathematical tool that offers a natural and direct way to model geometric objects and their transformations.",
+    "host_name": "www.researchgate.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.academia.edu/143502281/Clifford_algebra_geometric_algebra_and_applications",
+    "name": "Clifford algebra, geometric algebra, and applications - Academia.edu",
+    "snippet": "These are lecture notes for a course on the theory of Clifford algebras, with special emphasis on their wide range of applications in mathematics and ...",
+    "host_name": "www.academia.edu",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=sHjXccDAIzw",
+    "name": "Tutorial 1 on Clifford's Geometric Algebra - YouTube",
+    "snippet": "Part 1: Historical development, Clifford algebra of Euclidean plane R^2. By E. Hitzer. University of Nagoya, Japan. 20 Jan. 2012.",
+    "host_name": "www.youtube.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

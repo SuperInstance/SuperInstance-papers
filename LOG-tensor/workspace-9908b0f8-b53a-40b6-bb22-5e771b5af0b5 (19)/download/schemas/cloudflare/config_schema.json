@@ -1,0 +1,619 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://superinstance.ai/schemas/cloudflare/config_schema.json",
+  "title": "SuperInstance.AI Cloudflare Configuration Schema",
+  "description": "Complete configuration for deploying SuperInstance.AI to Cloudflare with BYOC (Bring Your Own Cloudflare) architecture",
+  "type": "object",
+  "required": ["project", "account", "workers", "storage", "auth", "apis"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "project": {
+      "type": "object",
+      "required": ["name", "version", "description", "domain"],
+      "properties": {
+        "name": { "type": "string", "const": "SuperInstance.AI" },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "description": { "type": "string" },
+        "domain": {
+          "type": "object",
+          "required": ["production", "staging"],
+          "properties": {
+            "production": { "type": "string", "format": "hostname" },
+            "staging": { "type": "string", "format": "hostname" },
+            "workersSubdomain": { "type": "string" }
+          }
+        },
+        "repository": { "type": "string", "format": "uri" },
+        "license": { "type": "string" }
+      }
+    },
+    "account": {
+      "type": "object",
+      "required": ["mode"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["portal", "user_cloudflare", "local"],
+          "description": "portal=free tier on our account, user_cloudflare=BYOC, local=self-hosted"
+        },
+        "accountId": { "type": "string" },
+        "apiToken": { "type": "string" },
+        "plan": {
+          "type": "string",
+          "enum": ["free", "workers_paid", "standard", "enterprise"],
+          "default": "free"
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "workersPerDay": { "type": "integer", "default": 100000 },
+            "workerCpuMs": { "type": "integer", "default": 10 },
+            "kvStorageGb": { "type": "number", "default": 1 },
+            "r2StorageGb": { "type": "number", "default": 10 },
+            "d1StorageGb": { "type": "number", "default": 5 },
+            "vectorizeDimensions": { "type": "integer", "default": 1536 },
+            "vectorizeVectors": { "type": "integer", "default": 5000000 }
+          }
+        }
+      }
+    },
+    "workers": {
+      "$ref": "#/definitions/WorkersConfig"
+    },
+    "storage": {
+      "$ref": "#/definitions/StorageConfig"
+    },
+    "auth": {
+      "$ref": "#/definitions/AuthConfig"
+    },
+    "apis": {
+      "$ref": "#/definitions/APIsConfig"
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "smpAgents": { "type": "boolean", "default": true },
+        "vectorRag": { "type": "boolean", "default": true },
+        "conditionalGeometry": { "type": "boolean", "default": true },
+        "foldableTensors": { "type": "boolean", "default": true },
+        "channelDepth": { "type": "boolean", "default": true },
+        "coldLogicChecking": { "type": "boolean", "default": true },
+        "oneClickDownload": { "type": "boolean", "default": true },
+        "localLlmSupport": { "type": "boolean", "default": true }
+      }
+    }
+  },
+  "definitions": {
+    "WorkersConfig": {
+      "type": "object",
+      "required": ["main", "agents"],
+      "properties": {
+        "main": {
+          "type": "object",
+          "required": ["name", "entry", "compatibilityDate"],
+          "properties": {
+            "name": { "type": "string", "default": "superinstance-main" },
+            "entry": { "type": "string", "default": "src/index.ts" },
+            "compatibilityDate": { "type": "string", "format": "date" },
+            "compatibilityFlags": {
+              "type": "array",
+              "items": { "type": "string" },
+              "default": ["nodejs_compat"]
+            },
+            "routes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "pattern": { "type": "string" },
+                  "zoneId": { "type": "string" }
+                }
+              }
+            },
+            "bindings": {
+              "type": "object",
+              "properties": {
+                "kvNamespaces": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "binding": { "type": "string" },
+                      "id": { "type": "string" }
+                    }
+                  }
+                },
+                "r2Buckets": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "binding": { "type": "string" },
+                      "bucketName": { "type": "string" }
+                    }
+                  }
+                },
+                "d1Databases": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "binding": { "type": "string" },
+                      "databaseName": { "type": "string" },
+                      "databaseId": { "type": "string" }
+                    }
+                  }
+                },
+                "vectorize": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "binding": { "type": "string" },
+                      "indexName": { "type": "string" }
+                    }
+                  }
+                },
+                "secrets": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "vars": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "agents": {
+          "type": "object",
+          "properties": {
+            "smpbot": {
+              "$ref": "#/definitions/WorkerAgentConfig"
+            },
+            "coldLogic": {
+              "$ref": "#/definitions/WorkerAgentConfig"
+            },
+            "conditionalGeometry": {
+              "$ref": "#/definitions/WorkerAgentConfig"
+            },
+            "tensorFold": {
+              "$ref": "#/definitions/WorkerAgentConfig"
+            },
+            "channelDepth": {
+              "$ref": "#/definitions/WorkerAgentConfig"
+            }
+          }
+        },
+        "durableObjects": {
+          "type": "object",
+          "properties": {
+            "smpCell": {
+              "type": "object",
+              "required": ["className", "scriptName"],
+              "properties": {
+                "className": { "type": "string" },
+                "scriptName": { "type": "string" }
+              }
+            },
+            "sessionManager": {
+              "type": "object",
+              "required": ["className", "scriptName"],
+              "properties": {
+                "className": { "type": "string" },
+                "scriptName": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "WorkerAgentConfig": {
+      "type": "object",
+      "required": ["name", "entry"],
+      "properties": {
+        "name": { "type": "string" },
+        "entry": { "type": "string" },
+        "enabled": { "type": "boolean", "default": true },
+        "timeoutMs": { "type": "integer", "default": 30000 },
+        "memoryLimitMb": { "type": "integer", "default": 128 },
+        "concurrency": { "type": "integer", "default": 1 },
+        "triggers": {
+          "type": "object",
+          "properties": {
+            "http": {
+              "type": "object",
+              "properties": {
+                "route": { "type": "string" },
+                "methods": {
+                  "type": "array",
+                  "items": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"] }
+                }
+              }
+            },
+            "cron": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "queue": {
+              "type": "object",
+              "properties": {
+                "binding": { "type": "string" },
+                "maxBatchSize": { "type": "integer", "default": 10 },
+                "maxWaitMs": { "type": "integer", "default": 5000 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "StorageConfig": {
+      "type": "object",
+      "required": ["kv", "r2", "d1", "vectorize"],
+      "properties": {
+        "kv": {
+          "type": "object",
+          "properties": {
+            "sessions": {
+              "type": "object",
+              "required": ["title"],
+              "properties": {
+                "title": { "type": "string" },
+                "id": { "type": "string" },
+                "description": { "type": "string", "default": "User sessions and auth tokens" }
+              }
+            },
+            "cache": {
+              "type": "object",
+              "required": ["title"],
+              "properties": {
+                "title": { "type": "string" },
+                "id": { "type": "string" },
+                "description": { "type": "string", "default": "API response cache" }
+              }
+            },
+            "configs": {
+              "type": "object",
+              "required": ["title"],
+              "properties": {
+                "title": { "type": "string" },
+                "id": { "type": "string" },
+                "description": { "type": "string", "default": "User configurations and preferences" }
+              }
+            }
+          }
+        },
+        "r2": {
+          "type": "object",
+          "properties": {
+            "models": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": { "type": "string" },
+                "description": { "type": "string", "default": "Model weights and checkpoints" },
+                "publicAccess": { "type": "boolean", "default": false }
+              }
+            },
+            "documents": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": { "type": "string" },
+                "description": { "type": "string", "default": "RAG documents and embeddings" },
+                "publicAccess": { "type": "boolean", "default": false }
+              }
+            },
+            "exports": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": { "type": "string" },
+                "description": { "type": "string", "default": "User exports and downloads" },
+                "publicAccess": { "type": "boolean", "default": true }
+              }
+            }
+          }
+        },
+        "d1": {
+          "type": "object",
+          "required": ["main"],
+          "properties": {
+            "main": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": { "type": "string" },
+                "id": { "type": "string" },
+                "description": { "type": "string" },
+                "migrations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "version": { "type": "integer" },
+                      "file": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "vectorize": {
+          "type": "object",
+          "required": ["main"],
+          "properties": {
+            "main": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": { "type": "string" },
+                "dimensions": { "type": "integer", "default": 1536 },
+                "metric": {
+                  "type": "string",
+                  "enum": ["cosine", "euclidean", "dot-product"],
+                  "default": "cosine"
+                },
+                "description": { "type": "string", "default": "RAG memory vectors" }
+              }
+            },
+            "embeddings": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": { "type": "string" },
+                "dimensions": { "type": "integer", "default": 1536 },
+                "metric": { "type": "string", "default": "cosine" },
+                "description": { "type": "string", "default": "Document embeddings for search" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "AuthConfig": {
+      "type": "object",
+      "required": ["providers", "session"],
+      "properties": {
+        "providers": {
+          "type": "object",
+          "required": ["cloudflare"],
+          "properties": {
+            "cloudflare": {
+              "type": "object",
+              "required": ["enabled"],
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "clientId": { "type": "string" },
+                "clientSecret": { "type": "string" },
+                "redirectUri": { "type": "string", "format": "uri" },
+                "scopes": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "default": ["workers:write", "workers:read", "storage:read", "storage:write"]
+                }
+              }
+            },
+            "github": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": false },
+                "clientId": { "type": "string" },
+                "clientSecret": { "type": "string" }
+              }
+            },
+            "google": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": false },
+                "clientId": { "type": "string" },
+                "clientSecret": { "type": "string" }
+              }
+            },
+            "email": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true }
+              }
+            }
+          }
+        },
+        "session": {
+          "type": "object",
+          "properties": {
+            "ttlSeconds": { "type": "integer", "default": 604800 },
+            "refreshTtlSeconds": { "type": "integer", "default": 2592000 },
+            "cookieName": { "type": "string", "default": "si_session" },
+            "secureCookie": { "type": "boolean", "default": true },
+            "sameSite": {
+              "type": "string",
+              "enum": ["strict", "lax", "none"],
+              "default": "lax"
+            }
+          }
+        },
+        "rbac": {
+          "type": "object",
+          "properties": {
+            "roles": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "permissions": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              },
+              "default": [
+                { "name": "admin", "permissions": ["*"] },
+                { "name": "user", "permissions": ["read", "write", "execute"] },
+                { "name": "guest", "permissions": ["read"] }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "APIsConfig": {
+      "type": "object",
+      "required": ["openaiCompatible"],
+      "properties": {
+        "openaiCompatible": {
+          "type": "object",
+          "required": ["enabled"],
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "defaultProvider": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "default": "openai" },
+                "baseUrl": { "type": "string", "format": "uri" },
+                "defaultModel": { "type": "string", "default": "gpt-4-turbo" }
+              }
+            },
+            "providers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "baseUrl"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "baseUrl": { "type": "string", "format": "uri" },
+                  "models": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "supportsStreaming": { "type": "boolean", "default": true },
+                  "supportsFunctionCalling": { "type": "boolean", "default": true },
+                  "supportsVision": { "type": "boolean", "default": false },
+                  "maxTokens": { "type": "integer" },
+                  "rateLimit": {
+                    "type": "object",
+                    "properties": {
+                      "requestsPerMinute": { "type": "integer" },
+                      "tokensPerMinute": { "type": "integer" }
+                    }
+                  }
+                }
+              },
+              "default": [
+                {
+                  "name": "openai",
+                  "baseUrl": "https://api.openai.com/v1",
+                  "models": ["gpt-4-turbo", "gpt-4", "gpt-3.5-turbo"],
+                  "supportsStreaming": true,
+                  "supportsFunctionCalling": true,
+                  "supportsVision": true
+                },
+                {
+                  "name": "anthropic",
+                  "baseUrl": "https://api.anthropic.com/v1",
+                  "models": ["claude-3-opus", "claude-3-sonnet", "claude-3-haiku"],
+                  "supportsStreaming": true,
+                  "supportsFunctionCalling": true,
+                  "supportsVision": true
+                },
+                {
+                  "name": "deepseek",
+                  "baseUrl": "https://api.deepseek.com/v1",
+                  "models": ["deepseek-chat", "deepseek-reasoner"],
+                  "supportsStreaming": true,
+                  "supportsFunctionCalling": true,
+                  "supportsVision": false
+                },
+                {
+                  "name": "deepinfra",
+                  "baseUrl": "https://api.deepinfra.com/v1/openai",
+                  "models": ["meta-llama/Llama-3-70b-chat-hf", "mistralai/Mixtral-8x7B-Instruct-v0.1"],
+                  "supportsStreaming": true,
+                  "supportsFunctionCalling": true,
+                  "supportsVision": false
+                },
+                {
+                  "name": "local",
+                  "baseUrl": "http://localhost:11434/v1",
+                  "models": ["llama3", "mistral", "codellama"],
+                  "supportsStreaming": true,
+                  "supportsFunctionCalling": false,
+                  "supportsVision": false
+                }
+              ]
+            },
+            "userKeys": {
+              "type": "object",
+              "properties": {
+                "allowCustomKeys": { "type": "boolean", "default": true },
+                "allowCustomBaseUrl": { "type": "boolean", "default": true },
+                "encryptKeys": { "type": "boolean", "default": true },
+                "keyValidation": { "type": "boolean", "default": true }
+              }
+            }
+          }
+        },
+        "builtIn": {
+          "type": "object",
+          "properties": {
+            "conditionalGeometry": {
+              "type": "object",
+              "properties": {
+                "endpoint": { "type": "string", "default": "/api/conditional-geometry" },
+                "requiresAuth": { "type": "boolean", "default": true }
+              }
+            },
+            "foldableTensor": {
+              "type": "object",
+              "properties": {
+                "endpoint": { "type": "string", "default": "/api/foldable-tensor" },
+                "requiresAuth": { "type": "boolean", "default": true }
+              }
+            },
+            "channelDepth": {
+              "type": "object",
+              "properties": {
+                "endpoint": { "type": "string", "default": "/api/channel-depth" },
+                "requiresAuth": { "type": "boolean", "default": true }
+              }
+            },
+            "smp": {
+              "type": "object",
+              "properties": {
+                "endpoint": { "type": "string", "default": "/api/smp" },
+                "requiresAuth": { "type": "boolean", "default": true }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "$schema": "https://superinstance.ai/schemas/cloudflare/config_schema.json",
+      "project": {
+        "name": "SuperInstance.AI",
+        "version": "1.0.0",
+        "description": "POLLN-RTT Round 5: LOG-Tensor Foundation with BYOC architecture",
+        "domain": {
+          "production": "superinstance.ai",
+          "staging": "staging.superinstance.ai",
+          "workersSubdomain": "superinstance"
+        }
+      },
+      "account": {
+        "mode": "portal",
+        "plan": "free"
+      },
+      "features": {
+        "smpAgents": true,
+        "vectorRag": true,
+        "oneClickDownload": true,
+        "localLlmSupport": true
+      }
+    }
+  ]
+}

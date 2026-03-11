@@ -1,0 +1,347 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://polln-rtt.org/schemas/conditional_geometry_schema.json",
+  "title": "Conditional Geometry Framework",
+  "description": "Schema for the Conditional Geometry transformation system: Ψ: (X, P, C) → (X', P', C'). This framework models geometric spaces, probability distributions, and constraints with their mutual transformations.",
+  "type": "object",
+  "definitions": {
+    "Coordinate": {
+      "type": "object",
+      "description": "A point in geometric space with coordinates",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the coordinate" },
+        "values": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 1,
+          "description": "Coordinate values (can be n-dimensional)"
+        },
+        "dimension": { "type": "integer", "minimum": 1, "description": "Spatial dimension" }
+      },
+      "required": ["id", "values", "dimension"]
+    },
+    "Manifold": {
+      "type": "object",
+      "description": "A manifold structure in geometric space",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["euclidean", "spherical", "hyperbolic", "toroidal", "projective", "custom"],
+          "description": "Type of manifold"
+        },
+        "dimension": { "type": "integer", "minimum": 1 },
+        "metric": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["euclidean", "riemannian", "pseudo-riemannian", "finsler"] },
+            "components": {
+              "type": "array",
+              "items": { "type": "array", "items": { "type": "number" } },
+              "description": "Metric tensor components g_ij"
+            }
+          }
+        },
+        "charts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "domain": { "type": "string" },
+              "coordinates": { "type": "string" },
+              "transitionFunctions": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      },
+      "required": ["id", "type", "dimension"]
+    },
+    "GeometricSpace": {
+      "type": "object",
+      "description": "The geometric space X containing coordinates and manifold structure",
+      "properties": {
+        "id": { "type": "string" },
+        "coordinates": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Coordinate" },
+          "description": "Collection of coordinate points"
+        },
+        "manifold": { "$ref": "#/definitions/Manifold" },
+        "topology": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["discrete", "indiscrete", "metric", "hausdorff", "compact", "connected"] },
+            "openSets": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } }
+          }
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "isCompact": { "type": "boolean" },
+            "isConnected": { "type": "boolean" },
+            "isOrientable": { "type": "boolean" },
+            "curvature": { "type": "number" }
+          }
+        }
+      },
+      "required": ["id", "coordinates", "manifold"]
+    },
+    "ProbabilityDistribution": {
+      "type": "object",
+      "description": "Probability distribution P over the geometric space",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["discrete", "continuous", "mixed", "conditional"],
+          "description": "Type of probability distribution"
+        },
+        "support": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs of points in support"
+        },
+        "probabilities": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 },
+          "description": "Map from coordinate ID to probability"
+        },
+        "density": {
+          "type": "object",
+          "properties": {
+            "function": { "type": "string", "description": "PDF/PMF expression" },
+            "parameters": { "type": "object", "additionalProperties": { "type": "number" } }
+          }
+        },
+        "statistics": {
+          "type": "object",
+          "properties": {
+            "mean": { "type": "array", "items": { "type": "number" } },
+            "variance": { "type": "number" },
+            "entropy": { "type": "number" },
+            "mode": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "normalization": { "type": "boolean", "description": "Whether distribution is normalized" }
+      },
+      "required": ["id", "type", "probabilities"]
+    },
+    "Constraint": {
+      "type": "object",
+      "description": "A single constraint on the geometric system",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["equality", "inequality", "boundary", "topological", "probabilistic"],
+          "description": "Type of constraint"
+        },
+        "expression": { "type": "string", "description": "Mathematical expression of the constraint" },
+        "domain": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs of elements constrained"
+        },
+        "penalty": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["hard", "soft", "barrier"] },
+            "weight": { "type": "number", "minimum": 0 },
+            "function": { "type": "string" }
+          }
+        },
+        "active": { "type": "boolean", "default": true }
+      },
+      "required": ["id", "type", "expression"]
+    },
+    "ConditionSet": {
+      "type": "object",
+      "description": "The condition set C containing constraints and contextual information",
+      "properties": {
+        "id": { "type": "string" },
+        "constraints": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Constraint" }
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "environment": { "type": "string" },
+            "timeStep": { "type": "integer" },
+            "externalFactors": { "type": "object", "additionalProperties": {} }
+          }
+        },
+        "feasibility": {
+          "type": "object",
+          "properties": {
+            "isFeasible": { "type": "boolean" },
+            "feasibleRegion": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "required": ["id", "constraints"]
+    },
+    "MontyHallFoldOperation": {
+      "type": "object",
+      "description": "Monty Hall Fold operation: T_fold(p)_i = p_i + p_opened",
+      "properties": {
+        "id": { "type": "string" },
+        "openedIndex": {
+          "type": "integer",
+          "description": "Index of the opened door/state"
+        },
+        "openedProbability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability mass of the opened state"
+        },
+        "foldedProbabilities": {
+          "type": "object",
+          "additionalProperties": { "type": "number" },
+          "description": "Resulting probabilities after fold operation"
+        },
+        "strategy": {
+          "type": "string",
+          "enum": ["stay", "switch", "random"],
+          "description": "Strategy applied after fold"
+        },
+        "expectedGain": {
+          "type": "number",
+          "description": "Expected gain from the strategy"
+        }
+      },
+      "required": ["id", "openedIndex", "openedProbability", "foldedProbabilities"]
+    },
+    "Transformation": {
+      "type": "object",
+      "description": "The transformation Ψ: (X, P, C) → (X', P', C')",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["fold", "unfold", "rotate", "scale", "translate", "project", "conditional", "composite"]
+        },
+        "inputSpace": { "$ref": "#/definitions/GeometricSpace" },
+        "inputProbability": { "$ref": "#/definitions/ProbabilityDistribution" },
+        "inputConditions": { "$ref": "#/definitions/ConditionSet" },
+        "outputSpace": { "$ref": "#/definitions/GeometricSpace" },
+        "outputProbability": { "$ref": "#/definitions/ProbabilityDistribution" },
+        "outputConditions": { "$ref": "#/definitions/ConditionSet" },
+        "montyHallFold": { "$ref": "#/definitions/MontyHallFoldOperation" },
+        "jacobian": {
+          "type": "object",
+          "description": "Jacobian matrix for differential analysis",
+          "properties": {
+            "matrix": {
+              "type": "array",
+              "items": { "type": "array", "items": { "type": "number" } }
+            },
+            "determinant": { "type": "number" }
+          }
+        },
+        "isInvertible": { "type": "boolean" },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "preservesMeasure": { "type": "boolean" },
+            "preservesTopology": { "type": "boolean" },
+            "isDiffeomorphism": { "type": "boolean" }
+          }
+        }
+      },
+      "required": ["id", "type"]
+    }
+  },
+  "properties": {
+    "schemaVersion": { "type": "string", "default": "1.0.0" },
+    "id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "geometricSpace": { "$ref": "#/definitions/GeometricSpace" },
+    "probabilityDistribution": { "$ref": "#/definitions/ProbabilityDistribution" },
+    "conditions": { "$ref": "#/definitions/ConditionSet" },
+    "transformation": { "$ref": "#/definitions/Transformation" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "required": ["schemaVersion", "id", "geometricSpace", "probabilityDistribution", "conditions"],
+  "additionalProperties": false,
+  "typescriptInterfaces": {
+    "description": "TypeScript interfaces for the schema",
+    "code": "// TypeScript Interfaces for Conditional Geometry Framework\n\nexport interface Coordinate {\n  id: string;\n  values: number[];\n  dimension: number;\n}\n\nexport interface Manifold {\n  id: string;\n  type: 'euclidean' | 'spherical' | 'hyperbolic' | 'toroidal' | 'projective' | 'custom';\n  dimension: number;\n  metric?: {\n    type: 'euclidean' | 'riemannian' | 'pseudo-riemannian' | 'finsler';\n    components?: number[][];\n  };\n  charts?: Array<{\n    domain: string;\n    coordinates: string;\n    transitionFunctions?: string[];\n  }>;\n}\n\nexport interface GeometricSpace {\n  id: string;\n  coordinates: Coordinate[];\n  manifold: Manifold;\n  topology?: {\n    type: 'discrete' | 'indiscrete' | 'metric' | 'hausdorff' | 'compact' | 'connected';\n    openSets?: string[][];\n  };\n  properties?: {\n    isCompact?: boolean;\n    isConnected?: boolean;\n    isOrientable?: boolean;\n    curvature?: number;\n  };\n}\n\nexport interface ProbabilityDistribution {\n  id: string;\n  type: 'discrete' | 'continuous' | 'mixed' | 'conditional';\n  support?: string[];\n  probabilities: Record<string, number>;\n  density?: {\n    function: string;\n    parameters: Record<string, number>;\n  };\n  statistics?: {\n    mean?: number[];\n    variance?: number;\n    entropy?: number;\n    mode?: string[];\n  };\n  normalization?: boolean;\n}\n\nexport interface Constraint {\n  id: string;\n  type: 'equality' | 'inequality' | 'boundary' | 'topological' | 'probabilistic';\n  expression: string;\n  domain?: string[];\n  penalty?: {\n    type: 'hard' | 'soft' | 'barrier';\n    weight: number;\n    function?: string;\n  };\n  active?: boolean;\n}\n\nexport interface ConditionSet {\n  id: string;\n  constraints: Constraint[];\n  context?: {\n    environment?: string;\n    timeStep?: number;\n    externalFactors?: Record<string, unknown>;\n  };\n  feasibility?: {\n    isFeasible: boolean;\n    feasibleRegion?: string[];\n  };\n}\n\nexport interface MontyHallFoldOperation {\n  id: string;\n  openedIndex: number;\n  openedProbability: number;\n  foldedProbabilities: Record<string, number>;\n  strategy?: 'stay' | 'switch' | 'random';\n  expectedGain?: number;\n}\n\nexport interface Transformation {\n  id: string;\n  type: 'fold' | 'unfold' | 'rotate' | 'scale' | 'translate' | 'project' | 'conditional' | 'composite';\n  inputSpace?: GeometricSpace;\n  inputProbability?: ProbabilityDistribution;\n  inputConditions?: ConditionSet;\n  outputSpace?: GeometricSpace;\n  outputProbability?: ProbabilityDistribution;\n  outputConditions?: ConditionSet;\n  montyHallFold?: MontyHallFoldOperation;\n  jacobian?: {\n    matrix: number[][];\n    determinant: number;\n  };\n  isInvertible?: boolean;\n  properties?: {\n    preservesMeasure?: boolean;\n    preservesTopology?: boolean;\n    isDiffeomorphism?: boolean;\n  };\n}\n\nexport interface ConditionalGeometrySchema {\n  schemaVersion: string;\n  id: string;\n  timestamp?: string;\n  geometricSpace: GeometricSpace;\n  probabilityDistribution: ProbabilityDistribution;\n  conditions: ConditionSet;\n  transformation?: Transformation;\n  metadata?: {\n    author?: string;\n    description?: string;\n    tags?: string[];\n  };\n}\n"
+  },
+  "examples": [
+    {
+      "description": "Monty Hall Problem with Fold Operation",
+      "instance": {
+        "schemaVersion": "1.0.0",
+        "id": "monty-hall-example-001",
+        "timestamp": "2025-01-15T10:30:00Z",
+        "geometricSpace": {
+          "id": "door-space",
+          "coordinates": [
+            { "id": "door-1", "values": [1], "dimension": 1 },
+            { "id": "door-2", "values": [2], "dimension": 1 },
+            { "id": "door-3", "values": [3], "dimension": 1 }
+          ],
+          "manifold": { "id": "discrete-m", "type": "euclidean", "dimension": 1 },
+          "topology": { "type": "discrete", "openSets": [["door-1"], ["door-2"], ["door-3"]] }
+        },
+        "probabilityDistribution": {
+          "id": "initial-prob",
+          "type": "discrete",
+          "support": ["door-1", "door-2", "door-3"],
+          "probabilities": { "door-1": 0.333, "door-2": 0.333, "door-3": 0.334 },
+          "statistics": { "entropy": 1.585 }
+        },
+        "conditions": {
+          "id": "game-rules",
+          "constraints": [
+            { "id": "c1", "type": "probabilistic", "expression": "sum(p) = 1", "domain": ["door-1", "door-2", "door-3"] },
+            { "id": "c2", "type": "inequality", "expression": "p_i >= 0", "domain": ["door-1", "door-2", "door-3"] }
+          ]
+        },
+        "transformation": {
+          "id": "monty-hall-fold",
+          "type": "fold",
+          "montyHallFold": {
+            "id": "fold-001",
+            "openedIndex": 2,
+            "openedProbability": 0.333,
+            "foldedProbabilities": { "door-1": 0.333, "door-3": 0.667 },
+            "strategy": "switch",
+            "expectedGain": 0.334
+          }
+        }
+      }
+    }
+  ],
+  "validationRules": [
+    {
+      "rule": "probability-sum",
+      "description": "Total probability must sum to 1 (within tolerance)",
+      "expression": "abs(sum(probabilities.values()) - 1.0) < 1e-6"
+    },
+    {
+      "rule": "dimension-consistency",
+      "description": "All coordinates must have consistent dimension with manifold",
+      "expression": "forall(coord in coordinates, coord.dimension == manifold.dimension)"
+    },
+    {
+      "rule": "support-subset",
+      "description": "Support must be subset of coordinate IDs",
+      "expression": "support ⊆ coordinates.ids"
+    },
+    {
+      "rule": "monty-hall-fold-validity",
+      "description": "Folded probabilities must sum to 1 and opened probability distributed correctly",
+      "expression": "sum(foldedProbabilities.values()) == 1 && openedProbability == 1 - sum(foldedProbabilities_before)"
+    }
+  ]
+}

@@ -12,7 +12,7 @@ import {
   MultipleTestCorrector,
   ConfidenceInterval,
   NormalityTest,
-} from '../stats';
+} from '../stats.js';
 
 /**
  * Utility class for statistical operations
@@ -355,12 +355,12 @@ function multipleComparisonExample(): void {
 
   // Bonferroni
   const bonferroni = MultipleTestCorrector.bonferroni(pValues, 0.05);
-  console.log(`\nBonferroni correction: ${bonferroni.filter((r) => r === 1).length} significant`);
+  console.log(`\nBonferroni correction: ${bonferroni.filter((r: number) => r === 1).length} significant`);
   console.log(
     '  Significant optimizations:',
     bonferroni
-      .map((r, i) => (r === 1 ? i + 1 : -1))
-      .filter((i) => i > 0)
+      .map((r: number, i: number) => (r === 1 ? i + 1 : -1))
+      .filter((i: number) => i > 0)
       .join(', ')
   );
 

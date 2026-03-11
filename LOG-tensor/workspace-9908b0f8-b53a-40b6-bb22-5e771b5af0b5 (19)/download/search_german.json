@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://link.springer.com/article/10.1007/s10462-024-10741-2",
+    "name": "Rotation invariance and equivariance in 3D deep learning",
+    "snippet": "2024 · Cited by 21 — Deep neural networks (DNNs) in 3D scenes show a strong capability of extracting high-level semantic features and significantly promote ...",
+    "host_name": "link.springer.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/2105.13926",
+    "name": "Geometric Deep Learning and Equivariant Neural Networks",
+    "snippet": "2021 · Cited by 140 — We survey the mathematical foundations of geometric deep learning, focusing on group equivariant and gauge equivariant neural networks .",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/381258144_Rotation_invariance_and_equivariance_in_3D_deep_learning_a_survey",
+    "name": "Rotation invariance and equivariance in 3D deep learning",
+    "snippet": "7 Jun 2024 — Deep neural networks (DNNs) in 3D scenes show a strong capability of extracting high-level semantic features and significantly promote ...",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ieeexplore.ieee.org/iel8/34/4359286/11098662.pdf",
+    "name": "and Permutation-equivariant Quantum Graph Neural",
+    "snippet": "2025 · Cited by 7 — An rotation and permutation- equivariant module for 3D graphs is constructed, which enforces symmetry constraints on our models and extracts geometric ... 15 pages",
+    "host_name": "ieeexplore.ieee.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://academic.oup.com/bioinformatics/article/39/1/btad030/6986970",
+    "name": "3D-equivariant graph neural networks for protein model",
+    "snippet": "2023 · Cited by 45 — We develop EnQA, a novel graph-based 3D-equivariant neural network method that is equivariant to rotation and translation of 3D objects to estimate the ...",
+    "host_name": "academic.oup.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://research.chalmers.se/publication/544317/file/544317_Fulltext.pdf",
+    "name": "Geometric deep learning and equivariant neural networks",
+    "snippet": "2023 · Cited by 139 — Abstract. We survey the mathematical foundations of geometric deep learning , focusing on group equivariant and gauge equivariant neural networks . 59 pages",
+    "host_name": "research.chalmers.se",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123650528.pdf",
+    "name": "3D-Rotation-Equivariant Quaternion Neural Networks",
+    "snippet": "Cited by 80 — This paper proposes a set of rules to revise various neural networks for 3D point cloud processing to rotation -equivariant quater- nion neural networks (REQNNs) ... 17 pages",
+    "host_name": "www.ecva.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.pair.toronto.edu/csc2547-w21/assets/slides/CSC2547-W21-3DDL-CNNs_on_Surfaces_using_Rotation-Equivariant_Features-ShichenLu.pdf",
+    "name": "CSC2457 3D & Geometric Deep Learning",
+    "snippet": "2021 — Rotating the input also affects (i.e. rotates ) the output in the same way. • Considering vector features, a rotation of the input will rotate the. 28 pages",
+    "host_name": "www.pair.toronto.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/10.5555/3666122.3669032",
+    "name": "A new perspective on building efficient and expressive 3D",
+    "snippet": "2023 · Cited by 66 — Geometric deep learning enables the encoding of physical symmetries in modeling 3D objects. ... Rotation -and translation-equivariant neural ...",
+    "host_name": "dl.acm.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/1911.09040",
+    "name": "3D-Rotation-Equivariant Quaternion Neural Networks",
+    "snippet": "2019 · Cited by 80 — This paper proposes a set of rules to revise various neural networks for 3D point cloud processing to rotation -equivariant quaternion neural networks (REQNNs).",
+    "host_name": "arxiv.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

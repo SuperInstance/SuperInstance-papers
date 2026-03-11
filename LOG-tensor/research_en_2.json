@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2403.07536",
+    "name": "LaB-GATr: geometric algebra transformers for large",
+    "snippet": "2024 · Cited by 17 — We propose LaB-GATr , a transfomer neural network with geometric tokenisation that can effectively learn with large-scale (bio-)medical surface and volume ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0167865526000383",
+    "name": "Geometric Algebra Transformer with Spectral-Spatial",
+    "snippet": "2026 — This article introduces Hyperspectral Geometric Algebra Transformer (H- GATr ), an approach that addresses these limitations by using a Geometric ... Read more",
+    "host_name": "www.sciencedirect.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/Qualcomm-AI-research/geometric-algebra-transformer",
+    "name": "Qualcomm-AI-research/geometric-algebra-transformer",
+    "snippet": "In this paper we introduce the Geometric Algebra Transformer ( GATr ), a general-purpose architecture for geometric data. GATr represents inputs, outputs, and ... Read more",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://papers.miccai.org/miccai-2024/440-Paper2377.html",
+    "name": "LaB-GATr: geometric algebra transformers for large",
+    "snippet": "We propose LaB-GATr , a transfomer neural network with geometric tokenisation that can effectively learn with large-scale (bio-)medical surface and volume meshes ... Read more",
+    "host_name": "papers.miccai.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2024/poster/94796",
+    "name": "Lorentz-Equivariant Geometric Algebra Transformers for",
+    "snippet": "9 Dec 2024 — In this work, we introduce the Lorentz Geometric Algebra Transformer (L- GATr ), a new general-purpose network architecture for high-energy ... Read more",
+    "host_name": "neurips.cc",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=M7r2CO4tJC",
+    "name": "Geometric Algebra Transformer",
+    "snippet": "Cited by 108 — In this paper we introduce the Geometric Algebra Transformer ( GATr ), a general-purpose architecture for geometric data. GATr represents inputs, outputs, and ... Read more",
+    "host_name": "openreview.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v238/haan24a.html",
+    "name": "Choosing a Geometric Algebra for Equivariant Transformers",
+    "snippet": "2024 · Cited by 13 — The Geometric Algebra Transformer ( GATr ) is a versatile architecture for geometric deep learning based on projective geometric algebra . Read more",
+    "host_name": "proceedings.mlr.press",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.repository.cam.ac.uk/items/256885f0-490e-4239-9bd2-6b1352c2526d",
+    "name": "Machine Learning with Geometric Algebra: Multivectors for",
+    "snippet": "2025 — In this paper we introduce the Geometric Algebra Transformer ( GATr ), a general-purpose architecture for geometric data. GATr represents ... Read more",
+    "host_name": "www.repository.cam.ac.uk",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/data-science/graph-geometric-ml-in-2024-where-we-are-and-whats-next-part-i-theory-architectures-3af5d38376e1",
+    "name": "Graph & Geometric ML in 2024: Where We Are and What's",
+    "snippet": "➡️ Coincidently, Brehmer et al. formulated Geometric Algebra Transformer ( GATr ), a scalable Transformer architecture that harnesses the benefits ... Read more",
+    "host_name": "medium.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/371162884_Geometric_Algebra_Transformers",
+    "name": "(PDF) Geometric Algebra Transformer",
+    "snippet": "28 May 2023 — In this paper we introduce the Geometric Algebra Transformer ( GATr ), a general-purpose architecture for geometric data. GATr represents inputs, ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

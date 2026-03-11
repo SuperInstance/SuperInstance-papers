@@ -1,0 +1,8 @@
+{
+  "theoretical_analysis": "Error calling DeepSeek API: 401 Client Error: Unauthorized for url: https://api.deepseek.com/v1/chat/completions",
+  "architecture_proposal": "Error calling DeepSeek API: 401 Client Error: Unauthorized for url: https://api.deepseek.com/v1/chat/completions",
+  "mathematical_proofs": "Error calling DeepSeek API: 401 Client Error: Unauthorized for url: https://api.deepseek.com/v1/chat/completions",
+  "research_hypotheses": "Error calling DeepSeek API: 401 Client Error: Unauthorized for url: https://api.deepseek.com/v1/chat/completions",
+  "code_generation": "Error calling DeepSeek API: 401 Client Error: Unauthorized for url: https://api.deepseek.com/v1/chat/completions",
+  "comparative_analysis": "Error calling DeepSeek API: 401 Client Error: Unauthorized for url: https://api.deepseek.com/v1/chat/completions"
+}

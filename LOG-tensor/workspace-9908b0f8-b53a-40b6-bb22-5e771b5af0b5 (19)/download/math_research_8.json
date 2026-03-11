@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://uvagedl.github.io/GroupConvLectureNotes.pdf",
+    "name": "[PDF] An Introduction to Equivariant Convolutional Neural Networks for Continuous Groups",
+    "snippet": "5 Steerable group convolutions. We have now introduced all mathematical preliminaries for building steerable group convolutional neural networks. We will ...",
+    "host_name": "uvagedl.github.io",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2301.03019",
+    "name": "[PDF] Equivariant and Steerable Neural Networks - arXiv",
+    "snippet": "These networks rely on the mathematical convolution operation to achieve higher efficiency by parameter sharing, as well as equivariance to ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://maurice-weiler.gitlab.io/blog_post/cnn-book_3_steerable_cnns",
+    "name": "Equivariant CNNs & G-steerable kernels",
+    "snippet": "Group equivariant CNNs rely on G-steerable convolution kernels. This blog post gives an intuition about such kernels and discusses their ...",
+    "host_name": "maurice-weiler.gitlab.io",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/data-science/a-gentle-introduction-to-steerable-neural-networks-part-2-56dfc256b690",
+    "name": "A gentle introduction to Steerable Neural Networks (part 2)",
+    "snippet": "We want our CNN layer to be equivariant to a group of transformations, G, which represents rotations by angle theta within [0,2π) (SO network).",
+    "host_name": "medium.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=rJQKYt5ll",
+    "name": "Steerable CNNs - OpenReview",
+    "snippet": "In this paper we present Steerable Convolutional Neural Networks, an efficient and flexible class of equivariant convolutional networks.",
+    "host_name": "openreview.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/maxxxzdn/clifford-group-equivariant-cnns",
+    "name": "Clifford-Steerable Convolutional Neural Networks [ICML'24]",
+    "snippet": "We present Clifford-Steerable Convolutional Neural Networks (CS-CNNs), a novel class of E ( p , q ) -equivariant CNNs. CS-CNNs process multivector fields on ...",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/DL2/Geometric_deep_learning/tutorial2_steerable_cnns.html",
+    "name": "GDL - Steerable CNNs — UvA DL Notebooks v1.2 documentation",
+    "snippet": "In particular, the previously defined Fourier transform allowed us to build a steerable CNN which is equivalent to a Group-Convolutional Neural Network (GCNN) ...",
+    "host_name": "uvadlc-notebooks.readthedocs.io",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://towardsdatascience.com/a-gentle-introduction-to-steerable-neural-networks-part-1-32323d95b03f",
+    "name": "A gentle introduction to Steerable Neural Networks (part 1)",
+    "snippet": "This tutorial will present an introduction to Steerable Neural Networks (S-CNNs), trying to convey an intuitive understanding of the mathematical concepts ...",
+    "host_name": "towardsdatascience.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pure.uva.nl/ws/files/54677304/NeurIPS_2019_general_e2_equivariant_steerable_cnns_Paper.pdf",
+    "name": "[PDF] General E(2)-Equivariant Steerable CNNs - UvA-DARE (Digital Academic Repository)",
+    "snippet": "In this work we devise a general framework for convolutional networks which are equivariant under the Euclidean group E(2), that is, under isometries of the ...",
+    "host_name": "pure.uva.nl",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scispace.com/pdf/3d-steerable-cnns-learning-rotationally-equivariant-features-fav2ipjbnj.pdf",
+    "name": "[PDF] 3D steerable CNNs: learning rotationally equivariant features in volumetric data - SciSpace",
+    "snippet": "In this paper, the convolution kernel is modeled as a tensor field satisfying an equivariance constraint, from which steerable filters arise automatically. We ...",
+    "host_name": "scispace.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

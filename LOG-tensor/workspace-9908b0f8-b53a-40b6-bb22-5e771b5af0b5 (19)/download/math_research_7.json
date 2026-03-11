@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2511.18417",
+    "name": "[2511.18417] Categorical Equivariant Deep Learning",
+    "snippet": "2025 · Cited by 3 — Formulating linear and nonlinear layers in the categorical setup , we prove the equivariant universal approximation theorem in the general ... Read more\nWe develop a theory of category-equivariant neural networks (CENNs) that unifies group/groupoid-equivariant networks, poset/lattice-equivariant networks, graph and sheaf neural networks.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=7TBP8k7TLFA",
+    "name": "Universal Approximation Theorem for Equivariant Maps by",
+    "snippet": "Cited by 23 — This work studies the question of universal approximation with neural networks under general symmetries . For this purpose, the authors first leverage ... Read more\nThis paper provides a unified method to obtain universal approximation theorems for equivariant maps by CNNs in various settings. As its significant advantage, we can handle non-linear equivariant maps between infinite-dimensional spaces for non-compact groups.",
+    "host_name": "openreview.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/equivariant-universal-approximation-theorem",
+    "name": "Equivariant Universal Approximation Theorem",
+    "snippet": "30 Nov 2025 — It formulates data and symmetries via topological categories, feature functors, and Radon measures, using convolutional layers and nonpolynomial ... Read more\nThe Equivariant Universal Approximation Theorem generalizes classical universal approximation results to the setting where neural networks are required to respect symmetries encoded by equivariance under categorical, group-theoretic, or combinatorial structures.",
+    "host_name": "www.emergentmind.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2025/poster/117724",
+    "name": "On Universality Classes of Equivariant Networks",
+    "snippet": "5 Dec 2025 — In this work, we investigate the approximation power of equivariant neural networks beyond separation constraints. We show that separation power ... Read more",
+    "host_name": "neurips.cc",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12541325",
+    "name": "The principles behind equivariant neural networks for physics",
+    "snippet": "2025 · Cited by 6 — Similarly to how symmetries are reflected in quantum mechanics, the theory of equivariant neural networks is based on group representation ... Read more",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PRXQuantum.5.020328",
+    "name": "Theory for Equivariant Quantum Neural Networks",
+    "snippet": "2024 · Cited by 178 — A comprehensive theoretical framework to design equivariant quantum neural networks (EQNNs) for essentially any relevant symmetry group . Read more\nIn this work, we import these ideas to the quantum realm by presenting a comprehensive theoretical framework to design equivariant quantum neural networks (EQNNs) for essentially any relevant symmetry group.",
+    "host_name": "link.aps.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eliot-tron.github.io/files/presentation_Eliot_Tron_Pierre-Yves_Lagrave_17min.pdf",
+    "name": "Equivariant Neural Networks and Differential Invariants",
+    "snippet": "Cited by 10 — What are symmetries ? Definition ( Symmetry Group ). A Lie group G is the symmetry group of a PDEs system when if f is a solution, then its transform fg by the ... Read more",
+    "host_name": "eliot-tron.github.io",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2511.18417v1",
+    "name": "Category-Equivariant Neural Networks and Universal",
+    "snippet": "23 Nov 2025 — Equivariance is a guiding principle in modern machine learning : models should respect the structural symmetries of data. Read more",
+    "host_name": "arxiv.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v162/wang22aa/wang22aa.pdf",
+    "name": "Approximately Equivariant Networks for Imperfectly Symmetric",
+    "snippet": "2022 · Cited by 135 — Incorporating symmetry as an inductive bias into neural network architecture has led to improve- ments in generalization, data efficiency, and phys-. Read more",
+    "host_name": "proceedings.mlr.press",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.alphaxiv.org/overview/2511.18417v1",
+    "name": "Categorical Equivariant Deep Learning: Category-Equivariant",
+    "snippet": "A unified mathematical framework for deep learning, called Category-Equivariant Neural Networks (CENNs), is presented to encompass diverse data symmetries beyond group actions using category theory.",
+    "host_name": "www.alphaxiv.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

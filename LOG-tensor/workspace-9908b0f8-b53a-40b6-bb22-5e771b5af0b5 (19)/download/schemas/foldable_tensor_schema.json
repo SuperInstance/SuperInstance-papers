@@ -1,0 +1,384 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://polln-rtt.org/schemas/foldable_tensor_schema.json",
+  "title": "Foldable Tensor Schema",
+  "description": "Schema for Foldable Tensors F = (F_flat, C, P, K). A tensor structure that can be folded/unfolded along crease patterns with permutation operations and blockchain-like assembly keys.",
+  "type": "object",
+  "definitions": {
+    "TensorShape": {
+      "type": "object",
+      "description": "Shape specification for a tensor",
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1 },
+          "description": "Size of each dimension"
+        },
+        "rank": { "type": "integer", "minimum": 0, "description": "Number of dimensions (tensor order)" },
+        "totalElements": { "type": "integer", "minimum": 0, "description": "Total number of elements" }
+      },
+      "required": ["dimensions", "rank", "totalElements"]
+    },
+    "FlattenedRepresentation": {
+      "type": "object",
+      "description": "F_flat: Flattened 2D representation of a higher-order tensor",
+      "properties": {
+        "id": { "type": "string" },
+        "originalShape": { "$ref": "#/definitions/TensorShape" },
+        "flattenedShape": {
+          "type": "object",
+          "properties": {
+            "rows": { "type": "integer", "minimum": 1 },
+            "cols": { "type": "integer", "minimum": 1 }
+          },
+          "required": ["rows", "cols"]
+        },
+        "data": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Flattened tensor data in row-major order"
+        },
+        "sparsity": {
+          "type": "object",
+          "properties": {
+            "isSparse": { "type": "boolean" },
+            "nnz": { "type": "integer", "description": "Number of non-zero elements" },
+            "format": { "type": "string", "enum": ["dense", "coo", "csr", "csc", "block-sparse"] }
+          }
+        },
+        "storageOrder": {
+          "type": "string",
+          "enum": ["row-major", "column-major", "custom"],
+          "default": "row-major"
+        }
+      },
+      "required": ["id", "originalShape", "flattenedShape", "data"]
+    },
+    "CreasePattern": {
+      "type": "object",
+      "description": "C: Crease pattern defining the topology of fold boundaries",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["mountain", "valley", "mixed", "flat"],
+          "description": "Type of crease pattern"
+        },
+        "creases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "indices": {
+                "type": "array",
+                "items": { "type": "integer" },
+                "description": "Indices along which to fold"
+              },
+              "foldAngle": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180,
+                "description": "Fold angle in degrees"
+              },
+              "foldDirection": {
+                "type": "string",
+                "enum": ["mountain", "valley"],
+                "description": "Direction of fold"
+              },
+              "foldOrder": { "type": "integer", "description": "Order in folding sequence" }
+            },
+            "required": ["id", "indices", "foldAngle"]
+          }
+        },
+        "topology": {
+          "type": "object",
+          "description": "Topological structure of crease pattern",
+          "properties": {
+            "eulerCharacteristic": { "type": "integer" },
+            "genus": { "type": "integer", "minimum": 0 },
+            "boundaryComponents": { "type": "integer", "minimum": 0 },
+            "vertices": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "coordinates": { "type": "array", "items": { "type": "number" } },
+                  "creaseDegree": { "type": "integer", "description": "Number of creases meeting at vertex" }
+                }
+              }
+            },
+            "faces": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "boundaryCreases": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            }
+          }
+        },
+        "isFlatFoldable": { "type": "boolean", "description": "Whether pattern can fold flat" },
+        "maekawaTheorem": {
+          "type": "object",
+          "description": "Maekawa's theorem verification for flat-foldable vertices",
+          "properties": {
+            "satisfied": { "type": "boolean" },
+            "mountainCount": { "type": "integer" },
+            "valleyCount": { "type": "integer" }
+          }
+        }
+      },
+      "required": ["id", "creases"]
+    },
+    "PermutationOperation": {
+      "type": "object",
+      "description": "A single permutation operation",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["swap", "cycle", "transposition", "rotation", "reflection", "custom"]
+        },
+        "cycleNotation": { "type": "string", "description": "Permutation in cycle notation, e.g., (1 3 2)" },
+        "affectedIndices": { "type": "array", "items": { "type": "integer" } },
+        "sign": { "type": "integer", "enum": [1, -1], "description": "Permutation sign (parity)" },
+        "order": { "type": "integer", "description": "Order of permutation (smallest k where σ^k = identity)" }
+      },
+      "required": ["id", "type", "affectedIndices"]
+    },
+    "PermutationGroup": {
+      "type": "object",
+      "description": "P: Permutation group operations for folding/unfolding",
+      "properties": {
+        "id": { "type": "string" },
+        "degree": { "type": "integer", "description": "Degree n of symmetric group S_n" },
+        "generators": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/PermutationOperation" },
+          "description": "Generating set for the permutation group"
+        },
+        "elements": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/PermutationOperation" },
+          "description": "All elements of the group"
+        },
+        "subgroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "generators": { "type": "array", "items": { "type": "string" } },
+              "order": { "type": "integer" },
+              "isNormal": { "type": "boolean" }
+            }
+          }
+        },
+        "composition": {
+          "type": "object",
+          "description": "Multiplication table or composition rules",
+          "properties": {
+            "table": {
+              "type": "array",
+              "items": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "orbitStructure": {
+          "type": "object",
+          "properties": {
+            "orbits": { "type": "array", "items": { "type": "array", "items": { "type": "integer" } } },
+            "numOrbits": { "type": "integer" }
+          }
+        }
+      },
+      "required": ["id", "degree", "generators"]
+    },
+    "AssemblyKey": {
+      "type": "object",
+      "description": "K: Blockchain-like hash key for tensor assembly verification",
+      "properties": {
+        "id": { "type": "string" },
+        "hash": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$",
+          "description": "SHA-256 hash of the assembly"
+        },
+        "previousHash": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$",
+          "description": "Hash of previous state (for chain linkage)"
+        },
+        "merkleRoot": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$",
+          "description": "Merkle root of tensor chunks"
+        },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "nonce": { "type": "integer", "description": "Nonce for proof-of-work if applicable" },
+        "chunkHashes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "chunkId": { "type": "string" },
+              "hash": { "type": "string" },
+              "range": {
+                "type": "object",
+                "properties": {
+                  "start": { "type": "integer" },
+                  "end": { "type": "integer" }
+                }
+              }
+            }
+          }
+        },
+        "signature": {
+          "type": "object",
+          "properties": {
+            "algorithm": { "type": "string", "enum": ["ed25519", "ecdsa", "rsa"] },
+            "publicKey": { "type": "string" },
+            "signatureValue": { "type": "string" }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "version": { "type": "string" },
+            "creator": { "type": "string" },
+            "description": { "type": "string" }
+          }
+        }
+      },
+      "required": ["id", "hash", "timestamp"]
+    },
+    "FoldOperation": {
+      "type": "object",
+      "description": "Operation to fold the tensor",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["fold", "unfold", "refold"] },
+        "alongDimension": { "type": "integer" },
+        "creaseId": { "type": "string", "description": "Reference to crease in pattern" },
+        "permutationId": { "type": "string", "description": "Reference to permutation to apply" },
+        "inputTensor": { "type": "string", "description": "ID of input tensor state" },
+        "outputTensor": { "type": "string", "description": "ID of output tensor state" },
+        "keyBefore": { "type": "string", "description": "Assembly key before operation" },
+        "keyAfter": { "type": "string", "description": "Assembly key after operation" }
+      },
+      "required": ["id", "type"]
+    },
+    "FoldableTensor": {
+      "type": "object",
+      "description": "Complete Foldable Tensor F = (F_flat, C, P, K)",
+      "properties": {
+        "flattenedRepresentation": { "$ref": "#/definitions/FlattenedRepresentation" },
+        "creasePattern": { "$ref": "#/definitions/CreasePattern" },
+        "permutationGroup": { "$ref": "#/definitions/PermutationGroup" },
+        "assemblyKey": { "$ref": "#/definitions/AssemblyKey" },
+        "foldHistory": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FoldOperation" }
+        },
+        "currentState": {
+          "type": "object",
+          "properties": {
+            "isFolded": { "type": "boolean" },
+            "foldDepth": { "type": "integer" },
+            "activeCreases": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "required": ["flattenedRepresentation", "creasePattern", "permutationGroup", "assemblyKey"]
+    }
+  },
+  "properties": {
+    "schemaVersion": { "type": "string", "default": "1.0.0" },
+    "id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "foldableTensor": { "$ref": "#/definitions/FoldableTensor" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "required": ["schemaVersion", "id", "foldableTensor"],
+  "additionalProperties": false,
+  "typescriptInterfaces": {
+    "description": "TypeScript interfaces for the Foldable Tensor schema",
+    "code": "// TypeScript Interfaces for Foldable Tensor\n\nexport interface TensorShape {\n  dimensions: number[];\n  rank: number;\n  totalElements: number;\n}\n\nexport interface FlattenedRepresentation {\n  id: string;\n  originalShape: TensorShape;\n  flattenedShape: { rows: number; cols: number };\n  data: number[];\n  sparsity?: {\n    isSparse: boolean;\n    nnz?: number;\n    format?: 'dense' | 'coo' | 'csr' | 'csc' | 'block-sparse';\n  };\n  storageOrder?: 'row-major' | 'column-major' | 'custom';\n}\n\nexport interface Crease {\n  id: string;\n  indices: number[];\n  foldAngle: number;\n  foldDirection?: 'mountain' | 'valley';\n  foldOrder?: number;\n}\n\nexport interface CreasePattern {\n  id: string;\n  type: 'mountain' | 'valley' | 'mixed' | 'flat';\n  creases: Crease[];\n  topology?: {\n    eulerCharacteristic?: number;\n    genus?: number;\n    boundaryComponents?: number;\n    vertices?: Array<{\n      id: string;\n      coordinates: number[];\n      creaseDegree: number;\n    }>;\n    faces?: Array<{\n      id: string;\n      boundaryCreases: string[];\n    }>;\n  };\n  isFlatFoldable?: boolean;\n  maekawaTheorem?: {\n    satisfied: boolean;\n    mountainCount: number;\n    valleyCount: number;\n  };\n}\n\nexport interface PermutationOperation {\n  id: string;\n  type: 'swap' | 'cycle' | 'transposition' | 'rotation' | 'reflection' | 'custom';\n  cycleNotation?: string;\n  affectedIndices: number[];\n  sign?: 1 | -1;\n  order?: number;\n}\n\nexport interface PermutationGroup {\n  id: string;\n  degree: number;\n  generators: PermutationOperation[];\n  elements?: PermutationOperation[];\n  subgroups?: Array<{\n    id: string;\n    generators: string[];\n    order: number;\n    isNormal: boolean;\n  }>;\n  composition?: {\n    table: string[][];\n  };\n  orbitStructure?: {\n    orbits: number[][];\n    numOrbits: number;\n  };\n}\n\nexport interface AssemblyKey {\n  id: string;\n  hash: string;\n  previousHash?: string;\n  merkleRoot?: string;\n  timestamp: string;\n  nonce?: number;\n  chunkHashes?: Array<{\n    chunkId: string;\n    hash: string;\n    range?: { start: number; end: number };\n  }>;\n  signature?: {\n    algorithm: 'ed25519' | 'ecdsa' | 'rsa';\n    publicKey: string;\n    signatureValue: string;\n  };\n  metadata?: {\n    version?: string;\n    creator?: string;\n    description?: string;\n  };\n}\n\nexport interface FoldOperation {\n  id: string;\n  type: 'fold' | 'unfold' | 'refold';\n  alongDimension?: number;\n  creaseId?: string;\n  permutationId?: string;\n  inputTensor?: string;\n  outputTensor?: string;\n  keyBefore?: string;\n  keyAfter?: string;\n}\n\nexport interface FoldableTensor {\n  flattenedRepresentation: FlattenedRepresentation;\n  creasePattern: CreasePattern;\n  permutationGroup: PermutationGroup;\n  assemblyKey: AssemblyKey;\n  foldHistory?: FoldOperation[];\n  currentState?: {\n    isFolded: boolean;\n    foldDepth: number;\n    activeCreases: string[];\n  };\n}\n\nexport interface FoldableTensorSchema {\n  schemaVersion: string;\n  id: string;\n  timestamp?: string;\n  foldableTensor: FoldableTensor;\n  metadata?: {\n    author?: string;\n    description?: string;\n    tags?: string[];\n  };\n}\n"
+  },
+  "examples": [
+    {
+      "description": "3x3 Matrix Foldable Tensor",
+      "instance": {
+        "schemaVersion": "1.0.0",
+        "id": "foldable-tensor-001",
+        "timestamp": "2025-01-15T10:30:00Z",
+        "foldableTensor": {
+          "flattenedRepresentation": {
+            "id": "flat-001",
+            "originalShape": { "dimensions": [3, 3], "rank": 2, "totalElements": 9 },
+            "flattenedShape": { "rows": 3, "cols": 3 },
+            "data": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            "storageOrder": "row-major"
+          },
+          "creasePattern": {
+            "id": "crease-001",
+            "type": "mixed",
+            "creases": [
+              { "id": "c1", "indices": [1], "foldAngle": 90, "foldDirection": "mountain", "foldOrder": 1 },
+              { "id": "c2", "indices": [0], "foldAngle": -90, "foldDirection": "valley", "foldOrder": 2 }
+            ],
+            "isFlatFoldable": true
+          },
+          "permutationGroup": {
+            "id": "perm-001",
+            "degree": 9,
+            "generators": [
+              { "id": "g1", "type": "swap", "affectedIndices": [0, 2], "sign": -1, "order": 2 },
+              { "id": "g2", "type": "cycle", "cycleNotation": "(0 3 6)", "affectedIndices": [0, 3, 6], "sign": 1, "order": 3 }
+            ]
+          },
+          "assemblyKey": {
+            "id": "key-001",
+            "hash": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456",
+            "timestamp": "2025-01-15T10:30:00Z",
+            "merkleRoot": "deadbeef1234567890abcdef1234567890abcdef1234567890abcdef12345678"
+          },
+          "currentState": { "isFolded": false, "foldDepth": 0, "activeCreases": [] }
+        }
+      }
+    }
+  ],
+  "validationRules": [
+    {
+      "rule": "flattened-size-consistency",
+      "description": "Flattened data size must match product of flattened dimensions",
+      "expression": "len(data) == flattenedShape.rows * flattenedShape.cols"
+    },
+    {
+      "rule": "original-size-preservation",
+      "description": "Flattened total elements must equal original total elements",
+      "expression": "flattenedShape.rows * flattenedShape.cols == originalShape.totalElements"
+    },
+    {
+      "rule": "hash-format",
+      "description": "Assembly key hash must be valid SHA-256",
+      "expression": "matches(hash, '^[a-fA-F0-9]{64}$')"
+    },
+    {
+      "rule": "permutation-degree",
+      "description": "Affected indices must be within permutation degree",
+      "expression": "forall(p in generators, forall(i in p.affectedIndices, i < degree))"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LOG Tile Schema",
+  "description": "Schema for Logical-Origin-Geometry tile definitions",
+  "type": "object",
+  "properties": {
+    "tile_id": {
+      "type": "string",
+      "description": "Unique identifier for the tile"
+    },
+    "tile_type": {
+      "type": "string",
+      "enum": ["ghost", "neural", "hybrid"],
+      "description": "Type of tile implementation"
+    },
+    "origin_config": {
+      "type": "object",
+      "properties": {
+        "dimensions": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of spatial dimensions"
+        },
+        "base": {
+          "type": "integer",
+          "enum": [12, 60, 360],
+          "description": "Angular base for sector division"
+        },
+        "dynamic_origin": {
+          "type": "boolean",
+          "description": "Whether origin can move during computation"
+        }
+      },
+      "required": ["dimensions", "base"]
+    },
+    "sector_config": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Number of sectors"
+        },
+        "sector_size_degrees": {
+          "type": "number",
+          "description": "Size of each sector in degrees"
+        },
+        "overlap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Sector overlap fraction"
+        }
+      },
+      "required": ["count"]
+    },
+    "view_config": {
+      "type": "object",
+      "properties": {
+        "view_angle_rad": {
+          "type": "number",
+          "description": "Field of view angle in radians"
+        },
+        "focus_radius": {
+          "type": "number",
+          "description": "Maximum distance for in-view computation"
+        },
+        "in_view_weight": {
+          "type": "number",
+          "default": 1.0,
+          "description": "Weight for in-view attention"
+        },
+        "peripheral_weight": {
+          "type": "number",
+          "default": 0.1,
+          "description": "Weight for peripheral attention"
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "properties": {
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Ghost tile seed (64-bit)"
+        },
+        "code_path": {
+          "type": "string",
+          "description": "Path to implementation code"
+        },
+        "model_path": {
+          "type": "string",
+          "description": "Path to neural model weights"
+        },
+        "precision": {
+          "type": "string",
+          "enum": ["fp32", "fp16", "bf16", "fp8"],
+          "default": "fp32"
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "latency_ms": {
+          "type": "number",
+          "description": "Expected latency in milliseconds"
+        },
+        "memory_bytes": {
+          "type": "integer",
+          "description": "Memory footprint in bytes"
+        },
+        "cache_friendly": {
+          "type": "boolean",
+          "description": "Whether tile is cache-optimized"
+        }
+      }
+    }
+  },
+  "required": ["tile_id", "tile_type", "origin_config"],
+  "additionalProperties": true
+}

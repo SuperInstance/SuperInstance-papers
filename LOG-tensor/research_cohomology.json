@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/1708.09401",
+    "name": "Machine Learning Topological Invariants with Neural Networks - arXiv",
+    "snippet": "In this Letter we supervisedly train neural networks to distinguish different topological phases in the context of topological band insulators. Missing: group cohomology",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12931839",
+    "name": "Topological data analysis and topological deep learning beyond",
+    "snippet": "In this spectral approach, the harmonic spectra of persistent combinatorial Laplacians capture changes in topological invariants, which could ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum%3Fid%3DEzjsoomYEb",
+    "name": "Understanding and Extending Topological Deep Learning Through",
+    "snippet": "Topological deep learning (TDL) is a rapidly growing field that seeks to leverage topological structure in data and facilitate learning from data supported ...",
+    "host_name": "openreview.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://papers.neurips.cc/paper_files/paper/2022/file/58b9a640af6d69781e90969d936e87ce-Paper-Conference.pdf",
+    "name": "[PDF] A Classification of G-Invariant Shallow Neural Networks - NeurIPS",
+    "snippet": "When trying to fit a deep neural network (DNN) to a G-invariant target function with G a group, it only makes sense to constrain the DNN to be G-invariant.",
+    "host_name": "papers.neurips.cc",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://jmlr.csail.mit.edu/papers/volume21/20-345/20-345.pdf",
+    "name": "[PDF] Topology of Deep Neural Networks",
+    "snippet": "In this article, we rely entirely on Betti numbers βk(M) to quantify topology as they are the simplest topological invariants that capture the shape of a space ...",
+    "host_name": "jmlr.csail.mit.edu",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/abs/2208.12562",
+    "name": "Understanding Deep Learning using Topological Dynamical  - arXiv",
+    "snippet": "In this paper we investigate Deep Learning Models using topological dynamical systems, index theory, and computational homology.",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://machinelearning.math.rs/Jekic-TDA.pdf",
+    "name": "[PDF] Deep Learning with Topological Signatures - Persistent Homology",
+    "snippet": "Topology studies shapes in a coordinate free way. • Topology studies the properties of shapes that are invariant under “small” deformations.",
+    "host_name": "machinelearning.math.rs",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tdlbook.org/related-work",
+    "name": "Chapter 10 Related work | Topological Deep Learning",
+    "snippet": "Each of these graph types can be combined with neural networks to form graph neural networks and model different interactions in various systems (Goyal and ...",
+    "host_name": "tdlbook.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s10462-024-10710-9",
+    "name": "Topological deep learning: a review of an emerging paradigm",
+    "snippet": "Topological deep learning (TDL) is an emerging area that combines the principles of Topological data analysis (TDA) with deep learning techniques.",
+    "host_name": "link.springer.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/392928171_Topological_Machine_Learning_and_the_Geometry_of_Neural_Networks_A_Comprehensive_Survey_of_Recent_Advances",
+    "name": "Topological Machine Learning and the Geometry of Neural Networks",
+    "snippet": "This paper provides a comprehensive survey of cutting-edge developments in topological machine learning and neural network geometry",
+    "host_name": "www.researchgate.net",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

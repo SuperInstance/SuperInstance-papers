@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.math.columbia.edu/~woit/LieGroups-2012/peterweyl.pdf",
+    "name": "[PDF] Harmonic Analysis on Compact Lie Groups: the Peter-Weyl Theorem - Columbia Math Department",
+    "snippet": "The Peter-Weyl theorem says that representations of compact Lie groups behave very much like representa- tions of finite groups, with the analytic issues ...",
+    "host_name": "www.math.columbia.edu",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.mit.edu/~dav/compactrev.pdf",
+    "name": "[PDF] 2. harmonic analysis on compact groups. - MIT Mathematics",
+    "snippet": "Here is a version of the Peter-Weyl theorem for K. Page 9. 2. HARMONIC ANALYSIS ON COMPACT GROUPS. 9. Theorem 2.13. Suppose K is a compact group. Fix a Haar ...",
+    "host_name": "math.mit.edu",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://projecteuclid.org/journals/pacific-journal-of-mathematics/volume-85/issue-1/Harmonic-analysis-on-compact-hypergroups/pjm/1102784093.pdf",
+    "name": "HARMONIC ANALYSIS ON COMPACT HYPERGROUPS - Project Euclid",
+    "snippet": "Let K be a compact hypergroup (convo) as defined by. R. Jewett. It is shown that Trig (K)is uniformly dense in C(K)and the Peter-Weyl theorem holds.",
+    "host_name": "projecteuclid.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://terrytao.wordpress.com/2011/01/23/the-peter-weyl-theorem-and-non-abelian-fourier-analysis-on-compact-groups",
+    "name": "The Peter-Weyl theorem, and non-abelian Fourier analysis on compact groups | What's new",
+    "snippet": "The Peter-Weyl theorem asserts, among other things, that the same claim is true for the regular representation.",
+    "host_name": "terrytao.wordpress.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.dartmouth.edu/~dana/bookspapers/pw.pdf",
+    "name": "[PDF] The Peter-Weyl Theorem for Compact Groups x1 Preliminaries. - Dartmouth Mathematics",
+    "snippet": "Theorem 12: Suppose that is a representation of G. Then the following are equivalent. (1) is irreducible. (2) (G). 0. = CI.",
+    "host_name": "math.dartmouth.edu",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Peter%E2%80%93Weyl_theorem",
+    "name": "Peter–Weyl theorem - Wikipedia",
+    "snippet": "Decomposition of square...",
+    "host_name": "en.wikipedia.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mathoverflow.net/questions/379113/what-is-the-explicit-version-of-the-peter-weyl-theorem",
+    "name": "What is the explicit version of the Peter Weyl Theorem? - MathOverflow",
+    "snippet": "While the name \"Peter-Weyl\" is reserved for the compact group case, I prefer to talk in greater generality. Let G be a unimodular type I ... Reference on Fourier analysis on compact groups Is there analogue of Peter–Weyl theorem for non-compact or quantum group More results from mathoverflow.net",
+    "host_name": "mathoverflow.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/chapter/10.1007/978-0-387-85469-4_7",
+    "name": "Compact Groups | SpringerLink",
+    "snippet": "We further prove the Peter-Weyl theorem, which gives an explicit decomposition of the regular representation of the compact group K on L2(K). Download to ...",
+    "host_name": "link.springer.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/math/0311369",
+    "name": "[PDF] An introduction to harmonic analysis on the infinite symmetric group - arXiv",
+    "snippet": "The Peter–Weyl theorem serves as a guiding example for more involved theories of noncommutative harmonic analysis. 1.2 The infinite symmetric group. Let S(n) be ...",
+    "host_name": "arxiv.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cis.upenn.edu/~cis5150/cis700-24sl4.pdf",
+    "name": "[PDF] Chapter 4 Analysis on Compact Groups and Representations",
+    "snippet": "In this section we prove the second part of the Peter–Weyl theorem which has to do with unitary representations. In particular, we prove the important result ...",
+    "host_name": "www.cis.upenn.edu",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

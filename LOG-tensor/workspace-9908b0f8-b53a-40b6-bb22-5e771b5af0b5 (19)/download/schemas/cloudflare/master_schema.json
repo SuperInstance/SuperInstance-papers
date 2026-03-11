@@ -1,0 +1,271 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://superinstance.ai/schemas/cloudflare/master_schema.json",
+  "title": "SuperInstance.AI Master Schema Index",
+  "description": "Master index of all schemas for SuperInstance.AI Cloudflare deployment",
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "const": "1.0.0" },
+    "schemas": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "description": { "type": "string" },
+            "purpose": { "type": "string" }
+          }
+        },
+        "userConfig": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "description": { "type": "string" },
+            "purpose": { "type": "string" }
+          }
+        },
+        "installation": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "description": { "type": "string" },
+            "purpose": { "type": "string" }
+          }
+        },
+        "deployment": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "description": { "type": "string" },
+            "purpose": { "type": "string" }
+          }
+        },
+        "types": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "description": { "type": "string" },
+            "purpose": { "type": "string" }
+          }
+        },
+        "database": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "description": { "type": "string" },
+            "purpose": { "type": "string" }
+          }
+        },
+        "wrangler": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "description": { "type": "string" },
+            "purpose": { "type": "string" }
+          }
+        }
+      }
+    },
+    "architecture": {
+      "type": "object",
+      "properties": {
+        "deploymentModes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "requires": { "type": "array", "items": { "type": "string" } },
+              "benefits": { "type": "array", "items": { "type": "string" } },
+              "limitations": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "coreComponents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "description": { "type": "string" },
+              "dependencies": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "apiEndpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "methods": { "type": "array", "items": { "type": "string" } },
+          "description": { "type": "string" },
+          "auth": { "type": "boolean" },
+          "rateLimit": { "type": "string" }
+        }
+      }
+    },
+    "environmentVariables": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "required": { "type": "boolean" },
+          "description": { "type": "string" },
+          "default": { "type": "string" },
+          "secret": { "type": "boolean" }
+        }
+      }
+    },
+    "deploymentSteps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": { "type": "integer" },
+          "title": { "type": "string" },
+          "commands": { "type": "array", "items": { "type": "string" } },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  },
+  "examples": [{
+    "version": "1.0.0",
+    "schemas": {
+      "config": {
+        "url": "https://superinstance.ai/schemas/cloudflare/config_schema.json",
+        "description": "Main Cloudflare configuration",
+        "purpose": "Define Workers, storage, auth, and API integrations"
+      },
+      "userConfig": {
+        "url": "https://superinstance.ai/schemas/cloudflare/user_config_schema.json",
+        "description": "User-specific BYOC and API key configuration",
+        "purpose": "User preferences, Cloudflare connections, SMP bots"
+      },
+      "installation": {
+        "url": "https://superinstance.ai/schemas/cloudflare/installation_schema.json",
+        "description": "One-click download and local installation",
+        "purpose": "Local deployment with simple installer"
+      },
+      "deployment": {
+        "url": "https://superinstance.ai/schemas/cloudflare/deployment_schema.json",
+        "description": "Complete deployment configuration",
+        "purpose": "Master deployment manifest"
+      },
+      "types": {
+        "url": "https://superinstance.ai/schemas/cloudflare/types.ts",
+        "description": "TypeScript interfaces",
+        "purpose": "Type definitions for implementation"
+      },
+      "database": {
+        "url": "https://superinstance.ai/schemas/cloudflare/schema.sql",
+        "description": "D1 database schema",
+        "purpose": "SQL migrations for database"
+      },
+      "wrangler": {
+        "url": "https://superinstance.ai/schemas/cloudflare/wrangler.toml",
+        "description": "Wrangler configuration template",
+        "purpose": "Cloudflare Workers deployment config"
+      }
+    },
+    "architecture": {
+      "deploymentModes": [
+        {
+          "name": "portal",
+          "description": "Free tier on SuperInstance.AI's shared Cloudflare account",
+          "requires": ["Email registration"],
+          "benefits": ["No setup required", "Free to use", "Instant access"],
+          "limitations": ["Shared resources", "Usage limits", "Limited customization"]
+        },
+        {
+          "name": "user_cloudflare",
+          "description": "Bring Your Own Cloudflare (BYOC) - User's own Cloudflare account",
+          "requires": ["Cloudflare account", "OAuth connection or API token"],
+          "benefits": ["Full control", "Higher limits", "Custom domains", "Own resources"],
+          "limitations": ["Requires Cloudflare account", "User manages billing"]
+        },
+        {
+          "name": "local",
+          "description": "Self-hosted on user's machine with one-click download",
+          "requires": ["Node.js 18+", "8GB RAM recommended"],
+          "benefits": ["Complete privacy", "No cloud costs", "Offline capable", "Full control"],
+          "limitations": ["Self-managed", "Local hardware dependent"]
+        }
+      ],
+      "coreComponents": [
+        {
+          "name": "SMP Cell",
+          "type": "Durable Object",
+          "description": "Locked static program (Seed + Model + Prompt)",
+          "dependencies": ["D1 Database", "KV Namespace"]
+        },
+        {
+          "name": "SMP Bot",
+          "type": "Worker",
+          "description": "GPU-scalable agent with state management",
+          "dependencies": ["SMP Cell", "Vectorize", "R2 Bucket"]
+        },
+        {
+          "name": "Cold Logic Checker",
+          "type": "Worker + Cron",
+          "description": "Background checker for bot health",
+          "dependencies": ["Queue", "D1 Database"]
+        },
+        {
+          "name": "Vector RAG",
+          "type": "Vectorize + R2",
+          "description": "Memory system for bots",
+          "dependencies": ["Vectorize Index", "R2 Bucket", "D1 Database"]
+        },
+        {
+          "name": "API Gateway",
+          "type": "Worker",
+          "description": "Main API entry point",
+          "dependencies": ["All components", "KV Cache"]
+        }
+      ]
+    },
+    "apiEndpoints": [
+      { "path": "/api/v1/auth/cloudflare", "methods": ["GET", "POST"], "description": "BYOC OAuth flow", "auth": false },
+      { "path": "/api/v1/auth/callback", "methods": ["GET"], "description": "OAuth callback handler", "auth": false },
+      { "path": "/api/v1/api-keys", "methods": ["GET", "POST", "DELETE"], "description": "Manage API keys", "auth": true },
+      { "path": "/api/v1/cells", "methods": ["GET", "POST", "PUT", "DELETE"], "description": "SMP Cell CRUD", "auth": true },
+      { "path": "/api/v1/bots", "methods": ["GET", "POST", "PUT", "DELETE"], "description": "SMP Bot management", "auth": true },
+      { "path": "/api/v1/bots/:id/execute", "methods": ["POST"], "description": "Execute bot", "auth": true, "rateLimit": "bot" },
+      { "path": "/api/v1/checkers", "methods": ["GET", "POST", "PUT", "DELETE"], "description": "Cold Logic Checker config", "auth": true },
+      { "path": "/api/v1/rag/documents", "methods": ["GET", "POST", "DELETE"], "description": "RAG document management", "auth": true },
+      { "path": "/api/v1/rag/query", "methods": ["POST"], "description": "Query RAG memory", "auth": true },
+      { "path": "/api/v1/conditional-geometry", "methods": ["POST"], "description": "Conditional geometry operations", "auth": true },
+      { "path": "/api/v1/foldable-tensor", "methods": ["POST"], "description": "Foldable tensor operations", "auth": true },
+      { "path": "/api/v1/channel-depth", "methods": ["POST"], "description": "Channel depth computations", "auth": true },
+      { "path": "/api/v1/install/download", "methods": ["GET"], "description": "Download local installer", "auth": true },
+      { "path": "/api/v1/install/verify", "methods": ["POST"], "description": "Verify local installation", "auth": true }
+    ],
+    "environmentVariables": {
+      "ENVIRONMENT": { "required": true, "description": "Environment name", "default": "production" },
+      "DEPLOYMENT_MODE": { "required": true, "description": "Deployment mode", "default": "portal" },
+      "JWT_SECRET": { "required": true, "description": "JWT signing secret", "secret": true },
+      "ENCRYPTION_KEY": { "required": true, "description": "AES-256 encryption key", "secret": true },
+      "OPENAI_API_KEY": { "required": false, "description": "OpenAI API key", "secret": true },
+      "ANTHROPIC_API_KEY": { "required": false, "description": "Anthropic API key", "secret": true },
+      "DEEPSEEK_API_KEY": { "required": false, "description": "DeepSeek API key", "secret": true },
+      "DEEPINFRA_API_KEY": { "required": false, "description": "DeepInfra API key", "secret": true }
+    },
+    "deploymentSteps": [
+      { "step": 1, "title": "Install dependencies", "commands": ["npm install"] },
+      { "step": 2, "title": "Configure environment", "commands": ["cp .env.example .env", "# Edit .env with your values"] },
+      { "step": 3, "title": "Create D1 database", "commands": ["npx wrangler d1 create superinstance-main"] },
+      { "step": 4, "title": "Create KV namespaces", "commands": ["npx wrangler kv:namespace create SESSIONS", "npx wrangler kv:namespace create CACHE", "npx wrangler kv:namespace create CONFIGS"] },
+      { "step": 5, "title": "Create Vectorize index", "commands": ["npx wrangler vectorize create superinstance-embeddings --dimensions=1536 --metric=cosine"] },
+      { "step": 6, "title": "Run database migrations", "commands": ["npx wrangler d1 execute superinstance-main --file=./schema.sql"] },
+      { "step": 7, "title": "Deploy workers", "commands": ["npx wrangler deploy"] },
+      { "step": 8, "title": "Verify deployment", "commands": ["curl https://your-worker.your-subdomain.workers.dev/api/v1/health"] }
+    ]
+  }]
+}

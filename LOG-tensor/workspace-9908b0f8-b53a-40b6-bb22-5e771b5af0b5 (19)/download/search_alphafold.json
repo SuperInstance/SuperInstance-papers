@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.nature.com/articles/s41586-021-03819-2",
+    "name": "Highly accurate protein structure prediction with AlphaFold - Nature",
+    "snippet": "Here we provide the first computational method that can regularly predict protein structures with atomic accuracy even in cases in which no similar structure ...",
+    "host_name": "www.nature.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8329862",
+    "name": "Protein structure prediction by AlphaFold2: are attention and  - PMC",
+    "snippet": "This review discusses the AlphaFold2 system for protein structure prediction, including its conceptual and methodological advances, its amenability to ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1422-0067/25/15/8426",
+    "name": "AI-Driven Deep Learning Techniques in Protein Structure Prediction",
+    "snippet": "AlphaFold integrates deep learning, mainly convolutional neural networks [82], with physical and biological knowledge about protein structures. It uses multi- ...",
+    "host_name": "www.mdpi.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2025.1498662/full",
+    "name": "Protein structure prediction via deep learning: an in-depth review",
+    "snippet": "This review provides a comprehensive guide to applying deep learning methodologies and tools in protein structure prediction.",
+    "host_name": "www.frontiersin.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2503.16996v2",
+    "name": "An Energy-Adaptive Elastic Equivariant Transformer Framework for",
+    "snippet": "Scannet: an interpretable geometric deep learning model for structure-based protein binding site prediction. ... AlphaFold V4 protein structure ...",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/mef2.96",
+    "name": "Deep learning methods for protein structure prediction - Qin - 2024",
+    "snippet": "The self-attention mechanism enables the model to focus on all parts of the sequence simultaneously, allowing it to focus on modeling different ...",
+    "host_name": "onlinelibrary.wiley.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S2405471225002339",
+    "name": "Single-sequence protein-RNA complex structure prediction by",
+    "snippet": "Here, we introduce ProRNA3D-single, a deep-learning framework for protein-RNA complex structure prediction. Using a geometric attention-enabled ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/399507334_Geometric_Deep_Learning_for_Protein_Function_Prediction_Integrating_3D_Structural_Inductive_Bias_with_Interaction_Graphs",
+    "name": "(PDF) Geometric Deep Learning for Protein Function Prediction",
+    "snippet": "By enforcing SE(3)-equivariance within the message-passing mechanism, our model ensures robustness against rotational and translational ...",
+    "host_name": "www.researchgate.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://academic.oup.com/bioinformatics/article/39/5/btad298/7152976",
+    "name": "Atomic protein structure refinement using all-atom graph",
+    "snippet": "In this work, we develop ATOMRefine, a deep learning-based, end-to-end, all-atom protein structural model refinement method. It uses a SE(3)-equivariant graph ...",
+    "host_name": "academic.oup.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dauparas.github.io/post/af2",
+    "name": "AlphaFold 2 & Equivariance - Justas Dauparas",
+    "snippet": "This module is a neural network that iteratively refines the structure predictions while respecting and leveraging an important symmetry of the problem.",
+    "host_name": "dauparas.github.io",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

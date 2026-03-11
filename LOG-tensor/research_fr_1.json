@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://pastel.hal.science/tel-04087166v1/file/thesis-1.pdf",
+    "name": "Equivariant Deep Learning Based on Scale-Spaces and",
+    "snippet": "2 May 2023 — ... équivariants ou invariants par l'action d'un groupe. Nous montrons les liens entre ces sujets et l' apprentissage profond géométrique , en.",
+    "host_name": "pastel.hal.science",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.alphaxiv.org/fr/overview/2006.10503v3",
+    "name": "SE(3)-Transformers: 3D Roto-Translation Equivariant Attention",
+    "snippet": "Ce travail aborde un défi fondamental en apprentissage profond géométrique : comment construire des réseaux de neurones capables de se concentrer de manière ...",
+    "host_name": "www.alphaxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://corpus.ulaval.ca/bitstreams/7903b0e1-c7a4-4bd1-86a0-876b21f53753/download",
+    "name": "Segmentation sémantique de données Lidar mobile par",
+    "snippet": "2025 — ... apprentissage profond pour la segmentation sémantique des nuages de points . Lidar. Notre contribution principale est de développer une ...",
+    "host_name": "corpus.ulaval.ca",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://theses.fr/s354809",
+    "name": "Invariance à la reparamétrisation en apprentissage",
+    "snippet": "D'une part, l'idée est d'attaquer le problème en proposant des réseaux équivariants capables de prendre en compte les transformations 3D et d'intégrer de ...",
+    "host_name": "theses.fr",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.irisa.fr/date/2023-03/apprentissage-profond-pour-les-series-temporelles-de-nuages-de-points-3d",
+    "name": "Apprentissage profond pour les séries temporelles de",
+    "snippet": "13 Apr 2023 — Cette thèse se concentre donc sur la détection de changements dans des nuages de points 3D par apprentissage profond . ... D2 - Réseaux , ...",
+    "host_name": "www.irisa.fr",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1424-8220/22/16/6210",
+    "name": "An Efficient Ensemble Deep Learning Approach for",
+    "snippet": "2022 · Cited by 15 — In this study, we present a robust and effective deep learning-based point cloud semantic segmentation method.",
+    "host_name": "www.mdpi.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.irit.fr/wp-content/uploads/2025/02/Pierre_Gucquel_202312.pdf",
+    "name": "Réseaux légers et nuages de points",
+    "snippet": "6 Feb 2025 — Modèles d' apprentissage profond efficaces en temps et en énergie pour l'analyse de nuages de points 3D. Pierre Cuquel. 6 Décembre 2023. Pierre ...",
+    "host_name": "www.irit.fr",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emilienbarbaud.fr/resources/rapport_TER_2020.pdf",
+    "name": "Deep Learning sur des données 3D",
+    "snippet": "2020 — Un nuage de points (pointcloud) peut être considéré comme un ensemble non structuré de point 3D qui approxime la géométrie des objets 3D. 28 pages",
+    "host_name": "www.emilienbarbaud.fr",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mohamed-zaraa.com/definition-equivariant-neural-networks",
+    "name": "Définition Equivariant Neural Networks -",
+    "snippet": "Les Réseaux Neuronaux Équivariants (Equivariant Neural Networks, ENN) sont une classe de modèles d' apprentissage profond conçus pour respecter les symétries ...",
+    "host_name": "www.mohamed-zaraa.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://chatpaper.com/fr/paper/114360",
+    "name": "Beyond Canonicalization: How Tensorial Messages Improve",
+    "snippet": "Nous améliorons le passage de messages équivariants basé sur la canonicalisation locale en introduisant des messages tensoriels pour communiquer des ...",
+    "host_name": "chatpaper.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

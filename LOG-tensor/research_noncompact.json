@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://openreview.net/forum?id=2xeYuWd7WZ",
+    "name": "Lorentz Local Canonicalization: How to make any Network Lorentz-Equivariant | OpenReview",
+    "snippet": "We adapt a recent approach for geometric message passing to the non-compact Lorentz group, allowing propagation of space-time tensorial features. Data ...",
+    "host_name": "openreview.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2505.20280v2",
+    "name": "Lorentz Local Canonicalization: How to Make Any Network Lorentz-Equivariant - arXiv",
+    "snippet": "We adapt a recent approach for geometric message passing to the non-compact Lorentz group, allowing propagation of space-time tensorial features ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/277628cff838927d869cd1f671328ce0-Paper-Conference.pdf",
+    "name": "[PDF] Lorentz-Equivariant Geometric Algebra Transformers for High-Energy Physics - NIPS",
+    "snippet": "The key idea is that of equivariance to symmetry groups: when the inputs x to a network f are transformed with a symmetry transformation g, the outputs should ...",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/380847280_Lorentz-Equivariant_Geometric_Algebra_Transformers_for_High-Energy_Physics",
+    "name": "Lorentz-Equivariant Geometric Algebra Transformers for High-Energy Physics",
+    "snippet": "We adapt a recent approach to geometric message passing to the non-compact Lorentz group, allowing propagation of space-time tensorial features.",
+    "host_name": "www.researchgate.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/Shutty20.pdf",
+    "name": "[PDF] learning irreducible representations of noncommutative lie groups",
+    "snippet": "Recent work has constructed neural networks that are equivariant to continuous symmetry groups such as 2D and 3D rotations.",
+    "host_name": "www.cs.jhu.edu",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2405.14806v3",
+    "name": "Lorentz-Equivariant Geometric Algebra Transformers for High-Energy Physics - arXiv.org",
+    "snippet": "We propose the Lorentz Geometric Algebra Transformer (L-GATr), a new multi-purpose architecture for high-energy physics.",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.science/hal-05330337v1/file/iclr2025_conference.pdf",
+    "name": "[PDF] NEURAL NETWORKS ON SYMMETRIC SPACES OF NONCOMPACT TYPE - HAL",
+    "snippet": "Recent works have demonstrated promising performances of neural networks on hyperbolic spaces and symmetric positive definite (SPD) ...",
+    "host_name": "hal.science",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://agenda.irmp.ucl.ac.be/event/4674/attachments/3034/4051/SoledadVillar_UCLouvain.pdf",
+    "name": "[PDF] Physics",
+    "snippet": "• Units equiveriance symmetries (non-compact). Old) = RRT = I. Old, 1) = RART = A. •Noether's theorem To every differentiable symmetry generated. [Emmy Noether ...",
+    "host_name": "agenda.irmp.ucl.ac.be",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v119/bogatskiy20a/bogatskiy20a.pdf",
+    "name": "[PDF] Lorentz Group Equivariant Neural Network for Particle Physics - Proceedings of Machine Learning Research",
+    "snippet": "We present a neural network architecture that is fully equivariant with respect to transforma- tions under the Lorentz group, a fundamental symmetry of ... Missing: Poincare | Show results with: Poincare",
+    "host_name": "proceedings.mlr.press",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2025/poster/120083",
+    "name": "Lorentz Local Canonicalization: How to make any Network Lorentz-Equivariant - NeurIPS",
+    "snippet": "We adapt a recent approach for geometric message passing to the non-compact Lorentz group, allowing propagation of space-time tensorial features ...",
+    "host_name": "neurips.cc",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2006.10503",
+    "name": "SE(3)-Transformers: 3D Roto-Translation Equivariant",
+    "snippet": "2020 · Cited by 1118 — We introduce the SE(3)-Transformer, a variant of the self-attention module for 3D point clouds and graphs , which is equivariant under continuous 3D roto- ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/FabianFuchsML/se3-transformer-public/blob/master/equivariant_attention/modules.py",
+    "name": "se3-transformer-public/equivariant_attention/modules.py at",
+    "snippet": "\"\"\"An SE (3)- equivariant multi-headed self- attention module for DGL graphs.\"\"\" def __init__(self, f_value: Fiber, f_key: Fiber, n_heads: int):.",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=hSnsDdSrtK",
+    "name": "Fast and Global Equivariant Attention",
+    "snippet": "by OL Howell — TL;DR: This work proposes a global linear time equivariant attention mechanism , which has asymptotically optimal O(N log N) token complexity.",
+    "host_name": "openreview.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ml4physicalsciences.github.io/2022/files/NeurIPS_ML4PS_2022_154.pdf",
+    "name": "SE(3)-equivariant self-attention via invariant features",
+    "snippet": "Cited by 8 — In this work, we use classical invariant theory to construct a self-attention module equivariant to 3D rotations and translations. 8 pages",
+    "host_name": "ml4physicalsciences.github.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://alchemybio.substack.com/p/spherical-equivariant-graph-transformer",
+    "name": "A Complete Guide to Spherical Equivariant Graph Transformers",
+    "snippet": "The SE (3)- Transformer by Fuchs et al. leverages the attention mechanism to weight certain messages between nodes with greater importance than ...",
+    "host_name": "alchemybio.substack.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v162/du22e/du22e.pdf",
+    "name": "SE(3) Equivariant Graph Neural Networks with Complete",
+    "snippet": "2022 · Cited by 119 — In this paper, we propose a framework to construct SE(3) equivariant network with complete local frames, called ClofNet that can faithfully and efficiently ... 26 pages",
+    "host_name": "proceedings.mlr.press",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://catalog.ngc.nvidia.com/orgs/nvidia/teams/dle/resources/se3transformer_pyt",
+    "name": "SE(3)-Transformers for PyTorch - NGC Catalog - NVIDIA",
+    "snippet": "SE (3)- Transformers introduce a self- attention layer for graphs that is equivariant to 3D roto-translations. It achieves this by leveraging Tensor Field Networks ...",
+    "host_name": "catalog.ngc.nvidia.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.e3nn.org/en/stable/guide/transformer.html",
+    "name": "Transformer — e3nn 0.5.1 documentation",
+    "snippet": "In this document we will see how to implement an equivariant attention mechanism with e3nn . We will implement the formula (1) of SE(3)-Transformers. The ...",
+    "host_name": "docs.e3nn.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/3bdeb28a531f7af94b56bcdf8ee88f17-Paper-Conference.pdf",
+    "name": "Equivariant Graph Hierarchy-Based Neural Networks",
+    "snippet": "2022 · Cited by 45 — Equivariant Graph neural Networks (EGNs ) are powerful in characterizing the dynamics of multi-body physical systems. Existing EGNs conduct flat message. 12 pages",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/398717210_VN-EGNN_E3-_and_SE3-Equivariant_Graph_Neural_Networks_with_Virtual_Nodes_Enhance_Protein_Binding_Site_Identification",
+    "name": "(PDF) VN-EGNN: E(3)- and SE(3)-Equivariant Graph",
+    "snippet": "We present VN- EGNN , a novel approach to binding site identification that significantly advances predictive performance. By integrating virtual nodes into ...",
+    "host_name": "www.researchgate.net",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

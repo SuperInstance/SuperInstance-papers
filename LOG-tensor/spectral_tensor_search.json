@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.researchgate.net/profile/Olivier-Delalleau-2/publication/5004753_Spectral_Dimensionality_Reduction/links/56ae4b4a08ae28588c61baba/Spectral-Dimensionality-Reduction.pdf",
+    "name": "Spectral Dimensionality Reduction",
+    "snippet": "Cited by 72 — In this chapter, we study and put under a common framework a number of non-linear dimensionality reduction methods, such as Locally Linear Em-.",
+    "host_name": "www.researchgate.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://jpaek1002.github.io/projects/DRP_Pres.pdf",
+    "name": "Spectral Methods for Dimensionality Reduction - A Literature Review",
+    "snippet": "2024 — Motivation: Explain the curse of dimensionality in data science and classical methods in feature extraction and dimension-reduction techniques. • Main Algorithm ...",
+    "host_name": "jpaek1002.github.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.rev-jec.org/index.php/rev-jec/article/view/196",
+    "name": "Three-Way Tensor Decompositions: A Generalized Minimum Noise Subspace Based Approach | Thanh",
+    "snippet": "2018 · Cited by 1 — The main interest in tensor decomposition is for dimensionality reduction, approximation or subspace purposes. However, the emergence of “big data” now gives ...",
+    "host_name": "www.rev-jec.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/topics/computer-science/spectral-decomposition",
+    "name": "Spectral Decomposition - an overview",
+    "snippet": "Spectral decomposition, also known as eigen decomposition, is the process of factorizing a tensor into a canonical form using eigenvalues and eigenvectors.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.biorxiv.org/content/10.64898/2025.12.21.695795v1.full-text",
+    "name": "Low-Rank Tensor Decomposition for Cross-Bispectral Analysis of EEG Data",
+    "snippet": "Dec 23, 2025 — This tensor was subsequently decomposed using the proposed dimensionality reduction method. This simulation framework provides full control over ...",
+    "host_name": "www.biorxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tensorlab.cms.caltech.edu/users/anima/pubs/tensorbook.pdf",
+    "name": "Spectral Learning on Matrices and Tensors - Anima AI + Science Lab",
+    "snippet": "Cited by 66 — ABSTRACT. Spectral methods have been the mainstay in several domains such as machine learning, applied mathematics and scientific computing.",
+    "host_name": "tensorlab.cms.caltech.edu",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2511.01816v2",
+    "name": "No-Rank Tensor Decomposition Using Metric Learning",
+    "snippet": "Feb 27, 2026 — We employ three standard dimensionality reduction methods Principal Component Analysis (PCA) [14] as a linear baseline that projects data ...",
+    "host_name": "arxiv.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://theses.hal.science/tel-02918156v2/file/83185_ZNIYED_2019_archivage.pdf",
+    "name": "Breaking the curse of dimensionality based on tensor train: models and algorithms",
+    "snippet": "Aug 20, 2020 — sional spectral analysis and relay telecommuncation systems. The different simula- tion results showed the JIRAFE and TT-HSVD methods ...",
+    "host_name": "theses.hal.science",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@siddharthapramanik771/tensor-decompositions-a-powerful-tool-for-dimensionality-reduction-and-data-analysis-in-big-data-a8b432c08087",
+    "name": "Tensor Decompositions: A Powerful Tool for Dimensionality Reduction and Data Analysis in Big Data | by Siddhartha Pramanik",
+    "snippet": "Tensor decomposition is a powerful tool for managing and analyzing big data, especially when dealing with high-dimensional and complex data sets.",
+    "host_name": "medium.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://academic.oup.com/bioinformatics/article/42/2/btag052/8450336",
+    "name": "spectral dimension reduction technique that improves pattern detection in multivariate spatial data | Bioinformatics | Oxford Academic",
+    "snippet": "2026 — Our algorithm constructs a projection of the data onto a low-dimensional feature space which is optimal in maximizing Moran's I, a measure of ...",
+    "host_name": "academic.oup.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

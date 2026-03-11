@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://ccam.math.purdue.edu/docs/final_2016_2.pdf",
+    "name": "Approximations on SO(3) by Wigner D-matrix and applications - Purdue CCAM",
+    "snippet": "Cited by 7 — Because Wigner D-matrix is an irreducible representation of SO(3), it is naturally used to expand functions in SO(3), similar to Fourier expansion for periodic ...",
+    "host_name": "ccam.math.purdue.edu",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.stackexchange.com/questions/4361717/a-question-about-irreducible-representations-of-so3-group",
+    "name": "A question about irreducible representations of SO(3) group",
+    "snippet": "20 Jan 2022 — I'm reading the following text which is describing the irreducible representations of SO(3) that are associated to so called Wigner-D Matrices.",
+    "host_name": "math.stackexchange.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://admir-selimovic.github.io/articles/sh/a.html",
+    "name": "Spherical Harmonics and Irreducible Representations of S0(3)",
+    "snippet": "Here, Wigner D-matrices function as irreducible representations of SO ( 3 ) , through which the group acts on these basis functions. Wigner D-matrix encodes ...",
+    "host_name": "admir-selimovic.github.io",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://sites.ualberta.ca/~vbouchar/MAPH464/section-representation-so3-tensors.html",
+    "name": "Section - 5.1 Tensor representations of SO(3)",
+    "snippet": "We know its irreducible representations: there are N N of them, all one-dimensional, given by sending the generator of ZN Z N to e2πik/N e 2 π i k / N for some ...\nDetermine the dimension of the irreducible representations associated to symmetric traceless tensors. In this section we study intuitively what representations of \\ (SO (3)\\) look like.",
+    "host_name": "sites.ualberta.ca",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://desvl.xyz/2022/06/16/so3-laplacian",
+    "name": "Irreducible Representations of SO(3) and the Laplacian - Desvl's blog",
+    "snippet": "16 Jun 2022 — In this post, irreducible representations of $SO(3)$ are studied, with much more extensive applications of linear algebra.",
+    "host_name": "desvl.xyz",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cis.upenn.edu/~cis5150/cis700-24sl5.pdf",
+    "name": "Chapter 5 Matrix Representations of SL(2,C), SU(2) and SO(3)",
+    "snippet": "This chapter deals with explicit matrix descriptions of the irreducible representations of the groups SL(2,C),. SU(2) and SO(3) (unitary representation in the ...\nThis chapter deals with explicit matrix descriptions of the irreducible representations of the groups SL(2, C), SU(2) and SO(3) (unitary representation in the last two cases).",
+    "host_name": "www.cis.upenn.edu",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.science/hal-00293251/document",
+    "name": "Representations of SO(3) and angular polyspectra",
+    "snippet": "2008 · Cited by 17 — Such matrices operate irreducibly and equivalently on (2l + 1) spaces. (the so-called isotypical spaces), each of them spanned by a different ...",
+    "host_name": "hal.science",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.mit.edu/~etingof/replect.pdf",
+    "name": "Introduction to representation theory",
+    "snippet": "2011 · Cited by 343 — All irreducible representations of Sn can be given by matrices with rational entries. Problem 4.39. Find the sum of dimensions of all ...",
+    "host_name": "math.mit.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.cmth.ph.ic.ac.uk/people/d.vvedensky/groups/Chapter8.pdf",
+    "name": "Chapter 8 Irreducible Representations of SO(2) and SO(3)",
+    "snippet": "by J Hadamard — Direct products are especially important in applications involving continuous groups, with the construction of higher dimensional irreducible representations, ...",
+    "host_name": "www.cmth.ph.ic.ac.uk",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Wigner_D-matrix",
+    "name": "Wigner D-matrix - Wikipedia",
+    "snippet": "The Wigner D-matrix is a unitary matrix in an irreducible representation of the groups SU (2) and SO (3). It was introduced in 1927 by Eugene Wigner, and plays a fundamental role in the quantum mechanical theory of angular momentum.",
+    "host_name": "en.wikipedia.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

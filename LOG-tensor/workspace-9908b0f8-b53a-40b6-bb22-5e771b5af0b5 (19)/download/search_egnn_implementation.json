@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/vgsatorras/egnn",
+    "name": "vgsatorras/egnn",
+    "snippet": "E(n) Equivariant Graph Neural Networks. Official implementation (Pytorch 1.7.1) of: ... Example code. For a simple example of a EGNN implementation click here.",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/senya-ashukha/simple-equivariant-gnn",
+    "name": "senya-ashukha/simple-equivariant-gnn: A short and easy PyTorch implementation of E(n)",
+    "snippet": "Just 50 lines of code; · The implementation is based on pure ...",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2102.09844",
+    "name": "E(n) Equivariant Graph Neural Networks",
+    "snippet": "Implementation details: Our Equivariant Graph Auto-. Encoder is composed of an EGNN encoder followed by the decoder from Equation 9. The graph edges Aij are.",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://gitcode.com/gh_mirrors/eg/egnn-pytorch/overview",
+    "name": "egnn-pytorch:Implementation of E(n)-Equivariant Graph Neural Networks, in",
+    "snippet": "Implementation of E(n)-Equivariant Graph Neural Networks, in Pytorch.",
+    "host_name": "gitcode.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://proceedings.mlr.press/v139/satorras21a/satorras21a-supp.pdf",
+    "name": "E(n) Equivariant Graph Neural Networks",
+    "snippet": "In this section we write down the EGNN transformation layer hl+1, xl+1, vl+1 = EGCL[hl, xl, vl, c] that can take in velocity input and output channels. We also ...",
+    "host_name": "proceedings.mlr.press",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubs.acs.org/doi/10.1021/acs.jpcb.3c07304",
+    "name": "E(n) Equivariant Graph Neural Network for Learning Interactional Properties of Molecules | The Journal of Physical Chemistry B - ACS Publications",
+    "snippet": "2024 · Cited by 12 — We have developed a multi-input E(n) equivariant graph convolution-based model designed for the prediction of chemical properties that result from the ...",
+    "host_name": "pubs.acs.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://colab.research.google.com/drive/1gJhyeQiK7dh2xN6gwVkpIhiTkBVwO9YV?usp=sharing",
+    "name": "EquivariantGraph_tutorial.ipynb",
+    "snippet": "In this tutorial we are going to use Pytorch Geometric (PyG) to implement the message passing modules. Let's first do a quick recap on how to represent graphs ...",
+    "host_name": "colab.research.google.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://royforestano.github.io/blog/2023/2023-gsoc-ml4sci-qmlhep",
+    "name": "Invariant and Equivariant Classical and Quantum Graph Neural Networks | Roy T. Forestano",
+    "snippet": "17-Sept-2025 — The four architectures developed and presented below include classical graph neural networks (GNN) and equivariant graph neural networks (EGNN), ...",
+    "host_name": "royforestano.github.io",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/Olimoyo/pytorch-geometric-egnn",
+    "name": "Olimoyo/pytorch-geometric-egnn: A minimalist implementation of E(n)",
+    "snippet": "A minimalist implementation of E(n)-Equivariant Graph Neural Networks using PyTorch-Geometric.",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://projects.volkamerlab.org/teachopencadd/talktorials/T036_e3_equivariant_gnn.html",
+    "name": "T036 · An introduction to E(3)-invariant graph neural networks",
+    "snippet": "Recent work from 2022 uses E(3) equivariant graph neural networks as the backbone for a generative model that learns to predict potential ligand docking ...",
+    "host_name": "projects.volkamerlab.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

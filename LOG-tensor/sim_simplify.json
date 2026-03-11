@@ -1,0 +1,22 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "```json\n{\n  \"ATTENTION\": {\n    \"simplest_representation\": \"Replace softmax with binary gating mechanism\",\n    \"novel_reframing\": \"Attention as hash lookup instead of weighted average\",\n    \"minimal_constraints\": [\n      \"Must distinguish between relevant and irrelevant information\",\n      \"Must scale sub-quadratically with input size\"\n    ]\n  },\n  \"SEED THEORY\": {\n    \"simplest_representation\": \"Seeds as compressed sensitivity maps\",\n    \"novel_reframing\": \"Computation as selective seed expansion\",\n    \"minimal_constraints\": [\n      \"Must identify critical computation paths\",\n      \"Must allow for prediction without full execution\"\n    ]\n  },\n  \"LOG-TENSOR\": {\n    \"simplest_representation\": \"Operations relative to single anchor point\",\n    \"novel_reframing\": \"Space as computation graph rather than coordinate system\",\n    \"minimal_constraints\": [\n      \"Must maintain relative positioning information\",\n      \"Must enable constant-time operations relative to origin\"\n    ]\n  },\n  \"GHOST TILES\": {\n    \"simplest_representation\": \"Computation as pre-computed result assembly\",\n    \"novel_reframing\": \"Execution as tile selection rather than computation\",\n    \"minimal_constraints\": [\n      \"Must allow for composition of partial results\",\n      \"Must cache computation results efficiently\"\n    ]\n  }\n}\n```",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1773102770,
+  "id": "20260310083243b84db952fb4e4878",
+  "model": "glm-4-plus",
+  "object": "chat.completion",
+  "request_id": "20260310083243b84db952fb4e4878",
+  "usage": {
+    "completion_tokens": 279,
+    "prompt_tokens": 208,
+    "total_tokens": 487
+  }
+}

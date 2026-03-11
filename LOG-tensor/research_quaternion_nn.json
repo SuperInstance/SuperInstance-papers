@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2215016125004881",
+    "name": "Hypercomplex neural networks: Exploring quaternion, octonion, and",
+    "snippet": "Hypercomplex Neural Networks (HNNs) represent the next frontier in deep learning, building on the mathematical theory of quaternions, octonions, ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/395866649_Hypercomplex_Neural_Networks_Exploring_Quaternion_Octonion_and_Beyond_in_Deep_Learning",
+    "name": "(PDF) Hypercomplex Neural Networks: Exploring Quaternion, Octonion",
+    "snippet": "Hypercomplex Neural Networks (HNNs) represent the next frontier in deep learning, building on the mathematical theory of quaternions, ...",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41598-025-08957-5",
+    "name": "4D hypercomplex-valued neural network in multivariate time series",
+    "snippet": "The goal of this paper is to test three classes of neural network (NN) architectures based on four-dimensional (4D) hypercomplex algebras for multivariate time ...",
+    "host_name": "www.nature.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2512.08524",
+    "name": "[PDF] Hypercomplex Representations for Stable Quantization - arXiv.org",
+    "snippet": "Hypercomplex Parameterization: Early work on quaternion-valued neural networks [20, 21] showed that extending weights into hypercomplex domains ...",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scholar.afit.edu/cgi/viewcontent.cgi?article=8666&context=etd",
+    "name": "[PDF] Advances in Quaternion-Valued Neural Networks - AFIT Scholar",
+    "snippet": "These hypercomplex neural networks (HNNs) are neural network struc- tures wherein the weights, biases, and inputs all consist of hypercomplex ...",
+    "host_name": "scholar.afit.edu",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s00006-024-01313-2",
+    "name": "Exploring Quaternion Neural Network Loss Surfaces - Springer Link",
+    "snippet": "This paper explores the superior performance of quaternion multi-layer perceptron (QMLP) neural networks over real-valued multi-layer perceptron (MLP) neural ...",
+    "host_name": "link.springer.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/pdf?id=ByMHvs0cFQ",
+    "name": "[PDF] QUATERNION RECURRENT NEURAL NETWORKS - OpenReview",
+    "snippet": "Recurrent neural networks (RNNs) are powerful architectures to model sequential data, due to their capability to learn short and long-term dependencies ...",
+    "host_name": "openreview.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ieeexplore.ieee.org/document/8489651",
+    "name": "Deep Quaternion Networks | IEEE Conference Publication",
+    "snippet": "In this work, we explore the benefits of generalizing one step further into the hyper-complex numbers, quaternions specifically, and provide the architecture ...",
+    "host_name": "ieeexplore.ieee.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/JorisWeeda/Quaternion-Convolutional-Neural-Networks",
+    "name": "Reproduction of quaternion convolutional neural networks",
+    "snippet": "A novel approach that extends traditional convolutional neural networks by introducing quaternions, a hypercomplex number system.",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://sol.sbc.org.br/index.php/eniac/article/download/18266/18100",
+    "name": "[PDF] Tessarine and Quaternion-Valued Deep Neural Networks for Image",
+    "snippet": "We also address hypercomplex weight initialization and batch normalization. Moreover, we discuss activation functions, residual learning, and average pooling ...",
+    "host_name": "sol.sbc.org.br",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

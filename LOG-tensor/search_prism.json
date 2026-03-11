@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/prism-sh/prism-agent",
+    "name": "PRISM AI Agents - GitHub",
+    "snippet": "PRISM AI Agents. Contribute to prism-sh/prism-agent development by creating an account on GitHub ... MCP RegistryIntegrate external tools. DEVELOPER WORKFLOWS. Missing: SuperInstance | Show results with: SuperInstance",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/evilmartians/agent-prism",
+    "name": "evilmartians/agent-prism: React components for visualizing traces from AI agents - GitHub",
+    "snippet": "Plug in OpenTelemetry data and see your agent's process unfold: display LLM calls, tool executions, and agent workflows in a hierarchical timeline. ⚠️ ... Missing: SuperInstance | Show results with: SuperInstance",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/superagent-ai/superagent",
+    "name": "Superagent protects your AI applications against prompt injections, data leaks, and harmful outputs. Embed safety directly into your app and prove compliance to your customers. - GitHub",
+    "snippet": "Detect and block prompt injections, malicious instructions, and unsafe tool calls at runtime. TypeScript: import { createClient } from \"safety- ... Missing: SuperInstance prism",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/disler/big-3-super-agent",
+    "name": "disler/big-3-super-agent: Gemini 2.5 Computer Use + OpenAI Realtime API + Claude Code Multi-Agent Experiment - GitHub",
+    "snippet": "Agent templates: Pre-configured agent profiles for common tasks; Tool extensions: Plugin system for custom agent tools; Collaborative coding: Multiple ...",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=Y6m4HLOuXbQ",
+    "name": "Build AI Agents: Explore the SuperAGI GitHub Project! - YouTube",
+    "snippet": "... tool integration, SuperAGI empowers developers to unlock the full potential of AI. Join the community and start your journey today ... Missing: SuperInstance prism",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/heshengtao/super-agent-party",
+    "name": "heshengtao/super-agent-party: All-in-one AI companion! Desktop girlfriend +  - GitHub",
+    "snippet": "Features ; Extensive Native Tools, Tool calling supports asynchronous execution, including web search, knowledge base access, smart home control, browser control ...",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=DTnq9lnlo6k",
+    "name": "Github's SuperAGI: Open-Source Autonomous AI Agents (Dev-First) - YouTube",
+    "snippet": "The SuperAGI, or Super Artificial General Intelligence, represents the pinnacle of human ingenuity and scientific progress. Missing: tool | Show results with: tool",
+    "host_name": "www.youtube.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/AtmaticAI/agent-tools",
+    "name": "AtmaticAI/agent-tools - GitHub",
+    "snippet": "Tool, Description. JSON. agent_tools_json_format, Format JSON with options ... # Discover agent capabilities curl https://your-agent-tools-instance/.well ...",
+    "host_name": "github.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/pythaiml/SuperAGI-ToolKitBuilder",
+    "name": "<⚡️> SuperAGI - A dev-first open source autonomous AI agent framework. Enabling developers to build, manage & run useful autonomous agents quickly and reliably. - GitHub",
+    "snippet": "Agent Architecture. Agent Architecture. Agent Workflow Architecture. Agent Workflow Architecture. Tools Architecture. Tools Architecture. ER Diagram. ER Diagram ...",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=PDz6aHdvXlQ",
+    "name": "SuperAGI: Deploy GODLY Autonomous Ai Agents Better Than AutoGPT (Installation Tutorial) - YouTube",
+    "snippet": "... Github Repo SuperAGI: https://github.com/TransformerOptimus/SuperAGI ... How To Install SuperAGI - Multiple Agents, GUI, Tools, and more! Missing: SuperInstance prism",
+    "host_name": "www.youtube.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

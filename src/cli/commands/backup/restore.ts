@@ -34,7 +34,7 @@ backupRestoreCommand.action(async (backupId, options) => {
       force: options.force,
       dryRun: options.dryRun,
       components: options.components
-        ? options.components.split(',').map(c => c.trim().toUpperCase())
+        ? options.components.split(',').map((c: string) => c.trim().toUpperCase())
         : undefined,
       targetColonyId: options.target
     });

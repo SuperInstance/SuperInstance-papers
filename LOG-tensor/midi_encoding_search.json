@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://medium.com/data-science/midi-files-as-training-data-b67852c8b291",
+    "name": "MIDI files as training data: MIDI scores vs MIDI performances | TDS Archive",
+    "snippet": "Midi scores use a much richer set of MIDI messages to encode information such as time signature, key signature, bar, and beat positions. For ...",
+    "host_name": "medium.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://music-encoding.org/guidelines/v5/elements/midi.html",
+    "name": "midi",
+    "snippet": "The label attribute can be used to differentiate between multiple MIDI data streams, e.g. , quantized/unquantized, straight/swing, ornamented/as notated, etc.",
+    "host_name": "music-encoding.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41598-025-17410-6",
+    "name": "Multi-modal music techniques for synthesizing high-quality audio waveforms from MIDI data",
+    "snippet": "2025 — The audio encoder is designed to capture detailed information from audio sequences. Its components work together to process and refine the ...",
+    "host_name": "www.nature.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/midi-architecture",
+    "name": "MiDi Architecture: Digital Music Standard",
+    "snippet": "Aug 13, 2025 — MiDi Architecture is the foundational digital standard for representing musical events, separating event sequencing from sound synthesis.",
+    "host_name": "www.emergentmind.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mct-master.github.io/machine-learning/2023/04/19/tryb-midi-hassle-copy.html",
+    "name": "MIDI music generation, the hassle of representing MIDI",
+    "snippet": "Apr 19, 2023 — If you want to generate music, you need to represent music. The two main methods are using symbolic music representation or audio representation.",
+    "host_name": "mct-master.github.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2406.02255v2",
+    "name": "MidiCaps: A large-scale MIDI dataset with text captions",
+    "snippet": "MIDI (Musical Instrument Digital Interface) files are widely used for encoding musical information and can capture the nuances of musical composition. They are ...",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/computational-musicology/midi-representation-ec8fa5ca48a3",
+    "name": "Computational Musicology: MIDI Representation | by Saanvi Bhargava",
+    "snippet": "MIDI (Musical Instrument Digital Interface) enables us to represent the open-endedness and the specific notes played by marking pitch, start ...",
+    "host_name": "medium.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ismir2000.ismir.net/posters/good.pdf",
+    "name": "Title of Presentation: This 14 pt is Arial Bold",
+    "snippet": "MIDI has contributed to enormous growth in the electronic music industry, but has many well-known limitations for notation, analysis, and retrieval. These ...",
+    "host_name": "ismir2000.ismir.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/learnprogramming/comments/6m9mde/programming_and_midi_data_for_music",
+    "name": "Programming and MIDI data, (for music) : r/learnprogramming",
+    "snippet": "I've read that python might be the best for this, as it is used in some scripts for Ableton Live, which interact with USB Midi Controllers. For ...",
+    "host_name": "www.reddit.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.audiolabs-erlangen.de/content/05_fau/professor/00_mueller/03_publications/2003_ArifiClausenKurthMueller_SynchronizationScoreMidiPCM_ISMIR.pdf",
+    "name": "Automatic Synchronization of Music Data in Score-, MIDI- and PCM-Format",
+    "snippet": "In this paper we present algorithms for the automatic time-synchronization of score-, MIDI- or PCM- data streams which represent the same polyphonic piano piece ...",
+    "host_name": "www.audiolabs-erlangen.de",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

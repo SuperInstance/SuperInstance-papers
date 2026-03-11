@@ -1,0 +1,376 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://polln-rtt.org/schemas/master_schema.json",
+  "title": "POLLN-RTT Round 5: Master Schema",
+  "description": "Master schema combining all schemas for Conditional Geometry, Foldable Tensors, Channel Depth, and Folding Group. This unified schema provides a comprehensive framework for the POLLN-RTT Round 5 project.",
+  "type": "object",
+  "definitions": {
+    "SchemaReference": {
+      "type": "object",
+      "description": "Reference to a component schema",
+      "properties": {
+        "schemaId": { "type": "string", "format": "uri" },
+        "version": { "type": "string" },
+        "type": { "type": "string" }
+      }
+    },
+    "ConditionalGeometryFramework": {
+      "type": "object",
+      "description": "Complete Conditional Geometry Framework",
+      "properties": {
+        "schemaRef": { "$ref": "#/definitions/SchemaReference" },
+        "geometricSpace": {
+          "type": "object",
+          "description": "X: Geometric space with coordinates and manifold structure"
+        },
+        "probabilityDistribution": {
+          "type": "object",
+          "description": "P: Probability distribution over the space"
+        },
+        "conditions": {
+          "type": "object",
+          "description": "C: Constraints and conditions"
+        },
+        "transformation": {
+          "type": "object",
+          "description": "Ψ: Transformation mapping (X, P, C) → (X', P', C')"
+        },
+        "montyHallFold": {
+          "type": "object",
+          "description": "Monty Hall Fold operation: T_fold(p)_i = p_i + p_opened"
+        }
+      }
+    },
+    "FoldableTensorFramework": {
+      "type": "object",
+      "description": "Complete Foldable Tensor Framework F = (F_flat, C, P, K)",
+      "properties": {
+        "schemaRef": { "$ref": "#/definitions/SchemaReference" },
+        "flattenedRepresentation": {
+          "type": "object",
+          "description": "F_flat: Flattened 2D representation"
+        },
+        "creasePattern": {
+          "type": "object",
+          "description": "C: Crease pattern (topology of fold boundaries)"
+        },
+        "permutationGroup": {
+          "type": "object",
+          "description": "P: Permutation group operations"
+        },
+        "assemblyKey": {
+          "type": "object",
+          "description": "K: Assembly keys (blockchain-like hashes)"
+        }
+      }
+    },
+    "ChannelDepthFramework": {
+      "type": "object",
+      "description": "Channel Depth and Cognitive Cost Framework",
+      "properties": {
+        "schemaRef": { "$ref": "#/definitions/SchemaReference" },
+        "channelDepth": {
+          "type": "object",
+          "description": "Depth(s) = ∫₀^t visits(τ) × e^(-λ(t-τ)) dτ"
+        },
+        "cognitiveCost": {
+          "type": "object",
+          "description": "Cost(s) = Base × e^(-α × Depth(s))"
+        }
+      }
+    },
+    "FoldingGroupFramework": {
+      "type": "object",
+      "description": "Folding Group Framework G_F ≅ (Z₂)^(n-1) ⋊ S_n",
+      "properties": {
+        "schemaRef": { "$ref": "#/definitions/SchemaReference" },
+        "groupStructure": {
+          "type": "object",
+          "description": "Semidirect product structure"
+        },
+        "elements": {
+          "type": "array",
+          "description": "Group elements"
+        },
+        "operations": {
+          "type": "array",
+          "description": "Fold operations"
+        }
+      }
+    },
+    "Integration": {
+      "type": "object",
+      "description": "Integration layer connecting all frameworks",
+      "properties": {
+        "conditionalGeometryToFoldableTensor": {
+          "type": "object",
+          "description": "Mapping between geometric space and tensor representation",
+          "properties": {
+            "coordinateEmbedding": {
+              "type": "string",
+              "description": "How coordinates map to tensor indices"
+            },
+            "probabilityWeighting": {
+              "type": "string",
+              "description": "How probability affects tensor values"
+            },
+            "constraintProjection": {
+              "type": "string",
+              "description": "How constraints define crease patterns"
+            }
+          }
+        },
+        "foldableTensorToFoldingGroup": {
+          "type": "object",
+          "description": "Mapping between tensor folds and group elements",
+          "properties": {
+            "creaseToPermutation": {
+              "type": "string",
+              "description": "How crease patterns relate to permutations"
+            },
+            "foldToZ2Tuple": {
+              "type": "string",
+              "description": "How fold choices map to Z₂ tuples"
+            },
+            "assemblyVerification": {
+              "type": "string",
+              "description": "Group-theoretic verification of assembly"
+            }
+          }
+        },
+        "channelDepthToCognitiveCost": {
+          "type": "object",
+          "description": "Depth to cost computation pipeline",
+          "properties": {
+            "visitAccumulation": {
+              "type": "string",
+              "description": "How visits are tracked across channels"
+            },
+            "decayIntegration": {
+              "type": "string",
+              "description": "Integration method for depth computation"
+            },
+            "costScaling": {
+              "type": "string",
+              "description": "How depth affects cognitive cost"
+            }
+          }
+        },
+        "globalConstraints": {
+          "type": "object",
+          "description": "Constraints spanning multiple frameworks",
+          "properties": {
+            "conservationLaws": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "symmetryRequirements": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "ComputationGraph": {
+      "type": "object",
+      "description": "Computational graph for framework execution",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "type": { "type": "string" },
+              "framework": { "type": "string" },
+              "operation": { "type": "string" }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string" },
+              "target": { "type": "string" },
+              "dataType": { "type": "string" }
+            }
+          }
+        },
+        "executionOrder": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "ValidationResult": {
+      "type": "object",
+      "properties": {
+        "isValid": { "type": "boolean" },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "message": { "type": "string" },
+              "severity": { "type": "string", "enum": ["error", "warning", "info"] }
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "schemaVersion": { "type": "string", "default": "1.0.0" },
+    "id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "componentSchemas": {
+      "type": "object",
+      "properties": {
+        "conditionalGeometry": { "$ref": "#/definitions/SchemaReference" },
+        "foldableTensor": { "$ref": "#/definitions/SchemaReference" },
+        "channelDepth": { "$ref": "#/definitions/SchemaReference" },
+        "foldingGroup": { "$ref": "#/definitions/SchemaReference" }
+      }
+    },
+    "conditionalGeometry": { "$ref": "#/definitions/ConditionalGeometryFramework" },
+    "foldableTensor": { "$ref": "#/definitions/FoldableTensorFramework" },
+    "channelDepth": { "$ref": "#/definitions/ChannelDepthFramework" },
+    "foldingGroup": { "$ref": "#/definitions/FoldingGroupFramework" },
+    "integration": { "$ref": "#/definitions/Integration" },
+    "computationGraph": { "$ref": "#/definitions/ComputationGraph" },
+    "validation": { "$ref": "#/definitions/ValidationResult" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "project": { "type": "string", "default": "POLLN-RTT Round 5" },
+        "author": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "required": ["schemaVersion", "id", "componentSchemas"],
+  "additionalProperties": false,
+  "typescriptInterfaces": {
+    "description": "Master TypeScript interfaces combining all schemas",
+    "code": "// Master TypeScript Interfaces for POLLN-RTT Round 5\n\nimport type {\n  ConditionalGeometrySchema,\n  GeometricSpace,\n  ProbabilityDistribution,\n  ConditionSet,\n  Transformation,\n  MontyHallFoldOperation\n} from './conditional_geometry_schema';\n\nimport type {\n  FoldableTensorSchema,\n  FoldableTensor,\n  FlattenedRepresentation,\n  CreasePattern,\n  PermutationGroup,\n  AssemblyKey\n} from './foldable_tensor_schema';\n\nimport type {\n  ChannelDepthSchema,\n  ChannelDepth,\n  CognitiveCost,\n  DepthCostAnalysis\n} from './channel_depth_schema';\n\nimport type {\n  FoldingGroupSchema,\n  FoldingGroup,\n  FoldingGroupElement,\n  FoldOperation\n} from './folding_group_schema';\n\n// Schema Reference\nexport interface SchemaReference {\n  schemaId: string;\n  version: string;\n  type: string;\n}\n\n// Framework Containers\nexport interface ConditionalGeometryFramework {\n  schemaRef?: SchemaReference;\n  geometricSpace?: GeometricSpace;\n  probabilityDistribution?: ProbabilityDistribution;\n  conditions?: ConditionSet;\n  transformation?: Transformation;\n  montyHallFold?: MontyHallFoldOperation;\n}\n\nexport interface FoldableTensorFramework {\n  schemaRef?: SchemaReference;\n  flattenedRepresentation?: FlattenedRepresentation;\n  creasePattern?: CreasePattern;\n  permutationGroup?: PermutationGroup;\n  assemblyKey?: AssemblyKey;\n}\n\nexport interface ChannelDepthFramework {\n  schemaRef?: SchemaReference;\n  channelDepth?: ChannelDepth;\n  cognitiveCost?: CognitiveCost;\n}\n\nexport interface FoldingGroupFramework {\n  schemaRef?: SchemaReference;\n  groupStructure?: FoldingGroup;\n  elements?: FoldingGroupElement[];\n  operations?: FoldOperation[];\n}\n\n// Integration Layer\nexport interface Integration {\n  conditionalGeometryToFoldableTensor?: {\n    coordinateEmbedding?: string;\n    probabilityWeighting?: string;\n    constraintProjection?: string;\n  };\n  foldableTensorToFoldingGroup?: {\n    creaseToPermutation?: string;\n    foldToZ2Tuple?: string;\n    assemblyVerification?: string;\n  };\n  channelDepthToCognitiveCost?: {\n    visitAccumulation?: string;\n    decayIntegration?: string;\n    costScaling?: string;\n  };\n  globalConstraints?: {\n    conservationLaws?: string[];\n    symmetryRequirements?: string[];\n  };\n}\n\n// Computation Graph\nexport interface ComputationGraph {\n  nodes: Array<{\n    id: string;\n    type: string;\n    framework: string;\n    operation: string;\n  }>;\n  edges: Array<{\n    source: string;\n    target: string;\n    dataType: string;\n  }>;\n  executionOrder: string[];\n}\n\n// Validation\nexport interface ValidationResult {\n  isValid: boolean;\n  errors: Array<{\n    path: string;\n    message: string;\n    severity: 'error' | 'warning' | 'info';\n  }>;\n}\n\n// Master Schema\nexport interface MasterSchema {\n  schemaVersion: string;\n  id: string;\n  timestamp?: string;\n  componentSchemas: {\n    conditionalGeometry?: SchemaReference;\n    foldableTensor?: SchemaReference;\n    channelDepth?: SchemaReference;\n    foldingGroup?: SchemaReference;\n  };\n  conditionalGeometry?: ConditionalGeometryFramework;\n  foldableTensor?: FoldableTensorFramework;\n  channelDepth?: ChannelDepthFramework;\n  foldingGroup?: FoldingGroupFramework;\n  integration?: Integration;\n  computationGraph?: ComputationGraph;\n  validation?: ValidationResult;\n  metadata?: {\n    project?: string;\n    author?: string;\n    description?: string;\n    tags?: string[];\n  };\n}\n\n// Type guards\nexport function isConditionalGeometryValid(data: unknown): data is ConditionalGeometrySchema {\n  return typeof data === 'object' && data !== null && 'geometricSpace' in data;\n}\n\nexport function isFoldableTensorValid(data: unknown): data is FoldableTensorSchema {\n  return typeof data === 'object' && data !== null && 'foldableTensor' in data;\n}\n\nexport function isChannelDepthValid(data: unknown): data is ChannelDepthSchema {\n  return typeof data === 'object' && data !== null && 'channelDepth' in data;\n}\n\nexport function isFoldingGroupValid(data: unknown): data is FoldingGroupSchema {\n  return typeof data === 'object' && data !== null && 'foldingGroup' in data;\n}\n"
+  },
+  "examples": [
+    {
+      "description": "Complete Master Schema Example",
+      "instance": {
+        "schemaVersion": "1.0.0",
+        "id": "master-001",
+        "timestamp": "2025-01-15T10:30:00Z",
+        "componentSchemas": {
+          "conditionalGeometry": {
+            "schemaId": "https://polln-rtt.org/schemas/conditional_geometry_schema.json",
+            "version": "1.0.0",
+            "type": "ConditionalGeometrySchema"
+          },
+          "foldableTensor": {
+            "schemaId": "https://polln-rtt.org/schemas/foldable_tensor_schema.json",
+            "version": "1.0.0",
+            "type": "FoldableTensorSchema"
+          },
+          "channelDepth": {
+            "schemaId": "https://polln-rtt.org/schemas/channel_depth_schema.json",
+            "version": "1.0.0",
+            "type": "ChannelDepthSchema"
+          },
+          "foldingGroup": {
+            "schemaId": "https://polln-rtt.org/schemas/folding_group_schema.json",
+            "version": "1.0.0",
+            "type": "FoldingGroupSchema"
+          }
+        },
+        "integration": {
+          "conditionalGeometryToFoldableTensor": {
+            "coordinateEmbedding": "coordinates → tensor indices via linear indexing",
+            "probabilityWeighting": "probability values scale tensor entries",
+            "constraintProjection": "constraints define valid crease patterns"
+          },
+          "foldableTensorToFoldingGroup": {
+            "creaseToPermutation": "each crease induces a permutation on indices",
+            "foldToZ2Tuple": "mountain/valley choices → Z₂ tuple",
+            "assemblyVerification": "hash chain verified by group action"
+          },
+          "channelDepthToCognitiveCost": {
+            "visitAccumulation": "tensor operations tracked as channel visits",
+            "decayIntegration": "exponential decay with λ = 0.1",
+            "costScaling": "cost decreases exponentially with depth"
+          },
+          "globalConstraints": {
+            "conservationLaws": ["probability mass conservation", "tensor rank preservation"],
+            "symmetryRequirements": ["equivariance under group action", "hash consistency"]
+          }
+        },
+        "validation": {
+          "isValid": true,
+          "errors": []
+        },
+        "metadata": {
+          "project": "POLLN-RTT Round 5",
+          "author": "Schema Design Agent",
+          "description": "Master schema for Conditional Geometry and Foldable Tensors",
+          "tags": ["conditional-geometry", "foldable-tensors", "channel-depth", "folding-group"]
+        }
+      }
+    }
+  ],
+  "validationRules": [
+    {
+      "rule": "component-schema-references",
+      "description": "All component schemas must be referenced",
+      "expression": "forall(s in ['conditionalGeometry', 'foldableTensor', 'channelDepth', 'foldingGroup'], s in componentSchemas)"
+    },
+    {
+      "rule": "version-consistency",
+      "description": "All component schemas should have consistent version",
+      "expression": "forall(ref in componentSchemas, ref.version == schemaVersion)"
+    },
+    {
+      "rule": "integration-completeness",
+      "description": "Integration layer should define mappings between all frameworks",
+      "expression": "integration has all required mappings"
+    }
+  ],
+  "formulas": {
+    "summary": [
+      {
+        "name": "Conditional Geometry Transformation",
+        "formula": "Ψ: (X, P, C) → (X', P', C')",
+        "description": "Simultaneous transformation of space, probability, and conditions"
+      },
+      {
+        "name": "Monty Hall Fold",
+        "formula": "T_fold(p)_i = p_i + p_opened",
+        "description": "Probability redistribution under fold operation"
+      },
+      {
+        "name": "Foldable Tensor",
+        "formula": "F = (F_flat, C, P, K)",
+        "description": "Complete foldable tensor structure"
+      },
+      {
+        "name": "Channel Depth",
+        "formula": "Depth(s) = ∫₀^t visits(τ) × e^(-λ(t-τ)) dτ",
+        "description": "Time-decayed visit accumulation"
+      },
+      {
+        "name": "Cognitive Cost",
+        "formula": "Cost(s) = Base × e^(-α × Depth(s))",
+        "description": "Depth-dependent cognitive cost"
+      },
+      {
+        "name": "Folding Group",
+        "formula": "G_F ≅ (Z₂)^(n-1) ⋊ S_n",
+        "description": "Semidirect product of flip choices and permutations"
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/anirban1592/google_openai_mcp",
+    "name": "Multi-Agent System: A2A & MCP Integration POC - GitHub",
+    "snippet": "A simple App which showcases how google's A2A protocol works along with Anthropic's MCP protocol with a simple EC2 creation mcp tool.",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/topics/multi-agent-protocol",
+    "name": "multi-agent-protocol · GitHub Topics",
+    "snippet": "MAPLE - Production-ready multi agent communication protocol with integrated resource management, type-safe error handling, secure link identification, ... Missing: SuperInstance SwarmMCP",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/multi-agent-protocol/multi-agent-protocol",
+    "name": "Multi-Agent Protocol (MAP) - GitHub",
+    "snippet": "Multi-Agent Protocol (MAP). A JSON-RPC based protocol for observing, coordinating, and routing messages within multi-agent AI systems. Missing: SuperInstance SwarmMCP",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/vishalmysore/mcp-a2a-multi-agent",
+    "name": "vishalmysore/mcp-a2a-multi-agent: MCP Server and A2A  - GitHub",
+    "snippet": "This server is designed to work as both an A2A (Agent-to-Agent) and MCP (Model Context Protocol) server. The server can connect to any client using either ... Missing: SuperInstance SwarmMCP",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/danmas0n/multi-agent-with-mcp",
+    "name": "Multiple agents with LangGraph and MCP · GitHub",
+    "snippet": "This project implements a small team of coding agents using LangGraph and the Model Context Protocol (MCP). The agents use MCP servers to provide tools and ... Missing: SuperInstance SwarmMCP",
+    "host_name": "github.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/supercog-ai/agent-protocol",
+    "name": "supercog-ai/agent-protocol - GitHub",
+    "snippet": "The goals of this proposal are to enable interoperability between agents built using different frameworks like LangGraph, Smol Agents, Atomic Agents, etc. Missing: SuperInstance SwarmMCP",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/orgs/modelcontextprotocol/discussions/527",
+    "name": "MCP in Agent to Agent communication protocol #527 - GitHub",
+    "snippet": "We run a production agent-to-agent communication system with 9 agents across currently 5 LLM providers, coordinated via IDE Agent Kit. Missing: SuperInstance SwarmMCP",
+    "host_name": "github.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/topics/ai-multi-agent",
+    "name": "ai-multi-agent · GitHub Topics",
+    "snippet": "A Model Context Protocol (MCP) TypeScript template with multi agents that can send Emails, schedule meetings and answer knowledge-base ... Missing: SuperInstance SwarmMCP",
+    "host_name": "github.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/Coral-Protocol/awesome-agents-for-multi-agent-systems/activity",
+    "name": "Activity · Coral-Protocol/awesome-agents-for-multi-agent-systems",
+    "snippet": "The Coral Reef is a collection of awesome agents for multi-agent systems, built by the Coral Protocol team. It's organised into categories, each designed ... Missing: SuperInstance SwarmMCP",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/ZhanlinCui/Multi-Agent-Supervision-System",
+    "name": "ZhanlinCui/Multi-Agent-Supervision-System - GitHub",
+    "snippet": "SuperAI is a next-generation AI operations platform that monitors, diagnoses, and automatically repairs AI agents in real-time. Missing: SwarmMCP protocol",
+    "host_name": "github.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

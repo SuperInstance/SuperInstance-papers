@@ -1,0 +1,28 @@
+[
+  {
+    "domain": "sector_division",
+    "deepseek": {
+      "latency": 43047,
+      "tokens": 1097,
+      "response": "## Problem Analysis\nWe want to map a vector `(dx, dy)` to a sector index in a circle divided into `n` equal sectors (where `n` divides 360°). The standard method uses `atan2` and division, which is expensive. We can use integer arithmetic by comparing slopes.\n\n## Key Insight\nFor `n` sectors, the sector boundaries are at angles:  \n`θ_k = 2πk/n` for `k = 0..n-1`\n\nWe can determine which sector `(dx, dy)` falls into by comparing the ratio `dy/dx` to `tan(θ_k)`.\n\n## Mathematical Approach\nLet `n` = number of sectors (12, 60, or 360 in your case).\n\nWe precompute `tan(θ_k)` for half the first quadrant (0° to 45°), then use symmetry to handle all quadrants.\n\n**Steps:**\n1. Determine quadrant from signs of `dx, dy`\n2. Map to first quadrant by taking absolute values\n3. If in octant 0 (0° to 45°), compare `dy/dx` to precomputed thresholds\n4. If in octant 1 (45° to 90°), compare `dx/dy` to thresholds (reciprocal)\n5. Map back to original quadrant\n\n## Optimized Integer Implementation\nWe can avoid floa"
+    },
+    "deepinfra": {
+      "latency": 14496,
+      "tokens": 668,
+      "response": "To optimize the sector division from using `atan2` to an O(1) solution using integer arithmetic, we can leverage the properties of the Cartesian coordinates and precomputed lookup tables. The idea is to map the `(dx, dy)` coordinates directly to a sector index without computing the angle.\n\n### Equation\n\nGiven the Cartesian coordinates `(dx, dy)`, we can determine the sector index using the following steps:\n\n1. **Normalize the coordinates**: Scale `(dx, dy)` to a fixed range to ensure integer arithmetic.\n2. **Map to a sector**: Use a precomputed table to map the normalized coordinates to a sector index.\n\n### TypeScript Code\n\n```typescript\n// Define the number of sectors\nconst sectors = 360; // 360 sectors for a full circle\n\n// Precompute the sector table\nconst sectorTable = new Array(2 * sectors).fill(0);\nfor (let i = 0; i < sectors; i++) {\n  const angle = (i * Math.PI * 2) / sectors;\n  const dx = Math.round(Math.cos(angle) * sectors);\n  const dy = Math.round(Math.sin(angle) * sectors);"
+    }
+  },
+  {
+    "domain": "origin_transform",
+    "deepseek": {
+      "latency": 41887,
+      "tokens": 1088,
+      "response": "## 1. Mathematical Formulation\n\nLet:\n- `absolute[i] ∈ ℝ³` = absolute transform (position + rotation) for object i\n- `origin[i] ∈ ℝ³` = origin transform for object i  \n- `relative[i] ∈ ℝ³` = origin-relative transform for object i\n\n**Standard approach (O(n)):**\n```\nrelative[i] = absolute[i] - origin[i]  ∀ i ∈ {1..n}\n```\n\n**Optimized approach (O(1)):**\nPrecompute a **packed representation** using homogeneous coordinates:\n\nLet `T_origin⁻¹` be the inverse of the origin's homogeneous transform matrix.\nThen for all objects sharing the same origin:\n```\nrelative[i] = T_origin⁻¹ × absolute[i]  ∀ i ∈ {1..n}\n```\n\nWhere transforms are represented as 4×4 matrices in homogeneous coordinates:\n```\nT = [ R  t ]\n    [ 0  1 ]\n```\nwith `R ∈ ℝ³ˣ³` (rotation) and `t ∈ ℝ³` (translation).\n\n## 2. TypeScript Implementation\n\n```typescript\n// Packed SIMD-friendly representation (16 floats = 4x4 matrix)\ntype Mat4 = Float32Array;  // 16 elements, SIMD-aligned\n\n// Transform with position and rotation (quaternion)\nint"
+    },
+    "deepinfra": {
+      "latency": 20582,
+      "tokens": 974,
+      "response": "To optimize the origin-relative transforms from \\( O(n) \\) to \\( O(1) \\) using SIMD (Single Instruction, Multiple Data) operations, we can leverage SIMD libraries that support packed operations. In JavaScript, WebAssembly (WASM) and the SIMD.js polyfill can be used to achieve this. However, as of now, SIMD.js is deprecated, and WebAssembly is a more reliable option.\n\n### Equation\nGiven:\n- \\( \\text{absolute} \\) is a vector of absolute positions.\n- \\( \\text{origin} \\) is a vector representing the origin.\n- \\( \\text{relative} \\) is the resulting vector of relative positions.\n\nThe transformation is:\n\\[ \\text{relative} = \\text{absolute} - \\text{origin} \\]\n\n### TypeScript Code\nWe will use WebAssembly to perform the SIMD operations. Here is a simplified example using WebAssembly and the `wasm-simd` proposal:\n\n1. **WebAssembly Module (in Rust, for example):**\n\n```rust\nuse std::simd::*;\n\n#[no_mangle]\npub extern \"C\" fn transform_relative(absolute: v128, origin: v128) -> v128 {\n    unsafe {\n     "
+    }
+  }
+]

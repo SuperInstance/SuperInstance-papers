@@ -1,0 +1,682 @@
+{
+  "metadata": {
+    "title": "Tensor Resonance Simulation",
+    "purpose": "Map musical harmonic principles to tensor operations"
+  },
+  "dimension_analysis": {
+    "64_48": {
+      "dimensions": "64 \u00d7 48",
+      "gcd": 16,
+      "lcm": 192,
+      "consonance": 0.2886751345948129,
+      "alignment_period": 192,
+      "simplification_factor": 16,
+      "is_consonant": false
+    },
+    "128_64": {
+      "dimensions": "128 \u00d7 64",
+      "gcd": 64,
+      "lcm": 128,
+      "consonance": 0.7071067811865475,
+      "alignment_period": 128,
+      "simplification_factor": 64,
+      "is_consonant": true
+    },
+    "256_192": {
+      "dimensions": "256 \u00d7 192",
+      "gcd": 64,
+      "lcm": 768,
+      "consonance": 0.2886751345948129,
+      "alignment_period": 768,
+      "simplification_factor": 64,
+      "is_consonant": false
+    },
+    "1440_960": {
+      "dimensions": "1440 \u00d7 960",
+      "gcd": 480,
+      "lcm": 2880,
+      "consonance": 0.40824829046386296,
+      "alignment_period": 2880,
+      "simplification_factor": 480,
+      "is_consonant": false
+    },
+    "100_75": {
+      "dimensions": "100 \u00d7 75",
+      "gcd": 25,
+      "lcm": 300,
+      "consonance": 0.28867513459481287,
+      "alignment_period": 300,
+      "simplification_factor": 25,
+      "is_consonant": false
+    }
+  },
+  "fusion_analysis": {
+    "shapes_0": {
+      "shapes": [
+        [
+          64,
+          64
+        ],
+        [
+          32,
+          128
+        ],
+        [
+          16,
+          256
+        ]
+      ],
+      "sizes": [
+        4096,
+        4096,
+        4096
+      ],
+      "overall_gcd": 4096,
+      "overall_lcm": 4096,
+      "fusion_efficiency": 1.0,
+      "resonance_matrix": [
+        [
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "constructive_fusion_possible": true
+    },
+    "shapes_1": {
+      "shapes": [
+        [
+          128,
+          64
+        ],
+        [
+          64,
+          128
+        ]
+      ],
+      "sizes": [
+        8192,
+        8192
+      ],
+      "overall_gcd": 8192,
+      "overall_lcm": 8192,
+      "fusion_efficiency": 1.0,
+      "resonance_matrix": [
+        [
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ],
+      "constructive_fusion_possible": true
+    },
+    "shapes_2": {
+      "shapes": [
+        [
+          1024
+        ],
+        [
+          512
+        ],
+        [
+          256
+        ]
+      ],
+      "sizes": [
+        1024,
+        512,
+        256
+      ],
+      "overall_gcd": 256,
+      "overall_lcm": 1024,
+      "fusion_efficiency": 0.25,
+      "resonance_matrix": [
+        [
+          1.0,
+          0.7071067811865475,
+          0.5
+        ],
+        [
+          0.7071067811865475,
+          1.0,
+          0.7071067811865475
+        ],
+        [
+          0.5,
+          0.7071067811865475,
+          1.0
+        ]
+      ],
+      "constructive_fusion_possible": true
+    }
+  },
+  "standing_wave_analysis": {
+    "(64, 64)": {
+      "shape": [
+        64,
+        64
+      ],
+      "total_size": 4096,
+      "dimension_analysis": [
+        {
+          "dimension": 64,
+          "prime_factors": {
+            "2": 6
+          },
+          "is_resonant": true,
+          "resonance_quality": 6
+        },
+        {
+          "dimension": 64,
+          "prime_factors": {
+            "2": 6
+          },
+          "is_resonant": true,
+          "resonance_quality": 6
+        }
+      ],
+      "fft_friendly": true,
+      "supports_eigendecomposition": true,
+      "standing_wave_modes": 64
+    },
+    "(128, 64, 3)": {
+      "shape": [
+        128,
+        64,
+        3
+      ],
+      "total_size": 24576,
+      "dimension_analysis": [
+        {
+          "dimension": 128,
+          "prime_factors": {
+            "2": 7
+          },
+          "is_resonant": true,
+          "resonance_quality": 7
+        },
+        {
+          "dimension": 64,
+          "prime_factors": {
+            "2": 6
+          },
+          "is_resonant": true,
+          "resonance_quality": 6
+        },
+        {
+          "dimension": 3,
+          "prime_factors": {
+            "3": 1
+          },
+          "is_resonant": true,
+          "resonance_quality": 1
+        }
+      ],
+      "fft_friendly": false,
+      "supports_eigendecomposition": true,
+      "standing_wave_modes": 3
+    },
+    "(512, 512)": {
+      "shape": [
+        512,
+        512
+      ],
+      "total_size": 262144,
+      "dimension_analysis": [
+        {
+          "dimension": 512,
+          "prime_factors": {
+            "2": 9
+          },
+          "is_resonant": true,
+          "resonance_quality": 9
+        },
+        {
+          "dimension": 512,
+          "prime_factors": {
+            "2": 9
+          },
+          "is_resonant": true,
+          "resonance_quality": 9
+        }
+      ],
+      "fft_friendly": true,
+      "supports_eigendecomposition": true,
+      "standing_wave_modes": 512
+    },
+    "(256, 192)": {
+      "shape": [
+        256,
+        192
+      ],
+      "total_size": 49152,
+      "dimension_analysis": [
+        {
+          "dimension": 256,
+          "prime_factors": {
+            "2": 8
+          },
+          "is_resonant": true,
+          "resonance_quality": 8
+        },
+        {
+          "dimension": 192,
+          "prime_factors": {
+            "2": 6,
+            "3": 1
+          },
+          "is_resonant": true,
+          "resonance_quality": 7
+        }
+      ],
+      "fft_friendly": false,
+      "supports_eigendecomposition": true,
+      "standing_wave_modes": 192
+    }
+  },
+  "computation_rhythm": {
+    "rhythm_0": {
+      "operations_per_cycle": [
+        8,
+        12,
+        16
+      ],
+      "overall_alignment_period": 48,
+      "beat_frequencies": [
+        {
+          "ops": "op0_op1",
+          "beat_frequency": 4,
+          "alignment_period": 24
+        },
+        {
+          "ops": "op0_op2",
+          "beat_frequency": 8,
+          "alignment_period": 16
+        },
+        {
+          "ops": "op1_op2",
+          "beat_frequency": 4,
+          "alignment_period": 48
+        }
+      ],
+      "synchronization_points": [
+        48
+      ],
+      "synchronization_density": 0.020833333333333332,
+      "rhythm_complexity": 5.584962500721156
+    },
+    "rhythm_1": {
+      "operations_per_cycle": [
+        7,
+        11,
+        13
+      ],
+      "overall_alignment_period": 1001,
+      "beat_frequencies": [
+        {
+          "ops": "op0_op1",
+          "beat_frequency": 4,
+          "alignment_period": 77
+        },
+        {
+          "ops": "op0_op2",
+          "beat_frequency": 6,
+          "alignment_period": 91
+        },
+        {
+          "ops": "op1_op2",
+          "beat_frequency": 2,
+          "alignment_period": 143
+        }
+      ],
+      "synchronization_points": [],
+      "synchronization_density": "very_low",
+      "rhythm_complexity": 9.967226258835993
+    },
+    "rhythm_2": {
+      "operations_per_cycle": [
+        6,
+        8,
+        12
+      ],
+      "overall_alignment_period": 24,
+      "beat_frequencies": [
+        {
+          "ops": "op0_op1",
+          "beat_frequency": 2,
+          "alignment_period": 24
+        },
+        {
+          "ops": "op0_op2",
+          "beat_frequency": 6,
+          "alignment_period": 12
+        },
+        {
+          "ops": "op1_op2",
+          "beat_frequency": 4,
+          "alignment_period": 24
+        }
+      ],
+      "synchronization_points": [
+        24
+      ],
+      "synchronization_density": 0.041666666666666664,
+      "rhythm_complexity": 4.584962500721156
+    },
+    "rhythm_3": {
+      "operations_per_cycle": [
+        9,
+        15,
+        21
+      ],
+      "overall_alignment_period": 315,
+      "beat_frequencies": [
+        {
+          "ops": "op0_op1",
+          "beat_frequency": 6,
+          "alignment_period": 45
+        },
+        {
+          "ops": "op0_op2",
+          "beat_frequency": 12,
+          "alignment_period": 63
+        },
+        {
+          "ops": "op1_op2",
+          "beat_frequency": 6,
+          "alignment_period": 105
+        }
+      ],
+      "synchronization_points": [
+        315
+      ],
+      "synchronization_density": 0.0031746031746031746,
+      "rhythm_complexity": 8.29920801838728
+    }
+  },
+  "consonant_operations": {
+    "(64, 64)": [
+      {
+        "type": "octave_split",
+        "axis": 0,
+        "description": "Split axis 0 (64) into 2\u00d732",
+        "consonance": 1.0,
+        "computation_ratio": 0.5
+      },
+      {
+        "type": "octave_split",
+        "axis": 1,
+        "description": "Split axis 1 (64) into 2\u00d732",
+        "consonance": 1.0,
+        "computation_ratio": 0.5
+      },
+      {
+        "type": "harmonic_transpose",
+        "description": "Transpose shares GCD=64 between axes 0,1",
+        "consonance": 1.0,
+        "computation_ratio": 1.0
+      },
+      {
+        "type": "fifth_expand",
+        "axis": 0,
+        "description": "Expand axis 0 (64) to 96 (2:3)",
+        "consonance": 0.85,
+        "computation_ratio": 1.5
+      },
+      {
+        "type": "fifth_expand",
+        "axis": 1,
+        "description": "Expand axis 1 (64) to 96 (2:3)",
+        "consonance": 0.85,
+        "computation_ratio": 1.5
+      },
+      {
+        "type": "fourth_compress",
+        "axis": 0,
+        "description": "Compress axis 0 (64) to 48 (4:3)",
+        "consonance": 0.85,
+        "computation_ratio": 0.75
+      },
+      {
+        "type": "fourth_compress",
+        "axis": 1,
+        "description": "Compress axis 1 (64) to 48 (4:3)",
+        "consonance": 0.85,
+        "computation_ratio": 0.75
+      },
+      {
+        "type": "octave_double",
+        "axis": 0,
+        "description": "Double axis 0 (64) via interpolation",
+        "consonance": 0.8,
+        "computation_ratio": 2.0
+      },
+      {
+        "type": "octave_double",
+        "axis": 1,
+        "description": "Double axis 1 (64) via interpolation",
+        "consonance": 0.8,
+        "computation_ratio": 2.0
+      }
+    ],
+    "(128, 96)": [
+      {
+        "type": "octave_split",
+        "axis": 0,
+        "description": "Split axis 0 (128) into 2\u00d764",
+        "consonance": 1.0,
+        "computation_ratio": 0.5
+      },
+      {
+        "type": "octave_split",
+        "axis": 1,
+        "description": "Split axis 1 (96) into 2\u00d748",
+        "consonance": 1.0,
+        "computation_ratio": 0.5
+      },
+      {
+        "type": "fifth_compress",
+        "axis": 1,
+        "description": "Compress axis 1 (96) to 64 (3:2)",
+        "consonance": 0.9,
+        "computation_ratio": 0.67
+      },
+      {
+        "type": "fifth_expand",
+        "axis": 0,
+        "description": "Expand axis 0 (128) to 192 (2:3)",
+        "consonance": 0.85,
+        "computation_ratio": 1.5
+      },
+      {
+        "type": "fifth_expand",
+        "axis": 1,
+        "description": "Expand axis 1 (96) to 144 (2:3)",
+        "consonance": 0.85,
+        "computation_ratio": 1.5
+      },
+      {
+        "type": "fourth_compress",
+        "axis": 0,
+        "description": "Compress axis 0 (128) to 96 (4:3)",
+        "consonance": 0.85,
+        "computation_ratio": 0.75
+      },
+      {
+        "type": "fourth_compress",
+        "axis": 1,
+        "description": "Compress axis 1 (96) to 72 (4:3)",
+        "consonance": 0.85,
+        "computation_ratio": 0.75
+      },
+      {
+        "type": "octave_double",
+        "axis": 0,
+        "description": "Double axis 0 (128) via interpolation",
+        "consonance": 0.8,
+        "computation_ratio": 2.0
+      },
+      {
+        "type": "octave_double",
+        "axis": 1,
+        "description": "Double axis 1 (96) via interpolation",
+        "consonance": 0.8,
+        "computation_ratio": 2.0
+      },
+      {
+        "type": "harmonic_transpose",
+        "description": "Transpose shares GCD=32 between axes 0,1",
+        "consonance": 0.2886751345948129,
+        "computation_ratio": 1.0
+      }
+    ],
+    "(256, 192)": [
+      {
+        "type": "octave_split",
+        "axis": 0,
+        "description": "Split axis 0 (256) into 2\u00d7128",
+        "consonance": 1.0,
+        "computation_ratio": 0.5
+      },
+      {
+        "type": "octave_split",
+        "axis": 1,
+        "description": "Split axis 1 (192) into 2\u00d796",
+        "consonance": 1.0,
+        "computation_ratio": 0.5
+      },
+      {
+        "type": "fifth_compress",
+        "axis": 1,
+        "description": "Compress axis 1 (192) to 128 (3:2)",
+        "consonance": 0.9,
+        "computation_ratio": 0.67
+      },
+      {
+        "type": "fifth_expand",
+        "axis": 0,
+        "description": "Expand axis 0 (256) to 384 (2:3)",
+        "consonance": 0.85,
+        "computation_ratio": 1.5
+      },
+      {
+        "type": "fifth_expand",
+        "axis": 1,
+        "description": "Expand axis 1 (192) to 288 (2:3)",
+        "consonance": 0.85,
+        "computation_ratio": 1.5
+      },
+      {
+        "type": "fourth_compress",
+        "axis": 0,
+        "description": "Compress axis 0 (256) to 192 (4:3)",
+        "consonance": 0.85,
+        "computation_ratio": 0.75
+      },
+      {
+        "type": "fourth_compress",
+        "axis": 1,
+        "description": "Compress axis 1 (192) to 144 (4:3)",
+        "consonance": 0.85,
+        "computation_ratio": 0.75
+      },
+      {
+        "type": "octave_double",
+        "axis": 0,
+        "description": "Double axis 0 (256) via interpolation",
+        "consonance": 0.8,
+        "computation_ratio": 2.0
+      },
+      {
+        "type": "octave_double",
+        "axis": 1,
+        "description": "Double axis 1 (192) via interpolation",
+        "consonance": 0.8,
+        "computation_ratio": 2.0
+      },
+      {
+        "type": "harmonic_transpose",
+        "description": "Transpose shares GCD=64 between axes 0,1",
+        "consonance": 0.2886751345948129,
+        "computation_ratio": 1.0
+      }
+    ],
+    "(512, 512)": [
+      {
+        "type": "octave_split",
+        "axis": 0,
+        "description": "Split axis 0 (512) into 2\u00d7256",
+        "consonance": 1.0,
+        "computation_ratio": 0.5
+      },
+      {
+        "type": "octave_split",
+        "axis": 1,
+        "description": "Split axis 1 (512) into 2\u00d7256",
+        "consonance": 1.0,
+        "computation_ratio": 0.5
+      },
+      {
+        "type": "harmonic_transpose",
+        "description": "Transpose shares GCD=512 between axes 0,1",
+        "consonance": 1.0,
+        "computation_ratio": 1.0
+      },
+      {
+        "type": "fifth_expand",
+        "axis": 0,
+        "description": "Expand axis 0 (512) to 768 (2:3)",
+        "consonance": 0.85,
+        "computation_ratio": 1.5
+      },
+      {
+        "type": "fifth_expand",
+        "axis": 1,
+        "description": "Expand axis 1 (512) to 768 (2:3)",
+        "consonance": 0.85,
+        "computation_ratio": 1.5
+      },
+      {
+        "type": "fourth_compress",
+        "axis": 0,
+        "description": "Compress axis 0 (512) to 384 (4:3)",
+        "consonance": 0.85,
+        "computation_ratio": 0.75
+      },
+      {
+        "type": "fourth_compress",
+        "axis": 1,
+        "description": "Compress axis 1 (512) to 384 (4:3)",
+        "consonance": 0.85,
+        "computation_ratio": 0.75
+      },
+      {
+        "type": "octave_double",
+        "axis": 0,
+        "description": "Double axis 0 (512) via interpolation",
+        "consonance": 0.8,
+        "computation_ratio": 2.0
+      },
+      {
+        "type": "octave_double",
+        "axis": 1,
+        "description": "Double axis 1 (512) via interpolation",
+        "consonance": 0.8,
+        "computation_ratio": 2.0
+      }
+    ]
+  }
+}

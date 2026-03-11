@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2407.16823v1",
+    "name": "SE3ET: SE(3)-Equivariant Transformer for Low-Overlap Point Cloud Registration - arXiv",
+    "snippet": "This work proposes exploiting equivariant learning from 3D point clouds to improve registration robustness. We propose SE3ET, an SE(3)-equivariant ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/d2d3ca53fd8fbd564bb948f8c09c0d85-Paper-Conference.pdf",
+    "name": "[PDF] SE(3)-bi-equivariant Transformers for Point Cloud Assembly - NIPS",
+    "snippet": "Given a pair of point clouds, the goal of assembly is to recover a rigid transformation that aligns one point cloud to the other. This task is challenging ...",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2024/poster/96020",
+    "name": "NeurIPS Poster SE(3)-bi-equivariant Transformers for Point Cloud Assembly",
+    "snippet": "Abstract. Given a pair of point clouds, the goal of assembly is to recover a rigid transformation that aligns one point cloud to the other.",
+    "host_name": "neurips.cc",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://onlinelibrary.wiley.com/doi/10.1111/cgf.15216",
+    "name": "GETr: A Geometric Equivariant Transformer for Point Cloud Registration",
+    "snippet": "In this paper, we propose a novel deep learning framework for point cloud registration. Through point-wise learning the orientations of ...",
+    "host_name": "onlinelibrary.wiley.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ui.adsabs.harvard.edu/abs/2024IRAL....9.9526L/abstract",
+    "name": "SE3ET: SE(3)-Equivariant Transformer for Low-Overlap Point Cloud Registration - ADS",
+    "snippet": "We propose SE3ET, an SE(3)-equivariant registration framework that employs equivariant point convolution and equivariant transformer designs to learn expressive ...",
+    "host_name": "ui.adsabs.harvard.edu",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.mlr.press/v205/lin23a/lin23a.pdf",
+    "name": "[PDF] SE(3)-Equivariant Point Cloud-Based Place Recognition - Proceedings of Machine Learning Research",
+    "snippet": "Abstract: This paper reports on a new 3D point cloud-based place recognition framework that uses SE(3)-equivariant networks to learn SE(3)-invariant global.",
+    "host_name": "proceedings.mlr.press",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231225025044",
+    "name": "Equivariant feature extraction: Enhancing 3D point cloud analysis with robust rotational  - ScienceDirect.com",
+    "snippet": "We propose a novel and generalizable model for extracting S O ( 3 ) equivariant features. The model uses a small number of learnable ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=EehS4erXWB&referrer=%5Bthe%20profile%20of%20Rebecka%20J%C3%B6rnsten%5D(%2Fprofile%3Fid%3D~Rebecka_J%C3%B6rnsten1)",
+    "name": "SE(3)-bi-equivariant Transformers for Point Cloud Assembly - OpenReview",
+    "snippet": "Given a pair of point clouds, the goal of assembly is to recover a rigid transformation that aligns one point cloud to the other.",
+    "host_name": "openreview.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/abs/10.5555/3495724.3495890",
+    "name": "SE(3)-transformers: 3D roto-translation equivariant attention networks - ACM Digital Library",
+    "snippet": "We introduce the SE(3)-Transformer, a variant of the self-attention module for 3D point clouds and graphs, which is equivariant under continuous 3D roto- ...",
+    "host_name": "dl.acm.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06843.pdf",
+    "name": "[PDF] Continuous SO(3) Equivariant Convolution for 3D Point Cloud Analysis - European Computer Vision Association",
+    "snippet": "The preprocessing techniques enable the exploitation of conventional algorithms or models, yet they sacrifice the topological structure of the point cloud.",
+    "host_name": "www.ecva.net",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

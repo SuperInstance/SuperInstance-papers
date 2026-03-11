@@ -1,0 +1,164 @@
+# SuperInstance.AI Cloudflare Deployment Configuration
+# This file is auto-generated. Manual edits may be overwritten.
+
+name = "superinstance-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# ============================================================================
+# Account Configuration (BYOC or Portal Mode)
+# ============================================================================
+
+# For BYOC (Bring Your Own Cloudflare):
+# Users connect their Cloudflare account via OAuth
+# Their account_id is injected at deploy time
+
+# For Portal Mode (Free Tier):
+# Uses SuperInstance.AI's shared Cloudflare account
+# Resources are namespaced per user
+
+# ============================================================================
+# Workers Configuration
+# ============================================================================
+
+[vars]
+ENVIRONMENT = "production"
+DEPLOYMENT_MODE = "portal"  # "portal" | "user_cloudflare" | "local"
+
+# ============================================================================
+# KV Namespaces
+# ============================================================================
+
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "your-kv-namespace-id"  # Replaced at deploy time
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "your-cache-kv-id"
+
+[[kv_namespaces]]
+binding = "CONFIGS"
+id = "your-configs-kv-id"
+
+# ============================================================================
+# R2 Buckets
+# ============================================================================
+
+[[r2_buckets]]
+binding = "DOCUMENTS"
+bucket_name = "superinstance-documents"
+
+[[r2_buckets]]
+binding = "EXPORTS"
+bucket_name = "superinstance-exports"
+
+# ============================================================================
+# D1 Databases
+# ============================================================================
+
+[[d1_databases]]
+binding = "DB"
+database_name = "superinstance-main"
+database_id = "your-d1-database-id"
+
+# ============================================================================
+# Vectorize (RAG Memory)
+# ============================================================================
+
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "superinstance-embeddings"
+
+# ============================================================================
+# Durable Objects
+# ============================================================================
+
+[[durable_objects.bindings]]
+name = "SMP_CELL"
+class_name = "SMPCellDO"
+script_name = "superinstance-api"
+
+[[durable_objects.bindings]]
+name = "SESSION_MANAGER"
+class_name = "SessionManagerDO"
+script_name = "superinstance-api"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["SMPCellDO", "SessionManagerDO"]
+
+# ============================================================================
+# Queues (Cold Logic Checking)
+# ============================================================================
+
+[[queues.producers]]
+binding = "COLD_LOGIC_QUEUE"
+queue = "cold-logic-queue"
+
+[[queues.consumers]]
+queue = "cold-logic-queue"
+max_batch_size = 10
+max_wait_ms = 5000
+
+# ============================================================================
+# Cron Triggers
+# ============================================================================
+
+[[triggers.crons]]
+cron = "*/5 * * * *"
+name = "cold-logic-checker"
+
+[[triggers.crons]]
+cron = "0 0 * * *"
+name = "usage-aggregator"
+
+# ============================================================================
+# Rate Limiting
+# ============================================================================
+
+[unsafe.bindings]
+rate_limit_default = { type = "ratelimit", namespace_id = "1001", simple = { limit = 60, period = 60 } }
+rate_limit_api = { type = "ratelimit", namespace_id = "1002", simple = { limit = 100, period = 60 } }
+rate_limit_bot = { type = "ratelimit", namespace_id = "1003", simple = { limit = 30, period = 60 } }
+
+# ============================================================================
+# Analytics Engine
+# ============================================================================
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "superinstance-metrics"
+
+# ============================================================================
+# Development Configuration
+# ============================================================================
+
+[dev]
+port = 8787
+local_protocol = "http"
+ip = "127.0.0.1"
+
+# ============================================================================
+# Build Configuration
+# ============================================================================
+
+[build]
+command = "npm run build:worker"
+watch_dir = "src"
+
+# ============================================================================
+# Site Configuration (for Pages)
+# ============================================================================
+
+[site]
+bucket = "./dist"
+exclude = ["*.map", "*.d.ts"]
+
+# ============================================================================
+# Placement (Smart Placement for lower latency)
+# ============================================================================
+
+[placement]
+mode = "smart"

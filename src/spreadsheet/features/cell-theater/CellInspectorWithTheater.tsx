@@ -12,13 +12,13 @@
  */
 
 import React, { useState } from 'react';
-import { CellState, CellType, LogicLevel } from '../../core/types';
-import { CellTheater } from './CellTheater';
+import { CellState, CellType, LogicLevel } from '../../core/types.js';
+import { CellTheater } from './CellTheater.js';
 import {
   ConsciousnessRecorder,
   ConsciousnessRecording,
   ExportOptions,
-} from './index';
+} from './index.js';
 
 interface CellData {
   id: string;
@@ -126,6 +126,7 @@ export const CellInspectorWithTheater: React.FC<CellInspectorWithTheaterProps> =
       [CellState.SENSING]: '#4CAF50',
       [CellState.PROCESSING]: '#2196F3',
       [CellState.EMITTING]: '#FF9800',
+      [CellState.LEARNING]: '#9C27B0',
       [CellState.ERROR]: '#F44336',
     };
     return colors[state];
@@ -135,6 +136,7 @@ export const CellInspectorWithTheater: React.FC<CellInspectorWithTheaterProps> =
     const colors: Record<CellType, string> = {
       [CellType.INPUT]: '#4CAF50',
       [CellType.OUTPUT]: '#2196F3',
+      [CellType.STORAGE]: '#795548',
       [CellType.TRANSFORM]: '#FF9800',
       [CellType.FILTER]: '#607D8B',
       [CellType.AGGREGATE]: '#E91E63',
@@ -143,9 +145,17 @@ export const CellInspectorWithTheater: React.FC<CellInspectorWithTheaterProps> =
       [CellType.PREDICTION]: '#F44336',
       [CellType.DECISION]: '#00BCD4',
       [CellType.EXPLAIN]: '#795548',
-      [CellType.LOG]: '#9E9E9E',
+      [CellType.NOTIFY]: '#3F51B5',
+      [CellType.TRIGGER]: '#FF5722',
+      [CellType.SCHEDULE]: '#009688',
+      [CellType.COORDINATE]: '#673AB7',
+      [CellType.WHAT_IF]: '#FF9800',
+      [CellType.OPTIMIZATION]: '#4CAF50',
+      [CellType.REGRESSION]: '#2196F3',
+      [CellType.TIME_SERIES]: '#9C27B0',
+      [CellType.MONTE_CARLO]: '#F44336',
     };
-    return colors[type];
+    return colors[type] || '#9E9E9E';
   };
 
   const handleExport = (options: ExportOptions) => {
@@ -692,6 +702,7 @@ const getStateColor = (state: CellState): string => {
     [CellState.SENSING]: '#4CAF50',
     [CellState.PROCESSING]: '#2196F3',
     [CellState.EMITTING]: '#FF9800',
+    [CellState.LEARNING]: '#9C27B0',
     [CellState.ERROR]: '#F44336',
   };
   return colors[state];

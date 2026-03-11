@@ -1,0 +1,1810 @@
+{
+  "metadata": {
+    "timestamp": "2026-03-09T19:38:51.394Z",
+    "totalSimulations": 120,
+    "config": {
+      "dimensions": 10,
+      "base": 12
+    }
+  },
+  "summary": {
+    "totalSimulations": 120,
+    "distributions": {
+      "gaussian": 24,
+      "uniform": 24,
+      "concentric": 24,
+      "directional": 24,
+      "clustered": 24
+    },
+    "averageHealth": {
+      "overall": 0.556838854835233,
+      "concentric": 0.854095533019627,
+      "sector": 0.3006446830148273,
+      "density": 0.9536895398891632,
+      "anomaly": 0.11892566341731611
+    },
+    "totalPatterns": 828,
+    "totalAnomalies": 1944
+  },
+  "thoughtExperiments": {
+    "deadTensor": {
+      "healthScore": {
+        "overall": 0.5299974515348788,
+        "concentric": 0.9997185984240778,
+        "sector": 0.12153100217044827,
+        "density": 0.9985291156560004,
+        "anomaly": 0.00021108988898801954
+      },
+      "anomalies": 22,
+      "patterns": 10,
+      "anomalyTypes": [
+        "SPATIAL_ANOMALY",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "MODE_COLLAPSE",
+        "DEAD_ZONE",
+        "MODE_COLLAPSE",
+        "DEAD_ZONE",
+        "MODE_COLLAPSE"
+      ]
+    },
+    "overfitTensor": {
+      "healthScore": {
+        "overall": 0.6487001576810005,
+        "concentric": 0.4204377027868568,
+        "sector": 0.41666666666668456,
+        "density": 0.9243601443203291,
+        "anomaly": 0.8333361169501318
+      },
+      "anomalies": 12,
+      "patterns": 3,
+      "anomalyTypes": [
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "DEAD_ZONE",
+        "SATURATION",
+        "MODE_COLLAPSE"
+      ]
+    },
+    "trainingFailures": [
+      {
+        "type": "mode_collapse",
+        "healthScore": {
+          "overall": 0.4979149102300289,
+          "concentric": 0.9887755589489862,
+          "sector": 0.08304544318816642,
+          "density": 0.9153621308504044,
+          "anomaly": 0.004476507932558837
+        },
+        "anomalies": 14,
+        "patterns": 14,
+        "anomalyTypes": [
+          "SPATIAL_ANOMALY",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "MODE_COLLAPSE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE"
+        ]
+      },
+      {
+        "type": "gradient_explosion",
+        "healthScore": {
+          "overall": 0.4991829004486416,
+          "concentric": 0.5207161128692838,
+          "sector": 0.5,
+          "density": 0.9759922649268044,
+          "anomaly": 0.000023223998478071085
+        },
+        "anomalies": 16,
+        "patterns": 0,
+        "anomalyTypes": [
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "SATURATION",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "SATURATION",
+          "SATURATION",
+          "SATURATION"
+        ]
+      },
+      {
+        "type": "dead_neurons",
+        "healthScore": {
+          "overall": 0.5339179910633146,
+          "concentric": 0.6303474145033486,
+          "sector": 0.3452597159703092,
+          "density": 0.9933572660494533,
+          "anomaly": 0.1667075677301468
+        },
+        "anomalies": 25,
+        "patterns": 2,
+        "anomalyTypes": [
+          "SPATIAL_ANOMALY",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE"
+        ]
+      },
+      {
+        "type": "attention_sink",
+        "healthScore": {
+          "overall": 0.3880005028623552,
+          "concentric": 0.9999488478405222,
+          "sector": 0.11245827966584383,
+          "density": 0.43875002349741193,
+          "anomaly": 0.0008448604456428991
+        },
+        "anomalies": 24,
+        "patterns": 8,
+        "anomalyTypes": [
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "VALUE_ANOMALY",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "VALUE_ANOMALY",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "DEAD_ZONE",
+          "VALUE_ANOMALY",
+          "DEAD_ZONE",
+          "VALUE_ANOMALY",
+          "DEAD_ZONE",
+          "DEAD_ZONE"
+        ]
+      }
+    ]
+  },
+  "patternFrequency": {
+    "CONCENTRIC": 105,
+    "SECTOR_IMBALANCE": 283,
+    "GRADIENT": 263,
+    "VOID": 167,
+    "CLUSTER": 6,
+    "HOTSPOT": 4
+  },
+  "anomalyFrequency": {
+    "SPATIAL_ANOMALY": 83,
+    "DEAD_ZONE": 1851,
+    "SATURATION": 3,
+    "VALUE_ANOMALY": 7
+  },
+  "healthDistribution": {
+    "byDistribution": [
+      {
+        "distribution": "gaussian",
+        "avgHealth": 0.5699163904964135
+      },
+      {
+        "distribution": "uniform",
+        "avgHealth": 0.5808465541527496
+      },
+      {
+        "distribution": "concentric",
+        "avgHealth": 0.5280331831233275
+      },
+      {
+        "distribution": "directional",
+        "avgHealth": 0.6167682435993912
+      },
+      {
+        "distribution": "clustered",
+        "avgHealth": 0.48862990280428514
+      }
+    ]
+  },
+  "sampleResults": [
+    {
+      "tensorId": "tensor_1773085131113_v52yatand",
+      "config": {
+        "dimensions": 10,
+        "base": 12
+      },
+      "crossSectionCount": 12,
+      "cellsPerCrossSection": [
+        13,
+        9,
+        14,
+        11,
+        11,
+        13,
+        13,
+        9,
+        14,
+        11,
+        11,
+        13
+      ],
+      "patterns": [
+        {
+          "type": "CONCENTRIC",
+          "confidence": 0.8086124401913874,
+          "location": "center",
+          "description": "Balanced concentric distribution with mean radius 3.03 and std 0.67",
+          "severity": "low"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.6,
+          "location": "sector_2",
+          "description": "Sector 2 has 6.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 1,
+          "location": "southwest",
+          "description": "Strong value gradient toward southwest (magnitude: 3.45)",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.4,
+          "location": "sector_11",
+          "description": "Sector 11 has 4.0x more activity than least active sector",
+          "severity": "medium"
+        }
+      ],
+      "healthScore": {
+        "overall": 0.5575101581665133,
+        "concentric": 0.967210300949409,
+        "sector": 0.3008100080440241,
+        "density": 0.9608963856758733,
+        "anomaly": 0.0011239379967466023
+      },
+      "rotationHistory": [
+        {
+          "angle": 0,
+          "sector": 0,
+          "patternChange": 15,
+          "densityShift": 0.029296436600037747
+        },
+        {
+          "angle": 0.5235987755982988,
+          "sector": 1,
+          "patternChange": 1,
+          "densityShift": 0.02002526927453375
+        },
+        {
+          "angle": 1.0471975511965976,
+          "sector": 2,
+          "patternChange": 3,
+          "densityShift": 0.019554851976351074
+        },
+        {
+          "angle": 1.5707963267948966,
+          "sector": 3,
+          "patternChange": 2,
+          "densityShift": 0.02999420806383579
+        },
+        {
+          "angle": 2.0943951023931953,
+          "sector": 4,
+          "patternChange": 0,
+          "densityShift": 0.025914510955717413
+        },
+        {
+          "angle": 2.6179938779914944,
+          "sector": 5,
+          "patternChange": 1,
+          "densityShift": 0.02385755143787386
+        },
+        {
+          "angle": 3.141592653589793,
+          "sector": 6,
+          "patternChange": 1,
+          "densityShift": 0.029296436600037747
+        },
+        {
+          "angle": 3.665191429188092,
+          "sector": 7,
+          "patternChange": 1,
+          "densityShift": 0.02002526927453375
+        },
+        {
+          "angle": 4.1887902047863905,
+          "sector": 8,
+          "patternChange": 3,
+          "densityShift": 0.019554851976351074
+        },
+        {
+          "angle": 4.71238898038469,
+          "sector": 9,
+          "patternChange": 2,
+          "densityShift": 0.02999420806383579
+        },
+        {
+          "angle": 5.235987755982989,
+          "sector": 10,
+          "patternChange": 0,
+          "densityShift": 0.025914510955717413
+        },
+        {
+          "angle": 5.759586531581287,
+          "sector": 11,
+          "patternChange": 1,
+          "densityShift": 0.02385755143787386
+        }
+      ],
+      "anomalies": [
+        {
+          "type": "SPATIAL_ANOMALY",
+          "location": [
+            1.555722680962485,
+            -9.71445146547012e-17,
+            -0.22173490380185157,
+            0.048292200806053065,
+            0.19183650511730393,
+            0.15037542927195952,
+            0.19204918785365468,
+            -0.1250530194823996,
+            -0.39168425418363556,
+            0.0701855234048641
+          ],
+          "severity": 0.6,
+          "description": "Isolated cell with no nearby neighbors within radius 1.0"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 1 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 2 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            6.123233995736766e-17,
+            1
+          ],
+          "severity": 1,
+          "description": "Sector 3 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.4999999999999998,
+            0.8660254037844387
+          ],
+          "severity": 1,
+          "description": "Sector 4 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844388,
+            -0.4999999999999997
+          ],
+          "severity": 1,
+          "description": "Sector 7 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.5000000000000004,
+            -0.8660254037844385
+          ],
+          "severity": 1,
+          "description": "Sector 8 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1.8369701987210297e-16,
+            -1
+          ],
+          "severity": 1,
+          "description": "Sector 9 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            -0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 10 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 5 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1,
+            1.2246467991473532e-16
+          ],
+          "severity": 1,
+          "description": "Sector 6 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            1,
+            0
+          ],
+          "severity": 1,
+          "description": "Sector 0 is under-attended (expected 1, got 0)"
+        }
+      ]
+    },
+    {
+      "tensorId": "tensor_1773085131116_mpcatt82b",
+      "config": {
+        "dimensions": 10,
+        "base": 12
+      },
+      "crossSectionCount": 12,
+      "cellsPerCrossSection": [
+        4,
+        11,
+        8,
+        5,
+        7,
+        5,
+        4,
+        11,
+        8,
+        5,
+        7,
+        5
+      ],
+      "patterns": [
+        {
+          "type": "CONCENTRIC",
+          "confidence": 0.8013245033112583,
+          "location": "center",
+          "description": "Balanced concentric distribution with mean radius 3.39 and std 0.56",
+          "severity": "low"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.4,
+          "location": "sector_0",
+          "description": "Sector 0 has 4.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 1,
+          "location": "southwest",
+          "description": "Strong value gradient toward southwest (magnitude: 1.13)",
+          "severity": "medium"
+        }
+      ],
+      "healthScore": {
+        "overall": 0.583779408991995,
+        "concentric": 0.8568827495770872,
+        "sector": 0.5,
+        "density": 0.9781096283371324,
+        "anomaly": 0.00012525805376030429
+      },
+      "rotationHistory": [
+        {
+          "angle": 0,
+          "sector": 0,
+          "patternChange": 6,
+          "densityShift": 0.009010388667528534
+        },
+        {
+          "angle": 0.5235987755982988,
+          "sector": 1,
+          "patternChange": 3,
+          "densityShift": 0.0174661961551999
+        },
+        {
+          "angle": 1.0471975511965976,
+          "sector": 2,
+          "patternChange": 3,
+          "densityShift": 0.014274423200995583
+        },
+        {
+          "angle": 1.5707963267948966,
+          "sector": 3,
+          "patternChange": 0,
+          "densityShift": 0.014565593122156573
+        },
+        {
+          "angle": 2.0943951023931953,
+          "sector": 4,
+          "patternChange": 0,
+          "densityShift": 0.013195212828625244
+        },
+        {
+          "angle": 2.6179938779914944,
+          "sector": 5,
+          "patternChange": 0,
+          "densityShift": 0.009232272999486046
+        },
+        {
+          "angle": 3.141592653589793,
+          "sector": 6,
+          "patternChange": 0,
+          "densityShift": 0.009010388667528534
+        },
+        {
+          "angle": 3.665191429188092,
+          "sector": 7,
+          "patternChange": 3,
+          "densityShift": 0.0174661961551999
+        },
+        {
+          "angle": 4.1887902047863905,
+          "sector": 8,
+          "patternChange": 3,
+          "densityShift": 0.014274423200995583
+        },
+        {
+          "angle": 4.71238898038469,
+          "sector": 9,
+          "patternChange": 0,
+          "densityShift": 0.014565593122156573
+        },
+        {
+          "angle": 5.235987755982989,
+          "sector": 10,
+          "patternChange": 0,
+          "densityShift": 0.013195212828625244
+        },
+        {
+          "angle": 5.759586531581287,
+          "sector": 11,
+          "patternChange": 0,
+          "densityShift": 0.009232272999486046
+        }
+      ],
+      "anomalies": [
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            1,
+            0
+          ],
+          "severity": 1,
+          "description": "Sector 0 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 1 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 2 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            6.123233995736766e-17,
+            1
+          ],
+          "severity": 1,
+          "description": "Sector 3 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.4999999999999998,
+            0.8660254037844387
+          ],
+          "severity": 1,
+          "description": "Sector 4 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844388,
+            -0.4999999999999997
+          ],
+          "severity": 1,
+          "description": "Sector 7 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.5000000000000004,
+            -0.8660254037844385
+          ],
+          "severity": 1,
+          "description": "Sector 8 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1.8369701987210297e-16,
+            -1
+          ],
+          "severity": 1,
+          "description": "Sector 9 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            -0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 10 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "SPATIAL_ANOMALY",
+          "location": [
+            0.42929975232099804,
+            0.24785632756556775,
+            -1.3776091683086658,
+            -0.19792757975703257,
+            -0.7855681903234393,
+            1.1874756609604784,
+            -1.9325430354243225,
+            -0.7031142177373795,
+            0.1159738604704934,
+            0.047115965627430256
+          ],
+          "severity": 0.6,
+          "description": "Isolated cell with no nearby neighbors within radius 1.0"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 2 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            6.123233995736766e-17,
+            1
+          ],
+          "severity": 1,
+          "description": "Sector 3 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.4999999999999998,
+            0.8660254037844387
+          ],
+          "severity": 1,
+          "description": "Sector 4 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 5 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.5000000000000004,
+            -0.8660254037844385
+          ],
+          "severity": 1,
+          "description": "Sector 8 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1.8369701987210297e-16,
+            -1
+          ],
+          "severity": 1,
+          "description": "Sector 9 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            -0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 10 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844384,
+            -0.5000000000000004
+          ],
+          "severity": 1,
+          "description": "Sector 11 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            1,
+            0
+          ],
+          "severity": 1,
+          "description": "Sector 0 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1,
+            1.2246467991473532e-16
+          ],
+          "severity": 1,
+          "description": "Sector 6 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844388,
+            -0.4999999999999997
+          ],
+          "severity": 1,
+          "description": "Sector 7 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 5 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1,
+            1.2246467991473532e-16
+          ],
+          "severity": 1,
+          "description": "Sector 6 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844384,
+            -0.5000000000000004
+          ],
+          "severity": 1,
+          "description": "Sector 11 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 1 is under-attended (expected 1, got 0)"
+        }
+      ]
+    },
+    {
+      "tensorId": "tensor_1773085131128_g08jg9eo5",
+      "config": {
+        "dimensions": 10,
+        "base": 12
+      },
+      "crossSectionCount": 12,
+      "cellsPerCrossSection": [
+        18,
+        21,
+        23,
+        18,
+        17,
+        28,
+        18,
+        21,
+        23,
+        18,
+        17,
+        28
+      ],
+      "patterns": [
+        {
+          "type": "CONCENTRIC",
+          "confidence": 0.801980198019802,
+          "location": "center",
+          "description": "Balanced concentric distribution with mean radius 0.66 and std 0.42",
+          "severity": "low"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.4,
+          "location": "sector_6",
+          "description": "Sector 6 has 4.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.6,
+          "location": "sector_1",
+          "description": "Sector 1 has 6.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 0.8948207185328206,
+          "location": "southwest",
+          "description": "Strong value gradient toward southwest (magnitude: 0.89)",
+          "severity": "low"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.4166666666666667,
+          "location": "sectors 3, 4, 5, 10, 11",
+          "description": "Found 5 empty sectors representing potential dead zones",
+          "severity": "high"
+        },
+        {
+          "type": "CLUSTER",
+          "confidence": 0.8999999999999999,
+          "location": "2 clusters",
+          "description": "Found 2 distinct semantic clusters with 10 total cells",
+          "severity": "low"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.3333333333333333,
+          "location": "sectors 0, 5, 10, 11",
+          "description": "Found 4 empty sectors representing potential dead zones",
+          "severity": "high"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.6,
+          "location": "sector_2",
+          "description": "Sector 2 has 6.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 1,
+          "location": "south",
+          "description": "Strong value gradient toward south (magnitude: 1.13)",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.5,
+          "location": "sector_3",
+          "description": "Sector 3 has 5.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 1,
+          "location": "southeast",
+          "description": "Strong value gradient toward southeast (magnitude: 1.57)",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.6,
+          "location": "sector_5",
+          "description": "Sector 5 has 6.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 0.6632210920806164,
+          "location": "northwest",
+          "description": "Strong value gradient toward northwest (magnitude: 0.66)",
+          "severity": "low"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.16666666666666666,
+          "location": "sectors 0, 7",
+          "description": "Found 2 empty sectors representing potential dead zones",
+          "severity": "medium"
+        }
+      ],
+      "healthScore": {
+        "overall": 0.5207457673468808,
+        "concentric": 0.9803843139914071,
+        "sector": 0.15321984079480158,
+        "density": 0.9186805138796177,
+        "anomaly": 0.030698400721697078
+      },
+      "rotationHistory": [
+        {
+          "angle": 0,
+          "sector": 0,
+          "patternChange": 38,
+          "densityShift": 0.06077591710056582
+        },
+        {
+          "angle": 0.5235987755982988,
+          "sector": 1,
+          "patternChange": 2,
+          "densityShift": 0.04671544069166445
+        },
+        {
+          "angle": 1.0471975511965976,
+          "sector": 2,
+          "patternChange": 0,
+          "densityShift": 0.04178224879241409
+        },
+        {
+          "angle": 1.5707963267948966,
+          "sector": 3,
+          "patternChange": 1,
+          "densityShift": 0.05480381561567072
+        },
+        {
+          "angle": 2.0943951023931953,
+          "sector": 4,
+          "patternChange": 0,
+          "densityShift": 0.04775541838176198
+        },
+        {
+          "angle": 2.6179938779914944,
+          "sector": 5,
+          "patternChange": 1,
+          "densityShift": 0.04941181128255151
+        },
+        {
+          "angle": 3.141592653589793,
+          "sector": 6,
+          "patternChange": 2,
+          "densityShift": 0.06077591710056582
+        },
+        {
+          "angle": 3.665191429188092,
+          "sector": 7,
+          "patternChange": 2,
+          "densityShift": 0.04671544069166445
+        },
+        {
+          "angle": 4.1887902047863905,
+          "sector": 8,
+          "patternChange": 0,
+          "densityShift": 0.04178224879241409
+        },
+        {
+          "angle": 4.71238898038469,
+          "sector": 9,
+          "patternChange": 1,
+          "densityShift": 0.05480381561567072
+        },
+        {
+          "angle": 5.235987755982989,
+          "sector": 10,
+          "patternChange": 0,
+          "densityShift": 0.04775541838176198
+        },
+        {
+          "angle": 5.759586531581287,
+          "sector": 11,
+          "patternChange": 1,
+          "densityShift": 0.04941181128255151
+        }
+      ],
+      "anomalies": [
+        {
+          "type": "SPATIAL_ANOMALY",
+          "location": [
+            1.9364606088161909,
+            -1.249000902703301e-16,
+            0.07735492981546466,
+            -0.06254136555402734,
+            0.005101709391313158,
+            0.1492716709718574,
+            -0.017976032517161677,
+            0.21992428839369016,
+            0.1393246802107393,
+            0.031846860309409475
+          ],
+          "severity": 0.6,
+          "description": "Isolated cell with no nearby neighbors within radius 1.0"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            6.123233995736766e-17,
+            1
+          ],
+          "severity": 1,
+          "description": "Sector 3 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844388,
+            -0.4999999999999997
+          ],
+          "severity": 1,
+          "description": "Sector 7 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1.8369701987210297e-16,
+            -1
+          ],
+          "severity": 1,
+          "description": "Sector 9 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            -0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 10 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.4999999999999998,
+            0.8660254037844387
+          ],
+          "severity": 1,
+          "description": "Sector 4 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 5 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844384,
+            -0.5000000000000004
+          ],
+          "severity": 1,
+          "description": "Sector 11 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            1,
+            0
+          ],
+          "severity": 1,
+          "description": "Sector 0 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            1,
+            0
+          ],
+          "severity": 1,
+          "description": "Sector 0 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 5 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844388,
+            -0.4999999999999997
+          ],
+          "severity": 1,
+          "description": "Sector 7 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844384,
+            -0.5000000000000004
+          ],
+          "severity": 1,
+          "description": "Sector 11 is under-attended (expected 1, got 0)"
+        }
+      ]
+    },
+    {
+      "tensorId": "tensor_1773085131130_fdnwzc129",
+      "config": {
+        "dimensions": 10,
+        "base": 12
+      },
+      "crossSectionCount": 12,
+      "cellsPerCrossSection": [
+        1,
+        14,
+        14,
+        0,
+        0,
+        0,
+        1,
+        14,
+        14,
+        0,
+        0,
+        0
+      ],
+      "patterns": [
+        {
+          "type": "CONCENTRIC",
+          "confidence": 1,
+          "location": "center",
+          "description": "Balanced concentric distribution with mean radius 2.07 and std 0.48",
+          "severity": "low"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 1,
+          "location": "northeast",
+          "description": "Strong value gradient toward northeast (magnitude: 11.99)",
+          "severity": "medium"
+        }
+      ],
+      "healthScore": {
+        "overall": 0.5829887090369813,
+        "concentric": 0.5187158616773133,
+        "sector": 0.3341794927630944,
+        "density": 0.9790415647807983,
+        "anomaly": 0.5000179169267192
+      },
+      "rotationHistory": [
+        {
+          "angle": 0,
+          "sector": 0,
+          "patternChange": 8,
+          "densityShift": 0.0007055625317011666
+        },
+        {
+          "angle": 0.5235987755982988,
+          "sector": 1,
+          "patternChange": 2,
+          "densityShift": 0.014036037864498892
+        },
+        {
+          "angle": 1.0471975511965976,
+          "sector": 2,
+          "patternChange": 0,
+          "densityShift": 0.021951818903325027
+        },
+        {
+          "angle": 1.5707963267948966,
+          "sector": 3,
+          "patternChange": 2,
+          "densityShift": 0.017191888238629834
+        },
+        {
+          "angle": 2.0943951023931953,
+          "sector": 4,
+          "patternChange": 0,
+          "densityShift": 0
+        },
+        {
+          "angle": 2.6179938779914944,
+          "sector": 5,
+          "patternChange": 0,
+          "densityShift": 0
+        },
+        {
+          "angle": 3.141592653589793,
+          "sector": 6,
+          "patternChange": 0,
+          "densityShift": 0.0007055625317011666
+        },
+        {
+          "angle": 3.665191429188092,
+          "sector": 7,
+          "patternChange": 2,
+          "densityShift": 0.014036037864498892
+        },
+        {
+          "angle": 4.1887902047863905,
+          "sector": 8,
+          "patternChange": 0,
+          "densityShift": 0.021951818903325027
+        },
+        {
+          "angle": 4.71238898038469,
+          "sector": 9,
+          "patternChange": 2,
+          "densityShift": 0.017191888238629834
+        },
+        {
+          "angle": 5.235987755982989,
+          "sector": 10,
+          "patternChange": 0,
+          "densityShift": 0
+        },
+        {
+          "angle": 5.759586531581287,
+          "sector": 11,
+          "patternChange": 0,
+          "densityShift": 0
+        }
+      ],
+      "anomalies": [
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            1,
+            0
+          ],
+          "severity": 1,
+          "description": "Sector 0 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 1 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 2 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            6.123233995736766e-17,
+            1
+          ],
+          "severity": 1,
+          "description": "Sector 3 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.4999999999999998,
+            0.8660254037844387
+          ],
+          "severity": 1,
+          "description": "Sector 4 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 5 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844388,
+            -0.4999999999999997
+          ],
+          "severity": 1,
+          "description": "Sector 7 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.5000000000000004,
+            -0.8660254037844385
+          ],
+          "severity": 1,
+          "description": "Sector 8 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1.8369701987210297e-16,
+            -1
+          ],
+          "severity": 1,
+          "description": "Sector 9 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            -0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 10 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844384,
+            -0.5000000000000004
+          ],
+          "severity": 1,
+          "description": "Sector 11 is under-attended (expected 0, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            1,
+            0
+          ],
+          "severity": 1,
+          "description": "Sector 0 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 1 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 2 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            6.123233995736766e-17,
+            1
+          ],
+          "severity": 1,
+          "description": "Sector 3 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.4999999999999998,
+            0.8660254037844387
+          ],
+          "severity": 1,
+          "description": "Sector 4 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 5 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.5000000000000004,
+            -0.8660254037844385
+          ],
+          "severity": 1,
+          "description": "Sector 8 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1.8369701987210297e-16,
+            -1
+          ],
+          "severity": 1,
+          "description": "Sector 9 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.5000000000000001,
+            -0.8660254037844386
+          ],
+          "severity": 1,
+          "description": "Sector 10 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844384,
+            -0.5000000000000004
+          ],
+          "severity": 1,
+          "description": "Sector 11 is under-attended (expected 1, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -1,
+            1.2246467991473532e-16
+          ],
+          "severity": 1,
+          "description": "Sector 6 is under-attended (expected 1, got 0)"
+        }
+      ]
+    },
+    {
+      "tensorId": "tensor_1773085131145_bxa761szw",
+      "config": {
+        "dimensions": 10,
+        "base": 12
+      },
+      "crossSectionCount": 12,
+      "cellsPerCrossSection": [
+        36,
+        28,
+        41,
+        31,
+        38,
+        31,
+        36,
+        28,
+        41,
+        31,
+        38,
+        31
+      ],
+      "patterns": [
+        {
+          "type": "CONCENTRIC",
+          "confidence": 0.8079800498753118,
+          "location": "center",
+          "description": "Balanced concentric distribution with mean radius 1.08 and std 0.22",
+          "severity": "low"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 1,
+          "location": "sector_11",
+          "description": "Sector 11 has 12.0x more activity than least active sector",
+          "severity": "high"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 1,
+          "location": "west",
+          "description": "Strong value gradient toward west (magnitude: 1.61)",
+          "severity": "medium"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.16666666666666666,
+          "location": "sectors 1, 3",
+          "description": "Found 2 empty sectors representing potential dead zones",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.8,
+          "location": "sector_1",
+          "description": "Sector 1 has 8.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 0.7830467767401756,
+          "location": "southwest",
+          "description": "Strong value gradient toward southwest (magnitude: 0.78)",
+          "severity": "low"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.08333333333333333,
+          "location": "sectors 3",
+          "description": "Found 1 empty sectors representing potential dead zones",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 1,
+          "location": "sector_2",
+          "description": "Sector 2 has 11.0x more activity than least active sector",
+          "severity": "high"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.16666666666666666,
+          "location": "sectors 0, 3",
+          "description": "Found 2 empty sectors representing potential dead zones",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.9,
+          "location": "sector_8",
+          "description": "Sector 8 has 9.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "GRADIENT",
+          "confidence": 0.8334197495105331,
+          "location": "north",
+          "description": "Strong value gradient toward north (magnitude: 0.83)",
+          "severity": "low"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.16666666666666666,
+          "location": "sectors 0, 1",
+          "description": "Found 2 empty sectors representing potential dead zones",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.8,
+          "location": "sector_4",
+          "description": "Sector 4 has 8.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.25,
+          "location": "sectors 0, 1, 7",
+          "description": "Found 3 empty sectors representing potential dead zones",
+          "severity": "medium"
+        },
+        {
+          "type": "SECTOR_IMBALANCE",
+          "confidence": 0.8,
+          "location": "sector_10",
+          "description": "Sector 10 has 8.0x more activity than least active sector",
+          "severity": "medium"
+        },
+        {
+          "type": "VOID",
+          "confidence": 0.3333333333333333,
+          "location": "sectors 0, 1, 3, 7",
+          "description": "Found 4 empty sectors representing potential dead zones",
+          "severity": "high"
+        }
+      ],
+      "healthScore": {
+        "overall": 0.48502846315935305,
+        "concentric": 0.9891733183758182,
+        "sector": 0.06401834896121122,
+        "density": 0.8844541290385877,
+        "anomaly": 0.002468056261794986
+      },
+      "rotationHistory": [
+        {
+          "angle": 0,
+          "sector": 0,
+          "patternChange": 38,
+          "densityShift": 0.08223878823920709
+        },
+        {
+          "angle": 0.5235987755982988,
+          "sector": 1,
+          "patternChange": 0,
+          "densityShift": 0.07371795028418893
+        },
+        {
+          "angle": 1.0471975511965976,
+          "sector": 2,
+          "patternChange": 1,
+          "densityShift": 0.06548095419660616
+        },
+        {
+          "angle": 1.5707963267948966,
+          "sector": 3,
+          "patternChange": 1,
+          "densityShift": 0.08542217468639585
+        },
+        {
+          "angle": 2.0943951023931953,
+          "sector": 4,
+          "patternChange": 1,
+          "densityShift": 0.0888444243706839
+        },
+        {
+          "angle": 2.6179938779914944,
+          "sector": 5,
+          "patternChange": 0,
+          "densityShift": 0.0465861844256108
+        },
+        {
+          "angle": 3.141592653589793,
+          "sector": 6,
+          "patternChange": 1,
+          "densityShift": 0.08223878823920709
+        },
+        {
+          "angle": 3.665191429188092,
+          "sector": 7,
+          "patternChange": 0,
+          "densityShift": 0.07371795028418893
+        },
+        {
+          "angle": 4.1887902047863905,
+          "sector": 8,
+          "patternChange": 1,
+          "densityShift": 0.06548095419660616
+        },
+        {
+          "angle": 4.71238898038469,
+          "sector": 9,
+          "patternChange": 1,
+          "densityShift": 0.08542217468639585
+        },
+        {
+          "angle": 5.235987755982989,
+          "sector": 10,
+          "patternChange": 1,
+          "densityShift": 0.0888444243706839
+        },
+        {
+          "angle": 5.759586531581287,
+          "sector": 11,
+          "patternChange": 0,
+          "densityShift": 0.0465861844256108
+        }
+      ],
+      "anomalies": [
+        {
+          "type": "SPATIAL_ANOMALY",
+          "location": [
+            -0.6062718770823355,
+            4.163336342344337e-17,
+            0.3698544830692764,
+            -0.449805332044595,
+            -0.7832049566308703,
+            0.42595851803151785,
+            -0.23812674249428692,
+            -0.1650149131147396,
+            -0.45447984189363566,
+            -0.028021321130578522
+          ],
+          "severity": 0.6,
+          "description": "Isolated cell with no nearby neighbors within radius 1.0"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            0.8660254037844387,
+            0.49999999999999994
+          ],
+          "severity": 1,
+          "description": "Sector 1 is under-attended (expected 3, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            6.123233995736766e-17,
+            1
+          ],
+          "severity": 1,
+          "description": "Sector 3 is under-attended (expected 3, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            6.123233995736766e-17,
+            1
+          ],
+          "severity": 1,
+          "description": "Sector 3 is under-attended (expected 2, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            1,
+            0
+          ],
+          "severity": 1,
+          "description": "Sector 0 is under-attended (expected 3, got 0)"
+        },
+        {
+          "type": "DEAD_ZONE",
+          "location": [
+            -0.8660254037844388,
+            -0.4999999999999997
+          ],
+          "severity": 1,
+          "description": "Sector 7 is under-attended (expected 3, got 0)"
+        }
+      ]
+    }
+  ]
+}

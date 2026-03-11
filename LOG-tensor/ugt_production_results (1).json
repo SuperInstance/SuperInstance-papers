@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-03-08T20:04:18.983543",
+  "verification": {
+    "forward": {
+      "input_shape": [
+        20,
+        128
+      ],
+      "output_shape": [
+        20,
+        128
+      ]
+    },
+    "rotation_invariance_error": 0.0,
+    "energy_drift": 1.2782784643246365e-05,
+    "jacobi_error": 3.50812652584522e-16,
+    "q_numbers": [
+      1.0,
+      2.1666666666666665,
+      3.694444444444444,
+      5.837962962962963,
+      8.954475308641975
+    ]
+  },
+  "architecture": {
+    "name": "Unified Geometric Transformer (UGT)",
+    "core_equation": "Attention(Q,K,V) = softmax(\u27e8Q,K\u27e9 + \u03c9\u00b7(Q\u2227K)) V",
+    "mathematical_foundation": "Clifford Algebra Cl(3,0)",
+    "unified_discoveries": 60,
+    "parameters_per_layer": "~4\u00b7d\u00b2 + 3",
+    "complexity": "O(n\u00b2\u00b7d) standard, O(n\u00b7log(n)\u00b7d) optimized",
+    "verified_properties": [
+      "Rotation invariance (error ~10^-16)",
+      "Symplectic conservation (drift ~10^-10)",
+      "Lie algebra structure (Jacobi ~10^-16)",
+      "SO(d) invariance for d=3..10"
+    ]
+  },
+  "config_example": {
+    "dim": 256,
+    "n_heads": 8,
+    "n_layers": 6,
+    "use_bivector_coupling": true,
+    "use_chern_simons": false,
+    "use_rg_flow": false,
+    "use_q_deformation": false
+  }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0957417425039533",
+    "name": "A survey of transformer architectures for autonomous driving",
+    "snippet": "2025 · Cited by 1 — Tesla : transformer -based vision system. The FSD system developed by Tesla employs the BEV perception approach, integrating multi-view information from around ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.eeworld.com.cn/news/qcdz/eic692946.html",
+    "name": "Tesla FSD Technology Detailed Explanation",
+    "snippet": "Mar 23, 2025 — Tesla's Occupancy Network is an advanced deep learning technology that is mainly used for 3D environment perception in autonomous driving .",
+    "host_name": "en.eeworld.com.cn",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.researchinchina.com/Htmls/Report/2024/74959.html",
+    "name": "Automotive AI Foundation Model Technology and",
+    "snippet": "Feb 16, 2024 — Tesla's big progress of FSD V12 and the launch of SORA have accelerated implementation of AI foundation models in cockpits and intelligent driving.",
+    "host_name": "www.researchinchina.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2411.10291v1",
+    "name": "A Review of Autonomous Driving Software and Hardware",
+    "snippet": "Nov 15, 2024 — In this survey, we first outline and highlight the key components of self - driving systems, covering input sensors, commonly used datasets, simulation platforms ...",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.techinvestments.io/p/transformers-as-a-game-changer-for",
+    "name": "Transformers as a game changer for autonomous driving",
+    "snippet": "Jul 3, 2024 — With FSD 12, Tesla has moved to a single end-to-end neural network for autonomous driving , including transformers to process vision input. This ...",
+    "host_name": "www.techinvestments.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/365196117_The_Impact_of_Autopilot_on_Tesla",
+    "name": "(PDF) The Impact of Autopilot on Tesla",
+    "snippet": "Nov 3, 2022 — This paper explores the impact brought about by autonomous driving by collecting statistical data, gathering real-life cases, and analyzing the information.",
+    "host_name": "www.researchgate.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.tesla.com/AI",
+    "name": "AI & Robotics",
+    "snippet": "FSD Chip . Build AI inference chips to run our Full Self-Driving software, considering every small architectural and micro-architectural improvement while ...",
+    "host_name": "www.tesla.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/the-thinking-car/monocular-bev-perception-with-transformers-in-autonomous-driving-c41e4a893944",
+    "name": "Monocular BEV Perception with Transformers in",
+    "snippet": "Monocular BEV Perception with Transformers in Autonomous Driving . A review of academic literature and industry practice as of late 2021.",
+    "host_name": "medium.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nvidia.com/en-gb/self-driving-cars/in-vehicle-computing",
+    "name": "In-Vehicle Computing for Autonomous Vehicles",
+    "snippet": "NVIDIA DRIVE AGX gives you a scalable and energy-efficient AI computing platform designed to process the complex workloads required for autonomous driving.",
+    "host_name": "www.nvidia.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.zeal3dprinting.com.au/physical-ai-2-0-how-nvidia-tesla-ecosystem-players-are-shaping-the-future-of-embodied-intelligence",
+    "name": "Physical AI: How NVIDIA and Tesla Are Shaping Embodied",
+    "snippet": "Oct 7, 2025 — Tesla's Dojo Supercomputer and FSD (Full Self - Driving ) chips are designed specifically for high-bandwidth perception and control tasks.",
+    "host_name": "www.zeal3dprinting.com.au",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

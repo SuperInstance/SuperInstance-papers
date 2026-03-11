@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2104.12229",
+    "name": "Vector Neurons: A General Framework for SO(3)",
+    "snippet": "In this paper, we introduce a general framework built on top of what we call Vector Neuron representations for creating SO(3)-equivariant neural networks for ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://duanyueqi.github.io/ICCV21_Vector%20Neurons%20A%20General%20Framework%20for%20SO(3)-Equivariant%20Networks.pdf",
+    "name": "[PDF] Vector Neurons: A General Framework for SO(3)-Equivariant Networks",
+    "snippet": "In this work, we address these issues by proposing a simple, lightweight framework to build SO(3) equivariant and invariant pointcloud networks. A core ...",
+    "host_name": "duanyueqi.github.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Chen_Equivariant_Point_Network_for_3D_Point_Cloud_Analysis_CVPR_2021_paper.pdf",
+    "name": "[PDF] Equivariant Point Network for 3D Point Cloud Analysis",
+    "snippet": "In this paper, we propose an effective and practical SE(3) (3D translation and rotation) equivari- ant network for point cloud analysis that addresses both.",
+    "host_name": "openaccess.thecvf.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://neurips.cc/virtual/2024/poster/96020",
+    "name": "NeurIPS Poster SE(3)-bi-equivariant Transformers for Point Cloud Assembly",
+    "snippet": "Due to its equivariance property, BITR can not only handle non-overlapped PCs, but also guarantee robustness against initial positions.",
+    "host_name": "neurips.cc",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06843.pdf",
+    "name": "[PDF] Continuous SO(3) Equivariant Convolution for 3D Point Cloud Analysis - European Computer Vision Association",
+    "snippet": "Abstract. The inherent richness of geometric information in point cloud underscores the necessity of leveraging group equivariance, as preserving.",
+    "host_name": "www.ecva.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patents.google.com/patent/US11295170B1/en",
+    "name": "Group-equivariant convolutional neural networks for 3D",
+    "snippet": "A feed-forward neural network (FFNN) includes multiple neurons that are arranged in L+1 layers. Each neuron can be a number, a vector, or a tensor. The first ...",
+    "host_name": "patents.google.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://liner.com/review/vector-neurons-general-framework-for-so3equivariant-networks",
+    "name": "Vector Neurons: A General Framework for SO(3)-Equivariant Networks - Liner",
+    "snippet": "In this paper, we introduce a general framework built on top of what we call Vector Neuron representations for creating SO (3) -equivariant ...",
+    "host_name": "liner.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S095219762301713X",
+    "name": "Self-supervised rotation-equivariant spherical vector network",
+    "snippet": "Our method learns rotational representations from 3D point clouds through a self-supervised training process.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1999-4893/18/3/152",
+    "name": "A Novel Equivariant Self-Supervised Vector Network for Three-Dimensional Point Clouds",
+    "snippet": "A novel equivariant self-supervised vector network for point clouds is proposed. The network can learn the rotation direction information of the 3D target.",
+    "host_name": "www.mdpi.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/pdf/Student_Theses/MA_ZHU__Liyuan_2023.pdf",
+    "name": "[PDF] SO(3)-Equivariant Neural Network for Multi-object Relocalization and Reconstruction",
+    "snippet": "Point cloud is a direct and convenient 3D representation that can also be used to perform the same tasks but is harder to annotate. Understanding long-term ...",
+    "host_name": "ethz.ch",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

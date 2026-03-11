@@ -1,0 +1,440 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://superinstance.ai/schemas/cloudflare/installation_schema.json",
+  "title": "SuperInstance.AI Installation Package Schema",
+  "description": "Schema for one-click download and local installation package",
+  "type": "object",
+  "required": ["version", "platform", "components", "installer"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "releaseDate": { "type": "string", "format": "date" },
+    "platform": {
+      "type": "object",
+      "required": ["supported"],
+      "properties": {
+        "supported": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["macos-arm64", "macos-x64", "windows-x64", "linux-x64", "linux-arm64"]
+          }
+        },
+        "recommended": {
+          "type": "object",
+          "properties": {
+            "cpu": { "type": "string" },
+            "memory": { "type": "string" },
+            "storage": { "type": "string" }
+          }
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "required": ["backend", "frontend", "workers"],
+      "properties": {
+        "backend": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string", "default": "superinstance-backend" },
+            "port": { "type": "integer", "default": 3001 },
+            "technologies": {
+              "type": "array",
+              "items": { "type": "string" },
+              "default": ["Node.js", "Hono", "SQLite"]
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            }
+          }
+        },
+        "frontend": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string", "default": "superinstance-frontend" },
+            "port": { "type": "integer", "default": 3000 },
+            "technologies": {
+              "type": "array",
+              "items": { "type": "string" },
+              "default": ["Next.js", "React", "TypeScript"]
+            },
+            "dependencies": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            }
+          }
+        },
+        "workers": {
+          "type": "object",
+          "properties": {
+            "localMode": {
+              "type": "string",
+              "enum": ["miniflare", "wrangler", "native"],
+              "default": "miniflare",
+              "description": "How to run Workers locally"
+            },
+            "workerd": {
+              "type": "object",
+              "properties": {
+                "version": { "type": "string" },
+                "capabilities": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "database": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "default": "SQLite" },
+            "filename": { "type": "string", "default": "superinstance.db" },
+            "migrations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "version": { "type": "integer" },
+                  "name": { "type": "string" },
+                  "file": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "vectorStore": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["sqlite-vss", "pgvector", "chromadb", "local"] },
+            "default": "sqlite-vss",
+            "dimensions": { "type": "integer", "default": 1536 }
+          }
+        },
+        "storage": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "default": "filesystem" },
+            "path": { "type": "string", "default": "./data" },
+            "buckets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "path": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "installer": {
+      "type": "object",
+      "required": ["type", "steps"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["script", "docker", "electron", "native"]
+        },
+        "files": {
+          "type": "object",
+          "properties": {
+            "unix": { "type": "string", "default": "install.sh" },
+            "windows": { "type": "string", "default": "install.ps1" },
+            "docker": { "type": "string", "default": "docker-compose.yml" }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["order", "name", "type"],
+            "properties": {
+              "order": { "type": "integer" },
+              "name": { "type": "string" },
+              "type": { "type": "string", "enum": ["check", "install", "configure", "start", "verify"] },
+              "description": { "type": "string" },
+              "commands": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "platform": { "type": "string" },
+                    "command": { "type": "string" },
+                    "timeout": { "type": "integer", "default": 60000 }
+                  }
+                }
+              },
+              "checks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": { "type": "string", "enum": ["port", "file", "process", "http", "command"] },
+                    "value": { "type": "string" },
+                    "expected": { "type": "string" },
+                    "retryCount": { "type": "integer", "default": 3 },
+                    "retryDelay": { "type": "integer", "default": 1000 }
+                  }
+                }
+              },
+              "optional": { "type": "boolean", "default": false },
+              "skippable": { "type": "boolean", "default": false }
+            }
+          }
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "version": { "type": "string" },
+              "checkCommand": { "type": "string" },
+              "installUrl": { "type": "string", "format": "uri" },
+              "required": { "type": "boolean", "default": true }
+            }
+          }
+        },
+        "environmentVariables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "default": { "type": "string" },
+              "required": { "type": "boolean", "default": false },
+              "secret": { "type": "boolean", "default": false },
+              "validation": {
+                "type": "object",
+                "properties": {
+                  "pattern": { "type": "string" },
+                  "enum": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "docker": {
+      "type": "object",
+      "properties": {
+        "compose": {
+          "type": "object",
+          "properties": {
+            "version": { "type": "string", "default": "3.8" },
+            "services": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "image": { "type": "string" },
+                  "build": { "type": "string" },
+                  "ports": { "type": "array", "items": { "type": "string" } },
+                  "volumes": { "type": "array", "items": { "type": "string" } },
+                  "environment": { "type": "object", "additionalProperties": { "type": "string" } },
+                  "depends_on": { "type": "array", "items": { "type": "string" } },
+                  "healthcheck": {
+                    "type": "object",
+                    "properties": {
+                      "test": { "type": "array", "items": { "type": "string" } },
+                      "interval": { "type": "string" },
+                      "timeout": { "type": "string" },
+                      "retries": { "type": "integer" }
+                    }
+                  }
+                }
+              }
+            },
+            "volumes": {
+              "type": "object",
+              "additionalProperties": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    "postInstall": {
+      "type": "object",
+      "properties": {
+        "welcomeMessage": { "type": "string" },
+        "firstRunSetup": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "step": { "type": "integer" },
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "action": { "type": "string", "enum": ["input", "select", "confirm", "info"] },
+              "field": { "type": "string" },
+              "defaultValue": { "type": "string" },
+              "options": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "openBrowser": { "type": "boolean", "default": true }
+      }
+    },
+    "upgrade": {
+      "type": "object",
+      "properties": {
+        "checkUrl": { "type": "string", "format": "uri" },
+        "autoUpdate": { "type": "boolean", "default": false },
+        "migrationScripts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fromVersion": { "type": "string" },
+              "toVersion": { "type": "string" },
+              "script": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "uninstall": {
+      "type": "object",
+      "properties": {
+        "script": { "type": "string" },
+        "removeData": { "type": "boolean", "default": false },
+        "removeConfig": { "type": "boolean", "default": false }
+      }
+    }
+  },
+  "examples": [
+    {
+      "version": "1.0.0",
+      "releaseDate": "2025-01-15",
+      "platform": {
+        "supported": ["macos-arm64", "macos-x64", "windows-x64", "linux-x64"],
+        "recommended": {
+          "cpu": "4 cores",
+          "memory": "8GB RAM",
+          "storage": "10GB"
+        }
+      },
+      "installer": {
+        "type": "script",
+        "steps": [
+          {
+            "order": 1,
+            "name": "Check prerequisites",
+            "type": "check",
+            "commands": [
+              { "platform": "unix", "command": "node --version" },
+              { "platform": "windows", "command": "node --version" }
+            ]
+          },
+          {
+            "order": 2,
+            "name": "Install dependencies",
+            "type": "install",
+            "commands": [
+              { "platform": "unix", "command": "npm install", "timeout": 120000 },
+              { "platform": "windows", "command": "npm install", "timeout": 120000 }
+            ]
+          },
+          {
+            "order": 3,
+            "name": "Configure environment",
+            "type": "configure",
+            "commands": [
+              { "platform": "unix", "command": "cp .env.example .env" },
+              { "platform": "windows", "command": "copy .env.example .env" }
+            ]
+          },
+          {
+            "order": 4,
+            "name": "Initialize database",
+            "type": "install",
+            "commands": [
+              { "platform": "unix", "command": "npm run db:init" }
+            ]
+          },
+          {
+            "order": 5,
+            "name": "Start services",
+            "type": "start",
+            "commands": [
+              { "platform": "unix", "command": "npm run dev" }
+            ]
+          }
+        ],
+        "prerequisites": [
+          {
+            "name": "Node.js",
+            "version": ">=18.0.0",
+            "checkCommand": "node --version",
+            "installUrl": "https://nodejs.org/",
+            "required": true
+          },
+          {
+            "name": "npm",
+            "version": ">=9.0.0",
+            "checkCommand": "npm --version",
+            "required": true
+          }
+        ],
+        "environmentVariables": {
+          "PORT": {
+            "description": "Frontend port",
+            "default": "3000",
+            "required": false
+          },
+          "API_PORT": {
+            "description": "Backend API port",
+            "default": "3001",
+            "required": false
+          },
+          "OPENAI_API_KEY": {
+            "description": "OpenAI API key for LLM features",
+            "required": false,
+            "secret": true
+          },
+          "DEEPSEEK_API_KEY": {
+            "description": "DeepSeek API key",
+            "required": false,
+            "secret": true
+          }
+        }
+      },
+      "postInstall": {
+        "welcomeMessage": "Welcome to SuperInstance.AI! Let's set up your first SMP bot.",
+        "firstRunSetup": [
+          {
+            "step": 1,
+            "title": "Deployment Mode",
+            "description": "How would you like to run SuperInstance?",
+            "action": "select",
+            "field": "DEPLOYMENT_MODE",
+            "defaultValue": "local",
+            "options": ["local", "connect_cloudflare", "portal"]
+          },
+          {
+            "step": 2,
+            "title": "LLM Provider",
+            "description": "Select your preferred LLM provider",
+            "action": "select",
+            "field": "DEFAULT_PROVIDER",
+            "defaultValue": "deepseek",
+            "options": ["deepseek", "openai", "anthropic", "local"]
+          },
+          {
+            "step": 3,
+            "title": "API Key",
+            "description": "Enter your API key (will be encrypted)",
+            "action": "input",
+            "field": "API_KEY"
+          }
+        ]
+      }
+    }
+  ]
+}

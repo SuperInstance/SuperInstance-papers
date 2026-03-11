@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.nature.com/articles/s41598-025-00789-7",
+    "name": "Geometrically aware transformer for point cloud analysis",
+    "snippet": "2025 · Cited by 8 — With the increasing use of 3D point cloud data in autonomous driving , robotic perception, and remote sensing, efficient and accurate point ...",
+    "host_name": "www.nature.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2602.05573v1",
+    "name": "Visual Implicit Geometry Transformer for Autonomous Driving",
+    "snippet": "Feb 5, 2026 — Our model learns an continuous 3D occupancy field in BEV representation that incorporates depth, point clouds , and occupancy from images, ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/391707618_Geometrically_aware_transformer_for_point_cloud_analysis",
+    "name": "Geometrically aware transformer for point cloud analysis",
+    "snippet": "This study presents PointGA, a lightweight Transformer -based model that enhances geometric perception for improved feature extraction and representation. First, ...",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://onlinelibrary.wiley.com/doi/10.1111/cgf.15216",
+    "name": "GETr: A Geometric Equivariant Transformer for Point Cloud",
+    "snippet": "2024 · Cited by 1 — In this paper, we propose GETr, a geometric equivariant transformer for PCR. By learning the point -wise orientations, we decouple the coordinate to the pose of ...",
+    "host_name": "onlinelibrary.wiley.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0957417425039533",
+    "name": "A survey of transformer architectures for autonomous driving",
+    "snippet": "2025 · Cited by 1 — Transformers have emerged as a foundational paradigm in autonomous driving , enabling high-capacity modeling of complex, multimodal, and dynamic environments ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2504-446X/8/8/412",
+    "name": "A Systematic Survey of Transformer-Based 3D Object",
+    "snippet": "2024 · Cited by 21 — A large number of excellent Transformer -based 3D object detection methods have emerged. This article divides the methods based on data sources.",
+    "host_name": "www.mdpi.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchsquare.com/article/rs-5538442/latest",
+    "name": "Geometrically Aware Transformer for Point Cloud Analysis",
+    "snippet": "2025 · Cited by 7 — With the increasing use of 3D point cloud data in autonomous driving , robotic perception, and remote sensing, efficient and accurate point cloud analysis ...",
+    "host_name": "www.researchsquare.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2024.1212070/full",
+    "name": "A survey on 3D object detection in real time for",
+    "snippet": "2024 · Cited by 19 — This paper reviews the state-of-the-art 3D object detection techniques that utilizes monocular and stereo vision for reliable detection in urban settings.",
+    "host_name": "www.frontiersin.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ui.adsabs.harvard.edu/abs/2025NatSR..1516545C/abstract",
+    "name": "Geometrically aware transformer for point cloud analysis",
+    "snippet": "2025 · Cited by 8 — This study presents PointGA, a lightweight Transformer -based model that enhances geometric perception for improved feature extraction and representation. First, ...",
+    "host_name": "ui.adsabs.harvard.edu",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s11704-024-40443-5",
+    "name": "Vision-based 3D occupancy prediction in autonomous driving",
+    "snippet": "2026 · Cited by 32 — PC-RGNN: point cloud completion and graph neural network for 3D object detection. ... In: Proceedings of 2024 IEEE International Conference on ...",
+    "host_name": "link.springer.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

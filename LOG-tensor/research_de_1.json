@@ -1,0 +1,83 @@
+[
+  {
+    "url": "https://research.chalmers.se/publication/544317/file/544317_Fulltext.pdf",
+    "name": "Geometric deep learning and equivariant neural networks",
+    "snippet": "2023 · Cited by 140 — Abstract. We survey the mathematical foundations of geometric deep learning, focusing on group equivariant and gauge equivariant neural networks.",
+    "host_name": "research.chalmers.se",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dgk.badw.de/fileadmin/user_upload/Files/DGK/docs/c-826.pdf",
+    "name": "Alexander Schlichting - DGK",
+    "snippet": "Jun 17, 2018 — Geometric loss functions for camera pose regression with deep learning. ... Neural Networks and Deep learning. Determination Press, Kap. 3 ...",
+    "host_name": "dgk.badw.de",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/djzgroup/PointwiseNet",
+    "name": "Pointwise Geometric and Semantic Learning Network on 3D Point",
+    "snippet": "We propose an end-to-end network for 3D shape analysis, named PointwiseNet, which combines pointwise low-level geometric and high-level semantic features. The network has the ability to classify and segment 3D models and does not require any pretraining.",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://markuspaschke.de/assets/pdf/Markus_Paschke_Masterarbeit.pdf",
+    "name": "Deep-Learning-MethodenzurErstellungvon 3D-Modellen MarkusPaschke",
+    "snippet": "ining eines neuronalen Netzwerks ähnlich gut abgebildet werden. Aufgrund der nun zur Verfügung stehenden notwendigen Rechenkapazität konnte in den letzten Jahren die Bildererkennung große Fortschritte erzielen. Vor allem jedoch die Verfügbarkeit von großen 3D-Modell-Datensätzen ermögli",
+    "host_name": "markuspaschke.de",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2508.02723",
+    "name": "Mathematical Foundations of Geometric Deep Learning",
+    "snippet": "Traditional deep learning models, operate on grid-like data (e.g., images, time series, text), but many real-world problems involve more complex, irregular geometries. In particular, the field focuses on analyzing neural networks based on the geometric priors they leverage.",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.alphaxiv.org/de/overview/2104.12229v1",
+    "name": "Vector Neurons: A General Framework for SO (3)-Equivariant",
+    "snippet": "Das Vector-Neurons-Framework führt eine allgemeine, leichtgewichtige Methode zum Aufbau SO (3)-äquivarianter neuronaler Netze für Punktwolken ein, indem latente Merkmale als 3D-Vektoren dargestellt werden.",
+    "host_name": "www.alphaxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pro.arcgis.com/de/pro-app/latest/tool-reference/3d-analyst/train-point-cloud-classification-model.htm",
+    "name": "Punktwolken-Klassifizierungsmodell trainieren (3D Analyst)",
+    "snippet": "ArcGIS-Geoverarbeitungswerkzeug zum Trainieren eines Deep-Learning-Modells für die Punktwolkenklassifizierung.",
+    "host_name": "pro.arcgis.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s10462-023-10502-7",
+    "name": "Geometric deep learning and equivariant neural networks",
+    "snippet": "This rapidly growing research field is referred to as geometric deep learning (Bronstein et al. 2017). In this introduction we shall provide a birds-eye view on the subject of geometric deep learning, with emphasis on the mathematical foundations.",
+    "host_name": "link.springer.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://kbs.informatik.uos.de/files/pdfs/3dtage2022_wiemann1.pdf",
+    "name": "Integration von Hyperspektraldaten in RandLA-Net zur",
+    "snippet": "Da bisher keine Datensätze zur Segmentierung von hyperspektralen Punktwolken frei verfügbar sind, haben wir einen eigenen Datensatz erstellt, der manuell gelabelte Punkte enthält, um damit verschiedene Deep Learning Ansätze zu testen.",
+    "host_name": "kbs.informatik.uos.de",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  }
+]

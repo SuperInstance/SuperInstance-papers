@@ -526,7 +526,8 @@ const FlagEditor: React.FC<FlagEditorProps> = ({ flag, onSave, onCancel }) => {
       rolloutPercentage: type === FlagType.PERCENTAGE ? rolloutPercentage : undefined,
       tags: tags.split(',').map(t => t.trim()).filter(Boolean),
       rules: [],
-      killSwitchEnabled: false
+      killSwitchEnabled: false,
+      evaluationCount: 0
     });
   };
 

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://people.math.harvard.edu/~jjchen/docs/Group%20Theory%20and%20the%20Rubik's%20Cube.pdf",
+    "name": "[PDF] Group Theory and the Rubik's Cube - Harvard Mathematics Department",
+    "snippet": "The most basic move one can do is to rotate a single face. We will let R denote a clockwise rotation of the right face (looking at the right face, turn it 90◦ ...",
+    "host_name": "people.math.harvard.edu",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.fuw.edu.pl/~konieczn/RubikCube.pdf",
+    "name": "[PDF] Mathematics of the Rubik's cube",
+    "snippet": "malization of what is now known as group theory, elements of group theory ... Each element of the rotation group of the icosahedron (i.e., the ...",
+    "host_name": "www.fuw.edu.pl",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Rubik%27s_Cube_group",
+    "name": "Rubik's Cube group - Wikipedia",
+    "snippet": "It has been reported that the Rubik's Cube Group has 81,120 conjugacy classes. The number was calculated by counting the number of even and odd conjugacy ... Missing: SO3 | Show results with: SO3",
+    "host_name": "en.wikipedia.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.stackexchange.com/questions/249476/presentation-of-rubiks-cube-group",
+    "name": "Presentation of Rubik's Cube group - Mathematics Stack Exchange",
+    "snippet": "The Rubik's Cube group is the group of permutations of the 20 cubes at the edges and vertices of a Rubik's group (taking into account their specific rotation) Solving Rubik's cube and other permutation puzzles What are some Group representation of the rubik's cube group? More results from math.stackexchange.com Missing: SO3 | Show results with: SO3",
+    "host_name": "math.stackexchange.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=sIw_c6tCJP0",
+    "name": "The Rubik's Cube Is Group Theory - YouTube",
+    "snippet": "Ever wondered how mathematicians connect algebraic structures like symmetry groups to geometric spaces? Group cohomology provides the bridge ... Missing: SO3 rotation",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "Mar 5, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://tomrocksmaths.com/wp-content/uploads/2024/09/oxford_essay_writing_competition-16-copiryte.pdf",
+    "name": "[PDF] Group Theory and it's applications in Rubik's cubes - tom rocks maths",
+    "snippet": "As the rotational symmetries follow the group axioms, they evidently form a group of symmetries, where the rotations 0° the identity element ,120° 240°.",
+    "host_name": "tomrocksmaths.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALAPP/Travis.pdf",
+    "name": "[PDF] the mathematics of the rubik's cube",
+    "snippet": "A direct product of two groups A, B is defined by A × B := {(a, b)|a ∈ A, b ∈ B}. 2. Permutations. A permutation is a bijection from a set to itself. A cycle is ... Missing: SO3 | Show results with: SO3",
+    "host_name": "www.math.uchicago.edu",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://web.mit.edu/sp.268/www/rubik.pdf",
+    "name": "[PDF] The Mathematics of the Rubik's Cube - MIT",
+    "snippet": "Rotations are also associative: it does not matter how we group them, as long as the order in which operations are performed is conserved. The ...",
+    "host_name": "web.mit.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.deanfrancispress.com/index.php/te/article/download/1790/1664/6924",
+    "name": "[PDF] Group Theory and Solutions of the Rubik's Cube - Dean & Francis Press",
+    "snippet": "Key concepts such as symmetric groups, homomorphisms, alternating groups, and disjoint cycle decomposition are used to break down the cube's complexity.",
+    "host_name": "www.deanfrancispress.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://faculty.etsu.edu/gardnerr/4127/algebra-club/rubik-talk2.pdf",
+    "name": "[PDF] Group Theory and the Rubik's Cube - East Tennessee State University",
+    "snippet": "We will use a similar notation for the rotation of corner cubies. Namely, we will use '+' to indicate clockwise rotation and '-' to indicate counter-clockwise ...",
+    "host_name": "faculty.etsu.edu",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

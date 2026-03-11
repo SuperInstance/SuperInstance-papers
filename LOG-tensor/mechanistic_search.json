@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.anthropic.com/research/tracing-thoughts-language-model",
+    "name": "Tracing the thoughts of a large language model - Anthropic",
+    "snippet": "Anthropic's latest interpretability research: a new microscope to understand Claude's internal mechanisms.",
+    "host_name": "www.anthropic.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@adnanmasood/inside-the-black-box-a-practical-field-guide-to-mechanistic-interpretability-b8757600e2de",
+    "name": "Inside the Black Box: A Practical Field Guide to Mechanistic Interpretability - Medium",
+    "snippet": "Mechanistic interpretability tries to recover higher-level structure from this “machine code”: finding interpretable variables and circuits ...",
+    "host_name": "medium.com",
+    "rank": 1,
+    "date": "Mar 1, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://transformer-circuits.pub",
+    "name": "Transformer Circuits Thread",
+    "snippet": "Anthropic's Interpretability Research. A surprising fact about modern large language models is that nobody really knows how they work internally.",
+    "host_name": "transformer-circuits.pub",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.anthropic.com/research/mapping-mind-language-model",
+    "name": "Mapping the Mind of a Large Language Model - Anthropic",
+    "snippet": "We have identified how millions of concepts are represented inside Claude Sonnet, one of our deployed large language models.",
+    "host_name": "www.anthropic.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms",
+    "name": "Understanding Mechanistic Interpretability in AI Models - IntuitionLabs",
+    "snippet": "Mechanistic interpretability is the study of how neural networks compute their outputs by reverse-engineering their internal mechanisms – much like deciphering ...",
+    "host_name": "intuitionlabs.ai",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cloudsecurityalliance.org/blog/2024/09/05/mechanistic-interpretability-101",
+    "name": "Mechanistic Interpretability | Decode Neural Networks - Cloud Security Alliance (CSA)",
+    "snippet": "Mechanistic interpretability involves several techniques designed to uncover and understand the roles of features and circuits. Neuron ...",
+    "host_name": "cloudsecurityalliance.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2501.16496v1",
+    "name": "Open Problems in Mechanistic Interpretability - arXiv.org",
+    "snippet": "Mechanistic interpretability aims to understand the computational mechanisms underlying neural networks' capabilities in order to accomplish ...",
+    "host_name": "arxiv.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.anthropic.com/research/team/interpretability",
+    "name": "Interpretability Research - Anthropic",
+    "snippet": "Neural networks pack many concepts into single neurons. This paper shows how and when models represent more features than they have dimensions. Publications.",
+    "host_name": "www.anthropic.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.bluedot.org/p/introduction-to-mechanistic-interpretability",
+    "name": "Introduction to Mechanistic Interpretability - by Sarah - BlueDot Impact",
+    "snippet": "Mechanistic Interpretability is an emerging field that seeks to understand the internal reasoning processes of trained neural networks and ...",
+    "host_name": "blog.bluedot.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.neelnanda.io/mechanistic-interpretability/glossary",
+    "name": "A Comprehensive Mechanistic Interpretability Explainer & Glossary - Neel Nanda",
+    "snippet": "The goal of this doc is to be a comprehensive glossary and explainer for Mechanistic Interpretability (focusing on transformer language models), ...",
+    "host_name": "www.neelnanda.io",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

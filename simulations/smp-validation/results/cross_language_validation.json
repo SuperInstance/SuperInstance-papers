@@ -1,0 +1,248 @@
+{
+  "success": true,
+  "test_case_count": 10,
+  "typescript_validation": {
+    "success": true,
+    "results": [
+      {
+        "test_id": "cascade_20260310_204752_e88c19b7",
+        "composition_type": "sequential",
+        "python_confidence": 0.015992547139043713,
+        "python_zone": "RED",
+        "typescript_confidence": 0.015992547139043713,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_f8cb1f6b",
+        "composition_type": "sequential",
+        "python_confidence": 0.06138949716573869,
+        "python_zone": "RED",
+        "typescript_confidence": 0.06138949716573869,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_8b816cc8",
+        "composition_type": "sequential",
+        "python_confidence": 0.4983696931265163,
+        "python_zone": "RED",
+        "typescript_confidence": 0.4983696931265163,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_80e312e8",
+        "composition_type": "sequential",
+        "python_confidence": 0.07756505011207641,
+        "python_zone": "RED",
+        "typescript_confidence": 0.07756505011207641,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_19012ce8",
+        "composition_type": "sequential",
+        "python_confidence": 0.01257209704687195,
+        "python_zone": "RED",
+        "typescript_confidence": 0.01257209704687195,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_bb8ae802",
+        "composition_type": "sequential",
+        "python_confidence": 0.11048985674721067,
+        "python_zone": "RED",
+        "typescript_confidence": 0.11048985674721067,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_a835a8b1",
+        "composition_type": "sequential",
+        "python_confidence": 0.00527634987063157,
+        "python_zone": "RED",
+        "typescript_confidence": 0.00527634987063157,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_d413dd86",
+        "composition_type": "sequential",
+        "python_confidence": 0.35414898774456244,
+        "python_zone": "RED",
+        "typescript_confidence": 0.35414898774456244,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_9c552bca",
+        "composition_type": "sequential",
+        "python_confidence": 0.12989809390084187,
+        "python_zone": "RED",
+        "typescript_confidence": 0.12989809390084187,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_2a6cbf46",
+        "composition_type": "sequential",
+        "python_confidence": 0.005260294014052374,
+        "python_zone": "RED",
+        "typescript_confidence": 0.005260294014052374,
+        "typescript_zone": "RED",
+        "confidence_difference": 0,
+        "zone_match": true,
+        "validation_passed": true
+      }
+    ],
+    "stderr": "",
+    "stdout": "[\n  {\n    \"test_id\": \"cascade_20260310_204752_e88c19b7\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.015992547139043713,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.015992547139043713,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_f8cb1f6b\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.06138949716573869,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.06138949716573869,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_8b816cc8\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.4983696931265163,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.4983696931265163,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_80e312e8\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.07756505011207641,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.07756505011207641,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_19012ce8\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.01257209704687195,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.01257209704687195,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_bb8ae802\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.11048985674721067,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.11048985674721067,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_a835a8b1\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.00527634987063157,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.00527634987063157,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_d413dd86\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.35414898774456244,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.35414898774456244,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_9c552bca\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.12989809390084187,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.12989809390084187,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  },\n  {\n    \"test_id\": \"cascade_20260310_204752_2a6cbf46\",\n    \"composition_type\": \"sequential\",\n    \"python_confidence\": 0.005260294014052374,\n    \"python_zone\": \"RED\",\n    \"typescript_confidence\": 0.005260294014052374,\n    \"typescript_zone\": \"RED\",\n    \"confidence_difference\": 0,\n    \"zone_match\": true,\n    \"validation_passed\": true\n  }\n]\n"
+  },
+  "comparison": {
+    "success": true,
+    "summary": {
+      "total_tests": 10,
+      "passed_tests": 10,
+      "failed_tests": 0,
+      "success_rate": 1.0,
+      "mean_confidence_difference": 0.0,
+      "max_confidence_difference": 0.0,
+      "zone_match_rate": 1.0
+    },
+    "comparisons": [
+      {
+        "test_id": "cascade_20260310_204752_e88c19b7",
+        "composition_type": "sequential",
+        "python_confidence": 0.015992547139043713,
+        "typescript_confidence": 0.015992547139043713,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_f8cb1f6b",
+        "composition_type": "sequential",
+        "python_confidence": 0.06138949716573869,
+        "typescript_confidence": 0.06138949716573869,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_8b816cc8",
+        "composition_type": "sequential",
+        "python_confidence": 0.4983696931265163,
+        "typescript_confidence": 0.4983696931265163,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_80e312e8",
+        "composition_type": "sequential",
+        "python_confidence": 0.07756505011207641,
+        "typescript_confidence": 0.07756505011207641,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_19012ce8",
+        "composition_type": "sequential",
+        "python_confidence": 0.01257209704687195,
+        "typescript_confidence": 0.01257209704687195,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_bb8ae802",
+        "composition_type": "sequential",
+        "python_confidence": 0.11048985674721067,
+        "typescript_confidence": 0.11048985674721067,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_a835a8b1",
+        "composition_type": "sequential",
+        "python_confidence": 0.00527634987063157,
+        "typescript_confidence": 0.00527634987063157,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_d413dd86",
+        "composition_type": "sequential",
+        "python_confidence": 0.35414898774456244,
+        "typescript_confidence": 0.35414898774456244,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_9c552bca",
+        "composition_type": "sequential",
+        "python_confidence": 0.12989809390084187,
+        "typescript_confidence": 0.12989809390084187,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      },
+      {
+        "test_id": "cascade_20260310_204752_2a6cbf46",
+        "composition_type": "sequential",
+        "python_confidence": 0.005260294014052374,
+        "typescript_confidence": 0.005260294014052374,
+        "confidence_difference": 0.0,
+        "python_zone": "RED",
+        "typescript_zone": "RED",
+        "zone_match": true,
+        "validation_passed": true
+      }
+    ],
+    "discrepancies": [],
+    "validation_passed": true
+  },
+  "overall_validation_passed": true
+}

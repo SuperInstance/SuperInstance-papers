@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0045793025000799",
+    "name": "Application of the quantum Fourier transform in a harmonic balance solver for Burgers' equation - ScienceDirect",
+    "snippet": "A harmonic balance solver is developed for Burgers' equation, in which discrete Fourier transforms are approximated using a hybrid quantum-classical algorithm.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.7b00608",
+    "name": "Tensor-Train Split-Operator Fourier Transform (TT-SOFT) Method: Multidimensional Nonadiabatic Quantum Dynamics | Journal of Chemical Theory and Computation",
+    "snippet": "We introduce the “tensor-train split-operator Fourier transform” (TT-SOFT) method for simulations of multidimensional nonadiabatic quantum dynamics.",
+    "host_name": "pubs.acs.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dipot.ulb.ac.be/dspace/bitstream/2013/390063/3/doi_373707.pdf",
+    "name": "[PDF] Application of the quantum Fourier transform in a harmonic balance solver for Burgers' equation",
+    "snippet": "This paper explores the potential of quantum computing for computational fluid dynamics (CFD) applications,.",
+    "host_name": "dipot.ulb.ac.be",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.arxiv.org/pdf/2509.24093",
+    "name": "[PDF] Clebsch-Gordan Transformer: Fast and Global Equivariant Attention - arXiv",
+    "snippet": "We compared three methods for computing the tensor product, the naisve method, the gaunt tensor product method, the Fourier transform method ...",
+    "host_name": "www.arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.osti.gov/servlets/purl/1480241",
+    "name": "[PDF] Tensor-Train Split-Operator Fourier Transform (TT-SOFT) Method: Multidimensional Nonadiabatic Quantum Dynamics - OSTI.GOV",
+    "snippet": "ABSTRACT: We introduce the “tensor-train split-operator Fourier transform”. (TT-SOFT) method for simulations of multidimensional ...",
+    "host_name": "www.osti.gov",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/pdf?id=mhyQXJ6JsK",
+    "name": "[PDF] ENABLING EFFICIENT EQUIVARIANT OPERATIONS IN THE FOURIER BASIS VIA GAUNT TENSOR PRODUCTS - OpenReview",
+    "snippet": "In this work, we propose a systematic approach to substantially accelerate the computation of the tensor products of irreps. We mathematically connect the ...",
+    "host_name": "openreview.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.science/hal-04456086v1/file/hal-04456086.pdf",
+    "name": "[PDF] A generalized Fourier transform by means of change of variables within multilinear approximation - HAL",
+    "snippet": "Abstract. The paper deals with approximations of periodic functions that play a significant role in harmonic analysis.",
+    "host_name": "hal.science",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ui.adsabs.harvard.edu/abs/2000JCoPh.162..514K",
+    "name": "Computational Harmonic Analysis for Tensor Fields on the Two-Sphere - NASA ADS",
+    "snippet": "Abstract. In this paper we describe algorithms for the numerical computation of Fourier transforms of tensor fields on the two-sphere, S2. Missing: principles | Show results with: principles",
+    "host_name": "ui.adsabs.harvard.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/BF02252031",
+    "name": "The fast Fourier transform for general order | Computing - Springer Link",
+    "snippet": "It is shown how a Fourier transform of the ordern=p·m can be reduced top Fourier transforms of orderm by performing essentiallym Fourier transforms of orderp ...",
+    "host_name": "link.springer.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PhysRevResearch.6.023006",
+    "name": "Holographic-(V)AE: An end-to-end SO(3)-equivariant (variational) autoencoder in Fourier space - APS Journals",
+    "snippet": "To significantly reduce the computational and memory costs of the tensor products, we perform efficient tensor products (ETPs) by leveraging ...",
+    "host_name": "link.aps.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

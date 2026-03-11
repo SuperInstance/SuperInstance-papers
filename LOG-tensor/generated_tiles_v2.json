@@ -1,0 +1,1311 @@
+{
+  "atomic": [
+    {
+      "name": "true",
+      "math": "The boolean value representing \"true\" or \"1\"",
+      "python": "`True`",
+      "freq": "HIGH",
+      "tags": "logical, boolean",
+      "desc": "Represents a logical true value."
+    },
+    {
+      "name": "false",
+      "math": "The boolean value representing \"false\" or \"0\"",
+      "python": "`False`",
+      "freq": "HIGH",
+      "tags": "logical, boolean",
+      "desc": "Represents a logical false value."
+    },
+    {
+      "name": "eps",
+      "math": "Machine epsilon, the smallest positive floating point number greater than zero",
+      "python": "`2**-52` (for double precision)",
+      "freq": "MED",
+      "tags": "floating-point, precision",
+      "desc": "Represents the smallest positive number that can be added to 1 to yield a result different from 1."
+    },
+    {
+      "name": "maxf",
+      "math": "The maximum positive representable floating-point number",
+      "python": "`float('inf')`",
+      "freq": "LOW",
+      "tags": "floating-point, bound",
+      "desc": "Represents the maximum value of a floating-point number."
+    },
+    {
+      "name": "minf",
+      "math": "The minimum positive representable floating-point number",
+      "python": "`2**-1074` (for double precision)",
+      "freq": "LOW",
+      "tags": "floating-point, bound",
+      "desc": "Represents the minimum positive value of a floating-point number."
+    },
+    {
+      "name": "iinf",
+      "math": "Positive infinity",
+      "python": "`float('inf')`",
+      "freq": "HIGH",
+      "tags": "infinity, bound",
+      "desc": "Represents positive infinity, used in floating-point calculations."
+    },
+    {
+      "name": "ninf",
+      "math": "Negative infinity",
+      "python": "`float('-inf')`",
+      "freq": "HIGH",
+      "tags": "infinity, bound",
+      "desc": "Represents negative infinity, used in floating-point calculations."
+    },
+    {
+      "name": "nan",
+      "math": "Not a Number",
+      "python": "`float('nan')`",
+      "freq": "MED",
+      "tags": "undefined, error",
+      "desc": "Represents an undefined or unrepresentable value resulting from certain mathematical operations."
+    }
+  ],
+  "slot_1": [
+    {
+      "name": "sinx",
+      "math": "f(x) = sin(x)",
+      "python": "lambda x: math.sin(x)",
+      "freq": "HIGH",
+      "tags": "trigonometry, periodic",
+      "desc": "The sine of x radians."
+    },
+    {
+      "name": "cosx",
+      "math": "f(x) = cos(x)",
+      "python": "lambda x: math.cos(x)",
+      "freq": "HIGH",
+      "tags": "trigonometry, periodic",
+      "desc": "The cosine of x radians."
+    },
+    {
+      "name": "tanx",
+      "math": "f(x) = tan(x)",
+      "python": "lambda x: math.tan(x)",
+      "freq": "MED",
+      "tags": "trigonometry, periodic",
+      "desc": "The tangent of x radians."
+    },
+    {
+      "name": "log2",
+      "math": "f(x) = log2(x)",
+      "python": "lambda x: math.log2(x)",
+      "freq": "MED",
+      "tags": "logarithm, base2",
+      "desc": "The base-2 logarithm of x."
+    },
+    {
+      "name": "sign",
+      "math": "f(x) = sgn(x)",
+      "python": "lambda x: (x > 0) - (x < 0)",
+      "freq": "LOW",
+      "tags": "sign, indicator",
+      "desc": "Returns -1 if x is negative, 0 if x is zero, and 1 if x is positive."
+    },
+    {
+      "name": "ceil",
+      "math": "f(x) = \u2308x\u2309",
+      "python": "lambda x: math.ceil(x)",
+      "freq": "LOW",
+      "tags": "ceiling, roundup",
+      "desc": "The smallest integer greater than or equal to x."
+    },
+    {
+      "name": "floor",
+      "math": "f(x) = \u230ax\u230b",
+      "python": "lambda x: math.floor(x)",
+      "freq": "LOW",
+      "tags": "floor, rounddown",
+      "desc": "The largest integer less than or equal to x."
+    },
+    {
+      "name": "fract",
+      "math": "f(x) = x - \u230ax\u230b",
+      "python": "lambda x: x - x // 1",
+      "freq": "MED",
+      "tags": "fraction, fractionalpart",
+      "desc": "The fractional part of x."
+    }
+  ],
+  "slot_2": [
+    {
+      "name": "pow",
+      "math": "f(a, b) = a^b",
+      "python": "lambda a, b: a**b",
+      "freq": "HIGH",
+      "tags": "exponentiation, power",
+      "desc": "Returns the power of the first input raised to the second input."
+    },
+    {
+      "name": "mod",
+      "math": "f(a, b) = a mod b",
+      "python": "lambda a, b: a % b",
+      "freq": "MED",
+      "tags": "modulo, remainder",
+      "desc": "Returns the remainder of the division of the first input by the second input."
+    },
+    {
+      "name": "and",
+      "math": "f(a, b) = a AND b",
+      "python": "lambda a, b: a and b",
+      "freq": "HIGH",
+      "tags": "logical, conjunction",
+      "desc": "Returns True if both inputs are True, otherwise returns False."
+    },
+    {
+      "name": "or",
+      "math": "f(a, b) = a OR b",
+      "python": "lambda a, b: a or b",
+      "freq": "HIGH",
+      "tags": "logical, disjunction",
+      "desc": "Returns True if at least one input is True, otherwise returns False."
+    },
+    {
+      "name": "xor",
+      "math": "f(a, b) = (a AND not b) OR (not a AND b)",
+      "python": "lambda a, b: (a and not b) or (not a and b)",
+      "freq": "MED",
+      "tags": "logical, exclusive or",
+      "desc": "Returns True if exactly one input is True, otherwise returns False."
+    },
+    {
+      "name": "absdiff",
+      "math": "f(a, b) = |a - b|",
+      "python": "lambda a, b: abs(a - b)",
+      "freq": "MED",
+      "tags": "absolute difference",
+      "desc": "Returns the absolute difference between the two inputs."
+    },
+    {
+      "name": "gcd",
+      "math": "f(a, b) = greatest common divisor of a and b",
+      "python": "lambda a, b: math.gcd(a, b)",
+      "freq": "LOW",
+      "tags": "greatest common divisor, GCD",
+      "desc": "Returns the greatest common divisor of the two inputs."
+    },
+    {
+      "name": "lcm",
+      "math": "f(a, b) = least common multiple of a and b",
+      "python": "lambda a, b: abs(a*b) // math.gcd(a, b)",
+      "freq": "LOW",
+      "tags": "least common multiple, LCM",
+      "desc": "Returns the least common multiple of the two inputs."
+    }
+  ],
+  "realtime": [
+    {
+      "name": "AVGR",
+      "slots": "(value: float, window: int)",
+      "math": "`avg = \u2211value / window`",
+      "python": "def avgr(inputs):",
+      "freq": "MED",
+      "tags": "realtime, average",
+      "desc": "Computes the average of the last `window` number of sensor readings."
+    },
+    {
+      "name": "COUNT",
+      "slots": "(event: bool)",
+      "math": "`count = 1 if event is true else 0`",
+      "python": "def count(inputs):",
+      "freq": "HIGH",
+      "tags": "realtime, counter",
+      "desc": "Increments a counter whenever an event is true."
+    },
+    {
+      "name": "DEBOUNCE",
+      "slots": "(signal: bool, delay: float)",
+      "math": "`output = signal if (t - last) > delay else last`",
+      "python": "def debounce(inputs):",
+      "if current_time - last_update > inputs['delay']": "",
+      "freq": "HIGH",
+      "tags": "realtime, debouncing",
+      "desc": "Prevents rapid changes in signal, only updates when signal remains the same for a `delay` duration."
+    },
+    {
+      "name": "STABILIZE",
+      "slots": "(value: float, threshold: float)",
+      "math": "`output = value if abs(value - last) < threshold else last`",
+      "python": "def stabilize(inputs):",
+      "if abs(inputs['value'] - last_value) < inputs['threshold']": "",
+      "freq": "MED",
+      "tags": "realtime, stabilize",
+      "desc": "Filters out noisy data that deviates beyond a `threshold` from the last stable value."
+    },
+    {
+      "name": "TRIGGER",
+      "slots": "(condition: bool, reset: bool)",
+      "math": "`output = 1 if condition and not reset else 0`",
+      "python": "def trigger(inputs):",
+      "freq": "HIGH",
+      "tags": "realtime, trigger",
+      "desc": "Outputs 1 when a condition is met and is not reset; otherwise, outputs 0."
+    },
+    {
+      "name": "THRESHOLD",
+      "slots": "(input: float, high: float, low: float)",
+      "math": "`output = 1 if input > high else (0 if input < low else 0.5)`",
+      "python": "def threshold(inputs):",
+      "if inputs['input'] > inputs['high']": "",
+      "elif inputs['input'] < inputs['low']": "",
+      "else": "",
+      "freq": "MED",
+      "tags": "realtime, threshold",
+      "desc": "Provides a binary or ternary output based on whether input crosses high or low thresholds."
+    }
+  ],
+  "permutation": [
+    {
+      "name": "supp",
+      "math": "The support of a permutation \u03c3 is the set of elements {i | \u03c3(i) \u2260 i}",
+      "python": "lambda sigma: set(i for i in range(len(sigma)) if sigma[i] != i)",
+      "freq": "HIGH",
+      "tags": "permutation, support",
+      "desc": "Returns the support of a permutation, which is the set of elements that are moved by the permutation."
+    },
+    {
+      "name": "inv",
+      "math": "The inverse of a permutation \u03c3 is a permutation \u03c3\u207b\u00b9 such that \u03c3\u03c3\u207b\u00b9 = \u03c3\u207b\u00b9\u03c3 = id",
+      "python": "lambda sigma: [sigma.index(i) for i in range(len(sigma))]",
+      "freq": "HIGH",
+      "tags": "permutation, inverse",
+      "desc": "Returns the inverse of a permutation, which is the permutation that reverses the effect of the original permutation."
+    },
+    {
+      "name": "comm",
+      "math": "The commutator of two permutations \u03c3 and \u03c4 is [\u03c3, \u03c4] = \u03c3\u03c4\u03c3\u207b\u00b9\u03c4\u207b\u00b9",
+      "python": "lambda sigma, tau: lambda s: tau(sigma(tau(s)))",
+      "freq": "MED",
+      "tags": "permutation, commutator",
+      "desc": "Returns the commutator of two permutations, which is the permutation that measures how much the two permutations fail to commute."
+    },
+    {
+      "name": "orb",
+      "math": "The orbit of an element i under a permutation \u03c3 is {\u03c3^k(i) | k \u2265 0}",
+      "python": "lambda sigma: lambda i: [sigma**k(i) for k in range(1 + sigma.index(i))]",
+      "freq": "MED",
+      "tags": "permutation, orbit",
+      "desc": "Returns the orbit of an element under a permutation, which is the set of elements that can be reached from the given element by repeatedly applying the permutation."
+    },
+    {
+      "name": "stab",
+      "math": "The stabilizer of an element i under a permutation \u03c3 is {\u03c4 \u2208 S_n | \u03c4(i) = i}",
+      "python": "lambda sigma: [tau for tau in itertools.permutations(range(len(sigma))) if tau[sigma.index(i)] == i]",
+      "freq": "LOW",
+      "tags": "permutation, stabilizer",
+      "desc": "Returns the stabilizer of an element under a permutation, which is the set of permutations that fix the given element."
+    },
+    {
+      "name": "conj",
+      "math": "The conjugate of a permutation \u03c3 by a permutation \u03c4 is \u03c4\u03c3\u03c4\u207b\u00b9",
+      "python": "lambda sigma, tau: lambda s: tau(sigma(tau.index(s)))",
+      "freq": "MED",
+      "tags": "permutation, conjugate",
+      "desc": "Returns the conjugate of a permutation by another permutation, which is the permutation obtained by applying \u03c4 before and after \u03c3."
+    }
+  ],
+  "physical": [
+    {
+      "name": "fof",
+      "math": "F = ma",
+      "python": "lambda m, a: m * a",
+      "freq": "HIGH",
+      "tags": "physics, force",
+      "desc": "Calculates the force acting on an object when mass and acceleration are known according to Newton's Second Law."
+    },
+    {
+      "name": "pse",
+      "math": "KE = 0.5 * m * v^2",
+      "python": "lambda m, v: 0.5 * m * (v ** 2)",
+      "freq": "MED",
+      "tags": "physics, energy",
+      "desc": "Computes the kinetic energy of an object with given mass and velocity."
+    },
+    {
+      "name": "gpe",
+      "math": "PE = m * g * h",
+      "python": "lambda m, g, h: m * g * h",
+      "freq": "LOW",
+      "tags": "physics, energy",
+      "desc": "Indicates the gravitational potential energy of an object with mass m, at height h above a reference level, with gravitational acceleration g."
+    },
+    {
+      "name": "tpt",
+      "math": "\u0394t = \u0394x / v",
+      "python": "lambda x, v: x / v",
+      "freq": "HIGH",
+      "tags": "physics, time",
+      "desc": "Determines the time taken for an object to travel a certain distance at a constant velocity."
+    },
+    {
+      "name": "wpr",
+      "math": "W = F * d * cos(\u03b8)",
+      "python": "lambda F, d, theta: F * d * (lambda t: math.cos(math.radians(t)))(theta)",
+      "freq": "MED",
+      "tags": "physics, work",
+      "desc": "Calculates the work done by a force when it displaces an object over a distance d at an angle \u03b8 with respect to the force direction."
+    },
+    {
+      "name": "nde",
+      "math": "\u0394KE = \u0394PE",
+      "python": "lambda m, v1, v2, h1, h2: 0.5 * m * ((v2 ** 2) - (v1 ** 2)) == m * (h2 - h1)",
+      "freq": "LOW",
+      "tags": "physics, energy",
+      "desc": "Represents the conservation of mechanical energy principle, stating that the change in kinetic energy is equal to the negative change in potential energy."
+    }
+  ],
+  "attention": [
+    {
+      "name": "Twist",
+      "math": "(perm, perm) -> perm",
+      "python": "lambda x: x.permute(0, 2)",
+      "freq": "HIGH",
+      "tags": "permutation, spatial",
+      "desc": "Permutes the input tensor along two specific dimensions."
+    },
+    {
+      "name": "Slice",
+      "math": "(tensor) -> subtensor",
+      "python": "lambda x: x[:, 0, :]",
+      "freq": "HIGH",
+      "tags": "indexing, subspace",
+      "desc": "Extracts a specified slice from a multi-dimensional tensor."
+    },
+    {
+      "name": "Mix",
+      "math": "(A, B) -> C",
+      "python": "lambda A, B: torch.cat((A, B), dim=1)",
+      "freq": "MED",
+      "tags": "concatenation, feature",
+      "desc": "Concatenates two tensors along a specified axis."
+    },
+    {
+      "name": "Bump",
+      "math": "(tensor) -> tensor",
+      "python": "lambda x: x.transpose(0, 1)",
+      "freq": "MED",
+      "tags": "transpose, axis",
+      "desc": "Swaps two dimensions of a tensor."
+    },
+    {
+      "name": "Scale",
+      "math": "(tensor, scalar) -> tensor",
+      "python": "lambda x, s: x * s",
+      "freq": "HIGH",
+      "tags": "scaling, amplification",
+      "desc": "Multiplies each element of the tensor by a scalar value."
+    },
+    {
+      "name": "Swap",
+      "math": "(tensor) -> tensor",
+      "python": "lambda x: x.flip(0)",
+      "freq": "MED",
+      "tags": "inversion, reverse",
+      "desc": "Reverses the order of elements in specified dimensions."
+    },
+    {
+      "name": "Cube",
+      "math": "(tensor) -> tensor",
+      "python": "lambda x: x.view(-1, 3, 3, 3)",
+      "freq": "HIGH",
+      "tags": "reshaping, 3D",
+      "desc": "Reshapes a tensor to have three dimensions of equal size, forming a cube-like structure."
+    },
+    {
+      "name": "Fold",
+      "math": "(tensor) -> tensor",
+      "python": "lambda x: x.reshape([1, -1])",
+      "freq": "LOW",
+      "tags": "flattening, compression",
+      "desc": "Reduces the tensor's dimensionality by folding all elements into a single dimension."
+    }
+  ],
+  "geometry": [
+    {
+      "name": "flip",
+      "math": "Reflection across a line",
+      "python": "`lambda p: (p[0], -p[1])`",
+      "freq": "HIGH",
+      "tags": "reflection, symmetry",
+      "desc": "A tile that reflects all points across a horizontal line, effectively flipping the cube along this axis."
+    },
+    {
+      "name": "twist",
+      "math": "90-degree rotation",
+      "python": "`lambda p: (p[1], -p[0])`",
+      "freq": "HIGH",
+      "tags": "rotation, turn",
+      "desc": "A tile that rotates the cube by 90 degrees around a vertical axis, changing the positions of layers orthogonally."
+    },
+    {
+      "name": "slice",
+      "math": "Slicing through a plane",
+      "python": "`lambda p: (2*p[0], p[1])`",
+      "freq": "MED",
+      "tags": "scaling, partial",
+      "desc": "A tile that scales points along one axis while keeping the other unchanged, effectively slicing the cube into layers."
+    },
+    {
+      "name": "swap",
+      "math": "Swapping coordinates",
+      "python": "`lambda p: (p[1], p[0])`",
+      "freq": "MED",
+      "tags": "exchange, coordinates",
+      "desc": "A tile that swaps the x and y coordinates, effectively rotating the cube's planes."
+    },
+    {
+      "name": "skew",
+      "math": "Shear transformation",
+      "python": "`lambda p: (p[0] + p[1], p[1])`",
+      "freq": "LOW",
+      "tags": "shear, slant",
+      "desc": "A tile that applies a shear transformation to the cube, creating a slanted effect along one axis."
+    },
+    {
+      "name": "zoom",
+      "math": "Uniform scaling",
+      "python": "`lambda p: (p[0] * 2, p[1] * 2)`",
+      "freq": "LOW",
+      "tags": "scaling, resize",
+      "desc": "A tile that uniformly scales the cube by a factor, enlarging or reducing its size symmetrically."
+    },
+    {
+      "name": "warp",
+      "math": "Non-linear transformation",
+      "python": "`lambda p: (p[0]**2, p[1] + 1)`",
+      "freq": "LOW",
+      "tags": "curvature, nonlinear",
+      "desc": "A tile that applies a non-linear transformation to the cube, warping its surface in a unique way."
+    },
+    {
+      "name": "shift",
+      "math": "Translation",
+      "python": "`lambda p: (p[0] + 1, p[1] + 1)`",
+      "freq": "HIGH",
+      "tags": "move, translation",
+      "desc": "A tile that translates the cube by a fixed amount in both axes, sliding it across a plane."
+    }
+  ],
+  "certainty": [
+    {
+      "name": "NORM",
+      "math": "The normal distribution \\( N(\\mu, \\sigma^2) \\), where \\( \\mu \\) is the mean and \\( \\sigma \\) is the standard deviation.",
+      "python": "",
+      "def normal_dist(x, mu, sigma)": "",
+      "freq": "HIGH",
+      "tags": "distribution, statistics",
+      "desc": "Represents the probability distribution that describes many natural phenomena and is used extensively in statistics and data modeling."
+    },
+    {
+      "name": "POIS",
+      "math": "The Poisson distribution \\( P(\\lambda) \\), where \\( \\lambda \\) is the average rate of events.",
+      "python": "",
+      "def poisson_dist(k, lambda_)": "",
+      "freq": "MED",
+      "tags": "distribution, events",
+      "desc": "Used to model the number of events occurring in a fixed interval of time or space, particularly rare events."
+    },
+    {
+      "name": "RAND",
+      "math": "Random number generation from a uniform distribution \\( U(a, b) \\).",
+      "python": "",
+      "def random_number(a, b)": "",
+      "freq": "HIGH",
+      "tags": "simulation, uniform",
+      "desc": "Represents the generation of random numbers often used in simulations, games, and as a basis for other distributions."
+    },
+    {
+      "name": "BINO",
+      "math": "The binomial distribution \\( B(n, p) \\), where \\( n \\) is the total number of trials and \\( p \\) is the probability of success in each trial.",
+      "python": "",
+      "def binomial_dist(k, n, p)": "",
+      "freq": "MED",
+      "tags": "distribution, probability",
+      "desc": "Models the number of successes in a fixed number of independent trials each with the same probability of success."
+    },
+    {
+      "name": "CONF",
+      "math": "Confidence intervals provide a range of values which is likely to contain an unknown population parameter with a certain level of confidence.",
+      "python": "",
+      "def confidence_interval(data, confidence=0.95)": "",
+      "freq": "HIGH",
+      "tags": "estimation, uncertainty",
+      "desc": "Used to estimate the reliability of a sample mean as an estimate of a population mean, providing a range with a known level of confidence."
+    },
+    {
+      "name": "HYPO",
+      "math": "Hypothesis testing with a p-value \\( p \\) to determine if the null hypothesis can be rejected.",
+      "python": "",
+      "def hypothesis_test(sample, population)": "",
+      "freq": "HIGH",
+      "tags": "testing, inference",
+      "desc": "A statistical method used to evaluate the evidence against a null hypothesis in favor of an alternative hypothesis by calculating a p-value."
+    },
+    {
+      "name": "REGR",
+      "math": "Linear regression \\( y = \\beta_0 + \\beta_1x \\), where \\( \\beta_0 \\) is the intercept and \\( \\beta_1 \\) is the slope.",
+      "python": "",
+      "def linear_regression(x, y)": "",
+      "freq": "HIGH",
+      "tags": "regression, prediction",
+      "desc": "A method for modeling the relationship between a scalar response and one or more explanatory variables."
+    },
+    {
+      "name": "RISK",
+      "math": "Value at risk (VaR) \\( VaR(\\alpha, \\sigma) \\), where \\( \\alpha \\) is the confidence level and \\( \\sigma \\) is the standard deviation.",
+      "python": "",
+      "def value_at_risk(confidence_level, sigma)": "",
+      "freq": "MED",
+      "tags": "finance, risk",
+      "desc": "A measure of the risk of loss in the value of a risky asset or portfolio over a specific time period for a given confidence interval."
+    }
+  ],
+  "trajectory": [
+    {
+      "name": "rot3",
+      "math": "\\( R(t) = R_0 \\cdot \\exp(\\theta t J) \\)",
+      "python": "",
+      "def rotation_matrix_3d(theta, j)": "",
+      "freq": "MED",
+      "tags": "rotation, 3D, kinematics",
+      "desc": "A 3D rotation matrix based on Rodrigues' rotation formula."
+    },
+    {
+      "name": "omg_avg",
+      "math": "\\( \\omega_{\\text{avg}} = \\frac{1}{T} \\int_0^T \\omega(t) \\, dt \\)",
+      "python": "",
+      "def omega_avg(omega, t)": "",
+      "freq": "LOW",
+      "tags": "averaging, angular velocity",
+      "desc": "Calculates the average angular velocity over a time period."
+    },
+    {
+      "name": "cubic",
+      "math": "\\( f(t) = at^3 + bt^2 + ct + d \\)",
+      "python": "",
+      "def cubic_traj(a, b, c, d, t)": "",
+      "freq": "HIGH",
+      "tags": "polynomial, trajectory",
+      "desc": "A cubic polynomial trajectory function."
+    },
+    {
+      "name": "distort",
+      "math": "\\( x_{\\text{dist}} = x_{\\text{raw}} + k(x_{\\text{raw}} - x_{\\text{mean}})^2 \\)",
+      "python": "",
+      "def distort(x_raw, k, x_mean)": "",
+      "freq": "MED",
+      "tags": "distortion, nonlinearity",
+      "desc": "Applies a quadratic distortion to the input signal."
+    },
+    {
+      "name": "normvec",
+      "math": "\\( \\mathbf{v}_{\\text{norm}} = \\frac{\\mathbf{v}}{\\|\\mathbf{v}\\|} \\)",
+      "python": "",
+      "def normalize_vector(v)": "",
+      "freq": "HIGH",
+      "tags": "vector, normalizing",
+      "desc": "Normalizes a vector to have unit length."
+    },
+    {
+      "name": "twist",
+      "math": "\\( T = \\mathbf{v} \\wedge \\mathbf{\\omega} \\)",
+      "python": "",
+      "def twist(v, omega)": "",
+      "freq": "MED",
+      "tags": "twist, vector, angular velocity",
+      "desc": "Computes the twist (wedge product) of a velocity vector and an angular velocity vector."
+    },
+    {
+      "name": "so3_exp",
+      "math": "\\( R = \\exp(\\theta \\cdot \\mathbf{J}) \\)",
+      "python": "",
+      "def so3_exp(theta, j)": "",
+      "freq": "LOW",
+      "tags": "exponential, SO(3), rotation",
+      "desc": "Computes the exponential map of a vector in the Lie algebra so(3) to a rotation matrix in SO(3)."
+    },
+    {
+      "name": "interp_spline",
+      "math": "\\( p(t) = \\sum_{i=0}^{n-1} c_i N_i(t) \\)",
+      "python": "",
+      "def interpolating_spline(x, y)": "",
+      "freq": "HIGH",
+      "tags": "interpolation, spline",
+      "desc": "Interpolates a set of points using a cubic spline."
+    }
+  ],
+  "intention": [
+    {
+      "name": "TWIST",
+      "math": "A rotation applied to the Rubik's cube state.",
+      "python": "`cube_state = apply_twist(cube_state, twist)`",
+      "freq": "HIGH",
+      "tags": "rotation, cube",
+      "desc": "Represents a single rotation on the Rubik's cube, which is a fundamental operation."
+    },
+    {
+      "name": "PERM",
+      "math": "A permutation of cube layers or slices.",
+      "python": "`cube_state = permute_layers(cube_state, indices)`",
+      "freq": "MED",
+      "tags": "permutation, layers",
+      "desc": "Represents a permutation of layers or slices on the Rubik's cube, which affects the order of pieces."
+    },
+    {
+      "name": "SLICE",
+      "math": "A cut through the cube that separates a layer or slice.",
+      "python": "`cube_state = slice_cube(cube_state, axis, slices)`",
+      "freq": "MED",
+      "tags": "slice, layers",
+      "desc": "Represents the act of slicing a Rubik's cube into layers or slices, which can be used to reposition pieces."
+    },
+    {
+      "name": "SOLVE",
+      "math": "A sequence of rotations and permutations that lead to a solved cube state.",
+      "python": "`solution = solve_puzzle(cube_state)`",
+      "freq": "LOW",
+      "tags": "algorithm, solved",
+      "desc": "Represents the goal of finding a sequence of operations that results in a solved Rubik's cube."
+    },
+    {
+      "name": "RESET",
+      "math": "A transformation to reset the cube state to its initial configuration.",
+      "python": "`cube_state = reset_cube()`",
+      "freq": "HIGH",
+      "tags": "reset, initial",
+      "desc": "Represents the intention to reset the cube to its initial unsolved state."
+    },
+    {
+      "name": "TEST",
+      "math": "A trial rotation or permutation to evaluate the effect on the cube.",
+      "python": "`test_result = test_twist(cube_state, twist)`",
+      "freq": "MED",
+      "tags": "test, evaluate",
+      "desc": "Represents the act of testing a move or combination of moves to assess its effect on the cube's state without permanently altering it."
+    }
+  ],
+  "sensor": [
+    {
+      "name": "twst",
+      "math": "s(t) = \u03b8(t) + \u03b8(t-\u03c4)",
+      "python": "```",
+      "def twst(theta, tau)": "",
+      "freq": "MED",
+      "tags": "twist, phase-shift",
+      "desc": "A tile that calculates the twist in sensor readings by adding a phase shift to the previous sensor value."
+    },
+    {
+      "name": "mixm",
+      "math": "y(t) = \u03b1 * x(t) + (1 - \u03b1) * y(t-1)",
+      "python": "```",
+      "def mixm(x, y, alpha)": "",
+      "freq": "LOW",
+      "tags": "mixing, averaging",
+      "desc": "A tile that implements an exponential moving average filter for sensor data, useful to smooth out short-term fluctuations and highlight longer-term trends."
+    },
+    {
+      "name": "roll",
+      "math": "y(t) = max(x(t), x(t-1), ..., x(t-n+1))",
+      "python": "```",
+      "def roll(x, n)": "",
+      "freq": "HIGH",
+      "tags": "rolling, max",
+      "desc": "A tile that computes the maximum value from the current sensor reading and the previous n-1 sensor readings, useful for identifying peak values."
+    },
+    {
+      "name": "sma",
+      "math": "y(t) = \u2211[ (x(t-k) / n ) for k in range(0, n) ]",
+      "python": "```",
+      "def sma(x, n)": "",
+      "freq": "MED",
+      "tags": "simple moving average",
+      "desc": "A tile to calculate the simple moving average of a sensor's readings over n time periods, which provides a clearer picture of the overall trend."
+    },
+    {
+      "name": "sinr",
+      "math": "y(t) = x(t) / sqrt(x(t-1)^2 + x(t)^2)",
+      "python": "```",
+      "def sinr(x)": "",
+      "freq": "MED",
+      "tags": "sine ratio, trigonometric",
+      "desc": "A tile that calculates a trigonometric sine ratio of the sensor reading with respect to the previous reading, which can be useful in identifying the direction of movement in cyclic patterns."
+    },
+    {
+      "name": "fir",
+      "math": "y(t) = \u03b2_0 * x(t) + \u03b2_1 * x(t-1) + ... + \u03b2_n * x(t-n)",
+      "python": "```",
+      "def fir(x, coeffs)": "",
+      "freq": "LOW",
+      "tags": "finite impulse response",
+      "desc": "A tile that performs a finite impulse response (FIR) filter on sensor data using a set of coefficients to emphasize or de-emphasize certain frequencies."
+    }
+  ],
+  "statistical": [
+    {
+      "name": "MIN",
+      "math": "\\( \\text{min}(X) \\) is the smallest value in the dataset X.",
+      "python": "`min(dataset)`",
+      "freq": "HIGH",
+      "tags": "[min, min value, minimum]",
+      "desc": "Returns the smallest value in a given dataset."
+    },
+    {
+      "name": "MAX",
+      "math": "\\( \\text{max}(X) \\) is the largest value in the dataset X.",
+      "python": "`max(dataset)`",
+      "freq": "HIGH",
+      "tags": "[max, max value, maximum]",
+      "desc": "Returns the largest value in a given dataset."
+    },
+    {
+      "name": "RANGE",
+      "math": "\\( \\text{range}(X) = \\text{max}(X) - \\text{min}(X) \\).",
+      "python": "`max(dataset) - min(dataset)`",
+      "freq": "MED",
+      "tags": "[range, spread]",
+      "desc": "Calculates the difference between the maximum and minimum values in a dataset."
+    },
+    {
+      "name": "QUART",
+      "math": "\\( Q_1 \\) and \\( Q_3 \\) are the first and third quartiles respectively.",
+      "python": "`np.percentile(dataset, [25, 75])`",
+      "freq": "MED",
+      "tags": "[quartiles, first quartile, third quartile]",
+      "desc": "Determines the first and third quartiles, representing the 25th and 75th percentiles of the dataset."
+    },
+    {
+      "name": "IQR",
+      "math": "\\( IQR(X) = Q_3(X) - Q_1(X) \\).",
+      "python": "`iqr = stats.iqr(dataset)`",
+      "freq": "HIGH",
+      "tags": "[interquartile range, iqr]",
+      "desc": "Calculates the interquartile range, which is the difference between the third and first quartiles."
+    },
+    {
+      "name": "MODE",
+      "math": "\\( \\text{mode}(X) \\) is the value that appears most frequently in the dataset X.",
+      "python": "`scipy.stats.mode(dataset)`",
+      "freq": "HIGH",
+      "tags": "[mode, most frequent]",
+      "desc": "Finds the most frequently occurring value in a dataset."
+    },
+    {
+      "name": "MAD",
+      "math": "\\( \\text{MAD}(X) \\) is the average absolute deviation from the median.",
+      "python": "`stats.median_absolute_deviation(dataset)`",
+      "freq": "MED",
+      "tags": "[median absolute deviation, mad]",
+      "desc": "Measures the average distance between each data point and the median."
+    },
+    {
+      "name": "MSE",
+      "math": "\\( \\text{MSE}(X, Y) \\) is the mean of the squared differences between corresponding data points in datasets X and Y.",
+      "python": "`sklearn.metrics.mean_squared_error(y_true, y_pred)`",
+      "freq": "HIGH",
+      "tags": "[mean squared error, mse]",
+      "desc": "Calculates the mean of the squared differences between the predicted values and the actual values."
+    }
+  ],
+  "clifford": [
+    {
+      "name": "[sph]",
+      "math": "S(a) = a * I where I is the metric",
+      "python": "`def sph(a): return a * I`",
+      "freq": "HIGH",
+      "tags": "[spherical, metric]",
+      "desc": "This tile represents the spherical product, applying the metric I to an element, effectively scaling it by its norm."
+    },
+    {
+      "name": "[exp]",
+      "math": "exp(a) = \u2211_{k=0}^\u221e (a^k / k!)",
+      "python": "`def exp(a): return np.exp(a)`",
+      "freq": "MED",
+      "tags": "[exponential, series]",
+      "desc": "This tile calculates the exponential of a multivector by summing the series, useful for iterative approximations."
+    },
+    {
+      "name": "[inv]",
+      "math": "inv(a) = a^* / ||a||^2 where a^* is the reverse of a",
+      "python": "`def inv(a): return a.rev() / np.linalg.norm(a)**2`",
+      "freq": "HIGH",
+      "tags": "[inverse, norm]",
+      "desc": "This tile calculates the multiplicative inverse of a multivector, taking the reverse and dividing by the squared norm."
+    },
+    {
+      "name": "[rot]",
+      "math": "rot(a, b) = (cos(\u03b8) + sin(\u03b8)a) * b * (cos(\u03b8) - sin(\u03b8)a)",
+      "python": "`def rot(a, b, theta): return (np.cos(theta) + np.sin(theta)*a) * b * (np.cos(theta) - np.sin(theta)*a)`",
+      "freq": "MED",
+      "tags": "[rotation, angle]",
+      "desc": "This tile performs a rotation of a vector b by angle \u03b8 using a bivector a, which represents a plane of rotation."
+    },
+    {
+      "name": "[refl]",
+      "math": "refl(a, b) = (1 + 2a^2) * b * (1 - 2a^2)",
+      "python": "`def refl(a, b): return (1 + 2*a**2) * b * (1 - 2*a**2)`",
+      "freq": "LOW",
+      "tags": "[reflection, symmetry]",
+      "desc": "This tile represents a reflection of a vector b across a plane defined by a, where a is a unit normal vector to the plane."
+    },
+    {
+      "name": "[wap]",
+      "math": "wap(a, b) = (a * b^*) + (b * a^*)",
+      "python": "`def wap(a, b): return a * b.rev() + b * a.rev()`",
+      "freq": "HIGH",
+      "tags": "[wedge, anticommutative]",
+      "desc": "This tile calculates the anticommutative product of two multivectors a and b, also known as the wedge product, which is essential in representing oriented areas or volumes."
+    }
+  ],
+  "message": [],
+  "normalization": [
+    {
+      "name": "Nrm1",
+      "math": "Math1",
+      "python": "Python1",
+      "freq": "Freq1",
+      "tags": [
+        "Tags1"
+      ]
+    },
+    {
+      "name": "Nrm2",
+      "math": "Math2",
+      "python": "Python2",
+      "freq": "Freq2",
+      "tags": [
+        "Tags2"
+      ]
+    },
+    {
+      "name": "Nrm3",
+      "math": "Math3",
+      "python": "Python3",
+      "freq": "Freq3",
+      "tags": [
+        "Tags3"
+      ]
+    },
+    {
+      "name": "Nrm4",
+      "math": "Math4",
+      "python": "Python4",
+      "freq": "Freq4",
+      "tags": [
+        "Tags4"
+      ]
+    },
+    {
+      "name": "Nrm5",
+      "math": "Math5",
+      "python": "Python5",
+      "freq": "Freq5",
+      "tags": [
+        "Tags5"
+      ]
+    },
+    {
+      "name": "Nrm6",
+      "math": "Math6",
+      "python": "Python6",
+      "freq": "Freq6",
+      "tags": [
+        "Tags6"
+      ]
+    },
+    {
+      "name": "Nrm7",
+      "math": "Math7",
+      "python": "Python7",
+      "freq": "Freq7",
+      "tags": [
+        "Tags7"
+      ]
+    },
+    {
+      "name": "Nrm8",
+      "math": "Math8",
+      "python": "Python8",
+      "freq": "Freq8",
+      "tags": [
+        "Tags8"
+      ]
+    }
+  ],
+  "activation": [
+    {
+      "name": "jolt",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "INFREQ",
+      "tags": [
+        "ACTIVATION"
+      ]
+    },
+    {
+      "name": "skip",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "RARELY",
+      "tags": [
+        "ACTIVATION"
+      ]
+    },
+    {
+      "name": "glow",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "ACTIVATION"
+      ]
+    },
+    {
+      "name": "zing",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "INFREQ",
+      "tags": [
+        "ACTIVATION"
+      ]
+    },
+    {
+      "name": "clip",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "ACTIVATION"
+      ]
+    },
+    {
+      "name": "luna",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "ACTIVATION"
+      ]
+    },
+    {
+      "name": "tera",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "RARELY",
+      "tags": [
+        "ACTIVATION"
+      ]
+    },
+    {
+      "name": "cork",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "RARELY",
+      "tags": [
+        "ACTIVATION"
+      ]
+    }
+  ],
+  "distance": [
+    {
+      "name": "LevE",
+      "math": "Levenshtein",
+      "python": "python-Levenshtein",
+      "freq": "0.8",
+      "tags": [
+        "similarity"
+      ]
+    },
+    {
+      "name": "HamM",
+      "math": "Hamming",
+      "python": "python-hamming",
+      "freq": "0.75",
+      "tags": [
+        "similarity"
+      ]
+    },
+    {
+      "name": "JacC",
+      "math": "Jaccard",
+      "python": "python-jaccard",
+      "freq": "0.6",
+      "tags": [
+        "similarity"
+      ]
+    },
+    {
+      "name": "EucD",
+      "math": "Euclidean",
+      "python": "scipy.spatial.distance.euclidean",
+      "freq": "0.85",
+      "tags": [
+        "similarity"
+      ]
+    },
+    {
+      "name": "ManH",
+      "math": "Manhattan",
+      "python": "scipy.spatial.distance.cityblock",
+      "freq": "0.7",
+      "tags": [
+        "similarity"
+      ]
+    },
+    {
+      "name": "CosS",
+      "math": "Cosine",
+      "python": "scipy.spatial.distance.cosine",
+      "freq": "0.78",
+      "tags": [
+        "similarity"
+      ]
+    },
+    {
+      "name": "JenN",
+      "math": "Jensen-Shannon",
+      "python": "scipy.spatial.distance.jensenshannon",
+      "freq": "0.79",
+      "tags": [
+        "similarity"
+      ]
+    },
+    {
+      "name": "MatV",
+      "math": "Mahalanobis",
+      "python": "scipy.spatial.distance.mahalanobis",
+      "freq": "0.9",
+      "tags": [
+        "similarity"
+      ]
+    }
+  ],
+  "convolution": [
+    {
+      "name": "conv",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "SIGNAL_PROCESSING"
+      ]
+    },
+    {
+      "name": "conv",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "FILTERED_SIGNAL"
+      ]
+    },
+    {
+      "name": "conv",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "SIGNAL_CLEAN"
+      ]
+    },
+    {
+      "name": "conv",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "PEAK_PAYLOAD"
+      ]
+    },
+    {
+      "name": "conv",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "TEMPORAL_REDUCTION"
+      ]
+    },
+    {
+      "name": "conv",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "AMPLITUDE_STRETCH"
+      ]
+    }
+  ],
+  "embedding": [
+    {
+      "name": "EVec",
+      "math": "EMBEDDING",
+      "python": "PYTHON",
+      "freq": "0.8",
+      "tags": [
+        "VECTOR",
+        " FEATURES"
+      ]
+    },
+    {
+      "name": "NeuN",
+      "math": "EMBEDDING",
+      "python": "PYTHON",
+      "freq": "0.9",
+      "tags": [
+        "NETWORK",
+        " LEARNING"
+      ]
+    },
+    {
+      "name": "EmbD",
+      "math": "EMBEDDING",
+      "python": "PYTHON",
+      "freq": "0.5",
+      "tags": [
+        "DIMENSION",
+        " VECTOR SPACE"
+      ]
+    },
+    {
+      "name": "Code",
+      "math": "EMBEDDING",
+      "python": "PYTHON",
+      "freq": "0.7",
+      "tags": [
+        "CODING",
+        " SPACE"
+      ]
+    },
+    {
+      "name": "VecM",
+      "math": "EMBEDDING",
+      "python": "PYTHON",
+      "freq": "0.6",
+      "tags": [
+        "MAPPING",
+        " VECTORS"
+      ]
+    },
+    {
+      "name": "DimR",
+      "math": "EMBEDDING",
+      "python": "PYTHON",
+      "freq": "0.4",
+      "tags": [
+        "REDUCE",
+        " FEATURES"
+      ]
+    }
+  ],
+  "optimization": [
+    {
+      "name": "NAG",
+      "math": "Nesterov accelerated gradient",
+      "python": "optimizers.SGD(momentum=True)",
+      "freq": "Medium",
+      "tags": [
+        "Fast",
+        " stable"
+      ]
+    },
+    {
+      "name": "Ada",
+      "math": "Adaptive gradient method",
+      "python": "optimizers.Adagrad",
+      "freq": "Medium",
+      "tags": [
+        "Robust",
+        " adaptive"
+      ]
+    },
+    {
+      "name": "Adad",
+      "math": "Adaptive learning rate method",
+      "python": "optimizers.Adadelta",
+      "freq": "Low",
+      "tags": [
+        "Robust",
+        " adaptive"
+      ]
+    },
+    {
+      "name": "AdaN",
+      "math": "Adaptive normalization",
+      "python": "optimizers.SGD(normalize=True)",
+      "freq": "Medium",
+      "tags": [
+        "Desensitize outliers"
+      ]
+    },
+    {
+      "name": "NesS",
+      "math": "Nesterov stochastic gradient",
+      "python": "optimizers.SGD(momentum=True, nesterov=True)",
+      "freq": "Medium",
+      "tags": [
+        "Fast",
+        " stable"
+      ]
+    }
+  ],
+  "categorical": [
+    {
+      "name": "cat1",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "TAGS"
+      ]
+    },
+    {
+      "name": "lab2",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "TAGS"
+      ]
+    },
+    {
+      "name": "bin3",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "TAGS"
+      ]
+    },
+    {
+      "name": "fin4",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "TAGS"
+      ]
+    },
+    {
+      "name": "nom5",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "TAGS"
+      ]
+    },
+    {
+      "name": "ord6",
+      "math": "MATH",
+      "python": "PYTHON",
+      "freq": "FREQ",
+      "tags": [
+        "TAGS"
+      ]
+    }
+  ]
+}

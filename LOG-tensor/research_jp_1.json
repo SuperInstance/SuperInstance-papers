@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.researchgate.net/publication/393256659_Prediction_of_cable_deformation_from_3D_point_cloud_for_robot_motion_planning",
+    "name": "(PDF) Prediction of cable deformation from 3D point cloud",
+    "snippet": "Dec 31, 2025 — 3D 計測から位置合わせ誤差の計測までの実験手順を以下に示す． 1. Focus3D で設備を計測し，FARO SCENE でデータを読み込む． 2. 計測対象物以外の部分を ...",
+    "host_name": "www.researchgate.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.jst.go.jp/crds/pdf/2024/RR/CRDS-FY2024-RR-07.pdf",
+    "name": "人工知能研究の新潮流 2025",
+    "snippet": "本報告書は、人工知能（AI）の研究開発の潮流を捉え、AI技術の社会的価値を高め、日本の国際競争力. を強化するための研究開発の戦略提言と、それらに関連の深い研究開発 ... 300 pages",
+    "host_name": "www.jst.go.jp",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.iieej.org/wordpress/wp-content/uploads/2025/07/IIEEJ_Vol54-No3_web_v1.pdf",
+    "name": "Vol.54 No.3",
+    "snippet": "Jul 3, 2025 — 2024 年 立命館大学大学院情報理工学. 研究科博士前期課程修了．画像 処理 お. よび三次元 点群 解析に関する研究に従. 事．同年 富士フイルムビジネスイノベ. 90 pages",
+    "host_name": "www.iieej.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ken.ieice.org/ken/ken-paper-list-n.html",
+    "name": "研究会 発表リスト (2025年3月19日更新)",
+    "snippet": "Mar 19, 2025 — 2025 年3月19日現在のDB値より構築した研究会発表リストです． 日付は発表日ですので，開催日初日とは異なる場合があります．ご注意ください．",
+    "host_name": "ken.ieice.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patents.google.com/patent/JP2025071766A",
+    "name": "JP2025071766A - 3d陰関数表現のための有向格子エンコーダ",
+    "snippet": "【課題】ニューラル ネットワーク をトレーニングすることによって3次元（3D）オブジェクトを含む3Dシーンの陰関数表現を生成するための人工知能システムを提供する。",
+    "host_name": "patents.google.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ibisml.org/ibis2025/posters",
+    "name": "一般発表一覧 (Poster Presentation Lists) | IBIS2025",
+    "snippet": "Nov 12, 2025 — 概要：ニューラル ネットワーク の汎化性能を理論的に解明する上で、その内部状態の 幾何学的 構造を理解することは重要な課題である。本研究では、位相的 ...",
+    "host_name": "ibisml.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://waseda.repo.nii.ac.jp/record/2005152/files/t5123f093.pdf",
+    "name": "Research on Accuracy Improvement of Point Cloud Denoising",
+    "snippet": "2025 — 一つ目は，三次元 点群 の局所的な 幾何学 構造情報がグラフ畳み込み. ネットワーク 内で滑らかに伝播するという特性である．この特性により，K 近傍探索を ... 30 pages",
+    "host_name": "waseda.repo.nii.ac.jp",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://isl.sist.chukyo-u.ac.jp/wp-content/uploads/2025/09/Seminar-2D_and_AD_ManabuHashimoto.pdf",
+    "name": "画像処理による物体検出技術と 少量の異常データからの",
+    "snippet": "目的： 視点変化や明るさ変化に頑健になるように，特徴検出器と記述子を同時に学習. アイデア： 関係既知の2画像（A，B）間の特徴点（KP）間の類似性をもとに，KP検出器と記述子を.",
+    "host_name": "isl.sist.chukyo-u.ac.jp",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hirokatsukataoka.net/temp/presen/250616CVPR2025Report_FinalizedJPNVer.pdf",
+    "name": "CVPR 2025 速報",
+    "snippet": "Jun 25, 2025 — ... representations. ❏ 概要: Sonataは、空間的な手がかりを抽象化して、入力された特徴への依存を強化することで、 点群 の自己教師. 付き学習における「 幾何 ... 187 pages",
+    "host_name": "hirokatsukataoka.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.ddm.mi.uec.ac.jp/ronbun/ronbun1.htm",
+    "name": "Masuda Laboratory Publications",
+    "snippet": "The 11th International Conference on Leading Edge Manufacturing Technology 21st Century (LEM21), December 1-5, 2025 . 深層学習を用いた欠落のある部材 点群 の形状 ...",
+    "host_name": "www.ddm.mi.uec.ac.jp",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

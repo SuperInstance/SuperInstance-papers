@@ -1,0 +1,30 @@
+================================================================================
+CROSS-LANGUAGE VALIDATION REPORT
+================================================================================
+Generated: 2026-03-10T20:55:15.289554
+Test cases: 10
+
+SUMMARY
+----------------------------------------
+Total tests: 10
+Passed tests: 10
+Failed tests: 0
+Success rate: 100.00%
+Mean confidence difference: 0.000000
+Max confidence difference: 0.000000
+Zone match rate: 100.00%
+Overall validation passed: True
+
+
+VALIDATION CRITERIA
+----------------------------------------
+[*] All tests must pass (100% success rate)
+[*] Confidence differences must be < 0.001
+[*] Zones must match exactly
+[*] TypeScript validation must succeed for all test cases
+
+RECOMMENDATION
+----------------------------------------
+[PASS] CROSS-LANGUAGE VALIDATION PASSED
+Python and TypeScript implementations are consistent.
+================================================================================

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/Clebsch%E2%80%93Gordan_coefficients_for_SU(3)",
+    "name": "Clebsch–Gordan coefficients for SU(3)",
+    "snippet": "In mathematical physics, Clebsch–Gordan coefficients are the expansion coefficients of total angular momentum eigenstates in an uncoupled tensor product basis. Read more",
+    "host_name": "en.wikipedia.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/234854838_Clebsch-Gordan_coefficients_of_SU3_in_SU2_and_SO3_bases",
+    "name": "(PDF) Clebsch–Gordan coefficients of SU(3) in SU(2) and",
+    "snippet": "Aug 6, 2025 — New algorithms are developed for the purpose of optimizing the efficient calculation of SU(3) Clebsch – Gordan coefficients in both SU(2)- and ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.phys.lsu.edu/draayerpubs/Refereed%20Publications/Programs%20for%20generating%20Clebsch-Gordan%20coefficients%20of%20SU(3)%20in%20SU(2)%20and%20SO(3)%20bases.pdf",
+    "name": "Programs for generating Clebsch–Gordan coefficients of SU(3",
+    "snippet": "2004 · Cited by 55 — Abstract. Computer codes are developed to calculate Clebsch – Gordan coefficients of SU(3) in both SU(2)- and SO(3 )- coupled bases. Read more 23 pages",
+    "host_name": "www.phys.lsu.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://math.stackexchange.com/questions/4574793/clebsch-gordan-coefficients-and-the-decomposition-of-the-tensor-product-of-two-i",
+    "name": "Clebsch-Gordan coefficients and the decomposition of",
+    "snippet": "Nov 12, 2022 — We will use Dl for irreducible representations and Vl for the corresponding vector space. Given two irreducible representations of SO(3), ... Read more",
+    "host_name": "math.stackexchange.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2405.06843",
+    "name": "arXiv:2405.06843v1 [math-ph] 10 May 2024",
+    "snippet": "2024 · Cited by 5 — Abstract: A simple method to calculate Wigner coupling coefficients and Racah recoupling coefficients for U(3) in two group-subgroup chains ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Clebsch%E2%80%93Gordan-coefficients-of-SU(3)-in-SU(2)-and-Rowe-Bahri/1bfc7c5095440c3ca05af7beba672f4784cdc37f",
+    "name": "Clebsch–Gordan coefficients of SU(3) in SU(2) and SO",
+    "snippet": "Aug 25, 2000 — New algorithms are developed for the purpose of optimizing the efficient calculation of SU(3) Clebsch – Gordan coefficients in both SU(2)- and ...",
+    "host_name": "www.semanticscholar.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://uvagedl.github.io/lectures_pdf/Lecture_3_4_GroupTheorySO3IrrepsClebschGordan.pdf",
+    "name": "SO(3) irreps (Wigner-D matrices), Clebsch-Gordan TP",
+    "snippet": "Clebsch - Gordan tensor product includes change of basis! Page 11. Clebsch - Gordan Tensor Product . 11. Consider two steerable vectors and of type and respectively. Read more 13 pages",
+    "host_name": "uvagedl.github.io",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.theochem.ru.nl/~pwormer/Knowino/knowino.org/wiki/Clebsch-Gordan_coefficients.html",
+    "name": "Clebsch-Gordan coefficients - Knowino",
+    "snippet": "Jan 18, 2011 — In quantum mechanics, the Clebsch - Gordan coefficients (CG coefficients) are sets of numbers that arise in angular momentum coupling . Read more",
+    "host_name": "www.theochem.ru.nl",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Clebsch%E2%80%93Gordan_coefficients",
+    "name": "Clebsch–Gordan coefficients",
+    "snippet": "In physics, the Clebsch–Gordan (CG) coefficients are numbers that arise in angular momentum coupling in quantum mechanics. Read more",
+    "host_name": "en.wikipedia.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://physics.lbl.gov/shapiro/Physics226/Suzuki_SU3.pdf",
+    "name": "Suzuki_SU3.pdf",
+    "snippet": "The SU(3) Clebsch - Gordan coefficients are tabulated for the products of. SU(3) representations which appear frequently in particle physics. I will present ... Read more 25 pages",
+    "host_name": "physics.lbl.gov",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

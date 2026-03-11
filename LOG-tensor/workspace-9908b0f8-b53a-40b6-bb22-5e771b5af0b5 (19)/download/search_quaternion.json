@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2410.10350v2",
+    "name": "On Representation of 3D Rotation in the Context of Deep Learning - arXiv",
+    "snippet": "This paper investigates various methods of representing 3D rotations and their impact on the learning process of deep neural networks.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Zhang_Quaternion_Product_Units_for_Deep_Learning_on_3D_Rotation_Groups_CVPR_2020_paper.pdf",
+    "name": "[PDF] Quaternion Product Units for Deep Learning on 3D Rotation Groups",
+    "snippet": "We propose a novel quaternion product unit (QPU) to represent data on 3D rotation groups. The QPU lever- ages quaternion algebra and the law of 3D rotation ...",
+    "host_name": "openaccess.thecvf.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123650528.pdf",
+    "name": "[PDF] 3D-Rotation-Equivariant Quaternion Neural Networks",
+    "snippet": "In this study, we focus on the problem of learning neural networks for 3D point cloud processing with rotation equivariance and permutation invariance.",
+    "host_name": "www.ecva.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zhouyisjtu.github.io/project_rotation/rotation.html",
+    "name": "On the Continuity of Rotation Representations in Neural Networks",
+    "snippet": "For example, 3D rotations can be represented with quaternions or Euler angles. In this paper, we advance a definition of a continuous representation, which can ...",
+    "host_name": "zhouyisjtu.github.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://speechbrain.readthedocs.io/en/v1.0.2/tutorials/nn/complex-and-quaternion-neural-networks.html",
+    "name": "Complex and Quaternion Neural Networks - SpeechBrain",
+    "snippet": "Quaternion Numbers: Quaternions generalize complex numbers to the three-dimensional space, featuring a real ( r ) and an imaginary part, which is a 3D vector ( ...",
+    "host_name": "speechbrain.readthedocs.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0031320324003753",
+    "name": "Rethinking local-to-global representation learning for rotation",
+    "snippet": "In this paper, we propose a novel rotation-invariant method that embeds both distinctive local and global rotation-invariant information.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ieeexplore.ieee.org/document/8953486",
+    "name": "On the Continuity of Rotation Representations in Neural Networks",
+    "snippet": "For example, 3D rotations can be represented with quaternions or Euler angles. In this paper, we advance a definition of a continuous representation, which can ...",
+    "host_name": "ieeexplore.ieee.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/abs/10.1007/978-3-030-58565-5_32",
+    "name": "3D-Rotation-Equivariant Quaternion Neural Networks - ACM Digital Library",
+    "snippet": "This paper proposes a set of rules to revise various neural networks for 3D point cloud processing to rotation-equivariant quaternion neural networks ...",
+    "host_name": "dl.acm.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=g4ZrpMQL1Z",
+    "name": "A Primer on SO(3) Action Representations in Deep",
+    "snippet": "Summary: The paper analysis how SO(3) rotation actions should be parameterized to facilitate reinforcement learning using PPO, SAC, and TD3. In particular, the ...",
+    "host_name": "openreview.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://scholar.afit.edu/cgi/viewcontent.cgi?article=2303&context=facpub",
+    "name": "[PDF] A Comparison of Quaternion Neural Network Backpropagation Algorithms",
+    "snippet": "This research paper focuses on quaternion neural networks (QNNs) - a type of neural network wherein the weights, biases, and input values ...",
+    "host_name": "scholar.afit.edu",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

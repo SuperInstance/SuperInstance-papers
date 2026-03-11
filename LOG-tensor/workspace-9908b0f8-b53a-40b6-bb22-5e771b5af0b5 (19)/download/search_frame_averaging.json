@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/pdf/2305.05577",
+    "name": "[PDF] FAENet: Frame Averaging Equivariant GNN for Materials Modeling - arXiv",
+    "snippet": "Mace: Higher order equivariant message passing neural networks for fast and accurate force fields. Preprint arXiv:2206.07697, 2022. Batzner ...\nIn addition to being efficient, our message passing scheme is accessible and easy-to-understand compared to many ap- proaches that enforce ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/pdf?id=zIUyj55nXR",
+    "name": "[PDF] FRAME AVERAGING FOR INVARIANT AND EQUIVARIANT",
+    "snippet": "Using frame averaging, we propose a new class of universal Graph Neural Networks (GNNs), universal Euclidean motion invari- ant point cloud networks, and ...",
+    "host_name": "openreview.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41467-022-29939-5",
+    "name": "E(3)-equivariant graph neural networks for data-efficient  - Nature",
+    "snippet": "This work presents Neural Equivariant Interatomic Potentials (NequIP), an E(3)-equivariant neural network approach for learning interatomic potentials.",
+    "host_name": "www.nature.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/370633724_FAENet_Frame_Averaging_Equivariant_GNN_for_Materials_Modeling",
+    "name": "FAENet: Frame Averaging Equivariant GNN for Materials Modeling",
+    "snippet": "A simple, fast and expressive GNN, optimized for SFA, that processes geometric information without any symmetrypreserving design constraints.",
+    "host_name": "www.researchgate.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/10.5555/3618408.3618769",
+    "name": "FAENet: frame averaging equivariant GNN for materials modeling",
+    "snippet": "Mace: Higher order equivariant message passing neural networks for fast and accurate force fields. Preprint arXiv:2206.07697, 2022. Google ...",
+    "host_name": "dl.acm.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0045782525001392",
+    "name": "Similarity equivariant graph neural networks for homogenization of",
+    "snippet": "MACE: Higher order equivariant message passing neural networks for fast and accurate force fields. Advances in Neural Information Processing Systems, vol. 35 ...\nEquivariant message passing for the prediction of tensorial properties and molecular spectra. Proceedings of Machine Learning Research, vol. 139, PMLR (2021) ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cs.cornell.edu/gomes/pdf/2023_du_neurips_gnn.pdf",
+    "name": "[PDF] A new perspective on building efficient and expressive 3D equivariant",
+    "snippet": "We also summarize the message passing graph neural network framework, which enables the realization of E(3)/SE(3) equivariant models. Euclidean Symmetry. Our ...\nOur algorithm consists of three phases: 1. Building equivariant frames and performing local scalarization; 2. Equivariant message passing; 3. Updating node-wise ...",
+    "host_name": "www.cs.cornell.edu",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.merl.com/publications/docs/TR2025-056.pdf",
+    "name": "[PDF] G-RepsNet: A Lightweight Construction of Equivariant Net",
+    "snippet": "we show how higher-order tensor representations can directly be incorporated into their frame-averaging method. 3 Group and Representation ...",
+    "host_name": "www.merl.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/view/26673/26445",
+    "name": "[PDF] Equivariant Message Passing Neural Network for Crystal Material Discovery",
+    "snippet": "Several methods have been proposed to approximate DFT simulation with. GNN. These methods work by learning interaction forces and stress tensors to lower the ...",
+    "host_name": "ojs.aaai.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2110.03336",
+    "name": "[PDF] frame averaging for invariant and equivariant network design - arXiv.org",
+    "snippet": "Using frame averaging, we propose a new class of universal Graph Neural Networks (GNNs), universal Euclidean motion invari- ant point cloud ...",
+    "host_name": "arxiv.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

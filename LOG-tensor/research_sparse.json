@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2210.07372",
+    "name": "SWFormer: Sparse Window Transformer for 3D Object Detection in Point Clouds - arXiv.org",
+    "snippet": "Built upon the idea of window-based Transformers, SWFormer converts 3D points into sparse voxels and windows, and then processes these variable- ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S016786552500176X",
+    "name": "A Transformer based on Voxel Spatial-Channel Attention for 3D object detection",
+    "snippet": "We propose a novel voxel-based architecture, the Voxel Spatial-Channel Transformer (VoxSCT), to detect 3D objects from point clouds through point-to-point ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/voxel-transformer-votr",
+    "name": "Voxel Transformer (VoTr): Sparse 3D Attention - Emergent Mind",
+    "snippet": "A Voxel Transformer (VoTr) is a sparse 3D Transformer backbone designed for voxelized point clouds. It directly models long-range dependencies ...",
+    "host_name": "www.emergentmind.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvpr.thecvf.com/virtual/2023/poster/22844",
+    "name": "CVPR Poster DSVT: Dynamic Sparse Voxel Transformer With Rotated Sets",
+    "snippet": "In this paper, we present Dynamic Sparse Voxel Transformer (DSVT), a single-stride window-based voxel Transformer backbone for outdoor 3D perception. In order ...",
+    "host_name": "cvpr.thecvf.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/4bad7c27534efca029ca0d366c47c0e3-Abstract-Conference.html",
+    "name": "MsSVT: Mixed-scale Sparse Voxel Transformer for 3D Object Detection on Point Clouds",
+    "snippet": "We present a novel Mixed-scale Sparse Voxel Transformer, named MsSVT, which can well capture both types of information simultaneously by the divide-and-conquer ...",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.outta.ai/67",
+    "name": "[2024-1] 김경훈 - Point Transformer",
+    "snippet": "기존의 3D point cloud에 대한 접근 방식은 일반적으로 다음과 같습니다: Voxelize 3D space. Sparse convolution networks. Directly on points",
+    "host_name": "blog.outta.ai",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41598-024-77097-z",
+    "name": "SPBA-Net point cloud object detection with sparse attention and box aligning - Nature",
+    "snippet": "In this paper, we propose a novel mechanism named Keypoint Guided Sparse Attention (KGSA) to enhance the semantic information of point clouds.",
+    "host_name": "www.nature.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2072-4292/14/18/4471",
+    "name": "SVASeg: Sparse Voxel-Based Attention for 3D LiDAR Point Cloud Semantic Segmentation",
+    "snippet": "A sparse voxel-based attention network is introduced for 3D LiDAR point cloud semantic segmentation, termed SVASeg, which captures large amounts of context ...",
+    "host_name": "www.mdpi.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10458770",
+    "name": "Voxel Transformer with Density-Aware Deformable Attention for 3D Object Detection - PMC",
+    "snippet": "The transformer [27] has made a significant impact on 3D object detection, but applying attention mechanisms efficiently to sparse point clouds ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cs231n.stanford.edu/2025/papers/text_file_840591734-final_report.pdf",
+    "name": "[PDF] Dynamic Sparse Voxel Attention for Efficient Transformers - Deep Learning for Computer Vision - Stanford University",
+    "snippet": "One model that implements a variant of sparse 3D at- tention is called PVT: Point-Voxel Transformer for Point. Cloud Learning [25], and it currently sits near ...",
+    "host_name": "cs231n.stanford.edu",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "trajectory_coherence": 0.1835918410455322,
+  "rotation_energy_conservation": 0.0,
+  "rotation_mean_certainty": 0.5141500950941451,
+  "principal_tile": "id",
+  "tile_eigenvalues": [
+    0.8,
+    1.2357816691600547,
+    2.127882059609971
+  ],
+  "attention_rate_hz": 312.9668886526013,
+  "viewpoint_validation": true
+}

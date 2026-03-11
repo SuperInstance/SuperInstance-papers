@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-03-08 07:41:34",
+  "results": [
+    {
+      "schema_name": "Discrete Rotation Group Discovery",
+      "timestamp": "2026-03-08 07:41:27",
+      "metrics": {
+        "group_size": 48,
+        "mean_equivariance_error": 1.1530128703659178e-17,
+        "conjugacy_class_coverage": 4,
+        "attention_pattern_score": 0.9791666666666671
+      },
+      "discoveries": [
+        "DISCOVERY: Attention is invariant under discrete rotation group! Mean equivariance error: 1.15e-17",
+        "DISCOVERY: Periodic attention patterns discovered (score: 0.979)"
+      ]
+    },
+    {
+      "schema_name": "Quaternion Wigner-D Decomposition",
+      "timestamp": "2026-03-08 07:41:29",
+      "metrics": {
+        "mean_decomposition_error": 0.24154526594346423,
+        "mean_equivariance_score": 0.9999999999999979,
+        "max_degree_tested": 4
+      },
+      "discoveries": [
+        "DISCOVERY: Perfect equivariance in tensor products! Mean score: 1.0000",
+        "DISCOVERY: Quaternion path avoids gimbal lock singularities in D-matrix computation"
+      ]
+    },
+    {
+      "schema_name": "Higher-Order Quaternion Message Passing",
+      "timestamp": "2026-03-08 07:41:30",
+      "metrics": {
+        "equivariance_errors": {
+          "2": 2.375264489965643e-16,
+          "3": 2.104826276462537e-16,
+          "4": NaN
+        },
+        "best_body_order": 2
+      },
+      "discoveries": [
+        "DISCOVERY: 2-body quaternion messages are perfectly equivariant! Error: 2.38e-16",
+        "DISCOVERY: 3-body quaternion messages are perfectly equivariant! Error: 2.10e-16",
+        "DISCOVERY: Body order 2 achieves best equivariance-efficiency trade-off"
+      ]
+    },
+    {
+      "schema_name": "Conjugacy Class Attention",
+      "timestamp": "2026-03-08 07:41:34",
+      "metrics": {
+        "mean_class_invariance": 9999975858.248833,
+        "mean_attention_variance": 0.06802463726359201,
+        "mean_equivariance_violation": 2.4141813548261837e-16
+      },
+      "discoveries": [
+        "DISCOVERY: Conjugacy class attention is perfectly invariant! Violation: 2.41e-16",
+        "DISCOVERY: Conjugacy class attention has high discriminability (variance: 0.0680)",
+        "DISCOVERY: Class functions define natural attention kernels on rotation groups"
+      ]
+    }
+  ]
+}

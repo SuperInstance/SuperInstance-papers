@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Ghost Seed Schema",
+  "description": "Schema for ghost part seed specifications",
+  "type": "object",
+  "properties": {
+    "seed_id": {
+      "type": "string",
+      "description": "Unique identifier for this seed configuration"
+    },
+    "seed_value": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18446744073709551615,
+      "description": "64-bit seed value"
+    },
+    "decoded_config": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "type": "integer",
+          "enum": [0, 12, 60, 360],
+          "description": "Angular base (0 for non-angular)"
+        },
+        "flags": {
+          "type": "object",
+          "properties": {
+            "precision_mode": {
+              "type": "string",
+              "enum": ["half", "full"],
+              "description": "Precision mode flag"
+            },
+            "rotation_convention": {
+              "type": "string",
+              "enum": ["CW", "CCW"],
+              "description": "Rotation convention"
+            },
+            "origin_mode": {
+              "type": "string",
+              "enum": ["static", "dynamic"],
+              "description": "Origin handling mode"
+            }
+          }
+        },
+        "parameters": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535,
+          "description": "16-bit parameter field"
+        },
+        "rng_seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295,
+          "description": "32-bit RNG seed"
+        }
+      }
+    },
+    "function_signature": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Function name"
+        },
+        "input_types": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Input type signatures"
+        },
+        "output_type": {
+          "type": "string",
+          "description": "Output type signature"
+        }
+      },
+      "required": ["name"]
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "dataset_id": {
+          "type": "string",
+          "description": "ID of validation dataset"
+        },
+        "error_rate": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Measured error rate"
+        },
+        "determinism_verified": {
+          "type": "boolean",
+          "description": "Whether determinism was verified"
+        },
+        "test_cases_passed": {
+          "type": "integer",
+          "description": "Number of test cases passed"
+        },
+        "test_cases_total": {
+          "type": "integer",
+          "description": "Total number of test cases"
+        }
+      }
+    },
+    "discovery": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["random_search", "evolutionary", "bayesian", "neural_guided"],
+          "description": "Discovery algorithm used"
+        },
+        "iterations": {
+          "type": "integer",
+          "description": "Number of iterations to find seed"
+        },
+        "compute_hours": {
+          "type": "number",
+          "description": "Compute hours spent"
+        },
+        "discovered_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Implementation code"
+        },
+        "code_path": {
+          "type": "string",
+          "description": "Path to implementation file"
+        },
+        "language": {
+          "type": "string",
+          "enum": ["python", "triton", "cuda", "rust"],
+          "description": "Implementation language"
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "latency_ms": {
+          "type": "number",
+          "description": "Execution latency in ms"
+        },
+        "speedup_vs_neural": {
+          "type": "number",
+          "description": "Speedup factor vs neural equivalent"
+        },
+        "memory_bytes": {
+          "type": "integer",
+          "description": "Memory usage in bytes"
+        }
+      }
+    }
+  },
+  "required": ["seed_id", "seed_value", "function_signature"],
+  "additionalProperties": true
+}

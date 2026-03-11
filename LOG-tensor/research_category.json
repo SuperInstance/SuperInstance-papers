@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2410.05353",
+    "name": "[2410.05353] Towards a Categorical Foundation of Deep Learning: A Survey",
+    "snippet": "2024 · Cited by 3 — In this work, we mainly focus on the application of category theory to deep learning. ... representations of neural network architectures.",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/bgavran/Category_Theory_Machine_Learning",
+    "name": "bgavran/Category_Theory_Machine_Learning: List of papers studying machine learning through the lens of category theory",
+    "snippet": "Category theory has been finding increasing applications in machine learning. This repository aims to list all of the relevant papers, grouped by fields.\nCategory theory has been finding increasing applications in machine learning. This repository aims to list all of the relevant papers, grouped by fields. For an introduction to the ideas behind category theory, check out this link. There might be papers missing, and some papers are in multiple fields.",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.brunogavranovic.com/assets/FundamentalComponentsOfDeepLearning.pdf",
+    "name": "Fundamental Components of Deep Learning: A category-theoretic approach",
+    "snippet": "2024 · Cited by 23 — We survey exist- ing, and develop new categorical models of neural network architectures. We formalise the notion of optimisers and lastly, ...",
+    "host_name": "www.brunogavranovic.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/4640d5da5888238b9de7e0dbacd2c605-Paper-Conference.pdf",
+    "name": "THE NETWORK FEATURE COMPLEXITY AND ITS INTERPRETATION USING CATEGORY THEORY",
+    "snippet": "Cited by 14 — In the context of neural networks, we abstractly represent the network structure as a category and a certain neural network as a functor that maps this ...",
+    "host_name": "proceedings.iclr.cc",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://iopscience.iop.org/article/10.1088/2632-2153/ac2c5d",
+    "name": "Categorical representation learning: morphism is all you need",
+    "snippet": "2022 · Cited by 13 — The goal of the current article is to promote the representation learning to a new level via a category-theoretic approach. As a proof of concept, we provide an ...",
+    "host_name": "iopscience.iop.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mathoverflow.net/questions/464646/soft-question-deep-learning-and-higher-categories",
+    "name": "Soft question: Deep learning and higher categories",
+    "snippet": "Feb 22, 2024 — Recently, I have stumbled upon certain articles and lecture videos that use category theory to explain certain aspects of machine learning or deep ...",
+    "host_name": "mathoverflow.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@sethuiyer/category-theory-in-deep-learning-a-new-lens-for-abstraction-composition-and-the-nature-of-2806963c677f",
+    "name": "Category Theory in Deep Learning: A New Lens for Abstraction, Composition, and the Nature of Intelligence | by Sethu Iyer",
+    "snippet": "A functor (a mapping between categories) can represent the transformation of data as it flows through a network. ... neural network components in ...\nThis blog post explores how category theory can serve as a powerful tool for reasoning about the structure and behavior of neural networks.",
+    "host_name": "medium.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/gavranovic24a/gavranovic24a.pdf",
+    "name": "Position: Categorical Deep Learning is an Algebraic Theory of All Architectures - GitHub",
+    "snippet": "Cited by 48 — Focusing on building a such a bridge, we propose to apply category theory— precisely, the universal algebra of monads valued in a 2-category of parametric maps— ...",
+    "host_name": "raw.githubusercontent.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://journals.aps.org/pre/accepted/10.1103/mp35-bdx5",
+    "name": "Category learning in deep neural networks: Information content and geometry of internal representations - APS Journals",
+    "snippet": "In humans and other animals, category learning is associated with a better ability to discriminate between stimuli that are close to the category boundary, ...",
+    "host_name": "journals.aps.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ideasthesia.org/neural-networks-as-functors-category-theory-meets-deep-learning",
+    "name": "Neural Networks as Functors: Category Theory & AI | Ideasthesia",
+    "snippet": "Category theory reveals that a neural network is a functor from the category of vector spaces to itself, transforming inputs through layers while preserving the compositional structure that makes learning possible.",
+    "host_name": "www.ideasthesia.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

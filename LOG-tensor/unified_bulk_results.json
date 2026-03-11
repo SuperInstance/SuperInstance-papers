@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-03-08T19:57:34.477135",
+  "verification": {
+    "clifford_rotor_error": {
+      "mean": 0.7614326528075657,
+      "max": 1.4001205570474644
+    },
+    "attention_invariance_error": 0.0,
+    "symplectic_energy_drift": 2.184243896863336e-10,
+    "symplectic_casimir_drift": 1.7763568394002505e-15,
+    "inner_product_invariance": {
+      "dim_3": 8.326672684688674e-17,
+      "dim_4": 4.440892098500626e-16,
+      "dim_5": 1.3322676295501878e-15,
+      "dim_6": 5.551115123125783e-17,
+      "dim_8": 1.3322676295501878e-15,
+      "dim_10": 4.440892098500626e-16
+    },
+    "jacobi_identity_error": 4.1035995716402654e-16
+  },
+  "architecture": {
+    "core_equation": "Attention(Q,K,V) = softmax(\u27e8Q,K\u27e9 + \u03c9\u00b7(Q\u2227K)) V",
+    "unified_structure": "Clifford Algebra Cl(3,0)",
+    "key_operations": [
+      "Geometric product: ab = a\u00b7b + a\u2227b",
+      "Inner product: rotation invariant",
+      "Bivector: encodes rotation relationship",
+      "Rotor: exponential of bivector",
+      "Symplectic step: energy conservation"
+    ],
+    "what_it_unifies": [
+      "Direction attention",
+      "Geometric algebra operations",
+      "Spinor transport",
+      "Wasserstein distance",
+      "Symplectic dynamics",
+      "Momentum maps",
+      "K\u00e4hler attention",
+      "Chern-Simons (as regularizer)",
+      "RG flow (as scheduler)",
+      "Quantum groups (as deformation)"
+    ]
+  }
+}

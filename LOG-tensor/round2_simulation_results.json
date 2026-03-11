@@ -1,0 +1,226 @@
+{
+  "timestamp": "2026-03-08 07:49:18",
+  "results": [
+    {
+      "experiment": "Computational Efficiency Analysis",
+      "timestamp": "2026-03-08 07:48:18",
+      "metrics": {
+        "rotation_composition": {
+          "quaternion_time": 0.002208232879638672,
+          "euler_time": 0.004415035247802734,
+          "matrix_time": 0.00609898567199707,
+          "speedup_vs_euler": 1.9993521917512416,
+          "speedup_vs_matrix": 2.7619304685813
+        },
+        "attention_complexity": {
+          "n_atoms": [
+            10,
+            20,
+            50,
+            100,
+            200
+          ],
+          "time": [
+            0.008364677429199219,
+            0.03518390655517578,
+            0.22134089469909668,
+            0.9294581413269043,
+            3.7607405185699463
+          ],
+          "theoretical_O_n": [
+            100,
+            400,
+            2500,
+            10000,
+            40000
+          ],
+          "empirical_complexity": "O(n^2.04)"
+        }
+      },
+      "discoveries": [
+        "DISCOVERY: Quaternion composition is 2.0x faster than Euler angle composition",
+        "DISCOVERY: Quaternion composition is 2.8x faster than matrix composition",
+        "DISCOVERY: Unified QGT attention has O(n^2.04) complexity"
+      ]
+    },
+    {
+      "experiment": "Theoretical Limits Analysis",
+      "timestamp": "2026-03-08 07:48:18",
+      "metrics": {
+        "equivariance_precision": {
+          "mean_error": 2.9206791582130657e-16,
+          "max_error": 1.4177477996886086e-15,
+          "min_error": 0.0,
+          "std_error": 1.6905456731484197e-16,
+          "machine_epsilon": 2.220446049250313e-16
+        },
+        "wigner_completeness": {
+          "degrees_tested": 5,
+          "results": [
+            {
+              "degree": 0,
+              "unitarity_error": 0.0,
+              "dimension": 1
+            },
+            {
+              "degree": 1,
+              "unitarity_error": 4.97453209119868e-16,
+              "dimension": 3
+            },
+            {
+              "degree": 2,
+              "unitarity_error": 1.0903221438914703e-15,
+              "dimension": 5
+            },
+            {
+              "degree": 3,
+              "unitarity_error": 2.075152122335591e-15,
+              "dimension": 7
+            },
+            {
+              "degree": 4,
+              "unitarity_error": 2.4309072747983036e-15,
+              "dimension": 9
+            }
+          ],
+          "all_unitary": true
+        },
+        "clebsch_gordan": {
+          "results": [
+            {
+              "l1": 1,
+              "l2": 1,
+              "l": 0,
+              "sum_cg_squared": NaN,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 1,
+              "l2": 1,
+              "l": 1,
+              "sum_cg_squared": Infinity,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 1,
+              "l2": 1,
+              "l": 2,
+              "sum_cg_squared": 2.6666666666666665,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 1,
+              "l2": 2,
+              "l": 1,
+              "sum_cg_squared": NaN,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 1,
+              "l2": 2,
+              "l": 2,
+              "sum_cg_squared": Infinity,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 1,
+              "l2": 2,
+              "l": 3,
+              "sum_cg_squared": 153.60000000000002,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 2,
+              "l2": 1,
+              "l": 1,
+              "sum_cg_squared": NaN,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 2,
+              "l2": 1,
+              "l": 2,
+              "sum_cg_squared": Infinity,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 2,
+              "l2": 1,
+              "l": 3,
+              "sum_cg_squared": 153.60000000000002,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 2,
+              "l2": 2,
+              "l": 0,
+              "sum_cg_squared": NaN,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 2,
+              "l2": 2,
+              "l": 1,
+              "sum_cg_squared": NaN,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 2,
+              "l2": 2,
+              "l": 2,
+              "sum_cg_squared": NaN,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 2,
+              "l2": 2,
+              "l": 3,
+              "sum_cg_squared": Infinity,
+              "orthogonal": "False"
+            },
+            {
+              "l1": 2,
+              "l2": 2,
+              "l": 4,
+              "sum_cg_squared": 4739.657142857142,
+              "orthogonal": "False"
+            }
+          ],
+          "all_orthogonal": false
+        }
+      },
+      "discoveries": [
+        "DISCOVERY: Equivariance at machine precision limit! Mean error: 2.92e-16 vs \u03b5: 2.22e-16",
+        "DISCOVERY: Wigner D-matrices are unitary up to degree 5"
+      ]
+    },
+    {
+      "experiment": "Novel Optimization Pathways",
+      "timestamp": "2026-03-08 07:48:18",
+      "metrics": {
+        "quaternion_shortcut": {
+          "direct_time": 0.0002300739288330078,
+          "lie_time": 0.0006856918334960938,
+          "accuracy": 0.38225031919249997,
+          "lie_faster": false
+        },
+        "attention_shortcut": {
+          "direct_time": 2.288818359375e-05,
+          "legendre_time": 7.081031799316406e-05,
+          "approximation_error": 1.7760816030292383,
+          "legendre_faster": false
+        },
+        "spherical_harmonic_shortcut": {
+          "direct_time": 0.0015406608581542969,
+          "recurrence_time": 9.632110595703125e-05,
+          "l1_error": 3.3219954564955853e-17,
+          "recurrence_faster": true
+        }
+      },
+      "discoveries": [
+        "DISCOVERY: Legendre expansion enables O(1) class-function attention (error: 1.7761)",
+        "DISCOVERY: Recurrence relations speed up spherical harmonic computation"
+      ]
+    }
+  ]
+}

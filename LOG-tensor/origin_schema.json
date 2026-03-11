@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Origin-Relative Coordinate Schema",
+  "description": "Schema for origin-first coordinate system definitions",
+  "type": "object",
+  "properties": {
+    "origin_id": {
+      "type": "string",
+      "description": "Unique identifier for this origin"
+    },
+    "position": {
+      "type": "object",
+      "properties": {
+        "absolute": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Absolute position in world coordinates"
+        },
+        "relative": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Position relative to parent origin"
+        }
+      }
+    },
+    "frame": {
+      "type": "object",
+      "properties": {
+        "basis_vectors": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {"type": "number"}
+          },
+          "description": "Orthonormal basis vectors as columns"
+        },
+        "heading_rad": {
+          "type": "number",
+          "description": "Heading angle in radians"
+        },
+        "elevation_rad": {
+          "type": "number",
+          "description": "Elevation angle in radians"
+        }
+      },
+      "required": ["basis_vectors"]
+    },
+    "velocity": {
+      "type": "object",
+      "properties": {
+        "linear": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Linear velocity vector"
+        },
+        "angular": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Angular velocity vector"
+        }
+      }
+    },
+    "travel_plane": {
+      "type": "object",
+      "properties": {
+        "normal": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Normal vector to travel plane"
+        },
+        "forward_direction": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Direction of motion"
+        }
+      }
+    },
+    "sector_assignment": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "type": "integer",
+          "enum": [12, 60, 360],
+          "description": "Angular base"
+        },
+        "current_sector": {
+          "type": "integer",
+          "description": "Current sector index"
+        },
+        "sector_name": {
+          "type": "string",
+          "description": "Human-readable sector name (e.g., '3 o'clock')"
+        }
+      }
+    },
+    "view_state": {
+      "type": "object",
+      "properties": {
+        "focus_target": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Current focus target position"
+        },
+        "view_frustum": {
+          "type": "object",
+          "properties": {
+            "near": {"type": "number"},
+            "far": {"type": "number"},
+            "angle_rad": {"type": "number"}
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "parent_origin_id": {
+          "type": "string",
+          "description": "ID of parent origin for hierarchical origins"
+        },
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["origin_id", "position", "frame"],
+  "additionalProperties": true
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://medium.com/@silva.f.francis/a-technical-overview-of-the-attention-mechanism-in-deep-learning-a6a11264226a",
+    "name": "A Technical Overview of the Attention Mechanism in Deep",
+    "snippet": "The attention mechanism en ables neural networks to prioritize specific parts of an input sequence when generating outputs, rather than treating ...",
+    "host_name": "medium.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ibm.com/think/topics/attention-mechanism",
+    "name": "What is an attention mechanism?",
+    "snippet": "An attention mechanism is a machine learning technique that directs deep learning models to prioritize (or attend to) the most relevant parts of input data.",
+    "host_name": "www.ibm.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Attention_(machine_learning)",
+    "name": "Attention (machine learning)",
+    "snippet": "In machine learning, attention is a method that determines the importance of each component in a sequence relative to the other components in that sequence.",
+    "host_name": "en.wikipedia.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2601.03329v1",
+    "name": "Attention Mechanisms in Neural Networks A",
+    "snippet": "Jan 6, 2569 BE — This monograph provides a comprehensive and rigorous mathematical treatment of attention mechanisms , encompassing their theoretical foundations, ...",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S3050619025000369",
+    "name": "Ada-attention mechanism for intelligent parameter",
+    "snippet": "2025 — This study proposes a deep learning method based on the Ada-Attention mechanism for predicting and optimizing parameters such as confining pressure, penetration ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.machinelearningmastery.com/the-attention-mechanism-from-scratch",
+    "name": "The Attention Mechanism from Scratch",
+    "snippet": "Jan 6, 2566 BE — The attention mechanism was introduced to improve the performance of the encoder-decoder model for machine translation.",
+    "host_name": "www.machinelearningmastery.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=IEDkPrCLtE",
+    "name": "Tensor Product Attention Is All You Need",
+    "snippet": "2025 · Cited by 34 — In this paper, we propose Tensor Product Attention (TPA), a novel attention mechanism that uses tensor decompositions to represent queries, keys ...",
+    "host_name": "openreview.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eunomia.dev/others/cuda-tutorial/07-attention-mechanism",
+    "name": "Attention Mechanism for Transformer Models with CUDA",
+    "snippet": "May 23, 2568 BE — This tutorial demonstrates how to implement efficient attention mechanisms for transformer models using CUDA.",
+    "host_name": "eunomia.dev",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://developer.nvidia.com/blog/emulating-the-attention-mechanism-in-transformer-models-with-a-fully-convolutional-network",
+    "name": "Emulating the Attention Mechanism in Transformer Models",
+    "snippet": "Jan 29, 2567 BE — By relying solely on convolutions, our overall model achieves remarkable efficiency on highly optimized GPUs and deep learning accelerators.",
+    "host_name": "developer.nvidia.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://sebastianraschka.com/blog/2023/self-attention-from-scratch.html",
+    "name": "Understanding and Coding the Self-Attention Mechanism",
+    "snippet": "Feb 9, 2566 BE — In this article, we are going to understand how self-attention works from scratch . This means we will code it ourselves one step at a time.",
+    "host_name": "sebastianraschka.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

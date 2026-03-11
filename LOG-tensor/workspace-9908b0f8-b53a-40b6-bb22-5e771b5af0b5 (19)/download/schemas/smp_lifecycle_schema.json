@@ -1,0 +1,769 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "smp_lifecycle_schema.json",
+  "title": "SMP Lifecycle Schema",
+  "description": "Comprehensive schema for SMP Lifecycle: Creation → Locking → Execution → Checking → Adjustment → Evolution",
+  "type": "object",
+  "required": ["id", "smpId", "currentStage", "stages", "transitions"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique lifecycle instance identifier"
+    },
+    "smpId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the SMP cell this lifecycle belongs to"
+    },
+    "smpBotId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the SMPbot instance (if deployed)"
+    },
+    "currentStage": {
+      "$ref": "#/definitions/LifecycleStage"
+    },
+    "stages": {
+      "type": "object",
+      "properties": {
+        "creation": { "$ref": "#/definitions/CreationStage" },
+        "locking": { "$ref": "#/definitions/LockingStage" },
+        "execution": { "$ref": "#/definitions/ExecutionStage" },
+        "checking": { "$ref": "#/definitions/CheckingStage" },
+        "adjustment": { "$ref": "#/definitions/AdjustmentStage" },
+        "evolution": { "$ref": "#/definitions/EvolutionStage" }
+      },
+      "required": ["creation", "locking", "execution", "checking", "adjustment", "evolution"]
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/LifecycleTransition"
+      }
+    },
+    "auditLog": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AuditEntry"
+      }
+    },
+    "metadata": {
+      "$ref": "#/definitions/LifecycleMetadata"
+    }
+  },
+  "definitions": {
+    "LifecycleStage": {
+      "type": "object",
+      "required": ["name", "status"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": ["creation", "locking", "execution", "checking", "adjustment", "evolution"],
+          "description": "Name of the lifecycle stage"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "in_progress", "completed", "failed", "skipped", "paused"],
+          "description": "Status of the stage"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "Duration in milliseconds"
+        },
+        "attempts": {
+          "type": "integer",
+          "default": 1
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": { "type": "string" },
+            "message": { "type": "string" },
+            "stackTrace": { "type": "string" }
+          }
+        }
+      }
+    },
+    "CreationStage": {
+      "type": "object",
+      "description": "Stage 1: Creation - Define seed, model, and prompt",
+      "required": ["status"],
+      "properties": {
+        "name": { "type": "string", "const": "creation" },
+        "status": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "duration": { "type": "integer" },
+        "attempts": { "type": "integer" },
+        "error": { "type": "object" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "seedDefined": { "type": "boolean" },
+            "modelDefined": { "type": "boolean" },
+            "promptDefined": { "type": "boolean" },
+            "validationPassed": { "type": "boolean" },
+            "dependenciesResolved": { "type": "boolean" },
+            "createdBy": { "type": "string" },
+            "sourceTemplate": { "type": "string" },
+            "initializationConfig": {
+              "type": "object",
+              "properties": {
+                "inheritFrom": { "type": "string" },
+                "presetId": { "type": "string" },
+                "autoValidate": { "type": "boolean", "default": true }
+              }
+            }
+          }
+        }
+      }
+    },
+    "LockingStage": {
+      "type": "object",
+      "description": "Stage 2: Locking - Lock the SMP cell into a static program",
+      "required": ["status"],
+      "properties": {
+        "name": { "type": "string", "const": "locking" },
+        "status": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "duration": { "type": "integer" },
+        "attempts": { "type": "integer" },
+        "error": { "type": "object" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "lockType": {
+              "type": "string",
+              "enum": ["soft", "hard", "cryptographic", "distributed"]
+            },
+            "fingerprintGenerated": { "type": "boolean" },
+            "checksumComputed": { "type": "boolean" },
+            "signatureCreated": { "type": "boolean" },
+            "lockHash": { "type": "string" },
+            "lockedBy": { "type": "string" },
+            "lockedAt": { "type": "string", "format": "date-time" },
+            "expiryDate": { "type": "string", "format": "date-time" },
+            "lockReason": { "type": "string" },
+            "verificationConfig": {
+              "type": "object",
+              "properties": {
+                "algorithm": { "type": "string", "default": "sha256" },
+                "includeTimestamp": { "type": "boolean", "default": true },
+                "includeSignature": { "type": "boolean", "default": true }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ExecutionStage": {
+      "type": "object",
+      "description": "Stage 3: Execution - Run the locked SMP cell",
+      "required": ["status"],
+      "properties": {
+        "name": { "type": "string", "const": "execution" },
+        "status": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "duration": { "type": "integer" },
+        "attempts": { "type": "integer" },
+        "error": { "type": "object" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "totalExecutions": { "type": "integer" },
+            "successfulExecutions": { "type": "integer" },
+            "failedExecutions": { "type": "integer" },
+            "totalTokens": { "type": "integer" },
+            "totalCost": { "type": "number" },
+            "averageLatency": { "type": "number" },
+            "p99Latency": { "type": "number" },
+            "throughput": { "type": "number" },
+            "lastExecutionTime": { "type": "string", "format": "date-time" },
+            "executionMode": {
+              "type": "string",
+              "enum": ["synchronous", "asynchronous", "streaming", "batch"]
+            },
+            "resourceUsage": {
+              "type": "object",
+              "properties": {
+                "gpuHours": { "type": "number" },
+                "cpuHours": { "type": "number" },
+                "memoryGBHours": { "type": "number" }
+              }
+            },
+            "scalingEvents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "timestamp": { "type": "string", "format": "date-time" },
+                  "type": { "type": "string", "enum": ["scale_up", "scale_down"] },
+                  "from": { "type": "integer" },
+                  "to": { "type": "integer" },
+                  "reason": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "CheckingStage": {
+      "type": "object",
+      "description": "Stage 4: Checking - Cold logic checks for problems",
+      "required": ["status"],
+      "properties": {
+        "name": { "type": "string", "const": "checking" },
+        "status": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "duration": { "type": "integer" },
+        "attempts": { "type": "integer" },
+        "error": { "type": "object" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "totalChecks": { "type": "integer" },
+            "passedChecks": { "type": "integer" },
+            "failedChecks": { "type": "integer" },
+            "warningChecks": { "type": "integer" },
+            "lastCheckTime": { "type": "string", "format": "date-time" },
+            "activeCheckers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "checkerId": { "type": "string" },
+                  "checkerName": { "type": "string" },
+                  "lastResult": { "type": "string", "enum": ["pass", "fail", "warning", "error"] },
+                  "lastCheckTime": { "type": "string", "format": "date-time" }
+                }
+              }
+            },
+            "checkResults": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "timestamp": { "type": "string", "format": "date-time" },
+                  "checkerId": { "type": "string" },
+                  "result": { "type": "string" },
+                  "issuesFound": { "type": "integer" },
+                  "recommendationsGenerated": { "type": "integer" }
+                }
+              }
+            },
+            "issuesDetected": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+                  "type": { "type": "string" },
+                  "description": { "type": "string" },
+                  "detectedAt": { "type": "string", "format": "date-time" },
+                  "resolved": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "AdjustmentStage": {
+      "type": "object",
+      "description": "Stage 5: Adjustment - Apply recommendations to embody function",
+      "required": ["status"],
+      "properties": {
+        "name": { "type": "string", "const": "adjustment" },
+        "status": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "duration": { "type": "integer" },
+        "attempts": { "type": "integer" },
+        "error": { "type": "object" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "totalAdjustments": { "type": "integer" },
+            "appliedAdjustments": { "type": "integer" },
+            "rejectedAdjustments": { "type": "integer" },
+            "rolledBackAdjustments": { "type": "integer" },
+            "pendingAdjustments": { "type": "integer" },
+            "adjustmentHistory": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "type": { "type": "string" },
+                  "description": { "type": "string" },
+                  "status": { "type": "string", "enum": ["pending", "approved", "applied", "rejected", "rolled_back"] },
+                  "appliedAt": { "type": "string", "format": "date-time" },
+                  "appliedBy": { "type": "string" },
+                  "changes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "path": { "type": "string" },
+                        "previousValue": { "description": "Previous value" },
+                        "newValue": { "description": "New value" }
+                      }
+                    }
+                  },
+                  "rollbackSnapshot": { "type": "string" },
+                  "impact": { "type": "string", "enum": ["minor", "moderate", "major", "breaking"] }
+                }
+              }
+            },
+            "rollbackCapability": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "maxSnapshots": { "type": "integer" },
+                "availableSnapshots": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "EvolutionStage": {
+      "type": "object",
+      "description": "Stage 6: Evolution - Long-term adaptation and improvement",
+      "required": ["status"],
+      "properties": {
+        "name": { "type": "string", "const": "evolution" },
+        "status": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "duration": { "type": "integer" },
+        "attempts": { "type": "integer" },
+        "error": { "type": "object" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "generation": { "type": "integer", "description": "Current generation/version number" },
+            "parentId": { "type": "string", "description": "Parent SMP ID this evolved from" },
+            "childIds": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Child SMP IDs that evolved from this"
+            },
+            "evolutionEvents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "type": {
+                    "type": "string",
+                    "enum": ["mutation", "crossover", "selection", "adaptation", "optimization"]
+                  },
+                  "timestamp": { "type": "string", "format": "date-time" },
+                  "trigger": { "type": "string" },
+                  "changes": { "type": "array" },
+                  "fitnessImprovement": { "type": "number" },
+                  "resultingVersion": { "type": "string" }
+                }
+              }
+            },
+            "fitnessMetrics": {
+              "type": "object",
+              "properties": {
+                "performance": { "type": "number" },
+                "accuracy": { "type": "number" },
+                "efficiency": { "type": "number" },
+                "stability": { "type": "number" },
+                "overallScore": { "type": "number" }
+              }
+            },
+            "adaptationHistory": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "timestamp": { "type": "string", "format": "date-time" },
+                  "environmentChange": { "type": "string" },
+                  "adaptationType": { "type": "string" },
+                  "success": { "type": "boolean" }
+                }
+              }
+            },
+            "lineage": {
+              "type": "object",
+              "properties": {
+                "rootId": { "type": "string" },
+                "depth": { "type": "integer" },
+                "totalAncestors": { "type": "integer" },
+                "totalDescendants": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "LifecycleTransition": {
+      "type": "object",
+      "description": "Transition between lifecycle stages",
+      "required": ["from", "to", "timestamp"],
+      "properties": {
+        "id": { "type": "string" },
+        "from": {
+          "type": "string",
+          "enum": ["creation", "locking", "execution", "checking", "adjustment", "evolution"]
+        },
+        "to": {
+          "type": "string",
+          "enum": ["creation", "locking", "execution", "checking", "adjustment", "evolution"]
+        },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "trigger": { "type": "string" },
+        "automatic": { "type": "boolean" },
+        "initiatedBy": { "type": "string" },
+        "reason": { "type": "string" },
+        "validationPassed": { "type": "boolean" },
+        "preconditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "postconditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "AuditEntry": {
+      "type": "object",
+      "properties": {
+        "timestamp": { "type": "string", "format": "date-time" },
+        "action": { "type": "string" },
+        "actor": { "type": "string" },
+        "stage": { "type": "string" },
+        "details": { "type": "object" },
+        "outcome": { "type": "string", "enum": ["success", "failure", "warning"] }
+      }
+    },
+    "LifecycleMetadata": {
+      "type": "object",
+      "properties": {
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "type": "string" },
+        "environment": {
+          "type": "string",
+          "enum": ["development", "staging", "production"]
+        },
+        "totalLifecycleDuration": { "type": "integer" },
+        "version": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false,
+
+  "typescriptInterfaces": "// ==================== TypeScript Interfaces for SMP Lifecycle ====================\n\n/**\n * SMP Lifecycle - Complete lifecycle management\n * Stages: Creation → Locking → Execution → Checking → Adjustment → Evolution\n */\nexport interface SMPLifecycle {\n  id: string;\n  smpId: string;\n  smpBotId?: string;\n  currentStage: LifecycleStageInfo;\n  stages: SMPStages;\n  transitions: LifecycleTransition[];\n  auditLog?: AuditEntry[];\n  metadata?: LifecycleMetadata;\n}\n\n/**\n * Lifecycle stage information\n */\nexport interface LifecycleStageInfo {\n  name: StageName;\n  status: StageStatus;\n  startedAt?: string;\n  completedAt?: string;\n  duration?: number;\n  attempts?: number;\n  error?: StageError;\n}\n\nexport type StageName = 'creation' | 'locking' | 'execution' | 'checking' | 'adjustment' | 'evolution';\nexport type StageStatus = 'pending' | 'in_progress' | 'completed' | 'failed' | 'skipped' | 'paused';\n\nexport interface StageError {\n  code: string;\n  message: string;\n  stackTrace?: string;\n}\n\n/**\n * All lifecycle stages\n */\nexport interface SMPStages {\n  creation: CreationStage;\n  locking: LockingStage;\n  execution: ExecutionStage;\n  checking: CheckingStage;\n  adjustment: AdjustmentStage;\n  evolution: EvolutionStage;\n}\n\n/**\n * Stage 1: Creation\n */\nexport interface CreationStage extends LifecycleStageInfo {\n  name: 'creation';\n  details?: {\n    seedDefined?: boolean;\n    modelDefined?: boolean;\n    promptDefined?: boolean;\n    validationPassed?: boolean;\n    dependenciesResolved?: boolean;\n    createdBy?: string;\n    sourceTemplate?: string;\n    initializationConfig?: InitializationConfig;\n  };\n}\n\nexport interface InitializationConfig {\n  inheritFrom?: string;\n  presetId?: string;\n  autoValidate?: boolean;\n}\n\n/**\n * Stage 2: Locking\n */\nexport interface LockingStage extends LifecycleStageInfo {\n  name: 'locking';\n  details?: {\n    lockType?: 'soft' | 'hard' | 'cryptographic' | 'distributed';\n    fingerprintGenerated?: boolean;\n    checksumComputed?: boolean;\n    signatureCreated?: boolean;\n    lockHash?: string;\n    lockedBy?: string;\n    lockedAt?: string;\n    expiryDate?: string;\n    lockReason?: string;\n    verificationConfig?: VerificationConfig;\n  };\n}\n\nexport interface VerificationConfig {\n  algorithm?: string;\n  includeTimestamp?: boolean;\n  includeSignature?: boolean;\n}\n\n/**\n * Stage 3: Execution\n */\nexport interface ExecutionStage extends LifecycleStageInfo {\n  name: 'execution';\n  details?: {\n    totalExecutions?: number;\n    successfulExecutions?: number;\n    failedExecutions?: number;\n    totalTokens?: number;\n    totalCost?: number;\n    averageLatency?: number;\n    p99Latency?: number;\n    throughput?: number;\n    lastExecutionTime?: string;\n    executionMode?: 'synchronous' | 'asynchronous' | 'streaming' | 'batch';\n    resourceUsage?: ResourceUsage;\n    scalingEvents?: ScalingEvent[];\n  };\n}\n\nexport interface ResourceUsage {\n  gpuHours?: number;\n  cpuHours?: number;\n  memoryGBHours?: number;\n}\n\nexport interface ScalingEvent {\n  timestamp: string;\n  type: 'scale_up' | 'scale_down';\n  from: number;\n  to: number;\n  reason: string;\n}\n\n/**\n * Stage 4: Checking\n */\nexport interface CheckingStage extends LifecycleStageInfo {\n  name: 'checking';\n  details?: {\n    totalChecks?: number;\n    passedChecks?: number;\n    failedChecks?: number;\n    warningChecks?: number;\n    lastCheckTime?: string;\n    activeCheckers?: ActiveChecker[];\n    checkResults?: CheckResultSummary[];\n    issuesDetected?: Issue[];\n  };\n}\n\nexport interface ActiveChecker {\n  checkerId: string;\n  checkerName: string;\n  lastResult: 'pass' | 'fail' | 'warning' | 'error';\n  lastCheckTime: string;\n}\n\nexport interface CheckResultSummary {\n  timestamp: string;\n  checkerId: string;\n  result: string;\n  issuesFound: number;\n  recommendationsGenerated: number;\n}\n\nexport interface Issue {\n  id: string;\n  severity: 'low' | 'medium' | 'high' | 'critical';\n  type: string;\n  description: string;\n  detectedAt: string;\n  resolved: boolean;\n}\n\n/**\n * Stage 5: Adjustment\n */\nexport interface AdjustmentStage extends LifecycleStageInfo {\n  name: 'adjustment';\n  details?: {\n    totalAdjustments?: number;\n    appliedAdjustments?: number;\n    rejectedAdjustments?: number;\n    rolledBackAdjustments?: number;\n    pendingAdjustments?: number;\n    adjustmentHistory?: AdjustmentRecord[];\n    rollbackCapability?: RollbackCapability;\n  };\n}\n\nexport interface AdjustmentRecord {\n  id: string;\n  type: string;\n  description: string;\n  status: 'pending' | 'approved' | 'applied' | 'rejected' | 'rolled_back';\n  appliedAt?: string;\n  appliedBy?: string;\n  changes?: Change[];\n  rollbackSnapshot?: string;\n  impact?: 'minor' | 'moderate' | 'major' | 'breaking';\n}\n\nexport interface Change {\n  path: string;\n  previousValue?: unknown;\n  newValue?: unknown;\n}\n\nexport interface RollbackCapability {\n  enabled: boolean;\n  maxSnapshots: number;\n  availableSnapshots: number;\n}\n\n/**\n * Stage 6: Evolution\n */\nexport interface EvolutionStage extends LifecycleStageInfo {\n  name: 'evolution';\n  details?: {\n    generation?: number;\n    parentId?: string;\n    childIds?: string[];\n    evolutionEvents?: EvolutionEvent[];\n    fitnessMetrics?: FitnessMetrics;\n    adaptationHistory?: AdaptationRecord[];\n    lineage?: Lineage;\n  };\n}\n\nexport interface EvolutionEvent {\n  id: string;\n  type: 'mutation' | 'crossover' | 'selection' | 'adaptation' | 'optimization';\n  timestamp: string;\n  trigger: string;\n  changes: unknown[];\n  fitnessImprovement?: number;\n  resultingVersion?: string;\n}\n\nexport interface FitnessMetrics {\n  performance?: number;\n  accuracy?: number;\n  efficiency?: number;\n  stability?: number;\n  overallScore?: number;\n}\n\nexport interface AdaptationRecord {\n  timestamp: string;\n  environmentChange: string;\n  adaptationType: string;\n  success: boolean;\n}\n\nexport interface Lineage {\n  rootId: string;\n  depth: number;\n  totalAncestors: number;\n  totalDescendants: number;\n}\n\n/**\n * Lifecycle transition\n */\nexport interface LifecycleTransition {\n  id?: string;\n  from: StageName;\n  to: StageName;\n  timestamp: string;\n  trigger?: string;\n  automatic?: boolean;\n  initiatedBy?: string;\n  reason?: string;\n  validationPassed?: boolean;\n  preconditions?: string[];\n  postconditions?: string[];\n}\n\n/**\n * Audit entry\n */\nexport interface AuditEntry {\n  timestamp: string;\n  action: string;\n  actor: string;\n  stage: string;\n  details?: Record<string, unknown>;\n  outcome: 'success' | 'failure' | 'warning';\n}\n\n/**\n * Lifecycle metadata\n */\nexport interface LifecycleMetadata {\n  createdAt?: string;\n  updatedAt?: string;\n  createdBy?: string;\n  environment?: 'development' | 'staging' | 'production';\n  totalLifecycleDuration?: number;\n  version?: string;\n}\n\n// ==================== Valid Transitions ====================\n\n/**\n * Valid stage transitions in the lifecycle\n */\nexport const VALID_STAGE_TRANSITIONS: Record<StageName, StageName[]> = {\n  creation: ['locking', 'creation'],\n  locking: ['execution', 'creation'],\n  execution: ['checking', 'execution'],\n  checking: ['adjustment', 'evolution', 'execution'],\n  adjustment: ['execution', 'checking', 'evolution'],\n  evolution: ['creation', 'execution']\n};\n\n/**\n * Default stage order\n */\nexport const STAGE_ORDER: StageName[] = [\n  'creation',\n  'locking', \n  'execution',\n  'checking',\n  'adjustment',\n  'evolution'\n];\n\n// ==================== Lifecycle Manager ====================\n\n/**\n * Lifecycle Manager interface\n */\nexport interface LifecycleManager {\n  create(config: Partial<SMPLifecycle>): SMPLifecycle;\n  transition(lifecycle: SMPLifecycle, toStage: StageName, reason?: string): Promise<SMPLifecycle>;\n  getCurrentStage(lifecycle: SMPLifecycle): LifecycleStageInfo;\n  getValidTransitions(lifecycle: SMPLifecycle): StageName[];\n  rollback(lifecycle: SMPLifecycle, toStage: StageName): Promise<SMPLifecycle>;\n  audit(lifecycle: SMPLifecycle, action: string, details?: Record<string, unknown>): void;\n}\n\n/**\n * Factory for creating lifecycles\n */\nexport interface LifecycleFactory {\n  create(smpId: string): SMPLifecycle;\n  fromTemplate(templateId: string, smpId: string): SMPLifecycle;\n  load(lifecycleId: string): Promise<SMPLifecycle>;\n  save(lifecycle: SMPLifecycle): Promise<void>;\n}",
+
+  "examples": [
+    {
+      "id": "880e8400-e29b-41d4-a716-446655440001",
+      "smpId": "550e8400-e29b-41d4-a716-446655440001",
+      "smpBotId": "660e8400-e29b-41d4-a716-446655440001",
+      "currentStage": {
+        "name": "execution",
+        "status": "in_progress",
+        "startedAt": "2025-01-15T12:00:00Z",
+        "attempts": 1
+      },
+      "stages": {
+        "creation": {
+          "name": "creation",
+          "status": "completed",
+          "startedAt": "2025-01-15T10:00:00Z",
+          "completedAt": "2025-01-15T10:05:00Z",
+          "duration": 300000,
+          "attempts": 1,
+          "details": {
+            "seedDefined": true,
+            "modelDefined": true,
+            "promptDefined": true,
+            "validationPassed": true,
+            "dependenciesResolved": true,
+            "createdBy": "user@example.com",
+            "sourceTemplate": "analysis-template-v1"
+          }
+        },
+        "locking": {
+          "name": "locking",
+          "status": "completed",
+          "startedAt": "2025-01-15T10:05:00Z",
+          "completedAt": "2025-01-15T10:05:30Z",
+          "duration": 30000,
+          "attempts": 1,
+          "details": {
+            "lockType": "cryptographic",
+            "fingerprintGenerated": true,
+            "checksumComputed": true,
+            "signatureCreated": true,
+            "lockHash": "sha256:a1b2c3d4e5f6...",
+            "lockedBy": "system",
+            "lockedAt": "2025-01-15T10:05:30Z"
+          }
+        },
+        "execution": {
+          "name": "execution",
+          "status": "in_progress",
+          "startedAt": "2025-01-15T12:00:00Z",
+          "attempts": 1,
+          "details": {
+            "totalExecutions": 1523,
+            "successfulExecutions": 1510,
+            "failedExecutions": 13,
+            "totalTokens": 2500000,
+            "totalCost": 125.50,
+            "averageLatency": 450,
+            "p99Latency": 1200,
+            "throughput": 150.5,
+            "lastExecutionTime": "2025-01-15T14:30:00Z",
+            "executionMode": "asynchronous",
+            "resourceUsage": {
+              "gpuHours": 24.5,
+              "cpuHours": 48.2,
+              "memoryGBHours": 192.8
+            },
+            "scalingEvents": [
+              {
+                "timestamp": "2025-01-15T13:00:00Z",
+                "type": "scale_up",
+                "from": 1,
+                "to": 5,
+                "reason": "High load detected"
+              }
+            ]
+          }
+        },
+        "checking": {
+          "name": "checking",
+          "status": "pending"
+        },
+        "adjustment": {
+          "name": "adjustment",
+          "status": "pending"
+        },
+        "evolution": {
+          "name": "evolution",
+          "status": "pending"
+        }
+      },
+      "transitions": [
+        {
+          "id": "trans-001",
+          "from": "creation",
+          "to": "locking",
+          "timestamp": "2025-01-15T10:05:00Z",
+          "trigger": "creation_complete",
+          "automatic": true,
+          "initiatedBy": "system",
+          "validationPassed": true
+        },
+        {
+          "id": "trans-002",
+          "from": "locking",
+          "to": "execution",
+          "timestamp": "2025-01-15T12:00:00Z",
+          "trigger": "manual_deploy",
+          "automatic": false,
+          "initiatedBy": "user@example.com",
+          "reason": "Production deployment"
+        }
+      ],
+      "auditLog": [
+        {
+          "timestamp": "2025-01-15T10:00:00Z",
+          "action": "lifecycle_created",
+          "actor": "user@example.com",
+          "stage": "creation",
+          "outcome": "success"
+        },
+        {
+          "timestamp": "2025-01-15T10:05:00Z",
+          "action": "stage_completed",
+          "actor": "system",
+          "stage": "creation",
+          "outcome": "success"
+        },
+        {
+          "timestamp": "2025-01-15T10:05:30Z",
+          "action": "cell_locked",
+          "actor": "system",
+          "stage": "locking",
+          "outcome": "success",
+          "details": { "lockHash": "sha256:a1b2c3d4e5f6..." }
+        }
+      ],
+      "metadata": {
+        "createdAt": "2025-01-15T10:00:00Z",
+        "updatedAt": "2025-01-15T14:30:00Z",
+        "createdBy": "user@example.com",
+        "environment": "production",
+        "totalLifecycleDuration": 16200000,
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "880e8400-e29b-41d4-a716-446655440002",
+      "smpId": "550e8400-e29b-41d4-a716-446655440002",
+      "currentStage": {
+        "name": "evolution",
+        "status": "completed",
+        "startedAt": "2025-01-01T00:00:00Z",
+        "completedAt": "2025-01-15T00:00:00Z",
+        "duration": 1209600000
+      },
+      "stages": {
+        "creation": {
+          "name": "creation",
+          "status": "completed",
+          "completedAt": "2024-12-01T00:00:00Z"
+        },
+        "locking": {
+          "name": "locking",
+          "status": "completed",
+          "completedAt": "2024-12-01T00:01:00Z"
+        },
+        "execution": {
+          "name": "execution",
+          "status": "completed",
+          "completedAt": "2024-12-15T00:00:00Z",
+          "details": {
+            "totalExecutions": 50000,
+            "successfulExecutions": 49500,
+            "failedExecutions": 500
+          }
+        },
+        "checking": {
+          "name": "checking",
+          "status": "completed",
+          "completedAt": "2024-12-20T00:00:00Z",
+          "details": {
+            "totalChecks": 1000,
+            "passedChecks": 950,
+            "issuesDetected": [
+              {
+                "id": "issue-001",
+                "severity": "medium",
+                "type": "performance_degradation",
+                "description": "Latency increased by 20% over last week",
+                "detectedAt": "2024-12-18T00:00:00Z",
+                "resolved": true
+              }
+            ]
+          }
+        },
+        "adjustment": {
+          "name": "adjustment",
+          "status": "completed",
+          "completedAt": "2024-12-25T00:00:00Z",
+          "details": {
+            "totalAdjustments": 5,
+            "appliedAdjustments": 4,
+            "rejectedAdjustments": 1,
+            "adjustmentHistory": [
+              {
+                "id": "adj-001",
+                "type": "parameter_tune",
+                "description": "Reduced temperature for more consistent outputs",
+                "status": "applied",
+                "appliedAt": "2024-12-22T00:00:00Z",
+                "impact": "minor"
+              }
+            ]
+          }
+        },
+        "evolution": {
+          "name": "evolution",
+          "status": "completed",
+          "completedAt": "2025-01-15T00:00:00Z",
+          "details": {
+            "generation": 3,
+            "parentId": "550e8400-e29b-41d4-a716-446655440000",
+            "childIds": [],
+            "evolutionEvents": [
+              {
+                "id": "evo-001",
+                "type": "optimization",
+                "timestamp": "2025-01-10T00:00:00Z",
+                "trigger": "fitness_improvement_detected",
+                "fitnessImprovement": 0.15,
+                "resultingVersion": "2.0.0"
+              }
+            ],
+            "fitnessMetrics": {
+              "performance": 0.92,
+              "accuracy": 0.95,
+              "efficiency": 0.88,
+              "stability": 0.97,
+              "overallScore": 0.93
+            },
+            "lineage": {
+              "rootId": "550e8400-e29b-41d4-a716-446655440000",
+              "depth": 3,
+              "totalAncestors": 3,
+              "totalDescendants": 0
+            }
+          }
+        }
+      },
+      "transitions": [
+        {
+          "from": "creation",
+          "to": "locking",
+          "timestamp": "2024-12-01T00:00:00Z",
+          "automatic": true
+        },
+        {
+          "from": "locking",
+          "to": "execution",
+          "timestamp": "2024-12-01T00:01:00Z",
+          "automatic": true
+        },
+        {
+          "from": "execution",
+          "to": "checking",
+          "timestamp": "2024-12-15T00:00:00Z",
+          "trigger": "execution_complete"
+        },
+        {
+          "from": "checking",
+          "to": "adjustment",
+          "timestamp": "2024-12-20T00:00:00Z",
+          "trigger": "issues_found"
+        },
+        {
+          "from": "adjustment",
+          "to": "evolution",
+          "timestamp": "2024-12-25T00:00:00Z",
+          "trigger": "adjustments_applied"
+        }
+      ],
+      "metadata": {
+        "createdAt": "2024-12-01T00:00:00Z",
+        "updatedAt": "2025-01-15T00:00:00Z",
+        "environment": "production",
+        "version": "2.0.0"
+      }
+    }
+  ]
+}

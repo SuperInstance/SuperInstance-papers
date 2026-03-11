@@ -1,0 +1,71 @@
+{
+  "verification": {
+    "state_space": {
+      "total_states": "43,252,003,274,489,856,000",
+      "gods_number": 20
+    },
+    "algorithms": [
+      "Sexy",
+      "Sune",
+      "AntiSune",
+      "T-Perm",
+      "J-Perm",
+      "U-Perm"
+    ],
+    "algorithm_verification": {
+      "sexy_6_returns_solved": false,
+      "sune_affects_state": true
+    },
+    "permutation_tensor": {
+      "shape": [
+        4,
+        4,
+        8
+      ],
+      "n_dependencies": 16,
+      "constraints_satisfied": false
+    },
+    "certainty_rag": {
+      "mean": 0.5069981941112166,
+      "std": 0.2876755816686566,
+      "high_certainty_ratio": 0.25,
+      "low_certainty_ratio": 0.25
+    },
+    "layer_removal": {
+      "n_layers": 12,
+      "layers_at_certainty_0.1": 12,
+      "layers_at_certainty_0.9": 12
+    }
+  },
+  "architectural_analysis": {
+    "build_into_transformer": {
+      "pros": [
+        "Native permutation-aware attention",
+        "Built-in constraint satisfaction",
+        "First-class certainty in tensors",
+        "Unified gradient flow through dependencies"
+      ],
+      "cons": [
+        "Increases complexity of core ops",
+        "May conflict with existing optimizations",
+        "Harder to adopt incrementally",
+        "Requires new tensor libraries"
+      ]
+    },
+    "adjacent_to_transformer": {
+      "pros": [
+        "Modular, can adopt incrementally",
+        "Works with existing transformer implementations",
+        "Clear separation of concerns",
+        "Easier to test and validate"
+      ],
+      "cons": [
+        "May have communication overhead",
+        "Duplicated computation possible",
+        "Harder to get unified certainty signal",
+        "Less efficient pathway strengthening"
+      ]
+    }
+  },
+  "timestamp": "2026-03-08T20:57:13.000636"
+}

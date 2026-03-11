@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/ACEsuit/mace",
+    "name": "ACEsuit/mace: MACE - Fast and accurate machine learning  - GitHub",
+    "snippet": "MACE provides fast and accurate machine learning interatomic potentials with higher order equivariant message passing. This repository contains the MACE ...",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/ilyes319/mfn",
+    "name": "ilyes319/mfn - GitHub",
+    "snippet": "Matrix Function Networks. This repository contains the Matrix Function Network (MFN) implementation developed by Ilyes Batatia, Lars Schaaf, and Felix Faber.",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2206.07697",
+    "name": "[PDF] MACE: Higher Order Equivariant Message Passing Neural Networks",
+    "snippet": "Source code is available at https://github.com/ACEsuit/mace ... source pytorch-based deep learning implementation of the ani neural network ...",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/361324484_MACE_Higher_Order_Equivariant_Message_Passing_Neural_Networks_for_Fast_and_Accurate_Force_Fields",
+    "name": "(PDF) MACE: Higher Order Equivariant Message Passing",
+    "snippet": "In this work, we introduce MACE, a new equivariant MPNN model that uses higher body order messages.",
+    "host_name": "www.researchgate.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11366765",
+    "name": "E(n)-Equivariant cartesian tensor message passing  - PMC - NIH",
+    "snippet": "Here, authors propose an E(n) equivariant message passing neural network that uses high-order Cartesian tensors to predict properties with high accuracy.",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/ACEsuit/mace-tutorials/blob/main/T03_MACE_Theory.ipynb",
+    "name": "T03_MACE_Theory.ipynb - GitHub",
+    "snippet": "MACE is a Message Passing Neural Network (MPNNs) Interatomic Potential that forms equivariant many body messages. MACE was developed by unifying the Atomic ...",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/4a36c3c51af11ed9f34615b81edb5bbc-Abstract-Conference.html",
+    "name": "MACE: Higher Order Equivariant Message Passing Neural Networks",
+    "snippet": "This work introduces MACE, a new equivariant MPNN model that uses higher order messages, and demonstrates that this leads to an improved learning law. Missing: source | Show results with: source",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s42256-024-00956-x",
+    "name": "The design space of E(3)-equivariant atom-centred interatomic potentials",
+    "snippet": "MACE: Higher order equivariant message passing neural networks for fast and accurate force fields. In Advances in Neural Information ...",
+    "host_name": "www.nature.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=YPpSngE-ZU",
+    "name": "MACE: Higher Order Equivariant Message Passing Neural Networks",
+    "snippet": "This work introduces MACE, a new equivariant MPNN model that uses higher order messages, and demonstrates that this leads to an improved learning law. Missing: source | Show results with: source",
+    "host_name": "openreview.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mace-docs.readthedocs.io/en/latest/guide/intro.html",
+    "name": "Introduction — mace 0.3.13 documentation",
+    "snippet": "Introduction  . What is MACE ?  . MACE provides fast and accurate machine learning interatomic potentials with higher order equivariant message passing.",
+    "host_name": "mace-docs.readthedocs.io",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://openaccess.thecvf.com/content/ACCV2020/papers/Zhang_Rotation_Equivariant_Orientation_Estimation_for_Omnidirectional_Localization_ACCV_2020_paper.pdf",
+    "name": "Rotation Equivariant Orientation Estimation for Omnidirectional Localization",
+    "snippet": "2020 · Cited by 14 — In this work we proposed a novel network for rotation equivariant camera pose estimation. This work is motivated by spherical equivariant ...",
+    "host_name": "openaccess.thecvf.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2411.00543v1",
+    "name": "3D Equivariant Pose Regression via Direct Wigner-D Harmonics Prediction",
+    "snippet": "Nov 1, 2024 — Determining the 3D orientations of an object in an image, known as single-image pose estimation, is a crucial task in 3D vision applications.",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S095219762301713X",
+    "name": "Self-supervised rotation-equivariant spherical vector network for learning canonical 3D point cloud orientation",
+    "snippet": "2024 · Cited by 4 — Our method learns rotational representations from 3D point clouds through a self-supervised training process.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/download/25380/25152",
+    "name": "Transformation-Equivariant 3D Object Detection for Autonomous Driving",
+    "snippet": "2023 · Cited by 190 — They transform input data with multiple rotation bins and model the equivariance by shared convolutional networks. Both TTA and equivariant design demonstrated ...",
+    "host_name": "ojs.aaai.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/09456.pdf",
+    "name": "Position-Aware Rotation-Equivariant Networks for Robust Point Cloud Registration",
+    "snippet": "It is widely applied in autonomous driving [20,21], robot localization [23], and 3D reconstruction [38]. Feature-based point cloud registration framework is.",
+    "host_name": "www.ecva.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvlab.postech.ac.kr/project/3D_EquiPose",
+    "name": "3D Equivariant Pose Regression via Direct Wigner-D Harmonics Prediction",
+    "snippet": "Abstract. Determining the 3D orientations of an object in an image, known as single-image pose estimation, is a crucial task in 3D vision applications.",
+    "host_name": "cvlab.postech.ac.kr",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1424-8220/25/12/3585",
+    "name": "A Robust Rotation-Equivariant Feature Extraction Framework for Ground Texture-Based Visual Localization",
+    "snippet": "2025 · Cited by 1 — Ground texture-based localization leverages environment-invariant, planar-constrained features to enhance pose estimation robustness, thus offering inherent",
+    "host_name": "www.mdpi.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/93b3d975f9a2448964a906199db98a9d-Paper-Conference.pdf",
+    "name": "Equivariant Single View Pose Prediction Via Induced and Restricted Representations",
+    "snippet": "2023 · Cited by 14 — Object Pose Estimation Predicting the 3D orientation of objects is an important problem in fields like autonomous driving [26], robotics [27] and cryogenic ...",
+    "host_name": "proceedings.neurips.cc",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=dxVN2fZjx6",
+    "name": "Equivariant Single View Pose Prediction Via Induced and Restriction Representations",
+    "snippet": "Cited by 14 — Comment: The paper proposes a method for single view single object 3D pose estimation by mapping feature maps to feature spheres. The reviewers ...",
+    "host_name": "openreview.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hal.science/tel-04854310v1/file/116150_LY_2023_archivage.pdf",
+    "name": "Towards rotation invariance for neural networks: Application to human (pose) detection",
+    "snippet": "2023 — Current neural networks have achieved significant performance on many vision tasks, includ- ing object detection and human pose estimation.",
+    "host_name": "hal.science",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,177 @@
+{
+  "version": "2.0.0",
+  "created": "2024",
+  "description": "Improved schemas based on Round 6 deep research",
+
+  "seed_schema": {
+    "type": "object",
+    "description": "Unified seed encoding combining all domain perspectives",
+    "properties": {
+      "hypercoordinate": {
+        "type": "array",
+        "items": { "type": "integer" },
+        "minItems": 5,
+        "maxItems": 5,
+        "description": "5D hyperlattice coordinate for Penrose-style position encoding"
+      },
+      "boundary_operator": {
+        "type": "object",
+        "properties": {
+          "dimension": { "type": "number", "minimum": 0 },
+          "position": { "type": "array", "items": { "type": "number" } },
+          "value": { "type": "number" }
+        },
+        "description": "Holographic boundary operator for content reconstruction"
+      },
+      "attractor_state": {
+        "type": "object",
+        "properties": {
+          "stability_metric": { "type": "number", "minimum": 0, "maximum": 1 },
+          "convergence_rate": { "type": "number" },
+          "reference_frame": { "type": "string", "enum": ["vestibular", "proprioceptive", "visual", "fascial"] }
+        },
+        "description": "Biological-style attractor state for stability"
+      },
+      "router_config": {
+        "type": "object",
+        "properties": {
+          "expert_indices": { "type": "array", "items": { "type": "integer" } },
+          "routing_weights": { "type": "array", "items": { "type": "number" } },
+          "specialization_depth": { "type": "number", "minimum": 0 }
+        },
+        "description": "MoE-style router configuration"
+      },
+      "timing_phase": {
+        "type": "object",
+        "properties": {
+          "mode": { "type": "string", "enum": ["synchronous", "asynchronous", "hybrid"] },
+          "epoch": { "type": "integer" },
+          "barrier_policy": { "type": "string", "enum": ["strict", "fuzzy", "none"] }
+        },
+        "description": "Synchronization timing information"
+      }
+    },
+    "required": ["hypercoordinate"],
+    "additionalProperties": false
+  },
+
+  "ghost_tile_schema": {
+    "type": "object",
+    "description": "Ghost tile with unified reconstruction capabilities",
+    "properties": {
+      "tile_id": { "type": "string", "pattern": "^ghost_[a-f0-9]{8}$" },
+      "seed": { "$ref": "#/seed_schema" },
+      "content_type": { 
+        "type": "string", 
+        "enum": ["sector", "bearing", "attention", "collision", "transform", "rotation", "view"]
+      },
+      "reconstruction_method": {
+        "type": "string",
+        "enum": ["projection", "propagation", "convergence", "routing", "cached"]
+      },
+      "cache_policy": {
+        "type": "object",
+        "properties": {
+          "strategy": { "type": "string", "enum": ["lru", "lfu", "entanglement_weighted", "fibonacci"] },
+          "max_entries": { "type": "integer" },
+          "ttl_ms": { "type": "integer" }
+        }
+      },
+      "validation": {
+        "type": "object",
+        "properties": {
+          "determinism_verified": { "type": "boolean" },
+          "error_rate": { "type": "number" },
+          "test_cases_passed": { "type": "integer" }
+        }
+      },
+      "performance": {
+        "type": "object",
+        "properties": {
+          "reconstruction_latency_ms": { "type": "number" },
+          "speedup_factor": { "type": "number" },
+          "memory_bytes": { "type": "integer" }
+        }
+      }
+    },
+    "required": ["tile_id", "seed", "content_type"]
+  },
+
+  "a2a_package_schema": {
+    "type": "object",
+    "description": "Agent-to-agent communication package",
+    "properties": {
+      "id": { "type": "string" },
+      "sender_id": { "type": "string" },
+      "receiver_id": { "type": "string" },
+      "payload_type": { 
+        "type": "string",
+        "enum": ["seed", "pattern", "query", "result", "correction", "sync_signal"]
+      },
+      "payload": { "type": "object" },
+      "parent_ids": { "type": "array", "items": { "type": "string" } },
+      "causal_chain_id": { "type": "string" },
+      "timestamp": { "type": "string", "format": "date-time" },
+      "phase": { "type": "integer" }
+    },
+    "required": ["id", "sender_id", "receiver_id", "payload_type", "payload"]
+  },
+
+  "performance_metrics_schema": {
+    "type": "object",
+    "properties": {
+      "domain": { "type": "string" },
+      "baseline_complexity": { "type": "string" },
+      "optimized_complexity": { "type": "string" },
+      "speedup_factor": { "type": "number" },
+      "memory_reduction": { "type": "number" },
+      "latency_ms": { "type": "number" },
+      "error_rate": { "type": "number" }
+    }
+  },
+
+  "research_question_schema": {
+    "type": "object",
+    "description": "Schema for documenting research questions for future rounds",
+    "properties": {
+      "id": { "type": "string", "pattern": "^RQ-\\d{3}$" },
+      "domain": { "type": "string" },
+      "question": { "type": "string" },
+      "approach": { "type": "string" },
+      "priority": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+      "dependencies": { "type": "array", "items": { "type": "string" } },
+      "expected_output": { "type": "string" }
+    }
+  },
+
+  "future_phases": [
+    {
+      "phase": 7,
+      "title": "Implementation Round",
+      "description": "Build the unified ghost tile system with Penrose+holographic+biological methods",
+      "dependencies": ["Round 6 synthesis"],
+      "estimated_tokens": 15000
+    },
+    {
+      "phase": 8,
+      "title": "Benchmarking Round",
+      "description": "Measure actual speedups against theoretical predictions",
+      "dependencies": ["Phase 7 implementation"],
+      "estimated_tokens": 10000
+    },
+    {
+      "phase": 9,
+      "title": "Scaling Round",
+      "description": "Test on planetary-scale tile systems",
+      "dependencies": ["Phase 8 benchmarks"],
+      "estimated_tokens": 20000
+    },
+    {
+      "phase": 10,
+      "title": "Fault Tolerance Round",
+      "description": "Validate biological-style robustness and self-repair",
+      "dependencies": ["Phase 9 scaling"],
+      "estimated_tokens": 15000
+    }
+  ]
+}

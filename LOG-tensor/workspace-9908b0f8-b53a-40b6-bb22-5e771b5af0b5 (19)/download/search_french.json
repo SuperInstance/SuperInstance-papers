@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.mohamed-zaraa.com/definition-equivariant-neural-networks",
+    "name": "Définition Equivariant Neural Networks - - Mohamed Zaraa",
+    "snippet": "Les Réseaux Neuronaux Équivariants (Equivariant Neural Networks, ENN) sont une classe de modèles d'apprentissage profond conçus pour respecter les symétries ...",
+    "host_name": "www.mohamed-zaraa.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pastel.hal.science/tel-04069360/document",
+    "name": "[PDF] Equivariant Deep Learning Based on Scale-Spaces and Moving Frames",
+    "snippet": "Nous montrons les liens entre ces sujets et l'apprentissage profond géométrique, en montrant qu'un réseau équivariant peut-être obtenu `a ...",
+    "host_name": "pastel.hal.science",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://theses.fr/s424118",
+    "name": "Réseaux équivariants pour les matériaux vitreux - Theses.fr",
+    "snippet": "Les Graph Neural Networks (GNN) sont un paradigme relativement récent de l'Apprentissage Profond, permettant d'imposer l'équivariance de permutation des ...",
+    "host_name": "theses.fr",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://sciml.gitlabpages.inria.fr/scimllectures/chapAP_sec2.html",
+    "name": "5.2 Réseaux de neurones convolutifs - Inria",
+    "snippet": "Les réseaux convolutifs sont des réseaux spécialisés à des données structurés sur une grille comme des images. C'est le succès d'un réseau convolutif ...",
+    "host_name": "sciml.gitlabpages.inria.fr",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.math.ens.psl.eu/shared-files/9686/?IDR_Blier.pdf",
+    "name": "[PDF] Apprentissage profond et théorie de l'information",
+    "snippet": "Il consiste à apprendre des représentations de haut niveau des données en utilisant des réseaux de neurones. Ces méthodes ont été développées ...",
+    "host_name": "www.math.ens.psl.eu",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pepite-depot.univ-lille.fr/LIBRE/EDMADIS/2023/2023ULILB035.pdf",
+    "name": "[PDF] Université de Lille - Thèse",
+    "snippet": "Avec l'avènement de l'apprentissage profond, les réseaux de neurones artificiels. (ANNs) sont devenus l'approche prédominante pour résoudre les tâches de vision.",
+    "host_name": "pepite-depot.univ-lille.fr",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://theses.hal.science/tel-04122195v1/file/2022TOU30202b.pdf",
+    "name": "[PDF] Quelques contributions à la théorie de l'apprentissage profond",
+    "snippet": "... réseau de neurones ? Un réseau de neurones est constitué d'une couche d'entrée, une couche de sortie ainsi que plusieurs couches ...",
+    "host_name": "theses.hal.science",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/MLQuestions/comments/1p6hpxa/baking_symmetry_into_normalising_flows_for/?tl=fr",
+    "name": "Intégrer la symétrie dans les flux de normalisation pour les séries de",
+    "snippet": "La physique nous dit que notre distribution de probabilité sur les formes permises du champ est invariante par translation. On peut facilement ...",
+    "host_name": "www.reddit.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://utheme.univ-tlse3.fr/files/original/9707ac7a4571416f9aebba428cdcc88d25d7dd1f.pdf",
+    "name": "[PDF] Adaptation d'approches connexionnistes non supervisées",
+    "snippet": "des avantages de l'apprentissage profond couplé à un réseau de neurones à impulsions. (SNN). Grâce à la stochasticité du processus de Poisson ...",
+    "host_name": "utheme.univ-tlse3.fr",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://umontreal.scholaris.ca/items/e81324d2-a48c-4f9e-a9af-bf0d0f8025fc",
+    "name": "Deep learning on signals : discretization invariance, lossless",
+    "snippet": "Les réseaux de neurones profonds sont fréquemment spécialisés pour le type de données spécifiques sur lesquels ils opèrent. Cette spécialisation se traduit ...",
+    "host_name": "umontreal.scholaris.ca",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

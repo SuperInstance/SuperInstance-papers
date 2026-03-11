@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/rinadelph/Agent-MCP",
+    "name": "Agent-MCP is a framework for creating multi-",
+    "snippet": "Agent-MCP is a framework for creating multi-agent systems that enables coordinated, efficient AI collaboration through the Model Context Protocol (MCP).",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/aptro/superset-mcp",
+    "name": "aptro/superset-mcp: connect to 50+ data",
+    "snippet": "MCP server for interacting with Apache Superset , enabling AI agents to connect to and control a Superset instance programmatically. Read more",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@manojjahgirdar/building-interoperable-ai-agents-with-agent-communication-protocol-acp-97a4b59ec43c",
+    "name": "Building Interoperable AI Agents with",
+    "snippet": "Deploy a remote Model Context Protocol (MCP) server and access it through Server-Sent Events (SSE) transport protocol. Additionally, you can ... Read more",
+    "host_name": "medium.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/orgs/modelcontextprotocol/discussions/527",
+    "name": "MCP in Agent to Agent communication protocol #527",
+    "snippet": "8 Aug 2025 — We run a production agent -to- agent communication system with 9 agents across currently 5 LLM providers, coordinated via IDE Agent Kit. Read more",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.petrostechchronicles.com/blog/ACP_vs_MCP",
+    "name": "MCP vs ACP: AI Protocols for Context and Agent Orchestration",
+    "snippet": "16 Apr 2025 — MCP (Model Context Protocol) is the new “universal adapter” that gives AI agents secure, two‑way access to external data sources—databases, file ... Read more",
+    "host_name": "www.petrostechchronicles.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ai.plainenglish.io/mastering-the-model-context-protocol-a-deep-dive-into-advanced-mcp-features-33991c36519a",
+    "name": "Mastering the Model Context Protocol: A Deep Dive into",
+    "snippet": "5 Oct 2025 — The Model Context Protocol ( MCP ) has emerged as a powerful standard for building AI-powered applications. But beyond the basics of creating ... Read more",
+    "host_name": "ai.plainenglish.io",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/lastmile-ai/mcp-agent",
+    "name": "lastmile-ai/mcp-agent: Build effective agents using Model",
+    "snippet": "mcp-agent is a simple, composable framework to build effective agents using Model Context Protocol. Note. mcp-agent's vision is that MCP is all you need to ... Read more",
+    "host_name": "github.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/groups/techtitansgroup/posts/1449343439726303",
+    "name": "Agent Communication Protocol enables seamless ai",
+    "snippet": "With MCP , when an AI agent wants to do something — say, fetch a Google Doc or write a file on GitHub — the MCP layer enables that communication . Read more",
+    "host_name": "www.facebook.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@9ravi9gupta/building-a2a-systems-custom-orchestration-with-agent-and-mcp-8787427bd844",
+    "name": "Custom Orchestration with Agent and MCP | by Ravi Gupta",
+    "snippet": "By leveraging ACP and MCP , we can build powerful, scalable, and flexible multi- agent systems. The hierarchical architecture empowers intelligent ... Read more",
+    "host_name": "medium.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ubos.tech/mcp/cross-system-agent-communication-mcp-server",
+    "name": "Cross-System Agent Communication MCP Server - UBOS.tech",
+    "snippet": "18 Apr 2025 — Explore UBOS MCP Server for seamless AI agent communication and task coordination across systems.",
+    "host_name": "ubos.tech",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

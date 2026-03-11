@@ -1,0 +1,390 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://polln-rtt.org/schemas/channel_depth_schema.json",
+  "title": "Channel Depth and Cognitive Cost Schema",
+  "description": "Schema for Channel Depth and Cognitive Cost computations. Channel Depth: Depth(s) = ∫₀^t visits(τ) × e^(-λ(t-τ)) dτ. Cognitive Cost: Cost(s) = Base × e^(-α × Depth(s))",
+  "type": "object",
+  "definitions": {
+    "Channel": {
+      "type": "object",
+      "description": "A communication or processing channel",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["attention", "memory", "computation", "communication", "sensory", "motor"],
+          "description": "Type of channel"
+        },
+        "capacity": { "type": "number", "minimum": 0, "description": "Maximum throughput/bandwidth" },
+        "latency": { "type": "number", "minimum": 0, "description": "Average latency in milliseconds" },
+        "state": {
+          "type": "object",
+          "properties": {
+            "isActive": { "type": "boolean" },
+            "currentLoad": { "type": "number", "minimum": 0 },
+            "utilization": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      },
+      "required": ["id", "type"]
+    },
+    "VisitRecord": {
+      "type": "object",
+      "description": "Record of a single visit to a channel/state",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "relativeTime": { "type": "number", "description": "Time relative to start (τ)" },
+        "channelId": { "type": "string" },
+        "duration": { "type": "number", "minimum": 0, "description": "Duration of visit" },
+        "weight": { "type": "number", "minimum": 0, "default": 1, "description": "Importance weight" },
+        "context": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Additional context information"
+        }
+      },
+      "required": ["id", "relativeTime", "channelId"]
+    },
+    "VisitHistory": {
+      "type": "object",
+      "description": "History of visits for depth computation",
+      "properties": {
+        "id": { "type": "string" },
+        "stateId": { "type": "string", "description": "ID of the state being tracked" },
+        "visits": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/VisitRecord" }
+        },
+        "totalVisits": { "type": "integer", "minimum": 0 },
+        "timeWindow": {
+          "type": "object",
+          "properties": {
+            "startTime": { "type": "number" },
+            "endTime": { "type": "number" },
+            "duration": { "type": "number" }
+          }
+        }
+      },
+      "required": ["id", "stateId", "visits"]
+    },
+    "DepthParameters": {
+      "type": "object",
+      "description": "Parameters for channel depth computation",
+      "properties": {
+        "lambda": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Decay rate λ in e^(-λ(t-τ))"
+        },
+        "decayType": {
+          "type": "string",
+          "enum": ["exponential", "linear", "polynomial", "custom"],
+          "default": "exponential",
+          "description": "Type of decay function"
+        },
+        "customDecayFunction": {
+          "type": "string",
+          "description": "Custom decay function expression"
+        },
+        "normalization": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "method": { "type": "string", "enum": ["minmax", "zscore", "softmax"] }
+          }
+        }
+      },
+      "required": ["lambda"]
+    },
+    "ChannelDepth": {
+      "type": "object",
+      "description": "Computed channel depth: Depth(s) = ∫₀^t visits(τ) × e^(-λ(t-τ)) dτ",
+      "properties": {
+        "id": { "type": "string" },
+        "stateId": { "type": "string" },
+        "channelId": { "type": "string" },
+        "parameters": { "$ref": "#/definitions/DepthParameters" },
+        "visitHistory": { "$ref": "#/definitions/VisitHistory" },
+        "value": { "type": "number", "description": "Computed depth value" },
+        "computation": {
+          "type": "object",
+          "description": "Details of the computation",
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": ["analytical", "numerical", "monte-carlo", "discrete"],
+              "description": "Method used for integration"
+            },
+            "discretization": {
+              "type": "object",
+              "properties": {
+                "numSteps": { "type": "integer" },
+                "stepSize": { "type": "number" }
+              }
+            },
+            "integralForm": {
+              "type": "string",
+              "description": "Mathematical expression of the integral"
+            }
+          }
+        },
+        "components": {
+          "type": "array",
+          "description": "Breakdown of depth contribution from each visit",
+          "items": {
+            "type": "object",
+            "properties": {
+              "visitId": { "type": "string" },
+              "time": { "type": "number" },
+              "contribution": { "type": "number", "description": "visits(τ) × e^(-λ(t-τ))" }
+            }
+          }
+        },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "stateId", "parameters", "value"]
+    },
+    "CognitiveCostParameters": {
+      "type": "object",
+      "description": "Parameters for cognitive cost computation",
+      "properties": {
+        "base": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Base cost in Cost(s) = Base × e^(-α × Depth(s))"
+        },
+        "alpha": {
+          "type": "number",
+          "description": "Sensitivity parameter α"
+        },
+        "costFunction": {
+          "type": "string",
+          "enum": ["exponential", "linear", "logarithmic", "power", "custom"],
+          "default": "exponential",
+          "description": "Type of cost function"
+        },
+        "customCostFunction": {
+          "type": "string",
+          "description": "Custom cost function expression"
+        },
+        "bounds": {
+          "type": "object",
+          "properties": {
+            "minCost": { "type": "number", "minimum": 0 },
+            "maxCost": { "type": "number" }
+          }
+        }
+      },
+      "required": ["base", "alpha"]
+    },
+    "CognitiveCost": {
+      "type": "object",
+      "description": "Computed cognitive cost: Cost(s) = Base × e^(-α × Depth(s))",
+      "properties": {
+        "id": { "type": "string" },
+        "stateId": { "type": "string" },
+        "channelDepth": { "$ref": "#/definitions/ChannelDepth" },
+        "parameters": { "$ref": "#/definitions/CognitiveCostParameters" },
+        "value": { "type": "number", "description": "Computed cost value" },
+        "normalizedValue": { "type": "number", "description": "Cost normalized to [0,1]" },
+        "breakdown": {
+          "type": "object",
+          "description": "Breakdown of cost computation",
+          "properties": {
+            "baseCost": { "type": "number" },
+            "depthContribution": { "type": "number", "description": "e^(-α × Depth(s))" },
+            "adjustments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "value": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "interpretation": {
+          "type": "object",
+          "properties": {
+            "difficulty": {
+              "type": "string",
+              "enum": ["trivial", "easy", "moderate", "hard", "extreme"],
+              "description": "Qualitative difficulty assessment"
+            },
+            "recommendation": { "type": "string", "description": "Recommended action based on cost" }
+          }
+        },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "stateId", "channelDepth", "parameters", "value"]
+    },
+    "DepthCostAnalysis": {
+      "type": "object",
+      "description": "Combined analysis of depth and cost for multiple states",
+      "properties": {
+        "id": { "type": "string" },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stateId": { "type": "string" },
+              "depth": { "$ref": "#/definitions/ChannelDepth" },
+              "cost": { "$ref": "#/definitions/CognitiveCost" }
+            }
+          }
+        },
+        "aggregates": {
+          "type": "object",
+          "properties": {
+            "totalDepth": { "type": "number" },
+            "averageDepth": { "type": "number" },
+            "totalCost": { "type": "number" },
+            "averageCost": { "type": "number" },
+            "depthVariance": { "type": "number" },
+            "costVariance": { "type": "number" }
+          }
+        },
+        "ranking": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rank": { "type": "integer" },
+              "stateId": { "type": "string" },
+              "depth": { "type": "number" },
+              "cost": { "type": "number" }
+            }
+          }
+        },
+        "visualization": {
+          "type": "object",
+          "properties": {
+            "depthHeatmap": { "type": "string", "description": "Base64 encoded heatmap" },
+            "costSurface": { "type": "string", "description": "Base64 encoded 3D surface" }
+          }
+        }
+      },
+      "required": ["id", "states"]
+    }
+  },
+  "properties": {
+    "schemaVersion": { "type": "string", "default": "1.0.0" },
+    "id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "channels": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Channel" }
+    },
+    "channelDepth": { "$ref": "#/definitions/ChannelDepth" },
+    "cognitiveCost": { "$ref": "#/definitions/CognitiveCost" },
+    "analysis": { "$ref": "#/definitions/DepthCostAnalysis" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "required": ["schemaVersion", "id", "channelDepth", "cognitiveCost"],
+  "additionalProperties": false,
+  "typescriptInterfaces": {
+    "description": "TypeScript interfaces for Channel Depth and Cognitive Cost",
+    "code": "// TypeScript Interfaces for Channel Depth and Cognitive Cost\n\nexport interface Channel {\n  id: string;\n  name?: string;\n  type: 'attention' | 'memory' | 'computation' | 'communication' | 'sensory' | 'motor';\n  capacity?: number;\n  latency?: number;\n  state?: {\n    isActive: boolean;\n    currentLoad: number;\n    utilization: number;\n  };\n}\n\nexport interface VisitRecord {\n  id: string;\n  timestamp?: string;\n  relativeTime: number;\n  channelId: string;\n  duration?: number;\n  weight?: number;\n  context?: Record<string, unknown>;\n}\n\nexport interface VisitHistory {\n  id: string;\n  stateId: string;\n  visits: VisitRecord[];\n  totalVisits?: number;\n  timeWindow?: {\n    startTime: number;\n    endTime: number;\n    duration: number;\n  };\n}\n\nexport interface DepthParameters {\n  lambda: number;\n  decayType?: 'exponential' | 'linear' | 'polynomial' | 'custom';\n  customDecayFunction?: string;\n  normalization?: {\n    enabled: boolean;\n    method?: 'minmax' | 'zscore' | 'softmax';\n  };\n}\n\nexport interface ChannelDepth {\n  id: string;\n  stateId: string;\n  channelId?: string;\n  parameters: DepthParameters;\n  visitHistory?: VisitHistory;\n  value: number;\n  computation?: {\n    method: 'analytical' | 'numerical' | 'monte-carlo' | 'discrete';\n    discretization?: {\n      numSteps: number;\n      stepSize: number;\n    };\n    integralForm?: string;\n  };\n  components?: Array<{\n    visitId: string;\n    time: number;\n    contribution: number;\n  }>;\n  timestamp?: string;\n}\n\nexport interface CognitiveCostParameters {\n  base: number;\n  alpha: number;\n  costFunction?: 'exponential' | 'linear' | 'logarithmic' | 'power' | 'custom';\n  customCostFunction?: string;\n  bounds?: {\n    minCost?: number;\n    maxCost?: number;\n  };\n}\n\nexport interface CognitiveCost {\n  id: string;\n  stateId: string;\n  channelDepth: ChannelDepth;\n  parameters: CognitiveCostParameters;\n  value: number;\n  normalizedValue?: number;\n  breakdown?: {\n    baseCost: number;\n    depthContribution: number;\n    adjustments?: Array<{\n      name: string;\n      value: number;\n    }>;\n  };\n  interpretation?: {\n    difficulty: 'trivial' | 'easy' | 'moderate' | 'hard' | 'extreme';\n    recommendation?: string;\n  };\n  timestamp?: string;\n}\n\nexport interface DepthCostAnalysis {\n  id: string;\n  states: Array<{\n    stateId: string;\n    depth: ChannelDepth;\n    cost: CognitiveCost;\n  }>;\n  aggregates?: {\n    totalDepth: number;\n    averageDepth: number;\n    totalCost: number;\n    averageCost: number;\n    depthVariance: number;\n    costVariance: number;\n  };\n  ranking?: Array<{\n    rank: number;\n    stateId: string;\n    depth: number;\n    cost: number;\n  }>;\n  visualization?: {\n    depthHeatmap?: string;\n    costSurface?: string;\n  };\n}\n\nexport interface ChannelDepthSchema {\n  schemaVersion: string;\n  id: string;\n  timestamp?: string;\n  channels?: Channel[];\n  channelDepth: ChannelDepth;\n  cognitiveCost: CognitiveCost;\n  analysis?: DepthCostAnalysis;\n  metadata?: {\n    author?: string;\n    description?: string;\n    tags?: string[];\n  };\n}\n"
+  },
+  "examples": [
+    {
+      "description": "Attention Channel with Depth and Cost Computation",
+      "instance": {
+        "schemaVersion": "1.0.0",
+        "id": "channel-depth-example-001",
+        "timestamp": "2025-01-15T10:30:00Z",
+        "channels": [
+          { "id": "att-001", "name": "Primary Attention", "type": "attention", "capacity": 100, "latency": 50 }
+        ],
+        "channelDepth": {
+          "id": "depth-001",
+          "stateId": "state-abc",
+          "channelId": "att-001",
+          "parameters": { "lambda": 0.1, "decayType": "exponential" },
+          "visitHistory": {
+            "id": "vh-001",
+            "stateId": "state-abc",
+            "visits": [
+              { "id": "v1", "relativeTime": 0, "channelId": "att-001", "weight": 1 },
+              { "id": "v2", "relativeTime": 5, "channelId": "att-001", "weight": 2 },
+              { "id": "v3", "relativeTime": 10, "channelId": "att-001", "weight": 1 }
+            ],
+            "totalVisits": 3
+          },
+          "value": 2.345,
+          "computation": {
+            "method": "discrete",
+            "integralForm": "Depth(s) = Σᵢ visits(τᵢ) × e^(-λ(t-τᵢ)) Δτ"
+          }
+        },
+        "cognitiveCost": {
+          "id": "cost-001",
+          "stateId": "state-abc",
+          "channelDepth": { "id": "depth-001", "stateId": "state-abc", "parameters": { "lambda": 0.1 }, "value": 2.345 },
+          "parameters": { "base": 100, "alpha": 0.5 },
+          "value": 31.08,
+          "normalizedValue": 0.31,
+          "interpretation": { "difficulty": "moderate", "recommendation": "Optimization recommended" }
+        }
+      }
+    }
+  ],
+  "validationRules": [
+    {
+      "rule": "depth-non-negative",
+      "description": "Channel depth must be non-negative",
+      "expression": "value >= 0"
+    },
+    {
+      "rule": "cost-positive",
+      "description": "Cognitive cost must be positive",
+      "expression": "value > 0"
+    },
+    {
+      "rule": "lambda-positive",
+      "description": "Decay rate λ must be positive",
+      "expression": "lambda > 0"
+    },
+    {
+      "rule": "visit-times-ordered",
+      "description": "Visit times must be in ascending order",
+      "expression": "forall(i, visits[i].relativeTime <= visits[i+1].relativeTime)"
+    },
+    {
+      "rule": "cost-depth-consistency",
+      "description": "Cognitive cost must reference the correct depth",
+      "expression": "cognitiveCost.channelDepth.id == channelDepth.id"
+    }
+  ],
+  "formulas": {
+    "channelDepth": {
+      "name": "Channel Depth",
+      "formula": "Depth(s) = ∫₀^t visits(τ) × e^(-λ(t-τ)) dτ",
+      "description": "Integrates weighted visits with exponential decay over time",
+      "discreteApproximation": "Depth(s) ≈ Σᵢ visits(τᵢ) × e^(-λ(t-τᵢ)) × Δτ"
+    },
+    "cognitiveCost": {
+      "name": "Cognitive Cost",
+      "formula": "Cost(s) = Base × e^(-α × Depth(s))",
+      "description": "Computes cost as exponential decay of base cost with depth",
+      "properties": [
+        "Higher depth leads to lower cost (learning/efficiency effect)",
+        "α controls sensitivity to depth changes",
+        "Cost approaches Base as depth approaches 0",
+        "Cost approaches 0 as depth approaches infinity"
+      ]
+    }
+  }
+}

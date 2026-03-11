@@ -1,0 +1,389 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://superinstance.ai/schemas/cloudflare/user_config_schema.json",
+  "title": "SuperInstance.AI User Configuration Schema",
+  "description": "User-specific configuration for BYOC (Bring Your Own Cloudflare) and API integrations",
+  "type": "object",
+  "required": ["userId", "createdAt", "deploymentMode"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "userId": { "type": "string", "format": "uuid" },
+    "email": { "type": "string", "format": "email" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "deploymentMode": {
+      "type": "string",
+      "enum": ["portal", "user_cloudflare", "local"],
+      "description": "portal=use our Cloudflare, user_cloudflare=BYOC, local=self-hosted"
+    },
+    "cloudflare": {
+      "type": "object",
+      "description": "BYOC: User's Cloudflare account configuration",
+      "properties": {
+        "connected": { "type": "boolean", "default": false },
+        "accountId": { "type": "string" },
+        "accountName": { "type": "string" },
+        "apiToken": {
+          "type": "object",
+          "properties": {
+            "encrypted": { "type": "string" },
+            "permissions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "workers:write", "workers:read",
+                  "storage:read", "storage:write",
+                  "d1:read", "d1:write",
+                  "r2:read", "r2:write",
+                  "vectorize:read", "vectorize:write"
+                ]
+              }
+            },
+            "expiresAt": { "type": "string", "format": "date-time" }
+          }
+        },
+        "oauth": {
+          "type": "object",
+          "properties": {
+            "connected": { "type": "boolean" },
+            "connectedAt": { "type": "string", "format": "date-time" },
+            "refreshToken": { "type": "string" },
+            "scope": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "properties": {
+            "workers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "id": { "type": "string" },
+                  "type": { "type": "string", "enum": ["smpbot", "cold_logic", "api_gateway"] },
+                  "status": { "type": "string", "enum": ["active", "inactive", "error"] },
+                  "createdAt": { "type": "string", "format": "date-time" }
+                }
+              }
+            },
+            "kvNamespaces": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "binding": { "type": "string" },
+                  "id": { "type": "string" },
+                  "title": { "type": "string" }
+                }
+              }
+            },
+            "r2Buckets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "creationDate": { "type": "string", "format": "date-time" }
+                }
+              }
+            },
+            "d1Databases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "uuid": { "type": "string" }
+                }
+              }
+            },
+            "vectorizeIndexes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "dimensions": { "type": "integer" }
+                }
+              }
+            }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "description": "Current usage vs limits",
+          "properties": {
+            "workersRequests": {
+              "type": "object",
+              "properties": {
+                "used": { "type": "integer" },
+                "limit": { "type": "integer" },
+                "resetAt": { "type": "string", "format": "date-time" }
+              }
+            },
+            "kvStorage": {
+              "type": "object",
+              "properties": {
+                "usedBytes": { "type": "integer" },
+                "limitBytes": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "apiKeys": {
+      "type": "object",
+      "description": "User's API keys for LLM providers",
+      "properties": {
+        "openai": {
+          "$ref": "#/definitions/APIKeyConfig"
+        },
+        "anthropic": {
+          "$ref": "#/definitions/APIKeyConfig"
+        },
+        "deepseek": {
+          "$ref": "#/definitions/APIKeyConfig"
+        },
+        "deepinfra": {
+          "$ref": "#/definitions/APIKeyConfig"
+        },
+        "moonshot": {
+          "$ref": "#/definitions/APIKeyConfig"
+        },
+        "custom": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomAPIKeyConfig"
+          }
+        },
+        "local": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": false },
+            "baseUrl": { "type": "string", "format": "uri" },
+            "models": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "defaultProvider": {
+      "type": "object",
+      "description": "Default LLM provider for SMP bots",
+      "properties": {
+        "provider": { "type": "string" },
+        "model": { "type": "string" },
+        "temperature": { "type": "number", "minimum": 0, "maximum": 2, "default": 0.7 },
+        "maxTokens": { "type": "integer", "default": 2048 }
+      }
+    },
+    "smpBots": {
+      "type": "array",
+      "description": "User's SMP bot instances",
+      "items": {
+        "$ref": "#/definitions/SMPBotConfig"
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "theme": { "type": "string", "enum": ["dark", "light", "system"], "default": "dark" },
+        "defaultView": { "type": "string", "enum": ["conditional_geometry", "foldable_tensors", "channel_depth", "smp"], "default": "smp" },
+        "notifications": {
+          "type": "object",
+          "properties": {
+            "email": { "type": "boolean", "default": false },
+            "inApp": { "type": "boolean", "default": true }
+          }
+        },
+        "autoSave": { "type": "boolean", "default": true },
+        "saveHistory": { "type": "boolean", "default": true }
+      }
+    },
+    "quotas": {
+      "type": "object",
+      "description": "Usage quotas for portal mode",
+      "properties": {
+        "botsLimit": { "type": "integer", "default": 10 },
+        "executionsPerDay": { "type": "integer", "default": 100 },
+        "storageMb": { "type": "integer", "default": 100 },
+        "vectorStorageMb": { "type": "integer", "default": 50 }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "description": "Current usage statistics",
+      "properties": {
+        "botsCreated": { "type": "integer" },
+        "executionsToday": { "type": "integer" },
+        "storageUsedMb": { "type": "number" },
+        "vectorsStored": { "type": "integer" },
+        "lastExecution": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "definitions": {
+    "APIKeyConfig": {
+      "type": "object",
+      "properties": {
+        "configured": { "type": "boolean", "default": false },
+        "encryptedKey": { "type": "string" },
+        "addedAt": { "type": "string", "format": "date-time" },
+        "lastUsed": { "type": "string", "format": "date-time" },
+        "validated": { "type": "boolean" },
+        "defaultModel": { "type": "string" }
+      }
+    },
+    "CustomAPIKeyConfig": {
+      "type": "object",
+      "required": ["name", "baseUrl"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "baseUrl": { "type": "string", "format": "uri" },
+        "encryptedKey": { "type": "string" },
+        "models": { "type": "array", "items": { "type": "string" } },
+        "supportsStreaming": { "type": "boolean", "default": true },
+        "supportsFunctionCalling": { "type": "boolean", "default": false },
+        "supportsVision": { "type": "boolean", "default": false },
+        "headers": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "SMPBotConfig": {
+      "type": "object",
+      "required": ["id", "name", "createdAt"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "status": {
+          "type": "string",
+          "enum": ["active", "paused", "error", "archived"],
+          "default": "active"
+        },
+        "workerId": { "type": "string" },
+        "workerUrl": { "type": "string", "format": "uri" },
+        "cell": {
+          "type": "object",
+          "properties": {
+            "seed": {
+              "type": "object",
+              "properties": {
+                "value": { "type": "string" },
+                "entropy": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            },
+            "model": {
+              "type": "object",
+              "properties": {
+                "provider": { "type": "string" },
+                "modelName": { "type": "string" },
+                "temperature": { "type": "number" },
+                "maxTokens": { "type": "integer" }
+              }
+            },
+            "prompt": {
+              "type": "object",
+              "properties": {
+                "template": { "type": "string" },
+                "variables": { "type": "array", "items": { "type": "string" } },
+                "systemPrompt": { "type": "string" }
+              }
+            },
+            "fingerprint": { "type": "string" },
+            "lockStatus": {
+              "type": "string",
+              "enum": ["unlocked", "partial", "locked", "frozen"]
+            }
+          }
+        },
+        "coldLogic": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "checkInterval": { "type": "integer", "default": 3600 },
+            "checksPerformed": { "type": "integer" },
+            "issuesFound": { "type": "integer" },
+            "lastCheck": { "type": "string", "format": "date-time" }
+          }
+        },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "executionCount": { "type": "integer" },
+            "errorCount": { "type": "integer" },
+            "totalTokensUsed": { "type": "integer" },
+            "averageLatencyMs": { "type": "number" },
+            "lastExecution": { "type": "string", "format": "date-time" }
+          }
+        },
+        "rag": {
+          "type": "object",
+          "description": "Vector RAG configuration for this bot",
+          "properties": {
+            "enabled": { "type": "boolean", "default": false },
+            "vectorIndexName": { "type": "string" },
+            "documentBucketName": { "type": "string" },
+            "embeddingModel": { "type": "string", "default": "text-embedding-3-small" },
+            "chunkSize": { "type": "integer", "default": 1000 },
+            "topK": { "type": "integer", "default": 5 }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440000",
+      "email": "user@example.com",
+      "createdAt": "2025-01-15T10:00:00Z",
+      "deploymentMode": "user_cloudflare",
+      "cloudflare": {
+        "connected": true,
+        "accountId": "abc123def456",
+        "accountName": "My Cloudflare Account",
+        "resources": {
+          "workers": [
+            {
+              "name": "si-smpbot-main",
+              "id": "worker-001",
+              "type": "smpbot",
+              "status": "active"
+            }
+          ]
+        }
+      },
+      "apiKeys": {
+        "deepseek": {
+          "configured": true,
+          "validated": true,
+          "defaultModel": "deepseek-reasoner"
+        }
+      },
+      "defaultProvider": {
+        "provider": "deepseek",
+        "model": "deepseek-reasoner",
+        "temperature": 0.7
+      },
+      "smpBots": [
+        {
+          "id": "bot-001",
+          "name": "Analysis Bot",
+          "status": "active",
+          "cell": {
+            "seed": { "value": "deterministic_seed", "entropy": 0 },
+            "model": { "provider": "deepseek", "modelName": "deepseek-reasoner" },
+            "lockStatus": "locked"
+          }
+        }
+      ]
+    }
+  ]
+}

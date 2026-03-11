@@ -1,0 +1,456 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "smp_cell_schema.json",
+  "title": "SMP Cell Definition Schema",
+  "description": "Comprehensive schema for SMP (Seed + Model + Prompt) Cell - a locked static program combining deterministic initial state, AI model configuration, and prompt templates",
+  "type": "object",
+  "required": ["id", "version", "seed", "model", "prompt", "metadata", "lockStatus"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the SMP cell"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of the SMP cell definition"
+    },
+    "seed": {
+      "$ref": "#/definitions/Seed"
+    },
+    "model": {
+      "$ref": "#/definitions/Model"
+    },
+    "prompt": {
+      "$ref": "#/definitions/Prompt"
+    },
+    "metadata": {
+      "$ref": "#/definitions/Metadata"
+    },
+    "lockStatus": {
+      "$ref": "#/definitions/LockStatus"
+    },
+    "fingerprint": {
+      "$ref": "#/definitions/Fingerprint"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional extension fields for custom functionality"
+    }
+  },
+  "definitions": {
+    "Seed": {
+      "type": "object",
+      "description": "Initial state/deterministic starting point that ensures reproducibility",
+      "required": ["type", "value", "entropy"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["numeric", "tensor", "state_vector", "configuration", "embedding", "hybrid"],
+          "description": "Type of seed data structure"
+        },
+        "value": {
+          "oneOf": [
+            { "type": "number" },
+            { "type": "integer" },
+            { "type": "array", "items": { "type": "number" } },
+            { "type": "object" },
+            { "type": "string" }
+          ],
+          "description": "The actual seed value - deterministic starting point"
+        },
+        "entropy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Entropy measure for randomness control (0=deterministic, 1=max entropy)"
+        },
+        "derivationPath": {
+          "type": "string",
+          "description": "Optional derivation path for hierarchical seed generation"
+        },
+        "salt": {
+          "type": "string",
+          "description": "Optional salt for additional variation control"
+        },
+        "initializedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when seed was initialized"
+        }
+      }
+    },
+    "Model": {
+      "type": "object",
+      "description": "AI model configuration including provider, model name, and inference parameters",
+      "required": ["provider", "modelName", "parameters"],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": ["openai", "anthropic", "google", "meta", "mistral", "cohere", "local", "custom"],
+          "description": "Model provider/infrastructure"
+        },
+        "modelName": {
+          "type": "string",
+          "description": "Specific model identifier (e.g., gpt-4, claude-3-opus)"
+        },
+        "modelId": {
+          "type": "string",
+          "description": "Full qualified model ID including version"
+        },
+        "parameters": {
+          "$ref": "#/definitions/ModelParameters"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["text", "code", "reasoning", "multimodal", "function_calling", "streaming", "batch"]
+          },
+          "description": "Model capabilities/features"
+        },
+        "constraints": {
+          "type": "object",
+          "properties": {
+            "maxTokens": { "type": "integer" },
+            "contextWindow": { "type": "integer" },
+            "rateLimit": { "type": "integer" },
+            "costPerToken": { "type": "number" }
+          }
+        },
+        "fineTuning": {
+          "type": "object",
+          "properties": {
+            "baseModel": { "type": "string" },
+            "checkpointId": { "type": "string" },
+            "adapterWeights": { "type": "string" }
+          }
+        }
+      }
+    },
+    "ModelParameters": {
+      "type": "object",
+      "description": "Inference-time model parameters",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2,
+          "default": 0.7,
+          "description": "Sampling temperature for output randomness"
+        },
+        "topP": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1,
+          "description": "Nucleus sampling probability mass"
+        },
+        "topK": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Top-k sampling parameter"
+        },
+        "maxTokens": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum tokens in response"
+        },
+        "frequencyPenalty": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": 0
+        },
+        "presencePenalty": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "default": 0
+        },
+        "stopSequences": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "seed": {
+          "type": "integer",
+          "description": "Deterministic seed for model sampling"
+        },
+        "responseFormat": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["text", "json_object", "json_schema"] },
+            "schema": { "type": "object" }
+          }
+        }
+      }
+    },
+    "Prompt": {
+      "type": "object",
+      "description": "Prompt template and variables that define the task",
+      "required": ["template", "variables"],
+      "properties": {
+        "template": {
+          "type": "string",
+          "description": "Prompt template with variable placeholders ({{variable}})"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PromptVariable"
+          },
+          "description": "Map of variable names to their definitions"
+        },
+        "systemPrompt": {
+          "type": "string",
+          "description": "System-level prompt/instructions"
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "input": { "type": "object" },
+              "output": { "type": "string" }
+            }
+          },
+          "description": "Few-shot examples for the prompt"
+        },
+        "constraints": {
+          "type": "object",
+          "properties": {
+            "requiredVariables": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "validationRules": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "PromptVariable": {
+      "type": "object",
+      "required": ["type", "description"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["string", "number", "boolean", "array", "object", "context", "file", "url"]
+        },
+        "description": { "type": "string" },
+        "default": { "description": "Default value if not provided" },
+        "required": { "type": "boolean", "default": false },
+        "validation": {
+          "type": "object",
+          "properties": {
+            "pattern": { "type": "string" },
+            "minLength": { "type": "integer" },
+            "maxLength": { "type": "integer" },
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "enum": { "type": "array" }
+          }
+        },
+        "transform": {
+          "type": "string",
+          "description": "Optional transformation function to apply"
+        }
+      }
+    },
+    "Metadata": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "author": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "category": { "type": "string" },
+        "license": { "type": "string" },
+        "checksum": { "type": "string" }
+      }
+    },
+    "LockStatus": {
+      "type": "object",
+      "required": ["status", "lockedAt"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["unlocked", "partial", "locked", "frozen"],
+          "description": "Lock status: unlocked=editable, partial=some fields locked, locked=immutable, frozen=archived"
+        },
+        "lockedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lockedBy": {
+          "type": "string"
+        },
+        "lockHash": {
+          "type": "string",
+          "description": "Cryptographic hash of locked state"
+        },
+        "unlockConditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Fingerprint": {
+      "type": "object",
+      "description": "Cryptographic fingerprint for verification and integrity",
+      "properties": {
+        "algorithm": { "type": "string", "default": "sha256" },
+        "hash": { "type": "string" },
+        "seedHash": { "type": "string" },
+        "modelHash": { "type": "string" },
+        "promptHash": { "type": "string" },
+        "computedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "additionalProperties": false,
+
+  "typescriptInterfaces": "// ==================== TypeScript Interfaces for SMP Cell ====================\n\n/**\n * SMP Cell - A locked static program combining Seed + Model + Prompt\n * All three components combine to create a deterministic, reproducible AI program\n */\nexport interface SMPCell {\n  id: string;\n  version: string;\n  seed: Seed;\n  model: Model;\n  prompt: Prompt;\n  metadata: Metadata;\n  lockStatus: LockStatus;\n  fingerprint?: Fingerprint;\n  extensions?: Record<string, unknown>;\n}\n\n/**\n * Seed - Initial state/deterministic starting point\n * Ensures reproducibility of the SMP cell execution\n */\nexport interface Seed {\n  type: 'numeric' | 'tensor' | 'state_vector' | 'configuration' | 'embedding' | 'hybrid';\n  value: number | number[] | Record<string, unknown> | string;\n  entropy: number;\n  derivationPath?: string;\n  salt?: string;\n  initializedAt?: string;\n}\n\n/**\n * Model - AI model configuration\n */\nexport interface Model {\n  provider: 'openai' | 'anthropic' | 'google' | 'meta' | 'mistral' | 'cohere' | 'local' | 'custom';\n  modelName: string;\n  modelId?: string;\n  parameters: ModelParameters;\n  capabilities?: ('text' | 'code' | 'reasoning' | 'multimodal' | 'function_calling' | 'streaming' | 'batch')[];\n  constraints?: ModelConstraints;\n  fineTuning?: FineTuningConfig;\n}\n\nexport interface ModelParameters {\n  temperature?: number;\n  topP?: number;\n  topK?: number;\n  maxTokens?: number;\n  frequencyPenalty?: number;\n  presencePenalty?: number;\n  stopSequences?: string[];\n  seed?: number;\n  responseFormat?: ResponseFormat;\n}\n\nexport interface ResponseFormat {\n  type: 'text' | 'json_object' | 'json_schema';\n  schema?: Record<string, unknown>;\n}\n\nexport interface ModelConstraints {\n  maxTokens?: number;\n  contextWindow?: number;\n  rateLimit?: number;\n  costPerToken?: number;\n}\n\nexport interface FineTuningConfig {\n  baseModel?: string;\n  checkpointId?: string;\n  adapterWeights?: string;\n}\n\n/**\n * Prompt - Template and variables for task definition\n */\nexport interface Prompt {\n  template: string;\n  variables: Record<string, PromptVariable>;\n  systemPrompt?: string;\n  examples?: PromptExample[];\n  constraints?: PromptConstraints;\n}\n\nexport interface PromptVariable {\n  type: 'string' | 'number' | 'boolean' | 'array' | 'object' | 'context' | 'file' | 'url';\n  description: string;\n  default?: unknown;\n  required?: boolean;\n  validation?: VariableValidation;\n  transform?: string;\n}\n\nexport interface VariableValidation {\n  pattern?: string;\n  minLength?: number;\n  maxLength?: number;\n  min?: number;\n  max?: number;\n  enum?: unknown[];\n}\n\nexport interface PromptExample {\n  input: Record<string, unknown>;\n  output: string;\n}\n\nexport interface PromptConstraints {\n  requiredVariables?: string[];\n  validationRules?: string[];\n}\n\n/**\n * Metadata for SMP cell documentation\n */\nexport interface Metadata {\n  name?: string;\n  description?: string;\n  author?: string;\n  createdAt?: string;\n  updatedAt?: string;\n  tags?: string[];\n  category?: string;\n  license?: string;\n  checksum?: string;\n}\n\n/**\n * LockStatus - Immutability control\n */\nexport interface LockStatus {\n  status: 'unlocked' | 'partial' | 'locked' | 'frozen';\n  lockedAt: string;\n  lockedBy?: string;\n  lockHash?: string;\n  unlockConditions?: string[];\n}\n\n/**\n * Fingerprint - Cryptographic verification\n */\nexport interface Fingerprint {\n  algorithm?: string;\n  hash?: string;\n  seedHash?: string;\n  modelHash?: string;\n  promptHash?: string;\n  computedAt?: string;\n}\n\n// ==================== Utility Types ====================\n\nexport type SMPCellStatus = 'unlocked' | 'partial' | 'locked' | 'frozen';\nexport type SeedType = 'numeric' | 'tensor' | 'state_vector' | 'configuration' | 'embedding' | 'hybrid';\nexport type ModelProvider = 'openai' | 'anthropic' | 'google' | 'meta' | 'mistral' | 'cohere' | 'local' | 'custom';\n\n/**\n * Factory type for creating SMP cells with required defaults\n */\nexport interface SMPCellFactory {\n  create(config: Partial<SMPCell>): SMPCell;\n  lock(cell: SMPCell): SMPCell;\n  verify(cell: SMPCell): boolean;\n  derive(parent: SMPCell, modifications: Partial<SMPCell>): SMPCell;\n}",
+
+  "examples": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "version": "1.0.0",
+      "seed": {
+        "type": "numeric",
+        "value": 42,
+        "entropy": 0,
+        "initializedAt": "2025-01-15T10:00:00Z"
+      },
+      "model": {
+        "provider": "openai",
+        "modelName": "gpt-4-turbo",
+        "modelId": "gpt-4-turbo-2024-04-09",
+        "parameters": {
+          "temperature": 0.7,
+          "topP": 1,
+          "maxTokens": 4096,
+          "seed": 42
+        },
+        "capabilities": ["text", "code", "reasoning", "function_calling", "streaming"]
+      },
+      "prompt": {
+        "template": "You are a {{role}}. Analyze the following {{input_type}} and provide {{output_format}}.\n\nInput: {{input}}\n\nAnalysis:",
+        "variables": {
+          "role": {
+            "type": "string",
+            "description": "The role the AI should assume",
+            "default": "helpful assistant",
+            "required": false
+          },
+          "input_type": {
+            "type": "string",
+            "description": "Type of input being analyzed",
+            "required": true
+          },
+          "output_format": {
+            "type": "string",
+            "description": "Desired format of the output",
+            "default": "a detailed analysis"
+          },
+          "input": {
+            "type": "string",
+            "description": "The actual input to analyze",
+            "required": true
+          }
+        },
+        "systemPrompt": "You are a precise and thorough analyst. Always provide structured, well-reasoned outputs.",
+        "examples": [
+          {
+            "input": {
+              "role": "code reviewer",
+              "input_type": "Python function",
+              "output_format": "a code review with suggestions",
+              "input": "def add(a, b): return a + b"
+            },
+            "output": "## Code Review\n\n### Function: `add`\n- **Purpose**: Adds two values\n- **Parameters**: `a`, `b` (no type hints)\n- **Suggestions**: Add type hints and docstring\n\n```python\ndef add(a: int | float, b: int | float) -> int | float:\n    \"\"\"Add two numbers together.\"\"\"\n    return a + b\n```"
+          }
+        ]
+      },
+      "metadata": {
+        "name": "General Analysis Cell",
+        "description": "A versatile SMP cell for various analysis tasks",
+        "author": "SMP Architecture Team",
+        "createdAt": "2025-01-15T10:00:00Z",
+        "tags": ["analysis", "general-purpose", "configurable"],
+        "category": "analysis"
+      },
+      "lockStatus": {
+        "status": "locked",
+        "lockedAt": "2025-01-15T10:05:00Z",
+        "lockedBy": "system",
+        "lockHash": "sha256:a1b2c3d4e5f6..."
+      },
+      "fingerprint": {
+        "algorithm": "sha256",
+        "hash": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+        "seedHash": "s1e2e3d4",
+        "modelHash": "m1o2d3e4",
+        "promptHash": "p1r2o3m4",
+        "computedAt": "2025-01-15T10:05:00Z"
+      }
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "version": "2.1.0",
+      "seed": {
+        "type": "tensor",
+        "value": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+        "entropy": 0.3,
+        "derivationPath": "/quantum/sim/v1"
+      },
+      "model": {
+        "provider": "anthropic",
+        "modelName": "claude-3-opus",
+        "parameters": {
+          "temperature": 0.5,
+          "maxTokens": 8192,
+          "topP": 0.9
+        },
+        "capabilities": ["text", "code", "reasoning", "multimodal"]
+      },
+      "prompt": {
+        "template": "Perform {{operation}} on the provided data.\n\nData: {{data}}\n\nConstraints:\n{{constraints}}",
+        "variables": {
+          "operation": {
+            "type": "string",
+            "description": "Operation to perform",
+            "required": true,
+            "validation": { "enum": ["analyze", "transform", "synthesize", "validate"] }
+          },
+          "data": {
+            "type": "object",
+            "description": "Input data object",
+            "required": true
+          },
+          "constraints": {
+            "type": "array",
+            "description": "List of constraints to apply",
+            "default": []
+          }
+        },
+        "systemPrompt": "You are a data processing agent with strict adherence to specified constraints."
+      },
+      "metadata": {
+        "name": "Data Processing Cell",
+        "description": "SMP cell for structured data operations",
+        "tags": ["data", "processing", "structured"]
+      },
+      "lockStatus": {
+        "status": "locked",
+        "lockedAt": "2025-01-15T11:00:00Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2095177925003508",
+    "name": "Deep learning for small-molecule drug discovery: From molecular design",
+    "snippet": "This method allows for a direct visual representation of molecular structure, facilitating intuitive interpretation and analysis of chemical ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12807101",
+    "name": "Advanced deep learning methods for molecular property prediction - PMC",
+    "snippet": "Computational methods that can accurately predict molecular properties can significantly accelerate the drug discovery process and reduce the cost of drug ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://academic.oup.com/bib/article/doi/10.1093/bib/bbag081/8495037",
+    "name": "Structure-informed machine learning for drug discovery: a task-centric",
+    "snippet": "This review provides a comprehensive synthesis of structure-aware molecular modeling from a task-centric perspective, focusing on binding pocket ...",
+    "host_name": "academic.oup.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2507.09753v1",
+    "name": "Do we need equivariant models for molecule generation? - arXiv",
+    "snippet": "Deep generative models are increasingly used for molecular discovery, with most recent approaches relying on equivariant graph neural networks ( ...",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s10462-024-10741-2",
+    "name": "Rotation invariance and equivariance in 3D deep learning: a survey",
+    "snippet": "Many rotation invariant and equivariant methods have been proposed. In this survey, we systematically organize and comprehensively overview all methods.",
+    "host_name": "link.springer.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s44386-025-00017-2",
+    "name": "Recent advances in molecular representation methods and their",
+    "snippet": "These advancements highlight the adaptability and transformative potential of BERT-inspired methodologies in cheminformatics and drug discovery.",
+    "host_name": "www.nature.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubs.acs.org/doi/10.1021/acschemneuro.5c00861",
+    "name": "Machine Learning for De Novo Molecular Generation",
+    "snippet": "Deep generative models have emerged as powerful computational engines for de novo molecular design, enabling efficient exploration of a vast ...",
+    "host_name": "pubs.acs.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubs.aip.org/aip/jcp/article/157/10/104109/2841731/Molecular-dipole-moment-learning-via-rotationally",
+    "name": "Molecular dipole moment learning via rotationally equivariant derivative",
+    "snippet": "An interpretable and rotationally equivariant derivative kernel for Gaussian process regression (GPR) is introduced to learn the dipole moment more efficiently.",
+    "host_name": "pubs.aip.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pubs.rsc.org/en/content/articlehtml/2025/sc/d5sc05748e",
+    "name": "Incorporating targeted protein structure in deep learning methods",
+    "snippet": "In this review, we focus on current deep learning methods for structure-based drug discovery. ... learn the fundamental rules of chemistry and ...",
+    "host_name": "pubs.rsc.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/1420-3049/25/11/2487",
+    "name": "A Deep-Learning Approach toward Rational Molecular Docking  - MDPI",
+    "snippet": "Applications of Deep Learning (DL) in drug discovery have become ubiquitous in the last few years, as these methods have shown promise in relevant problems ...",
+    "host_name": "www.mdpi.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

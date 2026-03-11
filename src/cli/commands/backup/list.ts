@@ -12,7 +12,7 @@ backupListCommand.description('List available backups');
 
 backupListCommand.option('-t, --type <type>', 'Filter by backup type');
 backupListCommand.option('-s, --status <status>', 'Filter by status');
-backupStoreCommand.option('--storage <backend>', 'Filter by storage backend');
+backupListCommand.option('--storage <backend>', 'Filter by storage backend');
 backupListCommand.option('--limit <number>', 'Maximum number of backups to show', '50');
 backupListCommand.option('--json', 'Output as JSON');
 

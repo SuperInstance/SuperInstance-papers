@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/pdf/2306.06934",
+    "name": "Scale-Rotation-Equivariant Lie Group Convolution Neural Networks (",
+    "snippet": "2023 · Cited by 3 — Abstract—The weight-sharing mechanism of convolutional kernels ensures translation-equivariance of convolution neural networks (CNNs).",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://openreview.net/forum?id=p34fRKp8qA",
+    "name": "Lie Group Decompositions for Equivariant Neural Networks",
+    "snippet": "Cited by 15 — Under this framework, we show how convolution kernels can be parametrized to build models equivariant with respect to affine transformations.",
+    "host_name": "openreview.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608024009092",
+    "name": "Lie group convolution neural networks with scale-rotation equivariance",
+    "snippet": "2025 · Cited by 5 — This study proposes a SIM(2) Lie group-CNN, which can simultaneously keep scale, rotation, and translation equivariance for image classification tasks.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cvg.cit.tum.de/_media/spezial/bib/mueller2021.pdf",
+    "name": "rotation-equivariant deep learning",
+    "snippet": "Cited by 37 — Thus, rotation-equivariant neural networks produce the same segmentation results (up to rotation) regardless of how the input image is rotated.",
+    "host_name": "cvg.cit.tum.de",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2072-4292/15/15/3758",
+    "name": "Lie Group Equivariant Convolutional Neural Network Based on Laplace Distribution",
+    "snippet": "2023 · Cited by 10 — We introduce a Lie group equivariant convolutional neural network predicated on the Laplace distribution.",
+    "host_name": "www.mdpi.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/61202bb341e7e0a6026ea134a5057abf-Paper-Conference.pdf",
+    "name": "LIE GROUP DECOMPOSITIONS FOR EQUIVARIANT NEURAL NETWORKS",
+    "snippet": "Cited by 15 — Invariance and equivariance to geometrical transformations have proven to be very useful inductive biases when training (convolutional) neural network ...",
+    "host_name": "proceedings.iclr.cc",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.emergentmind.com/topics/lie-group-based-neural-network-method",
+    "name": "Lie Group-Based Neural Networks",
+    "snippet": "5 Aug 2025 — This method integrates Lie group theory into neural networks to enforce equivariance and invariance, enhancing robustness and efficiency in ...",
+    "host_name": "www.emergentmind.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pastel.hal.science/tel-04087166v1",
+    "name": "Equivariant Deep Learning Based on Scale-Spaces and Moving Frames - PASTEL",
+    "snippet": "2022 · Cited by 1 — The main objective of this thesis is exploring and developing neural networks that are equivariant to transformations. The two main frameworks which were used ...",
+    "host_name": "pastel.hal.science",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://proceedings.mlr.press/v119/finzi20a/finzi20a.pdf",
+    "name": "Generalizing Convolutional Neural Networks for Equivariance to Lie Groups on Arbitrary Continuous Data - Proceedings of Machine Learning Research",
+    "snippet": "2020 · Cited by 455 — We propose a gen- eral method to construct a convolutional layer that is equivariant to transformations from any specified Lie group with a surjective ...",
+    "host_name": "proceedings.mlr.press",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://patricknicolas.substack.com/p/practical-introduction-to-lie-groups",
+    "name": "Taming Symmetry: A Dive into Lie Groups with Python - Hands-on Geometric Deep Learning",
+    "snippet": "Lie groups play a crucial role in Geometric Deep Learning by modeling symmetries such as rotation, translation, and scaling.",
+    "host_name": "patricknicolas.substack.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

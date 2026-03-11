@@ -1,0 +1,134 @@
+{
+  "round": 2,
+  "timestamp": "2026-03-08 06:53:41",
+  "simulations": [
+    {
+      "simulation": "God's Algorithm Attention",
+      "insight": "Optimal path finding through feature space",
+      "experiments": [
+        {
+          "name": "Path Length Distribution",
+          "mean": 3.157303370786517,
+          "max": 7,
+          "rubik_comparison": "God's number for Rubik: 20, Our graph diameter: 7"
+        },
+        {
+          "name": "God's Attention Output",
+          "output_shape": [
+            50,
+            64
+          ],
+          "output_norm": 0.21751466108037737,
+          "insight": "Adjacency-modified attention prefers reachable features"
+        }
+      ]
+    },
+    {
+      "simulation": "Conservation-Constrained Features",
+      "insight": "Build Rubik-like constraints into equivariant networks",
+      "experiments": [
+        {
+          "name": "Conservation After Transformation",
+          "constrained_violation": 1.312741476545006,
+          "unconstrained_violation": 1.4894219695488191,
+          "insight": "Constrained features maintain invariants better"
+        },
+        {
+          "name": "Parity Conservation",
+          "parity_check": 1,
+          "rubik_connection": "Like corner/edge parity constraints in Rubik's cube",
+          "neural_network_application": "Enforce parity in equivariant message passing"
+        }
+      ]
+    },
+    {
+      "simulation": "Coset-Based Feature Partitioning",
+      "insight": "Partition features by equivalence class",
+      "experiments": [
+        {
+          "name": "Octahedral Group Size",
+          "size": 10,
+          "rubik_connection": "These are the 24 ways to orient a cube in space"
+        },
+        {
+          "name": "Coset Processing",
+          "n_cosets": 6,
+          "output_shape": [
+            100,
+            3
+          ],
+          "rubik_connection": "Like solving Rubik's cube layer by layer",
+          "benefit": "Each coset can have specialized processing"
+        }
+      ]
+    },
+    {
+      "simulation": "Symmetric Group (S_n) Attention",
+      "insight": "Permutation-equivariant attention for node ordering",
+      "experiments": [
+        {
+          "name": "Permutation Equivariance Test",
+          "equivariance_error": 2.5053914103830265e-16,
+          "is_equivariant": true,
+          "rubik_connection": "Like how corner permutations work in Rubik's cube",
+          "design_choice": "Distance-based attention is permutation equivariant"
+        },
+        {
+          "name": "S_8 Symmetric Group",
+          "order": 40320,
+          "rubik_fact": "Rubik corner group: 8! / 2 positions (parity constraint)",
+          "attention_implication": "Need parity-aware attention for corner-like features"
+        }
+      ]
+    },
+    {
+      "simulation": "Rubik's Cube to Neural Network Mapping",
+      "mappings": [
+        {
+          "rubik_concept": "Corner orientation (0, 1, 2)",
+          "neural_network": "Feature vector orientation",
+          "conservation": "Sum \u2261 0 (mod 3)",
+          "implementation": "Add orientation constraint to message passing"
+        },
+        {
+          "rubik_concept": "Edge orientation (0, 1)",
+          "neural_network": "Binary feature flags",
+          "conservation": "Sum \u2261 0 (mod 2)",
+          "implementation": "Parity-preserving activation functions"
+        },
+        {
+          "rubik_concept": "God's number (20)",
+          "neural_network": "Minimum network depth",
+          "implication": "At least 20 layers for full coverage (in theory)",
+          "practical": "6-8 layers sufficient with message passing"
+        },
+        {
+          "rubik_concept": "6 face rotations (U,D,L,R,F,B)",
+          "neural_network": "6 types of equivariant operations",
+          "implementation": "Different message passing for each direction",
+          "benefit": "Complete action on feature space"
+        },
+        {
+          "rubik_concept": "Solving algorithms (commutators)",
+          "neural_network": "Commutator-like attention patterns",
+          "example": "[R, U, R', U'] as attention sequence",
+          "benefit": "Learned algorithms for feature manipulation"
+        }
+      ],
+      "experiments": [
+        {
+          "name": "Commutator Attention",
+          "input_shape": [
+            10,
+            32
+          ],
+          "output_shape": [
+            10,
+            32
+          ],
+          "rubik_connection": "Like commutator moves in Rubik's solving"
+        }
+      ]
+    }
+  ]
+}

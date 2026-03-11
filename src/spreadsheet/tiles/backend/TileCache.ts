@@ -77,6 +77,7 @@ export class TileCache {
 
   private maxSize: number;
   private ttl: number;
+  private cleanupInterval: NodeJS.Timeout | null = null;
 
   constructor(config: TileCacheConfig = {}) {
     this.config = {
@@ -87,6 +88,11 @@ export class TileCache {
     };
     this.maxSize = this.config.maxSize;
     this.ttl = this.config.ttl;
+
+    // Start cleanup interval if TTL is set
+    if (this.ttl > 0) {
+      this.cleanupInterval = setInterval(() => this.cleanupExpired(), Math.min(this.ttl / 2, 30000));
+    }
   }
 
   /**
@@ -161,6 +167,36 @@ export class TileCache {
   }
 
   /**
+   * Clean up expired entries
+   */
+  private cleanupExpired(): void {
+    const now = Date.now();
+    let expiredCount = 0;
+
+    for (const [key, entry] of this.cache) {
+      if (now - entry.timestamp > this.ttl) {
+        this.delete(key);
+        expiredCount++;
+      }
+    }
+
+    if (expiredCount > 0) {
+      this.stats.evictions += expiredCount;
+    }
+  }
+
+  /**
+   * Destroy cache and cleanup resources
+   */
+  destroy(): void {
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval);
+      this.cleanupInterval = null;
+    }
+    this.clear();
+  }
+
+  /**
    * Get cache statistics
    */
   getStats(): CacheStats {
@@ -168,11 +204,39 @@ export class TileCache {
   }
 
   /**
+   * Save cache to file (persistence)
+   */
+  async saveToFile(filePath: string): Promise<void> {
+    const data = {
+      config: this.config,
+      entries: Array.from(this.cache.entries()),
+      stats: this.stats,
+      timestamp: Date.now(),
+    };
+
+    // In a real implementation, we would write to file
+    // For now, we'll just log that this method would be called
+    console.log(`[TileCache] Would save ${this.cache.size} entries to ${filePath}`);
+    // Actual implementation would use fs.promises.writeFile
+  }
+
+  /**
+   * Load cache from file (persistence)
+   */
+  async loadFromFile(filePath: string): Promise<void> {
+    // In a real implementation, we would read from file
+    // For now, we'll just log that this method would be called
+    console.log(`[TileCache] Would load from ${filePath}`);
+    // Actual implementation would use fs.promises.readFile
+    // and validate/restore entries
+  }
+
+  /**
    * Evict least recently used entry (LRU)
    */
   private evictLRU(): void {
-    let lruKey: string | null;
-    let lruAccess = 0;
+    let lruKey: string | null = null;
+    let lruAccess = Infinity;
 
     for (const [key, entry] of this.cache) {
       if (entry.accessCount < lruAccess) {
@@ -191,7 +255,41 @@ export class TileCache {
    * Calculate size of a value in bytes
    */
   private calculateSize(value: unknown): number {
-    return JSON.stringify(value).length;
+    if (value === null || value === undefined) {
+      return 0;
+    }
+
+    switch (typeof value) {
+      case 'boolean':
+        return 4; // Boolean size approximation
+      case 'number':
+        return 8; // 64-bit float
+      case 'string':
+        // UTF-16 string: 2 bytes per character + overhead
+        return value.length * 2 + 8;
+      case 'object':
+        if (Array.isArray(value)) {
+          // Array: sum of elements + array overhead
+          return value.reduce((sum, item) => sum + this.calculateSize(item), 0) + 16;
+        } else if (value instanceof Date) {
+          return 8; // Date object size
+        } else if (value instanceof Buffer) {
+          return value.length; // Buffer size is exact
+        } else {
+          // Object: sum of property values + object overhead
+          let size = 16; // Object overhead
+          for (const key in value) {
+            if (Object.prototype.hasOwnProperty.call(value, key)) {
+              size += key.length * 2 + 8; // Key size
+              size += this.calculateSize((value as Record<string, unknown>)[key]);
+            }
+          }
+          return size;
+        }
+      default:
+        // Function, symbol, etc.
+        return 8;
+    }
   }
 }
 

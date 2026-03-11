@@ -1,0 +1,633 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "smpbot_schema.json",
+  "title": "SMPbot Architecture Schema",
+  "description": "Schema for SMPbot - a cell/agent locked to become a static program with GPU-scalable nature and advantages over script cousins",
+  "type": "object",
+  "required": ["id", "smpCell", "state", "execution", "resources", "scaling"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the SMPbot instance"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the SMPbot"
+    },
+    "smpCell": {
+      "$ref": "#/definitions/SMPCellReference",
+      "description": "Reference to the locked SMP cell that defines this bot"
+    },
+    "state": {
+      "$ref": "#/definitions/SMPbotState"
+    },
+    "execution": {
+      "$ref": "#/definitions/ExecutionConfig"
+    },
+    "resources": {
+      "$ref": "#/definitions/ResourceConfig"
+    },
+    "scaling": {
+      "$ref": "#/definitions/ScalingConfig"
+    },
+    "monitoring": {
+      "$ref": "#/definitions/MonitoringConfig"
+    },
+    "coldLogicIntegration": {
+      "$ref": "#/definitions/ColdLogicIntegration"
+    },
+    "advantages": {
+      "$ref": "#/definitions/GPUAdvantages"
+    },
+    "metadata": {
+      "$ref": "#/definitions/SMPbotMetadata"
+    }
+  },
+  "definitions": {
+    "SMPCellReference": {
+      "type": "object",
+      "required": ["cellId", "version", "fingerprint"],
+      "properties": {
+        "cellId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "version": {
+          "type": "string"
+        },
+        "fingerprint": {
+          "type": "string",
+          "description": "Hash of the locked SMP cell for verification"
+        },
+        "verifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "SMPbotState": {
+      "type": "object",
+      "required": ["current", "transitions"],
+      "properties": {
+        "current": {
+          "type": "string",
+          "enum": ["idle", "active", "checking", "paused", "error", "terminated"],
+          "description": "Current state of the SMPbot"
+        },
+        "previous": {
+          "type": "string",
+          "enum": ["idle", "active", "checking", "paused", "error", "terminated"]
+        },
+        "transitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StateTransition"
+          }
+        },
+        "stateHistory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "timestamp": { "type": "string", "format": "date-time" },
+              "reason": { "type": "string" }
+            }
+          }
+        },
+        "lastStateChange": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "errorInfo": {
+          "type": "object",
+          "properties": {
+            "code": { "type": "string" },
+            "message": { "type": "string" },
+            "stackTrace": { "type": "string" },
+            "recoverable": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "StateTransition": {
+      "type": "object",
+      "description": "Valid state transition definition",
+      "properties": {
+        "from": {
+          "type": "string",
+          "enum": ["idle", "active", "checking", "paused", "error", "terminated"]
+        },
+        "to": {
+          "type": "string",
+          "enum": ["idle", "active", "checking", "paused", "error", "terminated"]
+        },
+        "trigger": {
+          "type": "string"
+        },
+        "condition": {
+          "type": "string",
+          "description": "Optional condition for transition"
+        },
+        "action": {
+          "type": "string",
+          "description": "Action to perform during transition"
+        }
+      }
+    },
+    "ExecutionConfig": {
+      "type": "object",
+      "description": "Execution configuration for the SMPbot",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["synchronous", "asynchronous", "streaming", "batch"],
+          "default": "asynchronous"
+        },
+        "maxConcurrency": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "description": "Maximum concurrent executions"
+        },
+        "timeout": {
+          "type": "integer",
+          "description": "Execution timeout in milliseconds"
+        },
+        "retryPolicy": {
+          "type": "object",
+          "properties": {
+            "maxRetries": { "type": "integer", "default": 3 },
+            "backoffStrategy": { 
+              "type": "string", 
+              "enum": ["fixed", "exponential", "linear"],
+              "default": "exponential"
+            },
+            "initialDelay": { "type": "integer", "default": 1000 },
+            "maxDelay": { "type": "integer", "default": 30000 }
+          }
+        },
+        "queueConfig": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "maxSize": { "type": "integer", "default": 1000 },
+            "priority": { 
+              "type": "string", 
+              "enum": ["fifo", "lifo", "priority"],
+              "default": "priority"
+            }
+          }
+        },
+        "outputConfig": {
+          "type": "object",
+          "properties": {
+            "format": { "type": "string", "enum": ["json", "text", "binary"] },
+            "streamResults": { "type": "boolean", "default": false },
+            "storeHistory": { "type": "boolean", "default": true }
+          }
+        }
+      }
+    },
+    "ResourceConfig": {
+      "type": "object",
+      "description": "Resource allocation for the SMPbot",
+      "properties": {
+        "compute": {
+          "type": "object",
+          "properties": {
+            "gpuRequired": { "type": "boolean", "default": false },
+            "gpuType": { 
+              "type": "string",
+              "enum": ["nvidia-a100", "nvidia-v100", "nvidia-t4", "nvidia-h100", "amd-mi250", "any"]
+            },
+            "gpuMemory": {
+              "type": "integer",
+              "description": "Required GPU memory in MB"
+            },
+            "cpuCores": { "type": "integer", "default": 2 },
+            "memory": { 
+              "type": "integer", 
+              "description": "RAM in MB",
+              "default": 4096
+            }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "maxExecutions": { "type": "integer" },
+            "maxTokens": { "type": "integer" },
+            "maxCost": { "type": "number" },
+            "maxDuration": { "type": "integer", "description": "Max duration in seconds" }
+          }
+        },
+        "quotas": {
+          "type": "object",
+          "properties": {
+            "hourlyExecutions": { "type": "integer" },
+            "dailyExecutions": { "type": "integer" },
+            "monthlyExecutions": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "ScalingConfig": {
+      "type": "object",
+      "description": "GPU-scaling configuration - key advantage over script cousins",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "strategy": {
+          "type": "string",
+          "enum": ["horizontal", "vertical", "auto", "scheduled"],
+          "default": "auto"
+        },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "scaleUpThreshold": { "type": "number", "default": 0.8 },
+            "scaleDownThreshold": { "type": "number", "default": 0.3 },
+            "cooldownPeriod": { "type": "integer", "default": 300 }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "minInstances": { "type": "integer", "default": 1 },
+            "maxInstances": { "type": "integer", "default": 100 }
+          }
+        },
+        "gpuOptimization": {
+          "type": "object",
+          "description": "GPU-specific scaling optimizations",
+          "properties": {
+            "batchingEnabled": { "type": "boolean", "default": true },
+            "maxBatchSize": { "type": "integer", "default": 32 },
+            "tensorParallelism": { "type": "integer" },
+            "pipelineParallelism": { "type": "integer" },
+            "memoryOptimization": { 
+              "type": "string",
+              "enum": ["none", "gradient_checkpointing", "activation_checkpointing", "full"]
+            }
+          }
+        }
+      }
+    },
+    "MonitoringConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["latency", "throughput", "error_rate", "gpu_utilization", "memory_usage", "cost", "queue_depth"]
+          },
+          "default": ["latency", "throughput", "error_rate"]
+        },
+        "logging": {
+          "type": "object",
+          "properties": {
+            "level": { "type": "string", "enum": ["debug", "info", "warn", "error"], "default": "info" },
+            "retentionDays": { "type": "integer", "default": 30 }
+          }
+        },
+        "alerting": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "channels": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "rules": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "metric": { "type": "string" },
+                  "threshold": { "type": "number" },
+                  "operator": { "type": "string", "enum": [">", "<", ">=", "<=", "=="] },
+                  "severity": { "type": "string", "enum": ["info", "warning", "critical"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ColdLogicIntegration": {
+      "type": "object",
+      "description": "Integration points for cold logic checking mechanism",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "checkers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ColdLogicChecker"
+          },
+          "description": "List of cold logic checkers attached to this bot"
+        },
+        "checkFrequency": {
+          "type": "string",
+          "enum": ["continuous", "periodic", "on_state_change", "on_demand"],
+          "default": "periodic"
+        },
+        "checkInterval": {
+          "type": "integer",
+          "description": "Check interval in seconds for periodic checking",
+          "default": 60
+        },
+        "adjustmentPolicy": {
+          "type": "object",
+          "properties": {
+            "autoApply": { "type": "boolean", "default": false },
+            "requireApproval": { "type": "boolean", "default": true },
+            "rollbackEnabled": { "type": "boolean", "default": true }
+          }
+        }
+      }
+    },
+    "ColdLogicChecker": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["performance", "correctness", "resource", "compliance", "custom"]
+        },
+        "script": {
+          "type": "string",
+          "description": "Cold logic script reference or inline code"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 5
+        },
+        "lastCheck": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastResult": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string", "enum": ["pass", "fail", "warning", "error"] },
+            "message": { "type": "string" },
+            "recommendations": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "GPUAdvantages": {
+      "type": "object",
+      "description": "Advantages of SMPbot over script cousins",
+      "properties": {
+        "parallelInference": {
+          "type": "boolean",
+          "default": true,
+          "description": "GPU enables parallel model inference"
+        },
+        "batchProcessing": {
+          "type": "boolean",
+          "default": true,
+          "description": "Native batch processing support"
+        },
+        "tensorOperations": {
+          "type": "boolean",
+          "default": true,
+          "description": "Native tensor operation acceleration"
+        },
+        "memoryBandwidth": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "default": "high",
+          "description": "GPU memory bandwidth advantage"
+        },
+        "throughputAdvantage": {
+          "type": "number",
+          "description": "Multiplier of throughput vs CPU scripts",
+          "minimum": 1
+        },
+        "latencyAdvantage": {
+          "type": "number",
+          "description": "Latency reduction factor vs CPU scripts",
+          "minimum": 0
+        },
+        "costEfficiency": {
+          "type": "number",
+          "description": "Cost per inference relative to scripts"
+        }
+      }
+    },
+    "SMPbotMetadata": {
+      "type": "object",
+      "properties": {
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "type": "string" },
+        "environment": {
+          "type": "string",
+          "enum": ["development", "staging", "production"]
+        },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "description": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false,
+
+  "typescriptInterfaces": "// ==================== TypeScript Interfaces for SMPbot ====================\n\n/**\n * SMPbot - A cell/agent locked to become a static program\n * GPU-scalable by nature with advantages over script cousins\n */\nexport interface SMPbot {\n  id: string;\n  name?: string;\n  smpCell: SMPCellReference;\n  state: SMPbotState;\n  execution: ExecutionConfig;\n  resources: ResourceConfig;\n  scaling: ScalingConfig;\n  monitoring?: MonitoringConfig;\n  coldLogicIntegration?: ColdLogicIntegration;\n  advantages?: GPUAdvantages;\n  metadata?: SMPbotMetadata;\n}\n\n/**\n * Reference to the locked SMP cell\n */\nexport interface SMPCellReference {\n  cellId: string;\n  version: string;\n  fingerprint: string;\n  verifiedAt?: string;\n}\n\n/**\n * State management for SMPbot\n */\nexport interface SMPbotState {\n  current: SMPbotStateType;\n  previous?: SMPbotStateType;\n  transitions: StateTransition[];\n  stateHistory?: StateHistoryEntry[];\n  lastStateChange?: string;\n  errorInfo?: ErrorInfo;\n}\n\nexport type SMPbotStateType = 'idle' | 'active' | 'checking' | 'paused' | 'error' | 'terminated';\n\nexport interface StateTransition {\n  from: SMPbotStateType;\n  to: SMPbotStateType;\n  trigger: string;\n  condition?: string;\n  action?: string;\n}\n\nexport interface StateHistoryEntry {\n  from: SMPbotStateType;\n  to: SMPbotStateType;\n  timestamp: string;\n  reason?: string;\n}\n\nexport interface ErrorInfo {\n  code: string;\n  message: string;\n  stackTrace?: string;\n  recoverable: boolean;\n}\n\n/**\n * Execution configuration\n */\nexport interface ExecutionConfig {\n  mode: 'synchronous' | 'asynchronous' | 'streaming' | 'batch';\n  maxConcurrency?: number;\n  timeout?: number;\n  retryPolicy?: RetryPolicy;\n  queueConfig?: QueueConfig;\n  outputConfig?: OutputConfig;\n}\n\nexport interface RetryPolicy {\n  maxRetries: number;\n  backoffStrategy: 'fixed' | 'exponential' | 'linear';\n  initialDelay: number;\n  maxDelay: number;\n}\n\nexport interface QueueConfig {\n  enabled: boolean;\n  maxSize: number;\n  priority: 'fifo' | 'lifo' | 'priority';\n}\n\nexport interface OutputConfig {\n  format: 'json' | 'text' | 'binary';\n  streamResults: boolean;\n  storeHistory: boolean;\n}\n\n/**\n * Resource configuration\n */\nexport interface ResourceConfig {\n  compute?: ComputeConfig;\n  limits?: ResourceLimits;\n  quotas?: ResourceQuotas;\n}\n\nexport interface ComputeConfig {\n  gpuRequired: boolean;\n  gpuType?: 'nvidia-a100' | 'nvidia-v100' | 'nvidia-t4' | 'nvidia-h100' | 'amd-mi250' | 'any';\n  gpuMemory?: number;\n  cpuCores?: number;\n  memory?: number;\n}\n\nexport interface ResourceLimits {\n  maxExecutions?: number;\n  maxTokens?: number;\n  maxCost?: number;\n  maxDuration?: number;\n}\n\nexport interface ResourceQuotas {\n  hourlyExecutions?: number;\n  dailyExecutions?: number;\n  monthlyExecutions?: number;\n}\n\n/**\n * Scaling configuration - GPU scalability advantage\n */\nexport interface ScalingConfig {\n  enabled: boolean;\n  strategy: 'horizontal' | 'vertical' | 'auto' | 'scheduled';\n  metrics?: ScalingMetrics;\n  limits?: ScalingLimits;\n  gpuOptimization?: GPUOptimization;\n}\n\nexport interface ScalingMetrics {\n  scaleUpThreshold: number;\n  scaleDownThreshold: number;\n  cooldownPeriod: number;\n}\n\nexport interface ScalingLimits {\n  minInstances: number;\n  maxInstances: number;\n}\n\nexport interface GPUOptimization {\n  batchingEnabled: boolean;\n  maxBatchSize: number;\n  tensorParallelism?: number;\n  pipelineParallelism?: number;\n  memoryOptimization?: 'none' | 'gradient_checkpointing' | 'activation_checkpointing' | 'full';\n}\n\n/**\n * Monitoring configuration\n */\nexport interface MonitoringConfig {\n  enabled: boolean;\n  metrics: MetricType[];\n  logging?: LoggingConfig;\n  alerting?: AlertingConfig;\n}\n\nexport type MetricType = 'latency' | 'throughput' | 'error_rate' | 'gpu_utilization' | 'memory_usage' | 'cost' | 'queue_depth';\n\nexport interface LoggingConfig {\n  level: 'debug' | 'info' | 'warn' | 'error';\n  retentionDays: number;\n}\n\nexport interface AlertingConfig {\n  enabled: boolean;\n  channels: string[];\n  rules: AlertRule[];\n}\n\nexport interface AlertRule {\n  metric: string;\n  threshold: number;\n  operator: '>' | '<' | '>=' | '<=' | '==';\n  severity: 'info' | 'warning' | 'critical';\n}\n\n/**\n * Cold logic integration points\n */\nexport interface ColdLogicIntegration {\n  enabled: boolean;\n  checkers: ColdLogicChecker[];\n  checkFrequency: 'continuous' | 'periodic' | 'on_state_change' | 'on_demand';\n  checkInterval?: number;\n  adjustmentPolicy?: AdjustmentPolicy;\n}\n\nexport interface ColdLogicChecker {\n  id: string;\n  name: string;\n  type: 'performance' | 'correctness' | 'resource' | 'compliance' | 'custom';\n  script: string;\n  priority: number;\n  lastCheck?: string;\n  lastResult?: CheckResult;\n}\n\nexport interface CheckResult {\n  status: 'pass' | 'fail' | 'warning' | 'error';\n  message: string;\n  recommendations: string[];\n}\n\nexport interface AdjustmentPolicy {\n  autoApply: boolean;\n  requireApproval: boolean;\n  rollbackEnabled: boolean;\n}\n\n/**\n * GPU advantages over script cousins\n */\nexport interface GPUAdvantages {\n  parallelInference: boolean;\n  batchProcessing: boolean;\n  tensorOperations: boolean;\n  memoryBandwidth: 'low' | 'medium' | 'high';\n  throughputAdvantage?: number;\n  latencyAdvantage?: number;\n  costEfficiency?: number;\n}\n\n/**\n * SMPbot metadata\n */\nexport interface SMPbotMetadata {\n  createdAt?: string;\n  updatedAt?: string;\n  createdBy?: string;\n  environment?: 'development' | 'staging' | 'production';\n  tags?: string[];\n  description?: string;\n}\n\n// ==================== State Machine ====================\n\n/**\n * Valid state transitions for SMPbot\n */\nexport const VALID_STATE_TRANSITIONS: Record<SMPbotStateType, SMPbotStateType[]> = {\n  idle: ['active', 'checking', 'terminated'],\n  active: ['idle', 'checking', 'paused', 'error'],\n  checking: ['idle', 'active', 'paused', 'error'],\n  paused: ['idle', 'active', 'terminated'],\n  error: ['idle', 'terminated'],\n  terminated: []\n};\n\n/**\n * SMPbot State Machine Manager\n */\nexport interface SMPbotStateMachine {\n  canTransition(from: SMPbotStateType, to: SMPbotStateType): boolean;\n  transition(bot: SMPbot, newState: SMPbotStateType, reason?: string): SMPbot;\n  getValidTransitions(currentState: SMPbotStateType): SMPbotStateType[];\n}\n\n// ==================== Factory Type ====================\n\nexport interface SMPbotFactory {\n  create(config: Partial<SMPbot>, smpCell: SMPCellReference): SMPbot;\n  start(bot: SMPbot): Promise<SMPbot>;\n  stop(bot: SMPbot): Promise<SMPbot>;\n  check(bot: SMPbot): Promise<SMPbot>;\n  scale(bot: SMPbot, instances: number): Promise<SMPbot>;\n}",
+
+  "examples": [
+    {
+      "id": "660e8400-e29b-41d4-a716-446655440001",
+      "name": "Production Analysis Bot",
+      "smpCell": {
+        "cellId": "550e8400-e29b-41d4-a716-446655440001",
+        "version": "1.0.0",
+        "fingerprint": "sha256:a1b2c3d4e5f6...",
+        "verifiedAt": "2025-01-15T12:00:00Z"
+      },
+      "state": {
+        "current": "active",
+        "previous": "idle",
+        "transitions": [
+          { "from": "idle", "to": "active", "trigger": "start_command" },
+          { "from": "active", "to": "checking", "trigger": "check_command" },
+          { "from": "checking", "to": "active", "trigger": "check_complete" },
+          { "from": "active", "to": "idle", "trigger": "stop_command" }
+        ],
+        "lastStateChange": "2025-01-15T12:05:00Z"
+      },
+      "execution": {
+        "mode": "asynchronous",
+        "maxConcurrency": 10,
+        "timeout": 30000,
+        "retryPolicy": {
+          "maxRetries": 3,
+          "backoffStrategy": "exponential",
+          "initialDelay": 1000,
+          "maxDelay": 30000
+        },
+        "queueConfig": {
+          "enabled": true,
+          "maxSize": 1000,
+          "priority": "priority"
+n        },
+        "outputConfig": {
+          "format": "json",
+          "streamResults": true,
+          "storeHistory": true
+        }
+      },
+      "resources": {
+        "compute": {
+          "gpuRequired": true,
+          "gpuType": "nvidia-a100",
+          "gpuMemory": 16384,
+          "cpuCores": 8,
+          "memory": 32768
+        },
+        "limits": {
+          "maxExecutions": 100000,
+          "maxTokens": 10000000,
+          "maxCost": 1000
+        },
+        "quotas": {
+          "hourlyExecutions": 1000,
+          "dailyExecutions": 10000
+        }
+      },
+      "scaling": {
+        "enabled": true,
+        "strategy": "auto",
+        "metrics": {
+          "scaleUpThreshold": 0.8,
+          "scaleDownThreshold": 0.3,
+          "cooldownPeriod": 300
+        },
+        "limits": {
+          "minInstances": 1,
+          "maxInstances": 50
+        },
+        "gpuOptimization": {
+          "batchingEnabled": true,
+          "maxBatchSize": 32,
+          "tensorParallelism": 2,
+          "memoryOptimization": "gradient_checkpointing"
+        }
+      },
+      "monitoring": {
+        "enabled": true,
+        "metrics": ["latency", "throughput", "error_rate", "gpu_utilization"],
+        "logging": {
+          "level": "info",
+          "retentionDays": 30
+        },
+        "alerting": {
+          "enabled": true,
+          "channels": ["slack", "email"],
+          "rules": [
+            {
+              "metric": "error_rate",
+              "threshold": 0.05,
+              "operator": ">",
+              "severity": "critical"
+            }
+          ]
+        }
+      },
+      "coldLogicIntegration": {
+        "enabled": true,
+        "checkers": [
+          {
+            "id": "perf-check-001",
+            "name": "Performance Monitor",
+            "type": "performance",
+            "script": "check_performance.py",
+            "priority": 8
+          }
+        ],
+        "checkFrequency": "periodic",
+        "checkInterval": 60
+      },
+      "advantages": {
+        "parallelInference": true,
+        "batchProcessing": true,
+        "tensorOperations": true,
+        "memoryBandwidth": "high",
+        "throughputAdvantage": 50,
+        "latencyAdvantage": 0.1
+      },
+      "metadata": {
+        "createdAt": "2025-01-15T12:00:00Z",
+        "environment": "production",
+        "tags": ["analysis", "gpu-optimized", "production"],
+        "description": "High-performance analysis bot with GPU acceleration"
+      }
+    },
+    {
+      "id": "660e8400-e29b-41d4-a716-446655440002",
+      "name": "Development Test Bot",
+      "smpCell": {
+        "cellId": "550e8400-e29b-41d4-a716-446655440002",
+        "version": "2.1.0",
+        "fingerprint": "sha256:x1y2z3a4b5c6..."
+      },
+      "state": {
+        "current": "idle",
+        "transitions": [],
+        "lastStateChange": "2025-01-15T13:00:00Z"
+      },
+      "execution": {
+        "mode": "synchronous",
+        "maxConcurrency": 1,
+        "timeout": 60000
+      },
+      "resources": {
+        "compute": {
+          "gpuRequired": false,
+          "cpuCores": 2,
+          "memory": 4096
+        }
+      },
+      "scaling": {
+        "enabled": false,
+        "strategy": "horizontal"
+      },
+      "monitoring": {
+        "enabled": true,
+        "metrics": ["latency", "error_rate"],
+        "logging": {
+          "level": "debug",
+          "retentionDays": 7
+        }
+      },
+      "coldLogicIntegration": {
+        "enabled": false
+      },
+      "advantages": {
+        "parallelInference": false,
+        "batchProcessing": false,
+        "tensorOperations": false,
+        "memoryBandwidth": "low"
+      },
+      "metadata": {
+        "createdAt": "2025-01-15T13:00:00Z",
+        "environment": "development",
+        "tags": ["test", "development"]
+      }
+    }
+  ]
+}
