@@ -61,3 +61,6 @@ credentials/
 *.key
 .secrets/
 .creds/
+deepseek.com
+*.deepseek.*
+*deepseek*
