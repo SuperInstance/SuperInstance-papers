@@ -1,0 +1,386 @@
+# Validation Thresholds for SMP Simulation Suite
+# Defines success criteria and validation thresholds for all simulations
+
+# ============================================================================
+# STATISTICAL VALIDATION CRITERIA
+# ============================================================================
+
+statistical:
+  # Sample size requirements
+  sample_size:
+    minimum: 1000
+    recommended: 5000
+    per_experiment: 1000
+
+  # Statistical significance
+  significance:
+    alpha: 0.01  # 99% confidence level
+    power: 0.8   # 80% statistical power
+    confidence_interval: 0.95  # 95% confidence intervals
+
+  # Multiple testing correction
+  multiple_testing:
+    method: "bonferroni"  # Conservative correction
+    # Alternatives: "fdr", "holm", "hommel", "hochberg", "by"
+
+# ============================================================================
+# MATHEMATICAL VALIDATION CRITERIA
+# ============================================================================
+
+mathematical:
+  # Confidence composition rules
+  confidence_composition:
+    sequential:
+      mean_absolute_error:
+        maximum: 0.001
+        target: 0.0001
+      error_distribution:
+        p95: 0.005  # 95% of errors < 0.005
+        p99: 0.01   # 99% of errors < 0.01
+      statistical_test:
+        null_hypothesis: "Δ = 0"
+        alternative: "Δ ≠ 0"
+        significance: 0.01
+
+    parallel:
+      mean_absolute_error:
+        maximum: 0.001
+        target: 0.0001
+      error_distribution:
+        p95: 0.005
+        p99: 0.01
+      statistical_test:
+        null_hypothesis: "Δ = 0"
+        alternative: "Δ ≠ 0"
+        significance: 0.01
+
+  # Composition properties
+  composition_properties:
+    associativity:
+      tolerance: 0.001
+      success_rate: 0.999  # 99.9% of tests must pass
+      statistical_test:
+        null_hypothesis: "Δ = 0"
+        alternative: "Δ ≠ 0"
+        significance: 0.01
+
+    commutativity:
+      tolerance: 0.001
+      success_rate: 0.999
+      statistical_test:
+        null_hypothesis: "Δ = 0"
+        alternative: "Δ ≠ 0"
+        significance: 0.01
+      applies_to: ["parallel"]  # Only parallel composition is commutative
+
+    identity:
+      tolerance: 0.001
+      success_rate: 0.999
+      statistical_test:
+        null_hypothesis: "Δ = 0"
+        alternative: "Δ ≠ 0"
+        significance: 0.01
+
+    zero:
+      tolerance: 0.001
+      success_rate: 0.999
+      statistical_test:
+        null_hypothesis: "confidence = 0"
+        alternative: "confidence ≠ 0"
+        significance: 0.01
+
+    idempotence:
+      tolerance: 0.001
+      success_rate: 0.999
+      statistical_test:
+        null_hypothesis: "A||A = A"
+        alternative: "A||A ≠ A"
+        significance: 0.01
+      applies_to: ["parallel"]
+
+  # Zone classification
+  zone_classification:
+    boundaries:
+      green: 0.85
+      yellow: 0.60
+      red: 0.00
+    tolerance: 0.001  # Allowable deviation from boundaries
+    monotonicity:
+      required: true
+      test_all_pairs: true
+
+  # Zone transition properties
+  zone_transitions:
+    green_preservation:
+      minimum_probability: 0.8  # P(stay GREEN | start GREEN)
+      target_probability: 0.9
+      confidence_interval_width: 0.05  # 95% CI width
+
+    red_avoidance:
+      minimum_probability: 0.95  # P(avoid RED | start not RED)
+      target_probability: 0.98
+      confidence_interval_width: 0.03
+
+    transition_stability:
+      probability_sum_tolerance: 0.001  # Transition probabilities sum to 1.0 ± tolerance
+      markov_property_test: true  # Test Markov property (memoryless)
+
+# ============================================================================
+# PERFORMANCE VALIDATION CRITERIA
+# ============================================================================
+
+performance:
+  # Time complexity
+  time_complexity:
+    sequential_chains:
+      expected: "O(n)"  # Linear scaling
+      r_squared_minimum: 0.95  # R² for linear fit
+      scaling_factor_maximum: 2.0  # Maximum slowdown per additional tile
+
+    parallel_composition:
+      expected: "O(1)"  # Constant time (ideal)
+      variance_maximum: 0.2  # Maximum variance as percentage of mean
+      speedup_expected: true  # Should show speedup vs sequential
+
+  # Memory usage
+  memory:
+    per_tile_overhead:
+      maximum_bytes: 1024  # 1KB per tile
+      target_bytes: 512
+      measurement_method: "process_memory"
+
+    total_memory:
+      scaling: "O(n)"  # Linear with chain length
+      constant_factor_maximum: 2.0  # Maximum constant factor overhead
+
+  # Scalability
+  scalability:
+    maximum_chain_length: 100  # Should support chains of length 100
+    degradation_threshold: 0.1  # Maximum 10% performance degradation at max length
+    recovery_time: 1000  # Maximum recovery time in ms after scaling
+
+# ============================================================================
+# REAL-WORLD EFFECTIVENESS CRITERIA
+# ============================================================================
+
+real_world:
+  # Accuracy requirements
+  accuracy:
+    high_confidence_decisions:
+      minimum: 0.95  # 95% accuracy for high-confidence decisions
+      target: 0.98
+      confidence_interval_width: 0.02
+
+    overall_system:
+      minimum: 0.90  # 90% overall accuracy
+      target: 0.95
+      confidence_interval_width: 0.03
+
+  # Error rates
+  error_rates:
+    false_positive_rate:
+      maximum: 0.05  # 5% false positive rate
+      target: 0.02
+      confidence_interval_width: 0.01
+
+    false_negative_rate:
+      maximum: 0.10  # 10% false negative rate
+      target: 0.05
+      confidence_interval_width: 0.02
+
+  # Cost effectiveness
+  cost:
+    savings_vs_human:
+      minimum_percent: 50  # 50% cost reduction vs human-only
+      target_percent: 80
+      confidence_interval_width: 10
+
+    automated_rate:
+      minimum_percent: 60  # 60% of cases automated
+      target_percent: 85
+      confidence_interval_width: 5
+
+  # User trust
+  user_trust:
+    trust_score_increase:
+      minimum_percent: 30  # 30% increase in trust score
+      target_percent: 50
+      confidence_interval_width: 10
+
+    transparency_impact:
+      measure: true  # Should measure impact of confidence visualization
+      minimum_effect_size: 0.3  # Cohen's d ≥ 0.3 (medium effect)
+
+# ============================================================================
+# SCENARIO-SPECIFIC CRITERIA
+# ============================================================================
+
+scenarios:
+  fraud_detection:
+    accuracy:
+      minimum: 0.96
+      target: 0.98
+    false_positive_rate:
+      maximum: 0.03
+      target: 0.01
+    cost_savings:
+      minimum_percent: 60
+      target_percent: 85
+    confidence_thresholds:
+      green: 0.85
+      yellow: 0.70
+      red: 0.00
+
+  medical_diagnosis:
+    accuracy:
+      minimum: 0.97
+      target: 0.99
+    false_negative_rate:
+      maximum: 0.02  # Critical to avoid missed diagnoses
+      target: 0.005
+    cost_savings:
+      minimum_percent: 40  # More conservative due to high stakes
+      target_percent: 65
+    confidence_thresholds:
+      green: 0.95  # Higher thresholds for medical
+      yellow: 0.85
+      red: 0.00
+
+  content_moderation:
+    accuracy:
+      minimum: 0.94
+      target: 0.97
+    response_time:
+      maximum_ms: 2000  # 2 seconds maximum
+      target_ms: 500
+    cost_savings:
+      minimum_percent: 70
+      target_percent: 90
+    confidence_thresholds:
+      green: 0.85
+      yellow: 0.70
+      red: 0.00
+
+# ============================================================================
+# VALIDATION REPORTING
+# ============================================================================
+
+reporting:
+  # Report formats
+  formats:
+    - "json"  # Machine-readable
+    - "markdown"  # Human-readable
+    - "html"  # Interactive
+
+  # Required sections
+  sections:
+    - "executive_summary"
+    - "methodology"
+    - "results"
+    - "statistical_analysis"
+    - "validation_status"
+    - "recommendations"
+    - "appendices"
+
+  # Visualization requirements
+  visualizations:
+    required:
+      - "confidence_composition_errors"
+      - "zone_transition_matrix"
+      - "performance_scaling_curves"
+      - "accuracy_vs_confidence"
+    optional:
+      - "error_distributions"
+      - "memory_usage_patterns"
+      - "cost_benefit_analysis"
+
+  # Metadata
+  metadata:
+    required_fields:
+      - "simulation_id"
+      - "timestamp"
+      - "version"
+      - "random_seeds"
+      - "hardware_spec"
+    optional_fields:
+      - "researcher"
+      - "funding_source"
+      - "data_sources"
+
+# ============================================================================
+# QUALITY ASSURANCE
+# ============================================================================
+
+quality_assurance:
+  # Reproducibility
+  reproducibility:
+    random_seeds:
+      fixed: true
+      seeds: [42, 123, 456, 789, 101112]
+      documentation_required: true
+
+    environment:
+      capture: true
+      include: ["python_version", "package_versions", "hardware_info"]
+
+  # Cross-validation
+  cross_validation:
+    folds: 5
+    method: "kfold"
+    stratification: true  # Stratify by confidence distribution
+
+  # Sensitivity analysis
+  sensitivity:
+    parameters_to_test:
+      - "confidence_distribution"
+      - "chain_length"
+      - "composition_pattern"
+    variation_range: 0.1  # ±10% variation
+
+  # Robustness testing
+  robustness:
+    outlier_handling: "include"  # "include", "exclude", "winsorize"
+    missing_data: "impute"  # "impute", "exclude"
+    distribution_shift: true  # Test with shifted distributions
+
+# ============================================================================
+# SUCCESS CRITERIA FOR SMP WHITE PAPER
+# ============================================================================
+
+white_paper:
+  # Required proofs
+  required_proofs:
+    - "confidence_composition_rules"
+    - "zone_transition_properties"
+    - "composition_algebra_properties"
+    - "performance_scaling"
+    - "real_world_effectiveness"
+
+  # Statistical requirements
+  statistical_requirements:
+    significance_level: 0.01
+    confidence_level: 0.95
+    effect_size_reporting: true
+    power_analysis: true
+
+  # Data requirements
+  data_requirements:
+    minimum_data_points: 1000
+    per_experiment: 1000
+    distribution_coverage: ["uniform", "normal", "bimodal"]
+
+  # Publication readiness
+  publication_readiness:
+    figures: "publication_quality"
+    statistical_methods: "standard"
+    reproducibility: "fully_reproducible"
+    code_availability: "open_source"
+
+# ============================================================================
+# VERSIONING
+# ============================================================================
+
+version: "1.0.0"
+last_updated: "2026-03-10"
+author: "Simulation Architect Agent"
+status: "draft"  # "draft", "review", "approved", "deprecated"

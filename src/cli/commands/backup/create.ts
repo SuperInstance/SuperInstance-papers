@@ -21,7 +21,7 @@ backupCreateCommand.action(async (options) => {
   try {
     const result = await backupCreate({
       type: options.type.toUpperCase(),
-      tags: options.tags ? options.tags.split(',').map(t => t.trim()) : [],
+      tags: options.tags ? options.tags.split(',').map((t: string) => t.trim()) : [],
       labels: options.label,
       reason: options.reason,
       validate: options.validate

@@ -7,7 +7,8 @@ import { EventEmitter } from 'events';
 import cron from 'node-cron';
 
 import type { BackupManager } from './backup-manager.js';
-import type { BackupSchedule, BackupType } from './types.js';
+import type { BackupSchedule } from './types.js';
+import { BackupType } from './types.js';
 
 export interface SchedulerConfig {
   manager: BackupManager;
@@ -49,7 +50,7 @@ export class BackupScheduler extends EventEmitter {
       if (this.schedule.full.enabled) {
         this.fullBackupTask = this.scheduleTask(
           this.schedule.full.cron,
-          'FULL',
+          BackupType.FULL,
           'Scheduled full backup'
         );
       }
@@ -58,7 +59,7 @@ export class BackupScheduler extends EventEmitter {
       if (this.schedule.incremental.enabled) {
         this.incrementalBackupTask = this.scheduleTask(
           this.schedule.incremental.cron,
-          'INCREMENTAL',
+          BackupType.INCREMENTAL,
           'Scheduled incremental backup'
         );
       }
@@ -67,7 +68,7 @@ export class BackupScheduler extends EventEmitter {
       if (this.schedule.differential?.enabled) {
         this.differentialBackupTask = this.scheduleTask(
           this.schedule.differential.cron,
-          'DIFFERENTIAL',
+          BackupType.DIFFERENTIAL,
           'Scheduled differential backup'
         );
       }

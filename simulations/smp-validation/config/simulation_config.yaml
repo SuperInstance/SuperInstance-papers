@@ -1,0 +1,437 @@
+# Simulation Configuration for SMP Validation Suite
+# Controls all aspects of simulation execution
+
+# ============================================================================
+# SIMULATION MODULES CONFIGURATION
+# ============================================================================
+
+modules:
+  # Module 1: Confidence Cascade Validation
+  confidence_cascade:
+    enabled: true
+    priority: 1  # Highest priority
+    description: "Validate mathematical properties of confidence composition"
+
+    parameters:
+      sample_size: 1000
+      confidence_distributions:
+        - "uniform"
+        - "normal"
+        - "bimodal"
+      chain_lengths: [2, 3, 5]  # Simple chains for validation
+      composition_types:
+        - "sequential"
+        - "parallel"
+
+    execution:
+      batch_size: 100
+      parallel_execution: true
+      max_workers: 4
+      timeout_seconds: 300
+
+    output:
+      format: "json"
+      include_raw_data: true
+      compression: "gzip"
+
+  # Module 2: Zone Transition Probability
+  zone_transition:
+    enabled: true
+    priority: 2
+    description: "Analyze probability of zone transitions in tile chains"
+
+    parameters:
+      sample_size: 1000
+      chain_lengths: [1, 2, 3, 5, 8, 13, 21]  # Various lengths including Fibonacci
+      start_zones: ["GREEN", "YELLOW", "RED"]
+      confidence_distribution: "uniform"
+
+    execution:
+      batch_size: 50
+      parallel_execution: true
+      max_workers: 4
+      timeout_seconds: 600
+
+    output:
+      format: "json"
+      include_transition_matrices: true
+      include_steady_state: true
+
+  # Module 3: Tile Composition Stability
+  composition_stability:
+    enabled: true
+    priority: 3
+    description: "Validate stability properties of tile compositions"
+
+    parameters:
+      sample_size: 500
+      property_types:
+        - "associativity"
+        - "commutativity"
+        - "identity"
+        - "zero"
+        - "idempotence"
+      tile_triples: 100  # Number of tile triples to test
+      confidence_distribution: "uniform"
+
+    execution:
+      batch_size: 25
+      parallel_execution: true
+      max_workers: 4
+      timeout_seconds: 400
+
+    output:
+      format: "json"
+      include_property_details: true
+      include_statistical_summary: true
+
+  # Module 4: Performance Scaling
+  performance_scaling:
+    enabled: true
+    priority: 4
+    description: "Analyze computational performance of confidence cascades"
+
+    parameters:
+      chain_lengths: [1, 2, 5, 10, 20, 50, 100]
+      composition_types:
+        - "sequential"
+        - "parallel"
+      tile_implementations:
+        - "mock"
+        - "real"
+      warmup_runs: 100
+      measured_runs: 1000
+
+    execution:
+      batch_size: 10
+      parallel_execution: false  # Performance tests should not be parallelized
+      timeout_seconds: 1800  # 30 minutes for performance tests
+
+    output:
+      format: "json"
+      include_timing_details: true
+      include_memory_measurements: true
+      include_hardware_info: true
+
+  # Module 5: Real-World Scenario Simulation
+  real_world_scenarios:
+    enabled: true
+    priority: 5
+    description: "Validate confidence cascades in realistic scenarios"
+
+    parameters:
+      scenarios:
+        - "fraud_detection"
+        - "medical_diagnosis"
+        - "content_moderation"
+      sample_size_per_scenario: 1000
+      include_ground_truth: true
+      confidence_thresholds:
+        fraud_detection:
+          green: 0.85
+          yellow: 0.70
+        medical_diagnosis:
+          green: 0.95
+          yellow: 0.85
+        content_moderation:
+          green: 0.85
+          yellow: 0.70
+
+    execution:
+      batch_size: 100
+      parallel_execution: true
+      max_workers: 4
+      timeout_seconds: 1200
+
+    output:
+      format: "json"
+      include_scenario_details: true
+      include_cost_analysis: true
+      include_trust_metrics: true
+
+# ============================================================================
+# DATA GENERATION CONFIGURATION
+# ============================================================================
+
+data_generation:
+  # Randomness control
+  randomness:
+    use_fixed_seeds: true
+    seeds: [42, 123, 456, 789, 101112]
+    reproducibility: true
+
+  # Confidence distributions
+  distributions:
+    uniform:
+      low: 0.0
+      high: 1.0
+
+    normal:
+      mean: 0.7
+      std: 0.2
+      clip: [0.0, 1.0]
+
+    bimodal:
+      mode1: 0.3
+      mode2: 0.8
+      weight1: 0.4
+      std: 0.1
+
+    beta:
+      alpha: 2.0
+      beta: 2.0
+
+  # Chain generation
+  chains:
+    min_length: 1
+    max_length: 100
+    default_length: 5
+
+    parallel_weights:
+      generate: true
+      distribution: "dirichlet"  # "uniform", "dirichlet", "skewed"
+
+  # Tile generation
+  tiles:
+    default_source: "generated_tile"
+    include_metadata: true
+    metadata_fields:
+      - "generation_timestamp"
+      - "distribution"
+      - "random_seed"
+
+# ============================================================================
+# EXECUTION ENVIRONMENT
+# ============================================================================
+
+execution:
+  # Resource management
+  resources:
+    max_memory_gb: 8
+    max_cpu_cores: 8
+    disk_space_gb: 10
+
+  # Parallel execution
+  parallel:
+    enabled: true
+    max_workers: 4
+    backend: "multiprocessing"  # "multiprocessing", "threading", "loky"
+
+  # Caching
+  caching:
+    enabled: true
+    cache_dir: "./cache"
+    max_cache_size_gb: 2
+    cleanup_after_run: true
+
+  # Logging
+  logging:
+    level: "INFO"  # "DEBUG", "INFO", "WARNING", "ERROR"
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    file: "./logs/simulation.log"
+    console: true
+
+  # Progress monitoring
+  progress:
+    enabled: true
+    update_interval_seconds: 5
+    show_eta: true
+    show_percentage: true
+
+# ============================================================================
+# OUTPUT CONFIGURATION
+# ============================================================================
+
+output:
+  # Directory structure
+  directories:
+    root: "./results"
+    raw: "./results/raw"
+    processed: "./results/processed"
+    visualizations: "./results/visualizations"
+    reports: "./results/reports"
+
+  # File formats
+  formats:
+    primary: "json"
+    secondary: "csv"
+    visualizations: ["png", "svg"]
+
+  # Compression
+  compression:
+    enabled: true
+    algorithm: "gzip"
+    level: 6
+
+  # Metadata
+  metadata:
+    include: true
+    fields:
+      - "simulation_id"
+      - "timestamp"
+      - "version"
+      - "config_hash"
+      - "execution_time"
+      - "random_seeds"
+
+  # Archiving
+  archiving:
+    enabled: true
+    keep_raw_data: true
+    keep_processed_data: true
+    cleanup_threshold_days: 30
+
+# ============================================================================
+# VALIDATION CONFIGURATION
+# ============================================================================
+
+validation:
+  # Statistical validation
+  statistical:
+    significance_level: 0.01
+    confidence_level: 0.95
+    power: 0.8
+    multiple_testing_correction: "bonferroni"
+
+  # Thresholds (loaded from validation_thresholds.yaml)
+  thresholds_file: "./config/validation_thresholds.yaml"
+
+  # Cross-validation
+  cross_validation:
+    enabled: true
+    folds: 5
+    method: "kfold"
+    random_seed: 42
+
+  # Sensitivity analysis
+  sensitivity:
+    enabled: true
+    parameters:
+      - "confidence_distribution"
+      - "chain_length"
+      - "sample_size"
+    variation: 0.1  # ±10%
+
+  # Robustness testing
+  robustness:
+    enabled: true
+    outlier_handling: "include"
+    missing_data: "impute"
+    distribution_shift: true
+
+# ============================================================================
+# INTEGRATION CONFIGURATION
+# ============================================================================
+
+integration:
+  # TypeScript integration
+  typescript:
+    enabled: true
+    confidence_cascade_path: "../../src/spreadsheet/tiles/confidence-cascade.ts"
+    test_utils_path: "../../src/spreadsheet/tiles/tests/test-utils.ts"
+    validation_script: "./integration/validate_typescript.js"
+
+  # Existing test integration
+  existing_tests:
+    enabled: true
+    test_files:
+      - "../../src/spreadsheet/tiles/tests/confidence-properties.test.ts"
+      - "../../src/spreadsheet/tiles/tests/zone-classification.test.ts"
+      - "../../src/spreadsheet/tiles/tests/tile-composition.test.ts"
+    generate_test_cases: true
+
+  # CI/CD integration
+  ci_cd:
+    enabled: true
+    github_actions: true
+    workflow_file: "../../.github/workflows/smp-validation.yml"
+    schedule: "0 2 * * *"  # Daily at 2 AM
+
+# ============================================================================
+# MONITORING AND ALERTING
+# ============================================================================
+
+monitoring:
+  # Performance monitoring
+  performance:
+    enabled: true
+    metrics:
+      - "execution_time"
+      - "memory_usage"
+      - "cpu_usage"
+      - "disk_io"
+    sampling_interval_seconds: 1
+
+  # Error monitoring
+  errors:
+    enabled: true
+    capture_exceptions: true
+    log_stack_traces: true
+    alert_on_critical: true
+
+  # Progress monitoring
+  progress:
+    enabled: true
+    checkpoints: true
+    checkpoint_interval_percent: 10
+
+  # Alerting
+  alerting:
+    enabled: true
+    conditions:
+      - "execution_time > timeout"
+      - "memory_usage > 90%"
+      - "error_rate > 5%"
+    actions:
+      - "log"
+      - "email"
+      - "slack"
+
+# ============================================================================
+# ADVANCED SETTINGS
+# ============================================================================
+
+advanced:
+  # Optimization
+  optimization:
+    vectorization: true
+    caching: true
+    memory_mapping: true
+    batch_processing: true
+
+  # Debugging
+  debugging:
+    enabled: false
+    debug_level: "detailed"
+    save_intermediate_results: false
+    profile_performance: false
+
+  # Experimental features
+  experimental:
+    enabled: false
+    features:
+      - "adaptive_sampling"
+      - "bayesian_optimization"
+      - "neural_network_validation"
+
+# ============================================================================
+# VERSION AND METADATA
+# ============================================================================
+
+version: "1.0.0"
+config_version: "1.0"
+created: "2026-03-10"
+author: "Simulation Architect Agent"
+description: "Configuration for SMP Validation Simulation Suite"
+
+# ============================================================================
+# RUNTIME OVERRIDES
+# ============================================================================
+
+# These can be overridden at runtime via command line or environment variables
+runtime_overrides:
+  sample_size: null  # Override sample size for all modules
+  random_seed: null  # Override random seed
+  output_dir: null   # Override output directory
+  parallel_workers: null  # Override number of parallel workers
+  timeout_seconds: null   # Override timeout

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "Node16",
     "moduleResolution": "Node16",
 
@@ -43,6 +43,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true,
+    "jsx": "react-jsx",
 
     /* Path Mapping */
     "baseUrl": "./",

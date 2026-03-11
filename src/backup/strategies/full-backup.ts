@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as crypto from 'crypto';
 import * as zlib from 'zlib';
 import { promisify } from 'util';
+import { Buffer } from 'buffer';
 
 import type {
   BackupMetadata,
@@ -68,7 +69,7 @@ export class FullBackupStrategy {
       metrics.sizeBytes = Buffer.byteLength(jsonData, 'utf8');
 
       // Compress if enabled
-      let dataToStore = Buffer.from(jsonData, 'utf8');
+      let dataToStore = Buffer.from(jsonData, 'utf8') as Buffer;
       const compressStart = Date.now();
 
       if (config.compression.enabled) {

@@ -62,7 +62,7 @@ export class RetentionManager extends EventEmitter {
           allBackups.filter(b => b.type === 'DIFFERENTIAL'),
           this.retention.differential
         )
-      : [];
+      : { toKeep: [], toDelete: [] };
     const snapshots = this.applyRetentionPolicy(
       allBackups.filter(b => b.type === 'SNAPSHOT'),
       this.retention.snapshot
@@ -71,13 +71,14 @@ export class RetentionManager extends EventEmitter {
     const allToKeep = [
       ...fullBackups.toKeep,
       ...incrementalBackups.toKeep,
-      ...differentialBackups,
+      ...differentialBackups.toKeep,
       ...snapshots.toKeep
     ];
 
     const allToDelete = [
       ...fullBackups.toDelete,
       ...incrementalBackups.toDelete,
+      ...differentialBackups.toDelete,
       ...snapshots.toDelete
     ];
 

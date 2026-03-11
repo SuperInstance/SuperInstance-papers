@@ -748,10 +748,10 @@ export class AuthenticationMiddlewareWithRevocation extends AuthenticationMiddle
   /**
    * Revoke a specific refresh token
    */
-  override async revokeRefreshToken(
+  override revokeRefreshToken(
     refreshToken: string,
     reason: RevocationReason = 'logout'
-  ): Promise<boolean> {
+  ): boolean {
     // First decode to get jti
     try {
       const { decode, verify } = require('jsonwebtoken');
@@ -764,7 +764,11 @@ export class AuthenticationMiddlewareWithRevocation extends AuthenticationMiddle
       }) as { jti?: string };
 
       if (decoded.jti) {
-        await this.revocationList.revokeToken(decoded.jti, reason);
+        // Fire and forget - revocation happens asynchronously
+        this.revocationList.revokeToken(decoded.jti, reason).catch(() => {
+          // Log error but don't fail the synchronous operation
+          console.error(`Failed to revoke token ${decoded.jti}`);
+        });
       }
 
       // Also call parent revoke

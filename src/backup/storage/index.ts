@@ -13,7 +13,9 @@ import type {
   S3StorageConfig,
   GCSStorageConfig,
   AzureStorageConfig,
-  DatabaseStorageConfig
+  DatabaseStorageConfig,
+  StoreOptions,
+  StorageInfo
 } from './types.js';
 
 export type {
