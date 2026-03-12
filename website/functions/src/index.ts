@@ -11,6 +11,7 @@ import contentRouter from './api/content/router'
 import analyticsRouter from './api/analytics/router'
 import integrationsRouter from './api/integrations/router'
 import cellsRouter from './api/cells/router'
+import federationRouter from './api/federation/router'
 import websocketHandler from './ws/cells'
 
 // Create main app
@@ -44,6 +45,7 @@ app.route('/api/content', contentRouter)
 app.route('/api/analytics', analyticsRouter)
 app.route('/api/integrations', integrationsRouter)
 app.route('/api/cells', cellsRouter)
+app.route('/api/federation', federationRouter)
 
 // WebSocket route for real-time cell updates
 app.get('/ws/cells/:cellId', async (c) => {
