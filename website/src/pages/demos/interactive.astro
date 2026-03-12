@@ -1,14 +1,19 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { ConfidenceCascadeVisualizer } from '@/components/interactive/ConfidenceCascadeVisualizer';
-import { PythagoreanSnapCalculator } from '@/components/interactive/PythagoreanSnapCalculator';
-import { RateBasedChangeSimulator } from '@/components/interactive/RateBasedChangeSimulator';
+import {
+  LazyConfidenceCascadeVisualizer,
+  LazyPythagoreanSnapCalculator,
+  LazyRateBasedChangeSimulator
+} from '@/components/interactive/LazyInteractiveComponents';
+import SEO from '@/components/SEO.astro';
 
 const pageTitle = 'Interactive Demos';
 const description = 'Experience SuperInstance concepts through interactive visualizations';
+const canonical = Astro.url.href;
 ---
 
 <BaseLayout title={pageTitle} description={description}>
+  <SEO title={pageTitle} description={description} canonical={canonical} />
   <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="text-center mb-12">
@@ -23,7 +28,7 @@ const description = 'Experience SuperInstance concepts through interactive visua
     </div>
 
     <!-- Confidence Cascade Visualizer -->
-    <section class="mb-16">
+    <section class="mb-16" data-analytics-component="confidence-cascade-visualizer">
       <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
         <div class="mb-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
@@ -35,12 +40,12 @@ const description = 'Experience SuperInstance concepts through interactive visua
             to YELLOW (caution) to RED (critical).
           </p>
         </div>
-        <ConfidenceCascadeVisualizer client:load />
+        <LazyConfidenceCascadeVisualizer client:load />
       </div>
     </section>
 
     <!-- Pythagorean Snap Calculator -->
-    <section class="mb-16">
+    <section class="mb-16" data-analytics-component="pythagorean-snap-calculator">
       <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
         <div class="mb-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
@@ -52,12 +57,12 @@ const description = 'Experience SuperInstance concepts through interactive visua
             multiples provide precise construction angles without trigonometry.
           </p>
         </div>
-        <PythagoreanSnapCalculator client:load />
+        <LazyPythagoreanSnapCalculator client:load />
       </div>
     </section>
 
     <!-- Rate-Based Change Simulator -->
-    <section class="mb-16">
+    <section class="mb-16" data-analytics-component="rate-based-change-simulator">
       <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
         <div class="mb-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
@@ -69,7 +74,7 @@ const description = 'Experience SuperInstance concepts through interactive visua
             with AI-powered confidence bounds showing prediction uncertainty.
           </p>
         </div>
-        <RateBasedChangeSimulator client:load />
+        <LazyRateBasedChangeSimulator client:load />
       </div>
     </section>
 

@@ -4,6 +4,9 @@ import { requireAuth } from '../../shared/auth'
 import { validateRequest, userPreferenceSchema, newsletterSignupSchema, eventSchema } from '../../shared/validation'
 import { createCheckoutSessionSchema, setupIntentSchema, customerPortalSchema } from './stripe'
 import { oauthCallbackSchema, oauthConnectSchema } from './oauth'
+import { sendEmailSchema, subscribeToListSchema } from './email'
+import { captureErrorSchema, addContextSchema, setUserSchema } from './sentry'
+import { createScheduledEventSchema, listEventsSchema, rescheduleEventSchema, cancelEventSchema } from './calendly'
 
 const router = new Hono<{ Bindings: Env }>()
 
@@ -378,6 +381,480 @@ router.post('/stripe/portal', requireAuth, async (c) => {
       message: 'Failed to create customer portal session'
     }, 500)
   }
+)
+
+// OAuth provider integrations
+router.post('/oauth/connect/:provider', requireAuth, async (c) => {
+  const provider = c.req.param('provider')
+  const validation = await validateRequest(oauthConnectSchema, c)
+  if (!validation.success) return validation.response
+
+  const { returnUrl = `${c.env.SITE_URL}/oauth/callback`, scopes = [] } = validation.data
+
+  try {
+    const providers = {
+      google: {
+        clientId: c.env.GOOGLE_CLIENT_ID,
+        authUrl: 'https://accounts.google.com/oauth2/v2/auth',
+        scope: scopes.length ? scopes.join(' ') : 'openid email profile'
+      },
+      github: {
+        clientId: c.env.GITHUB_OAUTH_CLIENT_ID,
+        authUrl: 'https://github.com/login/oauth/authorize',
+        scope: scopes.length ? scopes.join(' ') : 'user:email'
+      },
+      microsoft: {
+        clientId: c.env.MICROSOFT_CLIENT_ID,
+        authUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
+        scope: scopes.length ? scopes.join(' ') : 'openid email profile'
+      }
+    }
+
+    const config = providers[provider as keyof typeof providers]
+    if (!config) {
+      return c.json({ error: 'Unsupported provider' }, 400)
+    }
+
+    if (!config.clientId) {
+      return c.json({ error: 'Provider not configured' }, 500)
+    }
+
+    const state = crypto.randomUUID()
+    const params = new URLSearchParams({
+      client_id: config.clientId,
+      redirect_uri: `${c.env.API_BASE_URL}/integrations/oauth/callback/${provider}`,
+      response_type: 'code',
+      scope: config.scope,
+      state: state,
+      access_type: 'offline',
+      prompt: 'consent'
+    })
+
+    // Store state with user info for validation
+    await c.env.CACHE.put(`oauth:state:${state}`, JSON.stringify({
+      userId: c.get('user').userId,
+      provider,
+      returnUrl
+    }), {
+      expirationTtl: 10 * 60 // 10 minutes
+    })
+
+    return c.json({
+      success: true,
+      data: {
+        authUrl: `${config.authUrl}?${params.toString()}`,
+        state
+      }
+    })
+  } catch (error) {
+    console.error('OAuth connect error:', error)
+    return c.json({ error: 'Internal error' }, 500)
+  }
+})
+
+// OAuth callback handler
+router.get('/oauth/callback/:provider', async (c) => {
+  const provider = c.req.param('provider')
+  const code = c.req.query('code')
+  const state = c.req.query('state')
+
+  if (!code || !state) {
+    return c.text('Missing code or state', 400)
+  }
+
+  // Validate state
+  const stateData = await c.env.CACHE.get(`oauth:state:${state}`)
+  if (!stateData) {
+    return c.text('Invalid or expired state', 400)
+  }
+
+  const { userId, returnUrl, provider: storedProvider } = JSON.parse(stateData)
+  if (storedProvider !== provider) {
+    return c.text('Provider mismatch', 400)
+  }
+
+  try {
+    // Exchange code for access token
+    const tokenResponse = await exchangeCodeForToken(provider, code, c.env)
+
+    // Get user info from provider
+    const userInfo = await getUserInfo(provider, tokenResponse.access_token)
+
+    // Store OAuth connection
+    await c.env.DB.prepare(`
+      INSERT OR REPLACE INTO oauth_connections (provider, provider_user_id, user_id, access_token, refresh_token, expires_at, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).bind(
+      provider,
+      userInfo.id,
+      userId,
+      tokenResponse.access_token,
+      tokenResponse.refresh_token,
+      tokenResponse.expires_at || null,
+      Date.now()
+    ).run()
+
+    // Delete state
+    await c.env.CACHE.delete(`oauth:state:${state}`)
+
+    return c.redirect(`${returnUrl}?success=true&provider=${provider}`)
+  } catch (error) {
+    console.error('OAuth callback error:', error)
+    return c.redirect(`${returnUrl}?error=oauth_failed`)
+  }
+})
+
+// Helper function to exchange code for token
+async function exchangeCodeForToken(provider: string, code: string, env: Env) {
+  const configs = {
+    google: {
+      tokenUrl: 'https://oauth2.googleapis.com/token',
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET
+    },
+    github: {
+      tokenUrl: 'https://github.com/login/oauth/access_token',
+      clientId: env.GITHUB_OAUTH_CLIENT_ID,
+      clientSecret: env.GITHUB_OAUTH_CLIENT_SECRET
+    },
+    microsoft: {
+      tokenUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+      clientId: env.MICROSOFT_CLIENT_ID,
+      clientSecret: env.MICROSOFT_CLIENT_SECRET
+    }
+  }
+
+  const config = configs[provider as keyof typeof configs]
+  if (!config) throw new Error('Invalid provider')
+
+  const params = new URLSearchParams({
+    client_id: config.clientId,
+    client_secret: config.clientSecret,
+    code,
+    grant_type: 'authorization_code',
+    redirect_uri: `${env.API_BASE_URL}/integrations/oauth/callback/${provider}`
+  })
+
+  const response = await fetch(config.tokenUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json'
+    },
+    body: params
+  })
+
+  if (!response.ok) {
+    throw new Error('Token exchange failed')
+  }
+
+  return response.json()
+}
+
+// Email service integrations
+router.post('/email/send', requireAuth, async (c) => {
+  const validation = await validateRequest(sendEmailSchema, c)
+  if (!validation.success) return validation.response
+
+  const { to, from, subject, html, text, category, sendAt } = validation.data
+
+  try {
+    // Use SendGrid Email API
+    const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${c.env.SENDGRID_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        personalizations: [{
+          to: to.map(email => ({ email })),
+          ...(category && { custom_args: { category } }),
+          ...(sendAt && { send_at: sendAt })
+        }],
+        from: { email: from },
+        subject,
+        content: []
+          .concat(html ? [{ type: 'text/html', value: html }] : [])
+          .concat(text ? [{ type: 'text/plain', value: text }] : [])
+      })
+    })
+
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.errors?.[0]?.message || 'Failed to send email')
+    }
+
+    // Log email send
+    await trackEvent('email_sent', {
+      to: to.length,
+      subject,
+      category: category || 'general',
+      sender: from
+    }, c.env)
+
+    return c.json({
+      success: true,
+      message: 'Email sent successfully'
+    })
+  } catch (error) {
+    console.error('Email send error:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: error.message || 'Failed to send email'
+    }, 500)
+  }
+})
+
+// Get email templates
+router.get('/email/templates', requireAuth, async (c) => {
+  try {
+    const response = await fetch('https://api.sendgrid.com/v3/templates?generations=dynamic', {
+      headers: {
+        'Authorization': `Bearer ${c.env.SENDGRID_API_KEY}`
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch templates')
+    }
+
+    const data = await response.json()
+
+    // Filter only our templates
+    const templates = data.templates?.filter((t: any) =>
+      t.name?.startsWith('superinstance-')
+    ) || []
+
+    return c.json({
+      success: true,
+      data: templates
+    })
+  } catch (error) {
+    console.error('Failed to fetch email templates:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to fetch email templates'
+    }, 500)
+  }
+})
+
+// Subscribe to email list
+router.post('/email/subscribe', async (c) => {
+  const validation = await validateRequest(subscribeToListSchema, c)
+  if (!validation.success) return validation.response
+
+  const { listId, email, name, customFields } = validation.data
+
+  try {
+    const response = await fetch('https://api.sendgrid.com/v3/contactdb/recipients', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${c.env.SENDGRID_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify([{
+        email,
+        first_name: name?.split(' ')[0],
+        last_name: name?.split(' ').slice(1).join(' '),
+        ...customFields
+      }])
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to add recipient')
+    }
+
+    // Add to list
+    const recipient = (await response.json())[0]
+    await fetch(`https://api.sendgrid.com/v3/contactdb/lists/${listId}/recipients/${recipient.id}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${c.env.SENDGRID_API_KEY}`
+      }
+    })
+
+    // Track list signup
+    await trackEvent('email_list_signup', {
+      listId,
+      email,
+      source: 'website'
+    }, c.env)
+
+    return c.json({
+      success: true,
+      message: 'Successfully subscribed to list'
+    })
+  } catch (error) {
+    console.error('Email subscription error:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to subscribe to list'
+    }, 500)
+  }
+})
+
+// Helper function to get user info from provider
+async function getUserInfo(provider: string, accessToken: string) {
+  const endpoints = {
+    google: 'https://www.googleapis.com/oauth2/v2/userinfo',
+    github: 'https://api.github.com/user',
+    microsoft: 'https://graph.microsoft.com/v1.0/me'
+  }
+
+  const endpoint = endpoints[provider as keyof typeof endpoints]
+  if (!endpoint) throw new Error('Invalid provider')
+
+  const response = await fetch(endpoint, {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`
+    }
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to get user info')
+  }
+
+  return response.json()
+}
+
+// Sentry error tracking
+router.post('/errors/capture', async (c) => {
+  const validation = await validateRequest(captureErrorSchema, c)
+  if (!validation.success) return validation.response
+
+  const { message, level, tags, extra, environment, release, userId } = validation.data
+
+  try {
+    // Capture error on server side
+    const eventId = crypto.randomUUID()
+    const timestamp = Math.floor(Date.now() / 1000)
+
+    const event = {
+      event_id: eventId,
+      timestamp,
+      platform: 'javascript',
+      environment: environment || c.env.ENVIRONMENT,
+      level: level || 'error',
+      message,
+      sdk: {
+        name: 'superinstance-web',
+        version: '1.0.0'
+      },
+      contexts: {
+        app: {
+          name: 'SuperInstance',
+          version: '1.0.0',
+          env: c.env.ENVIRONMENT
+        },
+        browser: {
+          user_agent: c.req.header('user-agent') || 'unknown'
+        },
+        ...(extra && { extra })
+      },
+      tags: {
+        component: 'website',
+        source: 'frontend',
+        ...tags
+      },
+      user: userId ? {
+        id: userId,
+        username: userId
+      } : undefined,
+      release
+    }
+
+    // Send to Sentry
+    const response = await fetch(`${c.env.SENTRY_INGEST_URL}/api/${c.env.SENTRY_PROJECT_ID}/store/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Sentry-Auth': `Sentry sentry_version=7, sentry_timestamp=${timestamp}, sentry_key=${c.env.SENTRY_DSN_KEY}, sentry_client=superinstance/1.0.0`
+      },
+      body: JSON.stringify(event)
+    })
+
+    if (!response.ok) {
+      // Log locally as fallback
+      console.error(`Sentry error capture: ${message}`, event)
+    }
+
+    return c.json({
+      success: true,
+      data: {
+        eventId,
+        captured: response.ok
+      }
+    })
+  } catch (error) {
+    console.error('Error sending to Sentry:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to capture error'
+    }, 500)
+  }
+})
+
+// Set custom context for error tracking
+router.post('/errors/context', requireAuth, async (c) => {
+  const validation = await validateRequest(addContextSchema, c)
+  if (!validation.success) return validation.response
+
+  const { key, value } = validation.data
+
+  try {
+    // Store context in KV for session tracking
+    const userId = c.get('user').userId
+    const contextKey = `sentry:context:${userId}:${key}`
+
+    await c.env.CACHE.put(contextKey, JSON.stringify({
+      value,
+      timestamp: Date.now()
+    }), {
+      expirationTtl: 24 * 60 * 60 // 24 hours
+    })
+
+    return c.json({
+      success: true,
+      message: 'Context set successfully'
+    })
+  } catch (error) {
+    console.error('Error setting context:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to set context'
+    }, 500)
+  }
+})
+
+// Set user context
+router.post('/errors/user', async (c) => {
+  const validation = await validateRequest(setUserSchema, c)
+  if (!validation.success) return validation.response
+
+  const userData = validation.data
+
+  try {
+    // Store user context in KV
+    const sessionId = c.req.header('x-session-id') || crypto.randomUUID()
+    const userKey = `sentry:user:${sessionId}`
+
+    await c.env.CACHE.put(userKey, JSON.stringify(userData), {
+      expirationTtl: 24 * 60 * 60 // 24 hours
+    })
+
+    return c.json({
+      success: true,
+      message: 'User context set successfully',
+      data: { sessionId }
+    })
+  } catch (error) {
+    console.error('Error setting user context:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to set user context'
+    }, 500)
+  }
 })
 
 // Analytics integration endpoint
@@ -424,6 +901,186 @@ router.post('/analytics/track', async (c) => {
     return c.json({ error: 'Internal Error', message: 'Failed to track event' }, 500)
   }
 })
+
+// Calendly integration for demo scheduling
+router.get('/calendly/event-types', requireAuth, async (c) => {
+  try {
+    const response = await fetch('https://api.calendly.com/event_types', {
+      headers: {
+        'Authorization': `Bearer ${c.env.CALENDLY_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch event types')
+    }
+
+    const data = await response.json()
+    const eventTypes = data.collection?.map((et: any) => ({
+      id: et.uri.split('/').pop(),
+      name: et.name,
+      slug: et.slug,
+      duration: et.duration,
+      description: et.description,
+      scheduling_url: et.scheduling_url,
+      active: et.active,
+      custom_questions: et.custom_questions?.map((q: any) => ({
+        position: q.position,
+        type: q.type,
+        name: q.name,
+        required: q.required,
+        answer_choices: q.answer_choices
+      }))
+    }))
+
+    return c.json({
+      success: true,
+      data: eventTypes
+    })
+  } catch (error) {
+    console.error('Failed to fetch Calendly event types:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to fetch event types'
+    }, 500)
+  }
+})
+
+// Schedule demo event
+router.post('/calendly/schedule', async (c) => {
+  const validation = await validateRequest(createScheduledEventSchema, c)
+  if (!validation.success) return validation.response
+
+  const { eventType, email, name, startTime, timezone = 'UTC', duration, questions, note } = validation.data
+
+  try {
+    // Create scheduling link if needed
+    const eventTypeResponse = await fetch(`https://api.calendly.com/event_types`, {
+      headers: {
+        'Authorization': `Bearer ${c.env.CALENDLY_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const eventTypes = await eventTypeResponse.json()
+    const matchingEventType = eventTypes.collection?.find(
+      (et: any) => et.name.toLowerCase().includes('demo') || et.slug.includes('demo')
+    )
+
+    if (!matchingEventType) {
+      return c.json({
+        error: 'Bad Request',
+        message: 'No suitable demo event type found'
+      }, 400)
+    }
+
+    // Get organization URI from Calendly
+    const meResponse = await fetch('https://api.calendly.com/users/me', {
+      headers: {
+        'Authorization': `Bearer ${c.env.CALENDLY_API_KEY}`
+      }
+    })
+
+    const meData = await meResponse.json()
+    const organizationUri = meData.resource.current_organization
+
+    // Create one-off event
+    const scheduleResponse = await fetch('https://api.calendly.com/scheduled_events', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${c.env.CALENDLY_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        event_type: matchingEventType.uri,
+        email,
+        name,
+        start_time: startTime,
+        invitees: [{
+          email,
+          name,
+          ...(questions && answers: questions.map(q => q.answer) })
+        }]
+      })
+    })
+
+    if (!scheduleResponse.ok) {
+      throw new Error('Failed to schedule demo')
+    }
+
+    const eventData = await scheduleResponse.json()
+
+    // Track demo scheduled
+    await trackEvent('demo_scheduled', {
+      eventId: eventData.resource.uri,
+      name,
+      email,
+      eventType,
+      startTime
+    }, c.env)
+
+    return c.json({
+      success: true,
+      data: {
+        eventId: eventData.resource.uri,
+        scheduled: true,
+        inviteUrl: eventData.resource.rescheduled_url || matchingEventType.scheduling_url
+      }
+    })
+  } catch (error) {
+    console.error('Demo scheduling error:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to schedule demo'
+    }, 500)
+  }
+})
+
+// List user's scheduled demos
+router.get('/calendly/events', requireAuth, async (c) => {
+  const params = {
+    count: parseInt(c.req.query('count') || '20'),
+    status: c.req.query('status') || 'active',
+    minStartTime: c.req.query('minStartTime') || new Date().toISOString()
+  }
+
+  try {
+    // Get user's email from profile
+    const userResult = await c.env.DB.prepare(`
+      SELECT * FROM users WHERE id = ?
+    `).bind(c.get('user').userId).first()
+
+    if (!userResult) {
+      return c.json({
+        error: 'Not Found',
+        message: 'User not found'
+      }, 404)
+    }
+
+    // Use webhook to get events for this user
+    const events = await getScheduledDemosForUser(userResult.email)
+
+    return c.json({
+      success: true,
+      data: events,
+      count: events.length
+    })
+  } catch (error) {
+    console.error('Failed to fetch user events:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to fetch scheduled demos'
+    }, 500)
+  }
+})
+
+// Get scheduled events for user
+async function getScheduledDemosForUser(email: string) {
+  // This would typically query your local database
+  // For now, return mock data
+  return []
+}
 
 // Search functionality using Cloudflare AI
 router.post('/search', async (c) => {
