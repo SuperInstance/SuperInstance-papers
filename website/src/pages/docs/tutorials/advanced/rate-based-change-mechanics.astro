@@ -1,0 +1,711 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/Card';
+import { CodeBlock } from '../../../../components/ui/CodeBlock';
+---
+
+<BaseLayout title="Rate-Based Change Mechanics - SuperInstance.AI Documentation">
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container-narrow">
+      <div class="animate-fade-in">
+        <div class="mb-6">
+          <a href="/docs/tutorials" class="text-primary-600 hover:text-primary-700 flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Tutorials
+          </a>
+        </div>
+
+        <h1 class="heading-1 mb-6">
+          Rate-Based Change Mechanics: \[x(t) = x₀ + ∫r(τ)dτ\]
+        </h1>
+
+        <p class="text-body max-w-3xl mb-10">
+          Learn how SuperInstance revolutionizes spreadsheet calculations by treating everything as rates
+          first. This mathematical foundation enables prediction, anomaly detection, and adaptive behavior
+          in your spreadsheets.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-16">
+          <div class="bg-primary-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-primary-700">Reading time: 20 minutes</span>
+          </div>
+          <div class="bg-accent-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-accent-700">Level: Advanced</span>
+          </div>
+          <div class="bg-secondary-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-secondary-700">Prerequisites: Calculus basics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <div class="max-w-4xl mx-auto space-y-16">
+
+        <!-- The Core Principle -->
+        <div>
+          <h2 class="heading-2 mb-6">The Core Principle: Rate-First Calculus</h2>
+
+          <p class="text-body mb-6">
+            Traditional spreadsheets work state-first: they calculate what's happening now.
+            SuperInstance works rate-first: it calculates how fast things are changing,
+            then derives the current state.
+          </p>
+
+          <div class="bg-primary-50 rounded-lg p-6 mb-6">
+            <h3 class="font-semibold text-primary-900 mb-3">The Fundamental Equation</h3>
+            <div class="text-center text-3xl font-mono mb-4">
+              x(t) = x₀ + ∫₀^t r(τ)dτ
+            </div>
+            <p class="text-primary-800">
+              <strong>Key insight:</strong> This flips the traditional script. Instead of measuring
+              position and calculating velocity, we measure rate and calculate position.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Traditional (State-First)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`// Traditional approach
+A1: 100          // Current price
+A2: 105          // New price
+A3: =A2-A1       // Rate: +5
+A4: =A3/A1       // Percent change: +5%
+
+// Problems:
+// • Discontinuous jumps
+// • No prediction capability
+// • Blind to acceleration`} lang="javascript" />
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>SuperInstance (Rate-First)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`// SuperInstance approach
+A1: "rate = 5"   // Observed rate of change
+A2: "accel = 0.5"// Acceleration
+A3: =PREDICT(A1, A2, t=1) // x(1) = x₀ + ∫r(τ)dτ
+
+// Advantages:
+// • Smooth transitions
+// • Predictive capability
+// • See acceleration/jerk`} lang="javascript" />
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <!-- Basic Rate Functions -->
+        <div>
+          <h2 class="heading-2 mb-6">Basic Rate Functions</h2>
+
+          <p class="text-body mb-6">
+            Rate functions describe how values change over time. Let's implement the basic rate system:
+          </p>
+
+          <Card hover className="mb-6">
+            <CardHeader>
+              <CardTitle>Core Rate Types</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock code={`export type RateFunction = (t: number) => number;
+
+export enum RateOrder {
+  VELOCITY = 1,      // First derivative: r(t) = dx/dt
+  ACCELERATION = 2,  // Second derivative: a(t) = dr/dt
+  JERK = 3,          // Third derivative: j(t) = da/dt
+  SNAP = 4,          // Fourth derivative: s(t) = dj/dt
+  CRACKLE = 5,       // Fifth derivative: c(t) = ds/dt
+  POP = 6            // Sixth derivative: p(t) = dc/dt
+}`} lang="typescript" />
+            </CardContent>
+          </Card>
+
+          <div class="mb-8">
+            <h3 class="heading-3 mb-4">The Integration Function</h3>
+            <p class="text-body mb-4">
+              This is where the magic happens - converting rate back to state:
+            </p>
+
+            <Card hover className="mb-4">
+              <CardHeader>
+                <CardTitle>Numerical Integration Implementation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`export class RateBasedChangeSystem {
+  /**
+   * Theorem 2.1: Rate-State Duality
+   * x(t) = x₀ + ∫r(τ)dτ
+   *
+   * Implements the fundamental rate-first equation
+   */
+  integrateRate(
+    initialValue: number,
+    rateFunction: RateFunction,
+    startTime: number,
+    endTime: number,
+    numSteps: number = 100
+  ): number {
+    // Numerical integration using trapezoidal rule
+    const dt = (endTime - startTime) / numSteps;
+    let integral = 0;
+
+    for (let i = 0; i < numSteps; i++) {
+      const t1 = startTime + i * dt;
+      const t2 = startTime + (i + 1) * dt;
+      const r1 = rateFunction(t1);
+      const r2 = rateFunction(t2);
+
+      integral += (r1 + r2) * dt / 2;
+    }
+
+    return initialValue + integral;
+  }
+}`} lang="typescript" />
+              </CardContent>
+            </Card>
+
+            <div class="bg-blue-50 rounded-lg p-4">
+              <h4 class="font-semibold text-blue-900 mb-2">Example: Predicting Stock Price</h4>
+              <CodeBlock code={`// Current state: $100
+// Rate function: price increases by 2 + 0.1t per minute
+const rateFunction = (t: number) => 2 + 0.1 * t;
+
+const futurePrice = rateSystem.integrateRate(
+  100,                    // Initial value
+  rateFunction,           // Rate of change
+  0,                      // Start now
+  10                      // Predict 10 minutes
+); // Result: 100 + 25 = $125`} lang="typescript" />
+              <p class="text-sm text-blue-800 mt-2">
+                <strong>Result:</strong> The system predicts $125 in 10 minutes, accounting
+                for accelerating growth.
+              </p>
+            </div>
+          </div>
+
+          <!-- Deadband Mathematics -->
+          <div>
+            <h3 class="heading-3 mb-4">Rate Deadbands: Filtering Noise</h3>
+            <p class="text-body mb-4">
+              Not every rate change matters. Deadbands filter out noise while keeping real signals:
+            </p>
+
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Deadband Implementation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`export interface DeadbandConfig {
+  type: 'fixed' | 'statistical' | 'adaptive';
+  lowerBound: number;
+  upperBound: number;
+  alpha?: number;   // Smoothing factor
+  minWidth?: number;
+}
+
+checkAnomaly(
+  rate: number,
+  stats: RateStatistics,
+  config: DeadbandConfig
+): { isAnomaly: boolean; deviation: number } {
+
+  switch (config.type) {
+    case 'fixed':
+      return {
+        isAnomaly: rate < config.lowerBound || rate > config.upperBound,
+        deviation: 0 // Calculate as needed
+      };
+
+    case 'statistical':
+      // 3-sigma rule: covers ~99.7% of normal data
+      const lower = stats.mean - config.lowerBound * stats.stdDev;
+      const upper = stats.mean + config.upperBound * stats.stdDev;
+
+      return {
+        isAnomaly: rate < lower || rate > upper,
+        deviation: Math.min(lower - rate, rate - upper)
+      };
+  }
+}`} lang="typescript" />
+              </CardContent>
+            </Card>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+              <Card hover>
+                <CardHeader>
+                  <CardTitle>Fixed Deadband</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p class="text-sm text-gray-600 mb-3">Simple threshold-based filtering</p>
+                  <CodeBlock code={`// Ignore rate changes between -5 and +5
+setDeadband(cell, {
+  type: 'fixed',
+  lowerBound: -5,
+  upperBound: 5
+});`} lang="typescript" />
+                </CardContent>
+              </Card>
+
+              <Card hover>
+                <CardHeader>
+                  <CardTitle>Statistical Deadband</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p class="text-sm text-gray-600 mb-3">Adapts to historical behavior</p>
+                  <CodeBlock code={`// 3-sigma rule
+setDeadband(cell, {
+  type: 'statistical',
+  lowerBound: 3,  // 3σ below mean
+  upperBound: 3   // 3σ above mean
+});`} lang="typescript" />
+                </CardContent>
+              </Card>
+
+              <Card hover>
+                <CardHeader>
+                  <CardTitle>Adaptive Deadband</CardTitle⌾
+                </CardHeader>
+                <CardContent>
+                  <p class="text-sm text-gray-600 mb-3">Smoothly adjusts to trends</p>
+                  <CodeBlock code={`// Adapts to changing conditions
+setDeadband(cell, {
+  type: 'adaptive',
+  alpha: 0.1,     // Smoothing factor
+  minWidth: 2     // Don't get too tight
+});`} lang="typescript" />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        <!-- Higher-Order Derivatives -->
+        <div>
+          <h2 class="heading-2 mb-6">Higher-Order Derivatives: Velocity to Snap</h2>
+
+          <p class="text-body mb-6">
+            Financial markets don't just have velocity - they have acceleration, jerk, and snap.
+            These higher derivatives give early warning of trend changes.
+          </p>
+
+          <Card hover className="mb-6">
+            <CardHeader>
+              <CardTitle>Computing All Six Derivatives</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock code={`processValue(
+  ref: CellReference,
+  value: number,
+  timestamp: number
+): RateHistoryEntry {
+  const history = this.getHistory(ref);
+  const previousEntry = history[history.length - 1];
+
+  if (!previousEntry || !history.length >= 6) {
+    // Need enough history for higher derivatives
+    return {
+      timestamp,
+      value,
+      rate: 0,                    // First derivative
+      acceleration: 0,            // Second derivative
+      jerk: 0,                    // Third derivative
+      snap: 0,                    // Fourth derivative
+      crackle: 0,                 // Fifth derivative
+      pop: 0                      // Sixth derivative
+    };
+  }
+
+  // Time differences
+  const dt = timestamp - previousEntry.timestamp;
+
+  // First derivative (velocity)
+  const rate = (value - previousEntry.value) / dt;
+
+  // Second derivative (acceleration)
+  const rateChange = rate - previousEntry.rate;
+  const acceleration = rateChange / dt;
+
+  // Third derivative (jerk) and higher...
+  const accelChange = acceleration - previousEntry.acceleration;
+  const jerk = accelChange / dt;
+
+  const jerkChange = jerk - previousEntry.jerk;
+  const snap = jerkChange / dt;
+
+  const snapChange = snap - previousEntry.snap;
+  const crackle = snapChange / dt;
+
+  const crackleChange = crackle - previousEntry.crackle;
+  const pop = crackleChange / dt;
+
+  return {
+    timestamp, value, rate,
+    acceleration, jerk, snap,
+    crackle, pop
+  };
+}`} lang="typescript" />
+            </CardContent>
+          </Card>
+
+          <div class="bg-gray-900 text-gray-100 rounded-lg p-6 mb-8">
+            <h4 class="text-green-400 mb-3">Real-World Interpretation</h4>
+            <CodeBlock code={`// Market Data Interpretation
+// "Apple stock changed from 150 to 153 in 1 hour"
+
+const analysis = rateSystem.processValue(cell, 153, Date.now());
+console.log(\`
+Velocity (rate):       \${analysis.rate}\$/hr        // Heading up
+Acceleration:          \${analysis.acceleration}\$/hr²    // Speeding up
+Jerk:                  \${analysis.jerk}\$/hr³      // Change in acceleration
+Snap:                  \${analysis.snap}\$/hr⁴     // Critical for trend breaks
+\`);
+
+// What this tells us:
+// • Rate > 0: Price is rising
+// • Acceleration > 0: Rise is speeding up
+// • Jerk > 0: Speed-up is accelerating (monotonic)
+// • Snap < 0: Trend might break soon`} lang="typescript" theme="dark" />
+          </div>
+
+          <h3 class="heading-3 mb-4">Predictive Analytics</h3>
+          <p class="text-body mb-4">
+            Use higher derivatives to predict future values more accurately:
+          </p>
+
+          <Card hover>
+            <CardHeader>
+              <CardTitle>The Complete Taylor Expansion</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock code={`/**
+ * Theorem 7.3: Taylor Expansion with Rates
+ * x(t+Δt) = x(t) + rΔt + ½aΔt² + (1/6)jΔt³ + (1/24)sΔt⁴ + ...
+ *
+ * Each term adds precision to our prediction:
+ * • rΔt: Where we're heading
+ * • ½aΔt²: How we're speeding up/slowing down
+ * • (1/6)jΔt³: How acceleration is changing
+ * • (1/24)sΔt⁴: Early warning of trend breaks
+ */
+predictState(
+  currentState: number,
+  rates: {
+    velocity?: number;
+    acceleration?: number;
+    jerk?: number;
+    snap?: number;
+    crackle?: number;
+    pop?: number;
+  },
+  timeStep: number
+): number {
+  let prediction = currentState;
+
+  // First derivative (velocity)
+  if (rates.velocity !== undefined) {
+    prediction += rates.velocity * timeStep;
+  }
+
+  // Second derivative (acceleration)
+  if (rates.acceleration !== undefined) {
+    prediction += 0.5 * rates.acceleration * timeStep * timeStep;
+  }
+
+  // Third derivative (jerk)
+  if (rates.jerk !== undefined) {
+    prediction += (1/6) * rates.jerk * Math.pow(timeStep, 3);
+  }
+
+  // Fourth derivative (snap) - CRITICAL for trend detection!
+  if (rates.snap !== undefined) {
+    prediction += (1/24) * rates.snap * Math.pow(timeStep, 4);
+  }
+
+  // Higher derivatives for more precision...
+  if (rates.crackle !== undefined) {
+    prediction += (1/120) * rates.crackle * Math.pow(timeStep, 5);
+  }
+
+  if (rates.pop !== undefined) {
+    prediction += (1/720) * rates.pop * Math.pow(timeStep, 6);
+  }
+
+  return prediction;
+}`} lang="typescript" />
+            </CardContent>
+          </Card>
+
+          <div class="bg-yellow-50 rounded-lg p-4 mb-6">
+            <h4 class="font-semibold text-yellow-900 mb-2">Prediction Example</h4>
+            <CodeBlock code={`// Current: Google at $2800
+// Rate: +$50/hour
+// Acceleration: +$5/hour²
+// Snap: -$2/hour⁴ (trend weakening)
+
+const prediction = rateSystem.predictState(2800, {
+  velocity: 50,        // Rising
+  acceleration: 5,     // Rising faster
+  snap: -2             // BUT upward trend is weakening
+}, 1); // Predict 1 hour ahead
+
+// Result: ~2855.9 (vs 2855 with velocity only)
+// The snap term reduces prediction by >$5!`} lang="typescript" />
+            <p class="text-sm text-yellow-800 mt-2">
+              <strong>Key Insight:</strong> The negative snap term indicates the upward trend
+              is weakening - a potential reversal signal.
+            </p>
+          </div>
+        </div>
+
+        <!-- Chaos and Uncertainty -->
+        <div>
+          <h2 class="heading-2 mb-6">Managing Chaos and Uncertainty</h2>
+
+          <p class="text-body mb-6">
+            Real systems are chaotic. Rate-based mechanics help quantify and manage this uncertainty.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Chaos Detection</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`// Lyapunov exponent for chaos detection
+export function computeLyapunovExponent(
+  rates: number[]
+): number {
+  // Measure divergence of initially
+  // close trajectories
+  const n = rates.length;
+  let sum = 0;
+
+  for (let i = 1; i < n; i++) {
+    const divergence = Math.log(
+      Math.abs(rates[i] - rates[i-1])
+    );
+    sum += divergence;
+  }
+
+  return sum / (n - 1);
+}
+
+// λ > 0: Chaotic behavior
+// λ ≈ 0: Neutral stability
+// λ < 0: Stable convergence`} lang="typescript" />
+              </CardContent>
+            </Card>
+
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Uncertainty Quantification</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`// Track prediction uncertainty
+export interface PredictionWithUncertainty {
+  value: number;
+  uncertainty: number;    // Standard deviation
+  confidence: number;     // 0-1
+  factors: {
+    measurement: number;  // Sensor uncertainty
+    model: number;       // Model inaccuracy
+    chaos: number;       // Chaos-driven growth
+    horizon: number;     // Time-horizon factor
+  };
+}`} lang="typescript" />
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>Complete Uncertainty Management</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock code={`/**
+ * Compute prediction with full uncertainty analysis
+ */
+function predictWithUncertainty(
+  current: RateHistoryEntry,
+  history: RateHistoryEntry[],
+  horizon: number
+): PredictionWithUncertainty {
+  // Base prediction (6th order Taylor)
+  const value = predictState(current.value, {
+    velocity: current.rate,
+    acceleration: current.acceleration,
+    jerk: current.jerk,
+    snap: current.snap,
+    crackle: current.crackle,
+    pop: current.pop
+  }, horizon);
+
+  // Measure chaos in system
+  const lyapunov = computeLyapunovExponent(
+    history.map(h => h.rate)
+  );
+
+  // Model uncertainty grows with time and chaos
+  const chaosGrowth = Math.exp(lyapunov * horizon);
+
+  // Total uncertainty = measurement + model + chaos
+  const uncertainty = Math.sqrt(
+    measurementError**2 +
+    Math.pow(modelUncertainty * horizon, 2) +
+    Math.pow(chaosSpread * chaosGrowth, 2)
+  );
+
+  // Confidence decreases with uncertainty
+  const confidence = Math.max(0, 1 - uncertainty / tolerance);
+
+  return {
+    value,
+    uncertainty,
+    confidence,
+    factors: {
+      measurement: measurementError,
+      model: modelUncertainty * horizon,
+      chaos: chaosSpread * chaosGrowth,
+      horizon: horizonFactor(horizon)
+    }
+  };
+}`} lang="typescript" />
+            </CardContent>
+          </Card>
+
+          <div class="bg-red-50 rounded-lg p-4">
+            <h4 class="font-semibold text-red-900 mb-2">Red Alert Scenario</h4>
+            <CodeBlock code={`// Tesla stock showing chaotic behavior
+const history = rateSystem.getHistory(teslaCell);
+const prediction = predictWithUncertainty(
+  last(history)!,
+  history.slice(-20),
+  1 // Predict 1 hour ahead
+);
+
+// Result:
+// value: 910.5
+// uncertainty: 45.2
+// confidence: 0.32
+// factors: {
+//   measurement: 0.5,
+//   model: 2.1,
+//   chaos: 42.6,  // Chaos dominates!
+//   horizon: 1.0
+// }
+
+// Take action: Low confidence - widen stop-loss
+setStopLoss(widerRange);
+reducePositionSize();`} lang="typescript" />
+            <p class="text-sm text-red-800 mt-2">
+              <strong>Critical:</strong> Chaos accounts for 94% of uncertainty!
+              Automatic position reduction triggered.
+            </p>
+          </div>
+        </div>
+
+        <!-- Practical Applications -->
+        <div>
+          <h2 class="heading-2 mb-6">Practical Applications</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Smart Inventory Management</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-gray-600 text-sm mb-3">Predict sales and optimize stock:</p>
+                <CodeBlock code={`// Monitor sales rate changes
+A1: "Sales rate: 54/hour"
+A2: "Rate acceleration: +2/hour²"
+A3: "Snap: -0.3/hour⁴"
+A4: =PREDICT_STOCK(A1, A2, A3)
+// Output: "Reorder in 2 hours"`} lang="javascript" />
+              </CardContent>
+            </Card>
+
+            <Card hover>
+              <CardHeader>
+                <CardTitle>System Performance</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-gray-600 text-sm mb-3">Detect performance degradation:</p>
+                <CodeBlock code={`// Track API response times
+B1: "Response rate: -4ms/hour"
+B2: "Acceleration: -2ms/hour²"
+B3: =PREDICT_FAILURE(B1, B2, t=6)
+// Output: "Capacity breach in 6 hours"`} lang="javascript" />
+              </CardContent>
+            </Card>
+
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Energy Consumption</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-gray-600 text-sm mb-3">Optimize energy usage:</p>
+                <CodeBlock code={`// Monitor rate changes in energy use
+C1: "Usage rate: 12kW/hour"
+C2: "Jerk: -1.8kW/hour³"
+C3: =OPTIMIZE_THERMOSTAT(C1, C2)
+// Output: "Reduce by 2° at 2pm"`} lang="javascript" />
+              </CardContent>
+            </Card>
+
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Quality Control</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="text-gray-600 text-sm mb-3">Detect quality drift:</p>
+                <CodeBlock code={`// Manufacturing defect rates
+D1: "Defect rate: 0.05/hour"
+D2: "Acceleration: +0.02/hour²"
+D3: =INSPECT_MACHINES(D1, D2)
+// Output: "Schedule maintenance now"`} lang="javascript" />
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div>
+          <h2 class="heading-2 mb-6">Next Steps</h2>
+
+          <div class="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-8 text-white">
+            <h3 class="text-2xl font-bold mb-4">Mastered Rate-Based Change?</h3>
+            <p class="text-lg mb-6 opacity-90">
+              You're ready to build truly adaptive systems!
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4"
+              <a href="/docs/tutorials/advanced/building-confidence-cascades" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors">
+                <h4 class="font-semibold mb-2">Confidence Cascades</h4>
+                <p class="text-sm opacity-90">Build reliable decision systems</p>
+              </a>
+              <a href="/docs/tutorials/advanced/working-with-ocds" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors">
+                <h4 class="font-semibold mb-2">OCDS</h4>
+                <p class="text-sm opacity-90">Distributed without globals</p>
+              </a>
+              <a href="/docs/api/rate-based-api" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors">
+                <h4 class="font-semibold mb-2">API Reference</h4>
+                <p class="text-sm opacity-90">Complete rate system API</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
