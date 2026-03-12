@@ -1,0 +1,64 @@
+{
+  "name": "@superinstance/voxel-logic",
+  "version": "1.0.0",
+  "description": "3D voxel-based logic system for spatial reasoning and geometric computation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "voxel",
+    "3d-logic",
+    "spatial-computation",
+    "geometric-reasoning",
+    "voxel-manipulation",
+    "3d-algorithms",
+    "spatial-data-structures"
+  ],
+  "author": "SuperInstance <dev@superinstance.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SuperInstance/voxel-logic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SuperInstance/voxel-logic/issues"
+  },
+  "homepage": "https://github.com/SuperInstance/voxel-logic#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ]
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
