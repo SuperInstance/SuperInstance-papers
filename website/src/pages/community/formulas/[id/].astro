@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { FormulaDetail } from '../../../components/community/FormulaDetail';
+
+const { id } = Astro.params;
+const apiBase = import.meta.env.API_BASE_URL || 'https://api.superinstance.ai';
+---
+
+<BaseLayout>
+  <main class="min-h-screen bg-gray-50">
+    <FormulaDetail id={id} apiBase={apiBase} client:load />
+  </main>
+</BaseLayout>
