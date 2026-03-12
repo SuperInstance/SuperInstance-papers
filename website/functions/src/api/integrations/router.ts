@@ -1,7 +1,9 @@
 import { Hono } from 'hono'
 import { type Env } from '../../env.d.ts'
 import { requireAuth } from '../../shared/auth'
-import { validateRequest, userPreferenceSchema, newsletterSignupSchema } from '../../shared/validation'
+import { validateRequest, userPreferenceSchema, newsletterSignupSchema, eventSchema } from '../../shared/validation'
+import { createCheckoutSessionSchema, setupIntentSchema, customerPortalSchema } from './stripe'
+import { oauthCallbackSchema, oauthConnectSchema } from './oauth'
 
 const router = new Hono<{ Bindings: Env }>()
 
@@ -227,6 +229,157 @@ router.get('/github/repos', async (c) => {
   }
 })
 
+// Stripe payment integrations
+router.post('/stripe/checkout', requireAuth, async (c) => {
+  const validation = await validateRequest(createCheckoutSessionSchema, c)
+  if (!validation.success) return validation.response
+
+  const { priceId, successUrl, cancelUrl, metadata } = validation.data
+
+  try {
+    const Stripe = (await import('stripe')).default
+    const stripe = new Stripe(c.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-12-18.acacia',
+      maxNetworkRetries: 2,
+    })
+
+    const user = c.get('user')
+
+    // Create or retrieve customer
+    let customerId = metadata?.customerId
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: user.email,
+        metadata: {
+          userId: user.userId,
+          ...metadata
+        }
+      })
+      customerId = customer.id
+    }
+
+    // Create checkout session
+    const session = await stripe.checkout.sessions.create({
+      customer: customerId,
+      mode: 'subscription',
+      line_items: [{
+        price: priceId,
+        quantity: 1,
+      }],
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+      metadata: {
+        userId: user.userId,
+        ...metadata
+      },
+      billing_address_collection: 'required',
+      customer_update: {
+        address: 'auto'
+      }
+    })
+
+    return c.json({
+      success: true,
+      data: {
+        sessionId: session.id,
+        url: session.url
+      }
+    })
+  } catch (error) {
+    console.error('Stripe checkout error:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to create checkout session'
+    }, 500)
+  }
+})
+
+// Stripe webhook handler
+router.post('/stripe/webhook', async (c) => {
+  const body = await c.req.text()
+  const signature = c.req.header('stripe-signature')
+
+  if (!signature) {
+    return c.json({ error: 'Missing signature' }, 400)
+  }
+
+  try {
+    const Stripe = (await import('stripe')).default
+    const stripe = new Stripe(c.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-12-18.acacia',
+      maxNetworkRetries: 2,
+    })
+
+    const event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      c.env.STRIPE_WEBHOOK_SECRET
+    )
+
+    // Handle the event
+    switch (event.type) {
+      case 'checkout.session.completed':
+        const session = event.data.object
+        await handleSubscriptionCreated(session)
+        break
+
+      case 'customer.subscription.deleted':
+        const subscription = event.data.object
+        await handleSubscriptionCancelled(subscription)
+        break
+
+      case 'invoice.payment_succeeded':
+        const invoice = event.data.object
+        await handlePaymentSucceeded(invoice)
+        break
+
+      case 'invoice.payment_failed':
+        const failedInvoice = event.data.object
+        await handlePaymentFailed(failedInvoice)
+        break
+    }
+
+    return c.json({ received: true })
+  } catch (error) {
+    console.error('Webhook error:', error)
+    return c.json({ error: 'Webhook error' }, 400)
+  }
+})
+
+// Get customer portal session
+router.post('/stripe/portal', requireAuth, async (c) => {
+  const validation = await validateRequest(customerPortalSchema, c)
+  if (!validation.success) return validation.response
+
+  const { returnUrl, customerId } = validation.data
+
+  try {
+    const Stripe = (await import('stripe')).default
+    const stripe = new Stripe(c.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-12-18.acacia',
+      maxNetworkRetries: 2,
+    })
+
+    const session = await stripe.billingPortal.sessions.create({
+      customer: customerId,
+      return_url: returnUrl,
+    })
+
+    return c.json({
+      success: true,
+      data: {
+        url: session.url
+      }
+    })
+  } catch (error) {
+    console.error('Stripe portal error:', error)
+    return c.json({
+      error: 'Internal Error',
+      message: 'Failed to create customer portal session'
+    }, 500)
+  }
+})
+
 // Analytics integration endpoint
 router.post('/analytics/track', async (c) => {
   const validation = await validateRequest(eventSchema, c)
@@ -350,6 +503,30 @@ async function updateRealtimeAnalytics(path: string, userId: string | null, env:
   // Track popular pages
   const popularKey = key + `:page:${path}`
   await env.CACHE.increment(popularKey)
+}
+
+// Stripe webhook handlers
+async function handleSubscriptionCreated(session: any) {
+  const userId = session.metadata?.userId
+  if (userId) {
+    // Update user subscription status in database
+    console.log('Subscription created for user:', userId)
+  }
+}
+
+async function handleSubscriptionCancelled(subscription: any) {
+  const customerId = subscription.customer
+  console.log('Subscription cancelled for customer:', customerId)
+}
+
+async function handlePaymentSucceeded(invoice: any) {
+  const customerId = invoice.customer
+  console.log('Payment succeeded for customer:', customerId)
+}
+
+async function handlePaymentFailed(invoice: any) {
+  const customerId = invoice.customer
+  console.log('Payment failed for customer:', customerId)
 }
 
 export default router

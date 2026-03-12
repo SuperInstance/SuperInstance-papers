@@ -10,6 +10,9 @@ export interface Env {
   BUTTONDOWN_API_KEY?: string
   GITHUB_TOKEN?: string
   PLAUSIBLE_API_KEY?: string
+  STRIPE_SECRET_KEY?: string
+  STRIPE_PUBLISHABLE_KEY?: string
+  STRIPE_WEBHOOK_SECRET?: string
 
   // Site configuration
   SITE_URL: string
