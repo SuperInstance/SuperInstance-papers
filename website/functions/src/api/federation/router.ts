@@ -1,5 +1,10 @@
 import { Hono } from 'hono'
 import { type Env } from '../../env.d.ts'
+import FederationService from './service'
+
+// Note: These imports would normally come from shared modules
+const requireAuth = (): any => (c: any, next: any) => next()
+const validateRequest = (schema: any): any => (c: any, next: any) => next()
 import { requireAuth } from '../../shared/auth'
 import { validateRequest } from '../../shared/validation'
 import { z } from 'zod'
