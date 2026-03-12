@@ -5,4 +5,3 @@
  */
 
 export * from './stigmergy.js';
-export { default } from './stigmergy.js';

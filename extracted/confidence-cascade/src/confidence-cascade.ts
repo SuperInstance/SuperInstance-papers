@@ -464,20 +464,16 @@ export function fraudDetectionCascade(
 
   // Step 2: Conditional based on transaction amount
   let pathConfidence: number;
-  let pathDescription: string;
 
   if (signals.transactionAmount < 1000) {
     // Small transactions - lower bar
     pathConfidence = 0.85;
-    pathDescription = 'small_transaction';
   } else if (signals.transactionAmount < 10000) {
     // Medium transactions - medium bar
     pathConfidence = 0.90;
-    pathDescription = 'medium_transaction';
   } else {
     // Large transactions - high bar
     pathConfidence = 0.95;
-    pathDescription = 'large_transaction';
   }
 
   const conditionalResult = conditionalCascade([
@@ -498,13 +494,14 @@ export function fraudDetectionCascade(
     }
   ], finalConfig);
 
-  // Step 3: Sequential cascade combining parallel + conditional + location
+  // Step 3: Location check
   const locationConfidence = createConfidence(
     signals.userLocationMatch ? 0.95 : 0.50,
     'location_check',
     finalConfig
   );
 
+  // Step 4: Final sequential cascade
   const finalResult = sequentialCascade([
     parallelResult.confidence,
     conditionalResult.confidence,
