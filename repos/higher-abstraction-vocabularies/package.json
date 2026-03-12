@@ -1,0 +1,56 @@
+{
+  "name": "higher-abstraction-vocabularies",
+  "version": "1.0.0",
+  "description": "Generate and manage high-level vocabulary terms for complex computational concepts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "vocabulary",
+    "abstraction",
+    "language",
+    "patterns",
+    "naming",
+    "semantics",
+    "ontology",
+    "taxonomy",
+    "linguistics",
+    "classification"
+  ],
+  "author": "SuperInstance <team@superinstance.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuperInstance/higher-abstraction-vocabularies.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SuperInstance/higher-abstraction-vocabularies/issues"
+  },
+  "homepage": "https://github.com/SuperInstance/higher-abstraction-vocabularies#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "eslint": "^8.37.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {},
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

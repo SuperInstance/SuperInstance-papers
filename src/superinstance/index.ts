@@ -16,6 +16,11 @@ export * from './types/base';
 export { ConcreteDataBlockInstance as DataBlockInstance } from './instances/DataBlockInstance';
 export { ConcreteProcessInstance as ProcessInstance } from './instances/ProcessInstance';
 export { ConcreteLearningAgentInstance as LearningAgentInstance } from './instances/LearningAgentInstance';
+export { ConcreteViewPortInstance as ViewPortInstance } from './instances/ViewPortInstance';
+export { ConcreteConnectorInstance as ConnectorInstance } from './instances/ConnectorInstance';
+export { ConcreteValidatorInstance as ValidatorInstance } from './instances/ValidatorInstance';
+export { ConcreteTriggerInstance as TriggerInstance } from './instances/TriggerInstance';
+export { ConcreteCacheInstance as CacheInstance } from './instances/CacheInstance';
 
 // Export validation engine
 export { SuperInstanceValidator } from './validation/SuperInstanceValidator';
@@ -158,6 +163,62 @@ export class SuperInstanceFactory {
           configuration: config.configuration
         });
 
+      case InstanceType.VIEWPORT:
+        return new ConcreteViewPortInstance({
+          id: config.id,
+          name: config.name,
+          description: config.description,
+          cellPosition: config.cellPosition,
+          spreadsheetId: config.spreadsheetId,
+          viewportConfig: config.viewportConfig,
+          dataBindings: config.dataBindings,
+          configuration: config.configuration
+        });
+
+      case InstanceType.CONNECTOR:
+        return new ConcreteConnectorInstance({
+          id: config.id,
+          name: config.name,
+          description: config.description,
+          cellPosition: config.cellPosition,
+          spreadsheetId: config.spreadsheetId,
+          connectorConfig: config.connectorConfig,
+          configuration: config.configuration
+        });
+
+      case InstanceType.VALIDATOR:
+        return new ConcreteValidatorInstance({
+          id: config.id,
+          name: config.name,
+          description: config.description,
+          cellPosition: config.cellPosition,
+          spreadsheetId: config.spreadsheetId,
+          rulebook: config.rulebook,
+          configuration: config.configuration
+        });
+
+      case InstanceType.TRIGGER:
+        return new ConcreteTriggerInstance({
+          id: config.id,
+          name: config.name,
+          description: config.description,
+          cellPosition: config.cellPosition,
+          spreadsheetId: config.spreadsheetId,
+          triggerConfig: config.triggerConfig,
+          configuration: config.configuration
+        });
+
+      case InstanceType.CACHE:
+        return new ConcreteCacheInstance({
+          id: config.id,
+          name: config.name,
+          description: config.description,
+          cellPosition: config.cellPosition,
+          spreadsheetId: config.spreadsheetId,
+          policy: config.policy,
+          configuration: config.configuration
+        });
+
       default:
         throw new Error(`Instance type ${config.type} not yet implemented`);
     }
@@ -179,6 +240,11 @@ export class SuperInstanceFactory {
       InstanceType.DATA_BLOCK,
       InstanceType.PROCESS,
       InstanceType.LEARNING_AGENT,
+      InstanceType.VIEWPORT,
+      InstanceType.CONNECTOR,
+      InstanceType.VALIDATOR,
+      InstanceType.TRIGGER,
+      InstanceType.CACHE,
       InstanceType.FILE,
       InstanceType.DATABASE,
       InstanceType.TERMINAL,
@@ -218,6 +284,46 @@ export class SuperInstanceFactory {
         capabilities: ['learning', 'reasoning', 'generation', 'computation'],
         defaultConfiguration: {
           resources: { cpu: 30, memory: 1000, storage: 5000, network: 100, gpu: 50 }
+        }
+      },
+      [InstanceType.VIEWPORT]: {
+        name: 'ViewPort',
+        description: 'Data visualization and rendering',
+        capabilities: ['read', 'write', 'composition', 'computation'],
+        defaultConfiguration: {
+          resources: { cpu: 15, memory: 300, storage: 500, network: 20 }
+        }
+      },
+      [InstanceType.CONNECTOR]: {
+        name: 'Connector',
+        description: 'External system integration',
+        capabilities: ['network', 'communication', 'composition'],
+        defaultConfiguration: {
+          resources: { cpu: 10, memory: 200, storage: 200, network: 100 }
+        }
+      },
+      [InstanceType.VALIDATOR]: {
+        name: 'Validator',
+        description: 'Data validation and constraint checking',
+        capabilities: ['read', 'composition', 'computation'],
+        defaultConfiguration: {
+          resources: { cpu: 5, memory: 150, storage: 100, network: 1 }
+        }
+      },
+      [InstanceType.TRIGGER]: {
+        name: 'Trigger',
+        description: 'Event-driven action execution',
+        capabilities: ['monitoring', 'composition'],
+        defaultConfiguration: {
+          resources: { cpu: 2, memory: 50, storage: 50, network: 5 }
+        }
+      },
+      [InstanceType.CACHE]: {
+        name: 'Cache',
+        description: 'Performance optimization through data caching',
+        capabilities: ['read', 'write', 'storage'],
+        defaultConfiguration: {
+          resources: { cpu: 5, memory: 200, storage: 1000, network: 10 }
         }
       },
       [InstanceType.FILE]: {
