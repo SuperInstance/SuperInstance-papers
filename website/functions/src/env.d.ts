@@ -5,14 +5,26 @@ export interface Env {
   // Secrets
   JWT_SECRET: string
   ADMIN_API_KEY?: string
+  API_BASE_URL?: string
 
   // Third-party API keys
   BUTTONDOWN_API_KEY?: string
   GITHUB_TOKEN?: string
+  GITHUB_OAUTH_CLIENT_ID?: string
+  GITHUB_OAUTH_CLIENT_SECRET?: string
   PLAUSIBLE_API_KEY?: string
   STRIPE_SECRET_KEY?: string
   STRIPE_PUBLISHABLE_KEY?: string
   STRIPE_WEBHOOK_SECRET?: string
+  GOOGLE_CLIENT_ID?: string
+  GOOGLE_CLIENT_SECRET?: string
+  MICROSOFT_CLIENT_ID?: string
+  MICROSOFT_CLIENT_SECRET?: string  // or MICROSOFT_TENANT_ID
+  SENDGRID_API_KEY?: string
+  SENTRY_DSN_KEY?: string
+  SENTRY_PROJECT_ID?: string
+  SENTRY_INGEST_URL?: string
+  CALENDLY_API_KEY?: string
 
   // Site configuration
   SITE_URL: string
