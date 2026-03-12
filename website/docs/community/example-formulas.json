@@ -1,0 +1,330 @@
+[
+  {
+    "id": "ai-formula-generator",
+    "title": "Excel AI Formula Generator",
+    "description": "Convert natural language instructions into Excel formulas using AI. Simply describe what you want to calculate, and this formula generates the appropriate Excel syntax.",
+    "formulaType": "AI Assistant",
+    "formulaCode": "=AI_FORMULA(input, context_column_range)\n\nExample usage:\n=AI_FORMULA(\"Sum all sales for Q1 where region is North\", B2:F100)\n\nResult: SUM(FILTER(B2:F100, (MONTH(A2:A100)<=3)*(C2:C100=\"North\")))",
+    "parameters": [
+      {
+        "name": "input",
+        "type": "string",
+        "description": "Natural language description of what you want to calculate",
+        "required": true
+      },
+      {
+        "name": "context_column_range",
+        "type": "range",
+        "description": "Range containing potentially relevant data columns",
+        "required": false
+      }
+    ],
+    "tags": ["AI", "Natural Language", "Formula Generation", "Beginner Friendly"],
+    "visibility": "public",
+    "author_username": "casey_d",
+    "author_display_name": "Casey DiGennaro",
+    "rating": 4.8,
+    "usage_count": 127
+  },
+  {
+    "id": "multi-objective-optimizer",
+    "title": "Multi-Objective Optimization Solver",
+    "description": "Advanced optimization engine that finds the best solution across multiple conflicting objectives. Perfect for resource allocation, scheduling, and investment decisions.",
+    "formulaType": "Optimization",
+    "formulaCode": "=MULTI_OPTIMIZE(objectives, constraints, variable_range)\n\nExample usage for Portfolio Optimization:\nObjective 1: Maximize returns: SUMPRODUCT(weights, expected_returns)\nObjective 2: Minimize risk: MMULT(TRANSPOSE(weights), covariance_matrix, weights)\n\n=MULTI_OPTIMIZE(\n  A1:B2, // Objectives: [Max_Returns, Min_Risk]\n  A4:B6, // Constraints: [Total_Weights=100%, Min_Allocation_per_Asset>0]\n  C1:C10  // Variable cells: weights
+)",
+    "parameters": [
+      {
+        "name": "objectives",
+        "type": "range",
+        "description": "Range defining optimization objectives [direction, formula]",
+        "required": true
+      },
+      {
+        "name": "constraints",
+        "type": "range",
+        "description": "Range defining constraints [relationship, formula, rhs_value]",
+        "required": true
+      },
+      {
+        "name": "variable_range",
+        "type": "range",
+        "description": "Cells to optimize (will be modified by solver)",
+        "required": true
+      }
+    ],
+    "tags": ["Optimization", "Advanced", "Portfolio", "Resource Planning", "AI"],
+    "visibility": "public",
+    "author_username": "research_ai",
+    "author_display_name": "Research AI Team",
+    "rating": 4.9,
+    "usage_count": 89
+  },
+  {
+    "id": "financial-planning-dashboard",
+    "title": "Comprehensive Retirement Planning Dashboard",
+    "description": "All-in-one retirement calculator with Monte Carlo simulation, inflation adjustment, and dynamic withdrawal strategies. Accounts for market volatility and provides probability-based projections.",
+    "formulaType": "Financial",
+    "formulaCode": "=RETIREMENT_PLAN(age, retirement_age, current_savings, annual_contribution, expected_return, inflation_rate, withdrawal_rate, scenarios)\n\n// Monte Carlo simulation for retirement planning\n=RETIREMENT_PLAN(\n  A1, // Current age: 30\n  B1, // Retirement age: 65\n  C1, // Current savings: $100,000\n  D1, // Annual contribution: $15,000\n  E1, // Expected return: 7%\n  F1, // Inflation rate: 3%\n  G1, // Withdrawal rate: 4%\n  H1  // Monte Carlo scenarios: 10,000\n)\n\n// Returns: [Success Rate %, Median Retirement Balance, Worst Case, Best Case]",
+    "parameters": [
+      {
+        "name": "age",
+        "type": "number",
+        "description": "Current age",
+        "required": true
+      },
+      {
+        "name": "retirement_age",
+        "type": "number",
+        "description": "Target retirement age",
+        "required": true
+      },
+      {
+        "name": "current_savings",
+        "type": "number",
+        "description": "Current retirement savings amount",
+        "required": true
+      },
+      {
+        "name": "annual_contribution",
+        "type": "number",
+        "description": "Annual contribution to retirement savings",
+        "required": true
+      },
+      {
+        "name": "withdrawal_rate",
+        "type": "number",
+        "description": "Percentage to withdraw annually in retirement",
+        "required": true
+      }
+    ],
+    "tags": ["Finance", "Retirement", "Monte Carlo", "Planning", "Simulation"],
+    "visibility": "public",
+    "author_username": "finance_expert",
+    "author_display_name": "Finance Wizard",
+    "rating": 4.7,
+    "usage_count": 156
+  },
+  {
+    "id": "data-cleaning-ai",
+    "title": "Intelligent Data Cleaning Automation",
+    "description": "Automatically detect and fix common data quality issues including duplicates, typos, missing values, and outliers. Uses machine learning to understand data patterns.",
+    "formulaType": "Data Cleanup",
+    "formulaCode": "=CLEAN_DATA(data_range, algorithm_type, confidence_threshold)\n\n// Advanced duplicate detection with fuzzy matching\n=CLEAN_DATA(A2:D100, \"DUPLICATE_DETECTION\", 0.85)\n\n// Auto-fill missing values based on patterns\n=CLEAN_DATA(B2:C100, \"MISSING_VALUE_IMPUTATION\", 0.90)\n\n// Remove outliers based on statistical methods\n=CLEAN_DATA(D2:D100, \"OUTLIER_REMOVAL\", 0.95)\n\n// Apply multiple cleaning steps\n=CLEAN_DATA(A2:E100, \"FULL_CLEANUP\", 0.92)\n\n// Returns: Cleaned data array + summary report",
+    "parameters": [
+      {
+        "name": "data_range",
+        "type": "range",
+        "description": "Range containing data to clean",
+        "required": true
+      },
+      {
+        "name": "algorithm_type",
+        "type": "string",
+        "description": "Type of cleaning algorithm (duplicate_detection, missing_value_imputation, outlier_removal, full_cleanup)",
+        "required": true
+      },
+      {
+        "name": "confidence_threshold",
+        "type": "number",
+        "description": "Confidence level for data corrections (0.8-0.99)",
+        "required": false
+      }
+    ],
+    "tags": ["Data Cleaning", "AI", "Duplicates", "Missing Values", "Quality"],
+    "visibility": "public",
+    "author_username": "data_guru",
+    "author_display_name": "Data Wrangler",
+    "rating": 4.9,
+    "usage_count": 187
+  },
+  {
+    "id": "trend-analysis-toolkit",
+    "title": "Advanced Statistical Trend Analysis Toolkit",
+    "description": "Comprehensive trend analysis with automatic best-fit algorithm selection. Identifies seasonal patterns, outliers, and provides confidence intervals and prediction bounds.",
+    "formulaType": "Analytics",
+    "formulaCode": "=TREND_ANALYZE(data_series, mode, significance_level)\n\n// Auto-detect trend type and analyze\n=TREND_ANALYZE(B2:B365, \"AUTO_DETECT\", 0.95)\n\n// Multi-variate trend analysis\n=TREND_ANALYZE(B2:E365, \"MULTIVARIATE\", 0.90)\n\n// Seasonal decomposition\n=TREND_ANALYZE(A2:B365, \"SEASONAL\", 0.95)\n\n// Force linear trend\n=TREND_ANALYZE(B2:B100, \"LINEAR\", 0.95)\n\n// Returns: [Trend Type, Slope, Intercept, R² value, Confidence Intervals, Predictions]",
+    "parameters": [
+      {
+        "name": "data_series",
+        "type": "range",
+        "description": "Time series data (can include dates in first column)",
+        "required": true
+      },
+      {
+        "name": "mode",
+        "type": "string",
+        "description": "Analysis mode: auto_detect, linear, polynomial, exponential, seasonal, multivariate",
+        "required": true
+      },
+      {
+        "name": "significance_level",
+        "type": "number",
+        "description": "Statistical significance level for confidence intervals",
+        "required": false
+      }
+    ],
+    "tags": ["Statistics", "Trend", "Analytics", "Forecasting", "Time Series"],
+    "visibility": "public",
+    "author_username": "stats_master",
+    "author_display_name": "Statistics Master",
+    "rating": 4.6,
+    "usage_count": 93
+  },
+  {
+    "id": "inventory-ml-forecast",
+    "title": "AI-Powered Inventory Demand Forecasting",
+    "description": "Machine learning model for demand forecasting that combines historical sales, seasonality, promotions, and external factors. Reduces stockouts and excess inventory.",
+    "formulaType": "Inventory",
+    "formulaCode": "=FORECAST_DEMAND(\\n  historical_data,\\n  forecast_periods,\\n  algorithm='ml_ensemble',\\n  external_factors\\n)\\n\\n// Example with multi-product + events\\n=FORECAST_DEMAND(\\n  A2:C365, // Sales Date, Product, Quantity\\n  90,      // Forecast next 90 days\\n  \"automated_ml\",\\n  E2:G365  // External factors: competitor_promotions, weather, events\\n)\\n\\n// Returns:\\n// [Predicted_Demand, Confidence_Intervals, Safety_Stock_Level, Reorder_Point]",
+    "parameters": [
+      {
+        "name": "historical_data",
+        "type": "range",
+        "description": "Historical sales data with columns for date, product, quantity sold",
+        "required": true
+      },
+      {
+        "name": "forecast_periods",
+        "type": "number",
+        "description": "Number of future periods to forecast",
+        "required": true
+      },
+      {
+        "name": "algorithm",
+        "type": "string",
+        "description": "Forecasting algorithm: ml_ensemble, sarima, prophet, automated_ml",
+        "required": false
+      },
+      {
+        "name": "external_factors",
+        "type": "range",
+        "description": "External influencing factors (weather, promotions, events, etc.)",
+        "required": false
+      }
+    ],
+    "tags": ["Inventory", "Forecasting", "Machine Learning", "Demand", "Supply Chain"],
+    "visibility": "public",
+    "author_username": "supply_chain_ai",
+    "author_display_name": "Supply Chain AI",
+    "rating": 4.8,
+    "usage_count": 201
+  },
+  {
+    "id": "email-campaign-optimizer",
+    "title": "Email Marketing Campaign Performance Optimizer",
+    "description": "AI tool for predicting and optimizing email campaign performance. Analyzes subject lines, content, timing, and demographics to maximize open rates and conversions.",
+    "formulaType": "Marketing",
+    "formulaCode": "=OPTIMIZE_EMAIL({\\n  subject_line,\\n  audience_list,\\n  send_time_options,\\n  optimization_goal,\\n  constraints\\n})\\n\\n// Example: Optimize for maximum open rate\\n=OPTIMIZE_EMAIL({\\n  \"Don't miss this exclusive offer!\",\\n  A2:A10000, // Subscriber list with demographics\\n  C2:C10,    // Send time options\\n  \"max_open_rate\",\\n  E2:E5      // Constraints: budget, frequency\\n})\\n\\n// Returns: [Optimal_Send_Time, Predicted_Open_Rate, Predicted_Conversions]",
+    "parameters": [
+      {
+        "name": "subject_line",
+        "type": "string",
+        "description": "Email subject line to test",
+        "required": true
+      },
+      {
+        "name": "audience_list",
+        "type": "range",
+        "description": "Subscriber data with demographics, preferences, history",
+        "required": true
+      },
+      {
+        "name": "optimization_goal",
+        "type": "string",
+        "description": "Objective: max_open_rate, max_conversions, max_clicks, min_unsubscribe",
+        "required": true
+      },
+      {
+        "name": "send_time_options",
+        "type": "range",
+        "description": "Available sending time slots",
+        "required": false
+      }
+    ],
+    "tags": ["Email Marketing", "Optimization", "A/B Testing", "Predictions", "AI"],
+    "visibility": "public",
+    "author_username": "marketing_ai",
+    "author_display_name": "Marketing AI Specialist",
+    "rating": 4.3,
+    "usage_count": 87
+  },
+  {
+    "id": "project-milestone-ai",
+    "title": "AI-Based Project Milestone Calculator",
+    "description": "Intelligent project management tool that analyzes task dependencies, team capacity, and historical performance to automatically generate realistic project timelines.",
+    "formulaType": "Project Management",
+    "formulaCode": "=CALCULATE_MILESTONES({\\n  tasks_desc,\\n  dependencies,\\n  team_data,\\n  historical_performance,\\n  risk_tolerance\\n})\\n\\n// Example project\n=CALCULATE_MILESTONES({\\n  \"Website redesign\",\\n  \"{Design: dev1, Frontend: dev2, Backend: [dev1,dev2]},\\n  A2:C5,     // Team: Name, Role, Availability\\n  E2:E10,    // Historical velocity data\\n  0.20       // 20% buffer for risks\\n})\\n\\n// Returns: [Milestones, Critical Path, Risk Assessment, Suggested Deadlines]",
+    "parameters": [
+      {
+        "name": "tasks_desc",
+        "type": "string",
+        "description": "Project description and scope",
+        "required": true
+      },
+      {
+        "name": "dependencies",
+        "type": "string",
+        "description": "Task dependency relationships",
+        "required": true
+      },
+      {
+        "name": "team_data",
+        "type": "range",
+        "description": "Team member details, roles, availability",
+        "required": true
+      },
+      {
+        "name": "risk_tolerance",
+        "type": "number",
+        "description": "Buffer percentage (0-0.5) for risk",
+        "required": false
+      }
+    ],
+    "tags": ["Project Management", "Scheduling", "AI", "Milestones", "Critical Path"],
+    "visibility": "public",
+    "author_username": "pm_ai_expert",
+    "author_display_name": "PM AI Expert",
+    "rating": 4.7,
+    "usage_count": 132
+  },
+  {
+    "id": "kpi-dash-ai",
+    "title": "Real-Time Business KPI Dashboard Generator",
+    "description": "Automatically selects and tracks the most relevant KPIs for your business based on your data. Provides real-time updates, anomaly detection, and predictive insights with beautiful visualizations.",
+    "formulaType": "Business Intelligence",
+    "formulaCode": "=GENERATE_KPI_DASHBOARD(data_sources, kpi_preferences, alerts, visualization_style)\\n\\n// Example: Sales KPI dashboard\\n=GENERATE_KPI_DASHBOARD(\\n  A2:Z1000, // Connection to sales DB\\n  \"revenue,growth,conversion,customer_ltv\",\\n  \"revenue_drop>20%,conversion_rate<1.5%\",\\n  \"modern_minimalist\"\\n)\\n\\n// Features:\n// - Auto-generates relevant KPIs from data patterns\n// - Real-time updates with refresh rates\n// - Anomaly detection and smart alerts\n// - Predictive trend lines\n// - Drill-down capabilities\\n// Returns: Dashboard configuration and key metrics",
+    "parameters": [
+      {
+        "name": "data_sources",
+        "type": "range",
+        "description": "Data source(s) to analyze for KPIs",
+        "required": true
+      },
+      {
+        "name": "kpi_preferences",
+        "type": "string",
+        "description": "Types of KPIs to focus on (revenue, growth, efficiency, quality)",
+        "required": false
+      },
+      {
+        "name": "alerts",
+        "type": "string",
+        "description": "Alert conditions for threshold monitoring",
+        "required": false
+      },
+      {
+        "name": "visualization_style",
+        "type": "string",
+        "description": "Dashboard visual style (minimalist, colorful, corporate, modern)",
+        "required": false
+      }
+    ],
+    "tags": ["KPI", "Dashboard", "Business Intelligence", "Real-time", "Monitoring"],
+    "visibility": "public",
+    "author_username": "bi_ai_specialist",
+    "author_display_name": "BI AI Specialist",
+    "rating": 4.5,
+    "usage_count": 198
+  }
+]
