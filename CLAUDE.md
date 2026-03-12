@@ -1,433 +1,257 @@
-# POLLN Ecosystem Orchestrator Instructions
-**Orchestrator:** kimi-2.5 (Temperature: 1.0)
-**Phase:** Production Deployment & Continuous Development
-**Status:** Rounds 10-13 Complete, 20+ Rounds Total
-**Date:** 2026-03-11
-**Mode:** 12 Agents Continuous Across 4 Workstreams
+# POLLN + LOG-Tensor Unified R&D Phase Orchestrator Instructions
+**Phase:** Deep Research & Development with Production Integration - ROUND 13 STARTING
+**Start Date:** 2026-03-10
+**Current Date:** 2026-03-11 (Round 13 Active)
+**Progress:** Rounds 1-12 complete, white papers 1-4 written, repo updated
+**Focus:** 25-Round Orchestration with 12 Agents Per Round
+**Mode:** Continuous parallel execution with agent succession onboarding
 
 ---
 
-## QUICK REFERENCE
+## 25-ROUND ORCHESTRATION PLAN
 
-| Resource | Location | Purpose |
-|----------|----------|---------|
-| **Main Repo** | https://github.com/SuperInstance/polln | Complete ecosystem |
-| **Website** | https://superinstance.ai | Production platform |
-| **Audit** | `COMPREHENSIVE_AUDIT.md` | Full system status |
-| **White Papers** | `white-papers/` | 4 of 10 complete |
-| **Vector DB** | Qdrant (51,857+ chunks) | Semantic search |
-| **RAG Search** | `python3 mcp_codebase_search.py search "query"` | Find anything |
+### Structure: 12 Agents Per Round
+
+| Team | Agents | Focus |
+|------|--------|-------|
+| **R&D Team** | 4 | Research everything - codebase analysis, new concepts, cross-project synergies |
+| **White Paper Team** | 4 | Write and refine white paper sections, documentation, publications |
+| **Build Team** | 4 | Implementation, code, tests, integration, deployment |
+
+### Round Cycle (Continuous)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ ROUND N                                                      │
+├─────────────────────────────────────────────────────────────┤
+│ 1. Spawn 15 agents (5 R&D + 5 White Paper + 5 Build)        │
+│ 2. Agents execute tasks in parallel                          │
+│ 3. Agents create ONBOARDING documents for successors        │
+│ 4. Collect all outputs and onboarding docs                   │
+│ 5. Push to repository (EVERY ROUND)                          │
+│ 6. Orchestrator reads onboarding docs                        │
+│ 7. Refine prompts for next round                             │
+│ 8. Spawn Round N+1                                            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Agent Onboarding Protocol
+
+**Every agent MUST create an onboarding document:**
+- Location: `agent-messages/onboarding/{team}_{role}_round{N}.md`
+- Content:
+  1. What I discovered/accomplished
+  2. Key files and code locations
+  3. Blockers encountered
+  4. Recommendations for successor
+  5. Unfinished tasks
+  6. Links to relevant research
+
+### Current Progress
+
+| Round | Status | Key Deliverables |
+|-------|--------|------------------|
+| 1-2 | ✅ Complete | Research foundations, 15,000+ lines code |
+| 3 | ✅ Complete | LOG-Tensor vectorized (38,846 chunks) |
+| 4 | ✅ Complete | Pythagorean Geometric Tensors white paper, SuperInstance Type System white paper |
+| 5-12 | ✅ Complete | Continuous R&D, white papers, implementation |
+| **13** | 🔄 Active | 12 agents launching now |
+| 14-25 | 📋 Planned | Continuous R&D, white papers, implementation |
 
 ---
 
-## CURRENT STATE (Post-Round 13)
+## ORCHESTRATOR IDENTITY
 
-### ✅ Achievements
-- **4 White Papers** complete (OCDS, SuperInstance, Confidence Cascade, Pythagorean)
-- **12,100+ lines** production code
-- **705+ tests** comprehensive coverage
-- **109+ API endpoints** across all services
-- **19 SuperInstance types** implemented
-- **GPU acceleration** researched & implemented (300-400x speedup)
-- **Community platform** built (forum, formula sharing, gamification)
-- **Interactive demos** 3 visualizations live
-- **6 tutorials** (beginner + advanced)
+**Role:** I am **Orchestrator**, coordinating 12 agents per round across 25 rounds.
 
-### ⚠️ Critical Issues
-1. **Security:** API auth middleware not connected (CRITICAL)
-2. **GitHub:** Push blocked by workflow permissions
-3. **Deadline:** PODC 2026 submission (March 31)
+**Mission:**
+1. Reverse engineer Claude in Excel integration concepts
+2. Develop SuperInstance schema (every cell = any instance type)
+3. Enhance SMP white paper with simulations and empirical validation
+4. Design SMPbot architecture (Seed + Model + Prompt = Stable Output)
+5. Integrate LOG-Tensor geometric research
+6. Build production-ready implementations
 
----
+**⚠️ CRITICAL: PUSH TO REPO EVERY ROUND**
+- After each round completes, ALWAYS push changes to repository
+- Command: `git add . && git commit -m "docs: Round N complete - [summary]" && git push`
+- This prevents context loss and maintains backup of agent work
 
-## ECOSYSTEM REPOSITORIES
-
-### Main Repository
-- **polln** → https://github.com/SuperInstance/polln
-  - Complete unified codebase
-  - All white papers
-  - Full implementation
-  - Comprehensive tests
-
-### Standalone Tool Repositories
-| Repository | Package | Status |
-|------------|---------|--------|
-| confidence-cascade | @superinstance/confidence-cascade | ✅ Ready for npm |
-| stigmergy | @superinstance/stigmergy | ✅ Ready for npm |
-| voxel-logic | (planned) | 📝 Template ready |
-| platonic-randomness | (planned) | 📝 Template ready |
-| higher-abstraction-vocabularies | (planned) | 📝 Future |
-| Ghost-tiles | (planned) | 📝 Future |
-
-### White Paper Repositories
-| Repository | Paper | Status |
-|------------|-------|--------|
-| polln-whitepaper-ocds | Origin-Centric Data Systems | ✅ Ready to create |
-| polln-whitepaper-superinstance | SuperInstance Type System | ✅ Ready to create |
-| polln-whitepaper-confidence | Confidence Cascade Architecture | ✅ Ready to create |
-| polln-whitepaper-pythagorean | Pythagorean Geometric Tensors | ✅ Ready to create |
-| (6 more) | Papers 5-10 | 📝 Planned |
-
-**Note:** See `WHITEPAPER_REPOS.md` for creation script and strategy.
+**Strategy:** Continuous parallel execution with knowledge transfer through onboarding documents.
 
 ---
 
-## AGENT TEAM STRUCTURE - CONTINUOUS EXECUTION
+## GEOMETRIC TENSOR MATHEMATICS PHILOSOPHY
 
-Maintain **12 active agents** at all times. When one completes, spawn replacement immediately.
+**Core Insight:** Compass and Straightedge Construction mathematics become a powerful tool because they add single words to describe shapes from a higher abstraction than any one view can see.
 
-### Workstream Distribution
+**Key Principles:**
+1. **Permutations, Folds, and Spin** - Set mathematical relationships without calculating
+2. **Naming as Tiling** - Like cloud types (Cirrus, Nimbostratus), names tile possibilities into manageable decks
+3. **Pythagorean Prime Numbers** - Whole number right triangles create "easy snaps" for calculation:
+   - 3, 4, 5 → 36.87°
+   - 5, 12, 13 → 22.62°
+   - 8, 15, 17 → 28.07°
+   - These are 2D analogs of Platonic solids in 3D
+4. **Reality-Bending SuperInstance** - Make physics of universe fit the equations being used
+5. **Little-Data vs Big-Data** - Each cell has little-data (understandable, controllable), not big-data like LLMs
 
-| Workstream | Agents | Focus |
-|------------|--------|-------|
-| **Website Platform** | 4 | Features, content, UX, integrations |
-| **R&D** | 4 | White papers, research, academic |
-| **Implementation** | 3 | Core code, APIs, performance |
-| **Standalone Tools** | 1 | Extraction, npm publishing |
+**TensorFlow/PyTorch Study:** How they tease parameters into weights for simulation and scale data in training. Apply to compress equations in novel ways.
 
-### Agent Roles
-
-**Website Platform (4 agents):**
-1. Feature Developer - Interactive components, visualizations
-2. Content Creator - Tutorials, documentation, blog posts
-3. UX Optimizer - Performance, accessibility, mobile
-4. Platform Integrator - APIs, third-party services
-
-**R&D Team (4 agents):**
-1. White Paper Lead - Academic papers, formalization
-2. Mathematical Researcher - LOG-Tensor, geometric math
-3. Academic Publication - Conference submissions, journals
-4. Research Analyst - User needs, competitive analysis
-
-**Implementation (3 agents):**
-1. Core Developer - SuperInstance types, cell engine
-2. Backend/API Developer - APIs, federation, databases
-3. DevOps/Security Engineer - Deployment, monitoring, security
-
-**Standalone Tools (1 agent):**
-1. Tool Extraction Specialist - Extract, document, publish to npm
+**Navigation Analogy:** Dead reckoning with compass, bucket with knotted lines, hourglass - we can find our way by knowing the seas from years of sailing and dreaming in vector simulator.
 
 ---
 
-## AGENT ONBOARDING PROTOCOL
+## MASTER REFERENCE FILES & VECTOR DB
 
-### Every Agent MUST Create:
+**IMPORTANT:** Always start with these files to orient yourself and minimize context usage.
 
-**1. Work Report:** `agent-messages/{workstream}_{role}_round{N}.md`
-- Detailed description of work completed
-- Files created/modified
-- Technical decisions made
-- Challenges encountered
+### Navigation & Quick Reference (Created 2026-03-10)
+1. **INDEX_FEATURES.md** - 54 features at a glance with locations
+2. **INDEX_RESEARCH.md** - 200+ research documents organized by domain
+3. **INDEX_DOCUMENTATION.md** - 280+ documentation files organized by category
+4. **SYSTEMS_SUMMARY.md** - 47 systems with quick descriptions
+5. **R&D_PHASE_ONBOARDING_MASTER.md** - Complete onboarding guide
+6. **VECTOR_DB_MAINTENANCE.md** - Vector DB setup and usage
+7. **Vector Database (Qdrant)** - Semantic search of entire codebase
 
-**2. Onboarding Document:** `agent-messages/onboarding/{workstream}_{role}_round{N}.md`
-- **MAX 1,000 tokens** (concise!)
-- Executive Summary: 2-3 bullet points
-- Essential Resources: 2-3 key files
-- Critical Blockers: 1-2 issues
-- Next Actions: 2-3 tasks for successor
-- Key Insight: 1 important pattern/learning
+**USE THESE CONSTANTLY** to reduce context overhead:
+- For system questions: Use SYSTEMS_SUMMARY.md
+- For research questions: Use INDEX_RESEARCH.md
+- For feature questions: Use INDEX_FEATURES.md
+- For documentation questions: Use INDEX_DOCUMENTATION.md
+- For methodology: Use R&D_PHASE_ONBOARDING_MASTER.md
+- **For semantic search:** Use Vector DB (new!)
 
-### Template:
+### Vector Database Queries - PROVEN EFFECTIVE IN ROUNDS 1 & 2
 
-```markdown
-# Onboarding: {Role} - Round {N}
+**Before reading large documents, search the vector DB first:**
 
-## Executive Summary
-- {Accomplishment 1}
-- {Accomplishment 2}
-- {Accomplishment 3}
+```bash
+# Search for specific concepts
+python3 mcp_codebase_search.py search "confidence cascade tile system"
 
-## Essential Resources
-- `{file1}` - {One-line description}
-- `{file2}` - {One-line description}
-- `{file3}` - {One-line description}
+# Get all chunks from a file
+python3 mcp_codebase_search.py
+# Then: file SYSTEMS_SUMMARY.md
 
-## Critical Blockers
-1. {Blocker} - {Impact}
-2. {Blocker} - {Impact}
+# Check DB status (ACTUAL STATS AS OF 2026-03-10)
+python3 mcp_codebase_search.py stats
+# Expected output:
+# {
+#   "collection": "polln-codebase",
+#   "vectors_count": 51857,  # ACTUAL COUNT (not 2500 as previously estimated)
+#   "model": "all-MiniLM-L6-v2",
+#   "status": "ready"
+# }
+```
 
-## Next Actions
-1. {Action 1}
-2. {Action 2}
-3. {Action 3}
+**In agent prompts:**
+- stay within 100k context windows
+- Don't assume you know where something is
+- Run: `python3 mcp_codebase_search.py search "[your question]"`
+- Use results to find most relevant files/code
+- Reduces context needed by 10x
+- **PROVEN:** Multiple agents successfully used vector DB in Rounds 1 & 2 for efficient research
 
-## Key Insight
-{Most important pattern or learning}
+**Example (Actual Agent Workflow):**
+```python
+# Instead of: Read entire 200-page white paper
+# Do this:
+results = search_codebase("How does confidence model work?")
+# Returns 5 most relevant chunks from TILE_ALGEBRA_FORMAL.md, confidence-cascade.ts, etc.
+# Read those instead - reduces reading from 200 pages to 5-10 pages
+
+# Real example from SMP Theory Researcher:
+# Searched: "SMP mathematical foundations", found formal definitions in TILE_ALGEBRA_FORMAL.md
+# Searched: "confidence cascade mathematics", found implementation in confidence-cascade.ts
+# Result: Complete mathematical analysis with minimal context overhead
+```
+
+**Vector DB Usage Evidence:**
+- Agents reported using vector DB for efficient research in Round 1 & 2 reports
+- Reduced context overhead by focusing on most relevant chunks
+- Enabled discovery of related research across codebase
+- Successfully guided agents to key mathematical definitions and implementations
 
 ---
-PUSH TO REPO: git add . && git commit -m "{type}(r{N}): {summary}" && git push origin main
+
+## AGENT TEAM STRUCTURE (12 Agents Per Round)
+
+### Teams & Focus
+- **R&D Team (4 agents):** Research, discovery, synergy analysis
+- **White Paper Team (4 agents):** Academic writing, formalization, diagrams
+- **Build Team (4 agents):** Implementation, testing, integration
+
+### Agent Template (All Teams)
 ```
+You are [Role] on the [Team] Team (Round N).
 
----
+1. Search vector DB for relevant context
+2. Execute your primary task (research/writing/implementation)
+3. Document findings in agent-messages/round{N}_[team]_[role].md
+4. CREATE ONBOARDING: agent-messages/onboarding/[team]_[role]_round{N}.md
 
-## WORKSTREAM-SPECIFIC PROMPTS
-
-### Website Platform Agent Template
-
-```
-You are {Role} on the Website Platform Team (kimi-2.5, temp=1.0) - Round {N}.
-
-**Your Mission:** {Specific mission}
-
-**Current Focus:**
-1. Read previous onboarding: agent-messages/onboarding/website_{prev_role}_round{prev_N}.md
-2. Search vector DB: python3 mcp_codebase_search.py search "{topic}"
-3. {Specific tasks}
-
-**Technical Stack:**
-- Astro + React + TypeScript
-- Cloudflare Pages/Workers
-- Tailwind CSS
-- D1, KV, R2
-
-**Deliverables:**
-1. {Deliverable 1}
-2. {Deliverable 2}
-3. Document in agent-messages/website_{role}_round{N}.md
-4. CREATE ONBOARDING: agent-messages/onboarding/website_{role}_round{N}.md (MAX 1,000 tokens)
-
-**PUSH TO REPO:**
-git add . && git commit -m "{type}(r{N}): {description}" && git push origin main
-```
-
-### R&D Agent Template
-
-```
-You are {Role} on the R&D Team (kimi-2.5, temp=1.0) - Round {N}.
-
-**Your Mission:** {Specific mission}
-
-**Current Focus:**
-1. Read previous research: docs/research/{topic}/
-2. Search vector DB: python3 mcp_codebase_search.py search "{topic}"
-3. {Specific tasks}
-
-**Deliverables:**
-1. {Deliverable 1}
-2. {Deliverable 2}
-3. Document in agent-messages/rd_{role}_round{N}.md
-4. CREATE ONBOARDING: agent-messages/onboarding/rd_{role}_round{N}.md (MAX 1,000 tokens)
-
-**PUSH TO REPO:**
-git add . && git commit -m "{type}(r{N}): {description}" && git push origin main
-```
-
-### Implementation Agent Template
-
-```
-You are {Role} on the Implementation Team (kimi-2.5, temp=1.0) - Round {N}.
-
-**Your Mission:** {Specific mission}
-
-**Current Focus:**
-1. Read architecture: docs/architecture/{relevant}.md
-2. Search vector DB: python3 mcp_codebase_search.py search "{topic}"
-3. {Specific tasks}
-
-**Deliverables:**
-1. {Deliverable 1}
-2. {Deliverable 2}
-3. Write tests
-4. Document in agent-messages/impl_{role}_round{N}.md
-5. CREATE ONBOARDING: agent-messages/onboarding/impl_{role}_round{N}.md (MAX 1,000 tokens)
-
-**PUSH TO REPO:**
-git add . && git commit -m "{type}(r{N}): {description}" && git push origin main
-```
-
-### Tool Extraction Agent Template
-
-```
-You are the Tool Extraction Specialist (kimi-2.5, temp=1.0) - Round {N}.
-
-**Your Mission:** Extract standalone components and publish to dedicated repositories
-
-**Current Focus:**
-1. Identify extractable tool from src/ or docs/research/
-2. Create clean extraction with minimal dependencies
-3. Write comprehensive README.md
-4. Push to appropriate repository
-
-**Target Repositories:**
-- https://github.com/SuperInstance/confidence-cascade
-- https://github.com/SuperInstance/stigmergy
-- https://github.com/SuperInstance/voxel-logic
-- https://github.com/SuperInstance/platonic-randomness
-
-**README.md Must Include:**
-- Clear purpose and use cases
-- Installation instructions
-- Usage examples with code
-- API documentation
-- Contributing guidelines
-
-**Deliverables:**
-1. Extract {N} tools
-2. Create README for each
-3. Push to target repositories
-4. Document in agent-messages/extraction_round{N}.md
-5. CREATE ONBOARDING: agent-messages/onboarding/extraction_round{N}.md (MAX 1,000 tokens)
-
-**PUSH TO REPO:**
-git add . && git commit -m "extract(r{N}): {tool names}" && git push origin main
+Onboarding must include:
+- Key findings/accomplishments
+- Critical file locations
+- Blockers encountered
+- Recommendations for successor
 ```
 
 ---
 
 ## WHITE PAPER TARGETS (10 Papers)
 
-| # | Title | Status | Repository |
-|---|-------|--------|------------|
-| 1 | Origin-Centric Data Systems | ✅ Complete | polln-whitepaper-ocds |
-| 2 | SuperInstance Type System | ✅ Complete | polln-whitepaper-superinstance |
-| 3 | Confidence Cascade Architecture | ✅ Complete | polln-whitepaper-confidence |
-| 4 | Pythagorean Geometric Tensors | ✅ Complete | polln-whitepaper-pythagorean |
-| 5 | SMPbot Architecture | 📝 Planned | polln-whitepaper-smpbot |
-| 6 | Tile Algebra Formalization | 📝 Planned | polln-whitepaper-tilealgebra |
-| 7 | Rate-Based Change Mechanics | 📝 Planned | polln-whitepaper-ratebased |
-| 8 | Laminar vs Turbulent Systems | 📝 Planned | polln-whitepaper-laminar |
-| 9 | Wigner-D Harmonics for SO(3) | 📝 Planned | polln-whitepaper-wigner |
-| 10 | GPU Scaling Architecture | 📝 Planned | polln-whitepaper-gpu |
+1. **Origin-Centric Data Systems (OCDS)** - S = (O, D, T, Φ)
+2. **SuperInstance Type System** - Universal cell architecture
+3. **Confidence Cascade Architecture** - Deadband triggers, intelligent activation
+4. **Pythagorean Geometric Tensors** - Compass/straightedge mathematics
+5. **SMPbot Architecture** - Seed + Model + Prompt = Stable Output
+6. **Tile Algebra Formalization** - Composition, zones, confidence
+7. **Rate-Based Change Mechanics** - x(t) = x₀ + ∫r(τ)dτ
+8. **Laminar vs Turbulent Systems** - Flow dynamics in data
+9. **Wigner-D Harmonics for SO(3)** - Geometric deep learning
+10. **GPU Scaling Architecture** - Memory, batching, WGSL
 
 ---
 
-## RAG SYSTEM (GPU-ACCELERATED)
+## QUICK REFERENCE
 
+### Key Directories
+- `/src/spreadsheet/` - Core spreadsheet implementation
+- `/src/superinstance/` - SuperInstance types
+- `/docs/research/` - Research documents
+- `/agent-messages/` - Agent outputs and onboarding
+- `/white-papers/` - White paper sections
+
+### Key Commands
 ```bash
-# Check status
-python3 mcp_codebase_search.py stats
-
-# Search codebase
+# Vector DB search
 python3 mcp_codebase_search.py search "your query"
 
-# Current stats:
-# - Collection: polln-codebase
-# - Vectors: 834,600 chunks
-# - Model: all-MiniLM-L6-v2
-# - Status: ready
-```
+# Push to repo (EVERY ROUND)
+git add . && git commit -m "docs: Round N - summary" && git push
 
-**Agent Usage:**
-- Always search vector DB before reading large documents
-- Reduces context usage by 10x
-- Finds relevant chunks across entire codebase
-
----
-
-## CRITICAL ACTIONS (Immediate)
-
-### 1. Fix Security CRITICAL Issues
-- **Issue:** API auth middleware not connected
-- **File:** `website/functions/src/server.ts`
-- **Action:** Connect auth middleware to all protected routes
-- **Priority:** CRITICAL
-
-### 2. Resolve GitHub Push
-- **Issue:** Workflow OAuth scope blocking
-- **Commits:** 41 ready to push
-- **Action:** Use workflow scope token or manual push
-- **Priority:** HIGH
-
-### 3. Submit PODC 2026
-- **Deadline:** March 31, 2026 (abstract)
-- **Status:** Draft complete at `docs/academic/podc2026-ocds-draft.md`
-- **Action:** Finalize and submit
-- **Priority:** URGENT
-
----
-
-## ORCHESTRATOR CHECKLIST
-
-### Daily Operations
-- [ ] Monitor 12 active agents
-- [ ] Replace completed agents immediately
-- [ ] Read new onboarding docs
-- [ ] Refine prompts based on learnings
-- [ ] Push to repository (resolve permission issue)
-
-### Weekly Review
-- [ ] Review agent performance
-- [ ] Adjust workstream distribution
-- [ ] Update progress tracking
-- [ ] Archive completed rounds
-
-### Critical Tracking
-- [ ] Security fixes deployed
-- [ ] GitHub push resolved
-- [ ] PODC 2026 submitted
-- [ ] White papers 5-10 progress
-- [ ] npm packages published
-
----
-
-## KEY DIRECTORIES
-
-```
-/
-├── src/                          # Core implementation
-│   ├── superinstance/           # SuperInstance types
-│   ├── spreadsheet/             # Cell engine, formulas
-│   ├── benchmarks/              # Performance tests
-│   └── api/                     # API implementations
-├── website/                      # superinstance.ai
-│   ├── src/                     # Astro + React
-│   ├── functions/               # Cloudflare Workers
-│   └── docs/                    # Documentation
-├── white-papers/                 # Academic papers
-│   ├── 01-Origin-Centric-Data-Systems.md
-│   ├── 02-SuperInstance-Type-System.md
-│   ├── 03-Confidence-Cascade-Architecture.md
-│   └── 04-Pythagorean-Geometric-Tensors.md
-├── docs/                         # Documentation
-│   ├── architecture/            # System design
-│   ├── research/                # Research notes
-│   └── academic/                # Conference papers
-├── agent-messages/               # Agent outputs
-│   ├── onboarding/              # Succession docs
-│   └── round*_synthesis.md      # Round summaries
-├── scripts/                      # Automation
-└── extracted/                    # Standalone tools
+# Run tests
+npm test
 ```
 
 ---
 
-## PUSH TO REPO
+## ORCHESTRATOR CHECKLIST (Per Round)
 
-**CRITICAL:** Push changes regularly:
-
-```bash
-git add .
-git commit -m "{type}(r{N}): {description}"
-git push origin main
-```
-
-**Repository:** https://github.com/SuperInstance/polln
+- [ ] Read onboarding docs from previous round
+- [ ] Refine agent prompts based on learnings
+- [ ] Spawn 12 agents (4 R&D + 4 White Paper + 4 Build)
+- [ ] Monitor agent progress
+- [ ] Collect outputs and onboarding docs
+- [ ] Push to repository
+- [ ] Update progress table in CLAUDE.md
 
 ---
 
-## SUCCESS METRICS
+*Document prepared for 25-Round Continuous Orchestration*
+*Started: 2026-03-10 | Current: Round 5*
+*Mode: High-performance parallel execution*
 
-| Metric | Target | Current |
-|--------|--------|---------|
-| White Papers | 10 | 4 (40%) |
-| Test Coverage | 80% | 85% ✅ |
-| Security Score | 90/100 | 65/100 ⚠️ |
-| Performance | Targets | Exceeds ✅ |
-| API Endpoints | 100+ | 109+ ✅ |
-| npm Packages | 6 | 2 ready ⚠️ |
-
----
-
-## CONTACT & RESOURCES
-
-- **Main Repository:** https://github.com/SuperInstance/polln
-- **Website:** https://superinstance.ai
-- **Founder:** Casey DiGennaro
-- **Ecosystem:** https://github.com/SuperInstance
-
----
-
-*CLAUDE.md rebuilt by Orchestrator (kimi-2.5, temp=1.0)*
-*Based on comprehensive audit: COMPREHENSIVE_AUDIT.md*
-*Date: 2026-03-11*
-*Status: Production-ready with security fixes needed*
