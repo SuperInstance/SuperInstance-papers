@@ -24,13 +24,13 @@ import SuperInstanceTutorial from '../components/educational/SuperInstanceTutori
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <Button variant="primary" size="lg" className="sm:w-auto">
+          <Button variant="primary" size="lg" className="sm:w-auto" onclick="trackEvent({ name: 'cta_clicked', properties: { cta: 'start_learning', source: 'hero' } })">
             Start Learning Free
           </Button>
-          <Button variant="outline" size="lg" className="sm:w-auto">
+          <Button variant="outline" size="lg" className="sm:w-auto" onclick="trackEvent({ name: 'cta_clicked', properties: { cta: 'explore_tutorials', source: 'hero' } })">
             Explore Tutorials
           </Button>
-          <Button variant="accent" size="lg" className="sm:w-auto">
+          <Button variant="accent" size="lg" className="sm:w-auto" onclick="trackEvent({ name: 'cta_clicked', properties: { cta: 'read_white_papers', source: 'hero' } })">
             Read White Papers
           </Button>
         </div>
