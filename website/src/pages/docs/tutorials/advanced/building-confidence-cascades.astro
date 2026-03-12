@@ -1,0 +1,626 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/Card';
+import { CodeBlock } from '../../../../components/ui/CodeBlock';
+---
+
+<BaseLayout title="Building Confidence Cascades - SuperInstance.AI Documentation">
+  <section class="section bg-gradient-to-b from-white to-gray-50">
+    <div class="container-narrow">
+      <div class="animate-fade-in">
+        <div class="mb-6">
+          <a href="/docs/tutorials" class="text-primary-600 hover:text-primary-700 flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Tutorials
+          </a>
+        </div>
+
+        <h1 class="heading-1 mb-6">
+          Building Confidence Cascades: Practical Implementation Guide
+        </h1>
+
+        <p class="text-body max-w-3xl mb-10">
+          Learn how to implement confidence cascades for reliable decision-making in your SuperInstance
+          applications. This tutorial covers the three-zone model, cascade compositions, and real-world
+          fraud detection implementation.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-16">
+          <div class="bg-primary-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-primary-700">Reading time: 15 minutes</span>
+          </div>
+          <div class="bg-accent-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-accent-700">Level: Advanced</span>
+          </div>
+          <div class="bg-secondary-50 rounded-lg px-4 py-2">
+            <span class="text-sm font-medium text-secondary-700">Prerequisites: TypeScript basics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <div class="max-w-4xl mx-auto space-y-16">
+
+        <!-- What are Confidence Cascades -->
+        <div>
+          <h2 class="heading-2 mb-6">What are Confidence Cascades?</h2>
+
+          <p class="text-body mb-6">
+            Confidence cascades are a mathematical framework for combining multiple weak signals into
+            strong decisions. Think of it like a waterfall where each tier filters and amplifies confidence
+            until you have a clear decision at the bottom.
+          </p>
+
+          <div class="bg-gradient-to-r from-green-50 to-red-50 border-l-4 border-primary-500 p-6 rounded-lg mb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">The Three-Zone Model</h3>
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                <div>
+                  <strong>GREEN Zone (85-100%):</strong> Full confidence - proceed automatically
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="w-4 h-4 bg-yellow-500 rounded-full mr-3"></div>
+                <div>
+                  <strong>YELLOW Zone (60-85%):</strong> Proceed with caution or flag for review
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="w-4 h-4 bg-red-500 rounded-full mr-3"></div>
+                <div>
+                  <strong>RED Zone (0-60%):</strong> Stop and require human intervention
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Implementation -->
+        <div>
+          <h2 class="heading-2 mb-6">Basic Implementation</h2>
+
+          <p class="text-body mb-6">
+            Let's start with the core types and functions you'll use in every confidence cascade:
+          </p>
+
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>Core Types and Interfaces</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock code={`// Three-zone confidence classification
+export enum ConfidenceZone {
+  GREEN = 'GREEN',     // 0.85 - 1.0: Full confidence
+  YELLOW = 'YELLOW',   // 0.60 - 0.85: Caution advised
+  RED = 'RED'          // 0.00 - 0.60: Stop required
+}
+
+// Core confidence wrapper
+export interface Confidence {
+  value: number;              // 0.0 to 1.0
+  zone: ConfidenceZone;       // Auto-calculated
+  source: string;             // What generated this
+  timestamp: number;          // When it was generated
+}
+
+// Configuration for thresholds
+export interface CascadeConfig {
+  greenThreshold: number;     // Default: 0.85
+  yellowThreshold: number;    // Default: 0.60
+  escalateOnYellow: boolean;  // Trigger alerts?
+  escalateOnRed: boolean;     // Always true!
+}`} lang="typescript" />
+            </CardContent>
+          </Card>
+
+          <Card hover className="mb-6">
+            <CardHeader>
+              <CardTitle>Creating Confidence Values</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock code={`export function createConfidence(
+  value: number,
+  source: string,
+  config?: Partial<CascadeConfig>
+): Confidence {
+  if (value < 0 || value > 1) {
+    throw new Error(\`Confidence must be between 0 and 1, got \${value}\`);
+  }
+
+  return {
+    value,
+    zone: classifyZone(value, finalConfig), // Automatic classification
+    source,
+    timestamp: Date.now()
+  };
+}`} lang="typescript" />
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Cascade Compositions -->
+        <div>
+          <h2 class="heading-2 mb-6">Cascade Compositions</h2>
+
+          <p class="text-body mb-6">
+            Confidence cascades support three fundamental composition patterns. Each serves a different
+            decision-making scenario:
+          </p>
+
+          <!-- Sequential Cascade -->
+          <div class="mb-8">
+            <h3 class="heading-3 mb-4">1. Sequential Cascade - The Chain</h3>
+            <p class="text-body mb-4">
+              Multiplies confidence through a pipeline. Each step reduces overall confidence.
+              Perfect for validation pipelines where each step must pass.
+            </p>
+
+            <Card hover className="mb-4">
+              <CardHeader>
+                <CardTitle>Sequential Cascade Implementation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`export function sequentialCascade(
+  confidences: Confidence[],
+  config?: Partial<CascadeConfig>
+): CascadeResult {
+  let accumulatedConfidence = 1.0;
+  const steps: CascadeStep[] = [];
+
+  for (const conf of confidences) {
+    const previous = accumulatedConfidence;
+    accumulatedConfidence *= conf.value; // Multiplication key!
+
+    steps.push({
+      operation: 'sequential',
+      inputs: [conf],
+      output: createConfidence(accumulatedConfidence, 'sequential', config),
+      metadata: {
+        previous,
+        multiplier: conf.value,
+        degradation: previous - accumulatedConfidence
+      }
+    });
+  }
+
+  const finalConfidence = createConfidence(
+    accumulatedConfidence,
+    'sequential_complete',
+    config
+  );
+
+  return {
+    confidence: finalConfidence,
+    steps,
+    escalationTriggered: shouldEscalate(finalConfidence, config),
+    escalationLevel: getEscalationLevel(finalConfidence, config)
+  };
+}`} lang="typescript" />
+              </CardContent>
+            </Card>
+
+            <div class="bg-blue-50 rounded-lg p-4 mb-4">
+              <h4 class="font-semibold text-blue-900 mb-2">Real-World Example</h4>
+              <CodeBlock code={`// Transaction validation pipeline
+const steps = [
+  createConfidence(0.95, 'format_check'),  // 95% sure format is valid
+  createConfidence(0.90, 'amount_check'),  // 90% sure amount is reasonable
+  createConfidence(0.85, 'user_history'),  // 85% sure user is legitimate
+  createConfidence(0.80, 'risk_score')     // 80% sure risk is low
+];
+
+const result = sequentialCascade(steps);
+// Result: 0.95 × 0.90 × 0.85 × 0.80 = 0.58 (RED ZONE!)`} lang="typescript" />
+              <p class="text-sm text-blue-800 mt-2">
+                <strong>Key Insight:</strong> Even with good individual scores (80-95%), the chain
+                degrades to 58% - revealing your validation pipeline is too long or weak.
+              </p>
+            </div>
+          </div>
+
+          <!-- Parallel Cascade -->
+          <div class="mb-8">
+            <h3 class="heading-3 mb-4">2. Parallel Cascade - The Jury</h3>
+            <p class="text-body mb-4">
+              Weighted average of multiple signals. Different validators can have different importance.
+              Perfect for fraud detection with multiple models.
+            </p>
+
+            <Card hover className="mb-4">
+              <CardHeader>
+                <CardTitle>Parallel Cascade Implementation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`export interface ParallelBranch {
+  confidence: Confidence;
+  weight: number;     // Relative importance (normalized to 1.0)
+}
+
+export function parallelCascade(
+  branches: ParallelBranch[],
+  config?: Partial<CascadeConfig>
+): CascadeResult {
+  // Normalize weights
+  const totalWeight = branches.reduce((sum, b) => sum + b.weight, 0);
+  const normalizedBranches = branches.map(b => ({
+    ...b,
+    weight: b.weight / totalWeight
+  }));
+
+  // Weighted average - key difference from sequential!
+  const weightedSum = normalizedBranches.reduce(
+    (sum, b) => sum + b.confidence.value * b.weight,
+    0
+  );
+
+  const finalConfidence = createConfidence(
+    weightedSum,
+    'parallel_complete',
+    config
+  );
+
+  return {
+    confidence: finalConfidence,
+    steps: [{
+      operation: 'parallel',
+      inputs: branches.map(b => b.confidence),
+      output: finalConfidence
+    }],
+    escalationTriggered: shouldEscalate(finalConfidence, config),
+    escalationLevel: getEscalationLevel(finalConfidence, config)
+  };
+}`} lang="typescript" />
+              </CardContent>
+            </Card>
+
+            <div class="bg-green-50 rounded-lg p-4">
+              <h4 class="font-semibold text-green-900 mb-2">Fraud Detection Example</h4>
+              <CodeBlock code={`const fraudSignals = parallelCascade([
+  {
+    confidence: createConfidence(0.95, 'ml_model'),      // ML model score
+    weight: 0.5  // Most trusted - 50% weight
+  },
+  {
+    confidence: createConfidence(0.70, 'rules_engine'),  // Rules check
+    weight: 0.3  // Second opinion - 30% weight
+  },
+  {
+    confidence: createConfidence(0.85, 'user_reputation'),// User history
+    weight: 0.2  // Supporting evidence - 20% weight
+  }
+]);
+
+// Result: 0.5×0.95 + 0.3×0.70 + 0.2×0.85 = 0.87 (GREEN ZONE!)`} lang="typescript" />
+              <p class="text-sm text-green-800 mt-2">
+                <strong>Key Insight:</strong> Even with a weak rules engine (70%), the strong ML model
+                carries the decision to 87% confidence.
+              </p>
+            </div>
+          </div>
+
+          <!-- Conditional Cascade -->
+          <div>
+            <h3 class="heading-3 mb-4">3. Conditional Cascade - The Router</h3>
+            <p class="text-body mb-4">
+              Confidence depends on which path was taken. Different validation paths for different
+              conditions. Perfect for tiered systems based on transaction size.
+            </p>
+
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Conditional Cascade Implementation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`export interface ConditionalPath {
+  confidence: Confidence;
+  predicate: boolean;     // Whether this path was taken
+  description: string;    // Why this path was chosen
+}
+
+export function conditionalCascade(
+  paths: ConditionalPath[],
+  config?: Partial<CascadeConfig>
+): CascadeResult {
+  // Find the active path (exactly one must be active)
+  const activePaths = paths.filter(p => p.predicate);
+
+  if (activePaths.length === 0) {
+    throw new Error('No active path found');
+  }
+  if (activePaths.length > 1) {
+    throw new Error('Multiple active paths - must have exactly one');
+  }
+
+  const activePath = activePaths[0];
+  const finalConfidence = createConfidence(
+    activePath.confidence.value,
+    \`conditional:\${activePath.description}\`,
+    config
+  );
+
+  return {
+    confidence: finalConfidence,
+    steps: [{
+      operation: 'conditional',
+      inputs: paths.map(p => p.confidence),
+      output: finalConfidence,
+      metadata: {
+        chosenPath: activePath.description,
+        allPaths: paths.map(p => ({
+          description: p.description,
+          active: p.predicate,
+          confidence: p.confidence.value
+        }))
+      }
+    }],
+    escalationTriggered: shouldEscalate(finalConfidence, config),
+    escalationLevel: getEscalationLevel(finalConfidence, config)
+  };
+}`} lang="typescript" />
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <!-- Real-World Application: Fraud Detection -->
+        <div>
+          <h2 class="heading-2 mb-6">Complete Example: Fraud Detection System</h2>
+
+          <p class="text-body mb-6">
+            Let's build a complete fraud detection system combining all three cascade types:
+          </p>
+
+          <Card hover className="mb-6">
+            <CardHeader>
+              <CardTitle>Multi-Stage Fraud Detection</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock code={`export interface FraudDetectionSignals {
+  mlScore: number;           // ML model confidence (0-1)
+  rulesScore: number;        // Rules engine confidence (0-1)
+  userReputation: number;    // User's historical reputation (0-1)
+  transactionAmount: number; // Amount in dollars
+  userLocationMatch: boolean;// Does location match history?
+}
+
+export function fraudDetectionCascade(
+  signals: FraudDetectionSignals,
+  config?: Partial<CascadeConfig>
+): CascadeResult {
+  // Stage 1: Parallel cascade for initial signals
+  const parallelResult = parallelCascade([
+    { confidence: createConfidence(signals.mlScore, 'ml_model'), weight: 0.5 },
+    { confidence: createConfidence(signals.rulesScore, 'rules_engine'), weight: 0.3 },
+    { confidence: createConfidence(signals.userReputation, 'user_reputation'), weight: 0.2 }
+  ], config);
+
+  // Stage 2: Conditional cascade based on transaction size
+  let pathConfidence: number;
+  if (signals.transactionAmount < 1000) {
+    pathConfidence = 0.85;  // Small transactions - lower bar
+  } else if (signals.transactionAmount < 10000) {
+    pathConfidence = 0.90;  // Medium transactions - medium bar
+  } else {
+    pathConfidence = 0.95;  // Large transactions - high bar
+  }
+
+  const conditionalResult = conditionalCascade([
+    {
+      confidence: createConfidence(pathConfidence, 'threshold_small', config),
+      predicate: signals.transactionAmount < 1000,
+      description: 'small_transaction'
+    },
+    {
+      confidence: createConfidence(pathConfidence, 'threshold_medium', config),
+      predicate: signals.transactionAmount >= 1000 && signals.transactionAmount < 10000,
+      description: 'medium_transaction'
+    },
+    {
+      confidence: createConfidence(pathConfidence, 'threshold_large', config),
+      predicate: signals.transactionAmount >= 10000,
+      description: 'large_transaction'
+    }
+  ], config);
+
+  // Stage 3: Sequential cascade combining everything
+  const locationConfidence = createConfidence(
+    signals.userLocationMatch ? 0.95 : 0.50,
+    'location_check',
+    config
+  );
+
+  const finalResult = sequentialCascade([
+    parallelResult.confidence,
+    conditionalResult.confidence,
+    locationConfidence
+  ], config);
+
+  return finalResult;
+}`} lang="typescript" />
+            </CardContent>
+          </Card>
+
+          <div class="bg-gray-900 text-gray-100 rounded-lg p-6 mb-6">
+            <h4 class="text-green-400 mb-3">Testing Different Scenarios</h4>
+            <CodeBlock code={`// Run test scenarios
+const scenarios = [
+  {
+    name: 'Low-Risk Transaction',
+    signals: {
+      mlScore: 0.95,
+      rulesScore: 0.90,
+      userReputation: 0.98,
+      transactionAmount: 50,
+      userLocationMatch: true
+    }
+  },
+  {
+    name: 'High-Risk Transaction',
+    signals: {
+      mlScore: 0.45,
+      rulesScore: 0.30,
+      userReputation: 0.40,
+      transactionAmount: 15000,
+      userLocationMatch: false
+    }
+  }
+];
+
+scenarios.forEach(({ name, signals }) => {
+  const result = fraudDetectionCascade(signals);
+  console.log(\`\${name}:\`);
+  console.log(\`  Confidence: \${result.confidence.value * 100}%\`);
+  console.log(\`  Zone: \${result.confidence.zone}\`);
+  console.log(\`  Escalation: \${result.escalationLevel}\`);
+});`} lang="typescript" theme="dark" />
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Expected Output</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <pre class="text-sm text-gray-600">
+Low-Risk Transaction:
+  Confidence: 87.1%
+  Zone: GREEN
+  Escalation: NONE
+
+High-Risk Transaction:
+  Confidence: 14.6%
+  Zone: RED
+  Escalation: CRITICAL
+                </pre>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Key Insights</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul class="text-sm text-gray-600 space-y-2">
+                  <li>• Sequential chains degrade confidence quickly</li>
+                  <li>• Parallel averaging smooths weak signals</li>
+                  <li>• Conditionals adapt to context</li>
+                  <li>• All three compose naturally</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <!-- Testing and Debugging -->
+        <div>
+          <h2 class="heading-2 mb-6">Testing Your Cascades</h2>
+
+          <p class="text-body mb-6">
+            Confidence cascades need thorough testing. Here are the key test patterns:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Unit Test Patterns</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`// Test sequential multiplication
+test('sequential cascade multiplies confidence', () => {
+  const steps = [0.9, 0.8, 0.7].map(val =>
+    createConfidence(val, 'test'));
+
+  const result = sequentialCascade(steps);
+
+  expect(result.confidence.value)
+    .toBeCloseTo(0.504); // 0.9 × 0.8 × 0.7
+  expect(result.confidence.zone)
+    .toBe(ConfidenceZone.RED);
+});`} lang="typescript" />
+              </CardContent>
+            </Card>
+
+            <Card hover>
+              <CardHeader>
+                <CardTitle>Zone Classification Tests</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CodeBlock code={`// Test all three zones
+test('classifies confidence into correct zones', () => {
+  const green = createConfidence(0.9, 'test');
+  const yellow = createConfidence(0.7, 'test');
+  const red = createConfidence(0.4, 'test');
+
+  expect(green.zone).toBe(ConfidenceZone.GREEN);
+  expect(yellow.zone).toBe(ConfidenceZone.YELLOW);
+  expect(red.zone).toBe(ConfidenceZone.RED);
+});`} lang="typescript" />
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Debugging Tools</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p class="text-body mb-4">Use these utilities to debug your cascades:</p>
+              <CodeBlock code={`// Format cascade results for debugging
+export function formatCascadeResult(result: CascadeResult): string {
+  return \`
+Confidence: \${(result.confidence.value * 100).toFixed(1)}%
+Zone: \${result.confidence.zone}
+Escalation: \${result.escalationLevel}
+Steps: \${result.steps.length}
+\`;
+}
+
+// Measure degradation through steps
+export function degradationRate(steps: CascadeStep[]): number {
+  if (steps.length < 2) return 0;
+
+  const firstValue = steps[0].inputs[0].value;
+  const lastValue = steps[steps.length - 1].output.value;
+
+  return (firstValue - lastValue) / firstValue;
+}`} lang="typescript" />
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Next Steps -->
+        <div>
+          <h2 class="heading-2 mb-6">Next Steps</h2>
+
+          <div class="bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-8 text-white">
+            <h3 class="text-2xl font-bold mb-4">Mastered Confidence Cascades?</h3>
+            <p class="text-lg mb-6 opacity-90">
+              You're ready for more advanced SuperInstance techniques!
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <a href="/docs/tutorials/advanced/rate-based-change-mechanics" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors">
+                <h4 class="font-semibold mb-2">Rate-Based Change</h4>
+                <p class="text-sm opacity-90">Learn x(t) = x₀ + ∫r(τ)dτ mechanics</p>
+              </a>
+              <a href="/docs/tutorials/advanced/working-with-ocds" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors">
+                <h4 class="font-semibold mb-2">OCDS</h4>
+                <p class="text-sm opacity-90">Distributed data without globals</p>
+              </a>
+              <a href="/docs/api/confidence-cascade" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors">
+                <h4 class="font-semibold mb-2">API Reference</h4>
+                <p class="text-sm opacity-90">Complete API documentation</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
