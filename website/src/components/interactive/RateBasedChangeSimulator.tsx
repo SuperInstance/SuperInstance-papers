@@ -349,7 +349,7 @@ export function RateBasedChangeSimulator() {
                 ))}
               </div>
 
-              <div className="pt-4 space-y-3"
+              <div className="pt-4 space-y-3">
                 <Button onClick={resetSimulation} className="w-full">
                   Reset Simulation
                 </Button>
