@@ -1,0 +1,9 @@
+{
+  "rounds": 50000,
+  "successful": 35699,
+  "success_rate": 71.398,
+  "avg_comprehension": 79.81266105214465,
+  "duration_seconds": 10.541274785995483,
+  "rounds_per_second": 4743.259332014289,
+  "peak_memory_mb": 0.004608
+}
