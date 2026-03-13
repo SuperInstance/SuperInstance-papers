@@ -22,7 +22,7 @@ graph TD
     E --> F[Flow Dynamics]
     F --> G[SMPbot Architecture]
     G --> H[Tile Algebra]
-    H --> I[SO(3) Harmonics]
+    H --> I[SO3 Harmonics]
     I --> J[GPU Scaling]
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
