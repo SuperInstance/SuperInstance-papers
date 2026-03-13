@@ -1,0 +1,104 @@
+{
+  "gpu_benchmarks": [
+    {
+      "grid_size": 64,
+      "steps": 1000,
+      "time_seconds": 0.3782212734222412,
+      "steps_per_second": 2643.9549286896226,
+      "final_max_temp": 5.483825206756592,
+      "final_avg_temp": 2.108604907989502
+    },
+    {
+      "grid_size": 128,
+      "steps": 1000,
+      "time_seconds": 0.489412784576416,
+      "steps_per_second": 2043.2649728704866,
+      "final_max_temp": 22.52095603942871,
+      "final_avg_temp": 4.699152946472168
+    },
+    {
+      "grid_size": 256,
+      "steps": 1000,
+      "time_seconds": 0.5235531330108643,
+      "steps_per_second": 1910.0258158119914,
+      "final_max_temp": 63.99721145629883,
+      "final_avg_temp": 4.890425682067871
+    },
+    {
+      "grid_size": 512,
+      "steps": 1000,
+      "time_seconds": 0.47388362884521484,
+      "steps_per_second": 2110.222719524736,
+      "final_max_temp": 98.3382339477539,
+      "final_avg_temp": 4.901504039764404
+    },
+    {
+      "grid_size": 1024,
+      "steps": 1000,
+      "time_seconds": 0.909916877746582,
+      "steps_per_second": 1099.0014851428075,
+      "final_max_temp": 99.999755859375,
+      "final_avg_temp": 4.904649257659912
+    }
+  ],
+  "cpu_benchmarks": [
+    {
+      "grid_size": 64,
+      "steps": 1000,
+      "time_seconds": 0.021406888961791992,
+      "steps_per_second": 46713.93408845378,
+      "final_max_temp": 5.483825206756592,
+      "final_avg_temp": 2.108604907989502
+    },
+    {
+      "grid_size": 128,
+      "steps": 1000,
+      "time_seconds": 0.027868270874023438,
+      "steps_per_second": 35883.101772637056,
+      "final_max_temp": 22.52095603942871,
+      "final_avg_temp": 4.699152946472168
+    },
+    {
+      "grid_size": 256,
+      "steps": 1000,
+      "time_seconds": 0.07249212265014648,
+      "steps_per_second": 13794.60227459596,
+      "final_max_temp": 63.99721145629883,
+      "final_avg_temp": 4.890425682067871
+    },
+    {
+      "grid_size": 512,
+      "steps": 1000,
+      "time_seconds": 4.035641431808472,
+      "steps_per_second": 247.79208383532603,
+      "final_max_temp": 98.3382339477539,
+      "final_avg_temp": 4.901504039764404
+    }
+  ],
+  "comparisons": [
+    {
+      "grid_size": 64,
+      "gpu_time": 0.3782212734222412,
+      "cpu_time": 0.021406888961791992,
+      "speedup": 0.05659884957844141
+    },
+    {
+      "grid_size": 128,
+      "gpu_time": 0.489412784576416,
+      "cpu_time": 0.027868270874023438,
+      "speedup": 0.05694226173135887
+    },
+    {
+      "grid_size": 256,
+      "gpu_time": 0.5235531330108643,
+      "cpu_time": 0.07249212265014648,
+      "speedup": 0.13846182570478896
+    },
+    {
+      "grid_size": 512,
+      "gpu_time": 0.47388362884521484,
+      "cpu_time": 4.035641431808472,
+      "speedup": 8.516102237257574
+    }
+  ]
+}
