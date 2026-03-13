@@ -1,0 +1,28 @@
+# Real-World Energy Validation System Requirements
+# ================================================
+
+# Core Dependencies
+numpy>=1.20.0
+
+# GPU Acceleration (CuPy)
+# Install based on your CUDA version:
+# - CUDA 11.x: cupy-cuda11x
+# - CUDA 12.x: cupy-cuda12x
+cupy-cuda12x>=14.0.0
+
+# NVIDIA GPU Monitoring (Optional but recommended)
+nvidia-ml-py3>=0.2.0
+
+# PyTorch (Optional, for real training)
+# Install based on your CUDA version from: https://pytorch.org/
+# torch>=2.0.0
+# torchvision>=0.15.0
+
+# Carbon Intensity APIs (Optional for P37)
+# requests>=2.28.0  # For carbon intensity APIs
+# electricitymap>=0.1.0  # For real-time carbon data
+
+# Development Dependencies (Optional)
+# pytest>=7.0.0
+# matplotlib>=3.5.0  # For plotting results
+# jupyter>=1.0.0  # For interactive notebooks

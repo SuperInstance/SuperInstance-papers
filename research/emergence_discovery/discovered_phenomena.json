@@ -1,0 +1,1288 @@
+{
+  "timestamp": "2026-03-13T15:22:32.773316",
+  "analysis": {
+    "total_phenomena": 60,
+    "by_system": {
+      "coupled_oscillators": 30,
+      "opinion_dynamics": 0,
+      "particle_swarm": 30
+    },
+    "by_type": {
+      "Swarm Intelligence": 27,
+      "Collective Memory": 23,
+      "Network Synchronization": 4,
+      "Computational Emergence": 4,
+      "Novel Phenomenon": 2
+    },
+    "novelty_insights": [
+      "High-emergence cluster found: 58 phenomena with score > 0.7"
+    ]
+  },
+  "phenomena": {
+    "coupled_oscillators": [
+      {
+        "id": 4,
+        "parameters": {
+          "coupling_strength": 0.0016690949464228113,
+          "noise_level": 2.636096945003888e-08,
+          "interaction_range": 0.7168509158354405,
+          "natural_frequency_spread": 0.1287248458874676
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.6233505674383545,
+          "max_transfer_entropy": 1.141877708273985,
+          "std_transfer_entropy": 0.213248305344537,
+          "global_mutual_info": 1.2326574470623182,
+          "phase_transition": false,
+          "emergence_score": 2.8631745700987534,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 2.863",
+        "timestamp": "2026-03-13T15:21:43.758064"
+      },
+      {
+        "id": 1,
+        "parameters": {
+          "coupling_strength": 0.01403014493306659,
+          "noise_level": 2.527193914769316e-07,
+          "interaction_range": 1.1633344587137815,
+          "natural_frequency_spread": 0.15616661039568897
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.5862208694346778,
+          "max_transfer_entropy": 1.151903614541237,
+          "std_transfer_entropy": 0.17611815027905206,
+          "global_mutual_info": 1.0046970208449557,
+          "phase_transition": false,
+          "emergence_score": 2.646269135391907,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 2.646",
+        "timestamp": "2026-03-13T15:21:41.943669"
+      },
+      {
+        "id": 21,
+        "parameters": {
+          "coupling_strength": 2.8093282930941662e-05,
+          "noise_level": 1.9772677218572383e-09,
+          "interaction_range": 1.4159875848313672,
+          "natural_frequency_spread": 0.25776361219035515
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.4198654564378529,
+          "max_transfer_entropy": 0.9941605956134366,
+          "std_transfer_entropy": 0.18113283972760513,
+          "global_mutual_info": 0.9125423801036939,
+          "phase_transition": false,
+          "emergence_score": 1.9532077453322065,
+          "network_density": 0.14612244897959184
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.953",
+        "timestamp": "2026-03-13T15:21:54.180464"
+      },
+      {
+        "id": 0,
+        "parameters": {
+          "coupling_strength": 0.26219161233161353,
+          "noise_level": 0.21691395024403948,
+          "interaction_range": 1.1108085149767548,
+          "natural_frequency_spread": 0.1749813239957827
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.414482544610401,
+          "max_transfer_entropy": 0.8245443462020925,
+          "std_transfer_entropy": 0.12083079502019488,
+          "global_mutual_info": 0.8522518329555989,
+          "phase_transition": false,
+          "emergence_score": 1.9135891491922907,
+          "network_density": 0.15306122448979592
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.914",
+        "timestamp": "2026-03-13T15:21:41.350976"
+      },
+      {
+        "id": 15,
+        "parameters": {
+          "coupling_strength": 0.18325490682690215,
+          "noise_level": 0.0002616096513713577,
+          "interaction_range": 0.5698978009469416,
+          "natural_frequency_spread": 0.35466324053915443
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.41029238874388174,
+          "max_transfer_entropy": 0.9429955886020664,
+          "std_transfer_entropy": 0.20358460421946023,
+          "global_mutual_info": 0.7149590804743335,
+          "phase_transition": false,
+          "emergence_score": 1.8556408675863925,
+          "network_density": 0.13142857142857142
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.856",
+        "timestamp": "2026-03-13T15:21:50.423724"
+      },
+      {
+        "id": 18,
+        "parameters": {
+          "coupling_strength": 9.52443054158338e-08,
+          "noise_level": 0.0005104217853284005,
+          "interaction_range": 0.48614846391048383,
+          "natural_frequency_spread": 0.25122505007801577
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.3484675293181968,
+          "max_transfer_entropy": 1.1188335016199789,
+          "std_transfer_entropy": 0.15912290037226143,
+          "global_mutual_info": 0.8169284340895091,
+          "phase_transition": false,
+          "emergence_score": 1.638934708937853,
+          "network_density": 0.1293877551020408
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.639",
+        "timestamp": "2026-03-13T15:21:52.194558"
+      },
+      {
+        "id": 29,
+        "parameters": {
+          "coupling_strength": 0.1320835359343468,
+          "noise_level": 4.1303917132294657e-07,
+          "interaction_range": 1.074920392635812,
+          "natural_frequency_spread": 0.2884105710568728
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.33508721705162775,
+          "max_transfer_entropy": 0.8436434552652671,
+          "std_transfer_entropy": 0.13575703597203434,
+          "global_mutual_info": 0.7070955185011136,
+          "phase_transition": false,
+          "emergence_score": 1.5524641204021965,
+          "network_density": 0.1326530612244898
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.552",
+        "timestamp": "2026-03-13T15:21:59.000087"
+      },
+      {
+        "id": 14,
+        "parameters": {
+          "coupling_strength": 1.2442253116693198e-06,
+          "noise_level": 1.6702963845834305e-10,
+          "interaction_range": 0.8926411480421945,
+          "natural_frequency_spread": 0.36761148544087274
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.3110609511179095,
+          "max_transfer_entropy": 1.244535493551719,
+          "std_transfer_entropy": 0.2139001199734785,
+          "global_mutual_info": 0.7845136816078305,
+          "phase_transition": false,
+          "emergence_score": 1.4795854666403656,
+          "network_density": 0.09836734693877551
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.480",
+        "timestamp": "2026-03-13T15:21:49.836503"
+      },
+      {
+        "id": 25,
+        "parameters": {
+          "coupling_strength": 0.022051830178029853,
+          "noise_level": 4.952604831090203e-06,
+          "interaction_range": 0.8130234847018271,
+          "natural_frequency_spread": 0.6406568287767473
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.3067829283173105,
+          "max_transfer_entropy": 1.1235827114649684,
+          "std_transfer_entropy": 0.2127191533544805,
+          "global_mutual_info": 0.598249145495207,
+          "phase_transition": false,
+          "emergence_score": 1.4065941857233835,
+          "network_density": 0.08653061224489796
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.407",
+        "timestamp": "2026-03-13T15:21:56.579263"
+      },
+      {
+        "id": 22,
+        "parameters": {
+          "coupling_strength": 3.58240198496727e-05,
+          "noise_level": 0.003877115829384447,
+          "interaction_range": 1.1370825471810042,
+          "natural_frequency_spread": 0.4058097098503193
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.2967522506016045,
+          "max_transfer_entropy": 0.980610839447194,
+          "std_transfer_entropy": 0.16107122728791587,
+          "global_mutual_info": 0.6956073241149815,
+          "phase_transition": false,
+          "emergence_score": 1.395679329669588,
+          "network_density": 0.10408163265306122
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.396",
+        "timestamp": "2026-03-13T15:21:54.790863"
+      },
+      {
+        "id": 6,
+        "parameters": {
+          "coupling_strength": 3.614950438081084e-05,
+          "noise_level": 0.004450708077020283,
+          "interaction_range": 1.5935412894995962,
+          "natural_frequency_spread": 0.6978417134392266
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.2959485093579481,
+          "max_transfer_entropy": 0.887896153031015,
+          "std_transfer_entropy": 0.17743451452968034,
+          "global_mutual_info": 0.5521835889614793,
+          "phase_transition": false,
+          "emergence_score": 1.3494372762982398,
+          "network_density": 0.10204081632653061
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.349",
+        "timestamp": "2026-03-13T15:21:44.977002"
+      },
+      {
+        "id": 17,
+        "parameters": {
+          "coupling_strength": 0.14474453570792517,
+          "noise_level": 0.006658783661967825,
+          "interaction_range": 1.7374968761579694,
+          "natural_frequency_spread": 0.5806002047643763
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.24768093075029304,
+          "max_transfer_entropy": 0.8379292406225964,
+          "std_transfer_entropy": 0.14840336673086826,
+          "global_mutual_info": 0.6766405536135954,
+          "phase_transition": false,
+          "emergence_score": 1.193705981947092,
+          "network_density": 0.08122448979591837
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.194",
+        "timestamp": "2026-03-13T15:21:51.610890"
+      },
+      {
+        "id": 13,
+        "parameters": {
+          "coupling_strength": 0.3787230490600889,
+          "noise_level": 0.0004200393873774987,
+          "interaction_range": 0.8387393542643459,
+          "natural_frequency_spread": 0.6608557997705519
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.23895861368488117,
+          "max_transfer_entropy": 0.6933858488421892,
+          "std_transfer_entropy": 0.1335702922509856,
+          "global_mutual_info": 0.4658238441321818,
+          "phase_transition": false,
+          "emergence_score": 1.0955720497302142,
+          "network_density": 0.07510204081632653
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.096",
+        "timestamp": "2026-03-13T15:21:49.246083"
+      },
+      {
+        "id": 23,
+        "parameters": {
+          "coupling_strength": 1.4179623642578738,
+          "noise_level": 0.23975711473258574,
+          "interaction_range": 0.15436596595329075,
+          "natural_frequency_spread": 0.8813265062452637
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.23896359599262282,
+          "max_transfer_entropy": 0.7988999348132133,
+          "std_transfer_entropy": 0.17888743017994968,
+          "global_mutual_info": 0.4147361751995845,
+          "phase_transition": false,
+          "emergence_score": 1.0802656780821112,
+          "network_density": 0.06
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.080",
+        "timestamp": "2026-03-13T15:21:55.380623"
+      },
+      {
+        "id": 3,
+        "parameters": {
+          "coupling_strength": 3.891179706022038e-05,
+          "noise_level": 2.758271352189233e-07,
+          "interaction_range": 0.3430198791849095,
+          "natural_frequency_spread": 0.6999678461237889
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.2286949539545629,
+          "max_transfer_entropy": 0.9539328795011064,
+          "std_transfer_entropy": 0.17212353461292945,
+          "global_mutual_info": 0.5039461263615294,
+          "phase_transition": false,
+          "emergence_score": 1.065954506020029,
+          "network_density": 0.062448979591836734
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.066",
+        "timestamp": "2026-03-13T15:21:43.152469"
+      },
+      {
+        "id": 10,
+        "parameters": {
+          "coupling_strength": 0.048810572722031584,
+          "noise_level": 0.00014163936368920719,
+          "interaction_range": 1.0794197815020192,
+          "natural_frequency_spread": 0.6141254097099486
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.22544028610504752,
+          "max_transfer_entropy": 0.7657164809691519,
+          "std_transfer_entropy": 0.1417396918132824,
+          "global_mutual_info": 0.46187410787292266,
+          "phase_transition": false,
+          "emergence_score": 1.0403143592607977,
+          "network_density": 0.07102040816326531
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.040",
+        "timestamp": "2026-03-13T15:21:47.400247"
+      },
+      {
+        "id": 11,
+        "parameters": {
+          "coupling_strength": 2.6809187180271483e-07,
+          "noise_level": 8.85673069899607e-05,
+          "interaction_range": 0.17824878640248226,
+          "natural_frequency_spread": 0.8272419516653311
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.21611910696016423,
+          "max_transfer_entropy": 0.7251663958660242,
+          "std_transfer_entropy": 0.1450682466341327,
+          "global_mutual_info": 0.5110204999711385,
+          "phase_transition": false,
+          "emergence_score": 1.0177739331541669,
+          "network_density": 0.06612244897959184
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.018",
+        "timestamp": "2026-03-13T15:21:48.017902"
+      },
+      {
+        "id": 20,
+        "parameters": {
+          "coupling_strength": 7.627701498992181e-06,
+          "noise_level": 0.0005261920262096755,
+          "interaction_range": 0.4090432320406131,
+          "natural_frequency_spread": 0.9643514577919589
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.2170010444339998,
+          "max_transfer_entropy": 0.9444296790710637,
+          "std_transfer_entropy": 0.1526390683046455,
+          "global_mutual_info": 0.4309678129418833,
+          "phase_transition": false,
+          "emergence_score": 0.9972858416635864,
+          "network_density": 0.06489795918367347
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 0.997",
+        "timestamp": "2026-03-13T15:21:53.372640"
+      },
+      {
+        "id": 16,
+        "parameters": {
+          "coupling_strength": 3.6013127961933e-09,
+          "noise_level": 1.6866152837931055e-07,
+          "interaction_range": 1.8643928431002428,
+          "natural_frequency_spread": 0.6614017493690529
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.2032812681974739,
+          "max_transfer_entropy": 1.0728840944351965,
+          "std_transfer_entropy": 0.1839534797793326,
+          "global_mutual_info": 0.4630421815735038,
+          "phase_transition": false,
+          "emergence_score": 0.9520295960925305,
+          "network_density": 0.054285714285714284
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 0.952",
+        "timestamp": "2026-03-13T15:21:51.018023"
+      },
+      {
+        "id": 5,
+        "parameters": {
+          "coupling_strength": 0.04435873004547965,
+          "noise_level": 0.014413351975330252,
+          "interaction_range": 0.5112110969625702,
+          "natural_frequency_spread": 0.5878361647666416
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.20173660525395554,
+          "max_transfer_entropy": 0.8766300237354094,
+          "std_transfer_entropy": 0.14626745611620043,
+          "global_mutual_info": 0.31847541010851865,
+          "phase_transition": false,
+          "emergence_score": 0.9024809746648613,
+          "network_density": 0.054285714285714284
+        },
+        "emergence_type": "Network Synchronization",
+        "description": "Type: Network Synchronization | High global coordination | Emergence score: 0.902",
+        "timestamp": "2026-03-13T15:21:44.367210"
+      },
+      {
+        "id": 28,
+        "parameters": {
+          "coupling_strength": 1.056292565297011e-06,
+          "noise_level": 8.937997610342622e-07,
+          "interaction_range": 1.7564348118695023,
+          "natural_frequency_spread": 0.9244215472676766
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.19479490030838484,
+          "max_transfer_entropy": 1.0844377187206322,
+          "std_transfer_entropy": 0.19044892375409814,
+          "global_mutual_info": 0.3264418747594157,
+          "phase_transition": false,
+          "emergence_score": 0.8771043719432688,
+          "network_density": 0.04653061224489796
+        },
+        "emergence_type": "Network Synchronization",
+        "description": "Type: Network Synchronization | High global coordination | Emergence score: 0.877",
+        "timestamp": "2026-03-13T15:21:58.399172"
+      },
+      {
+        "id": 2,
+        "parameters": {
+          "coupling_strength": 0.028681217755523677,
+          "noise_level": 7.882585605015314e-10,
+          "interaction_range": 1.6787817697349137,
+          "natural_frequency_spread": 0.725493358026998
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.178905503215058,
+          "max_transfer_entropy": 0.8782857466001577,
+          "std_transfer_entropy": 0.1351742994130135,
+          "global_mutual_info": 0.4174375618856933,
+          "phase_transition": false,
+          "emergence_score": 0.8408461252773728,
+          "network_density": 0.045714285714285714
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 0.841",
+        "timestamp": "2026-03-13T15:21:42.553623"
+      },
+      {
+        "id": 7,
+        "parameters": {
+          "coupling_strength": 3.856805506266752e-08,
+          "noise_level": 3.787300262180562e-07,
+          "interaction_range": 0.8636576008543967,
+          "natural_frequency_spread": 0.7627956737805799
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.17515512091729535,
+          "max_transfer_entropy": 0.869978416910297,
+          "std_transfer_entropy": 0.1338512439646449,
+          "global_mutual_info": 0.33241936058809635,
+          "phase_transition": false,
+          "emergence_score": 0.8003392857108349,
+          "network_density": 0.044897959183673466
+        },
+        "emergence_type": "Network Synchronization",
+        "description": "Type: Network Synchronization | High global coordination | Emergence score: 0.800",
+        "timestamp": "2026-03-13T15:21:45.584746"
+      },
+      {
+        "id": 24,
+        "parameters": {
+          "coupling_strength": 1.8345303846822278e-08,
+          "noise_level": 2.6717767749471997e-05,
+          "interaction_range": 1.0368277080314972,
+          "natural_frequency_spread": 0.7397693079566416
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.1684445112588192,
+          "max_transfer_entropy": 0.72126592473449,
+          "std_transfer_entropy": 0.13513826641600962,
+          "global_mutual_info": 0.39717798184691333,
+          "phase_transition": false,
+          "emergence_score": 0.7929247018762776,
+          "network_density": 0.04122448979591837
+        },
+        "emergence_type": "Computational Emergence",
+        "description": "Type: Computational Emergence | High global coordination | Emergence score: 0.793",
+        "timestamp": "2026-03-13T15:21:55.984726"
+      },
+      {
+        "id": 27,
+        "parameters": {
+          "coupling_strength": 4.406451461976156e-10,
+          "noise_level": 0.14163731403452987,
+          "interaction_range": 0.6376309111486826,
+          "natural_frequency_spread": 0.8752456428056951
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.17326949569783964,
+          "max_transfer_entropy": 0.5316980452914253,
+          "std_transfer_entropy": 0.10599795682341497,
+          "global_mutual_info": 0.2944070697231619,
+          "phase_transition": false,
+          "emergence_score": 0.7813931729977863,
+          "network_density": 0.04244897959183674
+        },
+        "emergence_type": "Computational Emergence",
+        "description": "Type: Computational Emergence | Emergence score: 0.781",
+        "timestamp": "2026-03-13T15:21:57.787815"
+      },
+      {
+        "id": 12,
+        "parameters": {
+          "coupling_strength": 2.3089673045122166e-10,
+          "noise_level": 4.595841008784078e-09,
+          "interaction_range": 1.139900291045725,
+          "natural_frequency_spread": 0.8174255626354189
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.15427135370636139,
+          "max_transfer_entropy": 1.045974778366405,
+          "std_transfer_entropy": 0.1299238338183133,
+          "global_mutual_info": 0.3094690725226049,
+          "phase_transition": false,
+          "emergence_score": 0.7099199657897868,
+          "network_density": 0.036734693877551024
+        },
+        "emergence_type": "Network Synchronization",
+        "description": "Type: Network Synchronization | High global coordination | Emergence score: 0.710",
+        "timestamp": "2026-03-13T15:21:48.641731"
+      },
+      {
+        "id": 19,
+        "parameters": {
+          "coupling_strength": 4.442511904266354e-10,
+          "noise_level": 2.7338768257759215e-06,
+          "interaction_range": 1.870569871077694,
+          "natural_frequency_spread": 0.6688523864962879
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.14876884520039185,
+          "max_transfer_entropy": 0.7993046023713147,
+          "std_transfer_entropy": 0.10371949404704076,
+          "global_mutual_info": 0.38155061938769846,
+          "phase_transition": false,
+          "emergence_score": 0.7095346159235758,
+          "network_density": 0.028979591836734694
+        },
+        "emergence_type": "Computational Emergence",
+        "description": "Type: Computational Emergence | High global coordination | Emergence score: 0.710",
+        "timestamp": "2026-03-13T15:21:52.788417"
+      },
+      {
+        "id": 9,
+        "parameters": {
+          "coupling_strength": 1.392088830224991e-07,
+          "noise_level": 2.0390938084775244e-05,
+          "interaction_range": 0.3048124781292588,
+          "natural_frequency_spread": 0.8555801091724313
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.1539305933742107,
+          "max_transfer_entropy": 0.692228097419271,
+          "std_transfer_entropy": 0.09679706206853701,
+          "global_mutual_info": 0.31166175650251615,
+          "phase_transition": false,
+          "emergence_score": 0.7092147432854343,
+          "network_density": 0.03877551020408163
+        },
+        "emergence_type": "Computational Emergence",
+        "description": "Type: Computational Emergence | High global coordination | Emergence score: 0.709",
+        "timestamp": "2026-03-13T15:21:46.792672"
+      },
+      {
+        "id": 26,
+        "parameters": {
+          "coupling_strength": 3.354694516700642e-08,
+          "noise_level": 0.12399945664863866,
+          "interaction_range": 1.75827669708845,
+          "natural_frequency_spread": 0.8690319733074034
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.1432154830613051,
+          "max_transfer_entropy": 0.522181733123074,
+          "std_transfer_entropy": 0.07415648155693558,
+          "global_mutual_info": 0.3096769179681396,
+          "phase_transition": false,
+          "emergence_score": 0.6657592790736254,
+          "network_density": 0.027346938775510202
+        },
+        "emergence_type": "Novel Phenomenon",
+        "description": "Type: Novel Phenomenon | High global coordination | Emergence score: 0.666",
+        "timestamp": "2026-03-13T15:21:57.187249"
+      },
+      {
+        "id": 8,
+        "parameters": {
+          "coupling_strength": 1.0415977262467381e-10,
+          "noise_level": 0.3305182049726442,
+          "interaction_range": 0.847628504724526,
+          "natural_frequency_spread": 0.9061955280208909
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.13762815685387306,
+          "max_transfer_entropy": 0.6512339603256385,
+          "std_transfer_entropy": 0.07449944675315766,
+          "global_mutual_info": 0.30250445042233737,
+          "phase_transition": false,
+          "emergence_score": 0.64125845747097,
+          "network_density": 0.022040816326530613
+        },
+        "emergence_type": "Novel Phenomenon",
+        "description": "Type: Novel Phenomenon | High global coordination | Emergence score: 0.641",
+        "timestamp": "2026-03-13T15:21:46.196499"
+      }
+    ],
+    "opinion_dynamics": [],
+    "particle_swarm": [
+      {
+        "id": 28,
+        "parameters": {
+          "cohesion_strength": 4.1055424995303977e-10,
+          "alignment_strength": 0.6610896187994664,
+          "separation_strength": 2.5908581428829997e-08,
+          "noise_level": 2.3472081092482194e-06
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.442219778743795,
+          "max_transfer_entropy": 1.4978613484012744,
+          "std_transfer_entropy": 0.030321243113498642,
+          "global_mutual_info": 2.9111557041155542,
+          "phase_transition": false,
+          "emergence_score": 6.642168137995578,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 6.642",
+        "timestamp": "2026-03-13T15:22:31.770869"
+      },
+      {
+        "id": 17,
+        "parameters": {
+          "cohesion_strength": 3.209981166124029e-07,
+          "alignment_strength": 2.24556285843504e-10,
+          "separation_strength": 7.330846436952755e-08,
+          "noise_level": 4.990872927425554e-06
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.4381113290449299,
+          "max_transfer_entropy": 1.4880276019933465,
+          "std_transfer_entropy": 0.0338529094928672,
+          "global_mutual_info": 2.9209739621574444,
+          "phase_transition": false,
+          "emergence_score": 6.6286799809490295,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 6.629",
+        "timestamp": "2026-03-13T15:22:18.462352"
+      },
+      {
+        "id": 23,
+        "parameters": {
+          "cohesion_strength": 3.5463054743106125e-09,
+          "alignment_strength": 1.3288435766984772e-05,
+          "separation_strength": 1.989636880758081e-07,
+          "noise_level": 3.5785677984190473e-06
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.436554884893299,
+          "max_transfer_entropy": 1.4880276019933465,
+          "std_transfer_entropy": 0.0337044555203068,
+          "global_mutual_info": 2.904760995094585,
+          "phase_transition": false,
+          "emergence_score": 6.617590376480791,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 6.618",
+        "timestamp": "2026-03-13T15:22:25.894570"
+      },
+      {
+        "id": 1,
+        "parameters": {
+          "cohesion_strength": 3.489782143739414e-10,
+          "alignment_strength": 3.6818403901072106e-05,
+          "separation_strength": 1.13046322387105e-07,
+          "noise_level": 0.0004798031906382382
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.2451006440084849,
+          "max_transfer_entropy": 1.4078145667414153,
+          "std_transfer_entropy": 0.041176557332648044,
+          "global_mutual_info": 2.4622013613645075,
+          "phase_transition": false,
+          "emergence_score": 5.719013180915566,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 5.719",
+        "timestamp": "2026-03-13T15:22:01.064652"
+      },
+      {
+        "id": 26,
+        "parameters": {
+          "cohesion_strength": 6.145797452426398e-06,
+          "alignment_strength": 1.8098419674090222e-08,
+          "separation_strength": 0.0016280074045171564,
+          "noise_level": 7.492909126392406e-07
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.2178091747364703,
+          "max_transfer_entropy": 1.459466851484152,
+          "std_transfer_entropy": 0.05947080966360951,
+          "global_mutual_info": 2.4192864018664713,
+          "phase_transition": false,
+          "emergence_score": 5.596973907625952,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 5.597",
+        "timestamp": "2026-03-13T15:22:29.177194"
+      },
+      {
+        "id": 9,
+        "parameters": {
+          "cohesion_strength": 1.910093491360804e-07,
+          "alignment_strength": 0.0007800370764402208,
+          "separation_strength": 0.06761290008794128,
+          "noise_level": 7.835375297806225e-05
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.204514548311708,
+          "max_transfer_entropy": 1.4276938988860848,
+          "std_transfer_entropy": 0.13039096315234414,
+          "global_mutual_info": 2.4634100469876885,
+          "phase_transition": false,
+          "emergence_score": 5.5570330272430075,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 5.557",
+        "timestamp": "2026-03-13T15:22:09.768815"
+      },
+      {
+        "id": 16,
+        "parameters": {
+          "cohesion_strength": 1.2911199380814608e-06,
+          "alignment_strength": 0.011490747461474741,
+          "separation_strength": 7.362682616982605e-05,
+          "noise_level": 2.931508343406013e-10
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.1813431817355746,
+          "max_transfer_entropy": 1.3855729977191387,
+          "std_transfer_entropy": 0.06291585604633361,
+          "global_mutual_info": 2.3843112943833704,
+          "phase_transition": false,
+          "emergence_score": 5.440618862002572,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 5.441",
+        "timestamp": "2026-03-13T15:22:17.435491"
+      },
+      {
+        "id": 19,
+        "parameters": {
+          "cohesion_strength": 9.053297704516152e-07,
+          "alignment_strength": 1.5100402810948545e-08,
+          "separation_strength": 4.240630981099606e-09,
+          "noise_level": 0.0010307612912676377
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.1628695529371245,
+          "max_transfer_entropy": 1.3215897781119275,
+          "std_transfer_entropy": 0.10924964916005109,
+          "global_mutual_info": 2.3343117882927804,
+          "phase_transition": false,
+          "emergence_score": 5.351725233919358,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 5.352",
+        "timestamp": "2026-03-13T15:22:20.847846"
+      },
+      {
+        "id": 6,
+        "parameters": {
+          "cohesion_strength": 1.836172949422111e-05,
+          "alignment_strength": 2.84212077848406e-06,
+          "separation_strength": 0.00018199639726742143,
+          "noise_level": 1.038000499327394e-06
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.1174361900566225,
+          "max_transfer_entropy": 1.4359295589333896,
+          "std_transfer_entropy": 0.14939643970152638,
+          "global_mutual_info": 2.1883815906094215,
+          "phase_transition": false,
+          "emergence_score": 5.126214540408684,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 5.126",
+        "timestamp": "2026-03-13T15:22:06.440002"
+      },
+      {
+        "id": 20,
+        "parameters": {
+          "cohesion_strength": 0.09582682455048266,
+          "alignment_strength": 0.44593742519432905,
+          "separation_strength": 0.09473397359618899,
+          "noise_level": 0.04729938081860675
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.0944807789972448,
+          "max_transfer_entropy": 1.1848364120490285,
+          "std_transfer_entropy": 0.03750460305284943,
+          "global_mutual_info": 2.2108796784067484,
+          "phase_transition": false,
+          "emergence_score": 5.041143240717632,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 5.041",
+        "timestamp": "2026-03-13T15:22:22.160868"
+      },
+      {
+        "id": 25,
+        "parameters": {
+          "cohesion_strength": 2.642015999854573e-05,
+          "alignment_strength": 0.0005377632868448266,
+          "separation_strength": 0.0002653419152161149,
+          "noise_level": 3.629537666225689e-09
+        },
+        "metrics": {
+          "avg_transfer_entropy": 1.0725161616660546,
+          "max_transfer_entropy": 1.2685520646041577,
+          "std_transfer_entropy": 0.07968668293140695,
+          "global_mutual_info": 2.149666801780918,
+          "phase_transition": false,
+          "emergence_score": 4.934921786981029,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 4.935",
+        "timestamp": "2026-03-13T15:22:28.169800"
+      },
+      {
+        "id": 14,
+        "parameters": {
+          "cohesion_strength": 5.699453880290608e-07,
+          "alignment_strength": 0.0027834690679385847,
+          "separation_strength": 2.9736761745422912e-09,
+          "noise_level": 8.269999645808401e-06
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.9491801061110743,
+          "max_transfer_entropy": 1.4012194941713205,
+          "std_transfer_entropy": 0.177083243235702,
+          "global_mutual_info": 1.836712984518816,
+          "phase_transition": false,
+          "emergence_score": 4.347696352975365,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 4.348",
+        "timestamp": "2026-03-13T15:22:15.360623"
+      },
+      {
+        "id": 0,
+        "parameters": {
+          "cohesion_strength": 4.875705024953339e-07,
+          "alignment_strength": 0.004262017296793251,
+          "separation_strength": 3.931219399658175e-05,
+          "noise_level": 0.00476373226411001
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.9437050723588165,
+          "max_transfer_entropy": 1.2088190274975938,
+          "std_transfer_entropy": 0.13773233132645518,
+          "global_mutual_info": 1.776465608665422,
+          "phase_transition": false,
+          "emergence_score": 4.307722224209477,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 4.308",
+        "timestamp": "2026-03-13T15:22:00.062068"
+      },
+      {
+        "id": 10,
+        "parameters": {
+          "cohesion_strength": 1.0631731989053647e-06,
+          "alignment_strength": 0.002900053980876706,
+          "separation_strength": 8.65415852398571e-09,
+          "noise_level": 8.945684205139614e-10
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.9066541261925274,
+          "max_transfer_entropy": 1.390316855801066,
+          "std_transfer_entropy": 0.17699361956634974,
+          "global_mutual_info": 1.719981416504303,
+          "phase_transition": false,
+          "emergence_score": 4.142574663919011,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 4.143",
+        "timestamp": "2026-03-13T15:22:10.838155"
+      },
+      {
+        "id": 8,
+        "parameters": {
+          "cohesion_strength": 0.00021606079405330183,
+          "alignment_strength": 5.087901765079551e-06,
+          "separation_strength": 0.0018672574313335058,
+          "noise_level": 0.0003248662216891248
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.8734426014068599,
+          "max_transfer_entropy": 1.1378705603165837,
+          "std_transfer_entropy": 0.08378853488219234,
+          "global_mutual_info": 1.6840233942961813,
+          "phase_transition": false,
+          "emergence_score": 3.998942486561611,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 3.999",
+        "timestamp": "2026-03-13T15:22:08.782026"
+      },
+      {
+        "id": 13,
+        "parameters": {
+          "cohesion_strength": 7.836490061655953e-05,
+          "alignment_strength": 0.0005784879917379917,
+          "separation_strength": 7.333947942506662e-09,
+          "noise_level": 5.005029636567292e-08
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.8682108987399829,
+          "max_transfer_entropy": 1.2767569423854261,
+          "std_transfer_entropy": 0.10032912545146669,
+          "global_mutual_info": 1.7495526739351113,
+          "phase_transition": false,
+          "emergence_score": 3.9976746690517966,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 3.998",
+        "timestamp": "2026-03-13T15:22:14.297215"
+      },
+      {
+        "id": 5,
+        "parameters": {
+          "cohesion_strength": 0.00010403932420826611,
+          "alignment_strength": 1.0246154068503373e-07,
+          "separation_strength": 0.0016629766433536378,
+          "noise_level": 1.2962004976577196e-06
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.8268609558640453,
+          "max_transfer_entropy": 1.0824093708604638,
+          "std_transfer_entropy": 0.09128033115635714,
+          "global_mutual_info": 1.6622903285034798,
+          "phase_transition": false,
+          "emergence_score": 3.806097847899732,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 3.806",
+        "timestamp": "2026-03-13T15:22:05.412433"
+      },
+      {
+        "id": 11,
+        "parameters": {
+          "cohesion_strength": 0.0002402236196975988,
+          "alignment_strength": 1.8104442535434666e-05,
+          "separation_strength": 9.935171939448462e-06,
+          "noise_level": 0.00802370170621005
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.8115117433989377,
+          "max_transfer_entropy": 1.0351540457650168,
+          "std_transfer_entropy": 0.08354761054222365,
+          "global_mutual_info": 1.6035534026640672,
+          "phase_transition": false,
+          "emergence_score": 3.7270805342498363,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 3.727",
+        "timestamp": "2026-03-13T15:22:11.875668"
+      },
+      {
+        "id": 29,
+        "parameters": {
+          "cohesion_strength": 0.0004783148092896215,
+          "alignment_strength": 0.004586823445969064,
+          "separation_strength": 0.6521501799310121,
+          "noise_level": 7.726056495898781e-10
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.7039653134123195,
+          "max_transfer_entropy": 0.9455423230992128,
+          "std_transfer_entropy": 0.09380999733672239,
+          "global_mutual_info": 1.3885020540061936,
+          "phase_transition": false,
+          "emergence_score": 3.232383711520183,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 3.232",
+        "timestamp": "2026-03-13T15:22:32.772935"
+      },
+      {
+        "id": 15,
+        "parameters": {
+          "cohesion_strength": 7.883447663957657e-06,
+          "alignment_strength": 0.00033048086046044364,
+          "separation_strength": 0.04219496049040088,
+          "noise_level": 0.06714340180006946
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.6497646648350146,
+          "max_transfer_entropy": 0.8839646796109739,
+          "std_transfer_entropy": 0.0875980539059016,
+          "global_mutual_info": 1.304292692866527,
+          "phase_transition": false,
+          "emergence_score": 2.9903204768733267,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 2.990",
+        "timestamp": "2026-03-13T15:22:16.388402"
+      },
+      {
+        "id": 2,
+        "parameters": {
+          "cohesion_strength": 0.0018084419291444457,
+          "alignment_strength": 8.377397302756642e-06,
+          "separation_strength": 2.3332514781684314e-08,
+          "noise_level": 0.0677212178786415
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.6031761396866417,
+          "max_transfer_entropy": 0.7618064421557217,
+          "std_transfer_entropy": 0.05958983139051001,
+          "global_mutual_info": 1.1928455314763804,
+          "phase_transition": false,
+          "emergence_score": 2.7705340913851613,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 2.771",
+        "timestamp": "2026-03-13T15:22:02.114895"
+      },
+      {
+        "id": 22,
+        "parameters": {
+          "cohesion_strength": 0.010210868970730832,
+          "alignment_strength": 0.0029831551060894327,
+          "separation_strength": 7.832974184294519e-05,
+          "noise_level": 1.9869623547907802e-07
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.5876868074444153,
+          "max_transfer_entropy": 1.2431628113449915,
+          "std_transfer_entropy": 0.1672357169021881,
+          "global_mutual_info": 1.2940238357207243,
+          "phase_transition": false,
+          "emergence_score": 2.738930873256653,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 2.739",
+        "timestamp": "2026-03-13T15:22:24.842814"
+      },
+      {
+        "id": 21,
+        "parameters": {
+          "cohesion_strength": 0.042213188057052486,
+          "alignment_strength": 2.533334786824983e-10,
+          "separation_strength": 0.00021896377825691057,
+          "noise_level": 0.00030839310040226545
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.5949799426315748,
+          "max_transfer_entropy": 1.2135327829157274,
+          "std_transfer_entropy": 0.19878537118034387,
+          "global_mutual_info": 1.1784257773840807,
+          "phase_transition": false,
+          "emergence_score": 2.7334237047818077,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 2.733",
+        "timestamp": "2026-03-13T15:22:23.498977"
+      },
+      {
+        "id": 7,
+        "parameters": {
+          "cohesion_strength": 0.005337280231206775,
+          "alignment_strength": 1.3213398040545985e-08,
+          "separation_strength": 0.011787667684308044,
+          "noise_level": 0.0009421380918557234
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.5414447089860441,
+          "max_transfer_entropy": 0.7599297725564448,
+          "std_transfer_entropy": 0.06326103588959653,
+          "global_mutual_info": 1.1029641570277469,
+          "phase_transition": false,
+          "emergence_score": 2.496646425480717,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 2.497",
+        "timestamp": "2026-03-13T15:22:07.691988"
+      },
+      {
+        "id": 24,
+        "parameters": {
+          "cohesion_strength": 0.006227320182699515,
+          "alignment_strength": 1.8031508239076827e-09,
+          "separation_strength": 0.030255480973944492,
+          "noise_level": 9.03327258129302e-08
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.5043988179180099,
+          "max_transfer_entropy": 0.669620767413853,
+          "std_transfer_entropy": 0.049472691723802004,
+          "global_mutual_info": 1.0165978393245674,
+          "phase_transition": false,
+          "emergence_score": 2.3225544477184505,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Swarm Intelligence",
+        "description": "Type: Swarm Intelligence | Strong information flow between agents | High global coordination | Emergence score: 2.323",
+        "timestamp": "2026-03-13T15:22:27.113522"
+      },
+      {
+        "id": 3,
+        "parameters": {
+          "cohesion_strength": 0.006450185520778497,
+          "alignment_strength": 8.747178974524691e-08,
+          "separation_strength": 0.9177284090045211,
+          "noise_level": 0.02466549768444198
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.47905019493191037,
+          "max_transfer_entropy": 0.7064962595033966,
+          "std_transfer_entropy": 0.05751994042548228,
+          "global_mutual_info": 0.9530433298389888,
+          "phase_transition": false,
+          "emergence_score": 2.202094616863159,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 2.202",
+        "timestamp": "2026-03-13T15:22:03.131600"
+      },
+      {
+        "id": 18,
+        "parameters": {
+          "cohesion_strength": 0.05106549937887707,
+          "alignment_strength": 3.846437409986884e-09,
+          "separation_strength": 5.489616876473789e-05,
+          "noise_level": 1.4517836212883082e-05
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.45207968053591296,
+          "max_transfer_entropy": 1.2961155094456427,
+          "std_transfer_entropy": 0.24122048750981911,
+          "global_mutual_info": 0.9057434234167318,
+          "phase_transition": false,
+          "emergence_score": 2.0800236661622797,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 2.080",
+        "timestamp": "2026-03-13T15:22:19.812208"
+      },
+      {
+        "id": 27,
+        "parameters": {
+          "cohesion_strength": 0.22104477359161395,
+          "alignment_strength": 1.6387263843509592e-05,
+          "separation_strength": 0.046936967737314365,
+          "noise_level": 1.1182110561169317e-08
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.3861658905283801,
+          "max_transfer_entropy": 0.5389999919411431,
+          "std_transfer_entropy": 0.056443729265106955,
+          "global_mutual_info": 0.8077216902797855,
+          "phase_transition": false,
+          "emergence_score": 1.7869646227162996,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.787",
+        "timestamp": "2026-03-13T15:22:30.540048"
+      },
+      {
+        "id": 12,
+        "parameters": {
+          "cohesion_strength": 0.10702715265932312,
+          "alignment_strength": 9.568450774501943e-06,
+          "separation_strength": 0.046317243744551664,
+          "noise_level": 7.3845808230411285e-06
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.35009524380716583,
+          "max_transfer_entropy": 0.5076583170423536,
+          "std_transfer_entropy": 0.053335838578780326,
+          "global_mutual_info": 0.7046739909229209,
+          "phase_transition": false,
+          "emergence_score": 1.611769168835824,
+          "network_density": 0.15510204081632653
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.612",
+        "timestamp": "2026-03-13T15:22:13.211675"
+      },
+      {
+        "id": 4,
+        "parameters": {
+          "cohesion_strength": 0.08773957232549667,
+          "alignment_strength": 0.011102539386723564,
+          "separation_strength": 0.853457123928107,
+          "noise_level": 1.3042725055286189e-07
+        },
+        "metrics": {
+          "avg_transfer_entropy": 0.3281559039661421,
+          "max_transfer_entropy": 0.5111413919176789,
+          "std_transfer_entropy": 0.06824675615914418,
+          "global_mutual_info": 0.6953823680119982,
+          "phase_transition": false,
+          "emergence_score": 1.52122520016327,
+          "network_density": 0.15387755102040818
+        },
+        "emergence_type": "Collective Memory",
+        "description": "Type: Collective Memory | High global coordination | Emergence score: 1.521",
+        "timestamp": "2026-03-13T15:22:04.344720"
+      }
+    ]
+  }
+}
