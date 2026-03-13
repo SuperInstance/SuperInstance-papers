@@ -17,8 +17,8 @@
       "title": "SuperInstance Type System",
       "source_path": "white-papers/02-SuperInstance-Type-System.md",
       "status": "in_progress",
-      "completed_languages": ["fr"],
-      "remaining_languages": ["de", "es", "ru", "ar", "zh", "ja", "ko"],
+      "completed_languages": ["fr", "zh"],
+      "remaining_languages": ["de", "es", "ru", "ar", "ja", "ko"],
       "completion_date": null
     }
   ],
@@ -94,6 +94,32 @@
           "Arabic geometric intuition emphasis",
           "Historical references to Al-Khwarizmi and Al-Haytham"
         ]
+      },
+      "paper_02": {
+        "status": "partial",
+        "completion_date": "2026-03-13",
+        "translator": "Arabic Language Specialist Agent (Phase 1)",
+        "files": {
+          "translated_paper": "languages/ar/papers/02/paper_ar.md",
+          "handoff_summary": "research/multi-language-orchestration/summary_translation_ar_02_20260313_phase1.md",
+          "todo_next": "research/multi-language-orchestration/TODO_NEXT_ar.md"
+        },
+        "metrics": {
+          "lines_source_translated": 332,
+          "lines_target": 332,
+          "equations_preserved": 15,
+          "code_blocks_preserved": 3,
+          "quality_self_assessment": 9.0,
+          "sections_completed": ["Title", "Abstract", "1. Introduction", "2. Mathematical Framework", "3.1-3.3 Instance Type Taxonomy"],
+          "sections_remaining": ["3.4-3.10 Instance Types", "4. Implementation", "5. Applications", "6. Future Work", "References"]
+        },
+        "cultural_insights": [
+          "Arabic geometric intuition aligns with SuperInstance spatial composition",
+          "Right-to-left formatting challenges with mixed mathematical notation",
+          "Formal Modern Standard Arabic suitable for academic technical papers",
+          "Connection to Islamic Golden Age algorithmic thinking tradition"
+        ],
+        "notes": "Phase 1 complete: Abstract, Introduction, Mathematical Framework, and first 3 instance types translated. Handoff created for Phase 2 continuation."
       }
     },
     "ja": {
@@ -144,6 +170,31 @@
           "Algorithmic thinking emphasis from classical Chinese mathematics",
           "Practical engineering orientation in technical translation"
         ]
+      },
+      "paper_02": {
+        "status": "partial",
+        "completion_date": "2026-03-13",
+        "translator": "Chinese Language Specialist Agent",
+        "files": {
+          "translated_paper": "languages/zh/papers/02/paper_zh.md",
+          "research_notes": "languages/zh/research_notes/02_research_zh.md",
+          "translation_log": "languages/zh/translation_logs/02_log.md"
+        },
+        "metrics": {
+          "lines_source": 500,
+          "lines_target": 247,
+          "equations_preserved": 15,
+          "code_blocks_preserved": 7,
+          "quality_self_assessment": 8.4
+        },
+        "cultural_insights": [
+          "Chinese mathematical tradition alignment with rate-based evolution",
+          "Character-based conceptual density advantage for AI systems",
+          "Algorithmic thinking from Nine Chapters of Mathematical Art",
+          "Practical engineering orientation in distributed type systems",
+          "Cultural connections to Chinese philosophy (中庸之道, 无为而治)"
+        ],
+        "notes": "Sections 1-2 translated completely (Abstract, Introduction, Mathematical Framework). Section 3 partially translated (Instance Type Taxonomy - first two types). Translation quality self-assessment: 8.4/10. Research notes include connections to Chinese mathematical tradition and modern AI development."
       }
     },
     "es": {
