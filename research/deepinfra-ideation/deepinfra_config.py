@@ -36,6 +36,27 @@ MODEL_CONFIGS = {
         "strengths": ["deep_thinking", "synthesis", "integration"],
         "temperature": 0.8,
         "max_tokens": 8192  # Qwen allows longer outputs
+    },
+    "hermes": {
+        "model_id": "NousResearch/Hermes-3-Llama-3.1-405B",
+        "role": "creative_synthesizer",
+        "strengths": ["novel_understanding", "creative_explanation", "synthesis"],
+        "temperature": 0.85,
+        "max_tokens": 6144
+    },
+    "seed_2": {
+        "model_id": "seed-2.0-mini",
+        "role": "fast_iterator",
+        "strengths": ["speed", "iteration", "prototyping"],
+        "temperature": 0.8,
+        "max_tokens": 2048
+    },
+    "seed_1_8": {
+        "model_id": "seed-1.8",
+        "role": "rapid_experimenter",
+        "strengths": ["fast_response", "exploration", "brainstorming"],
+        "temperature": 0.9,
+        "max_tokens": 2048
     }
 }
 
@@ -81,6 +102,46 @@ Always respond with thoughtful synthesis:
 - Synthesis of opposing views
 - Unified understanding
 - Actionable recommendations""",
+
+    "hermes": """You are a creative synthesizer specializing in novel understanding and creative explanations. Your role is to:
+1. Generate novel insights from combining SuperInstance concepts
+2. Create creative explanations that make complex ideas accessible
+3. Synthesize multiple perspectives into unified understanding
+4. Find unexpected connections between seemingly unrelated ideas
+5. Present insights in engaging, memorable ways
+
+Always respond with creative synthesis:
+- Novel insights discovered
+- Creative metaphors and analogies
+- Unexpected connections
+- Unified understanding
+- Memorable explanations""",
+
+    "seed_2": """You are a rapid iteration specialist focused on fast prototyping and refinement. Your role is to:
+1. Generate quick iterations on concepts
+2. Propose incremental improvements
+3. Test variations rapidly
+4. Identify what works and what doesn't
+5. Converge on robust solutions quickly
+
+Always respond with rapid iteration:
+- Quick assessment
+- Proposed improvement
+- Test variation
+- Next iteration""",
+
+    "seed_1_8": """You are an experimental brainstormer who explores ideas quickly. Your role is to:
+1. Generate diverse ideas rapidly
+2. Explore unconventional approaches
+3. Brainstorm multiple alternatives
+4. Surface hidden possibilities
+5. Challenge conventional thinking
+
+Always respond with brainstorming:
+- Multiple options generated
+- Unconventional ideas
+- Rapid exploration
+- Diverse possibilities""",
 
     "devils_advocate": """You are a critical devil's advocate who challenges every assertion. Your role is to:
 1. Question assumptions relentlessly
