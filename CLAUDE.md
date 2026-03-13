@@ -9,6 +9,80 @@
 
 ---
 
+## 🤖 Orchestrator Model: DeepSeek-Chat
+
+**Current Model:** `deepseek-chat`
+**Last Model:** `glm-5` (switched 2026-03-13)
+
+### Model Specifications
+
+| Property | Value | Notes |
+|----------|-------|-------|
+| **Context Window** | 128K tokens | ~3x smaller than Claude's 200K |
+| **Architecture** | MoE (Mixture of Experts) | 671B total params, 37B active |
+| **API** | OpenAI-compatible | Model name: `deepseek-chat` |
+| **Max Output** | 8K tokens | Plan chunking accordingly |
+| **Pricing** | $0.27/1M input, $1.10/1M output | Very cost-effective |
+
+### Context Window Management
+
+**Challenge:** 128K context window vs Claude's 200K+ means we need careful context hygiene.
+
+**Strategies:**
+1. **File Reading Limits**: Read only essential files. Use `limit` parameter for large files.
+2. **Task Delegation**: Spawn specialized agents for exploration rather than reading entire codebases.
+3. **Summary First**: Always check for existing summaries before deep-diving into code.
+4. **Incremental Work**: Complete tasks in focused sessions, don't try to load everything.
+
+### Prompting Recommendations for DeepSeek-Chat
+
+```
+✅ DO:
+- Be explicit about output format (JSON, markdown, code blocks)
+- Break complex tasks into numbered steps
+- Specify file paths exactly (C:\Users\casey\polln\...)
+- Request specific line ranges when reading files
+- Use clear section headers in responses
+
+❌ AVOID:
+- Vague requests like "explore the codebase"
+- Asking for multiple large file reads in parallel
+- Expecting model to remember context across long conversations
+- Open-ended "what do you think" questions without constraints
+```
+
+### Hardware Context
+
+| Component | Spec | Optimization Target |
+|-----------|------|---------------------|
+| **GPU** | NVIDIA RTX 4050 (6GB VRAM) | CuPy 14.0.1, CUDA 13.1.1 |
+| **CPU** | Intel Core Ultra (Dec 2024) | Parallel simulation workers |
+| **RAM** | 32GB | Large dataset handling |
+| **Storage** | NVMe SSD | Fast I/O for simulations |
+
+### GPU Acceleration Guidelines
+
+```python
+# Preferred: CuPy for GPU acceleration
+import cupy as cp  # CuPy 14.0.1
+
+# Fallback: NumPy for CPU
+import numpy as np
+
+# Memory limit: ~4GB usable (leave 2GB for system)
+# Batch size guideline: matrix_dim < 2000 for 6GB VRAM
+```
+
+### Session Management
+
+When context approaches limits:
+1. Summarize current progress to markdown
+2. Commit changes to git
+3. Note remaining tasks in TODO.md
+4. Start fresh session with summary as context
+
+---
+
 ## 🎯 Current Mission: Phase 2 Research Sprint
 
 **Phase:** Phase 1 Complete → Phase 2 Research & Validation (P24-P40)
@@ -152,9 +226,21 @@ class EmergenceSimulation:
 ### Phase 2 Papers (P24-P40) - Next Generation
 | Tier | Papers | Status |
 |------|--------|--------|
-| HIGH | P24-P27 | Research Agents Spawning |
-| MEDIUM | P28-P30 | Queued |
-| EXTENSIONS | P31-P40 | Queued |
+| HIGH | P24-P27 | ✅ Simulation Schemas Complete |
+| MEDIUM | P28-P30 | ✅ Simulation Schemas Complete |
+| EXTENSIONS | P31-P40 | Queued - Need Schemas |
+
+### Phase 2 Schema Status
+
+| Paper | simulation_schema.py | validation_criteria.md | cross_paper_notes.md |
+|-------|----------------------|------------------------|----------------------|
+| P24 | ✅ Complete | ✅ Complete | ✅ Complete |
+| P25 | ✅ Complete | ✅ Complete | ✅ Complete |
+| P26 | ✅ Complete | ✅ Complete | ✅ Complete |
+| P27 | ✅ Complete | ✅ Complete | ✅ Complete |
+| P28 | ✅ Complete | ✅ Complete | ✅ Complete |
+| P29 | ✅ Complete | ✅ Complete | ✅ Complete |
+| P30 | ✅ Complete | ✅ Complete | ✅ Complete |
 
 ---
 
@@ -241,14 +327,18 @@ SuperInstance-papers/
 | P21 | Stochastic Superiority | 🔨 In Progress |
 | P22 | Edge-to-Cloud Evolution | ✅ Complete |
 | P23 | Bytecode Compilation | ✅ Complete |
-| P24 | Self-Play Mechanisms | 🔬 Research Agent Active |
-| P25 | Hydraulic Intelligence | 🔬 Research Agent Active |
-| P26 | Value Networks | 🔬 Research Agent Active |
-| P27 | Emergence Detection | 🔬 Research Agent Active |
-| P28-P40 | Extensions | ⏳ Queued |
+| P24 | Self-Play Mechanisms | ✅ Complete |
+| P25 | Hydraulic Intelligence | ✅ Complete |
+| P26 | Value Networks | ✅ Complete |
+| P27 | Emergence Detection | ✅ Complete |
+| P28 | Stigmergic Coordination | ✅ Complete |
+| P29 | Competitive Coevolution | ✅ Complete |
+| P30 | Granularity Analysis | ✅ Complete |
+| P31-P40 | Extensions | ⏳ Queued |
 
 **Last Updated:** 2026-03-13
-**Orchestrator Status:** ACTIVE - Spawning Phase 2 Research Agents
+**Orchestrator Status:** ACTIVE - DeepSeek-Chat Model
+**Schema Progress:** P24-P30 Complete (7/17 Phase 2 papers with full documentation)
 
 ---
 
