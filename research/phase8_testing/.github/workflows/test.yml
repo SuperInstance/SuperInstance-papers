@@ -1,0 +1,192 @@
+# GitHub Actions Workflow for SuperInstance Integration Tests
+# =============================================================
+
+name: Integration Tests
+
+on:
+  push:
+    branches: [ main, papers-main, develop ]
+  pull_request:
+    branches: [ main, papers-main, develop ]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  smoke-tests:
+    name: Smoke Tests (Fast)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-asyncio
+        pip install numpy scipy
+
+    - name: Run smoke tests
+      run: |
+        cd research/phase8_testing
+        python -m pytest integration_tests.py -v -m smoke --tb=short --asyncio-mode=auto
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r research/phase8_testing/requirements.txt
+
+    - name: Run integration tests
+      run: |
+        cd research/phase8_testing
+        python -m pytest integration_tests.py -v -m integration --tb=short --asyncio-mode=auto
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: integration-test-results
+        path: research/phase8_testing/test_reports/
+
+  performance-tests:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r research/phase8_testing/requirements.txt
+
+    - name: Run performance tests
+      run: |
+        cd research/phase8_testing
+        python -m pytest performance_tests.py -v -m performance --tb=short --asyncio-mode=auto -s
+
+    - name: Upload performance results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-test-results
+        path: research/phase8_testing/test_reports/
+
+  gpu-tests:
+    name: GPU Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    # Only run GPU tests on main branches or manually
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-asyncio
+        pip install numpy cupy-cuda11x
+
+    - name: Run GPU tests
+      run: |
+        cd research/phase8_testing
+        python -m pytest integration_tests.py -v -m gpu --tb=short --asyncio-mode=auto
+
+    - name: Upload GPU test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: gpu-test-results
+        path: research/phase8_testing/test_reports/
+
+  coverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-asyncio pytest-cov
+        pip install numpy scipy
+
+    - name: Run tests with coverage
+      run: |
+        cd research/phase8_testing
+        python -m pytest integration_tests.py -v --asyncio-mode=auto \
+          --cov=. --cov-report=xml --cov-report=term
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: research/phase8_testing/coverage.xml
+        flags: integration-tests
+        name: codecov-umbrella
+
+  test-report:
+    name: Generate Test Report
+    runs-on: ubuntu-latest
+    needs: [smoke-tests, integration-tests, performance-tests]
+    if: always()
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+      with:
+        path: test_reports/
+
+    - name: Generate summary
+      run: |
+        echo "## Test Results Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Smoke Tests: ${{ needs.smoke-tests.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "Integration Tests: ${{ needs.integration-tests.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "Performance Tests: ${{ needs.performance-tests.result }}" >> $GITHUB_STEP_SUMMARY
