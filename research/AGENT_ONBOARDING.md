@@ -66,8 +66,239 @@ polln/
 ### Step 1: Understand Current Phase
 Read `research/PHASE_5_PROPOSAL.md` to understand what's planned.
 
-### Step 1.5: Set Up Multi-API Simulation Tools (NEW)
-The project now includes a multi-API simulation framework for research ideation and validation.
+### Step 2: Set Up MCP Servers (REQUIRED for all agents)
+
+The project now includes **Model Context Protocol (MCP) servers** for cost-effective AI orchestration.
+
+**Why MCP?**
+- Unified interface to multiple AI providers
+- Pricing-aware model selection (use FREE when possible!)
+- Optimized workflows for different tasks
+- 50% discount on async batch processing
+
+**Available MCP Servers:**
+
+| Server | Best For | Cost | When to Use |
+|--------|----------|------|-------------|
+| **Groq** | Devil's advocate, rapid iteration | **FREE** | Challenges, quick checks, iterations |
+| **DeepInfra** | Research ideation, large context | $0.03-0.20/1M | Novel insights, cost-sensitive work |
+| **DeepSeek** | Chain-of-thought reasoning | $0.10/1M | Math proofs, explicit reasoning |
+| **Kimi** | Ultra-large context (128K) | $0.12-0.50/1M | Entire papers, synthesis |
+
+**Setup:**
+```bash
+# Install all MCP servers
+cd mcp-servers/groq-mcp && pip install -e .
+cd ../deepinfra-mcp && pip install -e .
+cd ../deepseek-thinker-mcp && pip install -e .
+cd ../kimi-mcp && pip install -e .
+```
+
+**Configuration:**
+API keys are pre-configured in `claude_mcp_config.json`
+
+**Quick MCP Usage:**
+
+```python
+# FREE: Devil's advocate challenge
+groq_devils_advocate(
+    claim="Your claim here",
+    iterations=2
+)
+
+# Cheapest: General chat (DeepInfra Mistral 7B)
+deepinfra_chat(
+    message="Your question",
+    model="mistralai/Mistral-7B-Instruct-v0.3"
+)
+
+# Complex reasoning: Chain-of-thought
+deepseek_reason(
+    problem="Mathematical proof needed",
+    domain="mathematics",
+    steps=7
+)
+
+# Large document: Process entire paper
+kimi_analyze_document(
+    document="[full paper content]",
+    analysis_type="summary"
+)
+```
+
+**Pricing-Aware Workflow (CRITICAL):**
+
+1. **Always start with Groq (FREE)** for rapid iterations
+2. **Use cheapest model** that can do the job (DeepInfra Mistral 7B @ $0.03/1M)
+3. **Reserve DeepSeek** for explicit chain-of-thought requirements
+4. **Use async batching** with Groq for 50% discount on large jobs
+5. **Kimi only** when you need 128K context (full papers)
+
+**Async Batching (50% savings!):**
+
+Use Groq async batch when you don't need immediate results:
+- Running 10+ simulations in parallel
+- Generating multiple hypotheses
+- Non-interactive analysis tasks
+
+**See:** `research/MCP_USER_GUIDE.md` for complete documentation
+
+### Step 3: Alibaba Cloud Integration (NEW 2026-03-14)
+
+**Alibaba Cloud API MCP Server**
+- **Purpose:** Access Alibaba Cloud's extensive AI and cloud services
+- **Best For:** Chinese market deployment, Qwen models, specialized AI services
+- **Key Features:**
+  - Qwen (Tongyi Qianwen) - Alibaba's large language models
+  - Image generation and processing
+  - Speech recognition and synthesis
+  - Natural language processing for Chinese
+  - Machine learning platform (PAI)
+
+**Alibaba Cloud DevOps MCP Server**
+- **Purpose:** DevOps automation and deployment for Alibaba Cloud
+- **Best For:** CI/CD pipelines, infrastructure automation, monitoring
+- **Key Features:**
+  - Container Service for Kubernetes (ACK)
+  - Function Compute (serverless)
+  - Resource Orchestration Service (ROS)
+  - Cloud Monitor integration
+  - Auto-scaling automation
+
+**Setup:**
+```bash
+# API key location
+apikey/alibaba_api_key.txt
+
+# Install Alibaba MCP servers
+cd mcp-servers/alibaba-mcp && pip install -e .
+cd ../alibaba-devops-mcp && pip install -e .
+```
+
+**Usage Examples:**
+
+**Alibaba Cloud API:**
+```python
+# Qwen model for Chinese language processing
+alibaba_chat(
+    message="翻译这段技术文档",
+    model="qwen-max"
+)
+
+# Image generation
+alibaba_generate_image(
+    prompt="分布式系统架构图",
+    style="technical"
+)
+
+# Chinese speech recognition
+alibaba_speech_to_text(
+    audio_file="chinese_audio.wav",
+    language="zh"
+)
+```
+
+**Alibaba DevOps:**
+```python
+# Deploy to Alibaba Kubernetes
+alibaba_deploy_k8s(
+    cluster="your-cluster",
+    manifest="k8s/deployment.yaml"
+)
+
+# Trigger Function Compute
+alibaba_invoke_function(
+    service="simulation-service",
+    function="run-model"
+)
+
+# Monitor resources
+alibaba_monitor_resources(
+    services=["api", "worker", "redis"]
+)
+```
+
+**When to Use Alibaba Cloud:**
+- Deploying to China/Asia-Pacific regions
+- Chinese language processing (superior to Western models)
+- Cost-effective alternative to AWS/Azure in Asia
+- Access to specialized AI models (Qwen)
+- Integration with Chinese cloud ecosystem
+
+**Cost Considerations:**
+- Qwen models: ~30% cheaper than GPT-4 for Chinese
+- Compute: Competitive pricing for Asia regions
+- Free tier available for new accounts
+- Pay-as-you-go for optimal cost control
+
+**See:** `mcp-servers/alibaba-mcp/README.md` for complete documentation
+
+### Step 4: Ancient Language Translation Project (NEW 2026-03-14)
+
+**Mission: Cross-Cultural Knowledge Synthesis**
+
+This project expands beyond modern languages to translate SuperInstance papers into **ancient and oral tradition languages** with deep conceptual reconstruction.
+
+**The Challenge:**
+Modern technical concepts emerge from Western cultural assumptions (object-oriented, analytical, static). Ancient and indigenous languages often encode different worldviews (process-oriented, relational, holistic).
+
+**Translation Approach: NOT word-for-word, but concept-to-concept**
+
+Example translations:
+- "Distributed consensus" → Sanskrit: *Sārasangata* (resonant union through sound)
+- "Network protocol" → Chinese: *Lǐ* (ritual propriety, right relationships)
+- "Data structure" → Māori: *Whakapapa* (genealogical layering)
+
+**Target Languages & Philosophies:**
+
+| Language | Core Philosophy | Translation Focus |
+|----------|----------------|-------------------|
+| **Sanskrit** | Nada Brahma (World is Sound) | Vibrational resonance |
+| **Sumerian** | Cosmic Ordering (The Me) | Divine ordinances |
+| **Ancient Hebrew** | Verbal Dynamism (Word = Event) | Speech-act computation |
+| **Classical Greek** | Logos (Universal Truth) | Ideal forms |
+| **Classical Chinese** | Zhengming (Rectification) | Harmonious relationships |
+| **Pacific Islander** | Mana (Breath power) | Ancestral transmission |
+| **Indigenous American** | Process Philosophy (80% verbs) | Ongoing becoming |
+
+**Scholars to Study:**
+- F. David Peat (Blackfoot physics)
+- Dr. Leroy Little Bear (Indigenous metaphysics)
+- David Bohm (Wholeness/implicate order)
+- Gregory Cajete (Native science)
+- John Mbiti (African Sasa/Zamani time)
+- Lera Boroditsky (Language & cognition)
+- Dr. TK Irwin (Mātauranga Māori)
+
+**Project Structure:**
+```
+research/cross-cultural-translation/
+├── ANCIENT_LANGUAGE_GUIDE.md        # Methodology
+├── SCHOLAR_RESEARCH_SUMMARY.md      # Framework synthesis
+├── LANGUAGE_PROFILES/               # Language deep dives
+├── CONCEPTUAL_BRIDGES/              # Concept mapping
+└── TRANSLATIONS/                    # Actual translations
+```
+
+**Agent Instructions:**
+1. Read the Scholar Research Summary first
+2. Study the Language Profile for your assigned tradition
+3. Use Kimi (128K context) for deep research
+4. Think IN the target language, not translate FROM English
+5. Respect indigenous knowledge sovereignty
+6. Document novel computational insights that emerge
+
+**Success Metrics:**
+- Cultural fidelity (would native speakers recognize their worldview?)
+- Conceptual depth (not word count, but understanding)
+- Novel insights (what new perspectives emerge?)
+- Knowledge sovereignty (proper attribution)
+
+**See:** `research/cross-cultural-translation/ANCIENT_LANGUAGE_GUIDE.md` for complete methodology
+
+### Step 5: Legacy Multi-API Simulation Tools
+
+The project includes a multi-API simulation framework for research ideation and validation.
 
 **Available APIs:**
 - **DeepInfra**: Novel models (Llama 3 70B, Qwen 2 72B, Nemo 340B) for diverse perspectives
@@ -80,15 +311,8 @@ cd research/simulation_framework
 pip install -r requirements.txt
 ```
 
-**Configuration:**
-API keys are stored in `apikey/simulation_config.py` (git-ignored)
-- DeepInfra: Novel architectures and large context models
-- DeepSeek: Cheap iterations for rapid prototyping
-- Moonshot: High-quality reasoning and analysis
-
 **Quick Test:**
 ```bash
-cd research/simulation_framework
 python run_mini_ideation.py
 ```
 
@@ -96,8 +320,6 @@ python run_mini_ideation.py
 ```bash
 python run_5_phase_simulation.py
 ```
-
-**Use Cases:**
 - Generate research hypotheses using ensemble methods
 - Validate claims with multi-model review
 - Literature synthesis across different perspectives
@@ -105,14 +327,14 @@ python run_5_phase_simulation.py
 - Cost-effective iteration with DeepSeek
 - Novel insights from different model architectures
 
-**Best Practices:**
-1. Use DeepSeek for initial exploration (cheap, fast)
-2. Use ensemble methods for critical decisions
-3. Leverage large context models (Nemo) for complex analysis
-4. Save results to `simulation_framework/results/` for tracking
-5. Monitor costs via simulation statistics
+**MCP-Powered Best Practices:**
+1. Use **Groq (FREE)** for initial exploration and devil's advocate challenges
+2. Use **DeepInfra Mistral 7B** ($0.03/1M) for cost-effective ensemble methods
+3. Use **DeepSeek** for explicit chain-of-thought when needed
+4. Use **async batching** for 50% savings on large simulation batches
+5. Save results to `simulation_framework/results/` for tracking
 
-### Step 2: Choose Your Focus
+### Step 4: Choose Your Focus
 
 #### Option A: Complete Phase 1 Papers (P1, P5, P7-P9, P11, P19, P21)
 - Read existing papers in `papers/01-23/`
@@ -420,4 +642,5 @@ When you complete work or context is full:
 ---
 
 **Welcome to the team!**
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-14
+**Version:** 3.0 (Ancient Language Translation Edition)
