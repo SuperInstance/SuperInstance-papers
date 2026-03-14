@@ -1,0 +1,93 @@
+# Cloudflare Workers deployment files
+.dev.vars
+wrangler.toml
+.node_modules/
+dist/
+.mf/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+out/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+wrangler-*
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# API Keys (should be in secrets, not committed)
+apikey/
+secrets/
+*.pem
+*.key
+
+# Local development
+.local/
+local/
+
+# Migration backups
+*.backup
+*.bak
+
+# Performance data
+performance-results.json
+load-test-results/
+
+# E2E test artifacts
+playwright-report/
+test-results/
+
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/*.tfvars
+
+# Python (if using Python for scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+
+# Node
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

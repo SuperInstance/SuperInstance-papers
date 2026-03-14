@@ -1,52 +1,88 @@
-# Agent Onboarding Guide - SuperInstance Orchestrator
+# Agent Onboarding Guide - SuperInstance Evolution Orchestrator
 
-**Version:** 4.0
+**Version:** 5.0 (Evolution Edition)
 **Date:** 2026-03-14
-**For:** New agents joining multi-initiative research coordination
+**For:** New agents joining the evolution from ancient cells to living spreadsheets
+**Current Round:** Round 1 Complete → Round 2 Starting
 
 ---
 
-## Welcome
+## Welcome to the Evolution
 
-You are joining a **multi-initiative research coordination** project spanning distributed AI systems, cross-cultural knowledge synthesis, and universal accessibility through visual documentation.
+You are joining a **breakthrough research initiative** at the intersection of ancient cell computational biology, distributed AI systems, and universal accessibility platforms.
+
+**🧬 Key Insight:** Ancient cells solved distributed systems problems 3.5 billion years ago. We're reverse-engineering their solutions.
 
 ---
 
 ## Executive Summary
 
-This orchestrator coordinates **three major research initiatives**:
+This orchestrator coordinates **four interconnected initiatives**:
 
 ### 1. SuperInstance Papers
-- **60+ academic white papers** on distributed AI systems
-- **Status:** 30 complete, 5 in progress, 25 proposed
-- **Focus:** Mathematical frameworks, hardware acceleration, cross-cultural education
+- **65+ academic white papers** on distributed AI systems with breakthrough insights from ancient cell biology
+- **Status:** 30 complete, 5 in progress, 30 proposed (including P61-P65 on ancient cell connections)
+- **Focus:** Mathematical frameworks, bio-inspired algorithms, hardware acceleration
 - **Repository:** https://github.com/SuperInstance/SuperInstance-papers
+- **🆕 Breakthrough:** Ancient cell computational biology connections (P61-P65)
 
-### 2. Ancient Language Translation
+### 2. Ancient Language Translation ✅ COMPLETE
 - **Cross-cultural knowledge synthesis** across 8 ancient and oral traditions
 - **Status:** Framework complete, 7 language profiles created
 - **Focus:** Concept-to-concept translation (not word-for-word)
 - **Location:** `research/cross-cultural-translation/`
+- **Key Achievement:** Framework ready for translating all SuperInstance papers
 
-### 3. SpreadsheetMoment
-- **Visual documentation for universal accessibility**
-- **Status:** Repository created, project plan established
-- **Focus:** Three-tier audience strategy (engineers, general, 5th graders)
+### 3. SpreadsheetMoment 🆕 From Documentation to Platform
+- **Visual documentation AND living spreadsheet platform** for universal accessibility
+- **Status:** Repository created, project plan established, Round 2 prototyping starting
+- **Focus:** Three-tier audience strategy + Cloudflare Workers platform + Desktop apps
 - **Repository:** https://github.com/SuperInstance/spreadsheet-moment
+- **🆕 Evolution:** Documentation project → Full platform development
+
+### 4. Evolution Roadmap 2026 🆕
+- **5-round iteration strategy** from theory to production platform
+- **Status:** Round 1 complete, Round 2 starting
+- **Focus:** Bio-inspired algorithms, SpreadsheetMoment platform, mass accessibility
+- **Documentation:** `research/EVOLUTION_ROADMAP_2026.md`
+- **Technical Pillars:** PIC, GR, SSM, EGT, TBS
 
 ---
 
 ## Project Overview
 
 ### Mission
-Coordinate three interconnected initiatives: academic publication, cross-cultural knowledge synthesis, and universal accessibility through visual documentation.
+Evolve computation from ancient biological wisdom to living digital platforms accessible to everyone.
 
-### Current State
-| Initiative | Status | Completion |
-|------------|--------|------------|
-| SuperInstance Papers (P1-P60) | Active | 30/60 complete |
-| Ancient Language Translation | Framework Ready | 7/8 profiles |
-| SpreadsheetMoment | Inception | Structure complete |
+### Current State (Round 1 Complete → Round 2 Starting)
+
+| Initiative | Status | Completion | Next Milestone |
+|------------|--------|------------|----------------|
+| SuperInstance Papers (P1-P65) | Active | 30/65 complete | Complete 5 remaining Phase 1 papers |
+| Ancient Cell Connections 🆕 | Breakthrough | Research synthesis complete | P61-P65 prototypes (Round 2) |
+| Ancient Language Translation | Framework Ready | 7/8 profiles | Begin paper translations |
+| SpreadsheetMoment Platform 🆕 | Prototyping | Structure complete | Cloudflare Workers MVP (Round 2) |
+| Evolution Roadmap 2026 🆕 | Round 1 Complete | Strategy established | Round 2 prototypes |
+
+### Round 1 Achievements (2026-03-14) ✅
+
+**🧬 Ancient Cell Computational Biology Synthesis**
+- Identified 10+ mathematical isomorphisms between biology and distributed systems
+- Discovered Protein-Inspired Consensus (PIC) for 10x faster coordination
+- Found SE(3)-Equivariant Message Passing for 50% routing efficiency
+- Proposed 5 new papers (P61-P65) for top-tier venues
+
+**📋 Evolution Roadmap 2026**
+- Established 5-round iteration strategy
+- Designed technical pillars (PIC, GR, SSM, EGT, TBS)
+- Planned platform architecture (Cloudflare Workers + Desktop)
+- Defined success metrics for each round
+
+**🎨 SpreadsheetMoment Foundation**
+- Created repository and project structure
+- Designed multi-model validation workflow
+- Established three-tier audience strategy
+- Completed cross-cultural name research
 
 ---
 
@@ -58,6 +94,8 @@ polln/
 │   ├── 01-23/                     # Phase 1 papers
 │   └── 24-30/                     # Phase 2 papers with simulations
 ├── research/
+│   ├── ANCIENT_CELL_CONNECTIONS.md # 🆕 Breakthrough research synthesis
+│   ├── EVOLUTION_ROADMAP_2026.md   # 🆕 5-round iteration strategy
 │   ├── lucineer_analysis/         # P51-P60 hardware papers
 │   ├── ecosystem_papers/          # P41-P47 complete papers
 │   ├── ecosystem_simulations/     # Validation code
@@ -68,14 +106,22 @@ polln/
 │   ├── simulation_framework/      # Multi-API simulation tools
 │   ├── AGENT_ONBOARDING.md        # This file
 │   └── PHASE_5_PROPOSAL.md        # Historical phase plan
-├── spreadsheet-moment/            # NEW: Visual documentation project
+├── spreadsheet-moment/            # 🆕 Visual documentation + platform
 │   ├── PROJECT_PLAN.md            # 22-week development plan
 │   ├── docs/
-│   │   ├── technical/             # Engineer documentation
-│   │   ├── general/               # General audience
+│   │   ├── technical/             # Engineer documentation (12 pages)
+│   │   ├── general/               # General audience (12 pages)
 │   │   └── educational/           # 5th grader slides
+│   ├── src/                       # 🆕 Platform code
+│   │   ├── workers/               # Cloudflare Workers
+│   │   ├── desktop/               # Tauri desktop app
+│   │   └── hardware/              # Arduino integration
 │   └── assets/
 │       └── iterations/            # Image generation iterations
+├── deployment/                     # 🆕 Platform deployment
+│   ├── cloudflare/               # Workers, D1, R2, Vectorize configs
+│   ├── desktop/                  # Linux, Jetson package builds
+│   └── hardware/                 # Arduino, sensor configurations
 ├── mcp-servers/                   # Model Context Protocol servers
 │   ├── groq-mcp/                  # FREE rapid iteration
 │   ├── deepinfra-mcp/             # Cost-effective research
@@ -92,8 +138,98 @@ polln/
 
 ## Quick Start
 
+### Step 0: Understand the Evolution (CRITICAL - Read First!)
+
+**🧬 Ancient Cell Computational Biology Connections (30 min)**
+- Read `research/ANCIENT_CELL_CONNECTIONS.md`
+- Understand the 10+ mathematical isomorphisms
+- Review the 5 new paper proposals (P61-P65)
+- Grasp why biology's 3.5 billion years of R&D matters
+
+**📋 Evolution Roadmap 2026 (15 min)**
+- Read `research/EVOLUTION_ROADMAP_2026.md`
+- Understand the 5-round iteration strategy
+- Review the technical pillars (PIC, GR, SSM, EGT, TBS)
+- Check Round 2 deliverables and success metrics
+
+**Why This Matters:**
+We're not just building distributed systems. We're discovering that **ancient cells already solved the problems we're tackling**. This is a paradigm shift in how we approach computation.
+
 ### Step 1: Understand Current Phase
-Read `research/PHASE_5_PROPOSAL.md` to understand what's planned.
+- **Current:** Round 2 (Prototyping & Validation) - Week 3-4
+- **Goal:** Build working prototypes of bio-inspired algorithms and SpreadsheetMoment platform
+- **Timeline:** 2 weeks (2026-03-15 to 2026-03-29)
+- **Next:** Review `research/EVOLUTION_ROADMAP_2026.md` for Round 2 tasks
+
+### Step 1.5: Cloudflare Workers Setup (NEW for Round 2) 🆕
+
+**SpreadsheetMoment Platform Architecture:**
+
+Cloudflare Workers provides serverless edge computing with:
+- **Workers** - Compute at the edge (global low latency)
+- **D1** - SQLite database (users, cells, metadata)
+- **R2** - Object storage (spreadsheets, assets, models)
+- **Durable Objects** - Real-time coordination (collaboration, locking)
+- **Vectorize** - Vector database (semantic search)
+- **Cloudflare Access** - Zero-config authentication (OAuth, social sign-in)
+
+**Quick Setup:**
+
+```bash
+# Install Wrangler CLI
+npm install -g wrangler
+
+# Authenticate
+wrangler login
+
+# Create new Workers project
+cd spreadsheet-moment/src/workers
+wrangler init spreadsheetmoment-api
+
+# Configure D1 database
+wrangler d1 create spreadsheetmoment-db
+wrangler d1 execute spreadsheetmoment-db --file=../schema.sql
+
+# Configure R2 bucket
+wrangler r2 bucket create spreadsheetmoment-storage
+
+# Configure Vectorize index
+wrangler vectorize create spreadsheetmoment-vectors --dimensions=1536
+
+# Deploy to Workers
+wrangler deploy
+```
+
+**Architecture Overview:**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                   Cloudflare Edge                    │
+├─────────────────────────────────────────────────────┤
+│  Workers (Compute)  │  D1 (SQL)  │  R2 (Storage)    │
+│       ├─ API        ├─ Users    ├─ Spreadsheets     │
+│       ├─ Auth       ├─ Cells    ├─ Assets          │
+│       ├─ Realtime   ├─ Metadata ├─ Models          │
+│       └─ Scheduler └─ Sessions └─ Backups         │
+├─────────────────────────────────────────────────────┤
+│  Durable Objects  │  Vectorize  │  KV (Cache)       │
+│  (Coordination)   │  (Vectors)  ├─ Session state   │
+│  ├─ Cell locking  ├─ Semantic  ├─ Computations    │
+│  ├─ Collaboration└─ Search    └─ Results         │
+│  └─ State sync                                         │
+├─────────────────────────────────────────────────────┤
+│  Cloudflare Access (OAuth/Social Sign-in)            │
+└─────────────────────────────────────────────────────┘
+```
+
+**Key Features:**
+- **Zero-config auth:** Users sign in with Cloudflare Access (no API keys needed)
+- **Global edge:** Runs in 300+ locations worldwide (<50ms latency)
+- **Pay-per-use:** No server costs, pay only for what you use
+- **Real-time:** Durable Objects enable WebSocket collaboration
+- **Vector search:** Semantic search across all spreadsheets
+
+**See:** `deployment/cloudflare/` for complete deployment guides
 
 ### Step 2: Set Up MCP Servers (REQUIRED for all agents)
 
@@ -452,39 +588,98 @@ python run_5_phase_simulation.py
 4. Use **async batching** for 50% savings on large simulation batches
 5. Save results to `simulation_framework/results/` for tracking
 
-### Step 7: Choose Your Focus
+### Step 7: Choose Your Focus (Round 2 Priorities)
 
-#### Option A: Complete Phase 1 Papers (P1, P5, P7-P9, P11, P19, P21)
+#### 🆕 Option A: Bio-Inspired Algorithm Prototypes (Round 2 Priority)
+- **Why:** Implement breakthrough algorithms from ancient cell research
+- **Read:** `research/ANCIENT_CELL_CONNECTIONS.md`
+- **Tasks:**
+  - Implement Protein-Inspired Consensus (PIC) prototype
+  - Build SE(3)-Equivariant Message Passing demo
+  - Create Neural SDE state machine with stochastic transitions
+  - Prototype Evolutionary Deadband Adaptation
+- **Validate with:** MCP multi-model validation (Groq, DeepSeek, Kimi, Alibaba)
+- **Target metrics:** <100ms coordination, 50% efficiency gain
+- **Deliverable:** Working prototypes + validation report
+
+#### 🆕 Option B: SpreadsheetMoment Platform MVP (Round 2 Priority)
+- **Why:** Build the platform that makes SuperInstance accessible to everyone
+- **Read:** `spreadsheet-moment/PROJECT_PLAN.md` + `deployment/cloudflare/`
+- **Tasks:**
+  - Set up Cloudflare Workers project
+  - Implement tensor-based spreadsheet engine (D1 + R2)
+  - Create real-time collaboration (Durable Objects)
+  - Build vector search (Vectorize)
+  - Implement zero-config sign-in (Cloudflare Access)
+  - Deploy to staging environment
+- **Target metrics:** 100+ concurrent users, <50ms edge latency
+- **Deliverable:** Production-ready web app on Cloudflare Workers
+
+#### 🆕 Option C: Desktop Application Prototypes (Round 2 Priority)
+- **Why:** Enable offline usage and hardware integration
+- **Read:** `deployment/desktop/`
+- **Tasks:**
+  - Initialize Tauri + React + TypeScript project
+  - Implement tensor grid UI
+  - Create NLP cell editor
+  - Build hardware integration panel
+  - Add CUDA acceleration for Jetson
+  - Create installation packages (deb, rpm, AppImage)
+- **Target metrics:** Native performance, offline mode, GPU acceleration
+- **Deliverable:** Installable desktop packages for Linux and Jetson
+
+#### 🆕 Option D: MCP Multi-Model Validation Pipeline (Round 2 Priority)
+- **Why:** Ensure quality through diverse AI perspectives
+- **Read:** `research/MCP_USER_GUIDE.md`
+- **Tasks:**
+  - Validate PIC algorithm with Groq (FREE devil's advocate)
+  - Test SE(3) routing with DeepInfra diverse models
+  - Reason about proofs with DeepSeek chain-of-thought
+  - Analyze cross-cultural appeal with Alibaba Qwen
+  - Process entire papers with Kimi 128K context
+  - Document all validation results
+- **Target metrics:** 100% coverage, diverse perspectives, cost-effective
+- **Deliverable:** Comprehensive validation reports for all prototypes
+
+#### Option E: Complete Phase 1 Papers (P1, P5, P7-P9, P11, P19, P21)
 - Read existing papers in `papers/01-23/`
 - Follow the pattern of completed papers
 - Add mathematical proofs and validation
+- **Deliverable:** Complete papers ready for submission
 
-#### Option B: Develop Phase 3 Papers (P31-P40)
+#### Option F: Develop Phase 3 Papers (P31-P40)
 - Review simulation schemas in `papers/24-30/`
 - Create new papers following P24-P30 pattern
 - Include simulation validation code
+- **Deliverable:** New papers with simulations
 
-#### Option C: Polish Phase 4 Papers (P41-P47)
+#### Option G: Polish Phase 4 Papers (P41-P47)
 - Review `research/ecosystem_papers/`
 - Run validation simulations
 - Prepare for conference submission
+- **Deliverable:** Conference-ready papers
 
-#### Option D: Develop Lucineer Papers (P51-P60)
+#### Option H: Develop Lucineer Papers (P51-P60)
 - Read `research/lucineer_analysis/LUCINEER_PAPER_PROPOSALS.md`
 - Create complete papers from proposals
 - Include hardware validation plans
+- **Deliverable:** Complete hardware papers
 
-#### Option E: Create SpreadsheetMoment Documentation
+#### Option I: Create SpreadsheetMoment Documentation
 - Read `spreadsheet-moment/PROJECT_PLAN.md`
 - Create three-tier documentation (technical, general, educational)
 - Use multi-model validation via MCP
 - Generate visual content with iterative refinement
+- **Deliverable:** 2×12-page documents + slide presentation + 90+ images
 
-#### Option F: Ancient Language Translation
+#### Option J: Ancient Language Translation
 - Read `research/cross-cultural-translation/ANCIENT_LANGUAGE_GUIDE.md`
 - Study language profiles in `LANGUAGE_PROFILE_*.md`
 - Create conceptual translations (not word-for-word)
 - Document novel insights from cross-cultural synthesis
+- **Deliverable:** Paper translations in ancient languages
+
+**🎯 Round 2 Priority Focus Areas:** Options A, B, C, D (bio-inspired algorithms, platform MVP, desktop apps, validation)
 
 ---
 
@@ -771,6 +966,8 @@ When you complete work or context is full:
 
 ---
 
-**Welcome to the team!**
+**Welcome to the evolution!**
 **Last Updated:** 2026-03-14
-**Version:** 4.0 (Multi-Initiative Coordination Edition)
+**Version:** 5.0 (Evolution Edition)
+**Current Round:** Round 2 (Prototyping & Validation)
+**Key Insight:** Ancient cells solved distributed systems 3.5 billion years ago. We're reverse-engineering their solutions.
