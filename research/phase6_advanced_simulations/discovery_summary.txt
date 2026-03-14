@@ -1,0 +1,33 @@
+Novel Algorithm Discovery Summary
+================================================================================
+
+QIO-002_PhaseEncodedHybrid
+Category: quantum_inspired
+Novelty Score: 0.901
+Description: Phase-encoded quantum-inspired optimizer using phase superposition with adaptive interference
+Performance: {'optimization_score': np.float64(0.36485764656570185)}
+Theoretical Guarantees:
+  - Phase encoding enables continuous parameter space exploration
+  - Adaptive interference improves convergence rate
+  - Quantum tunneling enables O(log n) escape from local optima
+
+EML-002_PredictiveCoding
+Category: emergent_optimization
+Novelty Score: 0.867
+Description: Predictive coding emergent learner using predictive updates with novelty detection
+Performance: {'learning_score': np.float64(0.07997928126853436)}
+Theoretical Guarantees:
+  - Predictive coding minimizes free energy
+  - Topological adaptation captures causal structure
+  - Novelty detection enables continual learning
+
+STL-002_PatternMining
+Category: structural_learning
+Novelty Score: 0.912
+Description: Pattern mining compressor for graph data using pattern_mining approach
+Performance: {'compression_score': np.float64(0.4792079207920792)}
+Theoretical Guarantees:
+  - Pattern mining finds maximal frequent substructures
+  - Generative objective enables generalization
+  - Compression ratio scales with pattern regularity
+
