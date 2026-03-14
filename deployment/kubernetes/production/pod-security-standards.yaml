@@ -1,0 +1,175 @@
+# Pod Security Standards for POLLN Production
+# Enforces restricted security baseline for all pods
+
+---
+# Namespace with Pod Security Standards
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: polln
+  labels:
+    name: polln
+    # Enforce restricted security profile
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: latest
+
+---
+# Pod Security Policy for GPU workloads
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gpu-k8s
+  labels:
+    name: gpu-k8s
+    # GPU workloads need baseline (less strict than restricted)
+    pod-security.kubernetes.io/enforce: baseline
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: latest
+
+---
+# Resource Quota for polln namespace
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: polln-compute-resources
+  namespace: polln
+spec:
+  hard:
+    requests.cpu: "10"
+    requests.memory: 20Gi
+    limits.cpu: "20"
+    limits.memory: 40Gi
+    persistentvolumeclaims: "10"
+    requests.storage: "100Gi"
+    pods: "20"
+    services: "10"
+    secrets: "10"
+    configmaps: "10"
+
+---
+# Resource Quota for gpu-k8s namespace
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: gpu-compute-resources
+  namespace: gpu-k8s
+spec:
+  hard:
+    requests.cpu: "20"
+    requests.memory: 40Gi
+    limits.cpu: "40"
+    limits.memory: 80Gi
+    requests.nvidia.com/gpu: "4"
+    persistentvolumeclaims: "5"
+    requests.storage: "200Gi"
+    pods: "10"
+    services: "5"
+    secrets: "10"
+    configmaps: "10"
+
+---
+# Limit Range for polln namespace
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: polln-limits
+  namespace: polln
+spec:
+  limits:
+  - default:
+      cpu: "500m"
+      memory: "1Gi"
+    defaultRequest:
+      cpu: "250m"
+      memory: "512Mi"
+    type: Container
+
+---
+# Limit Range for gpu-k8s namespace
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: gpu-limits
+  namespace: gpu-k8s
+spec:
+  limits:
+  - default:
+      cpu: "2"
+      memory: "4Gi"
+      nvidia.com/gpu: "1"
+    defaultRequest:
+      cpu: "1"
+      memory: "2Gi"
+    type: Container
+
+---
+# Priority Class for critical workloads
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: critical-workload
+  value: 1000
+  globalDefault: false
+  description: "Priority class for critical production workloads"
+
+---
+# Priority Class for GPU workloads
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: gpu-workload
+  value: 900
+  globalDefault: false
+  description: "Priority class for GPU simulation workloads"
+
+---
+# Security Context for API pods
+apiVersion: v1
+kind: Pod
+metadata:
+  name: polln-api-secure
+  namespace: polln
+spec:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1001
+    runAsGroup: 1001
+    fsGroup: 1001
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: api
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1001
+      capabilities:
+        drop:
+        - ALL
+        add:
+        - NET_BIND_SERVICE
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "512Mi"
+      limits:
+        cpu: "1000m"
+        memory: "2Gi"
+    volumeMounts:
+    - name: tmp
+      mountPath: /tmp
+    - name: cache
+      mountPath: /app/.cache
+  volumes:
+  - name: tmp
+    emptyDir: {}
+  - name: cache
+    emptyDir: {}

@@ -1,0 +1,252 @@
+# Container Image Signing with Sigstore/Cosign
+# Implements image signing and verification for supply chain security
+
+name: Container Image Signing
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-sign:
+    name: Build and Sign Container Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=sha
+
+    - name: Build and push image
+      id: build
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./deployment/docker/Dockerfile
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        sbom: true
+        provenance: true
+
+    - name: Install Cosign
+      uses: sigstore/cosign-installer@v3.1.1
+
+    - name: Sign image with Cosign
+      run: |
+        cosign sign \
+          --yes \
+          --attachment "sbom=${{ steps.meta.outputs.tags }}" \
+          ${{ steps.meta.outputs.tags }}
+
+    - name: Verify signature
+      run: |
+        cosign verify \
+          --certificate-identity "https://github.com/${{ github.repository }}/.github/workflows/image-signing.yml@refs/heads/main" \
+          --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+          ${{ steps.meta.outputs.tags }}
+
+    - name: Generate SBOM
+      run: |
+        cosign download sbom ${{ steps.meta.outputs.tags }} > sbom.json
+
+    - name: Upload SBOM as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sbom
+        path: sbom.json
+
+    - name: Upload SBOM to release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: sbom.json
+
+  verify-signature:
+    name: Verify Container Image Signature
+    runs-on: ubuntu-latest
+    needs: build-and-sign
+    steps:
+    - name: Install Cosign
+      uses: sigstore/cosign-installer@v3.1.1
+
+    - name: Verify image signature
+      run: |
+        cosign verify \
+          --certificate-identity "https://github.com/${{ github.repository }}/.github/workflows/image-signing.yml@refs/heads/main" \
+          --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+    - name: Download and verify SBOM
+      run: |
+        cosign download sbom ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest > sbom.json
+        cat sbom.json
+
+  policy-controller:
+    name: Deploy Policy Controller for Image Verification
+    runs-on: ubuntu-latest
+    needs: build-and-sign
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Create ClusterImagePolicy
+      run: |
+        cat > deployment/kubernetes/cip.yaml <<EOF
+        apiVersion: policy.sigstore.dev/v1alpha1
+        kind: ClusterImagePolicy
+        metadata:
+          name: polln-image-policy
+        spec:
+          images:
+          - glob: ghcr.io/${{ github.repository }}/*
+          authorities:
+          - keyless:
+              url: https://fulcio.sigstore.dev
+              identities:
+              - issuer: https://token.actions.githubusercontent.com
+                subject: https://github.com/${{ github.repository }}/.github/workflows/image-signing.yml@refs/heads/main
+          verificationConfig:
+            mode: enforce
+        EOF
+
+    - name: Upload policy
+      uses: actions/upload-artifact@v3
+      with:
+        name: cluster-image-policy
+        path: deployment/kubernetes/cip.yaml
+
+---
+
+# Admission Controller for Image Verification
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cosign-policy
+  namespace: polln
+data:
+  policy.yaml: |
+    apiVersion: policy.sigstore.dev/v1alpha1
+    kind: ClusterImagePolicy
+    metadata:
+      name: polln-image-policy
+    spec:
+      images:
+      - glob: ghcr.io/superinstance/*
+      authorities:
+      - keyless:
+          url: https://fulcio.sigstore.dev
+          identities:
+          - issuer: https://token.actions.githubusercontent.com
+            subject: https://github.com/SuperInstance/polln/.github/workflows/image-signing.yml@refs/heads/main
+      verificationConfig:
+        mode: enforce
+    mode: warn
+
+---
+# Kyverno policy for image verification
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-image-signatures
+  annotations:
+    policies.kyverno.io/title: Verify Image Signatures
+    policies.kyverno.io/category: Supply Chain
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: Image
+    policies.kyverno.io/description: >-
+      Verifies that container images are signed using Cosign keyless signatures.
+spec:
+  validationFailureAction: enforce
+  background: true
+  rules:
+  - name: verify-ghcr-images
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+          - Deployment
+          - StatefulSet
+          - DaemonSet
+          - Job
+    verifyImages:
+    - imageReferences:
+      - "ghcr.io/superinstance/*"
+      attestations:
+      - predicateType: cosign.sigstore.dev/attestation/v1
+        conditions:
+        - all:
+          - key: "{{ source }}`"
+            operator: Equals
+            value: "https://github.com/SuperInstance/polln/.github/workflows/image-signing.yml@refs/heads/main"
+      signatures:
+      - signatureAlgorithm: SHA256
+        publicKeys: |
+          -----BEGIN PUBLIC KEY-----
+          MFkwEQYJKoZIhvcNAQEBBQADSwAwSAJBANMZBdJvxY91YbEmJh5Y3t3T2eTFzKLJm
+          ...
+          -----END PUBLIC KEY-----
+
+---
+# OPA Gatekeeper policy for image verification
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sverifiedimage
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sVerifiedImage
+  targets:
+  - target: admission.k8s.gatekeeper.sh
+    rego: |
+      package k8sverifiedimage
+
+      import future.keywords.every
+
+      same_message[msg] {
+        input.review.kind.kind in ["Pod", "Deployment", "StatefulSet", "DaemonSet", "Job"]
+        not input.review.object.metadata.annotations["cosign.sigstore.dev/signature"]
+        msg := "Container image must be signed with Cosign"
+      }
+
+      verified[msg] {
+        input.review.kind.kind in ["Pod", "Deployment", "StatefulSet", "DaemonSet", "Job"]
+        input.review.object.spec.containers[c]
+        not startswith(input.review.object.spec.containers[c].image, "ghcr.io/superinstance/")
+        msg := "Only verified images from ghcr.io/superinstance/ are allowed"
+      }

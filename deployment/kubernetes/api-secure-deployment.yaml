@@ -1,0 +1,274 @@
+# Secure API Deployment with OAuth2/JWT Authentication
+# Authentication enabled by default with secure configuration
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: polln
+data:
+  NODE_ENV: "production"
+  POLLN_API_PORT: "3000"
+  POLLN_API_HOST: "0.0.0.0"
+  POLLN_AUTH_ENABLED: "true"
+  POLLN_RATE_LIMIT_RPM: "100"
+  POLLN_LOG_LEVEL: "info"
+  POLLN_LOG_FORMAT: "json"
+  POLLN_TRUST_PROXY: "true"
+  POLLN_CORS_ORIGIN: "https://polln.io"
+  POLLN_CORS_CREDENTIALS: "true"
+  POSTGRES_HOST: "postgres.polln.svc.cluster.local"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "polln"
+  POSTGRES_USER: "polln"
+  POSTGRES_SSL_MODE: "require"
+  REDIS_HOST: "redis.polln.svc.cluster.local"
+  REDIS_PORT: "6379"
+  REDIS_TLS: "true"
+  PROMETHEUS_ENABLED: "true"
+  PROMETHEUS_PORT: "9464"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polln-api
+  namespace: polln
+  labels:
+    app: polln-api
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: polln-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: polln-api
+        version: v1
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9464"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: polln-api-sa
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: api
+        image: polln/api:v1.0.0
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        - name: metrics
+          containerPort: 9464
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: api-config
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: polln-database-credentials
+              key: postgres-password
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: polln-database-credentials
+              key: database-url
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: polln-redis-credentials
+              key: redis-password
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: polln-jwt-credentials
+              key: jwt-secret
+        - name: JWT_ISSUER
+          valueFrom:
+            secretKeyRef:
+              name: polln-jwt-credentials
+              key: jwt-issuer
+        - name: JWT_AUDIENCE
+          valueFrom:
+            secretKeyRef:
+              name: polln-jwt-credentials
+              key: jwt-audience
+        - name: JWT_EXPIRES_IN
+          value: "3600"  # 1 hour
+        - name: JWT_REFRESH_EXPIRES_IN
+          value: "86400"  # 24 hours
+        - name: DEEPINFRA_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: polln-api-keys
+              key: deepinfra-api-key
+              optional: true
+        - name: GROQ_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: polln-api-keys
+              key: groq-api-key
+              optional: true
+        - name: DEEPSEEK_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: polln-api-keys
+              key: deepseek-api-key
+              optional: true
+        volumeMounts:
+        - name: cache
+          mountPath: /app/.cache
+        - name: tmp
+          mountPath: /tmp
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "1000m"
+            memory: "2Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http
+            scheme: HTTPS
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: http
+            scheme: HTTPS
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /health
+            port: http
+            scheme: HTTPS
+          initialDelaySeconds: 0
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 30
+      volumes:
+      - name: cache
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+      priorityClassName: critical-workload
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: polln-api
+  namespace: polln
+  labels:
+    app: polln-api
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  - port: 9464
+    targetPort: 9464
+    protocol: TCP
+    name: metrics
+  selector:
+    app: polln-api
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: polln-api-hpa
+  namespace: polln
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: polln-api
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 30
+      - type: Pods
+        value: 2
+        periodSeconds: 30
+      selectPolicy: Max
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: polln-api-sa
+  namespace: polln
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::ACCOUNT_ID:role/PollnAPIRole
+
+---
+# Pod Disruption Budget
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: polln-api-pdb
+  namespace: polln
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: polln-api
