@@ -1,0 +1,46 @@
+{
+  "test001": {
+    "researcher_id": "test001",
+    "name": "Dr. Test Researcher",
+    "email": "test@university.edu",
+    "institution": "Test University",
+    "department": "Computer Science",
+    "location": "Test City, USA",
+    "timezone": "UTC-5",
+    "languages": [
+      "English"
+    ],
+    "expertise_level": "assistant_professor",
+    "primary_research_area": "distributed_systems",
+    "secondary_areas": [
+      "computer_science"
+    ],
+    "specific_skills": [
+      "Python",
+      "Distributed Systems"
+    ],
+    "papers_of_interest": [
+      "P2",
+      "P12"
+    ],
+    "collaboration_interests": [
+      "Joint Research"
+    ],
+    "availability_hours_per_week": 10,
+    "publications": [],
+    "h_index": null,
+    "past_collaborations": [],
+    "collaboration_success_rate": 0.0,
+    "preferred_collaboration_size": 3,
+    "willing_to_lead": true,
+    "willing_to_follow": true,
+    "open_to_cross_cultural": true,
+    "open_to_industry_partnerships": true,
+    "current_collaboration_count": 0,
+    "max_concurrent_collaborations": 3,
+    "available_for_new_collaborations": true,
+    "profile_created": "2026-03-13T18:16:43.965100",
+    "profile_updated": "2026-03-13T18:16:43.965090",
+    "last_active": "2026-03-13T18:16:43.965102"
+  }
+}
