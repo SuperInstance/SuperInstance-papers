@@ -1,0 +1,53 @@
+{
+  "total_simulations": 261,
+  "total_cost_usd": 0.01983659,
+  "total_tokens": 217979,
+  "average_latency_ms": 27819.039348659004,
+  "by_model": {
+    "deepinfra_seed": {
+      "count": 28,
+      "cost": 0.0,
+      "tokens": 0
+    },
+    "moonshoot_moonshot_v1_32k": {
+      "count": 31,
+      "cost": 0.0,
+      "tokens": 0
+    },
+    "moonshoot_moonshot_v1": {
+      "count": 28,
+      "cost": 0.0,
+      "tokens": 0
+    },
+    "deepinfra_mistral": {
+      "count": 28,
+      "cost": 0.0009459900000000001,
+      "tokens": 31533
+    },
+    "deepinfra_qwen2": {
+      "count": 31,
+      "cost": 0.0021239999999999996,
+      "tokens": 35400
+    },
+    "deepinfra_nemo": {
+      "count": 31,
+      "cost": 0.0051534,
+      "tokens": 25767
+    },
+    "deepinfra_llama3_70b": {
+      "count": 28,
+      "cost": 0.0021343,
+      "tokens": 30490
+    },
+    "deepseek_deepseek_chat": {
+      "count": 28,
+      "cost": 0.0046998,
+      "tokens": 46998
+    },
+    "deepseek_deepseek_coder": {
+      "count": 28,
+      "cost": 0.0047791000000000005,
+      "tokens": 47791
+    }
+  }
+}
