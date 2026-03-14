@@ -1,0 +1,54 @@
+{
+  "name": "@superinstance/equipment-memory-hierarchy",
+  "version": "1.0.0",
+  "description": "4-tier cognitive memory system: Working, Episodic, Semantic, and Procedural memory with automatic consolidation and forgetting curves",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "superinstance",
+    "cognitive-memory",
+    "working-memory",
+    "episodic-memory",
+    "semantic-memory",
+    "procedural-memory",
+    "memory-consolidation",
+    "forgetting-curve",
+    "ai",
+    "cognitive-architecture"
+  ],
+  "author": "SuperInstance Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/superinstance/equipment-memory-hierarchy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/superinstance/equipment-memory-hierarchy/issues"
+  },
+  "homepage": "https://github.com/superinstance/equipment-memory-hierarchy#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "peerDependencies": {
+    "@superinstance/starter-agent": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@superinstance/starter-agent": {
+      "optional": true
+    }
+  }
+}

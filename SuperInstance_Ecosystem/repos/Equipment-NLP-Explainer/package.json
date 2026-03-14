@@ -1,0 +1,45 @@
+{
+  "name": "@superinstance/equipment-nlp-explainer",
+  "version": "1.0.0",
+  "description": "Equipment that generates human-readable descriptions of cell logic and operations",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "superinstance",
+    "equipment",
+    "nlp",
+    "explainer",
+    "logic",
+    "natural-language",
+    "audit-trail",
+    "reasoning",
+    "multi-language"
+  ],
+  "author": "SuperInstance Team",
+  "license": "MIT",
+  "dependencies": {
+    "@superinstance/starter-agent": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/superinstance/equipment-nlp-explainer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/superinstance/equipment-nlp-explainer/issues"
+  },
+  "homepage": "https://github.com/superinstance/equipment-nlp-explainer#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

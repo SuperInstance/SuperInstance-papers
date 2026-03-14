@@ -1,0 +1,36 @@
+{
+  "name": "@superinstance/equipment-escalation-router",
+  "version": "1.0.0",
+  "description": "Intelligent LLM routing equipment: Bot→Brain→Human with 40x cost reduction",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "superinstance",
+    "equipment",
+    "llm-routing",
+    "cost-optimization",
+    "escalation",
+    "human-in-loop"
+  ],
+  "author": "SuperInstance Ecosystem",
+  "license": "MIT",
+  "dependencies": {
+    "@superinstance/starter-agent": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/superinstance/equipment-escalation-router"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

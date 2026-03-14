@@ -1,0 +1,41 @@
+{
+  "name": "@superinstance/equipment-consensus-engine",
+  "version": "1.0.0",
+  "description": "Multi-agent deliberation equipment with Pathos/Logos/Ethos weighting for consensus building",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "superinstance",
+    "equipment",
+    "consensus",
+    "multi-agent",
+    "deliberation",
+    "pathos",
+    "logos",
+    "ethos",
+    "triangular-argumentation",
+    "rhetoric"
+  ],
+  "author": "SuperInstance Ecosystem",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/superinstance/equipment-consensus-engine"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

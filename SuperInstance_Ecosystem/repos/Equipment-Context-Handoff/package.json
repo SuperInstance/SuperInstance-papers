@@ -1,0 +1,60 @@
+{
+  "name": "@superinstance/equipment-context-handoff",
+  "version": "1.0.0",
+  "description": "Generational context transfer for long-running agent tasks",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint src --ext .ts",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "superinstance",
+    "equipment",
+    "context",
+    "handoff",
+    "agent",
+    "generational-transfer",
+    "context-compression"
+  ],
+  "author": "Superinstance Team",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/superinstance/equipment-context-handoff"
+  },
+  "bugs": {
+    "url": "https://github.com/superinstance/equipment-context-handoff/issues"
+  },
+  "homepage": "https://github.com/superinstance/equipment-context-handoff#readme"
+}

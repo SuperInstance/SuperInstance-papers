@@ -1,0 +1,41 @@
+{
+  "name": "@superinstance/equipment-self-improvement",
+  "version": "1.0.0",
+  "description": "Self-modifying equipment that distills knowledge for stable tiling and agent improvement",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "superinstance",
+    "equipment",
+    "self-improvement",
+    "knowledge-distillation",
+    "tile-optimization",
+    "agent-improvement",
+    "performance-monitoring"
+  ],
+  "author": "SuperInstance Ecosystem",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/superinstance/equipment-self-improvement"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "peerDependencies": {
+    "@superinstance/starter-agent": "^1.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

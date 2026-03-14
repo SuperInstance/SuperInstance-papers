@@ -1,0 +1,60 @@
+{
+  "name": "@superinstance/equipment-hardware-scaler",
+  "version": "1.0.0",
+  "description": "Equipment auto-scaling across hardware resources with cloud API overflow support",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "hardware-scaling",
+    "auto-scaling",
+    "cloud-overflow",
+    "resource-monitoring",
+    "adaptive-scheduling",
+    "gpu-computing",
+    "cost-optimization"
+  ],
+  "author": "SuperInstance Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/superinstance/equipment-hardware-scaler"
+  },
+  "bugs": {
+    "url": "https://github.com/superinstance/equipment-hardware-scaler/issues"
+  },
+  "homepage": "https://github.com/superinstance/equipment-hardware-scaler#readme",
+  "dependencies": {
+    "systeminformation": "^5.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "typescript": ">=4.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

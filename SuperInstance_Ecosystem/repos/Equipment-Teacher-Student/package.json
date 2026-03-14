@@ -1,0 +1,42 @@
+{
+  "name": "@superinstance/equipment-teacher-student",
+  "version": "1.0.0",
+  "description": "Equipment implementing distillation triggers with deadband range thresholds for calling teachers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "lint": "eslint src/**/*.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "superinstance",
+    "equipment",
+    "distillation",
+    "teacher-student",
+    "deadband",
+    "knowledge-transfer",
+    "machine-learning"
+  ],
+  "author": "SuperInstance Ecosystem",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/superinstance/equipment-teacher-student"
+  },
+  "dependencies": {
+    "@superinstance/starter-agent": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}
