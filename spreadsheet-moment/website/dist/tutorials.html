@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorials - Spreadsheet Moment</title>
+  <meta name="description" content="Interactive tutorials for Spreadsheet Moment platform.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; }
+    .header h1 { font-size: 2em; margin-bottom: 10px; }
+    .nav { background: white; padding: 15px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .nav a { color: #667eea; text-decoration: none; margin-right: 20px; font-weight: 500; }
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    .content { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .tutorial-card { background: #f8f9fa; padding: 25px; margin: 20px 0; border-radius: 10px; border-left: 4px solid #667eea; transition: transform 0.3s; }
+    .tutorial-card:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .tutorial-card h3 { color: #667eea; margin-bottom: 10px; }
+    .tutorial-card .level { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-bottom: 10px; }
+    .beginner { background: #d4edda; color: #155724; }
+    .intermediate { background: #fff3cd; color: #856404; }
+    .advanced { background: #f8d7da; color: #721c24; }
+    .tutorial-card p { color: #666; margin-bottom: 15px; }
+    .tutorial-card a { display: inline-block; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
+    .tutorial-card a:hover { background: #5568d3; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Interactive Tutorials</h1>
+    <p>Learn Spreadsheet Moment step by step</p>
+  </div>
+  <nav class="nav">
+    <a href="/">Home</a>
+    <a href="/docs.html">Documentation</a>
+    <a href="/api.html">API Reference</a>
+    <a href="/tutorials.html">Tutorials</a>
+    <a href="https://github.com/SuperInstance/spreadsheet-moment">GitHub</a>
+  </nav>
+  <div class="container">
+    <main class="content">
+      <h2>Getting Started Tutorials</h2>
+
+      <div class="tutorial-card">
+        <span class="level beginner">Beginner</span>
+        <h3>1. Your First Intelligent Cell</h3>
+        <p>Learn how to create your first agent cell that monitors data and triggers actions.</p>
+        <a href="#">Start Tutorial →</a>
+      </div>
+
+      <div class="tutorial-card">
+        <span class="level beginner">Beginner</span>
+        <h3>2. Connecting to Hardware</h3>
+        <p>Connect your spreadsheet to Arduino, ESP32, or Raspberry Pi sensors.</p>
+        <a href="#">Start Tutorial →</a>
+      </div>
+
+      <div class="tutorial-card">
+        <span class="level intermediate">Intermediate</span>
+        <h3>3. Building Predictive Models</h3>
+        <p>Use AI to forecast future values based on historical data.</p>
+        <a href="#">Start Tutorial →</a>
+      </div>
+
+      <div class="tutorial-card">
+        <span class="level intermediate">Intermediate</span>
+        <h3>4. Real-Time Collaboration</h3>
+        <p>Build multi-user spreadsheets with real-time synchronization.</p>
+        <a href="#">Start Tutorial →</a>
+      </div>
+
+      <div class="tutorial-card">
+        <span class="level advanced">Advanced</span>
+        <h3>5. Custom Agent Development</h3>
+        <p>Create your own custom agent types with specialized behaviors.</p>
+        <a href="#">Start Tutorial →</a>
+      </div>
+
+      <div class="tutorial-card">
+        <span class="level advanced">Advanced</span>
+        <h3>6. Production Deployment</h3>
+        <p>Deploy your spreadsheets to Cloudflare Workers or Docker containers.</p>
+        <a href="#">Start Tutorial →</a>
+      </div>
+
+      <h2>Video Tutorials</h2>
+      <p style="color: #666; margin-top: 20px;">Coming soon! Video tutorials will walk you through common tasks and advanced features.</p>
+    </main>
+  </div>
+</body>
+</html>

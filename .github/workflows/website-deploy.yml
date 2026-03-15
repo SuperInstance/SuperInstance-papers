@@ -1,15 +1,17 @@
-name: Deploy SuperInstance Website to Cloudflare
+name: Deploy Websites to Cloudflare
 
 on:
   push:
     branches: [main]
     paths:
       - 'website/**'
+      - 'spreadsheet-moment/website/**'
       - '.github/workflows/website-deploy.yml'
   pull_request:
     branches: [main]
     paths:
       - 'website/**'
+      - 'spreadsheet-moment/website/**'
   workflow_dispatch:  # Allow manual triggering
 
 # Environment variables available to all jobs
@@ -250,3 +252,39 @@ jobs:
               repo: context.repo.repo,
               body: '⚠️ Performance regression detected in staging deployment. Please review Lighthouse results.'
             })
+
+  # Deploy Spreadsheet Moment Website to Cloudflare Pages
+  deploy-spreadsheet-moment:
+    name: Deploy Spreadsheet Moment Website
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Wrangler CLI
+        run: npm install -g wrangler
+
+      - name: Deploy to Cloudflare Pages
+        run: |
+          wrangler pages deploy spreadsheet-moment/website/dist \
+            --project-name=spreadsheet-moment \
+            --branch=main \
+            --commit-hash=${{ github.sha }} \
+            --commit-message="${{ github.event.head_commit.message }}" \
+            --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Notify deployment
+        run: |
+          echo "✅ Spreadsheet Moment website deployed to https://spreadsheet-moment.pages.dev"
+          echo "Commit: ${{ github.sha }}"
+          echo "Message: ${{ github.event.head_commit.message }}"
