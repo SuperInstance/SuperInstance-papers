@@ -1,83 +1,64 @@
-## Description
+## 🎯 Purpose
+Briefly describe what this PR does and why it's needed.
 
-Briefly describe the changes made in this pull request.
+## 📝 Changes
 
-## Type of Change
+- [ ] Documentation updated
+- [ ] Tests added/updated
+- [ ] CI/CD passing
+- [ ] Breaking changes documented (if applicable)
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation update
-- [ ] Performance improvement
-- [ ] Code refactoring (no functional changes)
+### Modified Files:
+- `file1.ts` - Description of changes
+- `file2.ts` - Description of changes
 
-## Related Issue
+## 🔗 Related Issues
+- Fixes #
+- Related to #
+- Closes #
 
-Fixes # (issue)
-Related to # (issue)
+## ✅ Checklist
 
-## Motivation and Context
-
-Why is this change required? What problem does it solve?
-
-Include:
-- Link to relevant design docs or discussions
-- Screenshots (for UI changes)
-- Performance benchmarks (for performance changes)
-
-## How Has This Been Tested?
-
-Please describe in detail how you tested your changes.
-
-- [ ] Unit tests (describe what was tested)
-- [ ] Integration tests (describe test scenarios)
-- [ ] Manual testing (describe test steps)
-- [ ] Performance testing (include benchmarks)
-
-**Test Results:**
-```
-Paste test output here
-```
-
-## Checklist
-
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
+- [ ] My code follows the project style guidelines
+- [ ] I have performed a self-review of my code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
 - [ ] My changes generate no new warnings
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+- [ ] Any dependent changes have been merged and published
 
-## Performance Impact
+## 🧪 Testing
 
-If this change affects performance, please include benchmarks:
+Describe how you tested this change:
+- Test environment:
+- Test scenarios:
+- Results:
 
-| Operation | Before | After | Improvement |
-|-----------|--------|-------|-------------|
-| [op name] | [time] | [time] | [x%] |
+## 📸 Screenshots (if applicable)
 
-## Breaking Changes
+For UI changes, add screenshots to demonstrate the changes:
+- Before:
+- After:
 
-If this PR introduces breaking changes, please describe them:
+## 💬 Additional Notes
 
-1. **Change**: [description]
-   - **Migration Path**: [how to update code]
-   - **Deprecation Timeline**: [when old code will be removed]
+Add any other context, implementation notes, or considerations that reviewers should be aware of.
 
-2. **Change**: [description]
-   - **Migration Path**: [how to update code]
-   - **Deprecation Timeline**: [when old code will be removed]
+## 🔍 Performance Impact
 
-## Additional Notes
+- [ ] This change improves performance
+- [ ] This change has no performance impact
+- [ ] This change may impact performance (explain)
 
-Add any other notes about the PR here.
+## 📊 Breaking Changes
 
-## Reviewers
+- [ ] No breaking changes
+- [ ] Breaking changes documented below:
+  - Breaking change 1
+  - Breaking change 2
 
-@reviewer1 @reviewer2
+---
 
-Please review the following files specifically:
-- `path/to/file1` - [reason for review focus]
-- `path/to/file2` - [reason for review focus]
+**Reviewers:** Please review the changes and provide feedback.
+**Assignees:** Please address review comments and update the PR accordingly.

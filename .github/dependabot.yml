@@ -1,33 +1,89 @@
 version: 2
 updates:
   # Enable version updates for npm
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
-      day: 'sunday'
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
     open-pull-requests-limit: 10
     reviewers:
-      - 'SuperInstance'
-    labels:
-      - 'dependencies'
-      - 'npm'
+      - "caseydigennaro"
+    assignees:
+      - "caseydigennaro"
     commit-message:
-      prefix: 'chore'
-      include: 'scope'
+      prefix: "deps"
+      prefix-development: "dev-deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
     ignore:
-      # Ignore major version updates for now
-      - dependency-name: '*'
-        update-types: ['version-update:semver-major']
-    groups:
-      # Group all dev dependencies together
-      dev-dependencies:
-        patterns:
-          - '@types/*'
-          - 'typescript'
-          - 'jest'
-          - '@types/*'
-      # Group all OpenTelemetry dependencies together
-      opentelemetry-dependencies:
-        patterns:
-          - '@opentelemetry/*'
+      # Ignore some updates until ready
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "caseydigennaro"
+    assignees:
+      - "caseydigennaro"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "ci"
+
+  # Enable version updates for Docker (if applicable)
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "caseydigennaro"
+    assignees:
+      - "caseydigennaro"
+    commit-message:
+      prefix: "docker"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "docker"
+
+# Configure grouping for dependencies
+groups:
+  # Group production dependencies together
+  production-dependencies:
+    patterns:
+      - "react*"
+      - "typescript"
+      - "@types/*"
+    exclude-patterns:
+      - "*dev*"
+
+  # Group development dependencies together
+  development-dependencies:
+    patterns:
+      - "*dev*"
+      - "jest*"
+      - "@testing-library/*"
+      - "eslint*"
+      - "prettier*"
+
+# Versioning strategy
+versioning-strategy: increase

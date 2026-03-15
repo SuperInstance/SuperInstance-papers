@@ -1,51 +1,48 @@
 ---
-name: Bug Report
+name: Bug report
 about: Create a report to help us improve
 title: '[BUG] '
-labels: bug
+labels: bug,triage
 assignees: ''
 ---
 
-## Bug Description
-
+## 🐛 Bug Description
 A clear and concise description of what the bug is.
 
-## Reproduction Steps
+## 📍 Location
+Where in the codebase does this bug occur?
+- **File:**
+- **Function/Component:**
+- **URL (if applicable):**
 
-Steps to reproduce the behavior:
-
+## 🔄 Steps to Reproduce
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-## Expected Behavior
-
+## 🎯 Expected Behavior
 A clear and concise description of what you expected to happen.
 
-## Screenshots
+## 👀 Actual Behavior
+A clear description of what actually happened.
 
+## 📸 Screenshots
 If applicable, add screenshots to help explain your problem.
 
-## Environment
+## 🖥️ Environment
+- **OS:** [e.g. Windows 11, macOS 14, Ubuntu 22.04]
+- **Browser:** [e.g. Chrome 120, Firefox 121, Safari 17]
+- **Device:** [e.g. Desktop, Mobile, Tablet]
+- **Version:** [e.g. v1.0.0, commit hash]
 
-- **OS**: [e.g. Ubuntu 22.04, Windows 11, macOS Ventura]
-- **Version**: [e.g. 1.0.0]
-- **Hardware**: [e.g. NVIDIA RTX 4090, Intel i7-12700K]
-- **Browser/Shell**: [if applicable]
-
-## Additional Context
-
+## 📋 Additional Context
 Add any other context about the problem here.
 
-## Logs
+## 🔗 Related Links
+- **Documentation:**
+- **Similar Issues:**
+- **Related PRs:**
 
-If applicable, paste relevant log output here.
-
-```
-Paste logs here
-```
-
-## Possible Solution (Optional)
-
-If you have ideas on how to fix this, please describe them here.
+## 💡 Possible Solution
+If you have ideas on how to fix this bug, please describe them here.

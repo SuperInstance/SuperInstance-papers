@@ -61,3 +61,16 @@ Thumbs.db
 # Temporary files
 *.tmp
 temp/
+
+# Security - API keys and secrets (NEVER commit these!)
+*.key
+*.pem
+nvapi-*
+.env
+.env.local
+.env.*.local
+secrets/
+credentials/
+api_keys.txt
+secrets.txt
+private_keys/

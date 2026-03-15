@@ -1,0 +1,46 @@
+# Codeowners for spreadsheet-moment
+#
+# This file controls who has to approve pull requests
+#
+# Format:
+#   # Comments start with #
+#   * @default-reviewer
+#   *.js @javascript-expert
+#   /build/ @build-team
+
+# Default: All files require approval from @caseydigennaro
+* @caseydigennaro
+
+# Documentation can be approved with lighter review
+/docs/ @caseydigennaro
+/*.md @caseydigennaro
+
+# GitHub Actions workflows require strict review
+.github/workflows/ @caseydigennaro
+
+# Infrastructure and deployment files require strict review
+/deployment/ @caseydigennaro
+/terraform/ @caseydigennaro
+/kubernetes/ @caseydigennaro
+
+# Configuration files require review
+/*.json @caseydigennaro
+/*.yaml @caseydigennaro
+/*.yml @caseydigennaro
+/.env* @caseydigennaro
+
+# Source code files
+/src/ @caseydigennaro
+*.ts @caseydigennaro
+*.tsx @caseydigennaro
+*.js @caseydigennaro
+*.jsx @caseydigennaro
+
+# Website files
+spreadsheet-moment/website/ @caseydigennaro
+
+# Tests and test infrastructure
+/__tests__/ @caseydigennaro
+*.test.ts @caseydigennaro
+*.test.tsx @caseydigennaro
+*.spec.ts @caseydigennaro

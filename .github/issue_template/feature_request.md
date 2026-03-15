@@ -1,59 +1,75 @@
 ---
-name: Feature Request
+name: Feature request
 about: Suggest an idea for this project
 title: '[FEATURE] '
-labels: enhancement
+labels: enhancement,triage
 assignees: ''
 ---
 
-## Feature Description
+## 🚀 Feature Description
+A clear and concise description of the feature proposal.
 
-A clear and concise description of the feature you'd like to see.
+## 💡 Problem Statement
+What problem does this feature solve? What limitations does it address? Why is this feature needed?
 
-## Use Case
+## 🎯 Proposed Solution
+Describe the solution you'd like in a clear and concise manner.
 
-Describe the problem this feature would solve or the benefit it would provide.
+### User Stories
+- As a [type of user], I want [goal] so that [benefit]
+- As a [type of user], I want [goal] so that [benefit]
 
-**Example:**
-> As a data analyst, I need to export charts as PNG so that I can include them in reports
+## 🔄 Alternatives Considered
+Describe alternative solutions or features you've considered and why they were not chosen.
 
-## Proposed Solution
+## 📋 Implementation Details
+If you have technical ideas on how this should be implemented:
 
-How do you envision this feature working?
+### API Changes
+- New endpoints:
+- Modified endpoints:
+- Breaking changes:
 
-**Detailed Description:**
-- Option 1: [description]
-- Option 2: [description]
-- Preferred: [your preference]
+### UI/UX Changes
+- New components:
+- Modified components:
+- User flow changes:
 
-## Alternatives Considered
+## 🔒 Security & Privacy
+- [ ] This feature involves user data
+- [ ] This feature requires authentication
+- [ ] This feature has security implications
 
-Describe alternative solutions or features you've considered.
+## 📊 Performance Impact
+- [ ] This may impact performance
+- [ ] Performance considerations:
 
-## Additional Context
+## 📚 Documentation Requirements
+- [ ] User documentation needed
+- [ ] API documentation needed
+- [ ] Developer documentation needed
 
+## 🧪 Testing Requirements
+- [ ] Unit tests needed
+- [ ] Integration tests needed
+- [ ] E2E tests needed
+- [ ] Manual testing scenarios:
+
+## 📅 Timeline
+- **Priority:** [High/Medium/Low]
+- **Target Version:** [e.g., v1.1.0, v1.2.0]
+- **Estimated Effort:** [Small/Medium/Large]
+
+## 🔗 Related Links
+- **Documentation:**
+- **Similar Issues:**
+- **Reference Implementations:**
+- **Competitor Features:**
+
+## 💬 Additional Context
 Add any other context, mockups, or examples about the feature request here.
 
-## Priority
-
-How important is this feature to you?
-
-- [ ] Critical - blocker for my use case
-- [ ] High - would greatly improve my workflow
-- [ ] Medium - nice to have
-- [ ] Low - minor improvement
-
-## Implementation (Optional)
-
-If you're interested in implementing this feature, please outline your approach:
-
-1. Files that would need to be modified
-2. New files that would need to be created
-3. Potential challenges or concerns
-
-## References
-
-Are there any similar features in other products that we should look at for inspiration?
-
-- [Product 1]: [link/description]
-- [Product 2]: [link/description]
+## 🤝 Contribution Interest
+- [ ] I would like to implement this feature
+- [ ] I would like to help with this feature
+- [ ] I am available for testing and feedback

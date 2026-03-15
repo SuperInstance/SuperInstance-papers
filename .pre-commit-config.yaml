@@ -1,0 +1,60 @@
+# Pre-commit hooks to prevent credential exposure
+# Install: pip install pre-commit && pre-commit install
+# Run: pre-commit run --all-files
+
+repos:
+  # Detect secrets in committed files
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        name: detect-secrets
+        entry: detect-secrets-hook
+        language: system
+        args: ['--baseline', '.secrets.baseline']
+        pass_filenames: false
+
+  # Check for common credential patterns
+  - repo: local
+    hooks:
+      - id: no-nvapi-keys
+        name: Block NVIDIA API keys
+        entry: 'nvapi-[a-zA-Z0-9]{95}'
+        language: pygrep
+        types: [python, javascript, ts, json]
+
+      - id: no-github-tokens
+        name: Block GitHub tokens
+        entry: '(ghp_|gho_|ghu_|ghs_|ghr_)'
+        language: pygrep
+        types: [python, javascript, ts, json, yaml, markdown]
+
+      - id: no-openai-keys
+        name: Block OpenAI API keys
+        entry: 'sk-[a-zA-Z0-9]{48}'
+        language: pygrep
+        types: [python, javascript, ts, json, yaml, markdown]
+
+      - id: no-aws-keys
+        name: Block AWS access keys
+        entry: 'AKIA[0-9A-Z]{16}'
+        language: pygrep
+        types: [python, javascript, ts, json, yaml, markdown]
+
+      - id: no-bearer-tokens
+        name: Block bearer tokens
+        entry: 'Bearer [a-zA-Z0-9_-]{20,}'
+        language: pygrep
+        types: [python, javascript, ts, json, yaml, markdown]
+
+  # General code quality checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-json
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-merge-conflict
