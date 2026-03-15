@@ -1,0 +1,28 @@
+{
+  "name": "spreadsheet-moment-worker",
+  "version": "1.0.0",
+  "description": "Agentic Spreadsheet Backend with Intelligent API Routing",
+  "main": "worker.js",
+  "scripts": {
+    "deploy": "wrangler publish",
+    "dev": "wrangler dev",
+    "tail": "wrangler tail",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spreadsheet",
+    "agents",
+    "ai",
+    "cloudflare",
+    "workers",
+    "serverless"
+  ],
+  "author": "SuperInstance",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.22.0"
+  },
+  "dependencies": {
+    "itty-router": "^4.0.20"
+  }
+}

@@ -1,52 +1,61 @@
+# 🚀 SpreadsheetMoment Cloudflare Worker Configuration
+#
+# Deploy: wrangler publish
+# Free Tier: 100,000 requests/day
+#
+# 📋 SETUP INSTRUCTIONS:
+# 1. Create KV namespace: wrangler kv:namespace create CELLS
+# 2. Add secrets (optional):
+#    wrangler secret put DEEPSEEK_API_KEY
+#    wrangler secret put OPENAI_API_KEY
+#    wrangler secret put ANTHROPIC_API_KEY
+# 3. Deploy: wrangler publish
+
 name = "spreadsheet-moment"
-compatibility_date = "2026-03-14"
+main = "worker.js"
+compatibility_date = "2024-01-01"
 
-[site]
-bucket = "./website/dist"
+# KV Namespace for cell state storage
+# Create: wrangler kv:namespace create CELLS
+[[kv_namespaces]]
+binding = "CELLS"
+id = "YOUR_KV_NAMESPACE_ID" # Replace after creating
 
-[[routes]]
-pattern = "superinstance.ai/spreadsheet-moment"
-zone_name = "superinstance.ai"
+# Environment Variables (Secrets)
+# Set via: wrangler secret put <NAME>
+# Secrets available in worker:
+# - DEEPSEEK_API_KEY: DeepSeek API key ($0.014/1K tokens - best for reasoning)
+# - OPENAI_API_KEY: OpenAI API key ($0.01/1K tokens)
+# - ANTHROPIC_API_KEY: Anthropic API key ($0.00025/1K tokens)
+# - GITHUB_WEBHOOK_SECRET: GitHub webhook verification (optional)
+# - ACCOUNT_ID: Cloudflare Account ID (for Workers AI)
+# - API_TOKEN: Cloudflare API Token (for Workers AI)
 
-[env.production]
-name = "spreadsheet-moment-prod"
-routes = [
-  { pattern = "superinstance.ai/spreadsheet-moment", zone_name = "superinstance.ai" }
-]
-
-[env.staging]
-name = "spreadsheet-moment-staging"
-routes = [
-  { pattern = "staging.superinstance.ai", zone_name = "superinstance.ai" }
-]
-
-# Build configuration
-[build]
-command = "cd website && npm install && npm run build"
-
-# Environment variables (use wrangler secret for sensitive data)
+# Public environment variables
 [vars]
 ENVIRONMENT = "production"
-API_URL = "https://api.superinstance.ai"
+API_VERSION = "1.0.0"
 
-# KV Namespaces
-[[kv_namespaces]]
-binding = "CELL_STATE"
-id = "cell_state"
-preview_id = "cell_state_preview"
+# Build configuration for website
+[build]
+command = "cd ../website && npm install && npm run build"
 
-# Durable Objects
-[[durable_objects.bindings]]
-name = "CELL_AGENT"
-class_name = "CellAgent"
+# Site configuration (for serving static assets)
+[site]
+bucket = "../website/dist"
 
-# R2 Buckets
-[[r2_buckets]]
-binding = "SPREADSHEETS"
-bucket_name = "spreadsheet-moment-sheets"
+# Rules Pages + Worker integration
+# Serves static assets from Pages, API from Worker
+[[routes]]
+pattern = "your-domain.pages.dev/*"
+zone_name = "pages.dev"
 
-# Queue Consumers
-[[queues.consumers]]
-queue = "cell-updates"
-max_batch_size = 10
-max_wait_time_ms = 100
+# Custom domain support (optional)
+# [[routes]]
+# pattern = "spreadsheet.yourdomain.com/*"
+# zone_name = "yourdomain.com"
+
+# Durable Objects for WebSocket support (optional, future)
+# [[durable_objects.bindings]]
+# name = "CELL_WEBSOCKET"
+# class_name = "CellWebSocket"

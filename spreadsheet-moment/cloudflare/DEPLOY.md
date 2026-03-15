@@ -1,0 +1,247 @@
+# =€ SpreadsheetMoment - One-Click Deploy Guide
+
+**Deploy your own agentic spreadsheet in 5 minutes on Cloudflare's FREE tier!**
+
+## <¯ What You Get
+
+-  **Agentic Spreadsheet**: Every cell is an intelligent agent
+-  **Visual Thinking**: See AI reasoning before actions
+-  **Human-in-the-Loop**: Approve or reject agent actions
+-  **Origin-Centric Design**: Prevents recursive loops
+-  **Agent Handshake**: Auto-filters bot interactions
+-  **FREE Hosting**: 100,000 requests/day on Cloudflare
+-  **Intelligent API Routing**: Auto-selects cheapest AI provider
+
+---
+
+## =Ë Prerequisites
+
+1. **GitHub Account** (to fork the repo)
+2. **Cloudflare Account** (FREE tier works perfectly)
+3. **Node.js** (for building the frontend)
+
+That's it! No server needed.
+
+---
+
+## = Fork & Deploy in 5 Minutes
+
+### Step 1: Fork the Repository (30 seconds)
+
+1. Visit: https://github.com/SuperInstance/spreadsheet-moment
+2. Click **Fork** button (top right)
+3. Wait for fork to complete (usually instant)
+
+### Step 2: Clone Your Fork (1 minute)
+
+```bash
+git clone https://github.com/YOUR_USERNAME/spreadsheet-moment.git
+cd spreadsheet-moment/cloudflare
+```
+
+### Step 3: Install Dependencies (2 minutes)
+
+```bash
+# Install Cloudflare Wrangler CLI
+npm install -g wrangler
+
+# Login to Cloudflare
+wrangler login
+```
+
+**This will open your browser - authorize the Cloudflare app**
+
+### Step 4: Create KV Namespace (30 seconds)
+
+```bash
+# Create storage for cell state
+wrangler kv:namespace create CELLS
+```
+
+**Copy the `id` from the output - you'll need it next!**
+
+### Step 5: Configure wrangler.toml (30 seconds)
+
+Open `cloudflare/wrangler.toml` and update line 22:
+
+```toml
+[[kv_namespaces]]
+binding = "CELLS"
+id = "YOUR_KV_NAMESPACE_ID" #  Paste your ID here
+```
+
+### Step 6: Deploy! (30 seconds)
+
+```bash
+# Deploy to Cloudflare Workers
+wrangler publish
+```
+
+**That's it! Your spreadsheet is now live!**
+
+---
+
+## <‰ Your Spreadsheet is Live!
+
+**Access your spreadsheet at:**
+```
+https://spreadsheet-moment.YOUR_SUBDOMAIN.workers.dev
+```
+
+**Or setup a custom domain:**
+```bash
+wrangler pages subdomain create spreadsheet-moment
+```
+
+---
+
+## = (Optional) Add API Keys for More Power
+
+Your spreadsheet works great with Cloudflare's FREE AI, but you can add more:
+
+### Get DeepSeek API Key (Recommended - Cheap & Powerful)
+
+1. Visit: https://platform.deepseek.com/
+2. Sign up (FREE account available)
+3. Get your API key
+4. Add to Cloudflare:
+
+```bash
+wrangler secret put DEEPSEEK_API_KEY
+# Paste your key when prompted
+```
+
+### Get OpenAI API Key (Optional)
+
+```bash
+wrangler secret put OPENAI_API_KEY
+# Paste your OpenAI API key
+```
+
+### Get Anthropic API Key (Optional)
+
+```bash
+wrangler secret put ANTHROPIC_API_KEY
+# Paste your Anthropic API key
+```
+
+---
+
+## >à Intelligent API Routing
+
+Your spreadsheet automatically selects the best AI provider:
+
+| Priority | Provider | Cost | When Used |
+|----------|----------|------|-----------|
+| 1ã | Cloudflare Workers AI | **FREE** | Always first! |
+| 2ã | DeepSeek | $0.014/1K tokens | For reasoning tasks |
+| 3ã | OpenAI GPT-4 | $0.01/1K tokens | High quality tasks |
+| 4ã | Anthropic Claude | $0.00025/1K tokens | Fast reasoning |
+
+**No configuration needed - it just works!**
+
+---
+
+## = Update Your Deployment
+
+Made changes? Redeploy in seconds:
+
+```bash
+cd spreadsheet-moment/cloudflare
+wrangler publish
+```
+
+---
+
+## =Ê Monitor Usage
+
+Check your usage:
+
+```bash
+# View real-time logs
+wrangler tail
+
+# Check analytics
+# Visit: https://dash.cloudflare.com/
+# Go to: Workers & Pages ’ Your Worker ’ Analytics
+```
+
+---
+
+## <˜ Troubleshooting
+
+### "KV namespace not found"
+```bash
+# Create the KV namespace
+wrangler kv:namespace create CELLS
+
+# Update wrangler.toml with the ID
+```
+
+### "Secret not found"
+```bash
+# Add the secret (optional)
+wrangler secret put DEEPSEEK_API_KEY
+```
+
+### "404 Not Found"
+```bash
+# Check your worker URL
+wrangler subdomain list
+
+# Or deploy again
+wrangler publish
+```
+
+---
+
+## <¨ Customize Your Spreadsheet
+
+Want to add your own features?
+
+1. Edit `worker.js` for backend logic
+2. Edit `../website/src` for frontend
+3. Run `wrangler publish` to deploy
+
+---
+
+## =Ú Next Steps
+
+- [ ] Add API keys for more power
+- [ ] Setup custom domain
+- [ ] Connect GitHub webhooks
+- [ ] Create your first agent cell
+- [ ] Explore the documentation
+
+---
+
+## > Contributing
+
+Want to help improve SpreadsheetMoment?
+
+1. Fork the repo
+2. Create a feature branch
+3. Make your changes
+4. Submit a Pull Request
+
+**We love contributors!**
+
+---
+
+## =Þ Support
+
+- **Issues**: https://github.com/SuperInstance/spreadsheet-moment/issues
+- **Discussions**: https://github.com/SuperInstance/spreadsheet-moment/discussions
+- **Docs**: https://spreadsheet-moment.pages.dev/docs
+
+---
+
+## P Star Us!
+
+If you found this useful, please star our repo!
+
+**https://github.com/SuperInstance/spreadsheet-moment**
+
+---
+
+**Happy Spreadsheeting! =€**
