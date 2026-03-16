@@ -50,7 +50,7 @@ module.exports = {
 
   // Setup files
   setupFilesAfterEnv: [
-    '<rootDir>/tests/setup.ts'
+    '<rootDir>/tests/setup.js'
   ],
 
   // Coverage configuration
