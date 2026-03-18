@@ -1,0 +1,149 @@
+version: '3.8'
+
+services:
+  # Minimal CLAW Server
+  claw-server:
+    build:
+      context: .
+      target: production
+    container_name: minimal-claw-server
+    ports:
+      - "${CLAW_SERVER_PORT:-8080}:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=${DB_NAME:-clawdb}
+      - DB_USER=${DB_USER:-clawuser}
+      - DB_PASSWORD=${DB_PASSWORD:-clawpass}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - SENTRY_DSN=${SENTRY_DSN:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - claw-network
+    volumes:
+      - claw-logs:/app/logs
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8080/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: claw-postgres
+    environment:
+      - POSTGRES_DB=${DB_NAME:-clawdb}
+      - POSTGRES_USER=${DB_USER:-clawuser}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-clawpass}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF8
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - claw-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-clawuser} -d ${DB_NAME:-clawdb}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: claw-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redispass}
+    volumes:
+      - redis-data:/data
+    networks:
+      - claw-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Nginx Reverse Proxy (optional)
+  nginx:
+    image: nginx:alpine
+    container_name: claw-nginx
+    ports:
+      - "${NGINX_HTTP_PORT:-80}:80"
+      - "${NGINX_HTTPS_PORT:-443}:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx-logs:/var/log/nginx
+    depends_on:
+      - claw-server
+    networks:
+      - claw-network
+    restart: unless-stopped
+    profiles:
+      - with-nginx
+
+  # Adminer (Database management UI)
+  adminer:
+    image: adminer:latest
+    container_name: claw-adminer
+    ports:
+      - "${ADMINER_PORT:-8081}:8080"
+    environment:
+      - ADMINER_DEFAULT_SERVER=postgres
+      - ADMINER_DESIGN=pepa-linha
+    depends_on:
+      - postgres
+    networks:
+      - claw-network
+    restart: unless-stopped
+    profiles:
+      - with-admin-tools
+
+  # Redis Commander (Redis management UI)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: claw-redis-commander
+    ports:
+      - "${REDIS_COMMANDER_PORT:-8082}:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379:0:${REDIS_PASSWORD:-redispass}
+    depends_on:
+      - redis
+    networks:
+      - claw-network
+    restart: unless-stopped
+    profiles:
+      - with-admin-tools
+
+networks:
+  claw-network:
+    driver: bridge
+    name: claw-network
+
+volumes:
+  postgres-data:
+    name: claw-postgres-data
+  redis-data:
+    name: claw-redis-data
+  claw-logs:
+    name: claw-logs
+  nginx-logs:
+    name: claw-nginx-logs

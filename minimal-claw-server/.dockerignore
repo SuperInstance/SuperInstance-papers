@@ -1,0 +1,65 @@
+# Dependencies
+node_modules
+npm-debug.log
+package-lock.json
+
+# Test files
+tests
+coverage
+*.test.js
+*.spec.js
+
+# Documentation
+docs
+*.md
+!README.md
+
+# Git
+.git
+.gitignore
+.github
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+
+# Temporary files
+tmp
+temp
+.tmp
+
+# Build artifacts
+dist
+build
+*.tsbuildinfo
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.gitlab-ci.yml
+.travis.yml
+.circleci
+
+# Other
+.editorconfig
+.prettierrc
+.eslintrc*

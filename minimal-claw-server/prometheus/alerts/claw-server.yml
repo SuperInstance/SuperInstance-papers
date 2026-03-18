@@ -1,0 +1,101 @@
+# Alert Rules for Minimal CLAW Server
+
+groups:
+  - name: claw-server
+    interval: 30s
+    rules:
+      # Alert if CLAW server is down
+      - alert: ClawServerDown
+        expr: up{job="claw-server"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "CLAW server is down"
+          description: "CLAW server has been down for more than 1 minute"
+
+      # Alert on high error rate
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value }} errors/sec"
+
+      # Alert on high memory usage
+      - alert: HighMemoryUsage
+        expr: (container_memory_usage_bytes / container_spec_memory_limit_bytes) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is above 80%"
+
+      # Alert on high CPU usage
+      - alert: HighCPUUsage
+        expr: rate(container_cpu_usage_seconds_total[5m]) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is above 80%"
+
+      # Alert on slow response time
+      - alert: SlowResponseTime
+        expr: histogram_quantile(0.95, http_request_duration_seconds_bucket) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow response time"
+          description: "95th percentile response time is above 1 second"
+
+  - name: database
+    interval: 30s
+    rules:
+      # Alert on database connection issues
+      - alert: DatabaseConnectionHigh
+        expr: pg_stat_activity_count > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High database connections"
+          description: "Database has more than 80 active connections"
+
+      # Alert on slow database queries
+      - alert: SlowDatabaseQuery
+        expr: rate(pg_stat_statements_mean_time_seconds[5m]) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow database queries"
+          description: "Database queries are taking more than 500ms on average"
+
+  - name: redis
+    interval: 30s
+    rules:
+      # Alert on high Redis memory usage
+      - alert: RedisHighMemoryUsage
+        expr: (redis_memory_used_bytes / redis_memory_max_bytes) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Redis memory usage"
+          description: "Redis memory usage is above 80%"
+
+      # Alert on Redis connection issues
+      - alert: RedisConnectionHigh
+        expr: redis_connected_clients > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Redis connections"
+          description: "Redis has more than 80 active connections"
