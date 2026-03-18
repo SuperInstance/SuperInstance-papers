@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLAW Agent Demo - Cellular Agents in Spreadsheets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+        }
+
+        .panel h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .spreadsheet {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: #dee2e6;
+            padding: 2px;
+            border-radius: 4px;
+        }
+
+        .cell {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .cell:hover {
+            background: #e9ecef;
+        }
+
+        .cell.selected {
+            background: #667eea;
+            color: white;
+        }
+
+        .cell.has-agent {
+            border: 2px solid #28a745;
+        }
+
+        .cell .agent-indicator {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: #28a745;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .agent-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .agent-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .agent-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .agent-state {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .agent-state.IDLE {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .agent-state.THINKING {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .agent-state.ACTING {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .equipment-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .equipment-tag {
+            background: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #495057;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦊 CLAW Agent Demo</h1>
+            <p>Cellular Agents Living in Spreadsheet Cells</p>
+        </div>
+
+        <div class="content">
+            <div class="grid">
+                <div class="panel">
+                    <h2>📊 Spreadsheet</h2>
+                    <p style="margin-bottom: 15px; color: #6c757d;">Click a cell to select it</p>
+                    <div class="spreadsheet" id="spreadsheet"></div>
+                </div>
+
+                <div class="panel">
+                    <h2>🤖 Create Agent</h2>
+                    <div class="controls" id="controls">
+                        <div class="control-group">
+                            <label>Selected Cell:</label>
+                            <input type="text" id="selectedCell" readonly placeholder="Click a cell first">
+                        </div>
+                        <div class="control-group">
+                            <label>Model:</label>
+                            <select id="model">
+                                <option value="deepseek-chat">DeepSeek Chat</option>
+                                <option value="gpt-4">GPT-4</option>
+                                <option value="claude-3">Claude 3</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Seed (Behavior):</label>
+                            <textarea id="seed" placeholder="Describe what this agent should do...">Monitor this cell for changes and alert if value exceeds threshold</textarea>
+                        </div>
+                        <div class="control-group">
+                            <label>Equipment:</label>
+                            <select id="equipment" multiple size="3">
+                                <option value="MEMORY" selected>MEMORY</option>
+                                <option value="REASONING" selected>REASONING</option>
+                                <option value="SPREADSHEET">SPREADSHEET</option>
+                                <option value="CONSENSUS">CONSENSUS</option>
+                                <option value="COORDINATION">COORDINATION</option>
+                            </select>
+                        </div>
+                        <button id="createAgent" disabled>Create Agent</button>
+                        <button id="triggerAgent" disabled>Trigger Agent</button>
+                        <button id="deleteAgent" disabled>Delete Agent</button>
+                    </div>
+                    <div id="status" class="status" style="display: none;"></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>📋 Active Agents</h2>
+                <div class="agent-list" id="agentList">
+                    <p style="color: #6c757d;">No agents created yet. Select a cell and create an agent!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Minimal Working MVP - Demonstrating Cellular Agents in Spreadsheets</p>
+            <p>Server: http://localhost:8080 | Status: <span id="serverStatus">Checking...</span></p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080';
+        let selectedCell = null;
+        let agents = [];
+
+        // Initialize spreadsheet
+        function initSpreadsheet() {
+            const spreadsheet = document.getElementById('spreadsheet');
+            const columns = 4;
+            const rows = 4;
+
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < columns; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.dataset.row = row;
+                    cell.dataset.col = col;
+                    cell.textContent = String.fromCharCode(65 + col) + (row + 1);
+                    cell.addEventListener('click', () => selectCell(row, col));
+                    spreadsheet.appendChild(cell);
+                }
+            }
+        }
+
+        // Select cell
+        function selectCell(row, col) {
+            document.querySelectorAll('.cell').forEach(c => c.classList.remove('selected'));
+            const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+            cell.classList.add('selected');
+            selectedCell = { sheetId: 'sheet1', row, col };
+            document.getElementById('selectedCell').value = `${String.fromCharCode(65 + col)}${row + 1}`;
+            updateButtons();
+            checkAgentForCell();
+        }
+
+        // Update button states
+        function updateButtons() {
+            const hasCell = selectedCell !== null;
+            document.getElementById('createAgent').disabled = !hasCell;
+        }
+
+        // Check if cell has agent
+        async function checkAgentForCell() {
+            if (!selectedCell) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/cells/sheet1/${selectedCell.row}/${selectedCell.col}/agent`);
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('triggerAgent').disabled = false;
+                    document.getElementById('deleteAgent').disabled = false;
+                    showStatus('Agent found: ' + data.data.config.seed, 'success');
+                } else {
+                    document.getElementById('triggerAgent').disabled = true;
+                    document.getElementById('deleteAgent').disabled = true;
+                    showStatus('No agent in this cell', 'info');
+                }
+            } catch (error) {
+                console.error('Error checking agent:', error);
+            }
+        }
+
+        // Create agent
+        async function createAgent() {
+            if (!selectedCell) return;
+
+            const model = document.getElementById('model').value;
+            const seed = document.getElementById('seed').value;
+            const equipment = Array.from(document.getElementById('equipment').selectedOptions).map(o => o.value);
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/agents`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model,
+                        seed,
+                        equipment,
+                        trigger: { type: 'data', source: 'spreadsheet' },
+                        cellId: selectedCell
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showStatus('Agent created successfully!', 'success');
+                    markCellHasAgent();
+                    loadAgents();
+                    checkAgentForCell();
+                } else {
+                    showStatus('Error creating agent: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showStatus('Error creating agent: ' + error.message, 'error');
+            }
+        }
+
+        // Trigger agent
+        async function triggerAgent() {
+            if (!selectedCell) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/cells/sheet1/${selectedCell.row}/${selectedCell.col}/agent`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const agentId = data.data.id;
+                    const triggerResponse = await fetch(`${API_BASE}/api/v1/agents/${agentId}/trigger`, {
+                        method: 'POST'
+                    });
+                    const triggerData = await triggerResponse.json();
+
+                    if (triggerData.success) {
+                        showStatus('Agent triggered! State: ' + triggerData.data.state, 'success');
+                        loadAgents();
+                    }
+                }
+            } catch (error) {
+                showStatus('Error triggering agent: ' + error.message, 'error');
+            }
+        }
+
+        // Delete agent
+        async function deleteAgent() {
+            if (!selectedCell) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/cells/sheet1/${selectedCell.row}/${selectedCell.col}/agent`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const agentId = data.data.id;
+                    await fetch(`${API_BASE}/api/v1/agents/${agentId}`, {
+                        method: 'DELETE'
+                    });
+
+                    showStatus('Agent deleted successfully!', 'success');
+                    unmarkCellHasAgent();
+                    loadAgents();
+                    checkAgentForCell();
+                }
+            } catch (error) {
+                showStatus('Error deleting agent: ' + error.message, 'error');
+            }
+        }
+
+        // Mark cell as having agent
+        function markCellHasAgent() {
+            if (!selectedCell) return;
+            const cell = document.querySelector(`.cell[data-row="${selectedCell.row}"][data-col="${selectedCell.col}"]`);
+            cell.classList.add('has-agent');
+
+            const indicator = document.createElement('div');
+            indicator.className = 'agent-indicator';
+            cell.appendChild(indicator);
+        }
+
+        // Unmark cell as having agent
+        function unmarkCellHasAgent() {
+            if (!selectedCell) return;
+            const cell = document.querySelector(`.cell[data-row="${selectedCell.row}"][data-col="${selectedCell.col}"]`);
+            cell.classList.remove('has-agent');
+
+            const indicator = cell.querySelector('.agent-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        // Load all agents
+        async function loadAgents() {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/agents`);
+                const data = await response.json();
+
+                if (data.success) {
+                    agents = data.data;
+                    renderAgents();
+                }
+            } catch (error) {
+                console.error('Error loading agents:', error);
+            }
+        }
+
+        // Render agents
+        function renderAgents() {
+            const agentList = document.getElementById('agentList');
+
+            if (agents.length === 0) {
+                agentList.innerHTML = '<p style="color: #6c757d;">No agents created yet. Select a cell and create an agent!</p>';
+                return;
+            }
+
+            agentList.innerHTML = agents.map(agent => `
+                <div class="agent-item">
+                    <h3>
+                        ${agent.config.seed}
+                        <span class="agent-state ${agent.state}">${agent.state}</span>
+                    </h3>
+                    <p><strong>Cell:</strong> ${String.fromCharCode(65 + agent.cellId.col)}${agent.cellId.row + 1}</p>
+                    <p><strong>Model:</strong> ${agent.config.model}</p>
+                    <div class="equipment-tags">
+                        ${agent.equipped.map(e => `<span class="equipment-tag">${e}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = 'status ' + type;
+            status.style.display = 'block';
+
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+
+        // Check server status
+        async function checkServerStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                document.getElementById('serverStatus').textContent = 'Connected (' + data.agents + ' agents)';
+                document.getElementById('serverStatus').style.color = '#28a745';
+            } catch (error) {
+                document.getElementById('serverStatus').textContent = 'Disconnected';
+                document.getElementById('serverStatus').style.color = '#dc3545';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('createAgent').addEventListener('click', createAgent);
+        document.getElementById('triggerAgent').addEventListener('click', triggerAgent);
+        document.getElementById('deleteAgent').addEventListener('click', deleteAgent);
+
+        // Initialize
+        initSpreadsheet();
+        loadAgents();
+        checkServerStatus();
+        setInterval(checkServerStatus, 5000);
+        setInterval(loadAgents, 5000);
+    </script>
+</body>
+</html>
