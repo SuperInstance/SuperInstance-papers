@@ -35,13 +35,13 @@
   "author": "SpreadsheetMoment Team",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@axe-core/playwright": "^4.8.0",
     "@playwright/test": "^1.40.0",
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
-    "k6": "^0.48.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0"
   },
