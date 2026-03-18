@@ -1,0 +1,7 @@
+// Mock process.memoryUsage for Node.js environment
+const mockMemoryUsage = jest.fn();
+const globalProcess: any = global;
+globalProcess.process = {
+  memoryUsage: mockMemoryUsage,
+  env: {}
+};

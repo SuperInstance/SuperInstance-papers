@@ -1,0 +1,655 @@
+/**
+ * Claw API Contract Tests
+ *
+ * Consumer-driven contract tests ensuring spreadsheet-moment and Claw API
+ * agree on the API contract. These tests:
+ * - Generate contract files (Pact files)
+ * - Verify request/response formats
+ * - Document expected API behavior
+ * - Prevent integration issues
+ *
+ * Run: npm run test:contract
+ * Update contracts: npm run test:contract:update
+ *
+ * @packageDocumentation
+ */
+
+import { Pact } from '@pact-foundation/pact';
+import { Interaction } from '@pact-foundation/pact/dist/dsl/interaction';
+import { ClawClient } from '../ClawClient';
+import {
+  CreateClawRequest,
+  QueryClawRequest,
+  TriggerClawRequest,
+  CancelClawRequest,
+  ClawCellConfig,
+  ClawType,
+  ModelProvider,
+  EquipmentSlot,
+  TriggerType,
+  LearningStrategy,
+  ClawState
+} from '../types';
+
+// ============================================================================
+// CONTRACT TEST CONFIGURATION
+// ============================================================================
+
+const provider = new Pact({
+  consumer: 'spreadsheet-moment',
+  provider: 'claw-api',
+  port: 1234,
+  log: './pact/logs',
+  dir: './pact/pacts',
+  logLevel: 'INFO',
+  spec: 2
+});
+
+beforeAll(() => provider.setup());
+afterAll(() => provider.finalize());
+afterEach(() => provider.verify());
+
+// ============================================================================
+// CONTRACT: createClaw
+// ============================================================================
+
+describe('Claw API Contract - createClaw', () => {
+  describe('Success: Create SENSOR claw', () => {
+    const request: CreateClawRequest = {
+      clawId: 'claw_sensor_123',
+      config: {
+        id: 'claw_sensor_123',
+        type: ClawType.SENSOR,
+        position: [0, 0],
+        model: {
+          provider: ModelProvider.DEEPSEEK,
+          model: 'deepseek-chat',
+          apiKey: 'sk-test-1234567890'
+        },
+        seed: {
+          purpose: 'Monitor temperature sensor data',
+          trigger: {
+            type: TriggerType.CELL_CHANGE,
+            cellId: 'A1'
+          },
+          learningStrategy: LearningStrategy.REINFORCEMENT
+        },
+        equipment: [EquipmentSlot.MEMORY, EquipmentSlot.REASONING],
+        relationships: [],
+        state: ClawState.DORMANT,
+        confidence: 0.95
+      }
+    };
+
+    const response = {
+      clawId: 'claw_sensor_123',
+      status: 'created',
+      createdAt: '2026-03-16T10:00:00Z',
+      config: request.config
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'No existing claw with claw_sensor_123',
+        uponReceiving: 'a request to create a SENSOR claw',
+        withRequest: {
+          method: 'POST',
+          path: '/api/v1/claws',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer sk-test-1234567890',
+            'X-Request-ID': 'req-123'
+          },
+          body: request
+        },
+        willRespondWith: {
+          status: 201,
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Response-Time': '<100ms'
+          },
+          body: response
+        }
+      } as Interaction);
+    });
+
+    it('should create claw successfully', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890',
+        enableWebSocket: false
+      });
+
+      const result = await client.createClaw(request);
+
+      expect(result.clawId).toBe('claw_sensor_123');
+      expect(result.status).toBe('created');
+      expect(result.config).toEqual(request.config);
+
+      client.dispose();
+    });
+  });
+
+  describe('Success: Create REASONING claw with equipment', () => {
+    const request: CreateClawRequest = {
+      clawId: 'claw_reasoning_456',
+      config: {
+        id: 'claw_reasoning_456',
+        type: ClawType.REASONING,
+        position: [1, 0],
+        model: {
+          provider: ModelProvider.ANTHROPIC,
+          model: 'claude-3-opus-20240229',
+          apiKey: 'sk-ant-test-1234567890'
+        },
+        seed: {
+          purpose: 'Analyze complex data patterns',
+          trigger: {
+            type: TriggerType.PERIODIC,
+            interval: 5000
+          },
+          learningStrategy: LearningStrategy.SUPERVISED
+        },
+        equipment: [
+          EquipmentSlot.MEMORY,
+          EquipmentSlot.REASONING,
+          EquipmentSlot.CONSENSUS,
+          EquipmentSlot.DISTILLATION
+        ],
+        relationships: [
+          {
+            type: 'CO_WORKER',
+            targetId: 'claw_sensor_123'
+          }
+        ],
+        state: ClawState.DORMANT,
+        confidence: 0.87
+      }
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'No existing claw with claw_reasoning_456',
+        uponReceiving: 'a request to create a REASONING claw with equipment',
+        withRequest: {
+          method: 'POST',
+          path: '/api/v1/claws',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer sk-ant-test'
+          },
+          body: request
+        },
+        willRespondWith: {
+          status: 201,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            clawId: 'claw_reasoning_456',
+            status: 'created',
+            createdAt: '2026-03-16T10:01:00Z',
+            config: request.config
+          }
+        }
+      } as Interaction);
+    });
+
+    it('should create reasoning claw with equipment', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-ant-test-1234567890'
+      });
+
+      const result = await client.createClaw(request);
+
+      expect(result.clawId).toBe('claw_reasoning_456');
+      expect(result.config.equipment).toHaveLength(4);
+      expect(result.config.relationships).toHaveLength(1);
+
+      client.dispose();
+    });
+  });
+
+  describe('Error: Invalid claw type', () => {
+    const request: CreateClawRequest = {
+      clawId: 'claw_invalid',
+      config: {
+        id: 'claw_invalid',
+        type: 'INVALID_TYPE' as ClawType,
+        position: [0, 0],
+        model: {
+          provider: ModelProvider.DEEPSEEK,
+          model: 'deepseek-chat',
+          apiKey: 'sk-test-1234567890123'
+        },
+        seed: {
+          purpose: 'Test',
+          trigger: {
+            type: TriggerType.MANUAL
+          },
+          learningStrategy: LearningStrategy.REINFORCEMENT
+        },
+        equipment: [],
+        relationships: [],
+        state: ClawState.DORMANT,
+        confidence: 0.5
+      }
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'Claw type validation enabled',
+        uponReceiving: 'a request with invalid claw type',
+        withRequest: {
+          method: 'POST',
+          path: '/api/v1/claws',
+          body: request
+        },
+        willRespondWith: {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            error: 'VALIDATION_ERROR',
+            message: 'Invalid claw type',
+            details: {
+              field: 'type',
+              provided: 'INVALID_TYPE',
+              allowed: ['SENSOR', 'REASONING', 'ACTUATOR', 'COORDINATOR']
+            }
+          }
+        }
+      } as Interaction);
+    });
+
+    it('should reject invalid claw type', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890123'
+      });
+
+      await expect(client.createClaw(request)).rejects.toThrow('VALIDATION_ERROR');
+
+      client.dispose();
+    });
+  });
+
+  describe('Error: Duplicate claw ID', () => {
+    const request: CreateClawRequest = {
+      clawId: 'claw_duplicate',
+      config: {
+        id: 'claw_duplicate',
+        type: ClawType.SENSOR,
+        position: [0, 0],
+        model: {
+          provider: ModelProvider.DEEPSEEK,
+          model: 'deepseek-chat',
+          apiKey: 'sk-test-1234567890123'
+        },
+        seed: {
+          purpose: 'Test',
+          trigger: {
+            type: TriggerType.MANUAL
+          },
+          learningStrategy: LearningStrategy.REINFORCEMENT
+        },
+        equipment: [],
+        relationships: [],
+        state: ClawState.DORMANT,
+        confidence: 0.5
+      }
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'Claw claw_duplicate already exists',
+        uponReceiving: 'a request to create duplicate claw',
+        withRequest: {
+          method: 'POST',
+          path: '/api/v1/claws',
+          body: request
+        },
+        willRespondWith: {
+          status: 409,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            error: 'CONFLICT',
+            message: 'Claw with ID claw_duplicate already exists',
+            clawId: 'claw_duplicate'
+          }
+        }
+      } as Interaction);
+    });
+
+    it('should reject duplicate claw ID', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890123'
+      });
+
+      await expect(client.createClaw(request)).rejects.toThrow('CONFLICT');
+
+      client.dispose();
+    });
+  });
+});
+
+// ============================================================================
+// CONTRACT: queryClaw
+// ============================================================================
+
+describe('Claw API Contract - queryClaw', () => {
+  describe('Success: Query existing claw', () => {
+    const request: QueryClawRequest = {
+      clawId: 'claw_sensor_123'
+    };
+
+    const response = {
+      clawId: 'claw_sensor_123',
+      status: 'active',
+      state: ClawState.THINKING,
+      config: {
+        id: 'claw_sensor_123',
+        type: ClawType.SENSOR,
+        position: [0, 0],
+        model: {
+          provider: ModelProvider.DEEPSEEK,
+          model: 'deepseek-chat',
+          apiKey: 'sk-test-1234567890123'
+        },
+        seed: {
+          purpose: 'Monitor temperature',
+          trigger: {
+            type: TriggerType.CELL_CHANGE,
+            cellId: 'A1'
+          },
+          learningStrategy: LearningStrategy.REINFORCEMENT
+        },
+        equipment: [EquipmentSlot.MEMORY],
+        relationships: [],
+        state: ClawState.THINKING,
+        confidence: 0.95
+      },
+      metrics: {
+        totalExecutions: 42,
+        lastExecution: '2026-03-16T10:00:00Z',
+        averageExecutionTime: 150
+      }
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'Claw claw_sensor_123 exists and is THINKING',
+        uponReceiving: 'a request to query claw state',
+        withRequest: {
+          method: 'GET',
+          path: '/api/v1/claws/claw_sensor_123',
+          headers: {
+            'Authorization': 'Bearer sk-test'
+          },
+          query: {
+            includeMetrics: 'true'
+          }
+        },
+        willRespondWith: {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: response
+        }
+      } as Interaction);
+    });
+
+    it('should return claw state', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890123'
+      });
+
+      const result = await client.queryClaw(request);
+
+      expect(result.clawId).toBe('claw_sensor_123');
+      expect(result.state).toBe(ClawState.THINKING);
+      expect(result.metrics).toBeDefined();
+      expect(result.metrics?.totalExecutions).toBe(42);
+
+      client.dispose();
+    });
+  });
+
+  describe('Error: Claw not found', () => {
+    const request: QueryClawRequest = {
+      clawId: 'claw_nonexistent'
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'Claw claw_nonexistent does not exist',
+        uponReceiving: 'a request to query non-existent claw',
+        withRequest: {
+          method: 'GET',
+          path: '/api/v1/claws/claw_nonexistent'
+        },
+        willRespondWith: {
+          status: 404,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            error: 'NOT_FOUND',
+            message: 'Claw with ID claw_nonexistent not found',
+            clawId: 'claw_nonexistent'
+          }
+        }
+      } as Interaction);
+    });
+
+    it('should return 404 for non-existent claw', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890123'
+      });
+
+      await expect(client.queryClaw(request)).rejects.toThrow('NOT_FOUND');
+
+      client.dispose();
+    });
+  });
+});
+
+// ============================================================================
+// CONTRACT: triggerClaw
+// ============================================================================
+
+describe('Claw API Contract - triggerClaw', () => {
+  describe('Success: Trigger dormant claw', () => {
+    const request: TriggerClawRequest = {
+      clawId: 'claw_sensor_123',
+      triggerData: {
+        cellValue: 25.5,
+        timestamp: '2026-03-16T10:00:00Z'
+      }
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'Claw claw_sensor_123 is DORMANT',
+        uponReceiving: 'a request to trigger a dormant claw',
+        withRequest: {
+          method: 'POST',
+          path: '/api/v1/claws/claw_sensor_123/trigger',
+          body: request
+        },
+        willRespondWith: {
+          status: 202,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            clawId: 'claw_sensor_123',
+            status: 'triggered',
+            state: ClawState.THINKING,
+            triggeredAt: '2026-03-16T10:00:00Z',
+            executionId: 'exec_123'
+          }
+        }
+      } as Interaction);
+    });
+
+    it('should trigger claw and return execution ID', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890123'
+      });
+
+      const result = await client.triggerClaw(request);
+
+      expect(result.clawId).toBe('claw_sensor_123');
+      expect(result.state).toBe(ClawState.THINKING);
+      expect(result.executionId).toBe('exec_123');
+
+      client.dispose();
+    });
+  });
+
+  describe('Error: Trigger already running claw', () => {
+    const request: TriggerClawRequest = {
+      clawId: 'claw_running',
+      triggerData: {}
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'Claw claw_running is already THINKING',
+        uponReceiving: 'a request to trigger an already running claw',
+        withRequest: {
+          method: 'POST',
+          path: '/api/v1/claws/claw_running/trigger',
+          body: request
+        },
+        willRespondWith: {
+          status: 409,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            error: 'INVALID_STATE',
+            message: 'Claw is already running',
+            clawId: 'claw_running',
+            currentState: ClawState.THINKING
+          }
+        }
+      } as Interaction);
+    });
+
+    it('should reject trigger for already running claw', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890123'
+      });
+
+      await expect(client.triggerClaw(request)).rejects.toThrow('INVALID_STATE');
+
+      client.dispose();
+    });
+  });
+});
+
+// ============================================================================
+// CONTRACT: cancelClaw
+// ============================================================================
+
+describe('Claw API Contract - cancelClaw', () => {
+  describe('Success: Cancel running claw', () => {
+    const request: CancelClawRequest = {
+      clawId: 'claw_running',
+      reason: 'User cancelled'
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'Claw claw_running is THINKING',
+        uponReceiving: 'a request to cancel a running claw',
+        withRequest: {
+          method: 'POST',
+          path: '/api/v1/claws/claw_running/cancel',
+          body: request
+        },
+        willRespondWith: {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            clawId: 'claw_running',
+            status: 'cancelled',
+            state: ClawState.DORMANT,
+            cancelledAt: '2026-03-16T10:00:00Z'
+          }
+        }
+      } as Interaction);
+    });
+
+    it('should cancel running claw', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890123'
+      });
+
+      const result = await client.cancelClaw(request);
+
+      expect(result.clawId).toBe('claw_running');
+      expect(result.status).toBe('cancelled');
+      expect(result.state).toBe(ClawState.DORMANT);
+
+      client.dispose();
+    });
+  });
+
+  describe('Error: Cancel dormant claw', () => {
+    const request: CancelClawRequest = {
+      clawId: 'claw_dormant',
+      reason: 'Test'
+    };
+
+    beforeEach(() => {
+      return provider.addInteraction({
+        state: 'Claw claw_dormant is already DORMANT',
+        uponReceiving: 'a request to cancel a dormant claw',
+        withRequest: {
+          method: 'POST',
+          path: '/api/v1/claws/claw_dormant/cancel',
+          body: request
+        },
+        willRespondWith: {
+          status: 409,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: {
+            error: 'INVALID_STATE',
+            message: 'Cannot cancel dormant claw',
+            clawId: 'claw_dormant',
+            currentState: ClawState.DORMANT
+          }
+        }
+      } as Interaction);
+    });
+
+    it('should reject cancel for dormant claw', async () => {
+      const client = new ClawClient({
+        baseUrl: 'http://localhost:1234',
+        apiKey: 'sk-test-1234567890123'
+      });
+
+      await expect(client.cancelClaw(request)).rejects.toThrow('INVALID_STATE');
+
+      client.dispose();
+    });
+  });
+});

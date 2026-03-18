@@ -1,0 +1,270 @@
+# Spreadsheet Moment - Staging Environment Docker Compose
+# Production-ready container orchestration for local staging
+#
+# Usage:
+#   docker-compose -f docker-compose.staging.yml up -d
+#   docker-compose -f docker-compose.staging.yml down
+#   docker-compose -f docker-compose.staging.yml logs -f
+
+version: '3.8'
+
+services:
+  # ============================================================================
+  # APPLICATION SERVICE
+  # ============================================================================
+  app:
+    build:
+      context: ../..
+      dockerfile: deployment/staging/Dockerfile
+      target: production
+    image: spreadsheet-moment:staging
+    container_name: spreadsheet-moment-staging
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "3001:3001"  # Health check port
+    environment:
+      - NODE_ENV=staging
+      - ENVIRONMENT=staging
+      - PORT=3000
+      - HEALTH_CHECK_PORT=3001
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/spreadsheet_moment_staging
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=debug
+      - METRICS_ENABLED=true
+      - METRICS_PORT=9090
+    env_file:
+      - ./deployment/staging/.env.staging
+    volumes:
+      - ./logs:/var/log/spreadsheet-moment
+      - ./uploads:/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=app"
+      - "com.spreadsheetmoment.environment=staging"
+
+  # ============================================================================
+  # POSTGRESQL DATABASE
+  # ============================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: spreadsheet-moment-postgres-staging
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=spreadsheet_moment_staging
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./deployment/staging/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d spreadsheet_moment_staging"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=database"
+
+  # ============================================================================
+  # REDIS CACHE
+  # ============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: spreadsheet-moment-redis-staging
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass redis
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=cache"
+
+  # ============================================================================
+  # PROMETHEUS - METRICS COLLECTION
+  # ============================================================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: spreadsheet-moment-prometheus-staging
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./deployment/staging/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=monitoring"
+
+  # ============================================================================
+  # GRAFANA - METRICS DASHBOARD
+  # ============================================================================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: spreadsheet-moment-grafana-staging
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./deployment/staging/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./deployment/staging/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=visualization"
+
+  # ============================================================================
+  # JAEGER - DISTRIBUTED TRACING
+  # ============================================================================
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: spreadsheet-moment-jaeger-staging
+    restart: unless-stopped
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"  # Jaeger UI
+      - "14268:14268"
+      - "14250:14250"
+      - "9411:9411"
+    environment:
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=tracing"
+
+  # ============================================================================
+  # LOKI - LOG AGGREGATION
+  # ============================================================================
+  loki:
+    image: grafana/loki:latest
+    container_name: spreadsheet-moment-loki-staging
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./deployment/staging/loki-config.yml:/etc/loki/local-config.yaml
+      - loki-data:/loki
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=logging"
+
+  # ============================================================================
+  # PROMTAIL - LOG COLLECTOR
+  # ============================================================================
+  promtail:
+    image: grafana/promtail:latest
+    container_name: spreadsheet-moment-promtail-staging
+    restart: unless-stopped
+    volumes:
+      - ./deployment/staging/promtail-config.yml:/etc/promtail/config.yml
+      - ./logs:/var/log/spreadsheet-moment
+    command: -config.file=/etc/promtail/config.yml
+    depends_on:
+      - loki
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=log-collector"
+
+  # ============================================================================
+  # NGINX - REVERSE PROXY
+  # ============================================================================
+  nginx:
+    image: nginx:alpine
+    container_name: spreadsheet-moment-nginx-staging
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/staging/nginx.conf:/etc/nginx/nginx.conf
+      - ./deployment/staging/ssl:/etc/nginx/ssl
+      - ./deployment/staging/nginx-logs:/var/log/nginx
+    depends_on:
+      - app
+    networks:
+      - spreadsheet-moment-network
+    labels:
+      - "com.spreadsheetmoment.service=proxy"
+
+# ============================================================================
+# VOLUMES
+# ============================================================================
+volumes:
+  postgres-data:
+    driver: local
+    labels:
+      - "com.spreadsheetmoment.environment=staging"
+
+  redis-data:
+    driver: local
+    labels:
+      - "com.spreadsheetmoment.environment=staging"
+
+  prometheus-data:
+    driver: local
+    labels:
+      - "com.spreadsheetmoment.environment=staging"
+
+  grafana-data:
+    driver: local
+    labels:
+      - "com.spreadsheetmoment.environment=staging"
+
+  loki-data:
+    driver: local
+    labels:
+      - "com.spreadsheetmoment.environment=staging"
+
+# ============================================================================
+# NETWORKS
+# ============================================================================
+networks:
+  spreadsheet-moment-network:
+    driver: bridge
+    labels:
+      - "com.spreadsheetmoment.environment=staging"

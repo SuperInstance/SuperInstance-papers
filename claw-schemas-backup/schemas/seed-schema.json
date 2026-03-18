@@ -1,0 +1,766 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SuperInstance/polln/claw/schemas/seed-schema.json",
+  "title": "CLAW Agent Seed Schema",
+  "description": "Schema for machine-learnable agent seeds that define claw behavior. Seeds are prompt-based behavior definitions that can be trained, stabilized, and optimized for specific trigger conditions. This represents a new cellular programming paradigm where agent behaviors are encoded as learnable seeds that evolve through experience.",
+  "type": "object",
+  "required": [
+    "id",
+    "purpose",
+    "trigger",
+    "learning_strategy",
+    "default_equipment"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique seed identifier. Format: seed-{purpose-hash}-{trigger-type}. Example: seed-8f7d2a-periodic",
+      "pattern": "^seed-[a-z0-9]+-[a-z_]+$",
+      "examples": [
+        "seed-8f7d2a-periodic",
+        "seed-3b9e1f-data_driven",
+        "seed-a7c4d2-event_based"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "description": "Natural language description of what this seed does. This serves as the behavior template that gets optimized during training. Should be specific enough to guide learning but flexible enough for adaptation.",
+      "minLength": 20,
+      "examples": [
+        "Monitor memory usage patterns and optimize retention schedules to minimize access latency while maintaining semantic coherence",
+        "Detect anomalies in consensus rounds and trigger intervention protocols when deviation exceeds 2 standard deviations",
+        "Coordinate multi-agent reasoning chains by identifying bottlenecks and dynamically redistributing computational resources"
+      ]
+    },
+    "trigger": {
+      "$ref": "#/definitions/TriggerCondition",
+      "description": "Trigger condition configuration that determines when this seed activates. Seeds can be periodic (time-based), data-driven (threshold-based), event-based (message-driven), or hybrid."
+    },
+    "learning_strategy": {
+      "$ref": "#/definitions/LearningStrategy",
+      "description": "How this seed learns from experience and optimizes its behavior. Different strategies are suitable for different trigger types and purposes."
+    },
+    "default_equipment": {
+      "type": "array",
+      "description": "Array of equipment slots to equip by default when this seed activates. Equipment provides specialized capabilities (memory, reasoning, consensus, etc.).",
+      "items": {
+        "$ref": "#/definitions/EquipmentSlot"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "examples": [
+        ["MEMORY", "REASONING"],
+        ["CONSENSUS", "COORDINATION"],
+        ["MEMORY", "SPREADSHEET", "DISTILLATION"]
+      ]
+    },
+    "training_data": {
+      "$ref": "#/definitions/TrainingConfiguration",
+      "description": "Reference to training data and training configuration. This defines how the seed learns from experience and what data is used for optimization."
+    },
+    "learned_parameters": {
+      "$ref": "#/definitions/LearnedParameters",
+      "description": "Optimized parameters after training. This contains the learned behavior that replaces the initial prompt template after stabilization."
+    },
+    "stabilization_metrics": {
+      "$ref": "#/definitions/StabilizationMetrics",
+      "description": "Performance metrics after stabilization. These metrics indicate how well the seed has learned its behavior and whether it's ready for distillation."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata about the seed",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Seed version",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "examples": ["1.0.0", "2.1.3"]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when seed was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when seed was last updated"
+        },
+        "author": {
+          "type": "string",
+          "description": "Creator of the seed"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags for categorizing and discovering seeds",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["optimization", "memory"], ["consensus", "fault-tolerance"]]
+        }
+      }
+    },
+    "distillation_config": {
+      "$ref": "#/definitions/DistillationConfig",
+      "description": "Configuration for distilling this seed into a specialized model. After stabilization, seeds can be distilled into smaller, faster models."
+    }
+  },
+  "definitions": {
+    "TriggerCondition": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["periodic", "data_driven", "event_based", "hybrid"],
+          "description": "Trigger type determines when the seed activates:\n- periodic: Activates on a time schedule (cron-like)\n- data_driven: Activates when data meets certain conditions\n- event_based: Activates in response to specific events\n- hybrid: Combines multiple trigger types"
+        },
+        "config": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/PeriodicTriggerConfig"
+            },
+            {
+              "$ref": "#/definitions/DataDrivenTriggerConfig"
+            },
+            {
+              "$ref": "#/definitions/EventBasedTriggerConfig"
+            },
+            {
+              "$ref": "#/definitions/HybridTriggerConfig"
+            }
+          ]
+        }
+      },
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "periodic": "#/definitions/PeriodicTriggerConfig",
+          "data_driven": "#/definitions/DataDrivenTriggerConfig",
+          "event_based": "#/definitions/EventBasedTriggerConfig",
+          "hybrid": "#/definitions/HybridTriggerConfig"
+        }
+      }
+    },
+    "PeriodicTriggerConfig": {
+      "type": "object",
+      "required": ["interval"],
+      "properties": {
+        "type": {
+          "const": "periodic"
+        },
+        "interval": {
+          "type": "string",
+          "description": "Interval between activations (ISO 8601 duration format)",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "examples": ["PT5M", "PT1H", "PT30S"]
+        },
+        "phase": {
+          "type": "string",
+          "description": "Initial phase offset (ISO 8601 duration format)",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "default": "PT0S"
+        },
+        "max_jitter": {
+          "type": "string",
+          "description": "Maximum random jitter to add to interval (prevents synchronization)",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "default": "PT0S"
+        }
+      }
+    },
+    "DataDrivenTriggerConfig": {
+      "type": "object",
+      "required": ["condition"],
+      "properties": {
+        "type": {
+          "const": "data_driven"
+        },
+        "condition": {
+          "type": "object",
+          "description": "Condition expression that evaluates to true/false",
+          "properties": {
+            "field": {
+              "type": "string",
+              "description": "Field to monitor (e.g., 'memory.usage', 'consensus.round_time')"
+            },
+            "operator": {
+              "type": "string",
+              "enum": [">", "<", ">=", "<=", "==", "!=", "in", "not_in"],
+              "description": "Comparison operator"
+            },
+            "value": {
+              "description": "Threshold value (can be number, string, or array)"
+            },
+            "window": {
+              "type": "string",
+              "description": "Time window for aggregation (ISO 8601 duration)",
+              "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$"
+            },
+            "aggregation": {
+              "type": "string",
+              "enum": ["avg", "min", "max", "sum", "count"],
+              "description": "Aggregation function for time window",
+              "default": "avg"
+            }
+          }
+        },
+        "check_interval": {
+          "type": "string",
+          "description": "How often to check the condition",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "default": "PT1M"
+        },
+        "cooldown": {
+          "type": "string",
+          "description": "Minimum time between activations (prevents flapping)",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "default": "PT0S"
+        }
+      }
+    },
+    "EventBasedTriggerConfig": {
+      "type": "object",
+      "required": ["event_pattern"],
+      "properties": {
+        "type": {
+          "const": "event_based"
+        },
+        "event_pattern": {
+          "type": "string",
+          "description": "Pattern to match events (supports wildcards and regex)",
+          "examples": [
+            "consensus.round_complete",
+            "memory.overflow.*",
+            "^error\\..*critical$"
+          ]
+        },
+        "filter": {
+          "type": "object",
+          "description": "Additional filter conditions on event payload",
+          "properties": {
+            "source": {
+              "type": "string",
+              "description": "Event source filter"
+            },
+            "min_severity": {
+              "type": "string",
+              "enum": ["debug", "info", "warn", "error", "critical"],
+              "description": "Minimum severity level"
+            }
+          }
+        }
+      }
+    },
+    "HybridTriggerConfig": {
+      "type": "object",
+      "required": ["triggers", "logic"],
+      "properties": {
+        "type": {
+          "const": "hybrid"
+        },
+        "triggers": {
+          "type": "array",
+          "description": "Array of trigger conditions to combine",
+          "items": {
+            "$ref": "#/definitions/TriggerCondition"
+          },
+          "minItems": 2
+        },
+        "logic": {
+          "type": "string",
+          "enum": ["AND", "OR", "NOT"],
+          "description": "Logic for combining triggers: AND (all must match), OR (any must match), NOT (activates when none match)"
+        }
+      }
+    },
+    "LearningStrategy": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["reinforcement", "supervised", "unsupervised", "few_shot"],
+          "description": "Learning strategy type:\n- reinforcement: Learn through trial and error with rewards\n- supervised: Learn from labeled examples\n- unsupervised: Learn patterns from unlabeled data\n- few_shot: Learn from minimal examples with meta-learning"
+        },
+        "config": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ReinforcementLearningConfig"
+            },
+            {
+              "$ref": "#/definitions/SupervisedLearningConfig"
+            },
+            {
+              "$ref": "#/definitions/UnsupervisedLearningConfig"
+            },
+            {
+              "$ref": "#/definitions/FewShotLearningConfig"
+            }
+          ]
+        }
+      },
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "reinforcement": "#/definitions/ReinforcementLearningConfig",
+          "supervised": "#/definitions/SupervisedLearningConfig",
+          "unsupervised": "#/definitions/UnsupervisedLearningConfig",
+          "few_shot": "#/definitions/FewShotLearningConfig"
+        }
+      }
+    },
+    "ReinforcementLearningConfig": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "reinforcement"
+        },
+        "reward_function": {
+          "type": "string",
+          "description": "Reward function specification (can be reference to predefined function or inline expression)"
+        },
+        "exploration_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.1,
+          "description": "Initial exploration rate (epsilon-greedy)"
+        },
+        "exploration_decay": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.995,
+          "description": "Exploration rate decay per iteration"
+        },
+        "discount_factor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.99,
+          "description": "Discount factor for future rewards (gamma)"
+        }
+      }
+    },
+    "SupervisedLearningConfig": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "supervised"
+        },
+        "label_source": {
+          "type": "string",
+          "description": "Source of labels (e.g., 'human_feedback', 'oracle_model', 'heuristic')"
+        },
+        "label_quality": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "Expected quality of labels (affects confidence in learning)"
+        }
+      }
+    },
+    "UnsupervisedLearningConfig": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "unsupervised"
+        },
+        "pattern_type": {
+          "type": "string",
+          "enum": ["clustering", "anomaly_detection", "dimensionality_reduction", "autoencoding"],
+          "description": "Type of unsupervised learning"
+        }
+      }
+    },
+    "FewShotLearningConfig": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "few_shot"
+        },
+        "examples": {
+          "type": "array",
+          "description": "Few-shot examples to guide learning",
+          "items": {
+            "type": "object",
+            "properties": {
+              "input": {
+                "type": "object",
+                "description": "Example input state"
+              },
+              "output": {
+                "type": "object",
+                "description": "Example desired output"
+              }
+            }
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "meta_learning_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.01,
+          "description": "Learning rate for meta-learning"
+        }
+      }
+    },
+    "EquipmentSlot": {
+      "type": "string",
+      "enum": ["MEMORY", "REASONING", "CONSENSUS", "SPREADSHEET", "DISTILLATION", "COORDINATION"],
+      "description": "Equipment slots provide specialized capabilities:\n- MEMORY: Semantic memory storage and retrieval\n- REASONING: Multi-step reasoning and inference\n- CONSENSUS: Distributed coordination and voting\n- SPREADSHEET: Data manipulation and analysis\n- DISTILLATION: Model compression and optimization\n- COORDINATION: Multi-agent orchestration"
+    },
+    "TrainingConfiguration": {
+      "type": "object",
+      "description": "Training data and configuration for seed learning",
+      "properties": {
+        "data_source": {
+          "type": "string",
+          "description": "URI for training data (file path, database connection, or data stream)"
+        },
+        "data_format": {
+          "type": "string",
+          "enum": ["jsonl", "parquet", "csv", "tfrecord", "stream"],
+          "description": "Format of training data"
+        },
+        "iterations": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 100,
+          "description": "Number of training iterations"
+        },
+        "learning_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.001,
+          "description": "Learning rate for optimization"
+        },
+        "batch_size": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 32,
+          "description": "Training batch size"
+        },
+        "validation_split": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.2,
+          "description": "Fraction of data to use for validation"
+        },
+        "early_stopping": {
+          "$ref": "#/definitions/EarlyStoppingConfig",
+          "description": "Early stopping configuration to prevent overfitting"
+        },
+        "optimization_target": {
+          "$ref": "#/definitions/OptimizationTarget",
+          "description": "Primary optimization target for training"
+        },
+        "preprocessing": {
+          "type": "array",
+          "description": "Preprocessing steps to apply to training data",
+          "items": {
+            "type": "string",
+            "enum": ["normalize", "tokenize", "augment", "deduplicate", "balance"]
+          }
+        }
+      }
+    },
+    "EarlyStoppingConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable early stopping"
+        },
+        "patience": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 10,
+          "description": "Number of iterations without improvement before stopping"
+        },
+        "min_delta": {
+          "type": "number",
+          "default": 0.001,
+          "description": "Minimum change to qualify as improvement"
+        },
+        "monitor": {
+          "type": "string",
+          "default": "loss",
+          "description": "Metric to monitor for early stopping"
+        }
+      }
+    },
+    "OptimizationTarget": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "enum": ["accuracy", "speed", "cost", "memory"],
+          "description": "Primary optimization target:\n- accuracy: Maximize prediction accuracy\n- speed: Minimize inference latency\n- cost: Minimize computational cost\n- memory: Minimize memory footprint"
+        },
+        "secondary": {
+          "type": "string",
+          "enum": ["accuracy", "speed", "cost", "memory"],
+          "description": "Secondary optimization target (used when primary is equal)"
+        },
+        "thresholds": {
+          "type": "object",
+          "description": "Threshold constraints for optimization targets",
+          "additionalProperties": {
+            "type": "number"
+          },
+          "examples": [
+            {"accuracy": 0.95, "latency_ms": 100},
+            {"memory_mb": 512, "cost_per_invocation": 0.001}
+          ]
+        }
+      }
+    },
+    "LearnedParameters": {
+      "type": "object",
+      "description": "Optimized parameters learned during training",
+      "properties": {
+        "version": {
+          "type": "integer",
+          "description": "Parameter version (increments with each retraining)"
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Learned parameter values (structure depends on learning strategy)"
+        },
+        "checksum": {
+          "type": "string",
+          "description": "SHA-256 checksum of parameters for integrity verification"
+        },
+        "training_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When these parameters were trained"
+        },
+        "performance_estimate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Estimated performance on validation set"
+        }
+      }
+    },
+    "StabilizationMetrics": {
+      "type": "object",
+      "description": "Performance metrics after stabilization",
+      "properties": {
+        "is_stabilized": {
+          "type": "boolean",
+          "description": "Whether the seed has reached stable performance"
+        },
+        "convergence_iteration": {
+          "type": "integer",
+          "description": "Iteration at which convergence was achieved"
+        },
+        "performance_history": {
+          "type": "array",
+          "description": "Performance metrics across training iterations",
+          "items": {
+            "type": "object",
+            "properties": {
+              "iteration": {
+                "type": "integer"
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "metrics": {
+                "type": "object",
+                "properties": {
+                  "loss": {
+                    "type": "number"
+                  },
+                  "accuracy": {
+                    "type": "number"
+                  },
+                  "latency_ms": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "final_metrics": {
+          "type": "object",
+          "description": "Final performance metrics after stabilization",
+          "properties": {
+            "accuracy": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "precision": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "recall": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "f1_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "latency_mean_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "latency_p95_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "latency_p99_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "throughput_per_second": {
+              "type": "number",
+              "minimum": 0
+            },
+            "memory_mb": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "stability_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Stability metric (1.0 = perfectly stable, <0.8 = needs more training)"
+        }
+      }
+    },
+    "DistillationConfig": {
+      "type": "object",
+      "description": "Configuration for distilling seed into specialized model",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable distillation after stabilization"
+        },
+        "target_size_mb": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Target model size in megabytes"
+        },
+        "target_latency_ms": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Target inference latency in milliseconds"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 10,
+          "default": 1.0,
+          "description": "Temperature for knowledge distillation (higher = softer probabilities)"
+        },
+        "compression_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Target compression ratio (e.g., 0.1 = 10% of original size)"
+        },
+        "preserve_accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.95,
+          "description": "Minimum accuracy to preserve after distillation"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "seed-8f7d2a-periodic",
+      "purpose": "Monitor memory usage patterns and optimize retention schedules to minimize access latency while maintaining semantic coherence",
+      "trigger": {
+        "type": "periodic",
+        "interval": "PT5M",
+        "phase": "PT0S",
+        "max_jitter": "PT30S"
+      },
+      "learning_strategy": {
+        "type": "reinforcement",
+        "config": {
+          "reward_function": "memory_access_latency_reward",
+          "exploration_rate": 0.1,
+          "exploration_decay": 0.995,
+          "discount_factor": 0.99
+        }
+      },
+      "default_equipment": ["MEMORY", "REASONING"],
+      "training_data": {
+        "data_source": "data://memory/access_logs.parquet",
+        "data_format": "parquet",
+        "iterations": 1000,
+        "learning_rate": 0.001,
+        "batch_size": 64,
+        "validation_split": 0.2,
+        "early_stopping": {
+          "enabled": true,
+          "patience": 20,
+          "min_delta": 0.0001
+        },
+        "optimization_target": {
+          "primary": "speed",
+          "secondary": "memory"
+        }
+      },
+      "metadata": {
+        "version": "1.0.0",
+        "created_at": "2026-03-15T10:00:00Z",
+        "tags": ["optimization", "memory"]
+      }
+    },
+    {
+      "id": "seed-a7c4d2-event_based",
+      "purpose": "Detect anomalies in consensus rounds and trigger intervention protocols when deviation exceeds 2 standard deviations",
+      "trigger": {
+        "type": "event_based",
+        "event_pattern": "consensus.round_complete",
+        "filter": {
+          "min_severity": "info"
+        }
+      },
+      "learning_strategy": {
+        "type": "supervised",
+        "config": {
+          "label_source": "human_feedback",
+          "label_quality": "high"
+        }
+      },
+      "default_equipment": ["CONSENSUS", "COORDINATION"],
+      "training_data": {
+        "data_source": "data://consensus/historical_anomalies.jsonl",
+        "data_format": "jsonl",
+        "iterations": 500,
+        "learning_rate": 0.01,
+        "batch_size": 32
+      },
+      "metadata": {
+        "version": "1.2.0",
+        "created_at": "2026-03-15T10:00:00Z",
+        "tags": ["consensus", "fault-tolerance"]
+      }
+    }
+  ]
+}

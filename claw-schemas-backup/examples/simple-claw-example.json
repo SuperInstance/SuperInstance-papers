@@ -1,0 +1,151 @@
+{
+  "description": "Simple example of a Claw cellular agent",
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "MemoryOptimizer",
+  "model": {
+    "provider": "deepseek",
+    "model_name": "deepseek-chat",
+    "parameters": {
+      "temperature": 0.7,
+      "max_tokens": 2048,
+      "top_p": 0.9
+    },
+    "capabilities": ["chat", "function_calling", "json_mode"],
+    "rate_limits": {
+      "requests_per_minute": 60,
+      "concurrent_requests": 3
+    }
+  },
+  "seed": {
+    "seed_id": "seed-8f7d2a-periodic",
+    "parameters": {
+      "optimization_target": "latency",
+      "memory_threshold": 0.8
+    }
+  },
+  "state": "DORMANT",
+  "equipment": [
+    {
+      "slot": "MEMORY",
+      "module_type": "semantic_memory_v1",
+      "config": {
+        "max_entries": 10000,
+        "retention_policy": "lru",
+        "embedding_model": "text-embedding-ada-002"
+      },
+      "priority": 8,
+      "enabled": true
+    },
+    {
+      "slot": "REASONING",
+      "module_type": "reasoning_chain",
+      "config": {
+        "max_depth": 5,
+        "branching_factor": 3
+      },
+      "priority": 6,
+      "enabled": true
+    }
+  ],
+  "config": {
+    "timeout": {
+      "execution_timeout_ms": 30000,
+      "thinking_timeout_ms": 10000,
+      "idle_timeout_ms": 300000
+    },
+    "resources": {
+      "max_memory_mb": 512,
+      "max_cpu_percent": 80,
+      "max_concurrent_operations": 10
+    },
+    "retry_policy": {
+      "max_retries": 3,
+      "initial_delay_ms": 1000,
+      "backoff_multiplier": 2.0,
+      "max_delay_ms": 30000
+    },
+    "execution": {
+      "max_iterations": 100,
+      "thinking_budget": 10,
+      "parallel_execution": false,
+      "streaming": false
+    },
+    "debugging": {
+      "log_level": "info",
+      "trace_execution": false,
+      "record_thoughts": false,
+      "profiling": false
+    }
+  },
+  "triggers": {
+    "type": "periodic",
+    "config": {
+      "interval": "PT5M",
+      "phase": "PT0S",
+      "max_jitter": "PT30S"
+    }
+  },
+  "memory": {
+    "semantic_memory": {
+      "enabled": true,
+      "max_entries": 10000,
+      "retention_policy": "lru",
+      "embedding_model": "text-embedding-ada-002"
+    },
+    "working_memory": {
+      "max_items": 100,
+      "expiration_ms": 3600000
+    },
+    "episodic_memory": {
+      "enabled": false
+    }
+  },
+  "error_handling": {
+    "max_consecutive_errors": 10,
+    "error_recovery_strategy": "retry",
+    "notification_channels": [
+      "log://memory-optimizer-errors"
+    ],
+    "error_blacklist": [
+      "authentication_failed",
+      "permission_denied"
+    ]
+  },
+  "metrics": {
+    "execution": {
+      "total_executions": 0,
+      "successful_executions": 0,
+      "failed_executions": 0,
+      "average_execution_time_ms": 0
+    },
+    "thinking": {
+      "total_thinking_steps": 0,
+      "average_thinking_time_ms": 0,
+      "tokens_processed": 0,
+      "tokens_generated": 0
+    },
+    "resources": {
+      "peak_memory_mb": 0,
+      "average_cpu_percent": 0,
+      "api_calls_made": 0
+    },
+    "social": {
+      "messages_sent": 0,
+      "messages_received": 0,
+      "consensus_participations": 0
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "created_at": "2026-03-15T10:00:00Z",
+    "updated_at": "2026-03-15T10:00:00Z",
+    "created_by": "system",
+    "tags": ["optimization", "memory", "periodic"],
+    "description": "Monitors memory usage patterns and optimizes retention schedules to minimize access latency while maintaining semantic coherence",
+    "custom_attributes": {
+      "environment": "production",
+      "team": "infrastructure",
+      "cost_center": "engineering"
+    }
+  }
+}

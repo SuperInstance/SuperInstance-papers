@@ -1,0 +1,84 @@
+# Spreadsheet Moment - Prometheus Configuration
+# Metrics collection and monitoring for staging environment
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    environment: 'staging'
+    application: 'spreadsheet-moment'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+# Rule files
+rule_files:
+  - '/etc/prometheus/alerts/*.yml'
+
+# Scrape configurations
+scrape_configs:
+  # Application metrics
+  - job_name: 'spreadsheet-moment-app'
+    static_configs:
+      - targets: ['app:9090']
+        labels:
+          service: 'application'
+          component: 'backend'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # Health check metrics
+  - job_name: 'spreadsheet-moment-health'
+    static_configs:
+      - targets: ['app:3001']
+        labels:
+          service: 'health-check'
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # PostgreSQL exporter
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+        labels:
+          service: 'database'
+          component: 'postgresql'
+
+  # Redis exporter
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+        labels:
+          service: 'cache'
+          component: 'redis'
+
+  # Node exporter (system metrics)
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          service: 'system'
+
+  # cAdvisor (container metrics)
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+        labels:
+          service: 'containers'
+
+  # Grafana metrics
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['grafana:3000']
+        labels:
+          service: 'visualization'
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          service: 'monitoring'

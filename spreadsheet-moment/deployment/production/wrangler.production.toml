@@ -1,0 +1,342 @@
+# ============================================================================
+# Production Cloudflare Workers Configuration
+# ============================================================================
+# SpreadsheetMoment - Agentic Spreadsheet Platform
+# Environment: Production
+# Version: 1.0.0
+# Date: 2026-03-16
+#
+# DEPLOYMENT INSTRUCTIONS:
+# 1. Create production KV namespace: wrangler kv:namespace create CELLS --env production
+# 2. Create production D1 database: wrangler d1 create CELLS_DB --env production
+# 3. Add production secrets: wrangler secret put SECRET_NAME --env production
+# 4. Deploy: wrangler publish --env production
+#
+# FREE TIER LIMITS:
+# - 100,000 requests/day
+# - 10ms CPU time per request
+# - 1 GB KV storage
+# - 5 GB D1 storage
+# ============================================================================
+
+name = "spreadsheet-moment-production"
+main = "workers/production.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ============================================================================
+# PRODUCTION ENVIRONMENTS
+# ============================================================================
+
+[env.production]
+name = "spreadsheet-moment-production"
+routes = [
+  { pattern = "https://spreadsheet-moment.com/*", zone_name = "spreadsheet-moment.com" },
+  { pattern = "https://www.spreadsheet-moment.com/*", zone_name = "spreadsheet-moment.com" }
+]
+
+# ============================================================================
+# KV NAMESPACES - Production Cell State Storage
+# ============================================================================
+
+# Create: wrangler kv:namespace create CELLS --env production
+[[env.production.kv_namespaces]]
+binding = "CELLS"
+id = "YOUR_PRODUCTION_KV_NAMESPACE_ID" # Replace after creating
+preview_id = "YOUR_PREVIEW_KV_NAMESPACE_ID" # Replace after creating
+
+# KV namespace for caching
+[[env.production.kv_namespaces]]
+binding = "CACHE"
+id = "YOUR_PRODUCTION_CACHE_KV_ID" # Replace after creating
+preview_id = "YOUR_PREVIEW_CACHE_KV_ID" # Replace after creating
+
+# ============================================================================
+# D1 DATABASE - Production Database
+# ============================================================================
+
+# Create: wrangler d1 create CELLS_DB --env production
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "CELLS_DB"
+database_id = "YOUR_PRODUCTION_D1_DATABASE_ID" # Replace after creating
+
+# ============================================================================
+# DURABLE OBJECTS - WebSocket Support
+# ============================================================================
+
+# For real-time WebSocket connections
+[[env.production.durable_objects.bindings]]
+name = "WEBSOCKET"
+class_name = "CellWebSocket"
+
+# ============================================================================
+# R2 BUCKET - Asset Storage
+# ============================================================================
+
+# Create: wrangler r2 bucket create SPREADSHEET_ASSETS --env production
+[[env.production.r2_buckets]]
+binding = "ASSETS"
+bucket_name = "SPREADSHEET_ASSETS"
+
+# ============================================================================
+# ENVIRONMENT VARIABLES - Public
+# ============================================================================
+
+[env.production.vars]
+ENVIRONMENT = "production"
+API_VERSION = "1.0.0"
+LOG_LEVEL = "info" # error, warn, info, debug
+ENABLE_METRICS = "true"
+ENABLE_TRACING = "false"
+
+# API Configuration
+CLAW_API_BASE_URL = "https://api.clawengine.com"
+CLAW_API_VERSION = "v1"
+CLAW_WS_URL = "wss://api.clawengine.com/ws"
+
+# Rate Limiting
+RATE_LIMIT_ENABLED = "true"
+RATE_LIMIT_REQUESTS_PER_MINUTE = "100"
+RATE_LIMIT_BURST = "20"
+
+# CORS Configuration
+CORS_ENABLED = "true"
+CORS_ALLOWED_ORIGINS = "https://spreadsheet-moment.com,https://www.spreadsheet-moment.com"
+CORS_ALLOWED_METHODS = "GET,POST,PUT,DELETE,OPTIONS"
+CORS_ALLOWED_HEADERS = "Content-Type,Authorization,X-Requested-With"
+
+# Cache Configuration
+CACHE_ENABLED = "true"
+CACHE_TTL_SECONDS = "3600"
+CACHE_STALE_WHILE_REVALIDATE = "86400"
+
+# Feature Flags
+FEATURE_WEBSOCKET = "true"
+FEATURE_REAL_TIME_UPDATES = "true"
+FEATURE_COLLABORATIVE_EDITING = "true"
+FEATURE_AI_INTEGRATION = "true"
+FEATURE_ADVANCED_ANALYTICS = "true"
+
+# Security
+SECURITY_ENABLED = "true"
+SECURITY_RATE_LIMITING = "true"
+SECURITY_INPUT_VALIDATION = "true"
+SECURITY_OUTPUT_SANITIZATION = "true"
+
+# ============================================================================
+# PRODUCTION SECRETS - Set via: wrangler secret put SECRET_NAME --env production
+# ============================================================================
+
+# API Keys
+# wrangler secret put CLAW_API_KEY --env production
+# wrangler secret put DEEPSEEK_API_KEY --env production
+# wrangler secret put OPENAI_API_KEY --env production
+# wrangler secret put ANTHROPIC_API_KEY --env production
+
+# Cloudflare
+# wrangler secret put CLOUDFLARE_ACCOUNT_ID --env production
+# wrangler secret put CLOUDFLARE_API_TOKEN --env production
+
+# OAuth (if needed)
+# wrangler secret put GITHUB_CLIENT_ID --env production
+# wrangler secret put GITHUB_CLIENT_SECRET --env production
+# wrangler secret put GOOGLE_CLIENT_ID --env production
+# wrangler secret put GOOGLE_CLIENT_SECRET --env production
+
+# Database
+# wrangler secret put DATABASE_URL --env production
+
+# Encryption
+# wrangler secret put ENCRYPTION_KEY --env production
+
+# Webhooks
+# wrangler secret put WEBHOOK_SECRET --env production
+
+# Session
+# wrangler secret put SESSION_SECRET --env production
+
+# ============================================================================
+# BUILD CONFIGURATION
+# ============================================================================
+
+[env.production.build]
+command = "pnpm install && pnpm run build"
+cwd = "./"
+
+# ============================================================================
+# SITE CONFIGURATION - For serving static assets
+# ============================================================================
+
+[env.production.site]
+bucket = "./dist"
+entry-point = "./"
+
+# ============================================================================
+# WORKERS AI CONFIGURATION
+# ============================================================================
+
+[env.production.ai]
+binding = "AI"
+
+# ============================================================================
+# HYPERDRIVE CONFIGURATION - Database connection acceleration
+# ============================================================================
+
+[[env.production.hyperdrive]]
+binding = "HYPERDRIVE"
+id = "YOUR_HYPERDRIVE_ID" # Replace after creating
+
+# ============================================================================
+# QUEUES - Background job processing
+# ============================================================================
+
+[[env.production.queues.producers]]
+binding = "QUEUE"
+queue = "BACKGROUND_JOBS"
+
+[[env.production.queues.consumers]]
+queue = "BACKGROUND_JOBS"
+max_batch_size = 10
+max_wait_time = 5
+
+# ============================================================================
+# ANALYTICS ENGINE - Event tracking
+# ============================================================================
+
+[[env.production.analytics_engine_datasets]]
+binding = "ANALYTICS"
+
+# ============================================================================
+# ALERTS - Production monitoring
+# ============================================================================
+
+# Create: wrangler alert create HIGH_ERROR_RATE
+# Create: wrangler alert create HIGH_LATENCY
+# Create: wrangler alert create SENSITIVE_DATA_EXPOSURE
+
+# ============================================================================
+# LOGPUSH - Export logs to external service
+# ============================================================================
+
+# Create: wrangler logpush create LOGPUSH_JOB
+# Destination: S3, GCS, Azure, or Splunk
+
+# ============================================================================
+# ZONE DETAILS - Custom domain configuration
+# ============================================================================
+
+# Ensure these are configured in Cloudflare dashboard:
+# 1. Add custom domain: spreadsheet-moment.com
+# 2. Add www subdomain: www.spreadsheet-moment.com
+# 3. Configure DNS records
+# 4. Enable SSL/TLS (Full mode)
+# 5. Enable Brotli compression
+# 6. Enable HTTP/3
+# 7. Enable 0-RTT connection resumption
+
+# ============================================================================
+# PERFORMANCE OPTIMIZATION
+# ============================================================================
+
+# Enable Tiered Cache
+tiered_caching = true
+
+# Enable Smart Hints
+smart_hints = true
+
+# Enable Rocket Loader
+rocket_loader = true
+
+# Enable Mirage (image optimization)
+mirage = true
+
+# Enable Polish (auto-minify)
+polish = "auto"
+
+# ============================================================================
+# SECURITY HARDENING
+# ============================================================================
+
+# Bot Fight Mode
+bot_fight_mode = true
+
+# Security Level
+security_level = "high"
+
+# Challenge Platform
+challenge_platform = "managed"
+
+# ============================================================================
+# MONITORING & OBSERVABILITY
+# ============================================================================
+
+# Enable Workers Trace Events
+trace_events = true
+
+# Enable Workers Logging
+logging = true
+
+# Enable Workers Metrics
+metrics = true
+
+# ============================================================================
+# ROLLBACK CONFIGURATION
+# ============================================================================
+
+# Keep last 10 versions for rollback
+# wrangler rollback [version]
+
+# ============================================================================
+# STAGING ENVIRONMENT
+# ============================================================================
+
+[env.staging]
+name = "spreadsheet-moment-staging"
+routes = [
+  { pattern = "https://staging.spreadsheet-moment.com/*", zone_name = "spreadsheet-moment.com" }
+]
+
+# Staging inherits production config but can override
+[env.staging.vars]
+ENVIRONMENT = "staging"
+LOG_LEVEL = "debug"
+FEATURE_WEBSOCKET = "true"
+FEATURE_REAL_TIME_UPDATES = "true"
+
+# ============================================================================
+# DEVELOPMENT ENVIRONMENT
+# ============================================================================
+
+[env.development]
+name = "spreadsheet-moment-development"
+vars = { ENVIRONMENT = "development", LOG_LEVEL = "debug" }
+
+# ============================================================================
+# NOTES
+# ============================================================================
+
+# IMPORTANT: Replace all YOUR_*_ID placeholders with actual IDs after creating resources
+#
+# TO CREATE RESOURCES:
+# wrangler kv:namespace create CELLS --env production
+# wrangler kv:namespace create CACHE --env production
+# wrangler d1 create CELLS_DB --env production
+# wrangler r2 bucket create SPREADSHEET_ASSETS --env production
+#
+# TO SET SECRETS:
+# wrangler secret put CLAW_API_KEY --env production
+# wrangler secret put DEEPSEEK_API_KEY --env production
+# wrangler secret put OPENAI_API_KEY --env production
+# wrangler secret put ANTHROPIC_API_KEY --env production
+# wrangler secret put SESSION_SECRET --env production
+# wrangler secret put ENCRYPTION_KEY --env production
+#
+# TO DEPLOY:
+# wrangler publish --env production
+#
+# TO VIEW LOGS:
+# wrangler tail --env production
+#
+# TO ROLLBACK:
+# wrangler rollback [version] --env production

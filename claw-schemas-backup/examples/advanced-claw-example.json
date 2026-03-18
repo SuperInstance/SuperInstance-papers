@@ -1,0 +1,256 @@
+{
+  "description": "Advanced example of a Claw with social relationships and multiple equipment",
+  "id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+  "name": "ConsensusValidator",
+  "model": {
+    "provider": "anthropic",
+    "model_name": "claude-3-opus",
+    "endpoint": "https://api.anthropic.com/v1",
+    "api_key": "sk-ant-...",
+    "parameters": {
+      "temperature": 0.3,
+      "max_tokens": 4096,
+      "top_p": 0.95,
+      "top_k": 40,
+      "frequency_penalty": 0,
+      "presence_penalty": 0
+    },
+    "capabilities": ["chat", "function_calling", "vision", "json_mode", "streaming"],
+    "rate_limits": {
+      "requests_per_minute": 50,
+      "tokens_per_minute": 100000,
+      "concurrent_requests": 5
+    },
+    "fallback_models": [
+      {
+        "provider": "deepseek",
+        "model_name": "deepseek-chat"
+      },
+      {
+        "provider": "openai",
+        "model_name": "gpt-4"
+      }
+    ]
+  },
+  "seed": {
+    "seed_id": "seed-a7c4d2-event_based",
+    "parameters": {
+      "consensus_protocol": "tripartite",
+      "validation_threshold": 0.95
+    },
+    "version": "2.1.0"
+  },
+  "state": "PROCESSING",
+  "equipment": [
+    {
+      "slot": "CONSENSUS",
+      "module_type": "tripartite_consensus",
+      "config": {
+        "voting_power": 0.34,
+        "perspective": "logos",
+        "protocol": "tripartite"
+      },
+      "priority": 10,
+      "enabled": true
+    },
+    {
+      "slot": "COORDINATION",
+      "module_type": "team_coordinator",
+      "config": {
+        "max_team_size": 10,
+        "coordination_strategy": "parallel",
+        "load_balancing": "dynamic"
+      },
+      "priority": 9,
+      "enabled": true
+    },
+    {
+      "slot": "MEMORY",
+      "module_type": "semantic_memory_v2",
+      "config": {
+        "max_entries": 50000,
+        "retention_policy": "importance",
+        "embedding_model": "text-embedding-3-large"
+      },
+      "priority": 7,
+      "enabled": true
+    },
+    {
+      "slot": "MONITORING",
+      "module_type": "metrics_collector",
+      "config": {
+        "metrics_interval_ms": 60000,
+        "export_to_prometheus": true,
+        "enable_tracing": true
+      },
+      "priority": 5,
+      "enabled": true
+    }
+  ],
+  "relationships": {
+    "master_of": [
+      "slave-claw-1-uuid",
+      "slave-claw-2-uuid",
+      "slave-claw-3-uuid"
+    ],
+    "coworkers": [
+      {
+        "claw_id": "550e8400-e29b-41d4-a716-446655440000",
+        "relationship_type": "consensus"
+      },
+      {
+        "claw_id": "770e8400-e29b-41d4-a716-446655440002",
+        "relationship_type": "validate"
+      }
+    ],
+    "peers": [
+      "880e8400-e29b-41d4-a716-446655440003"
+    ]
+  },
+  "config": {
+    "timeout": {
+      "execution_timeout_ms": 60000,
+      "thinking_timeout_ms": 15000,
+      "idle_timeout_ms": 600000
+    },
+    "resources": {
+      "max_memory_mb": 2048,
+      "max_cpu_percent": 90,
+      "max_concurrent_operations": 20
+    },
+    "retry_policy": {
+      "max_retries": 5,
+      "initial_delay_ms": 500,
+      "backoff_multiplier": 1.5,
+      "max_delay_ms": 60000,
+      "retryable_errors": [
+        "timeout",
+        "rate_limit_exceeded",
+        "temporary_failure"
+      ]
+    },
+    "execution": {
+      "max_iterations": 500,
+      "thinking_budget": 20,
+      "parallel_execution": true,
+      "streaming": true
+    },
+    "debugging": {
+      "log_level": "debug",
+      "trace_execution": true,
+      "record_thoughts": true,
+      "profiling": true
+    }
+  },
+  "triggers": {
+    "type": "hybrid",
+    "config": {
+      "triggers": [
+        {
+          "type": "event_based",
+          "config": {
+            "event_pattern": "consensus.round_complete",
+            "filter": {
+              "source": "consensus_service",
+              "min_severity": "info"
+            }
+          }
+        },
+        {
+          "type": "data_driven",
+          "config": {
+            "condition": {
+              "field": "consensus.queue_depth",
+              "operator": ">",
+              "value": 5,
+              "window": "PT1M",
+              "aggregation": "avg"
+            },
+            "check_interval": "PT30S",
+            "cooldown": "PT2M"
+          }
+        }
+      ],
+      "logic": "OR"
+    }
+  },
+  "memory": {
+    "semantic_memory": {
+      "enabled": true,
+      "max_entries": 50000,
+      "retention_policy": "importance",
+      "embedding_model": "text-embedding-3-large"
+    },
+    "working_memory": {
+      "max_items": 500,
+      "expiration_ms": 7200000
+    },
+    "episodic_memory": {
+      "enabled": true,
+      "max_episodes": 1000,
+      "compression_threshold": 50
+    }
+  },
+  "error_handling": {
+    "max_consecutive_errors": 5,
+    "error_recovery_strategy": "fallback",
+    "fallback_claw": "990e8400-e29b-41d4-a716-446655440004",
+    "notification_channels": [
+      "slack://consensus-alerts",
+      "pagerduty://engineering-team",
+      "email://oncall@example.com"
+    ],
+    "error_blacklist": [
+      "authentication_failed",
+      "permission_denied",
+      "invalid_configuration"
+    ]
+  },
+  "metrics": {
+    "execution": {
+      "total_executions": 1250,
+      "successful_executions": 1198,
+      "failed_executions": 52,
+      "average_execution_time_ms": 2450,
+      "last_execution_time": "2026-03-15T09:15:30Z"
+    },
+    "thinking": {
+      "total_thinking_steps": 8500,
+      "average_thinking_time_ms": 1200,
+      "tokens_processed": 4500000,
+      "tokens_generated": 2800000
+    },
+    "resources": {
+      "peak_memory_mb": 1536,
+      "average_cpu_percent": 45,
+      "api_calls_made": 1250
+    },
+    "social": {
+      "messages_sent": 3400,
+      "messages_received": 5200,
+      "consensus_participations": 198
+    }
+  },
+  "metadata": {
+    "version": "2.1.0",
+    "created_at": "2026-03-10T14:30:00Z",
+    "updated_at": "2026-03-15T09:15:00Z",
+    "created_by": "orchestrator-v1",
+    "tags": [
+      "consensus",
+      "validation",
+      "tripartite",
+      "production",
+      "critical"
+    ],
+    "description": "Validates consensus rounds and participates in tripartite decision making as the Logos (logical/analytical) perspective. Coordinates slave claws for parallel validation work.",
+    "custom_attributes": {
+      "environment": "production",
+      "team": "distributed-systems",
+      "cost_center": "platform",
+      "service_level": "critical",
+      "escalation_policy": "critical-escalation",
+      "deployment_region": "us-east-1"
+    }
+  }
+}

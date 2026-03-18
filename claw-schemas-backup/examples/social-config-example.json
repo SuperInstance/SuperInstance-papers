@@ -1,0 +1,466 @@
+{
+  "$schema": "../schemas/social-schema.json",
+  "description": "Example social configuration for a claw colony with various relationship types and coordination strategies",
+  "claw_relationships": [
+    {
+      "from_claw": "550e8400-e29b-41d4-a716-446655440000",
+      "to_claw": "660e8400-e29b-41d4-a716-446655440001",
+      "relationship_type": "slave",
+      "communication_protocol": {
+        "type": "MESSAGE_QUEUE",
+        "config": {
+          "endpoint": "redis://localhost:6379",
+          "channel": "task_queue",
+          "auth_required": true,
+          "batch_size": 100
+        },
+        "message_format": "json"
+      },
+      "state": "active",
+      "config": {
+        "slave_config": {
+          "master_claw": "550e8400-e29b-41d4-a716-446655440000",
+          "slave_count": 5,
+          "slave_seed": {
+            "base_claw_id": "worker-template",
+            "variation_params": {
+              "skill_level": "intermediate",
+              "specialization": "general"
+            }
+          },
+          "distribution_strategy": "round_robin",
+          "coordination_channel": "task_queue",
+          "termination_condition": {
+            "type": "on_completion"
+          },
+          "load_balancing": {
+            "strategy": "dynamic",
+            "metrics": ["cpu", "memory", "queue_depth"],
+            "rebalance_threshold": 0.7
+          }
+        },
+        "priority": 8,
+        "timeout_ms": 30000,
+        "retry_policy": {
+          "max_retries": 3,
+          "backoff_multiplier": 2.0,
+          "initial_delay_ms": 1000
+        }
+      },
+      "metadata": {
+        "created_at": "2026-03-15T10:00:00Z",
+        "updated_at": "2026-03-15T10:00:00Z",
+        "created_by": "system",
+        "tags": ["production", "high-priority"]
+      }
+    },
+    {
+      "from_claw": "770e8400-e29b-41d4-a716-446655440002",
+      "to_claw": "880e8400-e29b-41d4-a716-446655440003",
+      "relationship_type": "coworker",
+      "communication_protocol": {
+        "type": "WEB_SOCKET",
+        "config": {
+          "endpoint": "ws://localhost:8080/collaboration",
+          "auth_required": true,
+          "encryption": true,
+          "heartbeat_interval_ms": 30000
+        },
+        "message_format": "json"
+      },
+      "state": "active",
+      "config": {
+        "coworker_config": {
+          "primary_claw": "770e8400-e29b-41d4-a716-446655440002",
+          "coworker_claw": "880e8400-e29b-41d4-a716-446655440003",
+          "relationship_type": "validate",
+          "consensus_strategy": {
+            "type": "unanimous",
+            "threshold": 1.0,
+            "timeout_ms": 10000
+          },
+          "fallback_strategy": {
+            "type": "referee",
+            "referee_claw": "990e8400-e29b-41d4-a716-446655440004",
+            "max_attempts": 3
+          },
+          "synchronization": {
+            "mode": "synchronous",
+            "barrier_points": ["validation_complete", "feedback_ready"],
+            "timeout_ms": 15000
+          },
+          "roles": {
+            "770e8400-e29b-41d4-a716-446655440002": "proposer",
+            "880e8400-e29b-41d4-a716-446655440003": "validator"
+          }
+        },
+        "priority": 9,
+        "timeout_ms": 20000
+      },
+      "metadata": {
+        "created_at": "2026-03-15T10:00:00Z",
+        "tags": ["validation", "quality-assurance"]
+      }
+    },
+    {
+      "from_claw": "aa0e8400-e29b-41d4-a716-446655440005",
+      "to_claw": "bb0e8400-e29b-41d4-a716-446655440006",
+      "relationship_type": "peer",
+      "communication_protocol": {
+        "type": "NATS",
+        "config": {
+          "endpoint": "nats://localhost:4222",
+          "channel": "peer_network",
+          "auth_required": true
+        },
+        "message_format": "json"
+      },
+      "state": "active",
+      "config": {
+        "priority": 5
+      },
+      "metadata": {
+        "created_at": "2026-03-15T10:00:00Z",
+        "tags": ["decentralized", "peer-to-peer"]
+      }
+    },
+    {
+      "from_claw": "cc0e8400-e29b-41d4-a716-446655440007",
+      "to_claw": "dd0e8400-e29b-41d4-a716-446655440008",
+      "relationship_type": "delegate",
+      "communication_protocol": {
+        "type": "HTTP",
+        "config": {
+          "endpoint": "http://security-service:8080/api",
+          "auth_required": true,
+          "encryption": true
+        },
+        "message_format": "json"
+      },
+      "state": "active",
+      "config": {
+        "priority": 10,
+        "timeout_ms": 5000,
+        "retry_policy": {
+          "max_retries": 5,
+          "backoff_multiplier": 1.5,
+          "initial_delay_ms": 500
+        }
+      },
+      "metadata": {
+        "created_at": "2026-03-15T10:00:00Z",
+        "tags": ["security", "specialist"]
+      }
+    }
+  ],
+  "coordination_strategies": [
+    {
+      "name": "parallel_web_scraping",
+      "type": "PARALLEL",
+      "description": "Execute web scraping tasks in parallel across multiple claws",
+      "participant_claws": [
+        "660e8400-e29b-41d4-a716-446655440001",
+        "660e8400-e29b-41d4-a716-446655440002",
+        "660e8400-e29b-41d4-a716-446655440003",
+        "660e8400-e29b-41d4-a716-446655440004",
+        "660e8400-e29b-41d4-a716-446655440005"
+      ],
+      "aggregation_method": "merge",
+      "timeout_config": {
+        "overall_timeout_ms": 60000,
+        "per_claw_timeout_ms": 30000,
+        "min_responses_required": 3
+      },
+      "error_handling": {
+        "continue_on_error": true,
+        "fallback_strategy": "use_cache"
+      }
+    },
+    {
+      "name": "sequential_data_pipeline",
+      "type": "SEQUENTIAL",
+      "description": "Process data through a sequential pipeline",
+      "execution_order": [
+        "aa0e8400-e29b-41d4-a716-446655440009",
+        "bb0e8400-e29b-41d4-a716-446655440010",
+        "cc0e8400-e29b-41d4-a716-446655440011",
+        "dd0e8400-e29b-41d4-a716-446655440012"
+      ],
+      "timeout_config": {
+        "overall_timeout_ms": 120000
+      },
+      "error_handling": {
+        "continue_on_error": false,
+        "fallback_strategy": "abort"
+      }
+    },
+    {
+      "name": "weighted_decision_making",
+      "type": "WEIGHTED",
+      "description": "Make decisions based on weighted votes from expert claws",
+      "participant_claws": [
+        "ee0e8400-e29b-41d4-a716-446655440013",
+        "ff0e8400-e29b-41d4-a716-446655440014",
+        "gg0e8400-e29b-41d4-a716-446655440015"
+      ],
+      "aggregation_method": "weighted_average",
+      "weights": {
+        "ee0e8400-e29b-41d4-a716-446655440013": 0.5,
+        "ff0e8400-e29b-41d4-a716-446655440014": 0.3,
+        "gg0e8400-e29b-41d4-a716-446655440015": 0.2
+      },
+      "timeout_config": {
+        "overall_timeout_ms": 30000,
+        "per_claw_timeout_ms": 15000,
+        "min_responses_required": 2
+      }
+    },
+    {
+      "name": "map_reduce_analytics",
+      "type": "MAP_REDUCE",
+      "description": "Process large datasets using map-reduce pattern",
+      "participant_claws": [
+        "hh0e8400-e29b-41d4-a716-446655440016",
+        "ii0e8400-e29b-41d4-a716-446655440017",
+        "jj0e8400-e29b-41d4-a716-446655440018"
+      ],
+      "aggregation_method": "reduce",
+      "timeout_config": {
+        "overall_timeout_ms": 300000,
+        "per_claw_timeout_ms": 120000,
+        "min_responses_required": 2
+      },
+      "error_handling": {
+        "continue_on_error": true,
+        "fallback_strategy": "retry"
+      }
+    }
+  ],
+  "consensus_protocols": [
+    {
+      "name": "ethical_decision_consensus",
+      "type": "TRIPARTITE",
+      "description": "Tripartite consensus combining emotional, logical, and ethical perspectives for balanced decisions",
+      "participants": [
+        {
+          "claw_id": "pathos-claw",
+          "role": "proposer",
+          "voting_power": 0.33
+        },
+        {
+          "claw_id": "logos-claw",
+          "role": "acceptor",
+          "voting_power": 0.33
+        },
+        {
+          "claw_id": "ethos-claw",
+          "role": "learner",
+          "voting_power": 0.34
+        }
+      ],
+      "quorum": {
+        "type": "unanimous",
+        "threshold": 1.0,
+        "min_participants": 3
+      },
+      "timeout": {
+        "election_timeout_ms": 10000,
+        "vote_timeout_ms": 5000,
+        "max_rounds": 5
+      },
+      "tripartite_config": {
+        "pathos_claw": "pathos-claw",
+        "logos_claw": "logos-claw",
+        "ethos_claw": "ethos-claw",
+        "synthesis_method": "dialectical"
+      },
+      "fault_tolerance": {
+        "max_faulty_claws": 0,
+        "byzantine_resistance": false,
+        "recovery_strategy": "restart"
+      }
+    },
+    {
+      "name": "byzantine_fault_tolerance",
+      "type": "BYZANTINE",
+      "description": "Byzantine fault tolerant consensus for adversarial environments",
+      "participants": [
+        {
+          "claw_id": "validator-1",
+          "role": "validator",
+          "voting_power": 0.25
+        },
+        {
+          "claw_id": "validator-2",
+          "role": "validator",
+          "voting_power": 0.25
+        },
+        {
+          "claw_id": "validator-3",
+          "role": "validator",
+          "voting_power": 0.25
+        },
+        {
+          "claw_id": "validator-4",
+          "role": "validator",
+          "voting_power": 0.25
+        }
+      ],
+      "quorum": {
+        "type": "supermajority",
+        "threshold": 0.75,
+        "min_participants": 3
+      },
+      "timeout": {
+        "election_timeout_ms": 15000,
+        "vote_timeout_ms": 8000,
+        "max_rounds": 10
+      },
+      "fault_tolerance": {
+        "max_faulty_claws": 1,
+        "byzantine_resistance": true,
+        "recovery_strategy": "checkpoint"
+      }
+    },
+    {
+      "name": "simple_majority_vote",
+      "type": "SIMPLE",
+      "description": "Simple majority vote for fast decisions",
+      "participants": [
+        {
+          "claw_id": "voter-1",
+          "role": "voter",
+          "voting_power": 1.0
+        },
+        {
+          "claw_id": "voter-2",
+          "role": "voter",
+          "voting_power": 1.0
+        },
+        {
+          "claw_id": "voter-3",
+          "role": "voter",
+          "voting_power": 1.0
+        }
+      ],
+      "quorum": {
+        "type": "simple_majority",
+        "threshold": 0.51,
+        "min_participants": 2
+      },
+      "timeout": {
+        "election_timeout_ms": 5000,
+        "vote_timeout_ms": 3000,
+        "max_rounds": 3
+      },
+      "fault_tolerance": {
+        "max_faulty_claws": 1,
+        "byzantine_resistance": false,
+        "recovery_strategy": "none"
+      }
+    }
+  ],
+  "communication_protocols": [
+    {
+      "type": "WEB_SOCKET",
+      "config": {
+        "endpoint": "ws://localhost:8080/claw-coordination",
+        "channel": "coordination",
+        "auth_required": true,
+        "encryption": true,
+        "compression": true,
+        "heartbeat_interval_ms": 30000
+      },
+      "message_format": "json"
+    },
+    {
+      "type": "MESSAGE_QUEUE",
+      "config": {
+        "endpoint": "redis://localhost:6379",
+        "channel": "task_distribution",
+        "auth_required": true,
+        "encryption": false,
+        "compression": true,
+        "batch_size": 100,
+        "heartbeat_interval_ms": 60000
+      },
+      "message_format": "json"
+    },
+    {
+      "type": "HTTP",
+      "config": {
+        "endpoint": "http://api-service:8080/api",
+        "auth_required": true,
+        "encryption": true
+      },
+      "message_format": "json"
+    }
+  ],
+  "social_graph": {
+    "nodes": [
+      {
+        "claw_id": "550e8400-e29b-41d4-a716-446655440000",
+        "type": "master",
+        "capabilities": ["coordination", "task_distribution", "monitoring"],
+        "status": "active",
+        "metadata": {
+          "name": "Master Coordinator",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "claw_id": "660e8400-e29b-41d4-a716-446655440001",
+        "type": "slave",
+        "capabilities": ["web_scraping", "data_processing"],
+        "status": "active",
+        "metadata": {
+          "name": "Worker Claw 1",
+          "master": "550e8400-e29b-41d4-a716-446655440000"
+        }
+      },
+      {
+        "claw_id": "770e8400-e29b-41d4-a716-446655440002",
+        "type": "peer",
+        "capabilities": ["validation", "quality_assurance"],
+        "status": "active",
+        "metadata": {
+          "name": "Validator Claw"
+        }
+      }
+    ],
+    "edges": [],
+    "topology": "hybrid",
+    "clusters": [
+      {
+        "cluster_id": "web-scraping-team",
+        "members": [
+          "550e8400-e29b-41d4-a716-446655440000",
+          "660e8400-e29b-41d4-a716-446655440001",
+          "660e8400-e29b-41d4-a716-446655440002",
+          "660e8400-e29b-41d4-a716-446655440003",
+          "660e8400-e29b-41d4-a716-446655440004",
+          "660e8400-e29b-41d4-a716-446655440005"
+        ],
+        "purpose": "Parallel web scraping and data collection"
+      },
+      {
+        "cluster_id": "validation-team",
+        "members": [
+          "770e8400-e29b-41d4-a716-446655440002",
+          "880e8400-e29b-41d4-a716-446655440003",
+          "990e8400-e29b-41d4-a716-446655440004"
+        ],
+        "purpose": "Quality assurance and validation"
+      },
+      {
+        "cluster_id": "ethical-decision-panel",
+        "members": [
+          "pathos-claw",
+          "logos-claw",
+          "ethos-claw"
+        ],
+        "purpose": "Ethical decision making using tripartite consensus"
+      }
+    ]
+  }
+}

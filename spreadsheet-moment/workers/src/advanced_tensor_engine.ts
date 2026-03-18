@@ -523,7 +523,7 @@ export class AdvancedTensorEngine {
   sparseToDense(
     sparseTensor: AdvancedTensor,
     sparseIndices: number[][],
-    default value: number = 0
+    defaultValue: number = 0
   ): AdvancedTensor {
     if (!sparseTensor.metadata.sparse) {
       return sparseTensor;

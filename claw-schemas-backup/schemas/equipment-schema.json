@@ -1,0 +1,759 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SuperInstance/polln/claw/schemas/equipment-schema.json",
+  "title": "Equipment Schema",
+  "description": "Schema for modular equipment that claws can dynamically equip and unequip. Equipment provides specific capabilities with measurable costs and benefits, enabling adaptive behavior based on task demands.",
+  "type": "object",
+  "required": [
+    "name",
+    "slot",
+    "version",
+    "description",
+    "cost",
+    "benefit",
+    "trigger_thresholds",
+    "capabilities",
+    "muscle_memory"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique identifier for this equipment. Must be lowercase with hyphens separating words (e.g., 'ternary-memory', 'consensus-deadband').",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "examples": [
+        "ternary-memory",
+        "consensus-deadband",
+        "perception-visual",
+        "distillation-quantized"
+      ]
+    },
+    "slot": {
+      "type": "string",
+      "description": "Equipment slot type that defines where this equipment fits in the claw architecture.",
+      "enum": [
+        "MEMORY",
+        "REASONING",
+        "CONSENSUS",
+        "SPREADSHEET",
+        "DISTILLATION",
+        "PERCEPTION",
+        "COORDINATION",
+        "COMMUNICATION",
+        "SELF_IMPROVEMENT",
+        "MONITORING"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version following MAJOR.MINOR.PATCH format (e.g., '1.2.3'). MAJOR changes are breaking, MINOR add features, PATCH fix bugs.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0", "2.1.3", "0.4.0"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what this equipment does and how it benefits the claw. Should be concise but informative.",
+      "minLength": 20,
+      "maxLength": 500,
+      "examples": [
+        "Ternary weight memory using -1, 0, +1 values for efficient storage and recall of experience patterns.",
+        "Deadband consensus that only deliberates when confidence falls within the uncertainty band."
+      ]
+    },
+    "cost": {
+      "type": "object",
+      "description": "Resource costs incurred when this equipment is equipped. All costs must be non-negative.",
+      "required": ["memory_bytes", "cpu_percent", "latency_ms", "cost_per_use"],
+      "properties": {
+        "memory_bytes": {
+          "type": "integer",
+          "description": "Memory usage in bytes when equipment is loaded into active memory.",
+          "minimum": 0,
+          "examples": [1048576, 10485760, 104857600]
+        },
+        "cpu_percent": {
+          "type": "number",
+          "description": "CPU usage percentage (0-100) when equipment is actively processing.",
+          "minimum": 0,
+          "maximum": 100,
+          "examples": [0.5, 5.0, 25.0]
+        },
+        "latency_ms": {
+          "type": "number",
+          "description": "Added latency in milliseconds when using this equipment. Lower is better.",
+          "minimum": 0,
+          "examples": [0.1, 1.5, 10.0]
+        },
+        "cost_per_use": {
+          "type": "number",
+          "description": "Monetary cost per use in USD (for API-based equipment like cloud inference).",
+          "minimum": 0,
+          "examples": [0.0, 0.001, 0.01]
+        },
+        "energy_joules": {
+          "type": "number",
+          "description": "Energy consumption per use in joules (for battery-aware optimization).",
+          "minimum": 0,
+          "examples": [0.001, 0.1, 1.0]
+        }
+      }
+    },
+    "benefit": {
+      "type": "object",
+      "description": "Performance benefits provided by this equipment. Benefits should justify the costs.",
+      "required": ["accuracy_boost", "speed_multiplier"],
+      "properties": {
+        "accuracy_boost": {
+          "type": "number",
+          "description": "Accuracy improvement as a decimal (0-1). 0.1 means 10% accuracy improvement.",
+          "minimum": 0,
+          "maximum": 1,
+          "examples": [0.05, 0.15, 0.3]
+        },
+        "speed_multiplier": {
+          "type": "number",
+          "description": "Speed multiplier relative to baseline. 2.0 = 2x faster, 0.5 = 2x slower.",
+          "minimum": 0,
+          "examples": [0.5, 1.0, 2.0, 5.0]
+        },
+        "confidence_boost": {
+          "type": "number",
+          "description": "Confidence improvement as a decimal (0-1). Helps in decision-making.",
+          "minimum": 0,
+          "maximum": 1,
+          "examples": [0.1, 0.2, 0.5]
+        },
+        "capability_gain": {
+          "type": "array",
+          "description": "New capabilities unlocked by this equipment. Enables functionality not possible without it.",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "examples": [
+            ["ternary_storage", "pattern_matching"],
+            ["visual_perception", "object_detection"],
+            ["distributed_consensus", "conflict_resolution"]
+          ]
+        },
+        "reliability_improvement": {
+          "type": "number",
+          "description": "Reliability improvement as a decimal (0-1). Reduces failure rates.",
+          "minimum": 0,
+          "maximum": 1,
+          "examples": [0.05, 0.1, 0.25]
+        }
+      }
+    },
+    "trigger_thresholds": {
+      "type": "object",
+      "description": "Conditions for automatic equipment equip/unequip decisions. Enables dynamic adaptation.",
+      "required": ["equip_when", "unequip_when"],
+      "properties": {
+        "equip_when": {
+          "type": "object",
+          "description": "Conditions that trigger automatic equipment equipping. Evaluated in order, first match wins.",
+          "properties": {
+            "confidence_below": {
+              "type": "number",
+              "description": "Equip when confidence falls below this threshold (0-1).",
+              "minimum": 0,
+              "maximum": 1,
+              "examples": [0.5, 0.7, 0.8]
+            },
+            "task_type_matches": {
+              "type": "array",
+              "description": "Equip when task type matches any of these.",
+              "items": {
+                "type": "string"
+              },
+              "examples": [
+                ["visual_classification", "object_detection"],
+                ["complex_reasoning", "multi_step_planning"],
+                ["consensus_required", "distributed_deliberation"]
+              ]
+            },
+            "resource_available": {
+              "type": "object",
+              "description": "Equip when sufficient resources are available.",
+              "properties": {
+                "memory_bytes": {
+                  "type": "integer",
+                  "description": "Minimum available memory required.",
+                  "minimum": 0
+                },
+                "cpu_percent": {
+                  "type": "number",
+                  "description": "CPU headroom required (0-100).",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
+            },
+            "user_explicit_request": {
+              "type": "boolean",
+              "description": "Equip when user explicitly requests this equipment.",
+              "examples": [true]
+            },
+            "frequency_above": {
+              "type": "number",
+              "description": "Equip when task frequency exceeds this threshold (uses per hour).",
+              "minimum": 0,
+              "examples": [10, 50, 100]
+            }
+          }
+        },
+        "unequip_when": {
+          "type": "object",
+          "description": "Conditions that trigger automatic equipment unequipping. Frees resources when not needed.",
+          "properties": {
+            "confidence_above": {
+              "type": "number",
+              "description": "Unequip when confidence exceeds this threshold (0-1).",
+              "minimum": 0,
+              "maximum": 1,
+              "examples": [0.9, 0.95, 0.98]
+            },
+            "idle_duration_exceeds": {
+              "type": "number",
+              "description": "Unequip when idle for this many seconds.",
+              "minimum": 0,
+              "examples": [60, 300, 600]
+            },
+            "resource_pressure": {
+              "type": "object",
+              "description": "Unequip when under resource pressure.",
+              "properties": {
+                "memory_below": {
+                  "type": "integer",
+                  "description": "Unequip if available memory falls below this threshold.",
+                  "minimum": 0
+                },
+                "cpu_above": {
+                  "type": "number",
+                  "description": "Unequip if CPU usage exceeds this threshold (0-100).",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
+            },
+            "cost_benefit_ratio": {
+              "type": "number",
+              "description": "Unequip if cost/benefit ratio exceeds this threshold.",
+              "minimum": 0,
+              "examples": [0.5, 1.0, 2.0]
+            },
+            "user_explicit_request": {
+              "type": "boolean",
+              "description": "Unequip when user explicitly requests removal.",
+              "examples": [true]
+            }
+          }
+        },
+        "call_teacher": {
+          "type": "object",
+          "description": "Deadband range for calling teacher. Within this range, uncertainty triggers teacher consultation.",
+          "properties": {
+            "min_confidence": {
+              "type": "number",
+              "description": "Lower bound of deadband (0-1). Below this, definitely call teacher.",
+              "minimum": 0,
+              "maximum": 1,
+              "examples": [0.4, 0.5, 0.6]
+            },
+            "max_confidence": {
+              "type": "number",
+              "description": "Upper bound of deadband (0-1). Above this, proceed independently.",
+              "minimum": 0,
+              "maximum": 1,
+              "examples": [0.7, 0.8, 0.9]
+            },
+            "teacher_equipment": {
+              "type": "string",
+              "description": "Name of teacher equipment to call (e.g., 'consensus-teacher', 'human-teacher').",
+              "examples": ["consensus-teacher", "human-teacher", "ensemble-teacher"]
+            }
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "List of capabilities this equipment provides. Each capability should be unique and descriptive.",
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Capability name (lowercase with hyphens).",
+            "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
+          },
+          "description": {
+            "type": "string",
+            "description": "What this capability enables.",
+            "minLength": 10
+          },
+          "metrics": {
+            "type": "object",
+            "description": "Performance metrics specific to this capability.",
+            "properties": {
+              "throughput": {
+                "type": "number",
+                "description": "Operations per second."
+              },
+              "accuracy": {
+                "type": "number",
+                "description": "Accuracy for this capability (0-1).",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "latency_p50": {
+                "type": "number",
+                "description": "Median latency in milliseconds."
+              },
+              "latency_p99": {
+                "type": "number",
+                "description": "99th percentile latency in milliseconds."
+              }
+            }
+          }
+        }
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Other equipment that must be equipped for this equipment to function. Enables modular composition.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
+      },
+      "uniqueItems": true,
+      "examples": [
+        ["ternary-memory", "perception-visual"],
+        ["consensus-deadband", "communication-message-passing"],
+        []
+      ]
+    },
+    "conflicts": {
+      "type": "array",
+      "description": "Equipment that cannot be equipped simultaneously with this equipment. Prevents resource conflicts.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
+      },
+      "uniqueItems": true,
+      "examples": [
+        ["ternary-memory", "binary-memory"],
+        ["distillation-quantized", "distillation-pruned"],
+        []
+      ]
+    },
+    "muscle_memory": {
+      "type": "object",
+      "description": "Triggers extracted when equipment is unequipped. Enables the claw to remember when to re-equip.",
+      "required": ["triggers"],
+      "properties": {
+        "triggers": {
+          "type": "array",
+          "description": "Conditions that should trigger re-equipping this equipment.",
+          "items": {
+            "type": "object",
+            "required": ["condition", "action"],
+            "properties": {
+              "condition": {
+                "type": "object",
+                "description": "Condition to evaluate.",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["pattern_match", "threshold_cross", "frequency_exceeded", "user_request"],
+                    "description": "Type of condition to check."
+                  },
+                  "pattern": {
+                    "type": "string",
+                    "description": "Pattern to match (for pattern_match type). Supports regex."
+                  },
+                  "threshold": {
+                    "type": "number",
+                    "description": "Threshold value (for threshold_cross type)."
+                  },
+                  "metric": {
+                    "type": "string",
+                    "description": "Metric to monitor (e.g., 'confidence', 'accuracy', 'latency')."
+                  },
+                  "direction": {
+                    "type": "string",
+                    "enum": ["above", "below", "equals"],
+                    "description": "Direction of threshold crossing."
+                  }
+                }
+              },
+              "action": {
+                "type": "string",
+                "enum": ["equip", "recommend", "notify"],
+                "description": "Action to take when condition is met."
+              },
+              "priority": {
+                "type": "integer",
+                "description": "Priority level (0-100). Higher priority triggers are evaluated first.",
+                "minimum": 0,
+                "maximum": 100,
+                "default": 50
+              },
+              "cooldown_seconds": {
+                "type": "integer",
+                "description": "Minimum time between trigger activations. Prevents thrashing.",
+                "minimum": 0,
+                "default": 60
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "last_used": {
+          "type": "string",
+          "description": "ISO 8601 timestamp when this equipment was last equipped.",
+          "format": "date-time"
+        },
+        "use_count": {
+          "type": "integer",
+          "description": "Number of times this equipment has been equipped.",
+          "minimum": 0,
+          "default": 0
+        },
+        "success_rate": {
+          "type": "number",
+          "description": "Historical success rate when using this equipment (0-1).",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "description": "Implementation details for this equipment.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["native", "plugin", "remote", "hybrid"],
+          "description": "Implementation type: native (built-in), plugin (loadable module), remote (API-based), hybrid (mixed)."
+        },
+        "entry_point": {
+          "type": "string",
+          "description": "Entry point for loading this equipment (e.g., module path, URL, function name)."
+        },
+        "language": {
+          "type": "string",
+          "description": "Implementation language.",
+          "enum": ["rust", "python", "typescript", "wasm", "cpp", "other"]
+        },
+        "requirements": {
+          "type": "array",
+          "description": "System requirements for this equipment.",
+          "items": {
+            "type": "string"
+          },
+          "examples": [
+            ["gpu-cuda", "memory-1gb"],
+            ["network-connection", "api-key"],
+            []
+          ]
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata about this equipment.",
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Equipment author or organization."
+        },
+        "license": {
+          "type": "string",
+          "description": "License for this equipment."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags for categorizing and discovering equipment.",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "documentation_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to detailed documentation."
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to source code repository."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when equipment was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when equipment was last updated."
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "slot": { "const": "MEMORY" }
+        },
+        "required": ["slot"]
+      },
+      "then": {
+        "properties": {
+          "capabilities": {
+            "description": "Memory equipment must provide storage/retrieval capabilities."
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "slot": { "const": "REASONING" }
+        },
+        "required": ["slot"]
+      },
+      "then": {
+        "properties": {
+          "capabilities": {
+            "description": "Reasoning equipment must provide decision-making or inference capabilities."
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cost": {
+            "required": ["cost_per_use"],
+            "properties": {
+              "cost_per_use": { "exclusiveMinimum": 0 }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "implementation": {
+            "properties": {
+              "type": { "const": "remote" }
+            },
+            "required": ["type"]
+          }
+        },
+        "required": ["implementation"]
+      }
+    }
+  ],
+  "examples": [
+    {
+      "name": "ternary-memory",
+      "slot": "MEMORY",
+      "version": "1.0.0",
+      "description": "Ternary weight memory using -1, 0, +1 values for efficient storage and recall of experience patterns. Provides 3x compression compared to binary encoding.",
+      "cost": {
+        "memory_bytes": 10485760,
+        "cpu_percent": 2.5,
+        "latency_ms": 0.5,
+        "cost_per_use": 0.0,
+        "energy_joules": 0.01
+      },
+      "benefit": {
+        "accuracy_boost": 0.15,
+        "speed_multiplier": 3.0,
+        "confidence_boost": 0.1,
+        "capability_gain": ["ternary_storage", "pattern_compression"],
+        "reliability_improvement": 0.08
+      },
+      "trigger_thresholds": {
+        "equip_when": {
+          "task_type_matches": ["pattern_recognition", "sequence_learning"],
+          "frequency_above": 10
+        },
+        "unequip_when": {
+          "idle_duration_exceeds": 300,
+          "resource_pressure": {
+            "memory_below": 52428800
+          }
+        },
+        "call_teacher": {
+          "min_confidence": 0.5,
+          "max_confidence": 0.8,
+          "teacher_equipment": "consensus-teacher"
+        }
+      },
+      "capabilities": [
+        {
+          "name": "ternary-storage",
+          "description": "Store patterns using -1, 0, +1 weights",
+          "metrics": {
+            "throughput": 10000,
+            "accuracy": 0.95,
+            "latency_p50": 0.3,
+            "latency_p99": 1.0
+          }
+        },
+        {
+          "name": "pattern-compression",
+          "description": "Compress patterns by 3x compared to binary",
+          "metrics": {
+            "throughput": 5000,
+            "accuracy": 0.98,
+            "latency_p50": 0.5,
+            "latency_p99": 2.0
+          }
+        }
+      ],
+      "dependencies": [],
+      "conflicts": ["binary-memory", "quantized-memory"],
+      "muscle_memory": {
+        "triggers": [
+          {
+            "condition": {
+              "type": "pattern_match",
+              "pattern": "ternary|three-valued|trivalent",
+              "metric": "task_description"
+            },
+            "action": "equip",
+            "priority": 80,
+            "cooldown_seconds": 30
+          },
+          {
+            "condition": {
+              "type": "threshold_cross",
+              "metric": "accuracy",
+              "threshold": 0.85,
+              "direction": "below"
+            },
+            "action": "recommend",
+            "priority": 60,
+            "cooldown_seconds": 60
+          }
+        ],
+        "use_count": 0,
+        "success_rate": 0.0
+      },
+      "implementation": {
+        "type": "native",
+        "entry_point": "claw::equipment::memory::TernaryMemory",
+        "language": "rust",
+        "requirements": ["memory-10mb"]
+      },
+      "metadata": {
+        "author": "SuperInstance Team",
+        "license": "MIT",
+        "tags": ["memory", "ternary", "compression", "efficient"],
+        "documentation_url": "https://docs.superinstance.ai/equipment/ternary-memory",
+        "source_url": "https://github.com/SuperInstance/polln/tree/main/claw/equipment/memory",
+        "created_at": "2026-03-15T00:00:00Z",
+        "updated_at": "2026-03-15T00:00:00Z"
+      }
+    },
+    {
+      "name": "consensus-deadband",
+      "slot": "CONSENSUS",
+      "version": "2.1.0",
+      "description": "Deadband consensus that only deliberates when confidence falls within the uncertainty band (0.5-0.8). Outside this range, either proceed independently (high confidence) or defer to teacher (low confidence).",
+      "cost": {
+        "memory_bytes": 52428800,
+        "cpu_percent": 15.0,
+        "latency_ms": 5.0,
+        "cost_per_use": 0.0,
+        "energy_joules": 0.5
+      },
+      "benefit": {
+        "accuracy_boost": 0.25,
+        "speed_multiplier": 1.5,
+        "confidence_boost": 0.3,
+        "capability_gain": ["distributed_consensus", "deadband_filtering", "conflict_resolution"],
+        "reliability_improvement": 0.2
+      },
+      "trigger_thresholds": {
+        "equip_when": {
+          "confidence_below": 0.8,
+          "task_type_matches": ["multi_claw_coordination", "distributed_decision"]
+        },
+        "unequip_when": {
+          "confidence_above": 0.95,
+          "idle_duration_exceeds": 600
+        },
+        "call_teacher": {
+          "min_confidence": 0.0,
+          "max_confidence": 0.5,
+          "teacher_equipment": "human-teacher"
+        }
+      },
+      "capabilities": [
+        {
+          "name": "deadband-filtering",
+          "description": "Filter decisions based on confidence deadband",
+          "metrics": {
+            "throughput": 100,
+            "accuracy": 0.92,
+            "latency_p50": 3.0,
+            "latency_p99": 10.0
+          }
+        },
+        {
+          "name": "distributed-consensus",
+          "description": "Reach consensus across multiple claws",
+          "metrics": {
+            "throughput": 50,
+            "accuracy": 0.95,
+            "latency_p50": 5.0,
+            "latency_p99": 20.0
+          }
+        }
+      ],
+      "dependencies": ["communication-message-passing"],
+      "conflicts": ["consensus-voting", "consensus-ensemble"],
+      "muscle_memory": {
+        "triggers": [
+          {
+            "condition": {
+              "type": "threshold_cross",
+              "metric": "confidence",
+              "threshold": 0.8,
+              "direction": "below"
+            },
+            "action": "equip",
+            "priority": 90,
+            "cooldown_seconds": 10
+          }
+        ],
+        "use_count": 0,
+        "success_rate": 0.0
+      },
+      "implementation": {
+        "type": "native",
+        "entry_point": "claw::equipment::consensus::DeadbandConsensus",
+        "language": "rust",
+        "requirements": ["network-connection", "multi-claw"]
+      },
+      "metadata": {
+        "author": "SuperInstance Team",
+        "license": "MIT",
+        "tags": ["consensus", "deadband", "distributed", "coordination"],
+        "created_at": "2026-03-10T00:00:00Z",
+        "updated_at": "2026-03-15T00:00:00Z"
+      }
+    }
+  ]
+}

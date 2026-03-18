@@ -1,321 +1,461 @@
 # Spreadsheet Moment - Agentic Spreadsheet Platform
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Website](https://img.shields.io/badge/Website-LIVE-green.svg)](https://spreadsheet-moment.pages.dev)
-[![Tests](https://img.shields.io/badge/Tests-86%25-brightgreen.svg)](https://github.com/SuperInstance/spreadsheet-moment)
-[![Branch](https://img.shields.io/badge/Branch-week--5-testing-validation-blue.svg)](https://github.com/SuperInstance/spreadsheet-moment)
+[![Tests](https://img.shields.io/badge/Tests-79%25_passing-orange.svg)](https://github.com/SuperInstance/spreadsheet-moment)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 
-**Status:** Phase 3 Complete | Testing: 86% Pass Rate | Next: Week 6 Staging
-**Current Branch:** `week-5-testing-validation` | **Test Coverage:** 86% (149/174 passing)
-
-## Overview
-
-Spreadsheet Moment transforms spreadsheet cells into **intelligent agents** using the Univer spreadsheet engine. Built with TypeScript/JavaScript (frontend) and Rust (backend), this platform enables scalable cellular instances for Claw agents.
-
-> **Latest Achievement (Week 5):** Improved test coverage from 85% to 86%, restored 37 previously blocked tests, and completed comprehensive agent UX research with 3 breakthrough innovations.
+**Status:** Phase 4 Production Polish | Testing: 79.5% Pass Rate (194/244) | Development Build
 
 ---
 
-## What's New
+## The Problem with Spreadsheets
 
-### Week 5 Achievements
+Traditional spreadsheets are powerful but limited:
 
-**Testing Improvements:**
-- Improved test pass rate from 85% → 86% (149/174 tests)
-- Restored 37 previously blocked tests
-- Fixed vitest import issues in performance and integration tests
-- Standardized test framework to Jest
-- Created comprehensive testing documentation
+1. **Cells are static** - Formulas only update when dependencies change
+2. **No autonomy** - Every action requires manual intervention
+3. **No reasoning** - Cells calculate, they don't think
+4. **No communication** - Cells can't coordinate with each other
 
-**UX Research:**
-- Agent UX patterns research complete (4 documents, 2,500+ lines)
-- Designed 3 breakthrough UX innovations:
-  - Living Cell Ecosystem (+40% engagement projected)
-  - Natural Language Agent Builder (-60% time to create agents)
-  - Spatial Agent Debugger (-70% time to find bugs)
-- Created interaction patterns for cellular agents
-- Established design principles and testing strategy
-
-**Documentation:**
-- `docs/WEEK_5_TESTING_STATUS.md` - Testing status and action plan
-- `docs/WEEK_5_COMPLETION_REPORT.md` - Week 5 completion summary
-- `docs/AGENT_UX_PATTERNS.md` - Comprehensive UX pattern library
-- `docs/AGENT_UX_PROTOTYPES.md` - UX innovation specifications
-- `docs/AGENT_UX_IMPLEMENTATION.md` - Implementation guide
+What if cells could **act independently**, **reason about data**, and **coordinate with other cells**?
 
 ---
 
-## Architecture
+## The Solution: Spreadsheet Moment
 
-Monorepo with 4 packages:
+Spreadsheet Moment transforms spreadsheet cells into **autonomous agents** that can think, reason, and coordinate. Built on the [Univer](https://github.com/dream-num/univer) spreadsheet foundation with TypeScript/JavaScript frontend and planned Rust backend.
+
+```excel
+# Traditional spreadsheet: Static formula
+A1: =B1 * 1.1
+
+# Spreadsheet Moment: Autonomous agent
+A1: =CLAW_NEW("price_monitor", "deepseek-chat", "Monitor price changes and alert on anomalies")
+```
+
+### The "Ah-Ha" Moment
+
+When you realize that a spreadsheet cell can be an **intelligent agent** that:
+- Monitors its own triggers
+- Reasons about data patterns
+- Communicates with other agents
+- Takes autonomous actions
+
+This isn't a spreadsheet with AI bolted on. It's **cells as agents**.
+
+---
+
+## Use Cases & Anti-Use Cases
+
+### When to Use Spreadsheet Moment
+
+| Use Case | Why It Works |
+|----------|--------------|
+| **Data Monitoring** | Agents can watch for patterns and anomalies 24/7 |
+| **Automated Workflows** | Chain agents to create multi-step processes |
+| **Real-time Dashboards** | Agents update cells based on external events |
+| **Coordinated Analysis** | Multiple agents collaborate on complex problems |
+| **Event-Driven Updates** | Agents respond to webhooks, schedules, or triggers |
+
+**Concrete Examples:**
+
+1. **Stock Portfolio Monitor**
+   ```excel
+   A1: =CLAW_NEW("portfolio_watcher", "deepseek-chat",
+       "Monitor stock prices and alert when positions need rebalancing")
+   A2: =CLAW_QUERY(A1)  // Check status
+   ```
+
+2. **Multi-Agent Data Validation**
+   ```excel
+   A1: =CLAW_NEW("validator", "deepseek-chat", "Validate incoming data quality")
+   B1: =CLAW_NEW("enricher", "deepseek-chat", "Enrich validated data with external sources")
+   C1: =CLAW_NEW("notifier", "deepseek-chat", "Alert team when enrichment completes")
+   ```
+
+3. **Autonomous Reporting**
+   ```excel
+   A1: =CLAW_NEW("reporter", "deepseek-chat",
+       "Generate weekly summary reports every Friday at 5pm")
+   ```
+
+### When NOT to Use Spreadsheet Moment
+
+| Anti-Use Case | Why It Doesn't Fit | Better Alternative |
+|---------------|-------------------|-------------------|
+| **Simple Calculations** | Overhead of agent system unnecessary | Standard Excel formulas |
+| **Static Reports** | No need for autonomous behavior | Google Sheets, Excel |
+| **High-Frequency Trading** | 100ms latency too slow | Specialized trading systems |
+| **Large-Scale Batch Processing** | Not designed for bulk ETL | Apache Spark, Airflow |
+| **Offline Applications** | Requires WebSocket connection | Local-first software |
+| **Mobile Applications** | Desktop-only at this time | Mobile-native apps |
+
+**Reality Check:**
+
+If your use case is:
+- "I need to sum a column" -> Use `=SUM()`
+- "I need to calculate compound interest" -> Use standard formulas
+- "I need a cell that notices patterns and alerts me" -> Use Spreadsheet Moment
+
+---
+
+## Architecture Overview
+
+### System Architecture
+
+```mermaid
+graph TB
+    subgraph Frontend["Browser / Desktop"]
+        UI[React Components]
+        Univer[Univer Spreadsheet]
+    end
+
+    subgraph Core["Agent Core"]
+        State[StateManager]
+        Trace[TraceProtocol]
+        Client[ClawClient]
+    end
+
+    subgraph Backend["Claw API Server"]
+        API[REST API]
+        WS[WebSocket Server]
+        Agents[Agent Engine]
+    end
+
+    UI --> State
+    Univer --> Client
+    State --> Client
+    Client -->|HTTP| API
+    Client -->|WebSocket| WS
+    API --> Agents
+    WS --> Agents
+```
+
+### Package Structure
 
 ```
 spreadsheet-moment/
 ├── packages/
-│   ├── agent-core/          # Core agent system
-│   │   ├── StateManager     # Agent state management
-│   │   ├── TraceProtocol    # Execution tracing
-│   │   ├── ClawClient       # Claw API integration
-│   │   └── MetricsCollector # Performance monitoring
-│   ├── agent-ui/            # React UI components
-│   │   ├── AgentVisualizer  # Agent visualization
-│   │   ├── TraceViewer      # Execution trace display
-│   │   └── StatusIndicator  # Real-time status
-│   ├── agent-ai/            # AI integration layer
-│   │   └── MLModelManager   # Model lifecycle
-│   └── agent-formulas/      # Spreadsheet formulas
-│       ├── CLAW_NEW         # Create new agent
-│       ├── CLAW_QUERY       # Query agent state
-│       └── CLAW_CANCEL      # Cancel agent execution
+│   ├── agent-core/      # Core engine (StateManager, ClawClient, TraceProtocol)
+│   ├── agent-ai/        # AI integration (ModelRouter, Providers)
+│   ├── agent-ui/        # React components (AgentVisualizer, StatusIndicator)
+│   └── agent-formulas/  # Spreadsheet functions (CLAW_NEW, CLAW_QUERY, CLAW_CANCEL)
+```
+
+### Data Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant C as Cell
+    participant S as StateManager
+    participant W as WebSocket
+    participant A as Claw API
+
+    U->>C: Enter =CLAW_NEW("monitor")
+    C->>S: Create agent state
+    S->>W: Subscribe to updates
+    W->>A: HTTP POST /api/claws
+    A-->>W: Agent created
+    W-->>S: State update
+    S-->>C: Update cell display
+    C-->>U: Show "Thinking"
 ```
 
 ---
 
 ## Quick Start
 
+### Prerequisites
+
+- Node.js 18+
+- pnpm 8+
+- TypeScript 5+
+
+### Installation
+
 ```bash
-# Clone the repository
+# Clone and install
 git clone https://github.com/SuperInstance/spreadsheet-moment.git
 cd spreadsheet-moment
-
-# Install dependencies
 pnpm install
 
-# Build all packages
+# Build packages
 pnpm build
-
-# Run tests
-pnpm test
 
 # Start development server
 pnpm dev
 ```
 
-Visit http://localhost:3000
+### Your First Agent
 
-**Live Demo:** https://spreadsheet-moment.pages.dev
+1. Open the spreadsheet at http://localhost:3000
 
----
+2. Create an agent in cell A1:
+   ```excel
+   =CLAW_NEW("hello_world", "deepseek-chat", "Say hello to the world")
+   ```
 
-## Test Results
+3. Watch the cell update as the agent processes
 
-### Overall: 86% pass rate (149/174 tests)
+4. Query the agent state in cell A2:
+   ```excel
+   =CLAW_QUERY(A1)
+   ```
 
-| Test Suite | Passing | Total | Status |
-|------------|---------|-------|--------|
-| StateManager | 25 | 25 | 100% |
-| TraceProtocol | 20 | 20 | 100% |
-| ClawClient | 18 | 18 | 100% |
-| MetricsCollector | 52 | 52 | 100% |
-| HealthChecker | 52 | 53 | 98% |
-| Integration | 22 | 30 | 73% |
-| **Total** | **149** | **174** | **86%** |
-
-### Test Coverage Breakdown
-
-- **Lines:** 61.57% (2,371/3,851)
-- **Functions:** 58.33% (182/312)
-- **Branches:** 46.15% (204/442)
-- **Statements:** 61.57%
+5. Cancel if needed:
+   ```excel
+   =CLAW_CANCEL(A1)
+   ```
 
 ---
 
-## Agent UX Research
+## Agent Lifecycle
 
-Latest UX research (Week 5) includes:
+### Agent States
 
-### Living Cell Ecosystem
-- Biological metaphors for agent visualization
-- Pulsing animations for agent states
-- Color-coded health indicators
-- Natural growth patterns for agent relationships
+| State | Description | Visual |
+|-------|-------------|--------|
+| IDLE | Created but not started | Gray |
+| INITIALIZING | Starting up | Blue |
+| THINKING | Processing/reasoning | Purple |
+| ACTING | Executing actions | Orange |
+| COMPLETE | Finished successfully | Green |
+| ERROR | Encountered failure | Red |
+| WAITING_APPROVAL | Needs user input | Yellow |
 
-**Impact:** +40% engagement time, +85% first-time success rate
+### State Transitions
 
-### Natural Language Agent Builder
-- Conversational interface for creating agents
-- "Help me build an agent that..." pattern
-- Smart defaults with expert controls
-- Real-time preview and validation
-
-**Impact:** -60% time to create agents, +50% agent adoption rate
-
-### Spatial Agent Debugger
-- 3D visualization of agent execution
-- Interactive trace exploration
-- Time-travel debugging
-- Performance hotspot detection
-
-**Impact:** -70% time to find bugs, +90% debugging efficiency
-
----
-
-## Roadmap
-
-### Phase 1: Foundation
-- Monorepo setup
-- Package structure
-- Basic agent system
-- Status: Complete
-
-### Phase 2: Integration
-- Claw API integration
-- WebSocket communication
-- Formula functions
-- Status: Complete
-
-### Phase 3: Security & Testing
-- Security fixes
-- WebSocket authentication
-- Comprehensive testing (86% pass rate)
-- Status: Complete
-
-### Week 6-8: Staging (In Progress)
-- End-to-end integration testing
-- UI enhancements (real-time status, reasoning streaming)
-- Monitoring & observability
-- Target: 95%+ test pass rate
-- Status: In Progress
-
-### Phase 4: Production (Planned)
-- Production deployment
-- Performance optimization
-- Documentation
-- Public launch
+```mermaid
+stateDiagram-v2
+    [*] --> IDLE: Create
+    IDLE --> INITIALIZING: Trigger
+    INITIALIZING --> THINKING: Config Valid
+    INITIALIZING --> ERROR: Config Invalid
+    THINKING --> ACTING: Decision Made
+    THINKING --> WAITING_APPROVAL: Needs Input
+    ACTING --> COMPLETE: Success
+    ACTING --> ERROR: Failure
+    WAITING_APPROVAL --> THINKING: Approved
+    WAITING_APPROVAL --> COMPLETE: Rejected
+    ERROR --> [*]: Dispose
+    COMPLETE --> [*]: Dispose
+```
 
 ---
 
-## Performance Targets
+## Packages
 
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| Test Pass Rate | 95%+ | 86% | In Progress |
-| TypeScript Errors | 0 | 0 | Met |
-| Build Time | <2 min | ~1.5 min | Met |
+### @spreadsheet-moment/agent-core
+
+Core agent system with state management, execution tracing, and API client.
+
+```typescript
+import { StateManager, ClawClient, TraceProtocol } from '@spreadsheet-moment/agent-core';
+
+const stateManager = new StateManager();
+const client = new ClawClient({
+  baseUrl: 'http://localhost:8080',
+  apiKey: process.env.CLAW_API_KEY
+});
+
+// Create and track an agent
+const agent = await client.createClaw({
+  name: 'data_monitor',
+  model: 'deepseek-chat'
+});
+```
+
+### @spreadsheet-moment/agent-ai
+
+AI integration with model routing and multiple providers.
+
+```typescript
+import { ModelRouter, DeepSeekProvider } from '@spreadsheet-moment/agent-ai';
+
+const router = new ModelRouter({
+  defaultProvider: 'deepseek',
+  providers: [new DeepSeekProvider({ apiKey: process.env.DEEPSEEK_KEY })]
+});
+```
+
+### @spreadsheet-moment/agent-ui
+
+React components for agent visualization.
+
+```tsx
+import { AgentVisualizer, StatusIndicator } from '@spreadsheet-moment/agent-ui';
+
+<AgentVisualizer agentId="claw_123" />
+<StatusIndicator state="thinking" />
+```
+
+### @spreadsheet-moment/agent-formulas
+
+Spreadsheet formula functions.
+
+```excel
+=CLAW_NEW(name, model, purpose)
+=CLAW_QUERY(cell_reference)
+=CLAW_CANCEL(cell_reference)
+```
+
+---
+
+## Current Status
+
+### Test Results
+
+| Suite | Pass Rate | Status |
+|-------|-----------|--------|
+| StateManager | 100% (25/25) | Stable |
+| TraceProtocol | 100% (20/20) | Stable |
+| ClawClient | 100% (18/18) | Stable |
+| MetricsCollector | 100% (52/52) | Stable |
+| HealthChecker | 98% (52/53) | Stable |
+| Integration | 73% (22/30) | In Progress |
+| **Overall** | **79.5%** (194/244) | **Improving** |
+
+### Performance
+
+| Metric | Target | Measured | Status |
+|--------|--------|----------|--------|
 | Cell Update Latency | <100ms | <100ms | Met |
-| Test Coverage | 80%+ | 61.57% | Improving |
-| WebSocket Auth | Complete | Complete | Met |
+| WebSocket Connection | <100ms | <50ms | Met |
+| TypeScript Errors | 0 | 0 | Met |
+| Test Pass Rate | 95%+ | 79.5% | In Progress |
+
+See [BENCHMARKS.md](BENCHMARKS.md) for detailed measurements.
+
+---
+
+## Limitations & Disclaimers
+
+### Current Limitations
+
+1. **Development Phase** - Pre-release software, APIs may change
+2. **Single Server** - Distributed deployment not yet supported
+3. **Desktop Only** - Mobile browsers not supported
+4. **Requires Connection** - Offline mode not implemented
+
+### What This Is NOT
+
+- A replacement for Excel/Google Sheets for standard calculations
+- A high-frequency trading platform
+- A batch data processing system
+- A production-ready enterprise solution (yet)
+
+### See Also
+
+- [DISCLAIMERS.md](DISCLAIMERS.md) - Full project status and limitations
+- [BENCHMARKS.md](BENCHMARKS.md) - Performance measurements and methodology
+
+---
+
+## Integration
+
+### Claw API Integration
+
+Spreadsheet Moment connects to [Claw](https://github.com/SuperInstance/claw) for agent execution:
+
+```
+┌─────────────────────┐     ┌─────────────────────┐
+│ Spreadsheet Moment  │────▶│   Claw API Server   │
+│   (Frontend)        │     │   (Agent Engine)    │
+└─────────────────────┘     └─────────────────────┘
+        │                            │
+        │  HTTP/WebSocket            │
+        └────────────────────────────┘
+```
+
+**Integration Status:** API contracts defined, mock testing available, live integration requires Claw deployment.
+
+### Univer Foundation
+
+Built on [Univer](https://github.com/dream-num/univer):
+- Open-source spreadsheet engine
+- React-based UI components
+- Formula calculation engine
+- Collaborative editing (planned)
 
 ---
 
 ## Development
 
+### Commands
+
 ```bash
-# Watch mode for development
-pnpm dev
+# Development
+pnpm dev              # Start development server
+pnpm build            # Build all packages
+pnpm test             # Run tests
+pnpm lint             # Lint code
 
-# Run specific package tests
-pnpm test --filter=@spreadsheet-moment/agent-core
-
-# Type checking
-pnpm typecheck
-
-# Linting
-pnpm lint
-
-# Build all packages
-pnpm build
-
-# Run with coverage
-pnpm test:coverage
+# Testing
+pnpm test:coverage    # Test with coverage
+pnpm test:e2e         # End-to-end tests (Playwright)
+pnpm test:load        # Load tests (k6)
 ```
 
----
+### Project Structure
 
-## Example Usage
-
-```typescript
-import { SuperInstance } from '@spreadsheet-moment/core';
-
-// Create a sensor agent
-const sensorAgent = SuperInstance.create({
-  type: 'sensor',
-  connections: ['arduino://A0', 'https://api.weather.com']
-});
-
-sensorAgent.on('update', (data) => {
-  console.log('Sensor data:', data);
-});
-
-// Create an analysis agent
-const analysisAgent = SuperInstance.create({
-  type: 'analysis',
-  model: 'neural-network',
-  trigger: 'sensor:update'
-});
-
-analysisAgent.on('anomaly', (result) => {
-  console.log('Anomaly detected:', result);
-});
+```
+spreadsheet-moment/
+├── packages/
+│   ├── agent-core/          # Core engine
+│   │   ├── src/
+│   │   │   ├── api/         # Claw API client
+│   │   │   ├── monitoring/  # Health & metrics
+│   │   │   └── services/    # Core services
+│   │   └── __tests__/
+│   ├── agent-ai/            # AI integration
+│   ├── agent-ui/            # React components
+│   └── agent-formulas/      # Formula functions
+├── docs/                    # Documentation
+├── tests/                   # E2E tests
+└── deployment/              # Deployment configs
 ```
 
 ---
 
 ## Documentation
 
-### Core Documentation
-- [Architecture](docs/ARCHITECTURE.md) - System architecture overview
-- [API Reference](docs/API_DOCUMENTATION.md) - Complete API documentation
-- [Getting Started](docs/GETTING_STARTED.md) - Quick start guide
-- [Deployment](docs/DEPLOYMENT_GUIDE.md) - Deployment instructions
-
-### Week 5 Documentation
-- [WEEK_5_TESTING_STATUS.md](docs/WEEK_5_TESTING_STATUS.md) - Testing status and action plan
-- [WEEK_5_COMPLETION_REPORT.md](docs/WEEK_5_COMPLETION_REPORT.md) - Week 5 summary
-- [AGENT_UX_PATTERNS.md](docs/AGENT_UX_PATTERNS.md) - UX pattern library
-- [AGENT_UX_PROTOTYPES.md](docs/AGENT_UX_PROTOTYPES.md) - UX innovations
-- [AGENT_UX_IMPLEMENTATION.md](docs/AGENT_UX_IMPLEMENTATION.md) - Implementation guide
-
-### Integration Documentation
-- [Claw Integration](docs/CLAW_INTEGRATION.md) - Claw API integration guide
-- [OpenClaw Integration](docs/OPENCLAW_INTEGRATION.md) - OpenClaw integration
-- [IO Connections](docs/IO_CONNECTIONS.md) - Hardware connections
+- [Architecture](docs/ARCHITECTURE.md) - System design
+- [API Reference](docs/API_DOCUMENTATION.md) - Complete API docs
+- [Getting Started](docs/GETTING_STARTED.md) - Tutorial
+- [Deployment](docs/DEPLOYMENT_GUIDE.md) - Production setup
+- [Claw Integration](docs/CLAW_INTEGRATION.md) - Claw API guide
 
 ---
 
-## Research Foundation
+## Roadmap
 
-SpreadsheetMoment is built on 60+ peer-reviewed research papers from the SuperInstance project, spanning distributed systems, machine learning, and hardware acceleration.
-
-### Core Research Areas
-
-**Distributed Consensus:**
-- Byzantine fault tolerance
-- Agent discovery protocols
-- Message-passing primitives
-
-**Rotation-Invariant ML:**
-- SE(3)-equivariant message passing
-- 1000× data efficiency
-- Geometric symmetry exploitation
-
-**Hardware Integration:**
-- Arduino/ESP32 protocols
-- Mask-locked inference
-- Ternary weight networks
-
-**Complete Research Collection:**
-[SuperInstance Papers](https://github.com/SuperInstance/SuperInstance-papers)
+| Phase | Status | Focus |
+|-------|--------|-------|
+| Phase 1: Foundation | Complete | Monorepo, package structure |
+| Phase 2: Integration | Complete | Claw API, WebSocket |
+| Phase 3: Security | Complete | Auth, validation |
+| Phase 4: Polish | **Current** | Testing, documentation |
+| Phase 5: Production | Planned | Deployment, monitoring |
 
 ---
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+**Requirements:**
+- All PRs must pass tests
+- Code must be TypeScript strict mode compatible
+- New features require tests
+- Breaking changes need discussion
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
+Apache-2.0 - See [LICENSE](LICENSE)
 
 ---
 
@@ -323,12 +463,12 @@ MIT — see [LICENSE](LICENSE)
 
 - **Website:** https://spreadsheet-moment.pages.dev
 - **GitHub:** https://github.com/SuperInstance/spreadsheet-moment
-- **Research:** https://github.com/SuperInstance/SuperInstance-papers
 - **Claw Engine:** https://github.com/SuperInstance/claw
+- **Research:** https://github.com/SuperInstance/SuperInstance-papers
+- **Discord:** [Join our Discord](https://discord.gg/superinstance)
 
 ---
 
 **Current Branch:** `week-5-testing-validation`
-**Last Updated:** 2026-03-16
-**Status:** Phase 3 Complete | Week 6 In Progress
-**Next Milestone:** Week 6 Staging Deployment
+**Last Updated:** 2026-03-17
+**Status:** Phase 4 Production Polish | Development Build

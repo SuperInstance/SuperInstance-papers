@@ -1,0 +1,1049 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SuperInstance/polln/claw/schemas/claw-schema.json",
+  "title": "Claw Cellular Agent Schema",
+  "description": "Core schema defining a Claw - a minimal cellular agent with ML model capabilities. Claws are autonomous AI agents that can spawn other agents, form social relationships, coordinate work, and evolve through learning. This represents the fundamental unit of cellular programming where simple agents self-organize into complex adaptive systems.",
+  "type": "object",
+  "required": [
+    "id",
+    "model",
+    "seed",
+    "state",
+    "equipment",
+    "config"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique claw identifier. Universally unique identifier (UUID) format that identifies this specific claw instance across the entire distributed system.",
+      "format": "uuid",
+      "examples": [
+        "550e8400-e29b-41d4-a716-446655440000",
+        "6ba7b810-9dad-11d1-80b4-00c04fd430c8"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for this claw. Optional friendly name for debugging, monitoring, and logging purposes.",
+      "minLength": 1,
+      "maxLength": 100,
+      "examples": [
+        "MemoryOptimizer",
+        "ConsensusValidator",
+        "DataPipelineCoordinator"
+      ]
+    },
+    "model": {
+      "$ref": "#/$defs/ModelConfiguration",
+      "description": "AI model configuration that powers this claw's intelligence. Defines which LLM or ML model to use, including provider, endpoint, and inference parameters."
+    },
+    "seed": {
+      "$ref": "#/$defs/SeedReference",
+      "description": "Reference to the seed configuration that defines this claw's behavior and purpose. Seeds are prompt-based behavior definitions that can be trained and optimized."
+    },
+    "state": {
+      "$ref": "#/$defs/ClawState",
+      "description": "Current operational state of the claw. Tracks whether the claw is dormant, thinking, processing data, in an error state, or being terminated."
+    },
+    "equipment": {
+      "type": "array",
+      "description": "Array of equipment modules currently equipped by this claw. Equipment provides specialized capabilities such as memory, reasoning, consensus, coordination, and data processing. Equipment can be dynamically added or removed based on needs.",
+      "items": {
+        "$ref": "#/$defs/EquipmentModule"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "config": {
+      "$ref": "#/$defs/RuntimeConfiguration",
+      "description": "Runtime configuration that controls claw behavior, performance, and resource allocation. Includes timeouts, resource limits, retry policies, and debugging settings."
+    },
+    "relationships": {
+      "$ref": "#/$defs/ClawRelationships",
+      "description": "Social relationships this claw has with other claws. Defines master-slave, co-worker, and peer relationships that enable multi-agent coordination and cellular programming patterns."
+    },
+    "metrics": {
+      "$ref": "#/$defs/ClawMetrics",
+      "description": "Performance and operational metrics for this claw. Tracks execution statistics, resource usage, and performance indicators."
+    },
+    "triggers": {
+      "$ref": "#/$defs/TriggerConfiguration",
+      "description": "Trigger conditions that activate this claw. Defines when the claw should wake up and start processing based on time, data conditions, events, or hybrid patterns."
+    },
+    "memory": {
+      "$ref": "#/$defs/MemoryConfiguration",
+      "description": "Memory configuration for this claw. Defines semantic memory storage, working memory, and long-term retention parameters."
+    },
+    "error_handling": {
+      "$ref": "#/$defs/ErrorHandling",
+      "description": "Error handling and recovery configuration. Defines how the claw handles errors, retries failed operations, and recovers from failures."
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata",
+      "description": "Additional metadata about this claw including creation time, version, tags, and custom attributes."
+    }
+  },
+  "$defs": {
+    "ModelConfiguration": {
+      "type": "object",
+      "description": "AI model configuration that powers the claw's intelligence",
+      "required": ["provider", "model_name"],
+      "properties": {
+        "provider": {
+          "$ref": "#/$defs/ModelProvider",
+          "description": "Model provider/service that hosts the AI model"
+        },
+        "model_name": {
+          "type": "string",
+          "description": "Specific model identifier/name to use from the provider",
+          "examples": [
+            "deepseek-chat",
+            "gpt-4",
+            "claude-3-opus",
+            "llama-3-70b",
+            "mistral-7b"
+          ]
+        },
+        "endpoint": {
+          "type": "string",
+          "description": "Custom API endpoint URL (overrides default provider endpoint)",
+          "format": "uri",
+          "examples": [
+            "https://api.deepseek.com/v1",
+            "https://api.openai.com/v1",
+            "http://localhost:11434/v1"
+          ]
+        },
+        "api_key": {
+          "type": "string",
+          "description": "API key for model authentication (should be stored securely, not in plain text)",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Model inference parameters",
+          "properties": {
+            "temperature": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2,
+              "default": 0.7,
+              "description": "Sampling temperature for response generation"
+            },
+            "max_tokens": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 2048,
+              "description": "Maximum tokens to generate"
+            },
+            "top_p": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.9,
+              "description": "Nucleus sampling threshold"
+            },
+            "top_k": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 40,
+              "description": "Top-k sampling parameter"
+            },
+            "frequency_penalty": {
+              "type": "number",
+              "minimum": -2,
+              "maximum": 2,
+              "default": 0,
+              "description": "Frequency penalty for token repetition"
+            },
+            "presence_penalty": {
+              "type": "number",
+              "minimum": -2,
+              "maximum": 2,
+              "default": 0,
+              "description": "Presence penalty for new topics"
+            },
+            "stop_sequences": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Sequences that stop generation"
+            }
+          }
+        },
+        "capabilities": {
+          "type": "array",
+          "description": "Model capabilities/features",
+          "items": {
+            "type": "string",
+            "enum": [
+              "chat",
+              "completion",
+              "function_calling",
+              "vision",
+              "embedding",
+              "json_mode",
+              "streaming"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "rate_limits": {
+          "type": "object",
+          "description": "Rate limiting configuration",
+          "properties": {
+            "requests_per_minute": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Maximum requests per minute"
+            },
+            "tokens_per_minute": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Maximum tokens per minute"
+            },
+            "concurrent_requests": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "description": "Maximum concurrent requests"
+            }
+          }
+        },
+        "fallback_models": {
+          "type": "array",
+          "description": "Fallback models to use if primary model fails",
+          "items": {
+            "type": "object",
+            "properties": {
+              "provider": {
+                "$ref": "#/$defs/ModelProvider"
+              },
+              "model_name": {
+                "type": "string"
+              }
+            }
+          },
+          "maxItems": 5
+        }
+      }
+    },
+    "ModelProvider": {
+      "type": "string",
+      "description": "AI model provider/service",
+      "enum": [
+        "deepseek",
+        "openai",
+        "anthropic",
+        "cloudflare",
+        "deepinfra",
+        "ollama",
+        "together",
+        "azure",
+        "google",
+        "huggingface",
+        "custom"
+      ],
+      "description": "Model provider:\n- deepseek: DeepSeek API (cost-effective, high performance)\n- openai: OpenAI API (GPT models)\n- anthropic: Anthropic API (Claude models)\n- cloudflare: Cloudflare Workers AI\n- deepinfra: DeepInfra API (open source models)\n- ollama: Local Ollama instance\n- together: Together AI\n- azure: Azure OpenAI Service\n- google: Google AI/Vertex AI\n- huggingface: Hugging Face Inference API\n- custom: Custom endpoint"
+    },
+    "SeedReference": {
+      "type": "object",
+      "description": "Reference to seed configuration that defines claw behavior",
+      "required": ["seed_id"],
+      "properties": {
+        "seed_id": {
+          "type": "string",
+          "description": "Identifier of the seed to use",
+          "pattern": "^seed-[a-z0-9]+-[a-z_]+$",
+          "examples": [
+            "seed-8f7d2a-periodic",
+            "seed-3b9e1f-data_driven",
+            "seed-a7c4d2-event_based"
+          ]
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Seed-specific parameters to override defaults",
+          "additionalProperties": true
+        },
+        "version": {
+          "type": "string",
+          "description": "Specific seed version to use",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "examples": ["1.0.0", "2.1.3"]
+        }
+      }
+    },
+    "ClawState": {
+      "type": "string",
+      "description": "Current operational state of the claw",
+      "enum": [
+        "DORMANT",
+        "THINKING",
+        "PROCESSING",
+        "ERROR",
+        "TERMINATING",
+        "TERMINATED"
+      ],
+      "description": "Claw state machine:\n- DORMANT: Claw is inactive, waiting for trigger\n- THINKING: Claw is reasoning/planning (model inference active)\n- PROCESSING: Claw is executing actions/tools (computationally active)\n- ERROR: Claw encountered an error and is recovering\n- TERMINATING: Claw is shutting down gracefully\n- TERMINATED: Claw has stopped and will not activate again"
+    },
+    "EquipmentModule": {
+      "type": "object",
+      "description": "Equipment module providing specialized capabilities",
+      "required": ["slot", "module_type", "config"],
+      "properties": {
+        "slot": {
+          "$ref": "#/$defs/EquipmentSlot",
+          "description": "Equipment slot this module occupies"
+        },
+        "module_type": {
+          "type": "string",
+          "description": "Specific type/module identifier for this equipment",
+          "examples": [
+            "semantic_memory_v1",
+            "vector_database",
+            "reasoning_chain",
+            "consensus_voter",
+            "data_processor"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "description": "Module-specific configuration parameters",
+          "additionalProperties": true
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 5,
+          "description": "Priority level for this equipment (1=low, 10=high)"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether this equipment is currently enabled"
+        }
+      }
+    },
+    "EquipmentSlot": {
+      "type": "string",
+      "description": "Equipment slot categories",
+      "enum": [
+        "MEMORY",
+        "REASONING",
+        "CONSENSUS",
+        "SPREADSHEET",
+        "DISTILLATION",
+        "COORDINATION",
+        "MONITORING",
+        "COMMUNICATION"
+      ],
+      "description": "Equipment slot types:\n- MEMORY: Semantic and episodic memory storage\n- REASONING: Multi-step reasoning and inference chains\n- CONSENSUS: Distributed coordination and voting protocols\n- SPREADSHEET: Data manipulation and analysis tools\n- DISTILLATION: Model compression and optimization\n- COORDINATION: Multi-agent orchestration and scheduling\n- MONITORING: Metrics collection and observability\n- COMMUNICATION: Message passing and networking"
+    },
+    "RuntimeConfiguration": {
+      "type": "object",
+      "description": "Runtime configuration controlling claw behavior",
+      "required": [],
+      "properties": {
+        "timeout": {
+          "type": "object",
+          "description": "Timeout configuration",
+          "properties": {
+            "execution_timeout_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 30000,
+              "description": "Maximum time for single execution cycle"
+            },
+            "thinking_timeout_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 10000,
+              "description": "Maximum time for model inference"
+            },
+            "idle_timeout_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 300000,
+              "description": "Idle timeout before returning to dormant state"
+            }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "description": "Resource limits and allocation",
+          "properties": {
+            "max_memory_mb": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Maximum memory allocation in megabytes"
+            },
+            "max_cpu_percent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Maximum CPU usage percentage"
+            },
+            "max_concurrent_operations": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 10,
+              "description": "Maximum concurrent operations"
+            }
+          }
+        },
+        "retry_policy": {
+          "type": "object",
+          "description": "Retry policy for failed operations",
+          "properties": {
+            "max_retries": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 3,
+              "description": "Maximum retry attempts"
+            },
+            "initial_delay_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 1000,
+              "description": "Initial delay before first retry"
+            },
+            "backoff_multiplier": {
+              "type": "number",
+              "minimum": 1.0,
+              "default": 2.0,
+              "description": "Exponential backoff multiplier"
+            },
+            "max_delay_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 30000,
+              "description": "Maximum delay between retries"
+            },
+            "retryable_errors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Error types that are retryable"
+            }
+          }
+        },
+        "execution": {
+          "type": "object",
+          "description": "Execution behavior configuration",
+          "properties": {
+            "max_iterations": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 100,
+              "description": "Maximum iterations per execution cycle"
+            },
+            "thinking_budget": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Maximum thinking steps per cycle"
+            },
+            "parallel_execution": {
+              "type": "boolean",
+              "default": false,
+              "description": "Enable parallel execution of operations"
+            },
+            "streaming": {
+              "type": "boolean",
+              "default": false,
+              "description": "Enable streaming responses"
+            }
+          }
+        },
+        "debugging": {
+          "type": "object",
+          "description": "Debugging and observability settings",
+          "properties": {
+            "log_level": {
+              "type": "string",
+              "enum": ["debug", "info", "warn", "error"],
+              "default": "info",
+              "description": "Logging verbosity level"
+            },
+            "trace_execution": {
+              "type": "boolean",
+              "default": false,
+              "description": "Enable detailed execution tracing"
+            },
+            "record_thoughts": {
+              "type": "boolean",
+              "default": false,
+              "description": "Record internal reasoning process"
+            },
+            "profiling": {
+              "type": "boolean",
+              "default": false,
+              "description": "Enable performance profiling"
+            }
+          }
+        }
+      }
+    },
+    "ClawRelationships": {
+      "type": "object",
+      "description": "Social relationships with other claws",
+      "properties": {
+        "master_of": {
+          "type": "array",
+          "description": "Slave claws that this claw controls",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "slave_of": {
+          "type": "string",
+          "description": "Master claw that controls this claw",
+          "format": "uuid"
+        },
+        "coworkers": {
+          "type": "array",
+          "description": "Co-worker claws for peer collaboration",
+          "items": {
+            "type": "object",
+            "properties": {
+              "claw_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "relationship_type": {
+                "type": "string",
+                "enum": ["validate", "consensus", "parallel", "sequential", "adversarial"]
+              }
+            }
+          }
+        },
+        "peers": {
+          "type": "array",
+          "description": "Peer claws for loose coordination",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      }
+    },
+    "ClawMetrics": {
+      "type": "object",
+      "description": "Performance and operational metrics",
+      "properties": {
+        "execution": {
+          "type": "object",
+          "description": "Execution metrics",
+          "properties": {
+            "total_executions": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Total number of executions"
+            },
+            "successful_executions": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of successful executions"
+            },
+            "failed_executions": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of failed executions"
+            },
+            "average_execution_time_ms": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Average execution time in milliseconds"
+            },
+            "last_execution_time": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Timestamp of last execution"
+            }
+          }
+        },
+        "thinking": {
+          "type": "object",
+          "description": "Thinking/inference metrics",
+          "properties": {
+            "total_thinking_steps": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Total thinking steps taken"
+            },
+            "average_thinking_time_ms": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Average thinking time per step"
+            },
+            "tokens_processed": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Total tokens processed"
+            },
+            "tokens_generated": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Total tokens generated"
+            }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "description": "Resource usage metrics",
+          "properties": {
+            "peak_memory_mb": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Peak memory usage in megabytes"
+            },
+            "average_cpu_percent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Average CPU usage percentage"
+            },
+            "api_calls_made": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of API calls made"
+            }
+          }
+        },
+        "social": {
+          "type": "object",
+          "description": "Social interaction metrics",
+          "properties": {
+            "messages_sent": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of messages sent to other claws"
+            },
+            "messages_received": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of messages received from other claws"
+            },
+            "consensus_participations": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of consensus rounds participated in"
+            }
+          }
+        }
+      }
+    },
+    "TriggerConfiguration": {
+      "type": "object",
+      "description": "Trigger conditions that activate the claw",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["periodic", "data_driven", "event_based", "hybrid", "manual"],
+          "description": "Trigger type:\n- periodic: Time-based activation\n- data_driven: Threshold-based activation\n- event_based: Event-driven activation\n- hybrid: Combined conditions\n- manual: Manual activation only"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether triggers are enabled"
+        },
+        "config": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/PeriodicTriggerConfig"
+            },
+            {
+              "$ref": "#/$defs/DataDrivenTriggerConfig"
+            },
+            {
+              "$ref": "#/$defs/EventBasedTriggerConfig"
+            },
+            {
+              "$ref": "#/$defs/HybridTriggerConfig"
+            }
+          ]
+        }
+      }
+    },
+    "PeriodicTriggerConfig": {
+      "type": "object",
+      "required": ["interval"],
+      "properties": {
+        "type": {
+          "const": "periodic"
+        },
+        "interval": {
+          "type": "string",
+          "description": "Interval between activations (ISO 8601 duration format)",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "examples": ["PT5M", "PT1H", "PT30S"]
+        },
+        "phase": {
+          "type": "string",
+          "description": "Initial phase offset (ISO 8601 duration format)",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "default": "PT0S"
+        },
+        "max_jitter": {
+          "type": "string",
+          "description": "Maximum random jitter to add to interval",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "default": "PT0S"
+        }
+      }
+    },
+    "DataDrivenTriggerConfig": {
+      "type": "object",
+      "required": ["condition"],
+      "properties": {
+        "type": {
+          "const": "data_driven"
+        },
+        "condition": {
+          "type": "object",
+          "description": "Condition expression",
+          "properties": {
+            "field": {
+              "type": "string"
+            },
+            "operator": {
+              "type": "string",
+              "enum": [">", "<", ">=", "<=", "==", "!=", "in", "not_in"]
+            },
+            "value": true,
+            "window": {
+              "type": "string",
+              "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$"
+            },
+            "aggregation": {
+              "type": "string",
+              "enum": ["avg", "min", "max", "sum", "count"],
+              "default": "avg"
+            }
+          }
+        },
+        "check_interval": {
+          "type": "string",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "default": "PT1M"
+        },
+        "cooldown": {
+          "type": "string",
+          "pattern": "^PT(\\d+H)?(\\d+M)?(\\d+S)?$",
+          "default": "PT0S"
+        }
+      }
+    },
+    "EventBasedTriggerConfig": {
+      "type": "object",
+      "required": ["event_pattern"],
+      "properties": {
+        "type": {
+          "const": "event_based"
+        },
+        "event_pattern": {
+          "type": "string",
+          "examples": [
+            "consensus.round_complete",
+            "memory.overflow.*",
+            "^error\\..*critical$"
+          ]
+        },
+        "filter": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "min_severity": {
+              "type": "string",
+              "enum": ["debug", "info", "warn", "error", "critical"]
+            }
+          }
+        }
+      }
+    },
+    "HybridTriggerConfig": {
+      "type": "object",
+      "required": ["triggers", "logic"],
+      "properties": {
+        "type": {
+          "const": "hybrid"
+        },
+        "triggers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TriggerConfiguration"
+          },
+          "minItems": 2
+        },
+        "logic": {
+          "type": "string",
+          "enum": ["AND", "OR", "NOT"]
+        }
+      }
+    },
+    "MemoryConfiguration": {
+      "type": "object",
+      "description": "Memory configuration for the claw",
+      "properties": {
+        "semantic_memory": {
+          "type": "object",
+          "description": "Semantic memory configuration",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "max_entries": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 10000
+            },
+            "retention_policy": {
+              "type": "string",
+              "enum": ["lru", "lfu", "fifo", "importance"],
+              "default": "lru"
+            },
+            "embedding_model": {
+              "type": "string",
+              "description": "Model for semantic embeddings"
+            }
+          }
+        },
+        "working_memory": {
+          "type": "object",
+          "description": "Working memory configuration",
+          "properties": {
+            "max_items": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 100
+            },
+            "expiration_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 3600000
+            }
+          }
+        },
+        "episodic_memory": {
+          "type": "object",
+          "description": "Episodic memory configuration",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "max_episodes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "compression_threshold": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "ErrorHandling": {
+      "type": "object",
+      "description": "Error handling and recovery configuration",
+      "properties": {
+        "max_consecutive_errors": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 10,
+          "description": "Maximum consecutive errors before termination"
+        },
+        "error_recovery_strategy": {
+          "type": "string",
+          "enum": ["retry", "fallback", "escalate", "terminate"],
+          "default": "retry",
+          "description": "How to handle errors"
+        },
+        "fallback_claw": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Fallback claw to invoke on errors"
+        },
+        "notification_channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Channels to notify on errors"
+        },
+        "error_blacklist": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Error types that should not be retried"
+        }
+      }
+    },
+    "Metadata": {
+      "type": "object",
+      "description": "Additional metadata about the claw",
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "examples": ["1.0.0", "2.1.3"]
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when claw was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when claw was last updated"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "Claw or system that created this claw"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["optimization", "memory"], ["consensus", "fault-tolerance"]]
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this claw's purpose"
+        },
+        "custom_attributes": {
+          "type": "object",
+          "description": "Custom application-specific attributes",
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Simple periodic claw with memory equipment",
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "MemoryOptimizer",
+      "model": {
+        "provider": "deepseek",
+        "model_name": "deepseek-chat",
+        "parameters": {
+          "temperature": 0.7,
+          "max_tokens": 2048
+        }
+      },
+      "seed": {
+        "seed_id": "seed-8f7d2a-periodic"
+      },
+      "state": "DORMANT",
+      "equipment": [
+        {
+          "slot": "MEMORY",
+          "module_type": "semantic_memory_v1",
+          "config": {
+            "max_entries": 10000,
+            "retention_policy": "lru"
+          }
+        }
+      ],
+      "config": {
+        "timeout": {
+          "execution_timeout_ms": 30000
+        },
+        "retry_policy": {
+          "max_retries": 3
+        }
+      },
+      "triggers": {
+        "type": "periodic",
+        "config": {
+          "interval": "PT5M"
+        }
+      },
+      "metadata": {
+        "version": "1.0.0",
+        "created_at": "2026-03-15T10:00:00Z",
+        "tags": ["optimization", "memory"]
+      }
+    },
+    {
+      "description": "Complex co-worker claw with multiple equipment",
+      "id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+      "name": "ConsensusValidator",
+      "model": {
+        "provider": "anthropic",
+        "model_name": "claude-3-opus",
+        "parameters": {
+          "temperature": 0.3,
+          "max_tokens": 4096
+        }
+      },
+      "seed": {
+        "seed_id": "seed-a7c4d2-event_based"
+      },
+      "state": "PROCESSING",
+      "equipment": [
+        {
+          "slot": "CONSENSUS",
+          "module_type": "consensus_voter",
+          "config": {
+            "voting_power": 0.34
+          }
+        },
+        {
+          "slot": "COORDINATION",
+          "module_type": "team_coordinator",
+          "config": {
+            "max_team_size": 10
+          }
+        }
+      ],
+      "relationships": {
+        "coworkers": [
+          {
+            "claw_id": "550e8400-e29b-41d4-a716-446655440000",
+            "relationship_type": "consensus"
+          }
+        ]
+      },
+      "config": {
+        "timeout": {
+          "execution_timeout_ms": 60000
+        },
+        "execution": {
+          "parallel_execution": true
+        }
+      },
+      "triggers": {
+        "type": "event_based",
+        "config": {
+          "event_pattern": "consensus.round_complete"
+        }
+      },
+      "metrics": {
+        "execution": {
+          "total_executions": 1250,
+          "successful_executions": 1198
+        }
+      },
+      "metadata": {
+        "version": "2.1.0",
+        "created_at": "2026-03-10T14:30:00Z",
+        "updated_at": "2026-03-15T09:15:00Z",
+        "tags": ["consensus", "validation"]
+      }
+    }
+  ]
+}

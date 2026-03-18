@@ -1,0 +1,60 @@
+{
+  "name": "spreadsheet-moment",
+  "version": "0.1.0",
+  "description": "SpreadsheetMoment - Agentic spreadsheet system built on Univer foundation",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "install:all": "pnpm install",
+    "build": "pnpm -r --filter './packages/**' build",
+    "test": "pnpm -r --filter './packages/**' test",
+    "test:coverage": "pnpm -r --filter './packages/**' test:coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:headed": "playwright test --headed",
+    "test:load": "k6 run tests/load/k6/basic-load-test.js",
+    "test:stress": "k6 run tests/load/k6/stress-test.js",
+    "test:all": "pnpm test && pnpm test:e2e",
+    "lint": "pnpm -r --filter './packages/**' lint",
+    "lint:fix": "pnpm -r --filter './packages/**' lint:fix",
+    "dev": "pnpm --filter './packages/**' --parallel dev",
+    "clean": "pnpm -r --filter './packages/**' clean",
+    "typecheck": "pnpm -r --filter './packages/**' typecheck"
+  },
+  "keywords": [
+    "spreadsheet",
+    "agent",
+    "agentic-ai",
+    "univer",
+    "collaborative",
+    "origin-centric"
+  ],
+  "author": "SpreadsheetMoment Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "k6": "^0.48.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SuperInstance/spreadsheet-moment.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SuperInstance/spreadsheet-moment/issues"
+  },
+  "homepage": "https://github.com/SuperInstance/spreadsheet-moment#readme"
+}

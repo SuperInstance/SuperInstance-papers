@@ -1,0 +1,108 @@
+name: PR Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate-pr:
+    name: Validate PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check PR title
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|test|chore|perf|ci)(\(.*\))?:\s.+ ]]; then
+            echo "::error::PR title must follow conventional commit format"
+            echo "Expected: type(scope): description"
+            echo "Example: feat(agent-core): add Trace Protocol implementation"
+            exit 1
+          fi
+
+      - name: Check for breaking changes
+        run: |
+          if git diff origin/${{ github.base_ref }}...HEAD --name-only | grep -q "packages/agent-core/src"; then
+            echo "Warning: Core package changes detected"
+            echo "Please ensure backward compatibility or update version"
+          fi
+
+      - name: Validate package.json changes
+        run: |
+          if git diff origin/${{ github.base_ref }}...HEAD --name-only | grep -q "package.json"; then
+            echo "Package.json changes detected"
+            pnpm run --silent workspaces list --json | jq -r '.[].name' > /tmp/packages.txt
+            echo "Affected packages:"
+            git diff origin/${{ github.base_ref }}...HEAD --name-only | grep "package.json" | while read file; do
+              dir=$(dirname "$file")
+              if [ -f "$dir/package.json" ]; then
+                echo "  - $dir"
+              fi
+            done
+          fi
+
+  size-check:
+    name: Bundle Size Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Check bundle sizes
+        run: |
+          echo "Checking bundle sizes..."
+          find packages/*/dist -name "*.js" -exec du -h {} \; | sort -h
+
+          # Alert if any bundle exceeds 250KB
+          find packages/*/dist -name "*.js" -size +250k -exec echo "::warning::Large bundle detected: {}" \;
+
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v3
+        with:
+          fail-on-severity: moderate
+          allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC

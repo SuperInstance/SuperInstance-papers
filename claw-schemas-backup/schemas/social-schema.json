@@ -1,0 +1,751 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SuperInstance/claw/schemas/social-schema.json",
+  "title": "Claw Social Architecture Schema",
+  "description": "Defines how claws work together as slaves, co-workers, and masters in distributed multi-agent systems. This schema enables cellular programming at scale through social coordination patterns.",
+  "type": "object",
+  "required": ["claw_relationships", "coordination_strategies"],
+  "properties": {
+    "claw_relationships": {
+      "type": "array",
+      "description": "Collection of relationships between claws defining their social structure",
+      "items": {
+        "$ref": "#/$defs/ClawRelationship"
+      }
+    },
+    "coordination_strategies": {
+      "type": "array",
+      "description": "Available coordination strategies for multi-claw operations",
+      "items": {
+        "$ref": "#/$defs/CoordinationStrategy"
+      }
+    },
+    "consensus_protocols": {
+      "type": "array",
+      "description": "Available consensus protocols for decision-making",
+      "items": {
+        "$ref": "#/$defs/ConsensusProtocol"
+      }
+    },
+    "communication_protocols": {
+      "type": "array",
+      "description": "Available communication protocols for claw interaction",
+      "items": {
+        "$ref": "#/$defs/CommunicationProtocol"
+      }
+    },
+    "social_graph": {
+      "$ref": "#/$defs/SocialGraph",
+      "description": "Overall social graph topology of the claw network"
+    }
+  },
+  "$defs": {
+    "ClawRelationship": {
+      "type": "object",
+      "description": "Defines a relationship between two claws in the social network",
+      "required": ["from_claw", "to_claw", "relationship_type", "communication_protocol", "state"],
+      "properties": {
+        "from_claw": {
+          "type": "string",
+          "description": "Source claw identifier",
+          "format": "uuid",
+          "examples": ["550e8400-e29b-41d4-a716-446655440000"]
+        },
+        "to_claw": {
+          "type": "string",
+          "description": "Target claw identifier",
+          "format": "uuid",
+          "examples": ["660e8400-e29b-41d4-a716-446655440001"]
+        },
+        "relationship_type": {
+          "type": "string",
+          "description": "Type of social relationship between claws",
+          "enum": ["slave", "coworker", "master", "peer", "delegate", "observer"]
+        },
+        "communication_protocol": {
+          "$ref": "#/$defs/CommunicationProtocol"
+        },
+        "state": {
+          "type": "string",
+          "description": "Current state of the relationship",
+          "enum": ["active", "paused", "terminated", "initializing", "error"]
+        },
+        "config": {
+          "type": "object",
+          "description": "Relationship-specific configuration",
+          "properties": {
+            "slave_config": {
+              "$ref": "#/$defs/SlaveConfiguration"
+            },
+            "coworker_config": {
+              "$ref": "#/$defs/CoWorkerConfiguration"
+            },
+            "priority": {
+              "type": "integer",
+              "description": "Priority level for this relationship (1-10)",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "timeout_ms": {
+              "type": "integer",
+              "description": "Communication timeout in milliseconds",
+              "minimum": 0
+            },
+            "retry_policy": {
+              "type": "object",
+              "properties": {
+                "max_retries": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "backoff_multiplier": {
+                  "type": "number",
+                  "minimum": 1.0
+                },
+                "initial_delay_ms": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Additional metadata about the relationship",
+          "properties": {
+            "created_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "created_by": {
+              "type": "string",
+              "description": "Claw or system that created this relationship"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "SlaveConfiguration": {
+      "type": "object",
+      "description": "Configuration for master-slave relationships where one claw controls others",
+      "required": ["master_claw", "slave_count", "distribution_strategy", "coordination_channel"],
+      "properties": {
+        "master_claw": {
+          "type": "string",
+          "description": "Master claw identifier",
+          "format": "uuid"
+        },
+        "slave_count": {
+          "type": "integer",
+          "description": "Number of slave claws to spawn",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "slave_seed": {
+          "type": "object",
+          "description": "Seed configuration for creating slave claws",
+          "properties": {
+            "base_claw_id": {
+              "type": "string",
+              "description": "Base claw template to copy from"
+            },
+            "variation_params": {
+              "type": "object",
+              "description": "Parameters to vary between slaves"
+            },
+            "initialization_data": {
+              "type": "object",
+              "description": "Initial data for each slave"
+            }
+          }
+        },
+        "distribution_strategy": {
+          "type": "string",
+          "description": "How work is distributed among slaves",
+          "enum": ["round_robin", "hash", "random", "least_loaded", "affinity", "broadcast"]
+        },
+        "coordination_channel": {
+          "type": "string",
+          "description": "Channel for master-slave communication",
+          "examples": ["task_queue", "pubsub_channel", "shared_memory"]
+        },
+        "termination_condition": {
+          "type": "object",
+          "description": "Conditions under which slaves should terminate",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["on_completion", "on_error", "manual", "timeout", "threshold"]
+            },
+            "value": {
+              "oneOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "load_balancing": {
+          "type": "object",
+          "description": "Load balancing configuration for slaves",
+          "properties": {
+            "strategy": {
+              "type": "string",
+              "enum": ["dynamic", "static", "predictive"]
+            },
+            "metrics": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["cpu", "memory", "queue_depth", "response_time", "custom"]
+              }
+            },
+            "rebalance_threshold": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            }
+          }
+        }
+      }
+    },
+    "CoWorkerConfiguration": {
+      "type": "object",
+      "description": "Configuration for peer-to-peer collaboration between claws",
+      "required": ["primary_claw", "coworker_claw", "relationship_type", "consensus_strategy"],
+      "properties": {
+        "primary_claw": {
+          "type": "string",
+          "description": "Primary claw identifier (initiator)",
+          "format": "uuid"
+        },
+        "coworker_claw": {
+          "type": "string",
+          "description": "Co-worker claw identifier",
+          "format": "uuid"
+        },
+        "relationship_type": {
+          "type": "string",
+          "description": "Type of collaboration",
+          "enum": ["validate", "consensus", "parallel", "sequential", "adversarial", "complementary"]
+        },
+        "communication_protocol": {
+          "$ref": "#/$defs/CommunicationProtocol"
+        },
+        "consensus_strategy": {
+          "$ref": "#/$defs/ConsensusStrategy"
+        },
+        "fallback_strategy": {
+          "type": "object",
+          "description": "What to do when coworkers disagree",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["majority_vote", "weighted_vote", "referee", "retry", "escalate", "split_difference"]
+            },
+            "referee_claw": {
+              "type": "string",
+              "description": "Claw to resolve disputes",
+              "format": "uuid"
+            },
+            "max_attempts": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "synchronization": {
+          "type": "object",
+          "description": "How coworkers synchronize their work",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": ["synchronous", "asynchronous", "semi_synchronous"]
+            },
+            "barrier_points": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Points where coworkers must synchronize"
+            },
+            "timeout_ms": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "roles": {
+          "type": "object",
+          "description": "Specific roles for each coworker",
+          "additionalProperties": {
+            "type": "string",
+            "enum": ["proposer", "validator", "critic", "integrator", "observer", "executor"]
+          }
+        }
+      }
+    },
+    "CoordinationStrategy": {
+      "type": "object",
+      "description": "Defines how multiple claws coordinate their actions",
+      "required": ["name", "type", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the coordination strategy"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of coordination pattern",
+          "enum": ["PARALLEL", "SEQUENTIAL", "CONSENSUS", "MAJORITY_VOTE", "WEIGHTED", "PIPELINE", "MAP_REDUCE"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the strategy"
+        },
+        "participant_claws": {
+          "type": "array",
+          "description": "Claws participating in this coordination",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "execution_order": {
+          "type": "array",
+          "description": "Order of execution (for SEQUENTIAL and PIPELINE types)",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "aggregation_method": {
+          "type": "string",
+          "description": "How to combine results from multiple claws",
+          "enum": ["merge", "reduce", "vote", "weighted_average", "first_response", "all_responses", "custom"]
+        },
+        "weights": {
+          "type": "object",
+          "description": "Weights for each claw (for WEIGHTED type)",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "timeout_config": {
+          "type": "object",
+          "properties": {
+            "overall_timeout_ms": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "per_claw_timeout_ms": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "min_responses_required": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "error_handling": {
+          "type": "object",
+          "properties": {
+            "continue_on_error": {
+              "type": "boolean"
+            },
+            "fallback_strategy": {
+              "type": "string",
+              "enum": ["ignore", "retry", "use_cache", "abort", "substitute"]
+            }
+          }
+        }
+      }
+    },
+    "ConsensusProtocol": {
+      "type": "object",
+      "description": "Protocol for reaching agreement among multiple claws",
+      "required": ["name", "type", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the consensus protocol"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of consensus algorithm",
+          "enum": ["TRIPARTITE", "BYZANTINE", "PAXOS", "RAFT", "SIMPLE", "POW", "POS", "DPOS"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the consensus protocol"
+        },
+        "participants": {
+          "type": "array",
+          "description": "Claws participating in consensus",
+          "items": {
+            "type": "object",
+            "properties": {
+              "claw_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "role": {
+                "type": "string",
+                "description": "Role in consensus protocol",
+                "enum": ["proposer", "acceptor", "learner", "leader", "follower", "candidate", "validator"]
+              },
+              "voting_power": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 1.0
+              }
+            }
+          }
+        },
+        "quorum": {
+          "type": "object",
+          "description": "Quorum requirements for consensus",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["simple_majority", "supermajority", "unanimous", "weighted", "custom"]
+            },
+            "threshold": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "Threshold for agreement (0.0 to 1.0)"
+            },
+            "min_participants": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "timeout": {
+          "type": "object",
+          "properties": {
+            "election_timeout_ms": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "vote_timeout_ms": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max_rounds": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "tripartite_config": {
+          "type": "object",
+          "description": "Configuration for TRIPARTITE consensus (Pathos + Logos + Ethos)",
+          "properties": {
+            "pathos_claw": {
+              "type": "string",
+              "description": "Claw representing emotional/intuitive perspective",
+              "format": "uuid"
+            },
+            "logos_claw": {
+              "type": "string",
+              "description": "Claw representing logical/analytical perspective",
+              "format": "uuid"
+            },
+            "ethos_claw": {
+              "type": "string",
+              "description": "Claw representing ethical/moral perspective",
+              "format": "uuid"
+            },
+            "synthesis_method": {
+              "type": "string",
+              "enum": ["integration", "compromise", "dominance", "dialectical"]
+            }
+          }
+        },
+        "fault_tolerance": {
+          "type": "object",
+          "description": "Fault tolerance configuration",
+          "properties": {
+            "max_faulty_claws": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "byzantine_resistance": {
+              "type": "boolean"
+            },
+            "recovery_strategy": {
+              "type": "string",
+              "enum": ["restart", "checkpoint", "replication", "none"]
+            }
+          }
+        }
+      }
+    },
+    "ConsensusStrategy": {
+      "type": "object",
+      "description": "Strategy for reaching consensus between coworkers",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["unanimous", "majority", "weighted", "supermajority", "delegated"]
+        },
+        "threshold": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Agreement threshold (0.0 to 1.0)"
+        },
+        "weights": {
+          "type": "object",
+          "description": "Voting weights for each claw",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum time to reach consensus"
+        }
+      }
+    },
+    "CommunicationProtocol": {
+      "type": "object",
+      "description": "Protocol for communication between claws",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["WEB_SOCKET", "MESSAGE_QUEUE", "SHARED_MEMORY", "SPREADSHEET", "HTTP", "GRPC", "NATS", "REDIS"]
+        },
+        "config": {
+          "type": "object",
+          "description": "Protocol-specific configuration",
+          "properties": {
+            "endpoint": {
+              "type": "string",
+              "format": "uri"
+            },
+            "channel": {
+              "type": "string"
+            },
+            "auth_required": {
+              "type": "boolean"
+            },
+            "encryption": {
+              "type": "boolean"
+            },
+            "compression": {
+              "type": "boolean"
+            },
+            "batch_size": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "heartbeat_interval_ms": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "message_format": {
+          "type": "string",
+          "enum": ["json", "protobuf", "avro", "msgpack", "cbor"],
+          "default": "json"
+        }
+      }
+    },
+    "SocialGraph": {
+      "type": "object",
+      "description": "Overall social graph topology of the claw network",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "description": "All claws in the network",
+          "items": {
+            "type": "object",
+            "properties": {
+              "claw_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["master", "slave", "peer", "observer", "coordinator"]
+              },
+              "capabilities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "status": {
+                "type": "string",
+                "enum": ["active", "inactive", "busy", "error"]
+              },
+              "metadata": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "description": "All relationships between claws",
+          "items": {
+            "$ref": "#/$defs/ClawRelationship"
+          }
+        },
+        "topology": {
+          "type": "string",
+          "description": "Network topology pattern",
+          "enum": ["star", "mesh", "tree", "ring", "line", "hybrid"]
+        },
+        "clusters": {
+          "type": "array",
+          "description": "Clusters of closely related claws",
+          "items": {
+            "type": "object",
+            "properties": {
+              "cluster_id": {
+                "type": "string"
+              },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "purpose": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Master-slave configuration for parallel processing",
+      "claw_relationships": [
+        {
+          "from_claw": "550e8400-e29b-41d4-a716-446655440000",
+          "to_claw": "660e8400-e29b-41d4-a716-446655440001",
+          "relationship_type": "slave",
+          "communication_protocol": {
+            "type": "MESSAGE_QUEUE",
+            "config": {
+              "endpoint": "redis://localhost:6379",
+              "channel": "task_queue_1"
+            }
+          },
+          "state": "active",
+          "config": {
+            "slave_config": {
+              "master_claw": "550e8400-e29b-41d4-a716-446655440000",
+              "slave_count": 5,
+              "distribution_strategy": "round_robin",
+              "coordination_channel": "task_queue_1",
+              "termination_condition": {
+                "type": "on_completion"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Co-worker consensus configuration",
+      "claw_relationships": [
+        {
+          "from_claw": "550e8400-e29b-41d4-a716-446655440000",
+          "to_claw": "660e8400-e29b-41d4-a716-446655440001",
+          "relationship_type": "coworker",
+          "communication_protocol": {
+            "type": "WEB_SOCKET",
+            "config": {
+              "endpoint": "ws://localhost:8080/consensus"
+            }
+          },
+          "state": "active",
+          "config": {
+            "coworker_config": {
+              "primary_claw": "550e8400-e29b-41d4-a716-446655440000",
+              "coworker_claw": "660e8400-e29b-41d4-a716-446655440001",
+              "relationship_type": "consensus",
+              "consensus_strategy": {
+                "type": "majority",
+                "threshold": 0.67
+              },
+              "fallback_strategy": {
+                "type": "referee",
+                "referee_claw": "770e8400-e29b-41d4-a716-446655440002"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Tripartite consensus configuration",
+      "consensus_protocols": [
+        {
+          "name": "ethical_decision_consensus",
+          "type": "TRIPARTITE",
+          "description": "Tripartite consensus combining Pathos, Logos, and Ethos perspectives",
+          "participants": [
+            {
+              "claw_id": "550e8400-e29b-41d4-a716-446655440000",
+              "role": "proposer",
+              "voting_power": 0.33
+            },
+            {
+              "claw_id": "660e8400-e29b-41d4-a716-446655440001",
+              "role": "acceptor",
+              "voting_power": 0.33
+            },
+            {
+              "claw_id": "770e8400-e29b-41d4-a716-446655440002",
+              "role": "learner",
+              "voting_power": 0.34
+            }
+          ],
+          "quorum": {
+            "type": "unanimous",
+            "threshold": 1.0
+          },
+          "tripartite_config": {
+            "pathos_claw": "550e8400-e29b-41d4-a716-446655440000",
+            "logos_claw": "660e8400-e29b-41d4-a716-446655440001",
+            "ethos_claw": "770e8400-e29b-41d4-a716-446655440002",
+            "synthesis_method": "integration"
+          }
+        }
+      ]
+    }
+  ]
+}

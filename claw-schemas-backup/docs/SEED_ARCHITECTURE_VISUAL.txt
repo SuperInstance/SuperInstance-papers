@@ -1,0 +1,165 @@
+CLAW SEED FRAMEWORK - ARCHITECTURE
+====================================
+
+                          SEED LIFECYCLE
+                          =============
+
+  [CREATED]       [TRAINING]        [STABILIZED]       [DISTILLED]      [DEPLOYED]
+     |               |                  |                  |                |
+     v               v                  v                  v                v
+  [Define]       [Train]           [Validate]         [Compress]       [Execute]
+  [Seed]         [Params]          [Metrics]          [Model]          [inProd]
+
+
+                       SEED STRUCTURE
+                       =============
+
+  +--------------------------------------------------------------------------+
+  |                              SEED                                         |
+  +--------------------------------------------------------------------------+
+  |                                                                          |
+  |  [PURPOSE]    [TRIGGER]    [STRATEGY]                                   |
+  |  "What I      "When I      "How I                                       |
+  |   do"         activate"    learn"                                       |
+  |                                                                          |
+  |  [EQUIPMENT]  [TRAINING]   [LEARNED]                                    |
+  |  "Tools I     "Data I      [PARAMETERS]                                 |
+  |   use"        learn from"   "What I learned"                            |
+  |                                                                          |
+  |  [MEMORY]     [SOURCE]     [WEIGHTS]                                    |
+  |  [REASONING]  [ITERATIONS] [THRESHOLDS]                                 |
+  |  [CONSENSUS]  [RATE]       [METRICS]                                    |
+  |  [SPREADSHEET][BATCH]                                                   |
+  |  [DISTILL]                                                              |
+  |  [COORD]                                                                |
+  |                                                                          |
+  +--------------------------------------------------------------------------+
+
+
+                    TRIGGER TYPES
+                    ============
+
+  [PERIODIC]                    [DATA-DRIVEN]                [EVENT-BASED]
+  "Every 5 min"                "When CPU > 80%"             "On error.*"
+
+  Schedule: PT5M               Field: cpu                   Pattern: error.*
+  Phase:   PT0S                Operator: >                  Filter: critical
+  Jitter:  PT30S               Value: 0.8
+                                Window: PT2M
+
+                        [HYBRID]
+                        "Combine triggers with AND/OR/NOT"
+
+                        Ex: Every hour OR On emergency
+
+
+                  LEARNING STRATEGIES
+                  ==================
+
+  [REINFORCEMENT]     [SUPERVISED]        [UNSUPERVISED]     [FEW-SHOT]
+  Trial & error       Labeled data        Pattern discovery  Learn from few
+  with rewards        with teacher        no labels          examples
+
+  Reward: fn          Labels: human      Pattern: cluster   Examples: [...]
+  Explore: 0.1        Quality: high      Type: anomaly      Meta-rate: 0.01
+  Discount: 0.99
+
+  Optimization        Classification      Discovery          Prototyping
+  Control             Prediction          Clustering         Low-data
+
+
+                    EQUIPMENT SYSTEM
+                    ===============
+
+  [MEMORY]      [REASONING]    [CONSENSUS]     [SPREADSHEET]
+  Storage       Inference      Voting          Analytics
+  Retrieval     Planning       Agreement       Reporting
+  Caching       Analysis       Coordination    Transform
+
+  [DISTILLATION]              [COORDINATION]
+  Compression                 Orchestration
+  Optimization                Workflow
+  Deployment                  Task distribution
+
+
+                  STABILIZATION METRICS
+                  ====================
+
+  STABILITY SCORE
+  --------------
+  0.0 ------------------------------------------------------------ 1.0
+  |<- Unstable ->|<- Mostly ->|<- Stable ->|<- Production ->|
+  0.0           0.6         0.8         0.9            1.0
+
+  Metrics:
+  - is_stabilized: boolean
+  - convergence_iteration: number
+  - stability_score: 0-1
+  - accuracy: 0-1
+  - latency_mean_ms: number
+  - throughput_per_second: number
+  - memory_mb: number
+
+
+                  DISTILLATION PIPELINE
+                  =====================
+
+  [FULL SEED MODEL]              [DISTILLED MODEL]
+        |                              |
+  100 MB, 50 ms, 0.97       10 MB, 5 ms, 0.92
+        |                              |
+        +-----------+------------------+
+                    |
+                 Teacher
+                    |
+           [Knowledge Distillation]
+                    |
+                   Student
+                    |
+           [SPECIALIZED MODEL]
+
+
+                    COMMON PATTERNS
+                    ==============
+
+  PATTERN 1: Monitor-Optimize
+  Trigger: Periodic (PT5M)
+  Strategy: Reinforcement
+  Equipment: MEMORY, REASONING
+
+  PATTERN 2: Event-Response
+  Trigger: Event-Based (error.*)
+  Strategy: Few-Shot
+  Equipment: COORDINATION
+
+  PATTERN 3: Threshold Alert
+  Trigger: Data-Driven (cpu > 0.9)
+  Strategy: Supervised
+  Equipment: SPREADSHEET
+
+  PATTERN 4: Adaptive Control
+  Trigger: Hybrid (schedule OR emergency)
+  Strategy: Reinforcement
+  Equipment: MEMORY, REASONING, COORDINATION
+
+
+                    FILE STRUCTURE
+                    =============
+
+  claw/
+  ├── schemas/
+  │   └── seed-schema.json              JSON Schema definition
+  ├── docs/
+  │   ├── SEED_SCHEMA.md                Full documentation
+  │   └── SEED_QUICK_REFERENCE.md       Quick reference
+  ├── examples/
+  │   └── seeds/
+  │       ├── README.md                 Examples guide
+  │       ├── memory-optimizer-seed.json
+  │       ├── consensus-anomaly-detector-seed.json
+  │       └── autoscaler-seed.json
+  └── SEED_FRAMEWORK_OVERVIEW.md        Introduction
+
+
+            READY FOR PRODUCTION DEPLOYMENT
+            Version: 1.0.0 | Date: 2026-03-15

@@ -1,0 +1,172 @@
+# Spreadsheet Moment - Prometheus Alert Rules
+# Alert definitions for staging environment monitoring
+
+groups:
+  - name: application_alerts
+    interval: 30s
+    rules:
+      # Application is down
+      - alert: ApplicationDown
+        expr: up{job="spreadsheet-moment-app"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: application
+        annotations:
+          summary: "Application is down"
+          description: "Application {{ $labels.instance }} has been down for more than 1 minute"
+
+      # High error rate
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          service: application
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value }} errors/sec for {{ $labels.instance }}"
+
+      # High latency
+      - alert: HighLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          service: application
+        annotations:
+          summary: "High request latency"
+          description: "P95 latency is {{ $value }}s for {{ $labels.instance }}"
+
+      # Memory usage high
+      - alert: HighMemoryUsage
+        expr: (process_resident_memory_bytes / node_memory_MemTotal_bytes) > 0.8
+        for: 10m
+        labels:
+          severity: warning
+          service: application
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is {{ $value }}% for {{ $labels.instance }}"
+
+      # CPU usage high
+      - alert: HighCPUUsage
+        expr: rate(process_cpu_seconds_total[5m]) > 0.8
+        for: 10m
+        labels:
+          severity: warning
+          service: application
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is {{ $value }}% for {{ $labels.instance }}"
+
+  - name: database_alerts
+    interval: 30s
+    rules:
+      # Database connection pool exhausted
+      - alert: DatabasePoolExhausted
+        expr: pg_stat_activity_count{datname="spreadsheet_moment_staging"} > 90
+        for: 5m
+        labels:
+          severity: critical
+          service: database
+        annotations:
+          summary: "Database connection pool nearly exhausted"
+          description: "{{ $value }} active connections on {{ $labels.instance }}"
+
+      # Slow queries
+      - alert: SlowDatabaseQueries
+        expr: rate(pg_stat_statements_calls_total[5m]) > 100
+        for: 10m
+        labels:
+          severity: warning
+          service: database
+        annotations:
+          summary: "Database slow queries detected"
+          description: "High query rate: {{ $value }} queries/sec"
+
+      # Database replication lag
+      - alert: DatabaseReplicationLag
+        expr: pg_replication_lag_seconds > 30
+        for: 5m
+        labels:
+          severity: warning
+          service: database
+        annotations:
+          summary: "Database replication lag"
+          description: "Replication lag is {{ $value }}s"
+
+  - name: cache_alerts
+    interval: 30s
+    rules:
+      # Redis memory high
+      - alert: RedisMemoryHigh
+        expr: (redis_memory_used_bytes / redis_memory_max_bytes) > 0.8
+        for: 10m
+        labels:
+          severity: warning
+          service: cache
+        annotations:
+          summary: "Redis memory usage high"
+          description: "Redis memory usage is {{ $value }}%"
+
+      # Redis connection pool exhausted
+      - alert: RedisConnectionsHigh
+        expr: redis_connected_clients / redis_config_maxclients > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          service: cache
+        annotations:
+          summary: "Redis connections high"
+          description: "Redis client connections: {{ $value }}%"
+
+  - name: infrastructure_alerts
+    interval: 30s
+    rules:
+      # Disk space low
+      - alert: DiskSpaceLow
+        expr: (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) < 0.2
+        for: 10m
+        labels:
+          severity: warning
+          service: system
+        annotations:
+          summary: "Disk space low"
+          description: "Available disk space is {{ $value }}% on {{ $labels.instance }}"
+
+      # System load high
+      - alert: SystemLoadHigh
+        expr: (node_load5 / count(node_cpu_seconds_total{mode="idle"})) > 0.8
+        for: 10m
+        labels:
+          severity: warning
+          service: system
+        annotations:
+          summary: "System load high"
+          description: "System load is {{ $value }} on {{ $labels.instance }}"
+
+  - name: business_alerts
+    interval: 1m
+    rules:
+      # Low agent creation rate
+      - alert: LowAgentCreationRate
+        expr: rate(agent_creations_total[1h]) < 0.1
+        for: 1h
+        labels:
+          severity: info
+          service: business
+        annotations:
+          summary: "Low agent creation rate"
+          description: "Agent creation rate is {{ $value }} agents/sec"
+
+      # WebSocket disconnections high
+      - alert: HighWebSocketDisconnections
+        expr: rate(websocket_disconnections_total[5m]) > 10
+        for: 5m
+        labels:
+          severity: warning
+          service: application
+        annotations:
+          summary: "High WebSocket disconnection rate"
+          description: "WebSocket disconnection rate: {{ $value }} disconnections/sec"

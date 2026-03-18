@@ -1,0 +1,573 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SuperInstance/polln/claw/schemas/bot-schema.json",
+  "title": "Bot Schema",
+  "description": "Schema for Bot - a minimal automation loop without ML model. Unlike Claw (intelligent agent), Bot is designed for simple, fast, reliable automation without machine learning overhead.",
+  "type": "object",
+  "required": ["id", "loop", "interval", "state", "triggers"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the bot. Must be unique across all bots in the system.",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "examples": [
+        "data_sync_bot",
+        "cleanup_bot",
+        "monitor_bot_v1"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the bot.",
+      "minLength": 1,
+      "maxLength": 256,
+      "examples": [
+        "Data Synchronization Bot",
+        "Cleanup Automation",
+        "System Monitor"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of what the bot does and its purpose.",
+      "maxLength": 2048,
+      "examples": [
+        "Synchronizes data between external APIs and local database every 5 minutes",
+        "Cleans up temporary files older than 24 hours",
+        "Monitors system health and sends alerts on threshold breaches"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the bot configuration following semantic versioning.",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "examples": [
+        "1.0.0",
+        "2.1.3-beta",
+        "0.5.0-rc.1"
+      ]
+    },
+    "loop": {
+      "$ref": "#/definitions/loopDefinition",
+      "description": "Definition of the loop function that executes each iteration."
+    },
+    "interval": {
+      "$ref": "#/definitions/intervalConfig",
+      "description": "Timing configuration for bot execution intervals."
+    },
+    "state": {
+      "$ref": "#/definitions/botState",
+      "description": "Current operational state of the bot."
+    },
+    "triggers": {
+      "type": "array",
+      "description": "Array of trigger conditions that can initiate bot execution.",
+      "items": {
+        "$ref": "#/definitions/trigger"
+      },
+      "minItems": 0,
+      "examples": [
+        [
+          {
+            "type": "time_based",
+            "config": {
+              "cron": "0 * * * *"
+            }
+          }
+        ],
+        [
+          {
+            "type": "event_based",
+            "config": {
+              "event_source": "webhook",
+              "event_type": "data.changed"
+            }
+          }
+        ]
+      ]
+    },
+    "config": {
+      "type": "object",
+      "description": "Runtime configuration for the bot. Can contain any key-value pairs specific to the bot's operation.",
+      "properties": {
+        "max_retries": {
+          "type": "integer",
+          "description": "Maximum number of retry attempts on failure.",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 3
+        },
+        "timeout": {
+          "type": "integer",
+          "description": "Timeout for bot execution in milliseconds.",
+          "minimum": 100,
+          "maximum": 3600000,
+          "default": 30000
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the bot is enabled for execution.",
+          "default": true
+        },
+        "logging": {
+          "type": "object",
+          "description": "Logging configuration.",
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": ["debug", "info", "warn", "error", "fatal"],
+              "default": "info"
+            },
+            "include_timestamps": {
+              "type": "boolean",
+              "default": true
+            },
+            "log_to_file": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "custom": {
+          "type": "object",
+          "description": "Custom configuration properties specific to the bot implementation."
+        }
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Metadata about the bot including creation and modification timestamps.",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of bot creation."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of last modification."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "Identifier of the user or system that created the bot."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags for categorization and filtering.",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "error_handling": {
+      "$ref": "#/definitions/errorHandling",
+      "description": "Configuration for how the bot handles errors."
+    }
+  },
+  "definitions": {
+    "botState": {
+      "type": "string",
+      "description": "Operational state of the bot.",
+      "enum": ["IDLE", "RUNNING", "PAUSED", "ERROR"],
+      "enumDescriptions": {
+        "IDLE": "Bot is not currently running and is waiting for the next trigger.",
+        "RUNNING": "Bot is actively executing its loop function.",
+        "PAUSED": "Bot has been paused and will not execute until resumed.",
+        "ERROR": "Bot encountered an error and requires attention."
+      }
+    },
+    "triggerType": {
+      "type": "string",
+      "description": "Type of trigger that initiates bot execution.",
+      "enum": ["time_based", "condition_based", "event_based"],
+      "enumDescriptions": {
+        "time_based": "Trigger based on time intervals or cron schedules.",
+        "condition_based": "Trigger based on evaluating a condition or predicate.",
+        "event_based": "Trigger based on external events or signals."
+      }
+    },
+    "loopDefinition": {
+      "type": "object",
+      "description": "Definition of the loop function that the bot executes.",
+      "required": ["type", "target"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of loop definition.",
+          "enum": ["function_reference", "inline_code", "external_module"],
+          "enumDescriptions": {
+            "function_reference": "Reference to a named function.",
+            "inline_code": "Inline code or script to execute.",
+            "external_module": "Reference to an external module or plugin."
+          }
+        },
+        "target": {
+          "type": "string",
+          "description": "The target function, code, or module to execute.",
+          "minLength": 1,
+          "examples": [
+            "bots.data_sync.run",
+            "module:cleanup@execute",
+            "inline:console.log('Hello World')"
+          ]
+        },
+        "language": {
+          "type": "string",
+          "description": "Programming language for inline code (required for inline_code type).",
+          "enum": ["javascript", "python", "rust", "bash", "sql", "none"],
+          "default": "none"
+        },
+        "entry_point": {
+          "type": "string",
+          "description": "Specific entry point or function name within the target module."
+        },
+        "args": {
+          "type": "object",
+          "description": "Arguments to pass to the loop function.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "intervalConfig": {
+      "type": "object",
+      "description": "Timing configuration for bot execution.",
+      "oneOf": [
+        {
+          "required": ["fixed_rate"],
+          "properties": {
+            "fixed_rate": {
+              "type": "integer",
+              "description": "Fixed interval between executions in milliseconds.",
+              "minimum": 1,
+              "maximum": 3600000,
+              "examples": [1000, 5000, 60000]
+            }
+          }
+        },
+        {
+          "required": ["cron"],
+          "properties": {
+            "cron": {
+              "type": "string",
+              "description": "Cron expression for scheduling.",
+              "pattern": "^([\\*\\/\\d\\-\\,]+\\s+){4}[\\*\\/\\d\\-\\,]+$",
+              "examples": [
+                "0 * * * *",
+                "*/5 * * * *",
+                "0 0 * * *"
+              ]
+            },
+            "timezone": {
+              "type": "string",
+              "description": "Timezone for cron schedule (IANA timezone database).",
+              "default": "UTC",
+              "examples": ["UTC", "America/New_York", "Europe/London"]
+            }
+          }
+        },
+        {
+          "required": ["dynamic"],
+          "properties": {
+            "dynamic": {
+              "type": "string",
+              "description": "Reference to a function that calculates the next interval dynamically."
+            }
+          }
+        }
+      ]
+    },
+    "trigger": {
+      "type": "object",
+      "description": "A trigger condition that can initiate bot execution.",
+      "required": ["type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this trigger."
+        },
+        "type": {
+          "$ref": "#/definitions/triggerType"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether this trigger is active.",
+          "default": true
+        },
+        "config": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/timeBasedTriggerConfig"
+            },
+            {
+              "$ref": "#/definitions/conditionBasedTriggerConfig"
+            },
+            {
+              "$ref": "#/definitions/eventBasedTriggerConfig"
+            }
+          ]
+        }
+      }
+    },
+    "timeBasedTriggerConfig": {
+      "type": "object",
+      "description": "Configuration for time-based triggers.",
+      "required": ["schedule"],
+      "properties": {
+        "schedule": {
+          "type": "string",
+          "description": "Cron expression or ISO 8601 duration.",
+          "examples": ["0 * * * *", "PT5M", "R/PT1H"]
+        },
+        "timezone": {
+          "type": "string",
+          "description": "Timezone for the schedule.",
+          "default": "UTC"
+        }
+      }
+    },
+    "conditionBasedTriggerConfig": {
+      "type": "object",
+      "description": "Configuration for condition-based triggers.",
+      "required": ["condition"],
+      "properties": {
+        "condition": {
+          "type": "string",
+          "description": "Expression or function reference that evaluates to true/false.",
+          "examples": [
+            "threshold > 100",
+            "function:check_disk_space",
+            "state.status == 'critical'"
+          ]
+        },
+        "check_interval": {
+          "type": "integer",
+          "description": "How often to check the condition (milliseconds).",
+          "minimum": 100,
+          "default": 5000
+        }
+      }
+    },
+    "eventBasedTriggerConfig": {
+      "type": "object",
+      "description": "Configuration for event-based triggers.",
+      "required": ["event_source"],
+      "properties": {
+        "event_source": {
+          "type": "string",
+          "description": "Source of the event (webhook, queue, stream, etc.).",
+          "examples": ["webhook", "kafka", "rabbitmq", "redis", "file_watcher"]
+        },
+        "event_type": {
+          "type": "string",
+          "description": "Type of event to listen for.",
+          "examples": ["data.changed", "user.created", "file.uploaded"]
+        },
+        "filter": {
+          "type": "object",
+          "description": "Filter criteria for events (only process matching events).",
+          "additionalProperties": true
+        }
+      }
+    },
+    "errorHandling": {
+      "type": "object",
+      "description": "Configuration for error handling strategies.",
+      "properties": {
+        "on_error": {
+          "type": "string",
+          "description": "Strategy for handling errors.",
+          "enum": ["retry", "continue", "stop", "alert"],
+          "enumDescriptions": {
+            "retry": "Retry the operation with exponential backoff.",
+            "continue": "Log the error and continue to next iteration.",
+            "stop": "Stop the bot and transition to ERROR state.",
+            "alert": "Send an alert and continue execution."
+          },
+          "default": "retry"
+        },
+        "max_retries": {
+          "type": "integer",
+          "description": "Maximum number of retry attempts.",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 3
+        },
+        "backoff_strategy": {
+          "type": "string",
+          "description": "Backoff strategy for retries.",
+          "enum": ["fixed", "linear", "exponential", "exponential_with_jitter"],
+          "default": "exponential"
+        },
+        "backoff_base": {
+          "type": "integer",
+          "description": "Base backoff delay in milliseconds.",
+          "minimum": 100,
+          "default": 1000
+        },
+        "alert_channels": {
+          "type": "array",
+          "description": "Channels to send error alerts to.",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["email:devops@example.com", "slack:#alerts", "pagerduty:bot-failures"]]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "data_sync_bot",
+      "name": "Data Synchronization Bot",
+      "description": "Synchronizes data between external API and local database every 5 minutes",
+      "version": "1.0.0",
+      "loop": {
+        "type": "function_reference",
+        "target": "bots.data_sync.run",
+        "args": {
+          "api_endpoint": "https://api.example.com/data",
+          "batch_size": 1000
+        }
+      },
+      "interval": {
+        "fixed_rate": 300000
+      },
+      "state": "IDLE",
+      "triggers": [
+        {
+          "id": "schedule_trigger",
+          "type": "time_based",
+          "enabled": true,
+          "config": {
+            "schedule": "*/5 * * * *",
+            "timezone": "UTC"
+          }
+        },
+        {
+          "id": "webhook_trigger",
+          "type": "event_based",
+          "enabled": true,
+          "config": {
+            "event_source": "webhook",
+            "event_type": "sync.requested"
+          }
+        }
+      ],
+      "config": {
+        "max_retries": 3,
+        "timeout": 60000,
+        "enabled": true,
+        "logging": {
+          "level": "info",
+          "log_to_file": true
+        }
+      },
+      "error_handling": {
+        "on_error": "retry",
+        "max_retries": 3,
+        "backoff_strategy": "exponential",
+        "alert_channels": ["slack:#bot-alerts"]
+      },
+      "metadata": {
+        "created_at": "2026-03-15T12:00:00Z",
+        "updated_at": "2026-03-15T12:00:00Z",
+        "created_by": "system",
+        "tags": ["data", "sync", "automation"]
+      }
+    },
+    {
+      "id": "cleanup_bot",
+      "name": "Cleanup Automation",
+      "description": "Cleans up temporary files older than 24 hours",
+      "version": "2.1.0",
+      "loop": {
+        "type": "inline_code",
+        "target": "const fs = require('fs'); const path = '/tmp'; fs.readdirSync(path).forEach(f => { const file = `${path}/${f}`; if (fs.statSync(file).mtime < Date.now() - 86400000) fs.unlinkSync(file); });",
+        "language": "javascript"
+      },
+      "interval": {
+        "cron": "0 2 * * *",
+        "timezone": "UTC"
+      },
+      "state": "IDLE",
+      "triggers": [
+        {
+          "id": "nightly_cleanup",
+          "type": "time_based",
+          "enabled": true,
+          "config": {
+            "schedule": "0 2 * * *"
+          }
+        }
+      ],
+      "config": {
+        "max_retries": 1,
+        "timeout": 300000,
+        "enabled": true
+      },
+      "error_handling": {
+        "on_error": "continue"
+      },
+      "metadata": {
+        "tags": ["maintenance", "cleanup"]
+      }
+    },
+    {
+      "id": "threshold_monitor",
+      "name": "Threshold Monitor Bot",
+      "description": "Monitors system metrics and alerts when thresholds are breached",
+      "version": "1.0.0",
+      "loop": {
+        "type": "external_module",
+        "target": "module:monitor@check_thresholds"
+      },
+      "interval": {
+        "fixed_rate": 10000
+      },
+      "state": "RUNNING",
+      "triggers": [
+        {
+          "id": "condition_trigger",
+          "type": "condition_based",
+          "enabled": true,
+          "config": {
+            "condition": "metrics.cpu_usage > 80",
+            "check_interval": 5000
+          }
+        },
+        {
+          "id": "alert_event",
+          "type": "event_based",
+          "enabled": true,
+          "config": {
+            "event_source": "kafka",
+            "event_type": "system.alert"
+          }
+        }
+      ],
+      "config": {
+        "enabled": true,
+        "custom": {
+          "thresholds": {
+            "cpu": 80,
+            "memory": 85,
+            "disk": 90
+          }
+        }
+      },
+      "error_handling": {
+        "on_error": "alert",
+        "alert_channels": ["pagerduty:threshold-monitor"]
+      },
+      "metadata": {
+        "tags": ["monitoring", "alerts"]
+      }
+    }
+  ]
+}

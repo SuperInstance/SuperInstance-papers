@@ -1,0 +1,156 @@
+/**
+ * Jest Setup File
+ * Runs before each test suite
+ */
+
+import '@testing-library/jest-dom';
+import { TextEncoder, TextDecoder } from 'util';
+
+// Polyfill TextEncoder/TextDecoder for jsdom
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder as any;
+
+// Mock IntersectionObserver
+class IntersectionObserverMock {
+  observe() {
+    return null;
+  }
+
+  disconnect() {
+    return null;
+  }
+
+  unobserve() {
+    return null;
+  }
+}
+
+global.IntersectionObserver = IntersectionObserverMock as any;
+
+// Mock ResizeObserver
+class ResizeObserverMock {
+  observe() {
+    return null;
+  }
+
+  disconnect() {
+    return null;
+  }
+
+  unobserve() {
+    return null;
+  }
+}
+
+global.ResizeObserver = ResizeObserverMock as any;
+
+// Mock matchMedia
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn()
+  }))
+});
+
+// Mock scrollTo
+window.scrollTo = jest.fn();
+
+// Mock localStorage
+const localStorageMock = (() => {
+  let store: Record<string, string> = {};
+
+  return {
+    getItem: (key: string) => store[key] || null,
+    setItem: (key: string, value: string) => {
+      store[key] = value.toString();
+    },
+    removeItem: (key: string) => {
+      delete store[key];
+    },
+    clear: () => {
+      store = {};
+    },
+    get length() {
+      return Object.keys(store).length;
+    },
+    key: (index: number) => Object.keys(store)[index] || null
+  };
+})();
+
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock
+});
+
+// Mock sessionStorage
+const sessionStorageMock = (() => {
+  let store: Record<string, string> = {};
+
+  return {
+    getItem: (key: string) => store[key] || null,
+    setItem: (key: string, value: string) => {
+      store[key] = value.toString();
+    },
+    removeItem: (key: string) => {
+      delete store[key];
+    },
+    clear: () => {
+      store = {};
+    },
+    get length() {
+      return Object.keys(store).length;
+    },
+    key: (index: number) => Object.keys(store)[index] || null
+  };
+})();
+
+Object.defineProperty(window, 'sessionStorage', {
+  value: sessionStorageMock
+});
+
+// Suppress console errors in tests (optional - remove for debugging)
+const originalError = console.error;
+beforeAll(() => {
+  console.error = (...args: any[]) => {
+    const errorMessage = args[0];
+    if (
+      typeof errorMessage === 'string' &&
+      errorMessage.includes('Warning: ReactDOM.render')
+    ) {
+      return;
+    }
+    originalError.call(console, ...args);
+  };
+});
+
+afterAll(() => {
+  console.error = originalError;
+});
+
+// Reset all mocks before each test
+beforeEach(() => {
+  jest.clearAllMocks();
+  localStorage.clear();
+  sessionStorage.clear();
+});
+
+// Mock process.memoryUsage for Node.js environment monitoring tests
+const mockMemoryUsage = jest.fn(() => ({
+  rss: 134217728,
+  heapTotal: 67108864,
+  heapUsed: 50331648,
+  external: 2097152,
+  arrayBuffers: 1048576
+}));
+
+const globalProcess: any = global;
+globalProcess.process = {
+  memoryUsage: mockMemoryUsage,
+  env: {}
+};

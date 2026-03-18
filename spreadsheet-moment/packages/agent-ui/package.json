@@ -1,0 +1,53 @@
+{
+  "name": "@spreadsheet-moment/agent-ui",
+  "version": "0.1.0",
+  "description": "UI components for agentic features - Visual Thinking, HITL buttons, Cell renderers",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+  },
+  "keywords": [
+    "spreadsheet",
+    "agent",
+    "ui",
+    "visual-thinking",
+    "hitl",
+    "react"
+  ],
+  "author": "SpreadsheetMoment Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@spreadsheet-moment/agent-core": "^0.1.0",
+    "@univerjs/core": "^0.1.0",
+    "@univerjs/design": "^0.1.0",
+    "@univerjs/ui": "^0.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@univerjs/core": ">=0.1.0",
+    "@univerjs/design": ">=0.1.0",
+    "@univerjs/ui": ">=0.1.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  }
+}

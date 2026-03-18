@@ -1,0 +1,23 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "18"
+        }
+      }
+    ],
+    [
+      "@babel/preset-typescript",
+      {
+        "jsx": "react",
+        "allowNamespaces": true
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-transform-class-properties",
+    "@babel/plugin-transform-object-rest-spread"
+  ]
+}
