@@ -8,7 +8,7 @@
  * @packageDocumentation
  */
 
-import { StateManager } from '../StateManager';
+import { StateManager } from '../index';
 import fc from 'fast-check';
 
 describe('StateManager Properties', () => {

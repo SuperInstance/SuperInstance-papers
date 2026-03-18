@@ -23,7 +23,7 @@
   "author": "SpreadsheetMoment Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "@spreadsheet-moment/agent-core": "^0.1.0",
+    "@spreadsheet-moment/agent-core": "workspace:*",
     "@univerjs/core": "^0.1.0",
     "@univerjs/design": "^0.1.0",
     "@univerjs/ui": "^0.1.0",

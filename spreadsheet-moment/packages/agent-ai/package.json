@@ -25,7 +25,7 @@
   "author": "SpreadsheetMoment Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "@spreadsheet-moment/agent-core": "^0.1.0",
+    "@spreadsheet-moment/agent-core": "workspace:*",
     "@cloudflare/workers-types": "^4.20231218.0",
     "openai": "^4.0.0",
     "uuid": "^9.0.0"
@@ -42,6 +42,6 @@
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "@spreadsheet-moment/agent-core": ">=0.1.0"
+    "@spreadsheet-moment/agent-core": "workspace:*"
   }
 }

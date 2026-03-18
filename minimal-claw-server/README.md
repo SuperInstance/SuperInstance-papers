@@ -2,6 +2,20 @@
 
 **A minimal working CLAW server demonstrating cellular agents in spreadsheet cells.**
 
+[![Documentation](https://img.shields.io/badge/docs-latest-blue)](../docs/MVP_INDEX.md)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+> **Note**: This is an MVP (Minimum Viable Product) / demonstration. It is **not production-ready**. See [Limitations](#limitations-honest-assessment) below.
+
+## 📚 Documentation
+
+- **[Getting Started Guide](../docs/GETTING_STARTED.md)** - Installation and first steps
+- **[API Reference](../docs/API_REFERENCE.md)** - Complete API documentation
+- **[Tutorial](../docs/TUTORIAL.md)** - Hands-on tutorial
+- **[Architecture](../docs/MVP_ARCHITECTURE.md)** - System architecture
+- **[FAQ](../docs/FAQ.md)** - Common questions
+- **[Contributing](../docs/CONTRIBUTING.md)** - How to contribute
+
 ## Overview
 
 This is a **minimal working MVP** that demonstrates the core concept of cellular agents (claws) living in spreadsheet cells. It provides:
