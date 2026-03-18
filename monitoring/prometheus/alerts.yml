@@ -1,0 +1,186 @@
+# Alert Rules for SuperInstance Monitoring
+
+groups:
+  - name: claw_alerts
+    interval: 30s
+    rules:
+      # High error rate
+      - alert: ClawHighErrorRate
+        expr: rate(claw_errors_total[5m]) > 10
+        for: 5m
+        labels:
+          severity: warning
+          service: claw
+        annotations:
+          summary: "High error rate in Claw API"
+          description: "Claw API is experiencing {{ $value }} errors per second"
+
+      # No active agents
+      - alert: ClawNoActiveAgents
+        expr: claw_agents_active == 0
+        for: 10m
+        labels:
+          severity: info
+          service: claw
+        annotations:
+          summary: "No active agents"
+          description: "Claw has no active agents for 10 minutes"
+
+      # High memory usage
+      - alert: ClawHighMemoryUsage
+        expr: claw_memory_bytes > 1073741824
+        for: 5m
+        labels:
+          severity: warning
+          service: claw
+        annotations:
+          summary: "High memory usage"
+          description: "Claw is using more than 1GB of memory"
+
+      # High message latency
+      - alert: ClawHighMessageLatency
+        expr: histogram_quantile(0.95, claw_message_latency_seconds) > 1
+        for: 5m
+        labels:
+          severity: warning
+          service: claw
+        annotations:
+          summary: "High message latency"
+          description: "95th percentile message latency is {{ $value }}s"
+
+  - name: constrainttheory_alerts
+    interval: 30s
+    rules:
+      # High KD-tree query latency
+      - alert: ConstraintHighKDTreeLatency
+        expr: histogram_quantile(0.95, constraint_kdtree_query_duration_seconds) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          service: constraint-theory
+        annotations:
+          summary: "High KD-tree query latency"
+          description: "95th percentile KD-tree query latency is {{ $value }}s"
+
+      # High error rate
+      - alert: ConstraintHighErrorRate
+        expr: rate(constraint_errors_total[5m]) > 5
+        for: 5m
+        labels:
+          severity: warning
+          service: constraint-theory
+        annotations:
+          summary: "High error rate in Constraint Theory"
+          description: "Constraint Theory is experiencing {{ $value }} errors per second"
+
+      # FPS worse than RTS
+      - alert: ConstraintFPSWorseThanRTS
+        expr: |
+          (
+            rate(constraint_fps_operations_sum[5m]) /
+            rate(constraint_fps_operations_count[5m])
+          ) > (
+            rate(constraint_rts_operations_sum[5m]) /
+            rate(constraint_rts_operations_count[5m])
+          )
+        for: 10m
+        labels:
+          severity: info
+          service: constraint-theory
+        annotations:
+          summary: "FPS operations slower than RTS"
+          description: "FPS-style operations are slower than RTS-style operations"
+
+  - name: spreadsheet_alerts
+    interval: 30s
+    rules:
+      # High cell update latency
+      - alert: SpreadsheetHighCellUpdateLatency
+        expr: histogram_quantile(0.95, spreadsheet_cell_update_duration_seconds) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          service: spreadsheet-moment
+        annotations:
+          summary: "High cell update latency"
+          description: "95th percentile cell update latency is {{ $value }}s"
+
+      # High formula execution latency
+      - alert: SpreadsheetHighFormulaLatency
+        expr: histogram_quantile(0.95, spreadsheet_formula_execution_duration_seconds) > 1
+        for: 5m
+        labels:
+          severity: warning
+          service: spreadsheet-moment
+        annotations:
+          summary: "High formula execution latency"
+          description: "95th percentile formula execution latency is {{ $value }}s"
+
+      # Too many WebSocket connections
+      - alert: SpreadsheetTooManyConnections
+        expr: spreadsheet_websocket_connections_active > 1000
+        for: 5m
+        labels:
+          severity: warning
+          service: spreadsheet-moment
+        annotations:
+          summary: "Too many WebSocket connections"
+          description: "There are {{ $value }} active WebSocket connections"
+
+      # High error rate
+      - alert: SpreadsheetHighErrorRate
+        expr: rate(spreadsheet_errors_total[5m]) > 10
+        for: 5m
+        labels:
+          severity: warning
+          service: spreadsheet-moment
+        annotations:
+          summary: "High error rate in Spreadsheet Moment"
+          description: "Spreadsheet Moment is experiencing {{ $value }} errors per second"
+
+  - name: system_alerts
+    interval: 30s
+    rules:
+      # High CPU usage
+      - alert: HighCPUUsage
+        expr: rate(process_cpu_seconds_total[5m]) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          service: system
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is above 80%"
+
+      # High memory usage
+      - alert: HighMemoryUsage
+        expr: process_resident_memory_bytes / 1073741824 > 1
+        for: 5m
+        labels:
+          severity: warning
+          service: system
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is above 1GB"
+
+      # Disk space low
+      - alert: DiskSpaceLow
+        expr: node_filesystem_avail_bytes / node_filesystem_size_bytes < 0.1
+        for: 5m
+        labels:
+          severity: critical
+          service: system
+        annotations:
+          summary: "Disk space low"
+          description: "Disk space is below 10%"
+
+      # Service down
+      - alert: ServiceDown
+        expr: up == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: system
+        annotations:
+          summary: "Service is down"
+          description: "Service {{ $labels.instance }} is down"

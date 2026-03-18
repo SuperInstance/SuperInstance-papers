@@ -262,6 +262,10 @@ export class MetricsCollector extends EventEmitter {
   private config: Required<MetricsCollectorConfig>;
   private storage: MetricStorage;
   private histograms: Map<string, number[]> = new Map();
+  private counters: Map<string, number> = new Map();
+  private gauges: Map<string, number> = new Map();
+  private alertThresholds: Map<string, { type: MetricType; threshold: number }> = new Map();
+  private metrics: Map<string, Metric> = new Map();
 
   // Pre-computed histogram buckets (in milliseconds)
   private readonly latencyBuckets = [1, 5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
@@ -840,6 +844,225 @@ export class MetricsCollector extends EventEmitter {
   dispose(): void {
     this.clear();
     this.removeAllListeners();
+  }
+
+  // ========================================================================
+  // SIMPLE COUNTER & GAUGE METHODS (for mutation tests)
+  // ========================================================================
+
+  /**
+   * Record a counter value (adds to existing)
+   */
+  recordCounter(name: string, value: number, labels?: Record<string, string>): void {
+    // Create a unique key based on name and labels
+    const key = JSON.stringify({ name, labels });
+    const current = this.counters.get(key) || 0;
+    this.counters.set(key, current + value);
+
+    const metric: CounterMetric = {
+      name,
+      type: MetricType.COUNTER,
+      category: MetricCategory.BUSINESS,
+      description: `Counter: ${name}`,
+      labels: {
+        ...this.config.globalTags,
+        ...labels
+      },
+      timestamp: Date.now(),
+      value: current + value
+    };
+
+    this.metrics.set(key, metric);
+    this.recordMetric(metric);
+  }
+
+  /**
+   * Record a gauge value (sets to value)
+   */
+  recordGauge(name: string, value: number, labels?: Record<string, string>): void {
+    this.gauges.set(name, value);
+
+    const metric: GaugeMetric = {
+      name,
+      type: MetricType.GAUGE,
+      category: MetricCategory.BUSINESS,
+      description: `Gauge: ${name}`,
+      labels: {
+        ...this.config.globalTags,
+        ...labels
+      },
+      timestamp: Date.now(),
+      value
+    };
+
+    this.metrics.set(name, metric);
+    this.recordMetric(metric);
+
+    // Check alert threshold
+    const threshold = this.alertThresholds.get(name);
+    if (threshold && threshold.type === MetricType.GAUGE && value > threshold.threshold) {
+      this.emit('alert', { name, value, threshold: threshold.threshold });
+    }
+  }
+
+  /**
+   * Record a histogram value
+   */
+  recordHistogram(name: string, value: number, labels?: Record<string, string>): void {
+    const key = JSON.stringify({ name, labels });
+    const values = this.histograms.get(key) || [];
+    values.push(value);
+
+    // Keep only last 1000 values
+    if (values.length > 1000) {
+      values.shift();
+    }
+
+    this.histograms.set(key, values);
+
+    const metric: HistogramMetric = {
+      name,
+      type: MetricType.HISTOGRAM,
+      category: MetricCategory.BUSINESS,
+      description: `Histogram: ${name}`,
+      labels: {
+        ...this.config.globalTags,
+        ...labels
+      },
+      timestamp: Date.now(),
+      value
+    };
+
+    this.recordMetric(metric);
+  }
+
+  /**
+   * Get counter value
+   */
+  getCounter(name: string, labels?: Record<string, string>): number {
+    const key = JSON.stringify({ name, labels });
+    return this.counters.get(key) || 0;
+  }
+
+  /**
+   * Get gauge value
+   */
+  getGauge(name: string): number {
+    return this.gauges.get(name) || 0;
+  }
+
+  /**
+   * Get histogram stats
+   */
+  getHistogramStats(name: string, labels?: Record<string, string>): {
+    count: number;
+    sum: number;
+    avg: number;
+    min: number;
+    max: number;
+  } {
+    const key = JSON.stringify({ name, labels });
+    const values = this.histograms.get(key) || [];
+
+    if (values.length === 0) {
+      return { count: 0, sum: 0, avg: 0, min: 0, max: 0 };
+    }
+
+    const sum = values.reduce((a, b) => a + b, 0);
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+
+    return {
+      count: values.length,
+      sum,
+      avg: sum / values.length,
+      min,
+      max
+    };
+  }
+
+  /**
+   * Get all counters
+   */
+  getAllCounters(): Array<{ name: string; value: number }> {
+    return Array.from(this.counters.entries()).map(([name, value]) => ({ name, value }));
+  }
+
+  /**
+   * Check if metric exists
+   */
+  hasMetric(name: string): boolean {
+    return this.metrics.has(name) || this.counters.has(name) || this.gauges.has(name);
+  }
+
+  /**
+   * Get metric by name
+   */
+  getMetric(name: string): Metric | undefined {
+    return this.metrics.get(name);
+  }
+
+  /**
+   * Get counter by tags
+   */
+  getCounterByTags(tags: Record<string, string>): number {
+    let sum = 0;
+    for (const [key, metric] of this.metrics.entries()) {
+      if (metric.type === MetricType.COUNTER && metric.labels) {
+        const matches = Object.entries(tags).every(([key, value]) => metric.labels![key] === value);
+        if (matches) {
+          sum += this.counters.get(key) || 0;
+        }
+      }
+    }
+    return sum;
+  }
+
+  /**
+   * Get counter in time window
+   */
+  getCounterInTimeWindow(name: string, windowMs: number, labels?: Record<string, string>): number {
+    const key = JSON.stringify({ name, labels });
+    const metric = this.metrics.get(key);
+    if (!metric) return 0;
+
+    const now = Date.now();
+    if (metric.timestamp >= now - windowMs) {
+      return this.counters.get(key) || 0;
+    }
+    return 0;
+  }
+
+  /**
+   * Set alert threshold
+   */
+  setAlertThreshold(name: string, type: MetricType, threshold: number): void {
+    this.alertThresholds.set(name, { type, threshold });
+  }
+
+  /**
+   * Get alerts
+   */
+  getAlerts(): Array<{ name: string; value: number; threshold: number }> {
+    const alerts: Array<{ name: string; value: number; threshold: number }> = [];
+
+    for (const [name, threshold] of this.alertThresholds.entries()) {
+      const value = this.gauges.get(name);
+      if (value !== undefined && value > threshold.threshold) {
+        alerts.push({ name, value, threshold: threshold.threshold });
+      }
+    }
+
+    return alerts;
+  }
+
+  /**
+   * Reset all counters and gauges
+   */
+  reset(): void {
+    this.counters.clear();
+    this.gauges.clear();
+    this.metrics.clear();
   }
 }
 

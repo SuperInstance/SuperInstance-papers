@@ -120,6 +120,7 @@ export const CLAW_RELATE: ClawFunctionType = {
 
   execute: async function (
     this: unknown,
+    context: any,
     fromClawId: string,
     toClawId: string,
     relationshipType: string,

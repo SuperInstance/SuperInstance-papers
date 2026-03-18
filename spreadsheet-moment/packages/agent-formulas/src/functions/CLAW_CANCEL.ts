@@ -40,6 +40,7 @@ export const CLAW_CANCEL = {
 
   execute: async function (
     this: any,
+    context: any,
     clawId: string,
     reason: string = 'User cancelled'
   ): Promise<Nullable<InterpreterValue>> {

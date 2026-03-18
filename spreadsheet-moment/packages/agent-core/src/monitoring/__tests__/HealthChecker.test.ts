@@ -292,20 +292,26 @@ describe('HealthChecker', () => {
     });
 
     test('should timeout HTTP request', async () => {
+      // Use real timers for this test since we need actual timeout behavior
+      jest.useRealTimers();
+
       (global.fetch as jest.Mock).mockImplementationOnce(() =>
         new Promise(() => {}) // Never resolves
       );
 
       checker.addHTTPCheck('api', {
         url: 'https://api.example.com/health',
-        timeout: 1000
+        timeout: 100
       });
 
       const result = await checker.checkHealth();
 
       expect(result.checks[0].status).toBe(HealthStatus.UNHEALTHY);
       expect(result.checks[0].message).toContain('timeout');
-    }, 10000);
+
+      // Reset to fake timers for other tests
+      jest.useFakeTimers();
+    }, 20000);
   });
 
   describe('WebSocket Health Checks', () => {
@@ -761,6 +767,9 @@ describe('HealthChecker', () => {
     });
 
     test('should reschedule checks after execution', async () => {
+      // Use real timers for this test to avoid fake timer complexity
+      jest.useRealTimers();
+
       const checkFn = jest.fn(async () => ({
         name: 'test',
         status: HealthStatus.HEALTHY,
@@ -770,18 +779,21 @@ describe('HealthChecker', () => {
 
       checker.addHealthCheck({
         name: 'test',
-        interval: 1000,
+        interval: 50,
         check: checkFn
       });
 
       checker.start();
 
-      // Fast forward through multiple intervals
-      jest.advanceTimersByTime(3500);
+      // Wait for checks to run (first runs immediately, then at 50ms, 100ms, 150ms)
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       expect(checkFn).toHaveBeenCalledTimes(3);
 
       checker.stop();
+
+      // Reset to fake timers for other tests
+      jest.useFakeTimers();
     });
 
     test('should not schedule checks when stopped', async () => {

@@ -46,6 +46,7 @@ export const CLAW_QUERY = {
 
   execute: async function (
     this: any,
+    context: any,
     clawId: string,
     includeReasoning: boolean = true,
     includeMemory: boolean = false

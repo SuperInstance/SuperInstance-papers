@@ -147,16 +147,17 @@ export const CLAW_NEW = {
 
   execute: async function (
     this: any,
+    context: any,
     purpose: string,
     type: string = 'SENSOR',
     model: string = 'deepseek',
     equipment: string = 'MEMORY,REASONING'
   ): Promise<Nullable<InterpreterValue>> {
     try {
-      // Get context from Univer
-      const context = this?.context || {};
-      const cellId = context.cellId || 'unknown';
-      const position = context.position || [0, 0];
+      // Get context from parameter or Univer
+      const ctx = context || this?.context || {};
+      const cellId = ctx.cellId || 'unknown';
+      const position = ctx.position || [0, 0];
 
       // Validate inputs
       if (!purpose || typeof purpose !== 'string' || purpose.trim() === '') {

@@ -57,6 +57,7 @@ export const CLAW_EQUIP: ClawFunctionType = {
 
   execute: async function (
     this: any,
+    context: any,
     clawId: string,
     equipment: string
   ): Promise<Nullable<InterpreterValue>> {

@@ -72,6 +72,7 @@ export const CLAW_TRIGGER: ClawFunctionType = {
 
   execute: async function (
     this: any,
+    context: any,
     clawId: string,
     data?: any
   ): Promise<Nullable<InterpreterValue>> {

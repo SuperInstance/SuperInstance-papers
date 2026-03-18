@@ -2,8 +2,8 @@ global:
   scrape_interval: 15s
   evaluation_interval: 15s
   external_labels:
-    cluster: 'spreadsheet-moment'
-    environment: 'production'
+    cluster: 'superinstance'
+    environment: 'development'
 
 # Alertmanager configuration
 alerting:
@@ -14,7 +14,7 @@ alerting:
 
 # Rule files
 rule_files:
-  - '/etc/prometheus/rules/*.yml'
+  - 'alerts.yml'
 
 # Scrape configurations
 scrape_configs:
@@ -25,13 +25,53 @@ scrape_configs:
         labels:
           service: 'prometheus'
 
+  # Grafana monitoring
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['grafana:3000']
+        labels:
+          service: 'grafana'
+
+  # Claw API Server
+  - job_name: 'claw-api'
+    static_configs:
+      - targets: ['host.docker.internal:3000']
+        labels:
+          service: 'claw'
+          component: 'api'
+          application: 'claw'
+    scrape_interval: 10s
+    metrics_path: '/api/monitoring/metrics'
+
+  # Constraint Theory Web
+  - job_name: 'constraint-theory'
+    static_configs:
+      - targets: ['host.docker.internal:8787']
+        labels:
+          service: 'constraint-theory'
+          component: 'web'
+          application: 'constraint-theory'
+    scrape_interval: 10s
+    metrics_path: '/metrics'
+
+  # Spreadsheet Moment
+  - job_name: 'spreadsheet-moment'
+    static_configs:
+      - targets: ['host.docker.internal:3000']
+        labels:
+          service: 'spreadsheet-moment'
+          component: 'api'
+          application: 'spreadsheet-moment'
+    scrape_interval: 10s
+    metrics_path: '/api/monitoring/metrics'
+
   # Node Exporter - System metrics
   - job_name: 'node_exporter'
     static_configs:
-      - targets: ['node_exporter:9100']
+      - targets: ['node-exporter:9100']
         labels:
           service: 'system'
-          datacenter: 'us-east-1'
+          component: 'node'
 
   # cAdvisor - Container metrics
   - job_name: 'cadvisor'
@@ -39,75 +79,4 @@ scrape_configs:
       - targets: ['cadvisor:8080']
         labels:
           service: 'containers'
-
-  # Spreadsheet Moment Application
-  - job_name: 'spreadsheet_moment_api'
-    scrape_interval: 10s
-    metrics_path: '/metrics'
-    static_configs:
-      - targets: ['host.docker.internal:8000']
-        labels:
-          service: 'api'
-          application: 'spreadsheet-moment'
-          tier: 'backend'
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: instance
-        replacement: 'api-server'
-
-  # Spreadsheet Moment Web Server
-  - job_name: 'spreadsheet_moment_web'
-    scrape_interval: 10s
-    metrics_path: '/metrics'
-    static_configs:
-      - targets: ['host.docker.internal:3001']
-        labels:
-          service: 'web'
-          application: 'spreadsheet-moment'
-          tier: 'frontend'
-
-  # PostgreSQL Exporter
-  - job_name: 'postgresql'
-    scrape_interval: 30s
-    static_configs:
-      - targets: ['postgres_exporter:9187']
-        labels:
-          service: 'database'
-          database_type: 'postgresql'
-
-  # Redis Exporter
-  - job_name: 'redis'
-    scrape_interval: 30s
-    static_configs:
-      - targets: ['redis_exporter:9121']
-        labels:
-          service: 'cache'
-          cache_type: 'redis'
-
-  # Nginx Exporter
-  - job_name: 'nginx'
-    scrape_interval: 15s
-    static_configs:
-      - targets: ['nginx_exporter:9113']
-        labels:
-          service: 'proxy'
-          proxy_type: 'nginx'
-
-  # Custom Business Metrics
-  - job_name: 'business_metrics'
-    scrape_interval: 60s
-    static_configs:
-      - targets: ['host.docker.internal:8000']
-        labels:
-          service: 'business'
-          metrics_type: 'custom'
-    metrics_path: '/api/v1/metrics/business'
-
-  # SSL Certificate Monitor
-  - job_name: 'ssl_cert_monitor'
-    scrape_interval: 1h
-    static_configs:
-      - targets: ['spreadsheetmoment.com:443']
-        labels:
-          service: 'ssl'
-          environment: 'production'
+          component: 'cadvisor'

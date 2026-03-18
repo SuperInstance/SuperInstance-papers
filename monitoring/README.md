@@ -1,18 +1,39 @@
-# Spreadsheet Moment - Production Monitoring Stack
+# SuperInstance Monitoring and Analytics
 
-Comprehensive monitoring infrastructure for Spreadsheet Moment platform with Prometheus, Grafana, Loki, and Alertmanager.
+Comprehensive monitoring and analytics solution for the SuperInstance ecosystem.
 
 ## Overview
 
-This monitoring stack provides:
+This monitoring stack provides real-time visibility into all SuperInstance repositories:
 
-- **Real-time metrics collection** and visualization
-- **Distributed logging** with Loki
-- **Intelligent alerting** with Alertmanager
-- **6 comprehensive dashboards** for complete visibility
-- **Custom metrics** for business intelligence
-- **Security monitoring** and threat detection
-- **Performance tracking** and SLI/SLO monitoring
+- **claw/** - Cellular agent engine metrics
+- **constrainttheory/** - Geometric operations and FPS vs RTS metrics
+- **spreadsheet-moment/** - Cell updates, formula execution, WebSocket metrics
+
+## Quick Start
+
+### Prerequisites
+
+- Docker and Docker Compose
+- 4GB RAM minimum
+- 10GB disk space
+
+### Installation
+
+1. Navigate to monitoring directory:
+```bash
+cd /c/Users/casey/polln/monitoring
+```
+
+2. Start the monitoring stack:
+```bash
+docker-compose up -d
+```
+
+3. Access the dashboards:
+- **Grafana**: http://localhost:3001 (admin/superinstance)
+- **Prometheus**: http://localhost:9090
+- **AlertManager**: http://localhost:9093
 
 ## Architecture
 
