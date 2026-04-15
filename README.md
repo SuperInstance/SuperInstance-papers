@@ -672,3 +672,7 @@ Cloudflare Workers, MCP servers, and the broader open-source community enabling 
 *"The best way to predict the future is to invent it." - Alan Kay*
 *"Nature has been inventing the future of computation for 3.5 billion years. We're just learning to listen." - SuperInstance Team*
 *We are evolving computation from ancient biological wisdom to living digital platforms, one breakthrough at a time.*
+
+---
+
+<img src="callsign1.jpg" width="128" alt="callsign">
