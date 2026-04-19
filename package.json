@@ -145,8 +145,8 @@
   },
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
-    "@opentelemetry/exporter-prometheus": "^0.213.0",
-    "@opentelemetry/exporter-trace-otlp-grpc": "^0.213.0",
+    "@opentelemetry/exporter-prometheus": "^0.215.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.215.0",
     "@opentelemetry/resources": "^1.30.0",
     "@opentelemetry/sdk-metrics": "^1.30.0",
     "@opentelemetry/sdk-trace-base": "^1.30.0",
