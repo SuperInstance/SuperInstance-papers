@@ -28,11 +28,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
           cache-dependency-path: 'website/package-lock.json'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Check for npm updates
         id: npm-updates
@@ -181,11 +180,10 @@ ${majorUpdates.map(([pkg, info]) => `- **${pkg}**: ${info.current} → ${info.la
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
           cache-dependency-path: 'website/package-lock.json'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Update npm dependencies
         run: |
