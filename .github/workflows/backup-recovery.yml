@@ -48,6 +48,7 @@ jobs:
             --exclude=node_modules \
             --exclude=dist \
             --exclude=.git \
+            --exclude=backups \
             .
 
           echo "Source code backup created: website-source-${{ env.BACKUP_TIMESTAMP }}.tar.gz"
