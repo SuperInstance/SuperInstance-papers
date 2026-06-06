@@ -142,3 +142,5 @@ pnpm-lock.yaml
 **/download/
 **/upload/
 **/public/
+target/
+Cargo.lock
