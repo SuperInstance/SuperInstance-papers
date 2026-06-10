@@ -118,7 +118,7 @@ GITHUB_CLIENT_SECRET="your-github-client-secret"
 ```bash
 # SuperInstance
 SUPERINSTANCE_API_KEY="your-superinstance-key"
-SUPERINSTANCE_ENDPOINT="https://api.superinstance.io"
+SUPERINSTANCE_ENDPOINT="https://api.superinstance.ai"
 
 # Monitoring
 SLACK_WEBHOOK="https://hooks.slack.com/..."

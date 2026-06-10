@@ -472,9 +472,9 @@ bash -x install.sh
 
 ## Contact
 
-**Security Team:** security@superinstance.io
-**Bug Bounty:** https://superinstance.io/security
-**PGP Key:** https://superinstance.io/security/pgp
+**Security Team:** security@superinstance.ai
+**Bug Bounty:** https://superinstance.ai/security
+**PGP Key:** https://superinstance.ai/security/pgp
 
 ---
 

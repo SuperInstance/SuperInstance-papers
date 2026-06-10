@@ -283,7 +283,7 @@ Use the Hardware Scaler equipment for automatic resource adaptation:
 import { HardwareScalerEquipment } from '@superinstance/equipment-hardware-scaler';
 
 agent.registerEquipment(new HardwareScalerEquipment({
-  cloudEndpoint: 'https://api.superinstance.io/v1/llm',
+  cloudEndpoint: 'https://api.superinstance.ai/v1/llm',
   maxLocalMemory: 1024 * 1024 * 1024, // 1GB
 }));
 ```
@@ -294,6 +294,6 @@ MIT
 
 ## Links
 
-- [Documentation](https://superinstance.io/docs/starter-agent)
+- [Documentation](https://superinstance.ai/docs/starter-agent)
 - [Equipment Registry](https://github.com/SuperInstance?q=Equipment-)
 - [Examples](https://github.com/SuperInstance/SuperInstance-Starter-Agent/tree/main/examples)
