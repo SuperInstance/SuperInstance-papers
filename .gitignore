@@ -144,3 +144,8 @@ pnpm-lock.yaml
 **/public/
 target/
 Cargo.lock
+
+
+# Added by cargo
+
+/target
