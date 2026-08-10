@@ -1,62 +1,22 @@
-# Paper 1: Origin-Centric Data Systems (OCDS)
+# P01 — Origin-Centric Data Systems
 
-## 🎯 Overview
+## Eliminating Global Coordinates Through Relative Reference Frames
 
-This paper introduces the foundational mathematical framework for data provenance tracking using the four-tuple model: **S = (O, D, T, Φ)**.
+**Status:** Final Draft | **Venue:** SIGMOD 2026
 
-## 📊 Paper Statistics
-- **Word Count**: ~12,500 words
-- **Mathematical Theorems**: 4
-- **Proofs**: Complete
-- **Real-world Examples**: 5
-- **Citations**: 15
+Every node is its own origin. No global coordinates. Communication happens through relative reference frames, not absolute positions. This is the foundational paper of the SuperInstance architecture — the base space upon which everything else is built.
 
-## 🔍 Key Innovations
+### Key Results
+- **O(k) message complexity** for updates affecting k nodes (vs O(n²) in traditional systems)
+- **O(log n) convergence** without global state
+- Formal four-tuple: **S = (O, D, T, Φ)** — origin, data, transformation history, functional relationships
 
-### The OCDS Framework
-- **O** (Origin): Complete data lineage tracking
-- **D** (Data): The actual data values
-- **T** (Transform): Operations applied to data
-- **Φ** (Function): Mathematical relationships
+### Why It Matters
+This paper defines what it means to be a "cell" in the SuperInstance architecture. Every fleet node — Wesley, Hermes, Lucineer, the CNS Bridge — is an origin node with its own coordinate system. They don't need a global clock. They relate to each other through relative transformations.
 
-### Major Contributions
-1. **Reversibility Theorem**: Any transformation can be reversed with known Φ
-2. **Consistency Lemma**: Shared (O,T,Φ) guarantees identical D
-3. **Complete Audit Trail**: Automatic provenance tracking
-4. **Distributed Consistency**: Works across federated systems
+[Read the paper →](paper.md)
 
-## 📈 Performance Impact
-| Metric | Traditional | OCDS | Improvement |
-|--------|-------------|------|-------------|
-| Audit Time | hours | seconds | -99% |
-| Storage Overhead | 1x | 3.2x | +220% |
-| Query Speed | 1x | 1.1x | +10% |
-| Reproducibility | manual | automatic | ∞ |
-
-## 🏢 Real-world Applications
-- **Financial Auditing**: Complete transaction trails
-- **Scientific Research**: Reproducible experiments
-- **Healthcare Data**: Patient history tracking
-- **Supply Chain**: Product journey mapping
-
-## 📁 Folder Contents
-- `paper.md` - Complete white paper
-- `proofs/` - Mathematical proofs (LaTeX)
-- `examples/` - Implementation examples
-- `benchmarks/` - Performance benchmarks
-
-## 🔗 Connections
-This paper forms the theoretical foundation for:
-- Paper 3: Confidence Cascade Architecture
-- Paper 7: SMPbot Architecture
-- Paper 8: Tile Algebra Formalization
-
-## 🎓 Target Audience
-- Database researchers
-- Distributed systems engineers
-- Data governance professionals
-- Academic researchers in data provenance
-
----
-
-*Part of the SuperInstance Mathematical Framework - Making every cell a universal computational unit*
+### Connected Fleet
+- [CNS Bridge](https://github.com/SuperInstance/cns-bridge) — The production implementation
+- [The Living Minds](https://github.com/SuperInstance/the-living-minds) — Five origin nodes, always on
+- [Fleet Envelope](https://github.com/SuperInstance/fleet-envelope) — Event grammar between origins
