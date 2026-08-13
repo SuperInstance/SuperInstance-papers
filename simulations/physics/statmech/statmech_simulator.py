@@ -20,7 +20,7 @@ import math
 from scipy.integrate import odeint
 from tqdm import tqdm
 
-from deepseek_statmech import DeepSeekStatMech
+from .deepseek_statmech import DeepSeekStatMech
 
 
 class DynamicsType(Enum):

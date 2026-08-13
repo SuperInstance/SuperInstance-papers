@@ -198,7 +198,7 @@ class BlueGreenDeploymentSimulator:
         self.blue_version = blue_version
         self.green_version = green_version
         self.requests_per_second = requests_per_second
-       .traffic_test_duration = traffic_test_duration
+        self.traffic_test_duration = traffic_test_duration
         self.enable_auto_rollback = enable_auto_rollback
 
         # Initialize environments

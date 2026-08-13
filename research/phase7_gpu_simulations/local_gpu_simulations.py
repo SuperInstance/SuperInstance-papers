@@ -1,3 +1,4 @@
+from __future__ import annotations
 """
 GPU-Accelerated Local Simulations for SuperInstance
 ====================================================
@@ -13,7 +14,6 @@ Author: GPU Simulation Orchestrator
 Created: 2026-03-13
 """
 
-import cupy as cp
 import numpy as np
 from typing import Dict, List, Tuple, Optional, Callable
 from dataclasses import dataclass, field
@@ -21,6 +21,13 @@ from enum import Enum
 import time
 from collections import defaultdict
 import warnings
+
+try:
+    import cupy as cp
+    HAS_CUPY = True
+except ImportError:
+    cp = None
+    HAS_CUPY = False
 
 warnings.filterwarnings('ignore', category=RuntimeWarning)
 
@@ -153,7 +160,7 @@ class LocalGPUSimulator:
             "available": True
         }
 
-    def allocate_safe(self, shape: Tuple, dtype: cp.dtype = cp.float32) -> cp.ndarray:
+    def allocate_safe(self, shape: Tuple, dtype=None):
         """
         Allocate GPU memory with safety checks.
 
@@ -169,6 +176,9 @@ class LocalGPUSimulator:
         """
         if not self.gpu_available:
             raise RuntimeError("GPU not available")
+
+        if dtype is None:
+            dtype = cp.float32
 
         # Calculate memory needed
         num_elements = np.prod(shape)

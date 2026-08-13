@@ -14,7 +14,7 @@ Mathematical Foundation:
 
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import sparse, sparse.linalg, optimize
+from scipy import sparse, optimize
 from scipy.fft import fft2, ifft2, fftfreq
 from typing import Tuple, Dict, Optional
 import warnings

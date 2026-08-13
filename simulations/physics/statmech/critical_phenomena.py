@@ -20,7 +20,7 @@ import math
 from scipy.optimize import curve_fit
 from scipy.stats import linregress
 
-from deepseek_statmech import DeepSeekStatMech
+from .deepseek_statmech import DeepSeekStatMech
 
 
 @dataclass

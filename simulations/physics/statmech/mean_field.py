@@ -20,7 +20,7 @@ from enum import Enum
 import math
 from scipy.optimize import fsolve, root
 
-from deepseek_statmech import DeepSeekStatMech
+from .deepseek_statmech import DeepSeekStatMech
 
 
 @dataclass

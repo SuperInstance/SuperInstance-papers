@@ -19,6 +19,7 @@ import sys
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+sys.path.insert(0, str(Path(__file__).parent))
 
 try:
     from base import AgentGraph, EvolutionConfig, PruningStrategy, GraftingStrategy, EvolutionMetrics
@@ -27,9 +28,7 @@ try:
     from emergence_visualizer import EmergenceVisualizer, EmergenceMetrics
     from comparison_plotter import ComparisonPlotter, ComparisonConfig
 except ImportError as e:
-    print(f"Import error: {e}")
-    print("Make sure you're running from the simulations directory")
-    sys.exit(1)
+    pytest.skip(f"Visualization dependency not available: {e}", allow_module_level=True)
 
 
 class TestGraphVisualizer:

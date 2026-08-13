@@ -7,7 +7,7 @@ Supports multiple numerical methods and adaptive mesh refinement.
 
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import sparse, sparse.linalg, interpolate, integrate
+from scipy import sparse, interpolate, integrate
 from scipy.sparse.linalg import spsolve
 from typing import Tuple, Optional, Callable, Union, List
 import warnings

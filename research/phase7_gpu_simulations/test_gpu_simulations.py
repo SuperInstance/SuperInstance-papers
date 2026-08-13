@@ -10,9 +10,21 @@ Created: 2026-03-13
 
 import pytest
 import numpy as np
-import cupy as cp
 from typing import Dict, List
 import time
+import sys
+from pathlib import Path
+
+# Add to path for local imports
+sys.path.insert(0, str(Path(__file__).parent))
+
+# cupy is GPU-only — make optional
+try:
+    import cupy as cp
+    HAS_CUPY = True
+except ImportError:
+    cp = None
+    HAS_CUPY = False
 
 # Import simulator
 from local_gpu_simulations import (
@@ -21,6 +33,8 @@ from local_gpu_simulations import (
     GPUSpecs,
     GPUArchitecture
 )
+
+pytestmark = pytest.mark.skipif(not HAS_CUPY, reason="cupy not available (no GPU)")
 
 
 class TestGPUSimulator:

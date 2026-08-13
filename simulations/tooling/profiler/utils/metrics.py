@@ -362,7 +362,7 @@ class MetricsCollector:
                 for bucket in buckets:
                     cumulative += bucket.count
                     le_label = f'le="{bucket.upper_bound}"'
-                    bucket_label_str = label_str.replace('}', f',{le_label}}')
+                    bucket_label_str = label_str.replace('}', ',' + le_label + '}')
                     lines.append(f'{name}_bucket{bucket_label_str} {cumulative}')
 
                 # Sum and count

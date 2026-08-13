@@ -6,6 +6,12 @@ Simple test to verify the core collaboration infrastructure works.
 """
 
 from datetime import datetime
+import sys
+from pathlib import Path
+
+# Add to path for local imports
+sys.path.insert(0, str(Path(__file__).parent))
+
 from research_network import ResearchNetwork, ExpertiseLevel, ResearchArea
 
 

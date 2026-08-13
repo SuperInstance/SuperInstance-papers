@@ -48,15 +48,15 @@ class SystemMetrics:
     gpu_usage: float = 0.0  # percentage
 
     # Agent metrics
-    active_agents: int
-    total_agents: int
-    queued_tasks: int
-    completed_tasks: int
+    active_agents: int = 0
+    total_agents: int = 0
+    queued_tasks: int = 0
+    completed_tasks: int = 0
 
     # Learning metrics
-    avg_value: float
-    avg_reward: float
-    convergence_rate: float
+    avg_value: float = 0.0
+    avg_reward: float = 0.0
+    convergence_rate: float = 0.0
 
 
 @dataclass

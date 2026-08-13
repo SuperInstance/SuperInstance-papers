@@ -21,7 +21,7 @@ import math
 from scipy.integrate import odeint, solve_ivp
 from scipy.linalg import eig
 
-from deepseek_statmech import DeepSeekStatMech
+from .deepseek_statmech import DeepSeekStatMech
 
 
 @dataclass

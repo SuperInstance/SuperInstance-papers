@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from enum import Enum
 import math
 
-from deepseek_statmech import DeepSeekStatMech
+from .deepseek_statmech import DeepSeekStatMech
 
 
 class EnsembleType(Enum):

@@ -548,7 +548,7 @@ class PhenomenonCatalog:
 
             if entry.mathematical_model:
                 latex_parts.append(f"""
-\\subsection*{Mathematical Model}
+\\subsection*{{Mathematical Model}}
 {entry.mathematical_model}
 """)
 

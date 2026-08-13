@@ -44,7 +44,7 @@ class ODEIntegrator:
         """
         Classic 4th-order Runge-Kutta integration.
 
-        y_{n+1} = y_n + (dt/6)(k₁ + 2k₂ + 2k₃ + k₄)
+        y_{n+1} = y_n + (dt/6)(k_1 + 2k_2 + 2k_3 + k_4)
 
         Error: O(dt⁴)
         """
@@ -59,12 +59,12 @@ class ODEIntegrator:
         for i in range(1, n_steps):
             t = t_values[i-1]
 
-            k₁ = rhs(t, y)
-            k₂ = rhs(t + dt/2, y + dt*k₁/2)
-            k₃ = rhs(t + dt/2, y + dt*k₂/2)
-            k₄ = rhs(t + dt, y + dt*k₃)
+            k_1 = rhs(t, y)
+            k_2 = rhs(t + dt/2, y + dt*k_1/2)
+            k_3 = rhs(t + dt/2, y + dt*k_2/2)
+            k_4 = rhs(t + dt, y + dt*k_3)
 
-            y = y + dt * (k₁ + 2*k₂ + 2*k₃ + k₄) / 6
+            y = y + dt * (k_1 + 2*k_2 + 2*k_3 + k_4) / 6
             y_values[i] = y
 
         return SimulationResult(
@@ -90,17 +90,17 @@ class ODEIntegrator:
         """
         def rkf_step(t, y, dt):
             """Single RKF45 step."""
-            k₁ = rhs(t, y)
-            k₂ = rhs(t + dt/4, y + dt*k₁/4)
-            k₃ = rhs(t + 3*dt/8, y + dt*(3*k₁ + 9*k₂)/32)
-            k₄ = rhs(t + 12*dt/13, y + dt*(1932*k₁ - 7200*k₂ + 7296*k₃)/2197)
-            k₅ = rhs(t + dt, y + dt*(439*k₁/216 - 8*k₂ + 3680*k₃/513 - 845*k₄/4104))
-            k₆ = rhs(t + dt/2, y + dt*(-8*k₁/27 + 2*k₂ - 3544*k₃/2565 + 1859*k₄/4104 - 11*k₅/40))
+            k_1 = rhs(t, y)
+            k_2 = rhs(t + dt/4, y + dt*k_1/4)
+            k_3 = rhs(t + 3*dt/8, y + dt*(3*k_1 + 9*k_2)/32)
+            k_4 = rhs(t + 12*dt/13, y + dt*(1932*k_1 - 7200*k_2 + 7296*k_3)/2197)
+            k_5 = rhs(t + dt, y + dt*(439*k_1/216 - 8*k_2 + 3680*k_3/513 - 845*k_4/4104))
+            k_6 = rhs(t + dt/2, y + dt*(-8*k_1/27 + 2*k_2 - 3544*k_3/2565 + 1859*k_4/4104 - 11*k_5/40))
 
             # 4th order
-            y4 = y + dt * (25*k₁/216 + 1408*k₃/2565 + 2197*k₄/4104 - k₅/5)
+            y4 = y + dt * (25*k_1/216 + 1408*k_3/2565 + 2197*k_4/4104 - k_5/5)
             # 5th order
-            y5 = y + dt * (16*k₁/135 + 6656*k₃/12825 + 28561*k₄/56430 - 9*k₅/50 + 2*k₆/55)
+            y5 = y + dt * (16*k_1/135 + 6656*k_3/12825 + 28561*k_4/56430 - 9*k_5/50 + 2*k_6/55)
 
             error = np.linalg.norm(y5 - y4)
             return y5, error

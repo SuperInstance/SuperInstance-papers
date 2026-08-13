@@ -15,6 +15,13 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from lyapunov import LyapunovComputer, logistic_map_r
 from bifurcation import BifurcationAnalyzer, logistic_map as bif_logistic
+
+# Clear any cached 'attractors' module from other directories
+if 'attractors' in sys.modules:
+    _cached = sys.modules['attractors']
+    if not hasattr(_cached, 'AttractorAnalyzer'):
+        del sys.modules['attractors']
+
 from attractors import AttractorAnalyzer
 from edge_chaos import ChaoticSystems, ODEIntegrator
 from deepseek_chaos import DeepSeekChaosAnalyzer

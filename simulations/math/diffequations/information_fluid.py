@@ -14,7 +14,7 @@ Mathematical Foundation:
 
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import sparse, sparse.linalg, ndimage
+from scipy import sparse, ndimage
 from typing import Tuple, Optional, Dict
 import warnings
 

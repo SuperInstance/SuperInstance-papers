@@ -14,7 +14,7 @@ Mathematical Foundation:
 
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import sparse, sparse.linalg, integrate
+from scipy import sparse, integrate
 from scipy.sparse.linalg import spsolve
 from typing import Tuple, Optional, Callable
 import warnings

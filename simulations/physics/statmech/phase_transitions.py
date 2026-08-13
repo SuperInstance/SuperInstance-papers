@@ -18,8 +18,8 @@ from dataclasses import dataclass
 from enum import Enum
 import math
 
-from deepseek_statmech import DeepSeekStatMech
-from ensembles import CanonicalEnsemble
+from .deepseek_statmech import DeepSeekStatMech
+from .ensembles import CanonicalEnsemble
 
 
 class TransitionType(Enum):

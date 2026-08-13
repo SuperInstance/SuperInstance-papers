@@ -10,6 +10,10 @@ from unittest.mock import Mock, patch
 import tempfile
 import json
 from pathlib import Path
+import sys
+
+# Add package directory to path for local imports
+sys.path.insert(0, str(Path(__file__).parent))
 
 
 class TestDeepSeekStatMech(unittest.TestCase):

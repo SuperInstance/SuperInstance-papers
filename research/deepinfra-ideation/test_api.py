@@ -7,10 +7,10 @@ Tests the multi-agent system with a simple SuperInstance topic.
 import sys
 from pathlib import Path
 
-# Add to path - use parent of parent directory
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+# Add to path for local imports
+sys.path.insert(0, str(Path(__file__).parent))
 
-from research.deepinfra_ideation.multi_agent_debate import DeepInfraAgent
+from multi_agent_debate import DeepInfraAgent
 
 
 def test_single_agent():

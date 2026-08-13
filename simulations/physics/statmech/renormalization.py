@@ -20,7 +20,7 @@ import math
 from scipy.optimize import root, fsolve
 from scipy.integrate import odeint
 
-from deepseek_statmech import DeepSeekStatMech
+from .deepseek_statmech import DeepSeekStatMech
 
 
 @dataclass
