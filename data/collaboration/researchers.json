@@ -1,0 +1,136 @@
+{
+  "test001": {
+    "researcher_id": "test001",
+    "name": "Dr. Test Researcher",
+    "email": "test@university.edu",
+    "institution": "Test University",
+    "department": "Computer Science",
+    "location": "Test City, USA",
+    "timezone": "UTC-5",
+    "languages": [
+      "English"
+    ],
+    "expertise_level": "assistant_professor",
+    "primary_research_area": "distributed_systems",
+    "secondary_areas": [
+      "computer_science"
+    ],
+    "specific_skills": [
+      "Python",
+      "Distributed Systems"
+    ],
+    "papers_of_interest": [
+      "P2",
+      "P12"
+    ],
+    "collaboration_interests": [
+      "Joint Research"
+    ],
+    "availability_hours_per_week": 10,
+    "publications": [],
+    "h_index": null,
+    "past_collaborations": [],
+    "collaboration_success_rate": 0.0,
+    "preferred_collaboration_size": 3,
+    "willing_to_lead": true,
+    "willing_to_follow": true,
+    "open_to_cross_cultural": true,
+    "open_to_industry_partnerships": true,
+    "current_collaboration_count": 0,
+    "max_concurrent_collaborations": 3,
+    "available_for_new_collaborations": true,
+    "profile_created": "2026-08-12T20:54:26.261100",
+    "profile_updated": "2026-08-12T20:54:26.261094",
+    "last_active": "2026-08-12T20:54:26.261101"
+  },
+  "r1": {
+    "researcher_id": "r1",
+    "name": "Dr. Alice",
+    "email": "alice@mit.edu",
+    "institution": "MIT",
+    "department": "CS",
+    "location": "Cambridge, MA",
+    "timezone": "UTC-5",
+    "languages": [
+      "English",
+      "Mandarin"
+    ],
+    "expertise_level": "assistant_professor",
+    "primary_research_area": "distributed_systems",
+    "secondary_areas": [
+      "computer_science"
+    ],
+    "specific_skills": [
+      "Python",
+      "Kubernetes"
+    ],
+    "papers_of_interest": [
+      "P2",
+      "P12"
+    ],
+    "collaboration_interests": [
+      "Research"
+    ],
+    "availability_hours_per_week": 15,
+    "publications": [],
+    "h_index": null,
+    "past_collaborations": [],
+    "collaboration_success_rate": 0.0,
+    "preferred_collaboration_size": 3,
+    "willing_to_lead": true,
+    "willing_to_follow": true,
+    "open_to_cross_cultural": true,
+    "open_to_industry_partnerships": true,
+    "current_collaboration_count": 0,
+    "max_concurrent_collaborations": 3,
+    "available_for_new_collaborations": true,
+    "profile_created": "2026-08-12T20:54:26.262432",
+    "profile_updated": "2026-08-12T20:54:26.262427",
+    "last_active": "2026-08-12T20:54:26.262433"
+  },
+  "r2": {
+    "researcher_id": "r2",
+    "name": "Dr. Bob",
+    "email": "bob@tum.de",
+    "institution": "TUM",
+    "department": "Math",
+    "location": "Munich, Germany",
+    "timezone": "UTC+1",
+    "languages": [
+      "German",
+      "English"
+    ],
+    "expertise_level": "associate_professor",
+    "primary_research_area": "mathematics",
+    "secondary_areas": [
+      "physics"
+    ],
+    "specific_skills": [
+      "Coq",
+      "Proofs"
+    ],
+    "papers_of_interest": [
+      "P2",
+      "P4"
+    ],
+    "collaboration_interests": [
+      "Research"
+    ],
+    "availability_hours_per_week": 10,
+    "publications": [],
+    "h_index": null,
+    "past_collaborations": [],
+    "collaboration_success_rate": 0.0,
+    "preferred_collaboration_size": 3,
+    "willing_to_lead": true,
+    "willing_to_follow": true,
+    "open_to_cross_cultural": true,
+    "open_to_industry_partnerships": true,
+    "current_collaboration_count": 0,
+    "max_concurrent_collaborations": 3,
+    "available_for_new_collaborations": true,
+    "profile_created": "2026-08-12T20:54:26.262914",
+    "profile_updated": "2026-08-12T20:54:26.262430",
+    "last_active": "2026-08-12T20:54:26.262918"
+  }
+}

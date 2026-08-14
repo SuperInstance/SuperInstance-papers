@@ -1,0 +1,37 @@
+================================================================================
+AGENT PROFILING REPORT
+================================================================================
+Generated: 2026-08-12 21:53:59
+Agents Profiled: 1
+
+Agent: test-agent-1
+Type: TaskAgent
+--------------------------------------------------------------------------------
+
+CPU Usage:
+  Percent: 0.00%
+  User Time: 0.00ns
+  System Time: 0.00ns
+
+Memory Usage:
+  RSS: 2.41 GB
+  VMS: 52.33 GB
+  Current: 2469.40 MB
+  Peak: 0.06 MB
+
+A2A Communication:
+  Sent: 0 (0 B)
+  Received: 0 (0 B)
+
+Execution:
+  Process Count: 2
+  Total Time: 20.97ms
+  Avg Time: 10.38ms
+  Max Time: 10.44ms
+
+Value Function:
+  Value: 0.700
+  Successes: 10
+  Failures: 3
+
+================================================================================

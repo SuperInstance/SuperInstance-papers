@@ -13,9 +13,14 @@ sys.path.insert(0, str(Path.cwd()))
 import importlib.util
 
 # Load the multi_agent_debate module directly
+_module_path = Path(__file__).resolve().parent / "research" / "deepinfra-ideation" / "multi_agent_debate.py"
+if not _module_path.exists():
+    # Fallback: try relative to cwd
+    _module_path = Path.cwd() / "research" / "deepinfra-ideation" / "multi_agent_debate.py"
+
 spec = importlib.util.spec_from_file_location(
     "multi_agent_debate",
-    "C:/Users/casey/polln/research/deepinfra-ideation/multi_agent_debate.py"
+    str(_module_path),
 )
 multi_agent_debate = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(multi_agent_debate)

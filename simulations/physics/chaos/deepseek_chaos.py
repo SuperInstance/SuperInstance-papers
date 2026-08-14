@@ -218,20 +218,20 @@ Provide:
 
 Provide:
 1. Takens Embedding Theorem:
-   - Reconstruction: y_n = [x_n, x_{n-τ}, ..., x_{n-(d-1)τ}]
+   - Reconstruction: y_n = [x_n, x_{{n-τ}}, ..., x_{{n-(d-1)τ}}]
    - Embedding dimension: d ≥ 2D + 1 (D = attractor dimension)
    - Time delay τ: mutual information, autocorrelation
    - False nearest neighbors method
 
 2. Fractal Dimensions:
-   - Box-counting: d_B = lim_{ε→0} log(N(ε))/log(1/ε)
-   - Correlation dimension: d_C = lim_{r→0} d(log C(r))/d(log r)
-   - Information dimension: d_I = lim_{ε→0} Σ p_i log(p_i)/log(ε)
-   - Pointwise dimension: d_p(x) = lim_{r→0} log(C(x,r))/log(r)
+   - Box-counting: d_B = lim_{{ε→0}} log(N(ε))/log(1/ε)
+   - Correlation dimension: d_C = lim_{{r→0}} d(log C(r))/d(log r)
+   - Information dimension: d_I = lim_{{ε→0}} Σ p_i log(p_i)/log(ε)
+   - Pointwise dimension: d_p(x) = lim_{{r→0}} log(C(x,r))/log(r)
    - Multifractal spectrum: f(α)
 
 3. Attractor Characterization:
-   - Lyapunov dimension: d_L = j + (λ₁+...+λ_j)/|λ_{j+1}|
+   - Lyapunov dimension: d_L = j + (λ₁+...+λ_j)/|λ_{{j+1}}|
    - Kaplan-Yorke conjecture: d_L ≈ d_C
    - Correlation dimension estimation
 

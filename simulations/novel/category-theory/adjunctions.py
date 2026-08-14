@@ -61,8 +61,8 @@ class Adjunction:
     right_adjoint: Functor  # G: D → C
     unit: Dict[str, Morphism] = field(default_factory=dict)  # η: I_C → GF
     counit: Dict[str, Morphism] = field(default_factory=dict)  # ε: FG → I_D
-    source_category: Category
-    target_category: Category
+    source_category: Optional[Category] = None
+    target_category: Optional[Category] = None
     derivation: Optional[str] = None
     derivation_result: Optional[Any] = None
 

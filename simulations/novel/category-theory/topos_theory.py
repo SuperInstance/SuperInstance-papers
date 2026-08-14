@@ -29,8 +29,8 @@ class ToposType(Enum):
     AGENT_CONFIGURATIONS = "agent_configurations"  # Presheaf topos of agent configs
     COLONY_STATES = "colony_states"  # Topos of colony configurations
     VALUE_ASSIGNMENTS = "value_assignments"  # Heyting algebra of values
-    AGENT_BEHAVIORS = "agent_behaviors"  - Presheaf topos of behaviors
-    TEMPORAL_EVOLUTION = "temporal_evolution"  - Stream topos
+    AGENT_BEHAVIORS = "agent_behaviors"  # Presheaf topos of behaviors
+    TEMPORAL_EVOLUTION = "temporal_evolution"  # Stream topos
 
 
 @dataclass
@@ -344,7 +344,7 @@ class PresheafTopos(Topos):
             Presheaf Topos: [{self.base_category.name}^op, Set]
             - Objects: Presheaves F: C^op → Set
             - Morphisms: Natural transformations
-            - Classifier: Sieves Ω(X) = {downward-closed subsets}
+            - Classifier: Sieves Ω(X) = {{downward-closed subsets}}
             - Yoneda: y(X) = Hom(-, X)
             """
         )

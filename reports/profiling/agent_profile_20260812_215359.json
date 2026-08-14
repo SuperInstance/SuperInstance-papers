@@ -1,0 +1,171 @@
+{
+  "timestamp": 1786600439.116242,
+  "profiles": {
+    "test-agent-1": {
+      "agent_id": "test-agent-1",
+      "agent_type": "TaskAgent",
+      "timestamp": 1786600439.0910974,
+      "cpu_percent": 0.0,
+      "cpu_time_user": 0.0,
+      "cpu_time_system": 0.0,
+      "memory_rss_bytes": 2589351936,
+      "memory_vms_bytes": 56186843136,
+      "memory_mb": 2469.3984375,
+      "memory_peak_mb": 0.06334209442138672,
+      "a2a_sent_count": 0,
+      "a2a_received_count": 0,
+      "a2a_sent_bytes": 0,
+      "a2a_received_bytes": 0,
+      "process_count": 2,
+      "total_process_time": 0.02097296714782715,
+      "avg_process_time": 0.010380387306213379,
+      "max_process_time": 0.010435104370117188,
+      "value_function": 0.7,
+      "success_count": 10,
+      "failure_count": 3,
+      "hotspots": [],
+      "memory_allocations": [
+        {
+          "trace": "/usr/lib/python3.14/cProfile.py:68",
+          "size_bytes": 2496,
+          "size_mb": 0.00238037109375,
+          "count": 39,
+          "average": 64.0
+        },
+        {
+          "trace": "/usr/lib/python3.14/cProfile.py:58",
+          "size_bytes": 1248,
+          "size_mb": 0.001190185546875,
+          "count": 52,
+          "average": 24.0
+        },
+        {
+          "trace": "/home/eileen/projects/SuperInstance-papers/simulations/tooling/profiler/agent_profiler.py:177",
+          "size_bytes": 1141,
+          "size_mb": 0.0010881423950195312,
+          "count": 20,
+          "average": 57.05
+        },
+        {
+          "trace": "/home/eileen/projects/SuperInstance-papers/simulations/tooling/profiler/agent_profiler.py:211",
+          "size_bytes": 958,
+          "size_mb": 0.0009136199951171875,
+          "count": 16,
+          "average": 59.875
+        },
+        {
+          "trace": "<string>:1",
+          "size_bytes": 733,
+          "size_mb": 0.0006990432739257812,
+          "count": 10,
+          "average": 73.3
+        },
+        {
+          "trace": "/home/eileen/.local/lib/python3.14/site-packages/psutil/_common.py:718",
+          "size_bytes": 558,
+          "size_mb": 0.0005321502685546875,
+          "count": 8,
+          "average": 69.75
+        },
+        {
+          "trace": "/home/eileen/projects/SuperInstance-papers/simulations/tooling/profiler/agent_profiler.py:175",
+          "size_bytes": 483,
+          "size_mb": 0.00046062469482421875,
+          "count": 3,
+          "average": 161.0
+        },
+        {
+          "trace": "/usr/lib/python3.14/pstats.py:286",
+          "size_bytes": 448,
+          "size_mb": 0.00042724609375,
+          "count": 7,
+          "average": 64.0
+        },
+        {
+          "trace": "/home/eileen/.local/lib/python3.14/site-packages/psutil/_pslinux.py:1880",
+          "size_bytes": 445,
+          "size_mb": 0.00042438507080078125,
+          "count": 8,
+          "average": 55.625
+        },
+        {
+          "trace": "/home/eileen/.local/lib/python3.14/site-packages/psutil/_pslinux.py:1589",
+          "size_bytes": 400,
+          "size_mb": 0.0003814697265625,
+          "count": 6,
+          "average": 66.66666666666667
+        },
+        {
+          "trace": "/home/eileen/projects/SuperInstance-papers/simulations/tooling/profiler/agent_profiler.py:180",
+          "size_bytes": 384,
+          "size_mb": 0.0003662109375,
+          "count": 5,
+          "average": 76.8
+        },
+        {
+          "trace": "/home/eileen/.local/lib/python3.14/site-packages/psutil/_common.py:682",
+          "size_bytes": 320,
+          "size_mb": 0.00030517578125,
+          "count": 6,
+          "average": 53.333333333333336
+        },
+        {
+          "trace": "/home/eileen/projects/SuperInstance-papers/simulations/tooling/profiler/agent_profiler.py:214",
+          "size_bytes": 320,
+          "size_mb": 0.00030517578125,
+          "count": 1,
+          "average": 320.0
+        },
+        {
+          "trace": "/home/eileen/projects/SuperInstance-papers/simulations/tooling/profiler/agent_profiler.py:186",
+          "size_bytes": 320,
+          "size_mb": 0.00030517578125,
+          "count": 1,
+          "average": 320.0
+        },
+        {
+          "trace": "/home/eileen/projects/SuperInstance-papers/simulations/tooling/profiler/agent_profiler.py:202",
+          "size_bytes": 299,
+          "size_mb": 0.00028514862060546875,
+          "count": 5,
+          "average": 59.8
+        },
+        {
+          "trace": "/usr/lib/python3.14/asyncio/futures.py:323",
+          "size_bytes": 286,
+          "size_mb": 0.0002727508544921875,
+          "count": 4,
+          "average": 71.5
+        },
+        {
+          "trace": "/usr/lib/python3.14/asyncio/tasks.py:696",
+          "size_bytes": 285,
+          "size_mb": 0.00027179718017578125,
+          "count": 4,
+          "average": 71.25
+        },
+        {
+          "trace": "/usr/lib/python3.14/asyncio/futures.py:321",
+          "size_bytes": 284,
+          "size_mb": 0.000270843505859375,
+          "count": 4,
+          "average": 71.0
+        },
+        {
+          "trace": "/usr/lib/python3.14/asyncio/base_events.py:2042",
+          "size_bytes": 282,
+          "size_mb": 0.0002689361572265625,
+          "count": 4,
+          "average": 70.5
+        },
+        {
+          "trace": "/usr/lib/python3.14/asyncio/events.py:43",
+          "size_bytes": 281,
+          "size_mb": 0.00026798248291015625,
+          "count": 4,
+          "average": 70.25
+        }
+      ]
+    }
+  }
+}
