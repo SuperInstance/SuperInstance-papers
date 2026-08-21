@@ -4,7 +4,7 @@
 
 **Authors:** SuperInstance Mathematics Division
 **Date:** August 2026
-**Repository References:** `batten-spline`, `confidence-cascade`, `log-tensor`, `platonic-randomness`
+**Repository References:** `batten-spline`, `confidence-cascade`, `murmur`, `platonic-randomness`
 
 ---
 
@@ -185,7 +185,7 @@ This is precisely the cognitive profile of creative work: moderate familiarity, 
 
 ### 5.1 Certainty-Encoded Search
 
-The Permutation Tensor Transformer (`log-tensor`) provides the mechanism for *searching* the creative zone. The five-dimensional tensor $T[\text{geometry}, \text{trajectory}, \text{momentum}, \text{time}, \text{distance}]$ includes a dedicated `distance` dimension.
+The Permutation Tensor Transformer (`murmur`) provides the mechanism for *searching* the creative zone. The five-dimensional tensor $T[\text{geometry}, \text{trajectory}, \text{momentum}, \text{time}, \text{distance}]$ includes a dedicated `distance` dimension.
 
 **Theorem 5.1** (Distance-Dimension Optimization). The PTT's distance dimension $d_{\text{dist}}$ indexes into the semantic distance axis. The `propagate_change` method (line 295 of `permutation.py`) propagates certainty with decay $\kappa^{d(\text{idx}, \text{center})}$, where the graph distance includes the distance dimension. This means:
 
@@ -381,7 +381,7 @@ The creative zone $0.4 \leq \Delta \leq 0.6$ emerges from three independent deri
 
 - `batten-spline/src/batten_spline/spline.py` — Nadaraya-Watson kernel regression
 - `confidence-cascade/src/confidence-cascade.ts` — Three-zone confidence model
-- `log-tensor/logtensor/transforms/permutation.py` — Distance as first-class quantity, propagate_change
-- `log-tensor/logtensor/transforms/rubiks.py` — Certainty update, attention entropy
+- `murmur/logtensor/transforms/permutation.py` — Distance as first-class quantity, propagate_change
+- `murmur/logtensor/transforms/rubiks.py` — Certainty update, attention entropy
 - `platonic-randomness/src/index.ts` — catan2d6, pyramid distribution, Box-Muller Gaussian
 - `batten-spline/tests/test_property_invariants.py` — Kernel property verification

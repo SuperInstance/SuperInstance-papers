@@ -11,11 +11,11 @@ Five experiment sets that test and extend the mathematical foundations of the fl
 | Repo | Core Contribution | Experiments That Test It |
 |------|-------------------|--------------------------|
 | `base60-lattice` | Bisection/trisection interlace, navigational lattice | EXP-5 (timing structure) |
-| `log-tensor` | Permutation tensors, certainty-encoded depth, HGT homing | EXP-1, EXP-3, EXP-4 |
+| `murmur` | Permutation tensors, certainty-encoded depth, HGT homing | EXP-1, EXP-3, EXP-4 |
 | `batten-spline` | Nadaraya-Watson kernel regression for model routing | EXP-1, EXP-4 |
 | `confidence-cascade` | Sequential/parallel/conditional confidence composition | EXP-4 |
 | `thought-amplifier` | 6 thinking modes, distillation, Pareto profile steering | EXP-1, EXP-2, EXP-3 |
-| `tensor-midi` | 12-pulse jazz engine, 3:4 polyrhythm, flow state detection | EXP-5 |
+| `fleet-jepa-midi` | 12-pulse jazz engine, 3:4 polyrhythm, flow state detection | EXP-5 |
 
 ## Experiment Index
 

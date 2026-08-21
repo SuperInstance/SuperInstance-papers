@@ -39,7 +39,7 @@ Formalizes the nested agent ⊂ harness ⊂ room ⊂ SuperInstance topology as a
 | Repo | Files | Role in Papers |
 |------|-------|----------------|
 | `base60-lattice` | 5 src, 3 tests | Navigational foundation (Paper 3) |
-| `log-tensor` | 45 src, 8 tests | Tensor architecture, layer removal (Papers 1, 2) |
+| `murmur` | 45 src, 8 tests | Tensor architecture, layer removal (Papers 1, 2) |
 | `batten-spline` | 4 src, 8 tests | Kernel regression router (Papers 1, 2, 3) |
 | `platonic-randomness` | 1 src, 2 tests | Probability distributions (Paper 2) |
 | `confidence-cascade` | 2 src, 1 test | Confidence composition (Papers 1, 3) |

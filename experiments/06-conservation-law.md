@@ -20,7 +20,7 @@ We present a formal treatment of the Conservation Law of Intelligence for bounde
 Let $\mathcal{A}$ denote the space of bounded computational agents. Each agent $a \in \mathcal{A}$ is characterized by:
 
 - **Parameter count** $N_a \in \mathbb{N}$ (total trainable parameters)
-- **Tile set** $\mathcal{T}_a = \{t_1, t_2, \ldots, t_k\}$ (compiled reflexes; see `log-tensor/utils/tile_library.py`)
+- **Tile set** $\mathcal{T}_a = \{t_1, t_2, \ldots, t_k\}$ (compiled reflexes; see `murmur/utils/tile_library.py`)
 - **Inference engine** $f_a: \mathcal{X} \to \mathcal{Y}$ (the base model mapping inputs to outputs)
 - **Task distribution** $\mathcal{D}$ (the distribution over tasks the agent faces)
 

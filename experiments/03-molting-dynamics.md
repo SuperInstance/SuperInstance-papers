@@ -1,13 +1,13 @@
 # EXP-3: Hermit Crab Molting Dynamics
 
 **Hypothesis:** Periodic tile reset ("molting") produces long-term performance gains that outweigh the short-term costs.
-**Tests:** The Hermit Crab Molting hypothesis derived from `log-tensor` tile accumulation dynamics and `batten-spline` learning/forgetting balance.
+**Tests:** The Hermit Crab Molting hypothesis derived from `murmur` tile accumulation dynamics and `batten-spline` learning/forgetting balance.
 
 ---
 
 ## Background
 
-Hermit crabs molt: they outgrow their shells, shed their exoskeleton, and harden anew. The process is dangerous (soft body, vulnerable) but necessary (growth requires it). The `log-tensor` tile library (`tile_library.py`) accumulates compiled reflexes (tiles) that make the agent faster on known tasks. The `thought-amplifier` distillation loop (`DISTILLATION.md`) compiles `.nail` reflexes when teaching produces positive deltas. The `batten-spline` learns from outcomes (`learn` method, adding battens).
+Hermit crabs molt: they outgrow their shells, shed their exoskeleton, and harden anew. The process is dangerous (soft body, vulnerable) but necessary (growth requires it). The `murmur` tile library (`tile_library.py`) accumulates compiled reflexes (tiles) that make the agent faster on known tasks. The `thought-amplifier` distillation loop (`DISTILLATION.md`) compiles `.nail` reflexes when teaching produces positive deltas. The `batten-spline` learns from outcomes (`learn` method, adding battens).
 
 But none of these systems *forget*. Tiles accumulate monotonically. Battens are pruned by age (`prune` method, max 500), but only by recency — not strategically. The Rubik's Tensor Transformer's certainty encoding (`rubiks.py`, `cmax` function) explicitly enforces "certainty never decreases." The Conservation Law (EXP-1) predicts this accumulation eventually causes cliff degradation.
 
@@ -382,7 +382,7 @@ class MoltingExperiment:
 
 ## Connection to Fleet Theory
 
-### log-tensor Certainty Reset
+### murmur Certainty Reset
 The RTT's `cmax` function enforces "certainty never decreases." Molting is the *controlled violation* of this invariant — deliberately resetting certainty to force the agent out of compiled reflexes and back into deliberative reasoning. This tests whether the monotonic certainty assumption is optimal or merely safe.
 
 ### batten-spline Decay Dynamics

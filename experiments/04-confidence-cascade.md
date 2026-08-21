@@ -1,7 +1,7 @@
 # EXP-4: Multi-Model Confidence Cascade Diminishing Returns
 
 **Hypothesis:** The accuracy improvement from N-model verification follows a power law with diminishing returns, with a threshold at N=3.
-**Tests:** The `confidence-cascade` sequential/parallel composition and the `log-tensor` multi-model research framework.
+**Tests:** The `confidence-cascade` sequential/parallel composition and the `murmur` multi-model research framework.
 
 ---
 
@@ -13,7 +13,7 @@ The `confidence-cascade` library (`confidence-cascade.ts`) implements three comp
 2. **Parallel cascade:** Confidence averages with weights (different validators contribute differently)
 3. **Conditional cascade:** Confidence depends on which path was taken
 
-The `log-tensor` research module includes a multi-API simulator (`research/multi_api_simulator.py`) that orchestrates DeepSeek, Kimi, and DeepInfra as "ghost tiles" — each model contributing a different perspective.
+The `murmur` research module includes a multi-API simulator (`research/multi_api_simulator.py`) that orchestrates DeepSeek, Kimi, and DeepInfra as "ghost tiles" — each model contributing a different perspective.
 
 The `batten-spline` router (`router.py`) uses a three-tier decision: LOCAL (confident) → CASCADE (try local, escalate) → CLOUD (go straight to cloud). The CASCADE tier is where multi-model verification happens — but the router doesn't specify *how many* models to cascade through.
 

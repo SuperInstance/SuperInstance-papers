@@ -4,7 +4,7 @@
 
 **Authors:** SuperInstance Mathematics Division
 **Date:** August 2026
-**Repository References:** `log-tensor`, `batten-spline`, `confidence-cascade`, `eisenstein`
+**Repository References:** `murmur`, `batten-spline`, `confidence-cascade`, `eisenstein`
 
 ---
 
@@ -32,7 +32,7 @@ for all $t$ during steady-state operation (no external learning injection).
 
 ### 2.1 Architecture
 
-The PTT (`log-tensor/transforms/permutation.py`, `log-tensor/transforms/rubiks.py`) implements a five-dimensional tensor with first-class quantities: geometry, trajectory, momentum, time, and distance. Its core innovation is the *Adaptive Layer Controller* (`AdaptiveLayerController`), which removes transformer layers as certainty increases.
+The PTT (`murmur/transforms/permutation.py`, `murmur/transforms/rubiks.py`) implements a five-dimensional tensor with first-class quantities: geometry, trajectory, momentum, time, and distance. Its core innovation is the *Adaptive Layer Controller* (`AdaptiveLayerController`), which removes transformer layers as certainty increases.
 
 The layer count function from `rubiks.py` (line 437):
 $$L(c) = \left\lfloor L_{\max} \cdot (1 - \bar{c})^2 \right\rfloor$$
@@ -322,8 +322,8 @@ The conservation law $\gamma + \eta \approx C$ emerges naturally from the archit
 
 ## References
 
-- `log-tensor/logtensor/transforms/permutation.py` — PermutationTensor, AdaptiveLayerController, EncodingLibrary
-- `log-tensor/logtensor/transforms/rubiks.py` — CertainTensor, PermutationEquivariantAttention, LayerRemovalGate
+- `murmur/logtensor/transforms/permutation.py` — PermutationTensor, AdaptiveLayerController, EncodingLibrary
+- `murmur/logtensor/transforms/rubiks.py` — CertainTensor, PermutationEquivariantAttention, LayerRemovalGate
 - `batten-spline/src/batten_spline/spline.py` — BattenSpline (Nadaraya-Watson kernel regression)
 - `batten-spline/src/batten_spline/router.py` — CascadeRouter
 - `batten-spline/src/batten_spline/batten.py` — Batten dataclass

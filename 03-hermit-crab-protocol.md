@@ -4,7 +4,7 @@
 
 **Authors:** SuperInstance Mathematics Division
 **Date:** August 2026
-**Repository References:** `eisenstein`, `base60-lattice`, `batten-spline`, `log-tensor`
+**Repository References:** `eisenstein`, `base60-lattice`, `batten-spline`, `murmur`
 
 ---
 
@@ -36,7 +36,7 @@ Each layer adds constraints and capabilities. The agent can molt — shed its cu
 - $\mathcal{C}$ is a set of constraints $\{c_i: S \to \mathbb{B}\}$ (Boolean-valued functions)
 - $\mathcal{E}$ is a set of encodings $\{e_j: S \to S\}$ (constraint-preserving transformations)
 
-This is directly modeled by the `PermutationTensor` class in `log-tensor`:
+This is directly modeled by the `PermutationTensor` class in `murmur`:
 ```python
 class PermutationTensor:
     self.data       # S: the state space
@@ -138,7 +138,7 @@ where the weighted graph has vertices = embeddings, edges weighted by kernel pro
 
 ### 3.3 The PTT Encoding Library as Trans-Shell Memory
 
-The PTT's `EncodingLibrary` (`log-tensor/transforms/permutation.py`, line 281) registers named algorithms with the tensor. These encodings survive molting because they are pure functions:
+The PTT's `EncodingLibrary` (`murmur/transforms/permutation.py`, line 281) registers named algorithms with the tensor. These encodings survive molting because they are pure functions:
 
 $$e: \text{PermutationTensor} \to \text{PermutationTensor}$$
 
@@ -469,6 +469,6 @@ The fleet's architecture — agent ⊂ harness ⊂ room ⊂ SuperInstance — is
 - `batten-spline/src/batten_spline/spline.py` — BattenSpline, state serialization, pruning
 - `batten-spline/src/batten_spline/batten.py` — Batten dataclass, age_weight, distance
 - `batten-spline/src/batten_spline/router.py` — CascadeRouter, state_dict roundtrip
-- `log-tensor/logtensor/transforms/permutation.py` — PermutationTensor, EncodingLibrary, pathway_strength
+- `murmur/logtensor/transforms/permutation.py` — PermutationTensor, EncodingLibrary, pathway_strength
 - `confidence-cascade/src/confidence-cascade.ts` — conditionalCascade, sequentialCascade, parallelCascade
 - `batten-spline/tests/test_property_invariants.py` — state roundtrip tests, kernel properties

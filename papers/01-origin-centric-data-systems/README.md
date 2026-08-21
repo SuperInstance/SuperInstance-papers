@@ -18,5 +18,5 @@ This paper defines what it means to be a "cell" in the SuperInstance architectur
 
 ### Connected Fleet
 - [CNS Bridge](https://github.com/SuperInstance/cns-bridge) — The production implementation
-- [The Living Minds](https://github.com/SuperInstance/the-living-minds) — Five origin nodes, always on
+- [The Living Minds](https://github.com/SuperInstance/the-living-minds) (dead) — Five origin nodes, always on
 - [Fleet Envelope](https://github.com/SuperInstance/fleet-envelope) — Event grammar between origins

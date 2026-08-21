@@ -93,7 +93,7 @@ Successfully investigated all requested advanced mathematical frameworks in cont
 
 3. **Build Compression Benchmark Suite**
    - **Task:** Implement LOG encoder/decoder and compare to traditional tensors
-   - **Files:** New `src/log-tensor/` directory with implementation
+   - **Files:** New `src/murmur/` directory with implementation
    - **Deliverable:** Quantitative compression ratio measurements
    - **Success Criteria:** 10x+ compression demonstrated on real data
 

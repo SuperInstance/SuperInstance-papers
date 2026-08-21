@@ -55,7 +55,7 @@ import json
 # Collect creative outputs from the fleet
 creative_corpus = []
 
-# AI-Writings (from tensor-midi/ai-writings/)
+# AI-Writings (from fleet-jepa-midi/ai-writings/)
 ai_writings_dir = Path('/home/eileen/projects/tensor-midi/ai-writings')
 for f in ai_writings_dir.rglob('*.md'):
     creative_corpus.append({

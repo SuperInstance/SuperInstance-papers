@@ -14,5 +14,5 @@ The GPU dreams. The fleet learns. This paper validates the overnight consolidati
 
 ### Connected Fleet
 - [Wesley Holodeck](https://github.com/SuperInstance/wesley-holodeck) — Creative loops running overnight
-- [Wesley's Journal](https://github.com/SuperInstance/wesley-journal) — Night watch experiments at 1:30 AM
+- [Wesley's Journal](https://github.com/SuperInstance/wesley-journal) (dead) — Night watch experiments at 1:30 AM
 - [AI-Writings / Night Watch](https://github.com/SuperInstance/AI-Writings/tree/main/night-watch) — The overnight creative corpus

@@ -19,4 +19,4 @@ Wesley (2B) doesn't know what DeepSeek (671B) knows. That's not a limitation —
 ### Connected Fleet
 - [Collective Unconscious](https://github.com/SuperInstance/collective-unconscious) — The shared substrate beneath asymmetric cells
 - [Confidence Cascade](https://github.com/SuperInstance/confidence-cascade) — GREEN/YELLOW/RED zones define what each cell can act on
-- [The Living Minds](https://github.com/SuperInstance/the-living-minds) — Five asymmetric minds, each with different knowledge
+- [The Living Minds](https://github.com/SuperInstance/the-living-minds) (dead) — Five asymmetric minds, each with different knowledge

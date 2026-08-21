@@ -1,13 +1,13 @@
 # EXP-1: Conservation Law of Intelligence
 
 **Hypothesis:** Increasing compiled reflex density (tiles) decreases inferential flexibility proportionally.
-**Tests:** The Conservation Law claim from `log-tensor` tile library and `thought-amplifier` distillation loop.
+**Tests:** The Conservation Law claim from `murmur` tile library and `thought-amplifier` distillation loop.
 
 ---
 
 ## Background
 
-The `log-tensor` tile library (`logtensor/utils/tile_library.py`) implements composable mathematical tiles — compiled reflex sequences that execute without deliberation. The `thought-amplifier` distillation loop (`DISTILLATION.md`) compiles positive-delta teaching lessons into `.nail` reflexes. Both repos assume that compiled tiles are *beneficial* — they save compute, speed up responses, improve consistency.
+The `murmur` tile library (`logtensor/utils/tile_library.py`) implements composable mathematical tiles — compiled reflex sequences that execute without deliberation. The `thought-amplifier` distillation loop (`DISTILLATION.md`) compiles positive-delta teaching lessons into `.nail` reflexes. Both repos assume that compiled tiles are *beneficial* — they save compute, speed up responses, improve consistency.
 
 But the Conservation Law of Intelligence predicts a hidden cost: **capacity converted into automatic reflexes is removed from inferential flexibility.** The `thought-amplifier`'s own revised formal model (`ethos/REVISED_FORMAL_MODEL.md`) demonstrated that interventions produce *trade-offs*, not improvements — the Pareto frontier of quality is a surface, not a summit. This experiment tests whether tile accumulation itself follows the same conservation principle.
 
@@ -292,7 +292,7 @@ class ConservationLawExperiment:
 
 - `thought-amplifier/run_distillation.py` — Already exists, operational
 - `batten-spline` — 196 tests passing, production-ready
-- `log-tensor/utils/tile_library.py` — Tile counting and composition analysis
+- `murmur/utils/tile_library.py` — Tile counting and composition analysis
 - Fleet API keys (GLM, DeepSeek) — Already configured
 - Estimated runtime: 48 hours per agent, parallelizable across agents
 
@@ -300,7 +300,7 @@ class ConservationLawExperiment:
 
 ## Connection to Fleet Theory
 
-This experiment directly tests the core assumption underlying the `log-tensor` Rubik's Tensor Transformer: `L(c) = ⌊L_max · (1 - mean(c))²⌋`. If the conservation law holds with exponent ~1 (linear), the quadratic layer removal in RTT is *too aggressive* — it removes layers faster than flexibility is being lost. If the conservation exponent is ~2, the RTT formula is exactly right.
+This experiment directly tests the core assumption underlying the `murmur` Rubik's Tensor Transformer: `L(c) = ⌊L_max · (1 - mean(c))²⌋`. If the conservation law holds with exponent ~1 (linear), the quadratic layer removal in RTT is *too aggressive* — it removes layers faster than flexibility is being lost. If the conservation exponent is ~2, the RTT formula is exactly right.
 
 The `batten-spline` router (`router.py`) makes routing decisions based on the assumption that LOCAL routing (tile hit) is safe when confidence ≥ 0.7. If high tile density causes cliff degradation, the threshold needs to be adaptive: lower in high-tile-density regimes.
 

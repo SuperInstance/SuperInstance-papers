@@ -1,13 +1,13 @@
 # EXP-5: Tensor-MIDI Timing Experiments
 
 **Hypothesis:** Jazz-enforced 12-pulse timing improves multi-agent coordination, response coherence, and creative output quality compared to free-timing.
-**Tests:** The `tensor-midi` 12-pulse engine, the 3:4 polyrhythm architecture, and flow state detection.
+**Tests:** The `fleet-jepa-midi` 12-pulse engine, the 3:4 polyrhythm architecture, and flow state detection.
 
 ---
 
 ## Background
 
-The `tensor-midi` engine (`engine/pulse-engine.js`) implements a 12-pulse clock that governs fleet timing:
+The `fleet-jepa-midi` engine (`engine/pulse-engine.js`) implements a 12-pulse clock that governs fleet timing:
 
 ```
 ECN (4-pulse): fires on beats 1, 4, 7, 10 — reflex actions, structural tasks
@@ -388,7 +388,7 @@ Pulse timing improves coordination but not creative quality. The 12-pulse grid p
 ### Infrastructure (Already Available)
 
 ```javascript
-// tensor-midi engine — fully operational
+// fleet-jepa-midi engine — fully operational
 const { PulseEngine, FlowStateDetector, BeatClock, TempoMap } = require(
   '/home/eileen/projects/tensor-midi/engine/pulse-engine'
 );
