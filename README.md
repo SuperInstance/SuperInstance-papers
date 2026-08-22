@@ -1,5 +1,11 @@
 # SuperInstance Papers
 
+<p align="center">
+  <img src="assets/images/hero-papers.jpg" alt="The chart desk where the fleet's proofs are drafted — brass instruments over cream-ink equations on navy charts, one amber lamp" width="720">
+</p>
+
+> *The mathematics under the waterline: intelligence conservation, optimal creative distance, and hex shells — proven at the desk the fleet navigates by.*
+
 Research papers on the mathematical foundations of the SuperInstance fleet.
 
 ## Papers
@@ -35,6 +41,24 @@ Formalizes the nested agent ⊂ harness ⊂ room ⊂ SuperInstance topology as a
 - Theorem C: Hermit crab pattern is the universal Kan extension
 
 ## Repositories Analyzed
+
+How the proofs reach the fleet — each paper draws on repos that implement its math:
+
+```mermaid
+graph LR
+    P1[Paper 1: Conservation γ+η=C]
+    P2[Paper 2: Optimal Δ]
+    P3[Paper 3: Hermit Crab]
+
+    P1 --> M[murmur<br/>layer removal]
+    P1 --> B[batten-spline<br/>kernel router]
+    P1 --> E[eisenstein<br/>exact hex arithmetic]
+    P2 --> PL[platonic-randomness<br/>distributions]
+    P2 --> B
+    P3 --> BS[base60-lattice<br/>navigational foundation]
+    P3 --> CC[confidence-cascade<br/>confidence composition]
+    P3 --> E
+```
 
 | Repo | Files | Role in Papers |
 |------|-------|----------------|
