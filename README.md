@@ -40,6 +40,16 @@ Formalizes the nested agent ⊂ harness ⊂ room ⊂ SuperInstance topology as a
 - Theorem B: Shell automorphism group is D₆ (dihedral order 12)
 - Theorem C: Hermit crab pattern is the universal Kan extension
 
+### 4. Objective Intelligence: Coherence No One Owns
+**File:** 
+
+Defines intelligence by elimination — not rendering (the calculator), not using (the clock network), not being affected (the alarm clock) — leaving the originating act of conceptualisation, and identifies its second mode: objective intelligence, integration into coherence performed by a configuration itself, owned by no party, with the rainbow and the tuned chord as type specimens. Perspective is argued to be a different kind of thing from a dichotomy, and shared state between sovereign observers is located in ledger agreements, never in a common store. Sections 1-6 and 8 are drafted and have passed two referee passes; section 7 (the minimal working anatomy) is reserved, and one definitional fork in section 2 - whether a rendering requires an occupied station or only a possible one - awaits the authors ruling. The running reference implementation the papers claims are gated on is [quilt-engine](https://github.com/SuperInstance/quilt-engine).
+
+**Key results:**
+- Intelligence located by elimination: the minting of concepts, not their spending
+- Objective intelligence defined: coherence computed by a configuration, rendered at a station, owned by none
+- Agreements with handles: words and memes as compression keys into two logs at once
+
 ## Repositories Analyzed
 
 How the proofs reach the fleet — each paper draws on repos that implement its math:
