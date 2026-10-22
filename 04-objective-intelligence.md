@@ -309,9 +309,12 @@ the vector:** the clues in a present state — the birds' wakes, the
 wet ground after rain — encode the immediate past's motion, and the
 senses extrapolate from them. A reading, honestly described, is a
 value together with the motion that produced it and the date at
-which it was taken. That is the normative form: the
-implementation at present carries value, date, and provenance,
-with the vector the open direction. The date is not bookkeeping. It is part of the
+which it was taken. That is the normative form; as of v0.1 the
+implementation carries value, date, provenance, and a vector in
+minimal form — a trend derived from recent readings of the same
+tell, projecting a capped distance ahead, with any decision that
+consults a projection recording that use in the seam log. The
+date is not bookkeeping. It is part of the
 reading's content, because readings age. The fog of war is the
 normal condition of a sovereign observer, not an engineering
 embarrassment: your record of another cell is a reading from when
@@ -325,15 +328,20 @@ This much, the practice already exhibits. In the reference
 implementation each observer keeps its own book of readings, every
 reading dated; the pool from which the receiver judges is made of
 ageing readings, and staleness is a visible property of the state,
-not an afterthought. What the implementation does *not* yet exhibit
-is the stronger claim this section has been building toward:
-wake-style extrapolation — reading the vector out of the tell and
-projecting where the other side must be now. That prediction layer
-is the first of the three open gaps named in §8, and this paper
-claims it as a direction, not as a result. The honest summary of §4
-is asymmetric: staleness is demonstrated; the tell is defined; the
-reading of the tell by a machine observer remains, for now, the
-programme's clearest statement of what it has not built.
+not an afterthought. Of the stronger claim this section has been
+building toward — wake-style extrapolation, reading the vector out
+of the tell and projecting where the other side must be now — the
+implementation exhibits the minimal form: a trend derived from
+recent readings of the same tell, projected a capped distance
+ahead — linear, local, short-horizon — with any decision that
+consults the projection recording that use in the seam log. What
+remains open is everything richer: the curved wake, the change of
+regime, the learned predictor — the first of the three open gaps
+named in §8. The honest summary of §4 is asymmetric: staleness is
+demonstrated; the tell is defined; its minimal reading by a
+machine observer is now exhibited; the full reading of the tell
+remains the programme's clearest statement of what it is still
+building toward.
 
 ## 5. Agreements with handles
 
@@ -564,10 +572,12 @@ nowhere single, and never whole.
 
 The limits, stated with the same plainness §8 will use. The
 implementation's readings carry value, date, provenance, and
-staleness; they do not yet carry an extracted vector. Wake-style
-extrapolation from a tell — §4's stronger claim — is unbuilt in
-v0, and building it is programme direction, not a result this paper
-reports. The agreement exhibited is agreement over typed envelopes
+staleness; as of v0.1 they also carry an extracted vector in
+minimal form — a trend derived from recent readings of the same
+tell — and wake-style extrapolation from that trend is built and
+tested over a short, capped horizon. What remains open is
+everything past that horizon: the curved wake, the change of
+regime, the learned predictor. The agreement exhibited is agreement over typed envelopes
 crossing one seam between two processes; agreement-minting for
 payload transfers — value that actually moves, between parties who
 may dispute the move — is the second open gap, present here only
