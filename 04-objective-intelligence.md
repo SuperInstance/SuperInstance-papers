@@ -4,8 +4,8 @@
 
 Casey DiGennaro — SuperInstance papers line, draft 2026-10-21
 
-Status: draft, sections 1–6 and 8 drafted; §7 reserved pending the
-author's ruling on §2.
+Status: draft, sections 1–8 drafted; section 2 fork awaiting author
+ruling.
 
 ---
 
@@ -380,9 +380,9 @@ is a ledger of deductions and contributions, of crossings, and the
 fiction it maintains is not a pretence: it is operational reality,
 the only shared reality two perspectives can have.
 
-The reference implementation exhibits the minimal case, and §7's
-reservation notwithstanding it is worth naming here what the demo
-actually shows. Two processes, each with its own book, exchange
+The reference implementation exhibits the minimal case, and it is
+worth naming here what the demo actually shows, before §7 takes
+the anatomy up in full. Two processes, each with its own book, exchange
 envelopes; a crossing counts as shared only where the sender's SEND
 and the receiver's RECEIVE agree — on identity and on payload
 hash — and
@@ -475,8 +475,121 @@ the truth it approximates.
 
 ## 7. A minimal working anatomy
 
-[Reserved — minimal working anatomy and the Turing contrast; awaits
-the author's ruling on §2]
+Everything claimed so far has been argued from specimens — a
+rainbow, a wake, a guitarist's ear — and from counterexamples. This
+section does the opposite of arguing: it exhibits. If the preceding
+sections are right, there should exist a smallest working system in
+which the paper's central arrangements actually occur — sovereign
+observers, dated readings, agreement as the only shared state — and
+anyone should be able to run it and watch. There is. It is
+deliberately small, and this section describes exactly what it
+demonstrates, and no more.
+
+Call the smallest such system an anatomy of two active items. The
+first is an **active log**: one participant's current readings of
+every other participant, taken from its own perspective and each
+one dated — its own state known first-hand, everything else held as
+readings that age (§4). The second is an **active ledger**: not a
+ledger of account values but of crossings, payloads booked as a
+SEND by the side that sent them and as a RECEIVE by the side that
+took them, every entry stamped with the identity of the contract —
+the agreed algorithm — that governed the crossing (§5). The claim
+of minimality is the absence of a third item. There is no shared
+store, no common book, no place where the system's state is written
+whole. What two participants share is exactly the set of crossings
+their two ledgers agree on, and it is constituted by that agreement
+and exists nowhere else.
+
+The reference implementation is **quilt-engine v0**, public in the
+SuperInstance/quilt-engine repository (commit `b36d67c`),
+exercised by a suite of 28 tests. It is two OS processes with no
+shared memory and no shared database; each holds only its own book
+of readings and bookings, and the only things that cross between
+them are transmission envelopes. A sender process projects typed
+answers across the seam, each projection travelling under a
+contract that states what it outputs, on what grounds, and at what
+cost. A receiver process judges. The judging is where the paper's
+disciplines become machinery, so it is worth being exact about what
+the receiver does not do: it never scores a candidate absolutely.
+It holds a pool of candidate readings and picks *comparatively*,
+candidate against candidate, under its own questions — the
+comparative discipline of §3, implemented as the only decision
+path the code contains.
+
+The receiver's steering is the deadband of §6, running. It holds
+two learned, context-set parameters — a band around the expected
+course, and a yaw-time — and returns exactly three outcomes:
+**Hold** inside the band; **HoldWatch** outside the band while an
+excursion is younger than its yaw-time; **Act** when an excursion
+persists past it. In the demonstration run, a strong candidate
+arrives once and its reading goes stale inside the yaw-time — the
+excursion is watched, never acted on, and the receiver settles back
+to Hold as the reading ages out: the wave behaviour, exhibited
+mechanically rather than asserted. A candidate refreshed past its
+yaw-time is acted on. On an injected clock, the tests show the same
+boundary approached from both sides.
+
+And the crossings are booked the way §5 says crossings are booked.
+A crossing counts as shared only where one side's SEND matches the
+other's RECEIVE on identity and payload hash; the shared entries
+are minted by that match, not recorded by either side alone. Where
+the two processes' accounts of the same event differ, the record
+keeps the disagreement *verbatim* — both accounts, unaveraged —
+alongside the agreements. The kill tests show what the anatomy
+costs and buys under failure: kill the receiver mid-run and the
+sender completes its work with its later crossings standing in its
+own ledger as unagreed, which is precisely what they are; kill the
+sender and the receiver survives, its session-end accounting for
+the excursion left open. The system's shared reality shrinks,
+under damage, to exactly what was actually agreed — automatically,
+because there was never anywhere else for it to live.
+
+It is worth naming the model of computation this is not. Turing's
+machine has a single iterator — one head, reading and writing an
+endless tape — and the state of the computation lives in one place:
+in the machine and on its tape, whole and in principle inspectable.
+The tape is the God's-eye view, formalised. The anatomy above is
+the opposite arrangement. There are many iterators. Each holds a
+*shifting context window* — its active log, sliding as readings
+arrive, age, and are displaced — and the windows overlap exactly
+where two ledgers agree, and nowhere else. The graph the windows
+form is ordered time-first: readings are dated, sequence is time,
+and an agreement is an event in that order before it is a fact in
+anyone's book. (The programme's exploration of that time-first
+graph form in its own right is chrono-tensor; this paper needs
+only the contrast.) There is no tape. Ask where the system's state
+is, and the only honest answer is a list — in this window, in that
+one, and in the overlaps where two books agree — which is to say:
+nowhere single, and never whole.
+
+The limits, stated with the same plainness §8 will use. The
+implementation's readings carry value, date, provenance, and
+staleness; they do not yet carry an extracted vector. Wake-style
+extrapolation from a tell — §4's stronger claim — is unbuilt in
+v0, and building it is programme direction, not a result this paper
+reports. The agreement exhibited is agreement over typed envelopes
+crossing one seam between two processes; agreement-minting for
+payload transfers — value that actually moves, between parties who
+may dispute the move — is the second open gap, present here only
+in miniature. Every ledger entry carries its contract's identity;
+contract *version*, and the behaviour of standing agreements
+across a contract's revision, is the third gap, unbuilt. And two
+processes are two processes: the demo says nothing about fleets,
+about hundreds of windows overlapping at once, and this section
+claims nothing at that scale.
+
+One neutrality, stated explicitly. Nothing in this section turns
+on the fork §2 leaves open. The anatomy is built from occupied
+stations by construction — each log exists because an observer
+keeps it — but whether the *coherence* of §2 requires an occupied
+station or only a possible one is a question about the definition,
+not about the machinery, and the machinery described here is
+unchanged by either answer. The smallest system stands under both
+rulings. What it exhibits either way is the paper's architectural
+claim in its least deniable form: two sovereign books, dated
+readings, judgment by comparison inside a band of tolerance, and
+shared state that exists only where the books agree — coherence,
+such as the system has, that no participant owns.
 
 ## 8. Limits and open seams
 
@@ -506,7 +619,8 @@ a way an observer can check — reintroduces the occupied observer
 §2 worked to make optional. This paper does not yet choose. The
 related question flagged in §2 — whether objective intelligence
 requires an *occupied* station or only a possible one — likewise
-awaits the author's ruling, and §7 is reserved until it lands; the
+awaits the author's ruling — §7 is written to stand under either
+outcome — and the
 mirage problem and the station problem are, on inspection, the same
 wound seen from two sides.
 
