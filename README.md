@@ -50,6 +50,17 @@ Defines intelligence by elimination — not rendering (the calculator), not usin
 - Objective intelligence defined: coherence computed by a configuration, rendered at a station, owned by none
 - Agreements with handles: words and memes as compression keys into two logs at once
 
+### 5. System Three: External Processing, Attestation Chains and the Forecast as Predictive Attestation
+**File:** `05-system-three.md`
+
+Defines a third layer of an agent's processing by locus, latency and function: external production whose outputs reach action only through adjudication and compilation. Reliance on executing parties that cannot be inspected is made sound by a three-party attestation architecture — a certifier, desireless executing parties, and attestation chains under which a relying party's obligations are invariant to attestation failure. Its central instrument is the predictive attestation, the executing party's scored forecast of scope, cost and duration, on which every exposure is sized; because elapsed lateness against a relied-upon forecast cannot be recovered, conformance is tested continuously against the forecast as well as terminally against the specification. Process record, research packs, outlines, adjudication and adversarial review: `system-three-process/`.
+
+**Key results:**
+- Definitions 1–8, Propositions 1–6: the three-layer arrangement, with System 3 fixed by a mediation condition
+- Definitions 9–15, Propositions 7–11: certification, desireless execution and attestation chains; obligations invariant to attestation failure
+- Definitions 16–17, Propositions 12–15: the predictive attestation — the forward-looking counterpart of the receipt
+- Definitions 18–20, Propositions 16–18: the two-test conformance requirement (forecast-relative and specification-relative)
+
 ## Repositories Analyzed
 
 How the proofs reach the fleet — each paper draws on repos that implement its math:
