@@ -31,14 +31,35 @@ deleted; every decision below was additive.
 
 ## Date-evidence policy
 
-Best evidence wins, in this order: **stated in the document** (`stated`, 223 records) →
-**real git first-commit** for paths with pre-consolidation history (`git`, 39) → **date in
-filename or folder timestamp** (`inferred`, 1) → **undated** (93, listed honestly at the
-end of the ledger). Dates were never invented. Two policy calls to know about:
+Best evidence wins, in this order: **stated in the document** (`stated`, 222 records) →
+**git first-commit in this repo** for paths with pre-consolidation history (`git`, 39) →
+**git first-commit in the paper's source repo** for copies, using the provenance in
+`LIBRARY-INVENTORY.md` and the sweep clones (`git`, 77 — added in a follow-up pass on
+2026-10-28, described below) → **date in filename or folder timestamp** (`inferred`, 1) →
+**undated** (16, listed honestly at the end of the ledger). Dates were never invented.
+
+**The source-repo pass (2026-10-28 follow-up).** The first pass left 93 papers undated
+because their only git presence was the 2026-10-28 consolidation copy-in. The follow-up
+unshallowed the sweep clones (`~/papers-sweep`), cloned `SuperInstance/AI-Writings` fresh
+(the sweep copy had no `.git`), and took each undated paper's first-commit date in its
+source repo (`git log --diff-filter=A --follow`), marking those `git`. Notable honest
+nuances: the fm-papers corpus is single-batch in its source repo, so all 30 previously
+undated fm files carry 2026-05-22 — the "*Extract papers from forgemaster vessel*"
+commit, the corpus-formation date rather than per-paper authorship (papers that state
+their own 2026-05-12…16 dates keep those); the WP-01–12 series carries 2026-10-03, the
+quilt-whitepapers repo's founding commit; the Cocapn trio and `counting-before-flowing`
+carry 2026-05-02, the papers repo's founding batch.
+
+**The 16 still-undated papers** carry `date_confidence: "inferred"` with a null date in
+`papers-index.json` — the marker means "no date recoverable anywhere": no date in the
+document, none in the filename, no pre-consolidation history in this repo, and no git
+behind the source (13 concept papers from the local `~/workspace/concepts/` collection
+and 3 research notes, none of which are git-tracked in their home location). The basis
+is recorded per record in the digest's date-evidence notes. Two policy calls to know
+about:
 
 - The 2026-10-28 consolidation commit is a **copy-in date, not a writing date**; it is
-  recorded once at the head of the ledger, not per paper. Most of the 93 undated papers
-  are consolidation copies whose documents carry no date.
+  recorded once at the head of the ledger, not per paper.
 - A few stated dates look internally inconsistent — `17-The-Quilt-Stack.md` and
   `paper_32_seven_substrates.md` say "October 2023" against 2025–26 siblings (paper_32 is
   also truncated mid-table), and P67/P68 say "January 2025" while the same research run's
@@ -94,8 +115,9 @@ cross-list freely (a paper averages ~2.8 topics). Two deliberate choices:
 ## Coverage, honestly stated
 
 - **355 papers digested; 0 document files missed** in the corpus areas (machine-audited
-  against the file tree). 262 carry a date (223 stated, 39 git, 1 inferred); 93 are
-  undated.
+  against the file tree). 339 carry a date (222 stated, 116 git — 39 from this repo's
+  history and 77 from source-repo history, 1 inferred from a filename); 16 are undated
+  with the search exhausted.
 - **Read closely:** the formal series (01–05), the concept papers (all short), the
   Mycelium PDF extraction, and the load-bearing synthesis papers (paper_37, WP-10/11/12,
   the fleet audits, the active-log lineage report).
@@ -115,6 +137,11 @@ cross-list freely (a paper averages ~2.8 topics). Two deliberate choices:
 - An early coverage-audit script had a bug (iterating a literal `'path'` string instead of
   each record's path) that under-reported coverage; found and fixed before it could
   mislead — the final audit reports zero missing.
+- The source-repo dating pass had two bugs of its own, both caught by their impossible
+  output: an invalid `--date=short-iso` git format (every query silently failed) and an
+  inventory parser that dropped sources with parenthesised suffixes ("(repo root)",
+  "(see corpus note)"), mis-filing three whole clusters as local. After fixing, the pass
+  dated 77 papers and left 16 genuinely undatable.
 - The corpus itself carries the problems documented in the salvage notebook: four
   numbering universes, five FLUX opcode counts, contradictory fleet-scale numbers,
   suspect early dates, and cited-but-absent artefacts (`research/lucineer_analysis/`,

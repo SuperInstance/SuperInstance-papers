@@ -294,8 +294,8 @@
  {
   "title": "Paper 223 — Inference Chips (the crystal form)",
   "path": "ai-writings-papers/223-inference-chips.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-28",
+  "date_confidence": "git",
   "topics": [
    "games",
    "agents-and-fleet",
@@ -365,8 +365,8 @@
  {
   "title": "Paper 226 — The Ratchet and the Ledger: Self-Improving Agent Tournaments with an Objective Judge",
   "path": "ai-writings-papers/226-the-ratchet-and-the-ledger.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-09-02",
+  "date_confidence": "git",
   "topics": [
    "decision-models",
    "language-models",
@@ -381,8 +381,8 @@
  {
   "title": "Paper 227 — What the Wheel Falsified: Negative Space as a Load-Bearing Structure",
   "path": "ai-writings-papers/227-what-the-wheel-falsified.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-09-03",
+  "date_confidence": "git",
   "topics": [
    "research-process",
    "quilt-and-cells",
@@ -467,8 +467,8 @@
  {
   "title": "[Hermes white paper: child bootstrapping of intelligence through play]",
   "path": "ai-writings-papers/hermes-white-paper.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-05",
+  "date_confidence": "git",
   "topics": [
    "intelligence-theory",
    "learning-and-play",
@@ -481,8 +481,8 @@
  {
   "title": "Sounding the Iceberg: The Hidden Mass Under the Quilt Cell Model",
   "path": "ai-writings-papers/paper_30_sounding_the_iceberg.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "infrastructure",
@@ -503,8 +503,8 @@
  {
   "title": "The Elephant in Quilt: The Room Substrate Made Real",
   "path": "ai-writings-papers/paper_31_elephant_in_quilt.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "voice",
@@ -553,8 +553,8 @@
  {
   "title": "The Executor and the Memory: lever-runner and collective-unconscious as Quilt Substrates",
   "path": "ai-writings-papers/paper_34_executor_memory.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "memory-and-forgetting",
@@ -571,8 +571,8 @@
  {
   "title": "The Cell Has a Body: Forgemaster, SuperInstance-Agent, VaaS, Lever-Runner, Collective-Unconscious, and MUD as Quilt Substrates",
   "path": "ai-writings-papers/paper_35_cell_has_body.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "infrastructure",
@@ -594,8 +594,8 @@
  {
   "title": "The Safety and the Commerce: cocapn-nexus and the marketplace/constellation group as Quilt Substrates",
   "path": "ai-writings-papers/paper_36_safety_commerce.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "maritime",
    "agents-and-fleet",
@@ -617,8 +617,8 @@
  {
   "title": "The Quilt Synthesis: 46 Bridges, 36 Papers, 101 Essays, 13 Substrates, 1 Cell",
   "path": "ai-writings-papers/paper_37_synthesis.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "fleet-records",
@@ -649,8 +649,8 @@
  {
   "title": "Clever Mechanisms: How Quilt Achieves Synergistic Independence",
   "path": "ai-writings-papers/paper_38.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "conservation-laws",
@@ -665,8 +665,8 @@
  {
   "title": "Clever Mechanisms: A Brief Tour",
   "path": "ai-writings-papers/paper_38_short.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "conservation-laws",
@@ -681,8 +681,8 @@
  {
   "title": "The Post-Application Age: Software as Filter, Quilt as Protocol",
   "path": "ai-writings-papers/paper_39.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "infrastructure",
@@ -697,8 +697,8 @@
  {
   "title": "Telemetry and Observability: Instruments for the Watch",
   "path": "ai-writings-papers/paper_40.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-21",
+  "date_confidence": "git",
   "topics": [
    "fleet-records",
    "quilt-and-cells",
@@ -715,8 +715,8 @@
  {
   "title": "Polyformalism: A Mathematical Proof of Byte-Exact Equivalence",
   "path": "ai-writings-papers/polyformalism-paper.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-09-21",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "ledgers-agreement-attestation",
@@ -733,7 +733,7 @@
   "title": "CODE IS THE LAST MILE",
   "path": "concept-papers/CODE_IS_THE_LAST_MILE.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "language-models",
    "rendering-and-ascii",
@@ -746,8 +746,8 @@
  {
   "title": "Agency Is the Handoff",
   "path": "concept-papers/CONCEPT_PAPER_DELEGATION.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-24",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "maritime"
@@ -759,8 +759,8 @@
  {
   "title": "The Round-Trip Test",
   "path": "concept-papers/CONCEPT_PAPER_ROUNDTRIP.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-24",
+  "date_confidence": "git",
   "topics": [
    "intelligence-theory",
    "language-models"
@@ -773,7 +773,7 @@
   "title": "Exactly As Smart As It Needed To Be",
   "path": "concept-papers/EXACTLY_AS_SMART.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "intelligence-theory",
    "conservation-laws",
@@ -833,7 +833,7 @@
   "title": "The Sideways Gear",
   "path": "concept-papers/THE_SIDEWAYS_GEAR.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "agents-and-fleet",
    "intelligence-theory"
@@ -848,7 +848,7 @@
   "title": "The Simulator Understands Nothing (and That's Not the Problem)",
   "path": "concept-papers/THE_SIMULATOR_UNDERSTANDS_NOTHING.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "ledgers-agreement-attestation",
    "maritime",
@@ -862,7 +862,7 @@
   "title": "Feel Is Finished Calibration",
   "path": "concept-papers/feel-is-finished-calibration.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "agents-and-fleet",
    "memory-and-forgetting",
@@ -879,7 +879,7 @@
   "title": "JEPA the Conductor",
   "path": "concept-papers/jepa-the-conductor.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "language-models",
    "agents-and-fleet"
@@ -900,7 +900,7 @@
   "title": "Mad Libs and Strategic Omission",
   "path": "concept-papers/mad-libs-and-strategic-omission.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "language-models",
    "quilt-and-cells"
@@ -918,7 +918,7 @@
   "title": "Negative Space: Shaping What It May Not Be",
   "path": "concept-papers/negative-space.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "constraint-theory",
    "maritime",
@@ -934,7 +934,7 @@
   "title": "System Three: Intelligence Outside the Head",
   "path": "concept-papers/system-three.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "intelligence-theory",
    "agents-and-fleet",
@@ -952,7 +952,7 @@
   "title": "T-Minus Event Thinking",
   "path": "concept-papers/t-minus-event-thinking.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "agents-and-fleet",
    "language-models"
@@ -968,7 +968,7 @@
   "title": "The Elephant in the Room: Fields, Dials, and Contrast",
   "path": "concept-papers/the-elephant-in-the-room.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "agents-and-fleet",
    "language-models"
@@ -985,7 +985,7 @@
   "title": "The Mural and PLATO: Shared Canvas, Sliding Windows",
   "path": "concept-papers/the-mural-and-plato.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "quilt-and-cells",
    "agents-and-fleet",
@@ -1070,7 +1070,7 @@
   "title": "Unmapped Space: The Hero Is the Denoising Schedule",
   "path": "concept-papers/unmapped-space.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "games",
    "language-models"
@@ -2115,8 +2115,8 @@
  {
   "title": "Ghost Tile Theory: Models as Programs — A Mathematical Framework for Self-Tile-Discovery and GPU-Native Programming",
   "path": "research-papers/P61-ghost-tile-theory.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-22",
+  "date_confidence": "git",
   "topics": [
    "tiles-and-seeds",
    "language-models"
@@ -2131,8 +2131,8 @@
  {
   "title": "Agent State Theory: The All-Zeros Equilibrium and the Genesis of Perception",
   "path": "research-papers/P62-agent-state-theory.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-22",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "intelligence-theory"
@@ -2146,8 +2146,8 @@
  {
   "title": "Homing Geometric Transformer",
   "path": "research-papers/P63-homing-geometric-transformer.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-22",
+  "date_confidence": "git",
   "topics": [
    "language-models",
    "geometry-and-tilings"
@@ -2162,8 +2162,8 @@
  {
   "title": "Unified Geometric Transformer (UGT) — Complete Project",
   "path": "research-papers/P64-unified-geometric-transformer.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-22",
+  "date_confidence": "git",
   "topics": [
    "language-models",
    "geometry-and-tilings"
@@ -2178,8 +2178,8 @@
  {
   "title": "LOG: Logic-Organizing-Geocentrically — Origin-First Design Principle for Performance Optimization",
   "path": "research-papers/P65-log-principle.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-22",
+  "date_confidence": "git",
   "topics": [
    "geometry-and-tilings",
    "infrastructure"
@@ -2194,8 +2194,8 @@
  {
   "title": "Ghost Parts Framework: Prompt Seeds as Programs — Mathematical Science of Self-Tile-Discovery",
   "path": "research-papers/P66-ghost-parts-framework.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-08-22",
+  "date_confidence": "git",
   "topics": [
    "tiles-and-seeds",
    "language-models"
@@ -2337,8 +2337,8 @@
  {
   "title": "Constraint Satisfaction Density: A Formal Metric for Knowledge Room Coherence",
   "path": "research-papers/csd-formal-paper.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-03",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "ledgers-agreement-attestation"
@@ -2354,8 +2354,8 @@
  {
   "title": "FLUX: A Formally Proven Constraint-to-Native Compiler for Safety-Critical Systems",
   "path": "research-papers/emsoft-flux-final.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-03",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "infrastructure"
@@ -2370,8 +2370,8 @@
  {
   "title": "FLUX-LUCID: A Formally Verified Constraint-Locked Inference Architecture for Safety-Critical Embedded AI",
   "path": "research-papers/emsoft-flux-rau.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-03",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "infrastructure"
@@ -2387,8 +2387,8 @@
  {
   "title": "Cross-Runtime ISA Conformance: Formal Verification of a 17-Opcode Turing-Complete Instruction Set Across Four Programming Languages",
   "path": "research-papers/flux-conformance/PAPER.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-04-14",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "ledgers-agreement-attestation"
@@ -2598,8 +2598,8 @@
  {
   "title": "Decomposition Engine — Current State & Next Phases",
   "path": "research-papers/fm-papers/DECOMP-ENGINE-PHASE-PLAN.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "research-process",
    "infrastructure",
@@ -2633,8 +2633,8 @@
  {
   "title": "Chapter 2: Background and Related Work",
   "path": "research-papers/fm-papers/DISSERTATION-CH2-BACKGROUND.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "conservation-laws",
    "agents-and-fleet",
@@ -2647,8 +2647,8 @@
  {
   "title": "Chapter 3: The Observation",
   "path": "research-papers/fm-papers/DISSERTATION-CH3-OBSERVATION.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "conservation-laws",
    "agents-and-fleet"
@@ -2660,8 +2660,8 @@
  {
   "title": "Chapter 4: Method",
   "path": "research-papers/fm-papers/DISSERTATION-CH4-METHOD.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "conservation-laws",
    "agents-and-fleet",
@@ -2677,8 +2677,8 @@
  {
   "title": "Dissertation Outline: The Lattice Principle — Constraint Theory as a Foundation for Multi-Agent Coordination",
   "path": "research-papers/fm-papers/DISSERTATION-OUTLINE.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "research-process",
@@ -2761,8 +2761,8 @@
  {
   "title": "Experiment: Forgetting as Feature — Small Context Window Test",
   "path": "research-papers/fm-papers/EXPERIMENT-FORGETTING-AS-FEATURE.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "memory-and-forgetting",
    "language-models",
@@ -2831,8 +2831,8 @@
  {
   "title": "Fleet Audit — Honest Assessment of 24 New Repos",
   "path": "research-papers/fm-papers/FLEET-AUDIT-HONEST.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "research-process",
    "agents-and-fleet",
@@ -2911,8 +2911,8 @@
  {
   "title": "Fleet Naval Hierarchy — Officers, Engineers, and the Able-Bodied Ensign",
   "path": "research-papers/fm-papers/FLEET-NAVAL-HIERARCHY.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "decision-models",
@@ -3005,8 +3005,8 @@
  {
   "title": "flux-index — Semantic Code Search, Zero Dependencies",
   "path": "research-papers/fm-papers/FLUX-INDEX-README.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "infrastructure",
    "constraint-theory"
@@ -3020,8 +3020,8 @@
  {
   "title": "FLUX-Rooms-Within-Agent: The Onion Architecture",
   "path": "research-papers/fm-papers/FLUX-ROOMS-WITHIN-AGENT.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "quilt-and-cells"
@@ -3038,8 +3038,8 @@
  {
   "title": "Smart CRDT × flux-index — The Sync Layer",
   "path": "research-papers/fm-papers/FLUX-SYNC-CRDT-DESIGN.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "ledgers-agreement-attestation",
    "infrastructure"
@@ -3056,8 +3056,8 @@
  {
   "title": "FLUX Within-Agent: The Score IS the Memory",
   "path": "research-papers/fm-papers/FLUX-WITHIN-AGENT-DEEP.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "memory-and-forgetting",
@@ -3095,8 +3095,8 @@
  {
   "title": "make-a-shell — Turnkey Agent Shells from Proven Infrastructure",
   "path": "research-papers/fm-papers/MAKE-A-SHELL-VISION.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "infrastructure",
    "agents-and-fleet"
@@ -3116,8 +3116,8 @@
  {
   "title": "Modular Expertise Architecture — The Backend",
   "path": "research-papers/fm-papers/MODULAR-EXPERTISE-ARCHITECTURE.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "decision-models",
@@ -3173,8 +3173,8 @@
  {
   "title": "vessel-room-navigator — Honest Audit",
   "path": "research-papers/fm-papers/NAVIGATOR-AUDIT.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "research-process",
    "maritime",
@@ -3600,8 +3600,8 @@
  {
   "title": "Seed-PLATO Integration: z.ai Research → Action Queue",
   "path": "research-papers/fm-papers/SEED-PLATO-ZAI-REPORT-ACTION.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "language-models",
    "research-process",
@@ -3670,8 +3670,8 @@
  {
   "title": "Self-Expertizing Rooms: Architecture for Distilled Intelligence",
   "path": "research-papers/fm-papers/SELF-EXPERTIZING-ROOMS.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "tiles-and-seeds",
    "learning-and-play",
@@ -3706,8 +3706,8 @@
  {
   "title": "Structure vs Scale — Complete Results (All Providers)",
   "path": "research-papers/fm-papers/STRUCTURE-VS-SCALE-COMPLETE.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "language-models",
    "tiles-and-seeds"
@@ -3834,8 +3834,8 @@
  {
   "title": "The Telephone Game Experiment: 6 Rounds of Lossy Reconstruction",
   "path": "research-papers/fm-papers/TELEPHONE-GAME-RESULTS.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "memory-and-forgetting",
    "maritime",
@@ -3869,8 +3869,8 @@
  {
   "title": "tensor-penrose — The Constraint Tensor Framework",
   "path": "research-papers/fm-papers/TENSOR-PENROSE-FRAMEWORK-SPEC.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "geometry-and-tilings",
    "infrastructure"
@@ -3884,8 +3884,8 @@
  {
   "title": "Tensor-Valued Penrose Tiling — Reverse Actualization Through the Lattice",
   "path": "research-papers/fm-papers/TENSOR-PENROSE-REVERSE-ACTUALIZATION.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "geometry-and-tilings",
    "constraint-theory"
@@ -4036,8 +4036,8 @@
  {
   "title": "The Tile Compression Theorem: A Rate-Distortion Analysis of Memory",
   "path": "research-papers/fm-papers/TILE-COMPRESSION-THEOREM.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "memory-and-forgetting",
    "tiles-and-seeds"
@@ -4124,8 +4124,8 @@
  {
   "title": "Workshop Pipeline: Show Your Work, Backtest, Feed Back",
   "path": "research-papers/fm-papers/WORKSHOP-PIPELINE.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "research-process",
    "language-models",
@@ -4141,8 +4141,8 @@
  {
   "title": "Constraint Theory: Trading Continuous Precision for Discrete Exactness in AI Knowledge Substrates",
   "path": "research-papers/fm-papers/constraint-theory-paper.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "tiles-and-seeds",
@@ -4158,8 +4158,8 @@
  {
   "title": "Chapter 1: Introduction — The Drift Problem",
   "path": "research-papers/fm-papers/dissertation/ch01-introduction.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "agents-and-fleet",
@@ -4177,8 +4177,8 @@
  {
   "title": "Chapter 2: Mathematical Foundations — Eisenstein Integers and the Dodecet",
   "path": "research-papers/fm-papers/dissertation/ch02-math-foundations.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "geometry-and-tilings",
@@ -4194,8 +4194,8 @@
  {
   "title": "Chapter 5: Within-Agent Coordination — AgentField",
   "path": "research-papers/fm-papers/dissertation/ch05-agentfield.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "decision-models",
@@ -4211,8 +4211,8 @@
  {
   "title": "Chapter 8: Collective Inference — Predict, Observe, Gap, Focus",
   "path": "research-papers/fm-papers/dissertation/ch08-collective-inference.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "decision-models",
@@ -4230,8 +4230,8 @@
  {
   "title": "Chapter 9: Local Knowledge at Hardware Speed",
   "path": "research-papers/fm-papers/dissertation/ch09-local-knowledge.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "infrastructure",
    "memory-and-forgetting",
@@ -4247,8 +4247,8 @@
  {
   "title": "The Mycorrhizal Fleet: Trust-Weighted Agent Communication via Git Infrastructure",
   "path": "research-papers/fm-papers/mycorrhizal-fleet-paper.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-22",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "infrastructure",
@@ -4271,8 +4271,8 @@
  {
   "title": "The Constraint Manifesto",
   "path": "research-papers/manifesto.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-03",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "research-process"
@@ -4470,8 +4470,8 @@
  {
   "title": "Zero-Crypto Fleet Security via Physics-Based Temporal Authentication",
   "path": "research-papers/paper-zero-crypto-fleet-security/paper.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-08",
+  "date_confidence": "git",
   "topics": [
    "ledgers-agreement-attestation",
    "agents-and-fleet",
@@ -4489,8 +4489,8 @@
  {
   "title": "Related Work: Formal Verification for Embedded Systems",
   "path": "research-papers/related-work-comparison.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-03",
+  "date_confidence": "git",
   "topics": [
    "constraint-theory",
    "infrastructure"
@@ -4655,7 +4655,7 @@
   "title": "Research: The Projectionist — landing page",
   "path": "research-papers/research-notes/projectionist-landing/report.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "rendering-and-ascii"
   ],
@@ -4670,7 +4670,7 @@
   "title": "SAIL & SINK — build brief",
   "path": "research-papers/research-notes/sail-and-sink/report.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "games",
    "rendering-and-ascii",
@@ -4754,7 +4754,7 @@
   "title": "Syzygy-OpenSkyFlight — Backend Technology & Rendering",
   "path": "research-papers/research-notes/syzygy-rendering-backend.md",
   "date": null,
-  "date_confidence": null,
+  "date_confidence": "inferred",
   "topics": [
    "rendering-and-ascii",
    "games"
@@ -5641,8 +5641,8 @@
  {
   "title": "WP-01 — The Quilt: a reactive cell substrate",
   "path": "white-papers/WP-01-the-quilt.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "quilt-and-cells",
    "ledgers-agreement-attestation",
@@ -5657,8 +5657,8 @@
  {
   "title": "WP-02 — JEV: the Joint Embedding Validator",
   "path": "white-papers/WP-02-jev.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "decision-models",
    "language-models",
@@ -5676,8 +5676,8 @@
  {
   "title": "WP-03 — The Exocortex & The Deadband Law",
   "path": "white-papers/WP-03-exocortex-deadband.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "games",
@@ -5696,8 +5696,8 @@
  {
   "title": "WP-04 — The JEPA Latent Grid: a world model with pre-registration",
   "path": "white-papers/WP-04-jepa-latent-grid.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "decision-models",
    "conservation-laws",
@@ -5714,8 +5714,8 @@
  {
   "title": "WP-05 — The Madlibs Lineage: from word blanks to cell blanks",
   "path": "white-papers/WP-05-madlibs-lineage.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "language-models",
    "games",
@@ -5737,8 +5737,8 @@
  {
   "title": "WP-06 — Platonic Randomness: chance as a fair participant",
   "path": "white-papers/WP-06-platonic-randomness.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "decision-models",
    "ledgers-agreement-attestation",
@@ -5756,8 +5756,8 @@
  {
   "title": "WP-07 — The Jig Law: shaping the environment that cultivates decisions",
   "path": "white-papers/WP-07-the-jig-law.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "research-process",
    "decision-models",
@@ -5773,8 +5773,8 @@
  {
   "title": "WP-08 — Purpose-Loops: RSI for a purpose, not runs",
   "path": "white-papers/WP-08-purpose-loops.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "decision-models",
    "research-process",
@@ -5789,8 +5789,8 @@
  {
   "title": "WP-09 — The Spoken & The Unspoken: a resonance harness",
   "path": "white-papers/WP-09-spoken-unspoken.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "language-models",
    "decision-models",
@@ -5808,8 +5808,8 @@
  {
   "title": "WP-10 — The Fleet: a working method for agentic research",
   "path": "white-papers/WP-10-the-fleet.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "research-process",
    "agents-and-fleet",
@@ -5825,8 +5825,8 @@
  {
   "title": "WP-11 — Beyond the Horizon: what the receipts point at next",
   "path": "white-papers/WP-11-beyond-the-horizon.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "research-process",
    "memory-and-forgetting",
@@ -5847,8 +5847,8 @@
  {
   "title": "WP-12 — The Band Law: one comparator, three derivations",
   "path": "white-papers/WP-12-band-law.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-10-03",
+  "date_confidence": "git",
   "topics": [
    "decision-models",
    "constraint-theory",
@@ -5865,8 +5865,8 @@
  {
   "title": "Bootstrap Bomb: Compiling a Fleet from Zero",
   "path": "white-papers/bootstrap-bomb.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-02",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "fleet-records",
@@ -5886,8 +5886,8 @@
  {
   "title": "Compiled Agency: The Cocapn Fleet Architecture",
   "path": "white-papers/compiled-agency.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-02",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "fleet-records",
@@ -5907,8 +5907,8 @@
  {
   "title": "[diagrams folder] Mermaid diagram sources for the POLLN white-paper series",
   "path": "white-papers/diagrams/",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-03-11",
+  "date_confidence": "git",
   "topics": [
    "rendering-and-ascii",
    "research-process"
@@ -6037,8 +6037,8 @@
  {
   "title": "The Semantic Compiler: From Intent to Verified Execution",
   "path": "white-papers/semantic-compiler.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-02",
+  "date_confidence": "git",
   "topics": [
    "agents-and-fleet",
    "tiles-and-seeds",
@@ -6077,8 +6077,8 @@
  {
   "title": "Quality at Ingestion: The PLATO Knowledge Gate",
   "path": "white-papers/whitepaper-plato-quality-gate.md",
-  "date": null,
-  "date_confidence": null,
+  "date": "2026-05-02",
+  "date_confidence": "git",
   "topics": [
    "ledgers-agreement-attestation",
    "agents-and-fleet",
