@@ -1,0 +1,25 @@
+# Negative Space: Shaping What It May Not Be
+
+The work is not the thing made; it is the space left for the thing to be made in. Algorithms and prompts are constraints arranged around a negative space — a region defined by what it excludes. Send a model nothing and it has infinite potential, and infinite potential is a failure mode: it may return a blank page, because a space that forbids nothing gives the power inside it no reason to become anything in particular. The craft is the opposite of filling. It is shaping what the space may *not* be, until what remains is narrow enough to act and wide enough to surprise.
+
+## How it works
+
+Treat the model like gunpowder. Raw power, no direction: loose powder sparked in the open air flashes and is spent. A barrel changes nothing about the powder's chemistry; it shapes the power around an idea, and a payload gives that shaped power a trajectory. Nothing about the bullet derives from the powder's ingredients — yet the same ingredients, with the right spark, can kill or harvest an animal. Constraint does not diminish the powder. Constraint is the only thing that makes the powder *do* anything. A prompt that asks for everything is loose powder; a prompt that forbids well is a barrel.
+
+The pencil line tells the same story from the other end. Paper and pencil carry zero constraints: the empty page can become any drawing whatsoever. Every line drawn removes possibilities — the drawing can no longer be any of the infinitely many things that line contradicts. But the potential does not go *down* as the lines accumulate; it *focuses*. Each exclusion concentrates what remains on the still-open space, the way a lens concentrates light it has not absorbed. A drawing emerges not because possibilities were added but because they were spent well, one refusal at a time, until the remaining space could only be one thing — and that thing is sharper for every line that closed around it.
+
+The commercial fisherman works the doctrine whole. He starts his day with arithmetic, not hope: ten hours at two and a half knots is twenty-five nautical miles of water he can touch. He thinks first about where he should *not* fish, then plans the entire trip around catching nothing — a route touching all the least-bad places he can think of to check. The plan is a last resort, and he hopes to abandon it. He is hoping to be interrupted: by seeing two friends who talk to each other start moving toward each other — one of them may be on fish; by a call from somebody saying he is on fish somewhere; or by finding fish himself in hour two and circling that spot for the rest of the day. The null plan is what executes only if nothing better happens. And if it executes in full and catches nothing, the day still pays in full: tomorrow he owns twenty-five miles of spots *not* to check. Exclusion is knowledge that compounds. A negative result is a durable asset, not a failed day.
+
+So the planner's real product is the map of refusals, dated and kept. Each day's empty miles are drawn lines on next day's chart. The plan worth making is the one that guarantees the day teaches something even when it catches nothing — coverage of the least-bad water, held loosely enough that any signal can tear it up.
+
+## Where it already lives
+
+The sibling doctrine of Mad Libs is negative-space engineering wearing a party game's clothes: the committed text works precisely because its surroundings forbid most fillings — the blank can only be filled well because so much has been excluded around it. The casting call keeps the same ledger in experimental form: its honest negative results are retained as findings, so a model that cannot do a thing becomes a recorded exclusion, narrowing where the fleet fishes next rather than a disappointment to be quietly dropped. And it stands in Casey's working vocabulary as law: *the catches are the truth*, and honest negatives are reported as negatives — a crossed-off mile is data with the same standing as a full hold.
+
+## Failure modes and tensions
+
+The corridor: over-constrain, and the space left is a passage with no discovery in it — the plan so tight that no interruption can improve it, the barrel rifled down to a pinhole. The fisherman's null plan works because it is a floor, not a cage; a plan that cannot be abandoned by good news has mistaken itself for the point. The opposite pole is the blank page: no barrel at all, infinite potential politely returning nothing. Between them sits a subtler error — mistaking exclusion for emptiness. Crossed-off water is *charted*, not unknown; the negative space is the best-known territory on the chart, and treating it as void throws away the asset the whole method exists to bank. Finally, exclusions go stale. Yesterday's dead water may hold today's fish; an exclusion map without dates quietly becomes superstition, forbidding ground on evidence that has expired. The chart must carry its dates, and old refusals must be re-fishable.
+
+## Connections
+
+Sibling concepts: `mad-libs-and-strategic-omission.md`, `the-settled-canvas.md`, `three-shapes-of-prediction.md`, `INDEX.md`.

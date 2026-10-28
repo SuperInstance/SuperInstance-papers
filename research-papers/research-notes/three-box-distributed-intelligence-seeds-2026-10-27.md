@@ -1,0 +1,61 @@
+# Three Boxes, One Weather System: Seeds for Distributed Intelligence in the House
+
+*A seed map, not a build plan.*
+
+## The organising thought: placement is architecture
+
+Each of the three house machines is good at what it is *near*. The ProArt is near the human — his eyes, his hands, the chair he is sitting in as this is written. The Orin is near the world's ear and mouth — the desk where sound arrives and a voice would answer. The Thor is near nothing but its own mass: 122 GiB of unified memory in the back room, consulted rather than sat at. If the morning's thesis holds — the team is the brain, intelligence in the interactions — then *where* each cell sits is not packaging. It is the architecture. A cell's neighbours, latencies and interruptions are part of what it can think.
+
+The piping numbers make this concrete. Measured on the LAN: ProArt→Thor 5.2 ms, Orin→Thor 14.7 ms, Thor→Orin 21.6 ms; throughput Thor→Orin roughly 71 Mb/s across two Wi-Fi hops. An agreed send/receive pair — all a quilt's ledger may mint shared state from — costs one round trip: 10–45 ms. Four orders of magnitude slower than a function call, four orders faster than a human noticing. The consequence is a grain size: at ~15 ms a channel can mint dozens of agreements a second — plenty for coordination and for settled things crossing the room; useless for token-level chatter. A house-sized quilt would exchange *settled things*, not streams of thought — exactly the discipline the ledger doctrine already asks for.
+
+**How this map was made.** The Orin inventory comes from today's experiment report (`~/workspace/experiments/orin-micro-revision-2026-10-27.md`), read in full. Thor and LAN figures are fleet records as supplied, not re-measured. Two things could not be verified: the Orin's whisper build has no recorded latency (nobody has timed it as a live ear), and nothing on record says how the ProArt's 4050 behaves under a training burst at a desk in use. Both gaps are seeds below.
+
+## Thor — near nothing but its own mass
+
+Measured strengths: resident 30B-class decoding at 82.4–82.9 tok/s warm (Nemotron-3-Nano under llama.cpp); DiffusionGemma settling a canvas at ~42 tok/s; the JEV rack live on :8077 — I-JEPA, V-JEPA 2 and the jev-semantic judge, served to the LAN as instruments other cells consult. Plus ComfyUI, the Foundry, the download governor, and the NemoClaw agent on Telegram.
+
+What is half-grown: Thor already *is* the back room of the team-is-the-brain picture — where gauges live, where settling happens at a scale the others cannot hold. The judge and JEPA endpoints are the conductor's instruments, already network-addressed. Thor needs no new role; it needs neighbours worth consulting it.
+
+## Orin — near the ear and the mouth
+
+Measured strengths, from today's inventory: no Ollama, but a full llama.cpp build (including `llama-diffusion-cli` — a diffusion runner with, as yet, no diffusion weights to run), small language models (Qwen3-0.6B, SmolLM2-135M/360M), and a perception shelf that already reads like a sensorium: MiniLM embeddings, the jev-semantic judge, whisper, Depth Anything V2, MoveNet, YuNet, U2Net. All on 7.3 GiB of RAM, called on demand by the model farm, nothing resident. Today's experiment adds a behavioural datum: its 0.6B reviser *freezes* — three planted errors, eighteen passes, zero corrections.
+
+Casey's seeds for this box (2026-10-27, his words, not decisions): a standalone doing one specific job — "a perception job like speech recognition", or "the actual last mile audio voice agent", or a place with parallel GPU and a fair chunk of RAM for things that "don't need to be so fast but need to be in that kind of state, like a place where a vector database can be that anything can get to". What is half-grown: the shelf *is* a perception node already; it lacks only a reason to listen continuously. The voice seed is half-grown differently — the fleet's radio-room work put speech on the ProArt, but the Orin's posture (small, always-there, at the desk) suits the last mile. And the diffusion runner waiting for weights is the box's negative space drawn precisely: an exclusion with a shape.
+
+## ProArt — near the eyes and the hands
+
+Measured strengths: the RTX 4050 (6 GiB discrete) in the machine the human physically sits at; rendering for production and development; three fleet agent seats (Claude Code, ZCode, MiniMax Code) and the watch stage. Notably, it owns the fastest pipe in the house: 5.2 ms to the Thor — the bridge is the closest cell to the mass.
+
+Casey's seeds: a system "designed to be the system that the human sits at", good for graphical stages of work, and the 4050 for "short bursts training sessions of very small things — small by comparison to the Thor". What is half-grown: the ProArt already closes the loop for the human — where fleet work becomes visible and renders are judged. A rendering endpoint is not a new role; it is the current one with the other two boxes upstream.
+
+## Synergy questions
+
+- **What does a sense–settle–show pipeline actually cost?** Orin hears, Thor settles, ProArt renders — what is the honest end-to-end latency, hop by hop, against any one box doing all three jobs worse? Where does the chain's time live: the models, or the piping?
+- **Can the Orin hold the house's shared memory?** An embedding store consulted by both other boxes at 15–20 ms — fast enough to feel like one room rather than a correspondence? And what is the largest shared state 7.3 GiB can hold before the holder becomes the constraint?
+- **Does the ledger change when the cells are separated by Wi-Fi?** The morning's score was written for cells a function call apart. Across the house, sends arrive with jitter, on asymmetric pipes — 21.6 ms one way, 14.7 back. Cue offsets would have to be *measured per pair*, a tuba problem in miniature. Does agreement stay cheap at that grain?
+- **Can a neighbour unfreeze a small model?** Today's Orin result: a lone reviser re-emits and ratifies. What if another box's judge interrupts between passes, marking the sentence it doubts? Does an external nudge do what self-revision could not?
+- **What is each box's exclusion worth to the others?** The Orin's 8 GiB forbids it the big models — and thereby hands it the perception job; the Thor's radio position forbids it fast fetching — and thereby hands fetching to the governor and Oracle's wire. Placement by negative space: is a fleet designed by what each box may *not* do more honest than one designed by what each may?
+
+## Three proposed experiments (PROPOSED — none run)
+
+**PROPOSED 1 — Time the chain.** *Question:* what does distribution cost, in milliseconds, on a sense–settle–show task? *Setup:* all parts on shelves — the Orin transcribes a spoken prompt with its resident whisper; the text crosses to Thor's resident llama-server; the reply displays on the ProArt. Timestamp every hop; run a Thor-only control. *Answering number:* end-to-end latency, chain vs control, with per-hop split and p95 jitter. *Cost:* half a day of wiring; nothing to buy.
+
+**PROPOSED 2 — The Orin as the house's memory.** *Question:* can one small box hold shared state for the other two at a latency that feels local? *Setup:* the Orin's resident MiniLM embeds a corpus already on disk (casting-call entries, concept documents — a few hundred texts); a small endpoint serves nearest-neighbour lookups; Thor and ProArt run timed query batches. *Answering numbers:* query latency p50/p95 from each box, embedding throughput, and the index size at which 7.3 GiB starts to pinch. *Cost:* an afternoon.
+
+**PROPOSED 3 — Same judges, different rooms.** *Question:* does placing the judge on another box change the verdict, or only the pace? *Setup:* the Mad Libs pattern from parts in place — Thor's resident model produces two candidate fills for a blank; the Orin's jev-semantic judge rules on the pair; Thor's own rack judge (:8077) rules on the same pairs as a same-room control; all sends and receives logged with timestamps, ledger-style. *Answering numbers:* agreement rate between the judges on identical pairs, and loop period (rounds per minute) distributed vs same-room. *Cost:* about a day; all components resident.
+
+## On tolerable slowness (Casey, 2026-10-27)
+
+A proof of concept may run slower than the finished thing, and the slowness is tolerable under three conditions. **The cause is named**: every slow second is accounted for (two Wi-Fi hops, a measured ~71 Mb/s, a radio in a bad position) — unexplained slowness is a defect, explained slowness is a measurement. **The cure is a component, not a redesign**: an Ethernet cable between the boxes upgrades the same architecture's speed without changing its shape, so a working proof at Wi-Fi tempo is evidence the design is right, not merely evidence it is patient. **The slowness stays off the reaction path**: some loops have a floor below which they stop being functional at all — reaction time is the hard case — and those loops must be fast *now* or must live locally on the box near the human or the world (which is where the placement doctrine already puts them). Settling, judging, and remembering tolerate seconds with known causes; barge-in, endpointing, and the last-mile reply do not. The rule in one line: *slow is fine where we can say exactly why, and exactly what removes it.*
+
+Two worked cases from the same ruling. **The camera case**: the Orin reacts fine to a camera wired directly into it, and fails the same job when the camera hangs off another small board across the Wi-Fi — the extra quarter second is not a degradation of the loop, it is the loop's abolition. Reaction loops are therefore placed *at the sensor*, not merely near it, and a sensor that must cross a network to be read is a different instrument, for slower work. **The game case**: autoplay on the ProArt needs its System 1 — the reactive layer — on the ProArt itself, at full local speed, while System 2 strategising may legitimately arrive half a second late from a bigger box. At the highest levels closeness would help; but the delay carries a discipline that is worth naming: **latency forces the scripts to be better.** A System 1 that must survive half a second unadvised gets written properly — complete, local, self-sufficient — instead of leaning on the strategist. And the counter-failure is real: a System 2 fast enough to sit inside the reaction loop starts involving itself in business the reactive layer handles better alone. The gap between the systems is thus a demarcation enforced by physics, and System 2's proper work sits in it: not steering within the engagement, but improving the scripts between engagements — distilling itself into hand-offable blocks until it is needed less.
+
+## Failure modes and tensions
+
+**The front room is also a desk.** Any Orin role that cannot be interrupted the moment Casey sits down is misplaced, however elegant. A vector database that sulks when the Earth survey opens is a bad room-mate; a perception job that yields instantly and resumes silently is a good one. Yielding is a placement criterion, not an afterthought — true in miniature for the ProArt, whose GPU is shared with the human's work.
+
+**Wi-Fi is weather.** The Thor's radio position is its known weak coordinate, and the Thor↔Orin path crosses two Wi-Fi hops at ~71 Mb/s. Jitter, not mean latency, is what a house-spanning ledger would feel; a design that assumes the 15 ms mean will mint disagreements it mistakes for signal.
+
+**Single points.** The Oracle tunnel is the only off-LAN path: if it or the uplink goes, the three boxes become an island — arguably a feature under fleet doctrine, but island mode should be designed, not discovered. Within the house, Thor is a single point of mass: if it sleeps, the big models and the rack sleep with it, leaving a sensorium and a screen with nothing between them.
+
+**One shared state, or several honest copies?** A single store on the Orin is the ledger's answer — state minted once, agreed by all — bought at a round trip per consult and a single point of failure. Duplicated caches are faster and ruder: they drift, and drift reintroduces the un-agreed state the ledger exists to forbid. Which jobs tolerate a copy and which demand the mint is the map's open question.
