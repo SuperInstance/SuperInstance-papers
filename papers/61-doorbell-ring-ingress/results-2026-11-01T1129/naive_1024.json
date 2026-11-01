@@ -1,0 +1,2 @@
+{"device": "NVIDIA Thor", "cc": "11.0", "sms": 20, "driver": "13.20", "runtime": "13.20"}
+{"mode": "naive", "frame_bytes": 1024, "count": 50000, "copy_launch_to_result_p50_us": 29.315, "copy_launch_to_result_p90_us": 34.334, "copy_launch_to_result_p99_us": 194.299, "copy_launch_to_result_max_us": 2972.769, "recv_p50_us": 0.898, "recv_p90_us": 1.111, "recv_p99_us": 11.769, "recv_max_us": 139.048, "wall_s": 1.906, "kfps": 26.2, "MBps": 26.9, "over_100us": 1781, "over_1ms": 22, "mismatch": 0, "max_relerr": 0}

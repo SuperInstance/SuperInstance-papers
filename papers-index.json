@@ -6091,5 +6091,25 @@
   ],
   "summary": "Quality control belongs at ingestion, not retrieval: a structural gate rejects absolute claims, short answers and duplicates (~15% of 18,633 tiles), with no bypass.",
   "status": "report"
+ },
+ {
+  "title": "The Three-Microsecond Doorbell: Resident Kernels and Zero-Copy Ingress on a Unified-Memory SoC",
+  "path": "papers/61-doorbell-ring-ingress/paper.md",
+  "date": "2026-11-01",
+  "date_confidence": "stated",
+  "topics": [
+   "infrastructure"
+  ],
+  "projects": [
+   "Thor",
+   "builder-ide"
+  ],
+  "summary": "A resident CUDA kernel polling a mapped pinned ring dispatches GPU jobs at 3 us p50 (313-314 k jobs/s, rel err 2.4e-08; measured twice) where per-job paths cost 35-69 us and collapse under load; the ingress experiment measures the naive arm at 30.8/36.4 us p50 (70,000 frames, bit-exact) with the zero-copy arm designed, pass-barred and queued when the box saturated.",
+  "status": "working-paper",
+  "aux_files": [
+   "papers/61-doorbell-ring-ingress/measurement.md",
+   "papers/61-doorbell-ring-ingress/wire_ingress.cu",
+   "papers/61-doorbell-ring-ingress/sender.c"
+  ]
  }
 ]

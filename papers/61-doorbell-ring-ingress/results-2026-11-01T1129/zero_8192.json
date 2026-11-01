@@ -1,0 +1,2 @@
+{"device": "NVIDIA Thor", "cc": "11.0", "sms": 20, "driver": "13.20", "runtime": "13.20"}
+{"mode": "zero", "frame_bytes": 8192, "count": 20000, "warmup_served": 16, "doorbell_to_result_p50_us": 4.842, "doorbell_to_result_p90_us": 5.740, "doorbell_to_result_p99_us": 9.918, "doorbell_to_result_max_us": 32.880, "recv_p50_us": 1.167, "recv_p90_us": 1.481, "recv_p99_us": 12.176, "recv_max_us": 65.214, "wall_s": 0.164, "kfps": 121.8, "MBps": 997.9, "over_100us": 0, "over_1ms": 0, "mismatch": 0, "max_relerr": 0}

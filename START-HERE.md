@@ -18,7 +18,7 @@ provenance).
   a paper sits under every theme it belongs to.
 
 Both views are generated from the same machine-readable digest,
-**[`papers-index.json`](papers-index.json)** (355 records: title, path, date, date
+**[`papers-index.json`](papers-index.json)** (356 records: title, path, date, date
 confidence, topics, projects, summary, status — every digested paper exactly once).
 
 ## The formal series
