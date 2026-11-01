@@ -4,7 +4,7 @@ Chronological view of the SuperInstance-papers library: every digested paper in 
 
 The 229 papers copied in during the library consolidation of 2026-10-28 carry that copy-in date in this repo's git; where the document states no date, the source repo's first-commit date is used instead. A few stated dates read as mis-datings by their own context (two "October 2023" headers against 2025–26 siblings; two "January 2025" papers whose research-run summary was generated 2026-03-09) — they are kept as stated and flagged in `notes/forgotten-knowledge.md` §6. See `notes/library-reorganisation-2026-10-28.md` for the full date-evidence policy.
 
-*355 papers digested · 339 dated · 16 undated.*
+*356 papers digested · 340 dated · 16 undated.*
 
 ## October 2023
 
@@ -374,6 +374,10 @@ The 229 papers copied in during the library consolidation of 2026-10-28 carry th
 - **2026-10-27** — [The Settled Canvas: Diffusion-Native Quilts](concept-papers/the-settled-canvas.md) · `DiffusionGemma`, `Thor`, `plato-ghostable (PLATO framework)`, `Quilt` — Diffusion-native quilts: the whole canvas exists masked, patches settle out of order and can re-mask — frozen core, fluid frontier, dark beyond.
 - **2026-10-27** — [Three Boxes, One Weather System: Seeds for Distributed Intelligence in the House](research-papers/research-notes/three-box-distributed-intelligence-seeds-2026-10-27.md) · `Thor`, `Orin`, `ProArt`, `JEV rack`, `NemoClaw` — Seed map placing Thor (mass), Orin (ear and mouth) and ProArt (eyes and hands) by measured latency and exclusion; proposes three distribution experiments, none run.
 - **2026-10-27** — [Three Shapes of Prediction: Perception, Completion, Judgement](concept-papers/three-shapes-of-prediction.md) · `JEV rack`, `I-JEPA`, `V-JEPA 2`, `GLiDE`, `DiffusionGemma`, `Thor`, `casting-call bench`, `Nemotron-Labs Diffusion`, `FLARE (HybridDiffusion)`, `iLLaDA`, `Sumi`, `Cola-DLM` — Model teams need three differently-shaped predictors — JEPA perception, diffusion completion, decision judgement — under a thin exact scheduler; polyformalism as measurement.
+
+## November 2026
+
+- **2026-11-01** — [The Three-Microsecond Doorbell: Resident Kernels and Zero-Copy Ingress on a Unified-Memory SoC](papers/61-doorbell-ring-ingress/paper.md) · `Thor`, `builder-ide` — A resident CUDA kernel polling a mapped pinned ring serves jobs at 3 µs p50 (313–314 k jobs/s, rel err 2.4e-08; measured twice) where every per-job path costs 35–69 µs and collapses under load; the ingress experiment measures the naive arm at 30.8/36.4 µs p50 (70,000 frames, bit-exact) with the zero-copy arm designed, pass-barred and queued when the box saturated.
 
 ## Undated
 
