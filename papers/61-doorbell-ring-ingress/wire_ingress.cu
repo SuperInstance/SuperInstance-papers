@@ -268,14 +268,6 @@ int main(int argc, char** argv) {
             rec[i] = t1 - t0;
         }
         t_end = now_us();
-        // shutdown sentinel: next job number, on the slot the kernel expects
-        {
-            const uint64_t stop_job = (uint64_t)count + 16 + 1;
-            __atomic_store_n(&ring[(stop_job - 1) % NSLOTS].seq_in, stop_job, __ATOMIC_RELEASE);
-        }
-        cudaError_t te = cudaDeviceSynchronize();
-        if (te != cudaSuccess) fprintf(stderr, "device sync: %s\n", cudaGetErrorString(te));
-
         qsort(lat, count, sizeof(double), cmp_double);
         qsort(rec, count, sizeof(double), cmp_double);
         int over100 = 0, over1ms = 0;
@@ -288,8 +280,19 @@ int main(int argc, char** argv) {
                count / ((t_end - t_start) / 1e6) / 1000.0,
                (double)count * frame / 1e6 / ((t_end - t_start) / 1e6),
                over100, over1ms, mismatches, max_relerr);
-        cudaFreeHost(ring);
-        return 0;
+        fflush(stdout);
+
+        // Shutdown must not wait on the GPU: cudaDeviceSynchronize() here has
+        // been observed (2026-11-01, lease googl1.ingress5) to sit in
+        // dma_fence_default_wait for minutes behind co-tenant work with the
+        // measurement already complete — the resident warp is starved, not
+        // stuck. Post the sentinel and exit; process exit tears the context
+        // and the warp down with the lease.
+        {
+            const uint64_t stop_job = (uint64_t)count + 16 + 1;
+            __atomic_store_n(&ring[(stop_job - 1) % NSLOTS].seq_in, stop_job, __ATOMIC_RELEASE);
+        }
+        _exit(0);
     }
 
     if (!strcmp(mode, "naive")) {

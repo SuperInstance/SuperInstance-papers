@@ -22,10 +22,10 @@ ingress path: a network frame received by the CPU **directly into a ring
 slot** and consumed in place by the resident kernel, with no staging copy
 and no per-job launch. This paper states the mechanism precisely, derives the
 cost model and its crossover, reports the two independent ring measurements
-plus the ingress experiment's measured naive arm (launch-dominated at
-30.8/36.4 µs p50 at 1/8 KiB, bit-exact over 70,000 frames) with the
-zero-copy arm's run designed, pass-barred and still queued when the box
-saturated, gives a standing regression with a pass bar, and delimits what is
+plus the complete ingress experiment (naive arm launch-dominated at
+30.8/36.4 µs p50 at 1/8 KiB; zero-copy arm **3.2/4.8 µs p50 — 9× faster at
+both sizes, bit-exact, zero >1 ms events over 70,000 frames**, measured
+co-tenant), gives a standing regression with a pass bar, and delimits what is
 *not* claimed: no bare metal, no driver bypass, no NIC DMA — the
 driver-mediated path is the fast one, and the measurements say so.
 
@@ -167,8 +167,12 @@ $R(B) = R_0 + B/\beta_{\text{ring}}$ where $R_0$ is the fixed round trip and
 $\beta_{\text{ring}}$ absorbs the slot's write path (CPU stores into the
 pinned slot during `recv()` are off the measured window) and the kernel's
 read. §5.3's naive arm confirms the launch term at both sizes directly
-(30.8 → 36.4 µs p50 for 1 → 8 KiB); the zero arm's two-point fit of $R_0$
-and $\beta_{\text{ring}}$ awaits the queued lease.
+(30.8 → 36.4 µs p50 for 1 → 8 KiB); the zero arm's two measured points
+(3.21 → 4.84 µs p50 for 1 → 8 KiB) give the two-point fit directly:
+$R_0 \approx 3.0$ µs and $\beta_{\text{ring}} \approx 7168\text{ B}/1.63\,\mu s
+\approx 4.4$ GB/s of *payload-visibility* bandwidth — far under the pool's
+239.7 GB/s, so the ingress ring stays dispatch-dominated at least to frames
+an order larger.
 `persist_queue`'s independent scaling note (jobs 8× bigger scale
 proportionally until the copy path saturates) is the same line.
 
@@ -293,30 +297,36 @@ model's $c_{\text{launch}}$ term measured directly: the copy+launch+sync
 structure behind `recv()` costs ~31–36 µs per frame on this box, with the
 payload's 8× size step moving p50 by only 5.6 µs.
 
-**The zero-copy arm (designed, pass bar pre-registered; run pending).** The
-first attempt aborted at its (mis-scaled) 2 µs clock bound before the
-resident warp's first service — a probe artifact, not a mechanism result
-(the same run's warmup-less design gave the cold kernel no grace). The probe
-now carries a pre-connect warmup (16 local doorbell jobs, each bit-exact
-against a host reference, else `doorbell_unsupported` is reported), a
-500 ms per-frame bound, and the corrected clock. The corrected re-run was
-queued under a study lease the same morning; the box saturated (its
-admission queue spent most of the session head-of-line blocked behind
-24–26 GB render and model-server leases, and by ~10:30 the ssh endpoint
-itself was timing out under load), so the lease did not clear before this
-seat ended. The lease stands queued with a bounded, ~10 s, 512 MB
-measurement behind it: when the box opens, the numbers land in
-`~/googl1-ingress/results/` on the Thor and the first row of this table's
-zero arm is a retrieval, not a project.
+**The zero-copy arm (measured; pass bar met).** The run took three attempts,
+each recorded in `measurement.md`. Attempt 1 aborted at its (mis-scaled) 2 µs
+clock bound before the resident warp's first service — a probe artifact, not
+a mechanism result. Attempt 2's corrected re-run never cleared the box's
+admission queue within its seat (and the queue entry did not survive; the
+next seat resubmitted it). Attempt 3 ran to completion at 11:21–11:31 under
+lease `googl1.ingress5`, after one more probe correction: the receiver had
+printed its JSON only *after* `cudaDeviceSynchronize()`, and that shutdown
+sync was observed sitting in `dma_fence_default_wait` for minutes behind
+co-tenant GPU work — the resident warp is starved, not stuck, at shutdown;
+the corrected probe prints and flushes before the sentinel and exits without
+the sync. The measured zero arm (same box, same lease family, an active
+co-tenant render throughout):
+
+| run | p50 | p90 | p99 | max | >1 ms | mismatch |
+|---|---|---|---|---|---|---|
+| zero, 1 KiB × 50,000 | **3.21 µs** | 4.35 µs | 7.09 µs | 150 µs | 0 | 0 |
+| zero, 8 KiB × 20,000 | **4.84 µs** | 5.74 µs | 9.92 µs | 33 µs | 0 | 0 |
 
 **Pass bar (stated before the run).** (a) zero p50 < naive p50 at both frame
-sizes; (b) `mismatch = 0` in both modes (coherence + correctness); (c) any
-stall in the naive path is recorded verbatim, not retried away. **Result:** naive arm — measured, bit-exact over 70,000 frames, launch-
-dominated at 30.8/36.4 µs p50 (1/8 KiB) with rare multi-second stalls
-recorded verbatim (bar (c) met; bar (b) met for the naive arm). Zero-copy
-arm — bar (a) is **not yet evaluated**: the corrected run's lease did not
-clear the box's queue within the seat (the attempt, the probe bug it caught,
-and the standing lease are recorded above and in `measurement.md`).
+sizes — **met: 9.1× at 1 KiB (3.21 vs 29.32 µs), 9.2× at 8 KiB (4.84 vs
+44.35 µs)**; (b) `mismatch = 0` in both modes — **met** (max rel err 0;
+payloads are exact quarters, so sums are bit-exact); (c) any stall in the
+naive path is recorded verbatim, not retried away — **met** (naive maxima
+2973 µs and 1058 µs, with 22 and 1 frames over 1 ms; the zero arm recorded
+zero frames over 1 ms). The zero arm's doorbell-to-result p50 sits 6% above
+the socket-free ring's 3.03 µs: receiving the frame directly into the pinned
+slot adds nothing measurable to the dispatch path — the coherence claim in
+its ingress form. Throughput: 230.2 kfps (1 KiB) and 121.8 kfps / 997.9 MB/s
+of payload (8 KiB).
 
 *Scope of this run, honestly:* loopback TCP on the Thor — the frame
 traverses the kernel socket stack but not an external NIC, and nothing here
@@ -441,8 +451,10 @@ ring for dispatch, one coherent pool, a Green Context floor for live work, a
   `builder-ide`).
 - The ingress attempt of §5.3: `thor-probe/wire_ingress.cu` and
   `thor-probe/sender.c` (committed as aux files here — the committed copies
-  are the corrected builds with the warmup and honest bounds), raw JSON of
-  both attempts in `measurement.md` (this folder), leases `googl1.ingress3`
-  and `googl1.ingress4`, study tier, 2026-11-01.
+  are the corrected builds with the warmup, honest bounds and the
+  print-before-shutdown fix), raw JSON of attempts 1 and 3 in
+  `measurement.md` (this folder) and attempt 3's files in
+  `results-2026-11-01T1129/`, leases `googl1.ingress3`, `googl1.ingress4`
+  and `googl1.ingress5`, study tier, 2026-11-01.
 - The digest itself: `googl1-digest/docs/00…13` (parts 02, 03, 04, 05, 06,
   13 are this paper's direct antecedents).
